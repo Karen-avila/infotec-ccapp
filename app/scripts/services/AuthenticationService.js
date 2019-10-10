@@ -66,7 +66,11 @@
 	                    .success(getUserDetails)
 	                    .error(onLoginFailure);
         		} else {
-	                httpService.post(apiVer + "/authentication?username=" + credentials.username + "&password=" + credentials.password)
+        			 var payload = {
+        					 username: credentials.username,
+                             password: credentials.password
+                    }
+	                httpService.post(apiVer + "/authentication",payload)
 	                    .success(onLoginSuccess)
 	                    .error(onLoginFailure);
         		}
