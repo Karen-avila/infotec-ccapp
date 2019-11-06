@@ -15,17 +15,23 @@
             <br/>
             <form>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input name="codevalue" ng-model="newEle.name" placeholder="{{ 'label.input.codevalue' | translate }}"
                                type="text" class="form-control"/>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <textarea name="description" ng-model="newEle.description" placeholder="{{ 'label.input.description' | translate }}"
                                type="text" class="form-control"/>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-3">
                         <input name="position" ng-model="newEle.position" placeholder="{{ 'label.input.position' | translate }}"
-                               type="text" class="form-control"/>
+                               type="number" class="form-control"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <input name="score" ng-model="newEle.score" placeholder="{{ 'label.input.score' | translate }}"
+                               type="number" class="form-control"/>
                     </div>
                     <div class="col-sm-3">
                         <label class="control-label col-sm-2">{{'label.input.active' | translate}}</label>
@@ -43,7 +49,8 @@
             <div data-ng-repeat="codevalue in codevalues">
                 <input disabled="" placeholder={{codevalue.name}} type="text"/>&nbsp;&nbsp;
                 <input disabled="" placeholder={{codevalue.description}} type="text"/>&nbsp;&nbsp;
-                <input disabled="" placeholder={{codevalue.position}} type="text"/>&nbsp;&nbsp;
+                <input disabled="" placeholder={{codevalue.position}} type="number"/>&nbsp;&nbsp;
+                <input disabled="" placeholder={{codevalue.score}} type="number"/>&nbsp;&nbsp;
                 <a ng-click='deleteCv(codevalue.id)' has-permission='DELETE_CODEVALUE'><i class="fa fa-times-circle fa-2x"></i></a>
             </div>
             <div class="pull-right" data-ng-show="stat">

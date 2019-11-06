@@ -14,7 +14,6 @@
             });
             resourceFactory.codeValueResource.getAllCodeValues({codeId: routeParams.id}, function (data) {
                 scope.codevalues = data;
-
             });
 
             scope.addCv = function () {

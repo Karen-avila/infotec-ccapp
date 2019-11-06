@@ -44,6 +44,7 @@
                         <tr>
                             <th>{{ 'label.heading.name' | translate }}</th>
                             <th>{{ 'label.heading.description' | translate }}</th>
+                            <th>{{ 'label.heading.score' | translate }}</th>
                             <th>{{ 'label.heading.position' | translate }}</th>
                             <th>{{'label.heading.active' | translate}}</th>
                             <th></th>
@@ -62,9 +63,14 @@
                                        type="text" class="form-control"/>
                             </td>
                             <td>
+                                <span data-ng-hide="codevalue.edit">{{codevalue.score}}</span>
+                                <input data-ng-show="codevalue.edit" name="score" ng-model="formData[codevalue.id].score"
+                                       type="number" class="form-control"/>
+                            </td>
+                            <td>
                                 <span data-ng-hide="codevalue.edit">{{codevalue.position}}</span>
                                 <input data-ng-show="codevalue.edit" name="position" ng-model="formData[codevalue.id].position"
-                                       type="text" class="form-control"/>
+                                       type="number" class="form-control"/>
                             </td>
                             <td>
                                 <span data-ng-hide="codevalue.edit">{{codevalue.active}}</span>

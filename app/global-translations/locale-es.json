@@ -2534,6 +2534,7 @@
 	"label.input.columnname": "Nombre de columna",
 	"label.input.codevalue": "Valor del código",
 	"label.input.position": "Posición",
+	"label.input.score": "Puntuación",
 	"label.input.isactivejob": "¿El trabajo está activo?",
 	"label.input.cornexpression": "Expresión de cron",
 	"label.input.jobname": "Nombre del trabajo",
