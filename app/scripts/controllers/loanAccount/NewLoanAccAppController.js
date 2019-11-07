@@ -49,13 +49,19 @@
             scope.inparams.staffInSelectedOfficeOnly = true;
 
             resourceFactory.loanResource.get(scope.inparams, function (data) {
-                scope.products = data.productOptions;
-
+                scope.products = [];
+                var prefix = "";
                 if (data.clientName) {
                     scope.clientName = data.clientName;
-                }
-                if (data.group) {
+                    prefix = "IND";
+                } else if (data.group) {
                     scope.groupName = data.group.name;
+                    prefix = "GR";
+                }
+                for (var i = 0; i < data.productOptions.length; i++) {
+                    if (data.productOptions[i].name.startsWith(prefix)) {
+                        scope.products.push(data.productOptions[i]);
+                    }
                 }
             });
 

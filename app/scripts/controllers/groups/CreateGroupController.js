@@ -104,7 +104,14 @@
             		var temp = {};
                     temp.id = scope.clientData.available.id;
                     temp.displayName = scope.clientData.available.displayName;
-                	scope.addedClients.push(temp);
+                    var exists = false;
+                    for (var i = 0; i < scope.addedClients.length; i++) {
+                        if (scope.addedClients[i].id == temp.id) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) scope.addedClients.push(temp);
             	}
             };
             scope.sub = function (id) {

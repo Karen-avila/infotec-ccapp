@@ -2688,6 +2688,7 @@
   "label.input.codevalue": "Code value",
   "label.input.position": "Position",
   "label.input.score": "Score",
+	"label.input.scoring": "Scoring",
   "label.input.isactivejob": "Is job active?",
   "label.input.cornexpression": "Cron expression",
   "label.input.jobname": "Job name",

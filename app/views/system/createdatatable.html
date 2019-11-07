@@ -45,7 +45,11 @@
     		        </div>
     		        <div class="form-group">
     		            <label class="control-label col-sm-2">{{ 'label.input.multirow' | translate }}</label>
-    		            <div class="form-inline col-sm-3"><input type="checkbox" ng-model="formData.multiRow"/></div>
+    		            <div class="form-inline col-sm-3"><input disabled="formData.scoring" type="checkbox" ng-model="formData.multiRow"/></div>
+					</div>
+    		        <div class="form-group">
+    		            <label class="control-label col-sm-2">{{ 'label.input.scoring' | translate }}</label>
+    		            <div class="form-inline col-sm-3"><input disabled="formData.multiRow" type="checkbox" ng-model="formData.scoring"/></div>
     		        </div>
     		        <div class="form-group">
     		            <label class="control-label col-sm-2">{{ 'label.input.addcolumns' | translate }}<span
