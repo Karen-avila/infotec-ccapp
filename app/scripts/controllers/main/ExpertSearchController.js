@@ -7,7 +7,7 @@
 			}
 
 			scope.searchLabels = {
-				es: ['Crear Cliente', 'Clientes', 'Crear Grupo', 'Grupos', 'Centros', 'Crear Centros', 'Configuracion', 'Tareas pendientes', 'Plantillas', 'Usuarios del Sistema',
+				es_MX: ['Crear Cliente', 'Clientes', 'Crear Grupo', 'Grupos', 'Centros', 'Crear Centros', 'Configuracion', 'Tareas pendientes', 'Plantillas', 'Usuarios del Sistema',
 				'Crear Plantilla', 'Crear Producto de Prestamo', 'Crear Producto de Caja de Ahorro', 'Roles', 'Agregar Roles', 'Creador de tareas del verificador',
 				'Usuarios', 'Productos de Prestamo', 'Cargos', 'Productos de Caja de Ahorro', 'Oficinas', 'Crear Oficina', 'Configuracion del tipo de Moneda', 'Configuracion de Usuarios',
 				'Crear Usuario', 'Empleados', 'Crear Empleados', 'Configurar los fondos', 'offices', '´Plan de Cuentas', 'Publicaciones Frecuentes', 'Entrada de Libro Diario',
