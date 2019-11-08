@@ -108,23 +108,13 @@
                     scope.stateOptions=data.address[0].stateProvinceIdOptions;
 
                     resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data){
-
-
-
                         for(var i=0;i<data.length;i++)
                         {
                             data[i].field='scope.'+data[i].field;
                             eval(data[i].field+"="+data[i].is_enabled);
 
                         }
-
-
-
-
-
                     })
-
-
                 }
 
 
@@ -132,8 +122,6 @@
                 scope.genderIdOptions=data.familyMemberOptions.genderIdOptions;
                 scope.maritalStatusIdOptions=data.familyMemberOptions.maritalStatusIdOptions;
                 scope.professionIdOptions=data.familyMemberOptions.professionIdOptions;
-
-
 
             });
 
@@ -162,8 +150,6 @@
             }
 
 
-
-
             // end of address
 
 
@@ -181,8 +167,6 @@
 
 
             // end of family members
-
-
 
 
             scope.displayPersonOrNonPersonOptions = function (legalFormId) {

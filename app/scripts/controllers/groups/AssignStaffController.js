@@ -7,7 +7,9 @@
             resourceFactory.assignStaffResource.get({groupOrCenter: routeParams.entityType, groupOrCenterId: routeParams.id, template: 'true',staffInSelectedOfficeOnly:true}, function (data) {
                 scope.group = data;
                 scope.staffs = data.staffOptions;
-                scope.formData.staffId = data.staffOptions[0].id;
+                if (data.staffOptions.length > 0) {
+                    scope.formData.staffId = data.staffOptions[0].id;
+                }
             });
             scope.assignStaff = function () {
 

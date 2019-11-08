@@ -409,14 +409,7 @@
                                   <input id="dateofbirth" type="text" name="dateofbirth" datepicker-pop="dd MMMM yyyy"
                                          ng-model="familyArray[$index].dateOfBirth" is-open="opened1" max="restrictDate"  class="form-control"/>
                               </div>
-
                           </div>
-
-
-
-
-
-
                       </div>
 
                   </div>
@@ -455,38 +448,44 @@
                         </div>
                         <div class="form-group" ng-show="addressLine1">
                            <label class="control-label col-sm-2" >{{ 'label.input.addressline1' | translate }}</label>
-                           <div class="col-sm-3">
+                           <div class="col-sm-4">
                               <input type="text"  name="addressline1" ng-model="addressArray[$index].addressLine1"  class="form-control">
                            </div>
                         </div>
                         <div class="form-group" ng-show="addressLine2">
                            <label class="control-label col-sm-2" >{{ 'label.input.addressline2' | translate }}</label>
-                           <div class="col-sm-3">
+                           <div class="col-sm-4">
                               <input type="text"  name="addressline2" ng-model="addressArray[$index].addressLine2"  class="form-control">
                            </div>
                         </div>
                         <div class="form-group" ng-show="addressLine3">
                            <label class="control-label col-sm-2" >{{ 'label.input.addressline3' | translate }}</label>
-                           <div class="col-sm-3">
+                           <div class="col-sm-4">
                               <input type="text"  name="addressline3" ng-model="addressArray[$index].addressLine3"  class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group" ng-show="addressLine4">
+                           <label class="control-label col-sm-2" >{{ 'label.input.addressline4' | translate }}</label>
+                           <div class="col-sm-4">
+                              <input type="text"  name="addressline4" ng-model="addressArray[$index].addressLine4"  class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group" ng-show="addressLine5">
+                           <label class="control-label col-sm-2" >{{ 'label.input.addressline5' | translate }}</label>
+                           <div class="col-sm-4">
+                              <input type="text"  name="addressline5" ng-model="addressArray[$index].addressLine5"  class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group" ng-show="addressLine6">
+                           <label class="control-label col-sm-2" >{{ 'label.input.addressline6' | translate }}</label>
+                           <div class="col-sm-4">
+                              <input type="text"  name="addressline6" ng-model="addressArray[$index].addressLine6"  class="form-control">
                            </div>
                         </div>
                         <div class="form-group" ng-show="city">
                            <label class="control-label col-sm-2" >{{ 'label.input.city' | translate }}</label>
                            <div class="col-sm-3">
                               <input type="text" name="city" ng-model="addressArray[$index].city"  class="form-control">
-                           </div>
-                        </div>
-                        <div class="form-group" ng-show="townVillage">
-                           <label class="control-label col-sm-2" >{{ 'label.input.town_village' | translate }}</label>
-                           <div class="col-sm-3">
-                              <input type="text"  name="town_village" ng-model="addressArray[$index].townVillage"  class="form-control">
-                           </div>
-                        </div>
-                        <div class="form-group" ng-show="countyDistrict">
-                           <label class="control-label col-sm-2" >{{ 'label.input.county_district' | translate }}</label>
-                           <div class="col-sm-3">
-                              <input type="text"  name="county_district" ng-model="addressArray[$index].countyDistrict"  class="form-control">
                            </div>
                         </div>
                         <div class="form-group" ng-show="stateProvinceId">
@@ -497,6 +496,16 @@
                               <select chosen="stateOptions"  ng-model="addressArray[$index].stateProvinceId"  class="form-control"
                                  ng-options="stateOption.id as stateOption.name for stateOption in stateOptions track by stateOption.id"
                                  value="stateProvinceId"></select>
+                           </div>
+                        </div>
+                        <div class="form-group" ng-show="municipality">
+                           <div class="control-label col-sm-2">
+                              <label>{{ 'label.input.municipality' | translate }}</label>
+                           </div>
+                           <div class="col-sm-3" >
+                              <select chosen="municipalityOptions"  ng-model="addressArray[$index].municipalityId"  class="form-control"
+                                 ng-options="municipalityOption.id as municipalityOption.name for municipalityOption in municipalityOptions track by municipalityOption.id"
+                                 value="municipalityProvinceId"></select>
                            </div>
                         </div>
                         <div>
@@ -514,7 +523,13 @@
                         <div class="form-group" ng-show="postalCode">
                            <label class="control-label col-sm-2" >{{ 'label.input.postal_code' | translate }}</label>
                            <div class="col-sm-3">
-                              <input type="text"  name="postal_code" ng-model="addressArray[$index].postalCode"  class="form-control">
+                              <input type="text" name="postal_code" pattern="\d*" maxlength="5" ng-model="addressArray[$index].postalCode"  class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group" ng-show="antiquity">
+                           <label class="control-label col-sm-2" >{{ 'label.input.antiquity' | translate }}</label>
+                           <div class="col-sm-3">
+                              <input type="text" name="antiquity" pattern="\d*" maxlength="2" ng-model="addressArray[$index].antiquity"  class="form-control">
                            </div>
                         </div>
                         <div class="form-group" ng-show="latitude">

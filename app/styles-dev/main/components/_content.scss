@@ -81,7 +81,6 @@ div[data-angular-treeview] {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: Tahoma;
     font-size:13px;
     color: #000000;
     text-decoration: none;
@@ -192,6 +191,11 @@ span.required {
 
 .center{
   text-align:center;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
 }
 
 .table th{
