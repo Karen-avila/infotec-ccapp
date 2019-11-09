@@ -225,18 +225,19 @@
             };
 
             scope.langs = mifosX.models.Langs;
+
             if (localStorageService.getFromLocalStorage('Language')) {
                 var temp = localStorageService.getFromLocalStorage('Language');
                 for (var i in mifosX.models.Langs) {
                     if (mifosX.models.Langs[i].code == temp.code) {
                         scope.optlang = mifosX.models.Langs[i];
                         tmhDynamicLocale.set(mifosX.models.Langs[i].code);
-                        }
+                    }
                 }
             } else {
                 scope.optlang = scope.langs[0];
                 tmhDynamicLocale.set(scope.langs[0].code);
-                }
+            }
             translate.use(scope.optlang.code);
 
             scope.isActive = function (route) {

@@ -1,6 +1,7 @@
 {
   "#Common": "....",
   "#Headings": "..",
+	"label.heading.company": "CrediSelect",
   "label.heading.totalshares": "Total Shares",
   "label.heading.sharenominalprice": "Nominal/Unit Price",
   "label.heading.totalsharestobeissued": "Total Shares to be Issued",
@@ -2334,6 +2335,7 @@
   "label.input.email": "Email",
   "label.input.autogeneratepassword": "Auto generate password",
   "label.input.password": "Password",
+  "label.input.loading": "Loading",
   "label.input.repeatpassword": "Repeat password",
   "label.input.selectroles": "Select roles",
   "label.input.generatepasswordandemailit": "Generate password and mail it",

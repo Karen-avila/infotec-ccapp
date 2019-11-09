@@ -7,14 +7,14 @@
 			}
 
 			scope.searchLabels = {
-				es_MX: ['Crear Cliente', 'Clientes', 'Crear Grupo', 'Grupos', 'Centros', 'Crear Centros', 'Configuracion', 'Tareas pendientes', 'Plantillas', 'Usuarios del Sistema',
+				'es-mx': ['Crear Cliente', 'Clientes', 'Crear Grupo', 'Grupos', 'Centros', 'Crear Centros', 'Configuracion', 'Tareas pendientes', 'Plantillas', 'Usuarios del Sistema',
 				'Crear Plantilla', 'Crear Producto de Prestamo', 'Crear Producto de Caja de Ahorro', 'Roles', 'Agregar Roles', 'Creador de tareas del verificador',
 				'Usuarios', 'Productos de Prestamo', 'Cargos', 'Productos de Caja de Ahorro', 'Oficinas', 'Crear Oficina', 'Configuracion del tipo de Moneda', 'Configuracion de Usuarios',
 				'Crear Usuario', 'Empleados', 'Crear Empleados', 'Configurar los fondos', 'offices', '´Plan de Cuentas', 'Publicaciones Frecuentes', 'Entrada de Libro Diario',
 				'Buscar Transaccion', 'Cierres Contables', 'Reglas de Contabilidad', 'Agregar Regla Contable', 'Tablas de Datos', 'Crear Tablas de Datos', 'Agregar Codigo',
 				'Gestionar Planificador de Trabajos', 'Codigos', 'Reportes', 'Crear Reportes', 'Vacaciones', 'Crear Vacaciones', 'Crear Cargos', 'Producto Mixto', 'Crear Producto Mixto',
 				'Reasignacion de Prestamo en masa', 'Auditoría', 'Crear Cierres Contables', 'Hoja de Recaudacion', 'Navegacion', 'Contabilidad', 'Organizacion', 'Sistema'],
-				en: ['create client', 'clients', 'create group', 'groups', 'centers', 'create center', 'configuration', 'tasks', 'templates', 'system users',
+				'en': ['create client', 'clients', 'create group', 'groups', 'centers', 'create center', 'configuration', 'tasks', 'templates', 'system users',
 				'create template', 'create loan product', 'create saving product', 'roles', 'add role', 'configure maker checker tasks',
 				'users', 'loan products', 'charges', 'saving products', 'offices', 'create office', 'currency configurations', 'user settings',
 				'create user', 'employees', 'create employee', 'manage funds', 'offices', 'chart of accounts', 'frequent postings', 'Journal entry',
@@ -36,7 +36,7 @@
 				  	  location.path('/clients');
 		              break;
 		          case 'create group':
-				  case 'create grupo':
+				  case 'crear grupo':
 		              location.path('/creategroup');
 		              break;
 		          case 'groups':

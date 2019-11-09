@@ -107,12 +107,12 @@
                     scope.countryOptions=data.address[0].countryIdOptions;
                     scope.stateOptions=data.address[0].stateProvinceIdOptions;
 
-                    resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data){
-                        for(var i=0;i<data.length;i++)
-                        {
+                    resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data) {
+                        console.log(entityname);
+                        console.log(data);
+                        for(var i=0;i<data.length;i++) {
                             data[i].field='scope.'+data[i].field;
                             eval(data[i].field+"="+data[i].is_enabled);
-
                         }
                     })
                 }
@@ -322,6 +322,18 @@
                         {
                             temp.addressLine3=scope.addressArray[i].addressLine3;
                         }
+                        if(scope.addressArray[i].addressLine4)
+                        {
+                            temp.addressLine4=scope.addressArray[i].addressLine4;
+                        }
+                        if(scope.addressArray[i].addressLine5)
+                        {
+                            temp.addressLine5=scope.addressArray[i].addressLine5;
+                        }
+                        if(scope.addressArray[i].addressLine6)
+                        {
+                            temp.addressLine6=scope.addressArray[i].addressLine6;
+                        }
                         if(scope.addressArray[i].townVillage)
                         {
                             temp.townVlage=scope.addressArray[i].townVillage;
@@ -357,7 +369,6 @@
                         if(scope.addressArray[i].isActive)
                         {
                             temp.isActive=scope.addressArray[i].isActive;
-
                         }
                         scope.formData.address.push(temp);
                     }
