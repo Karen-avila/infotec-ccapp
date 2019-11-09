@@ -1,5 +1,5 @@
 .graybg{
-  background-color: #f0f0f0;
+  background-color: $gray-dark;
 }
 .width170px {
     min-width: 170px !important;
@@ -169,7 +169,7 @@ td.labelrow {
 }
 
 tr.bottomborder td, tr.bottomborder th {
-  border-bottom:1px solid #C0C0C0;
+  border-bottom:1px solid $gray-dark;
   padding-bottom:2px
 }
 tr.toppadding td, tr.toppadding th {
@@ -177,16 +177,16 @@ tr.toppadding td, tr.toppadding th {
 }
 
 tr.graybg td, tr.graybg th {
-  background-color: #F0F0F0;
+  background-color: $gray-dark;
 }
 
 td.graybg {
-  background-color: #F0F0F0;
+  background-color: $gray-dark;
 }
 
 
 td.left-border {
-  border-left: thick solid #F0F0F0;
+  border-left: thick solid $gray-dark;
 }
 
 hr.marginbottom {
@@ -228,7 +228,7 @@ accordion > div > div > div {
   text-align: center;
   vertical-align: baseline;
   word-wrap: break-word;
-  background-color: rgb(66, 139, 202);
+  background-color: $brand-primary;
   margin: 10px 0px;
   border-radius: 0.25em 0.25em 0.25em 0.25em;
   font-weight: bold;

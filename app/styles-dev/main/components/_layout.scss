@@ -7,11 +7,10 @@
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-nav > li > a{
-  color: #4f99ed !important;
+  color: $brand-primary !important;
 }
 
 #mifos-reskin-ui-container{
-  position:absolute;
   top:52px;
   bottom:0;
   right:0;
@@ -30,15 +29,14 @@
 
 $sidebar-width : 51px;
 $sidebar-hover-width : 240px;
-#mifos-reskin-body-container{
+#mifos-reskin-body-container {
   @include flex(1 100%);
   @include order(1);
-
-
   @include flexbox();
 
-  #mifos-reskin-side-nav{
-
+  background-color: $body-bg;
+  
+  #mifos-reskin-side-nav {
     position: fixed;
     top: 52px;
     bottom: 0;
@@ -52,7 +50,7 @@ $sidebar-hover-width : 240px;
 
     background: rgba(8,35,49,1);
 
-    border-right:1px solid #e0e0e0;
+    border-right:1px solid $gray-light;
     -webkit-transition-duration: 500ms;
     -moz-transition-duration: 500ms;
     -ms-transition-duration: 500ms;
@@ -95,14 +93,11 @@ $sidebar-hover-width : 240px;
 
   }
 
-
   #mifos-reskin-body-view{
     padding: 10px 0 0 65px;
     // @include flex(1 100%);
     // @include order(0);
     overflow: auto;
-    background-color: #ebeff1;
-
+    background-color: $body-bg;
   }
-  
 }

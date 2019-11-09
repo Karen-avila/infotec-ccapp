@@ -63,6 +63,7 @@
   "label.heading.externalid": "External Id",
   "label.heading.summary": "Summary",
   "label.heading.products": "Products",
+	"label.listof.users": "List of Users",
   "label.heading.branch": "Branch",
   "label.heading.notes": "Notes",
   "label.heading.closedaccount": "Closed Account",

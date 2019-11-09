@@ -12,10 +12,10 @@
             display:block;
             height:44px;
             padding:12px 10px;
-            color: #adbabd;
+            color: $gray-light;
             transition-duration:250ms;
 
-            border-bottom: 1px solid #1e313a;
+            border-bottom: 1px solid $brand-primary;
             border-top: 1px solid #0f181d;
 
             i{
@@ -29,11 +29,9 @@
               color:#fff;
               transition-duration:250ms;
               text-decoration: none;
-              background:rgba(79,153,237,1);
+              background: $active;
               outline: none;
-
             }
-
           }
         }
       }
@@ -53,10 +51,10 @@
         display:block;
         height:40px;
         padding:12px 10px;
-        color: #adbabd;
+        color: $gray-light;
         transition-duration:250ms;
 
-        border-bottom: 1px solid #1e313a;
+        border-bottom: 1px solid $brand-primary;
         border-top: 1px solid #0f181d;
 
         i{
@@ -70,11 +68,9 @@
           color:#fff;
           transition-duration:250ms;
           text-decoration: none;
-          background:rgba(79,153,237,1);
+          background: $active;
           outline: none;
-
         }
-
       }
     }
   }

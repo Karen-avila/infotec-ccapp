@@ -112,6 +112,8 @@ module.exports = function(grunt) {
           //:['<%= mifosx.app %>/bower_components/require-css/css.js'],
           //'<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/requirejs/requirejs.min.js'
           //:['<%= mifosx.app %>/bower_components/requirejs/require.js'],
+          '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/select2/dist/js/select2.min.js'
+          :['<%= mifosx.app %>/bower_components/select2/dist/js/select2.js'],
           '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/underscore/underscore.min.js'
           :['<%= mifosx.app %>/bower_components/underscore/underscore.js'],
            '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/angular-utils-pagination/dirPagination.min.js'

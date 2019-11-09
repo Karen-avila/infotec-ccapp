@@ -22,6 +22,7 @@
             scope.addressTypes=[];
             scope.countryOptions=[];
             scope.stateOptions=[];
+            scope.municipalityOptions=[];
             scope.addressTypeId={};
             entityname="ADDRESS";
             scope.addressArray=[];
@@ -106,10 +107,8 @@
                     scope.addressTypes=data.address[0].addressTypeIdOptions;
                     scope.countryOptions=data.address[0].countryIdOptions;
                     scope.stateOptions=data.address[0].stateProvinceIdOptions;
-
+                    scope.municipalityOptions=data.address[0].municipalityIdOptions;
                     resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data) {
-                        console.log(entityname);
-                        console.log(data);
                         for(var i=0;i<data.length;i++) {
                             data[i].field='scope.'+data[i].field;
                             eval(data[i].field+"="+data[i].is_enabled);
@@ -349,6 +348,14 @@
                         if(scope.addressArray[i].countryId)
                         {
                             temp.countryId=scope.addressArray[i].countryId;
+                        }
+                        if(scope.addressArray[i].municipalityId)
+                        {
+                            temp.municipalityId=scope.addressArray[i].municipalityId;
+                        }
+                        if(scope.addressArray[i].antiquity)
+                        {
+                            temp.antiquity=scope.addressArray[i].antiquity;
                         }
                         if(scope.addressArray[i].stateProvinceId)
                         {

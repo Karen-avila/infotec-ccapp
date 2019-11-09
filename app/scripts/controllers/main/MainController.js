@@ -337,13 +337,13 @@
                 document.getElementById('prev').click();
             });
             scope.changeLang = function (lang, $event) {
+                console.log("LANG " + JSON.stringify(lang));
                 translate.use(lang.code);
                 localStorageService.addToLocalStorage('Language', lang);
                 tmhDynamicLocale.set(lang.code);
                 scope.optlang = lang;
-                };
-            scope.helpf = function()
-            {
+            };
+            scope.helpf = function() {
                 // first, create addresses array
             var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup","https://mifosforge.jira.com/wiki/display/docs/Organization",
                 "https://mifosforge.jira.com/wiki/display/docs/System", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=products&startIndex=0&where=docs",

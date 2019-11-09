@@ -1,8 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        UserSettingController: function (scope, translate, localStorageService, tmhDynamicLocale) {
-
-            
+        UserSettingController: function (scope, translate, localStorageService, tmhDynamicLocale) {            
             scope.dates = [
                 'dd MMMM yyyy',
                 'dd/MMMM/yyyy',
@@ -17,7 +15,6 @@
 
             scope.langs = mifosX.models.Langs;
             
-
             scope.$watch(function () {
                 return scope.df;
             }, function () {

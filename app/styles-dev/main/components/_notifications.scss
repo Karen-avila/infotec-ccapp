@@ -8,7 +8,7 @@
     width: 20px;
     height: 20px;
     padding: 3px;
-    background: #db4437;
+    background: $brand-danger;
     border: 2px solid #fff;
     text-align: center;
     color: #fff;
@@ -22,7 +22,7 @@
 }
 
 .notification-container{
-  border:1px solid #ccc;
+  border:1px solid $gray-dark;
   width:250px;
   height:300px;
   overflow-y:auto;
@@ -52,7 +52,7 @@
 
     li{
       list-style:none;
-      border-bottom:1px solid #e0e0e0;
+      border-bottom:1px solid $gray-dark;
       padding:8px 5px;
 
       h4{
@@ -69,8 +69,5 @@
     font-size: 14px;
     text-align: center;
     padding: 8px 5px;
-  }
-  
+  }  
 }
-
-
