@@ -2,6 +2,9 @@
     require.config({
         paths: {
             'jquery': '../bower_components/jquery/dist/jquery',
+            'microplugin':'../bower_components/microplugin/src/microplugin',
+            'sifter':'../bower_components/sifter/sifter.min',
+            'selectize':'../bower_components/selectize/dist/js/standalone/selectize.min',
             'angular': '../bower_components/angular/angular',
             'angular-resource': '../bower_components/angular-resource/angular-resource',
             'angular-route': '../bower_components/angular-route/angular-route',
@@ -48,6 +51,7 @@
             'ui-config': '../scripts/config/UIconfig.json'
         },
         shim: {
+            'selectize': {deps: ['jquery', 'microplugin', 'sifter']},
             'angular': { deps: ['jquery','chosen.jquery.min'],exports: 'angular' },
             'angular-resource': { deps: ['angular'] },
             'angular-route': { deps: ['angular'] },
@@ -82,8 +86,11 @@
             'ng-scrollbar': {deps: ['angular']},
             'mifosX': {
                 deps: [
-                    'angular',
                     'jquery',
+                    'microplugin',
+                    'sifter',
+                    'selectize',
+                    'angular',
                     'angular-resource',
                     'angular-route',
                     'angular-translate',

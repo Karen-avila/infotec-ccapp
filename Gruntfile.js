@@ -52,7 +52,7 @@ module.exports = function(grunt) {
             port:  9002,
             hostname: 'localhost',
             livereload: 35729,
-            open:'http://<%= connect.options.hostname %>:<%= connect.options.port %>?baseApiUrl=https://demo.openmf.org'
+            open:'http://<%= connect.options.hostname %>:<%= connect.options.port %>?baseApiUrl=https://localhost'
         },
         livereload: {
             options: {
@@ -112,12 +112,10 @@ module.exports = function(grunt) {
           //:['<%= mifosx.app %>/bower_components/require-css/css.js'],
           //'<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/requirejs/requirejs.min.js'
           //:['<%= mifosx.app %>/bower_components/requirejs/require.js'],
-          '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/select2/dist/js/select2.min.js'
-          :['<%= mifosx.app %>/bower_components/select2/dist/js/select2.js'],
           '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/underscore/underscore.min.js'
           :['<%= mifosx.app %>/bower_components/underscore/underscore.js'],
-           '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/angular-utils-pagination/dirPagination.min.js'
-                :['<%= mifosx.app %>/bower_components/angular-utils-pagination/dirPagination.js']
+          '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components/angular-utils-pagination/dirPagination.min.js'
+          :['<%= mifosx.app %>/bower_components/angular-utils-pagination/dirPagination.js']
         }]
       }
     },
@@ -196,8 +194,9 @@ module.exports = function(grunt) {
           cwd: '<%= mifosx.app %>/bower_components',
           dest: '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components',
           src: [
-            '**/*min.js', 'ckeditor/**', 'chosen/**', 'require-css/*.js', 'require-less/*.js',
+            '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js',
             '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**',
+            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
             'angular-utils-pagination/dirPagination.tpl.html'
           ]
         }
@@ -248,7 +247,7 @@ module.exports = function(grunt) {
             dest: '<%= mifosx.dist %>/<%= mifosx.target %>',
             src: '**/**'
         }
-    },
+      },
 
       //hashing css & js
       hashres: {
@@ -258,14 +257,12 @@ module.exports = function(grunt) {
               renameFiles: true
           },
           css: {
-              options: {
-              },
+              options: {},
               dest: '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXStyles.js',
               src: ['<%= mifosx.dist %>/<%=mifosx.target%>/styles/*.css','!<%= mifosx.dist %>/<%=mifosx.target%>/styles/font-awesome.min.css']
           },
           js: {
-              options: {
-              },
+              options: {},
               dest: ['<%= mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXComponents.js'],
               src:  [
                       '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/directives/directives.js',

@@ -574,7 +574,7 @@
   "label.input.usertemplate":"User Template",
   "label.input.searchactivities": "Search activities",
   "label.input.additionalinformation": "Additional information",
-  "label.input.changelanguage": "Change language:",
+  "label.input.changelanguage": "change language",
   "#Search": "..",
   "label.search.scope.all": "All",
   "label.search.scope.clients.and.clientIdentifiers": "Clients",

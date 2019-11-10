@@ -69,8 +69,8 @@
             'ng-scrollbar': {deps: ['angular']},
             'mifosX': {
                 deps: [
-                    'angular',
                     'jquery',
+                    'angular',
                     'angular-route',
                     'angular-resource',
                     'angular-translate',

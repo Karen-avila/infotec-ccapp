@@ -169,7 +169,7 @@ td.labelrow {
 }
 
 tr.bottomborder td, tr.bottomborder th {
-  border-bottom:1px solid $gray-dark;
+  border-bottom:1px solid $gray-lighter;
   padding-bottom:2px
 }
 tr.toppadding td, tr.toppadding th {
@@ -177,16 +177,16 @@ tr.toppadding td, tr.toppadding th {
 }
 
 tr.graybg td, tr.graybg th {
-  background-color: $gray-dark;
+  background-color: $gray-lighter;
 }
 
 td.graybg {
-  background-color: $gray-dark;
+  background-color: $gray-lighter;
 }
 
 
 td.left-border {
-  border-left: thick solid $gray-dark;
+  border-left: thick solid $gray-lighter;
 }
 
 hr.marginbottom {

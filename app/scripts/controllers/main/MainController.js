@@ -45,8 +45,6 @@
                 });
             }
             
-
-
             scope.$on('scrollbar.show', function(){
                   console.log('Scrollbar show');
                 });
@@ -55,7 +53,6 @@
                 });
 
             uiConfigService.init(scope);
-            
             
             scope.$on('configJsonObj',function(e,response){
                 scope.response = response;
@@ -235,8 +232,13 @@
                     }
                 }
             } else {
-                scope.optlang = scope.langs[0];
-                tmhDynamicLocale.set(scope.langs[0].code);
+                for (var i=0; i < scope.langs.length; i++) {
+                    if (scope.langs[i].default == true) {
+                        scope.optlang = scope.langs[i];
+                        tmhDynamicLocale.set(scope.langs[i].code);
+                        break;        
+                    }
+                }
             }
             translate.use(scope.optlang.code);
 
@@ -336,13 +338,20 @@
             keyboardManager.bind('ctrl+p', function () {
                 document.getElementById('prev').click();
             });
-            scope.changeLang = function (lang, $event) {
-                console.log("LANG " + JSON.stringify(lang));
-                translate.use(lang.code);
-                localStorageService.addToLocalStorage('Language', lang);
-                tmhDynamicLocale.set(lang.code);
-                scope.optlang = lang;
+            scope.changeLang = function (langCode) {
+                if (langCode) {
+                    for (var i=0; i < scope.langs.length; i++) {
+                        if (scope.langs[i].code === langCode) {
+                            scope.optlang = scope.langs[i];
+                            localStorageService.addToLocalStorage('Language', scope.optlang);
+                            tmhDynamicLocale.set(scope.langs[i].code);
+                            translate.use(scope.optlang.code);
+                            break;        
+                        }
+                    }
+                }
             };
+
             scope.helpf = function() {
                 // first, create addresses array
             var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup","https://mifosforge.jira.com/wiki/display/docs/Organization",
@@ -377,16 +386,13 @@
             // * text-based address-recognize system *
             var actualadr = location.absUrl();  // get full URL
             var lastchar = 0;
-            for( var i = 0; i<actualadr.length;i++)
-                {
-
-                    if(actualadr.charAt(i) == '#')
-                    {
-                        lastchar = i+1;
-                        break;
-                        // found '#' and save position of it
-                    }
-                }//for
+            for( var i = 0; i<actualadr.length;i++) {
+                if(actualadr.charAt(i) == '#') {
+                    lastchar = i+1;
+                    break;
+                    // found '#' and save position of it
+                }
+            }//for
 
             var whereweare = actualadr.substring(lastchar); // cut full URL to after-'#' part
 
