@@ -5,18 +5,16 @@
         padding:0;
         margin:0;
 
-        li{
+        li {
           list-style: none;
 
-          a{
+          a {
             display:block;
             height:44px;
             padding:12px 10px;
-            color: $gray-light;
+            color: #fff;
             transition-duration:250ms;
 
-            border-bottom: 1px solid $brand-primary;
-            border-top: 1px solid #0f181d;
 
             i{
               display: inline-block;
@@ -44,18 +42,18 @@
     padding:0;
     margin:0;
 
-    li{
+    li {
       list-style: none;
 
-      a{
+      a {
         display:block;
         height:40px;
         padding:12px 10px;
-        color: $gray-light;
+        color: #fff;
         transition-duration:250ms;
 
-        border-bottom: 1px solid $brand-primary;
-        border-top: 1px solid #0f181d;
+        // border-bottom: 1px solid $brand-primary;
+        // border-top: 1px solid #0f181d;
 
         i{
           display: inline-block;

@@ -10,7 +10,7 @@
   color: $brand-primary !important;
 }
 
-#mifos-reskin-ui-container{
+#mifos-reskin-ui-container {
   top:52px;
   bottom:0;
   right:0;
@@ -21,7 +21,7 @@
   @include flexdiretion(column);
 }
 
-#mifos-reskin-header-nav{
+#mifos-reskin-header-nav {
   // @include flex(1 100%);
   @include order(0);
   // max-height:52px;
@@ -48,7 +48,7 @@ $sidebar-hover-width : 240px;
     overflow: auto;
     overflow-x: hidden;
 
-    background: rgba(8,35,49,1);
+    background: $brand-color;
 
     border-right:1px solid $gray-light;
     -webkit-transition-duration: 500ms;
@@ -60,24 +60,27 @@ $sidebar-hover-width : 240px;
       padding:0;
       margin:0;
 
-      li{
+      li {
         list-style: none;
         white-space: nowrap;
 
-        a{
+        a {
           span{
             height:40px;
             padding:12px 10px;
           }
           
-
-          i{
+          i {
             display: inline-block;
             width:28px;
             text-align: center;
             font-size:16px;
+            color: $brand-success;
           }
+        }
 
+        a:hover {
+          background-color: $brand-primary-light;
         }
       }
     }
@@ -93,7 +96,7 @@ $sidebar-hover-width : 240px;
 
   }
 
-  #mifos-reskin-body-view{
+  #mifos-reskin-body-view {
     padding: 10px 0 0 65px;
     // @include flex(1 100%);
     // @include order(0);

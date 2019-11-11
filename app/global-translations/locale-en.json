@@ -173,6 +173,7 @@
   "label.heading.businessRule": "Business Rule",
   "label.heading.campaignMessage": "Campaign Message",
   "#Menu Links": "..",
+	"label.menu.selectloanoffice": "Select Office",
   "label.menu.selectloanofficer": "Select Staff",
   "label.menu.selectone": "Select One",
   "label.menu.constitution": "Select Constitution",
