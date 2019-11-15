@@ -24,7 +24,7 @@
             scope.$watch(function () {
                 return scope.optlang;
             }, function () {
-                scope.changeLang(scope.optlang);
+                scope.changeLang(scope.optlang.code);
             });
 
 
