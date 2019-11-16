@@ -13,23 +13,23 @@
     		    <api-validate></api-validate>
     		    <fieldset>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2" for="datatableName">{{ 'label.input.datatablename' | translate }}<span
-    		                    class="required">*</span></label>
-
-    		            <div class="col-sm-3">
+						<div class="col-sm-2">
+							<label class="control-label" for="datatableName">{{ 'label.input.datatablename' | translate }}<span
+									class="required">*</span></label>
+						</div>
+    		            <div class="col-sm-4">
     		                <input id="datatableName" type="text" name="datatableName" ng-model="formData.datatableName" class="form-control" required
     		                       late-Validate/>
-    		            </div>
-    		            <div class="col-sm-3">
     		                <form-validate valattributeform="createdatatableform" valattribute="datatableName"/>
     		            </div>
     		        </div>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2" for="apptableName">{{ 'label.input.apptablename' | translate }}<span
-    		                    class="required">*</span></label>
-
-    		            <div class="col-sm-3">
-    		                <select id="apptableName" ng-model="formData.apptableName" name="apptable" class="form-control" required>
+						<div class="col-sm-2">
+							<label class="control-label" for="apptableName">{{ 'label.input.apptablename' | translate }}<span
+									class="required">*</span></label>
+						</div>
+						<div class="col-sm-4">
+							<select id="apptableName" ng-model="formData.apptableName" name="apptable" class="form-control" required>
     		                    <option class="displaynone" value="">{{'label.selectone' | translate}}</option>
     		                    <option value="m_client">{{'label.client' | translate}}</option>
     		                    <option value="m_group">{{'label.group' | translate}}</option>
@@ -38,18 +38,22 @@
     		                    <option value="m_office">{{'label.office' | translate}}</option>
     		                    <option value="m_savings_account">{{'label.savingsaccount' | translate}}</option>
     		                </select>
-    		            </div>
-    		            <div class="col-sm-3">
     		                <form-validate valattributeform="createdatatableform" valattribute="apptable"/>
     		            </div>
     		        </div>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2">{{ 'label.input.multirow' | translate }}</label>
-    		            <div class="form-inline col-sm-3"><input disabled="formData.scoring" type="checkbox" ng-model="formData.multiRow"/></div>
+						<div class="col-sm-2" />
+						<div class="col-sm-4">
+    		            	 <input type="checkbox" ng-model="formData.multiRow"/>
+							 <label class="control-label">{{ 'label.input.multirow' | translate }}</label>
+						</div>
 					</div>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2">{{ 'label.input.scoring' | translate }}</label>
-    		            <div class="form-inline col-sm-3"><input disabled="formData.multiRow" type="checkbox" ng-model="formData.scoring"/></div>
+						<div class="col-sm-2" />
+						<div class="col-sm-4">
+							<input type="checkbox" ng-model="formData.scoring"/>
+							<label class="control-label">{{ 'label.input.scoring' | translate }}</label>
+						</div>
     		        </div>
     		        <div class="form-group">
     		            <label class="control-label col-sm-2">{{ 'label.input.addcolumns' | translate }}<span

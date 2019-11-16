@@ -1,7 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         CreateDataTableController: function (scope, routeParams, resourceFactory, location) {
-
             scope.columns = [];
             scope.columnnameerror = false;
             scope.columntypeerror = false;
@@ -50,6 +49,7 @@
                 } else {
                     delete scope.errorDetails;
                     scope.formData.multiRow = scope.formData.multiRow || false;
+                    scope.formData.scoring = scope.formData.scoring || false;
                     scope.formData.columns = scope.columns;
                     resourceFactory.DataTablesResource.save(this.formData, function (data) {
                         location.path('/viewdatatable/' + data.resourceIdentifier);
