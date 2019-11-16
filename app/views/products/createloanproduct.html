@@ -9,50 +9,55 @@
             <form name="Details" novalidate="" class=" form-horizontal " ng-submit="goNext(Details)">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.details' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.productname' | translate }}<span
-                                class="required">*</span>
-                            <i class="fa fa-question-circle "
-                                uib-tooltip="{{'label.tooltip.loanproduct.productname' | translate}}"
-                                tooltip-append-to-body="true"></i>
-                        </label>
+                        <div class="col-sm-2">
+                            <label class="control-label">{{ 'label.input.productname' | translate }}<span
+                                    class="required">*</span>
+                                <i class="fa fa-question-circle "
+                                    uib-tooltip="{{'label.tooltip.loanproduct.productname' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                        </div>
                         <div class="col-sm-4">
                             <input type="text" id="name" class="form-control" name="name" ng-model="formData.name"
                                 required late-validate />
                             <form-validate valattributeform="Details" valattribute="name" />
                         </div>
 
-                        <label class="control-label col-sm-2">{{ 'label.input.product.shortname' | translate }}<span
-                                class="required">*</span>
-                            <i class="fa fa-question-circle"
-                                uib-tooltip="{{'label.tooltip.loanproduct.shortname' | translate}}"
-                                tooltip-append-to-body="true"></i>
-                        </label>
+                        <div class="col-sm-2">
+                            <label class="control-label">{{ 'label.input.product.shortname' | translate }}<span
+                                    class="required">*</span>
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.loanproduct.shortname' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                        </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <input type="text" id="shortName" name="shortName" ng-model="formData.shortName"
                                 class="form-control" maxlength="4" required late-validate />
                             <form-validate valattributeform="Details" valattribute="shortName" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.description' | translate }}
-                            <i class="fa fa-question-circle "
-                                uib-tooltip="{{'label.tooltip.loanproduct.description' | translate}}"
-                                tooltip-append-to-body="true"></i>
-                        </label>
+                        <div class="col-sm-2">
+                            <label class="control-label">{{ 'label.input.description' | translate }}
+                                <i class="fa fa-question-circle "
+                                    uib-tooltip="{{'label.tooltip.loanproduct.description' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                        </div>
                         <div class="col-sm-4">
                             <textarea rows="2" class="form-control" ng-model="formData.description"></textarea>
                         </div>
-
-                        <label class="control-label col-sm-2 col-sm-offset-2">{{ 'label.input.fund' | translate }}
-                            <i class="fa fa-question-circle "
-                                uib-tooltip="{{'label.tooltip.loanproduct.fund' | translate}}"
-                                tooltip-append-to-body="true"></i>
-                        </label>
-
+                        <div class="col-sm-2">
+                            <label class="control-label">{{ 'label.input.fund' | translate }}
+                                <i class="fa fa-question-circle "
+                                    uib-tooltip="{{'label.tooltip.loanproduct.fund' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                        </div>
                         <div class="col-sm-4">
                             <select id="fundId" ng-model="formData.fundId" class="form-control"
                                 ng-options="fund.id as fund.name for fund in product.fundOptions" value="{{fund.id}}"
@@ -63,48 +68,50 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <label class="control-label">{{ 'label.input.startdate' | translate }}
                                 <i class="fa fa-question-circle "
                                     uib-tooltip="{{'label.tooltip.loanproduct.startdate' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
-
+                        </div>
+                        <div class="col-sm-4">
                             <input id="startDate" sort type="text" class="form-control" datepicker-pop="dd MMMM yyyy"
                                 ng-model="date.first" is-open="opened" min="minDate" max="'2030-06-22'" />
                         </div>
-                    
-                        <div class="col-sm-4">
-
+                        <div class="col-sm-2">
                             <label class="control-label">{{ 'label.input.closedate' | translate }}
                                 <i class="fa fa-question-circle "
                                     uib-tooltip="{{'label.tooltip.loanproduct.closedate' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
-
+                        </div>
+                        <div class="col-sm-4">
                             <input id="closeDate" sort type="text" class="form-control" datepicker-pop="dd MMMM yyyy"
                                 ng-model="date.second" is-open="opened1" min="minDate" max="'2030-06-22'" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label
-                            class="control-label col-sm-2">{{ 'label.input.includeinborrowerloancounter' | translate }}
-                            <i class="fa fa-question-circle "
-                                uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
-                                tooltip-append-to-body="true"></i>
-                        </label>
 
-                        <div class="checkbox col-sm-2">
-                            <label>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label
+                                class="control-label">{{ 'label.input.includeinborrowerloancounter' | translate }}
+                                <i class="fa fa-question-circle "
+                                    uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox col">
                                 <input type="checkbox" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
                                     ng-false-value="false">
-                            </label>
+                            </div>
                         </div>
                     </div>
                     <hr>
                     <button class="btn btn-default pull-left" wz-previous disabled><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">Next&nbsp;&nbsp;<i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -175,9 +182,9 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">Next&nbsp;&nbsp;<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -550,9 +557,9 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">Next&nbsp;&nbsp;<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -1170,9 +1177,9 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">Next&nbsp;&nbsp;<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -1271,9 +1278,9 @@
                         </table>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">Next&nbsp;&nbsp;<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -1613,9 +1620,9 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" type="submit">&nbsp;&nbsp;Next<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
@@ -2216,9 +2223,9 @@
                         </button>
                     </div>
                     <hr>
-                    <button class="btn btn-default pull-left" wz-previous><i
-                            class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</button>
-                    <button class="btn btn-default pull-right" disabled>Next&nbsp;&nbsp;<i
+                    <button class="btn btn-default pull-left" wz-previous disabled><i
+                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default pull-right" type="submit">{{'label.button.next' | translate}} <i
                             class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
