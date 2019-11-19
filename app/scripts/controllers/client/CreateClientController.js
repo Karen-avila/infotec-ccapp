@@ -22,6 +22,7 @@
             scope.addressTypes=[];
             scope.countryOptions=[];
             scope.stateOptions=[];
+            scope.allMunicipalityOptions=[];
             scope.municipalityOptions=[];
             scope.addressTypeId={};
             entityname="ADDRESS";
@@ -84,6 +85,7 @@
                 if (data.savingProductOptions.length > 0) {
                     scope.showSavingOptions = true;
                 }
+
                 if(routeParams.officeId) {
                     scope.formData.officeId = routeParams.officeId;
                     for(var i in data.officeOptions) {
@@ -93,21 +95,21 @@
                         }
                     }
                 }
+
                 if(routeParams.groupId) {
                     if(typeof data.staffId !== "undefined") {
                         scope.formData.staffId = data.staffId;
                     }
                 }
 
-
                 scope.enableAddress=data.isAddressEnabled;
 
-                if(scope.enableAddress===true)
-                {
+                if(scope.enableAddress===true) {
                     scope.addressTypes=data.address[0].addressTypeIdOptions;
                     scope.countryOptions=data.address[0].countryIdOptions;
                     scope.stateOptions=data.address[0].stateProvinceIdOptions;
                     scope.municipalityOptions=data.address[0].municipalityIdOptions;
+                    scope.allMunicipalityOptions=data.address[0].municipalityIdOptions;
                     resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data) {
                         for(var i=0;i<data.length;i++) {
                             data[i].field='scope.'+data[i].field;
@@ -115,7 +117,6 @@
                         }
                     })
                 }
-
 
                 scope.relationshipIdOptions=data.familyMemberOptions.relationshipIdOptions;
                 scope.genderIdOptions=data.familyMemberOptions.genderIdOptions;

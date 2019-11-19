@@ -665,8 +665,6 @@
 
 				</uib-tab>
 				<uib-tab ng-show="enableAddress" heading="{{'label.heading.address' | translate}}" >
-					<!--<fieldset>-->
-					<!-- <div ng-controller="AddressController">-->
 					<div ng-show="enableAddress">
 						<button class="btn btn-primary pull-right" ng-click="routeTo()"><i class="icon-plus icon-white"></i>{{'label.button.addAddress' | translate}}</button>
 						<br>
@@ -676,15 +674,8 @@
 							<tr class="graybg">
 								<th class="graybg"> {{address.addressType}}</th>
 								<td>
-									<button ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)" data-ng-hide="address.isActive" class="btn btn-primary">
-										{{"label.button.enable" | translate}}
-									</button>
-									<button ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"  data-ng-show="address.isActive" class="btn btn-primary">
-										{{"label.button.disable" | translate}}
-									</button>
-									<button class="btn btn-primary pull-right" ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
+									<button class="btn btn-primary pull-right btn-sm" ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
 								</td>
-
 							</tr>
 							</thead>
 							<tbody>
@@ -720,6 +711,30 @@
 									{{address.addressLine3}}
 								</td>
 							</tr>
+							<tr ng-show="view.addressLine4">
+								<th >
+									{{'label.input.addressline4' | translate }}
+								</th>
+								<td>
+									{{address.addressLine4}}
+								</td>
+							</tr>
+							<tr ng-show="view.addressLine5">
+								<th >
+									{{'label.input.addressline5' | translate }}
+								</th>
+								<td>
+									{{address.addressLine5}}
+								</td>
+							</tr>
+							<tr ng-show="view.addressLine6">
+								<th >
+									{{'label.input.addressline6' | translate }}
+								</th>
+								<td>
+									{{address.addressLine6}}
+								</td>
+							</tr>
 							<tr ng-show="view.city">
 								<th >
 									{{ 'label.input.city' | translate }}
@@ -744,6 +759,14 @@
 									{{address.countyDistrict}}
 								</td>
 							</tr>
+							<tr ng-show="view.countryId">
+								<th >
+									{{ 'label.input.country' | translate }}
+								</th>
+								<td>
+									{{address.countryName}}
+								</td>
+							</tr>
 							<tr ng-show="view.stateProvinceId">
 								<th>
 									{{ 'label.input.state_province' | translate }}
@@ -752,12 +775,12 @@
 									{{address.stateName}}
 								</td>
 							</tr>
-							<tr ng-show="view.countryId">
+							<tr ng-show="view.municipality">
 								<th >
-									{{ 'label.input.country' | translate }}
+									{{ 'label.input.municipality' | translate }}
 								</th>
 								<td>
-									{{address.countryName}}
+									{{address.municipalityName}}
 								</td>
 							</tr>
 							<tr ng-show="view.postalCode">
@@ -785,12 +808,25 @@
 									{{address.longitude}}
 								</td>
 							</tr>
+							<tr ng-show="view.antiquity">
+								<th >
+									{{ 'label.input.antiquity' | translate }}
+								</th>
+								<td>
+									{{address.antiquity}}
+								</td>
+							</tr>
 							<tr ng-show="view.isActive">
 								<th>
 									{{'label.input.is_active' | translate}}
 								</th>
 								<td>
-									{{address.isActive}}
+									<button ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)" data-ng-hide="address.isActive" class="btn btn-primary btn-sm">
+										{{"label.button.enable" | translate}}
+									</button>
+									<button ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"  data-ng-show="address.isActive" class="btn btn-primary btn-sm">
+										{{"label.button.disable" | translate}}
+									</button>
 								</td>
 							</tr>
 							</tbody>

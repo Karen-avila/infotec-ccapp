@@ -488,6 +488,16 @@
                         <input type="text" name="city" ng-model="addressArray[$index].city"  class="form-control">
                      </div>
                   </div>
+                  <div class="form-group" ng-show="countryId">
+                     <div class="control-label col-sm-3">
+                        <label>{{ 'label.input.country' | translate }}</label>
+                     </div>
+                     <div class="col-sm-3" >
+                        <select chosen="countryOptions"  ng-model="addressArray[$index].countryId"  class="form-control"
+                           ng-options="countryOption.id as countryOption.name for countryOption in countryOptions track by countryOption.id"
+                           value="countryId"></select>
+                     </div>
+                  </div>
                   <div class="form-group" ng-show="stateProvinceId">
                      <div class="control-label col-sm-3">
                         <label>{{ 'label.input.state_province' | translate }}</label>
@@ -503,19 +513,9 @@
                         <label>{{ 'label.input.municipality' | translate }}</label>
                      </div>
                      <div class="col-sm-3" >
-                        <select chosen="municipalityOptions" ng-model="addressArray[$index].municipalityId"  class="form-control"
+                        <select chosen="municipalityOptions" ng-model="addressArray[$index].municipality"  class="form-control"
                            ng-options="municipalityOption.id as municipalityOption.name for municipalityOption in municipalityOptions track by municipalityOption.id"
                            value="municipalityProvinceId"></select>
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="countryId">
-                     <div class="control-label col-sm-3">
-                        <label>{{ 'label.input.country' | translate }}</label>
-                     </div>
-                     <div class="col-sm-3" >
-                        <select chosen="countryOptions"  ng-model="addressArray[$index].countryId"  class="form-control"
-                           ng-options="countryOption.id as countryOption.name for countryOption in countryOptions track by countryOption.id"
-                           value="countryId"></select>
                      </div>
                   </div>
                   <div class="form-group" ng-show="antiquity">

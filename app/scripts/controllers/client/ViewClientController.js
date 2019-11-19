@@ -28,45 +28,20 @@
                 scope.enableAddress=data.isAddressEnabled;
                 if(scope.enableAddress===true)
                 {
-
                     resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data){
-
-
                         for(var i=0;i<data.length;i++)
                         {
                             data[i].field='scope.view.'+data[i].field;
                             eval(data[i].field+"="+data[i].is_enabled);
-
                         }
-
-
                     })
-
 
                     resourceFactory.clientAddress.get({clientId:routeParams.id},function(data)
                     {
-
                         scope.addresses=data;
-
-
                     })
-
-
                 }
-
-
-               /* resourceFactory.getAllFamilyMembers.get({clientId:routeParams.id},function(data)
-                {
-
-                    scope.families=data;
-
-
-                })*/
-
             });
-
-
-
 
             scope.routeTo=function()
             {
@@ -75,7 +50,6 @@
 
             scope.ChangeAddressStatus=function(id,status,addressId)
             {
-
                 formdata.isActive=!status
                 formdata.addressId=addressId
                 resourceFactory.clientAddress.put({clientId:id},formdata,function(data)
@@ -87,20 +61,13 @@
             scope.routeToEdit=function(clientId,addressId)
             {
                 location.path('/editAddress/'+clientId+'/'+addressId+'/'+ routeParams.id);
-
-
             }
-
-
             // end of address
 
 
             // family members
 
             scope.families=[];
-
-
-
 
             resourceFactory.familyMembers.get({clientId:routeParams.id},function(data)
             {
@@ -134,10 +101,7 @@
                 location.path('/addfamilymembers/'+ routeParams.id);
             }
 
-
             // end of family members
-
-
 
             scope.routeToLoan = function (id) {
                 location.path('/viewloanaccount/' + id);
