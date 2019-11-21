@@ -84,11 +84,15 @@
                 scope.isClicked = false;
             });
 
-             scope.$watch('formData',function(newVal){
+            resourceFactory.taxgroup.getAll(function (data) {
+				scope.taxGroups = data;
+            });
+            
+            scope.$watch('formData',function(newVal){
                 scope.loanproduct = angular.extend(scope.loanproduct,newVal);
-             },true);
+            },true);
 
-             $rootScope.formValue = function(array,model,findattr,retAttr){
+            $rootScope.formValue = function(array,model,findattr,retAttr){
                  findattr = findattr ? findattr : 'id';
                  retAttr = retAttr ? retAttr : 'value';
                  console.log(findattr,retAttr,model);

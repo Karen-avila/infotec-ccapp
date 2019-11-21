@@ -2651,6 +2651,8 @@
 	"label.button.createsurvey": "Crear encuesta",
 	"label.selectstatus": "Seleccionar estado",
 	"label.selectchecker": "Seleccionar verificador",
+	"label.selecttaxgroup": "Selecciona Grupo de Impuestos",
+	"label.heading.taxesoninterest": "Impuestos sobre intereses",
 	"label.loan": "Préstamo",
 	"label.savingsaccount": "Cuenta de ahorros",
 	"label.client": "Cliente",
