@@ -57,13 +57,13 @@
 
             $scope.updateaddress = function () {
                 $scope.formData.locale = "en";
-                resourceFactory.clientAddress.put({ 'clientId': routeParams.id, 'type': $scope.addressTypeId }, $scope.formData, function (data) {
+                resourceFactory.clientAddress.put({ 'clientId': routeParams.id, 'type': $scope.formData.addressTypeId }, $scope.formData, function (data) {
                     location.path('/viewclient/' + routeParams.id);
                 });
             }
 
             $scope.submit = function () {
-                resourceFactory.clientAddress.save({ 'clientId': routeParams.id, 'type': $scope.addressTypeId }, $scope.formData, function (data) {
+                resourceFactory.clientAddress.save({ 'clientId': routeParams.id, 'type': $scope.formData.addressTypeId }, $scope.formData, function (data) {
                     location.path('/viewclient/' + clientId);
                 });
             };

@@ -106,8 +106,22 @@
                 scope.isClicked = true;
             }
 
+            scope.taxGroupSelected = function (groupId) {
+				var group = scope.taxGroups.filter(function(x) { return x.id === groupId; })[0];
+				if (group) {
+					scope.taxComponents = group.taxAssociations.map(function(x) {
+						x.taxComponent.startDate = x.startDate;
+						x.taxComponent.excluded = x.excluded;
+						return x.taxComponent;
+					});
+				}
+            };
+            
+            scope.deleteTaxComponent = function(index) {
+				scope.taxComponents.splice(index, 1);
+            };
+            
             scope.chargeSelected = function (chargeId) {
-
                 if (chargeId) {
                     resourceFactory.chargeResource.get({chargeId: chargeId, template: 'true'}, this.formData, function (data) {
                         data.chargeId = data.id;
@@ -329,6 +343,7 @@
                 this.formData.dateFormat = scope.df;
                 this.formData.startDate = reqFirstDate;
                 this.formData.closeDate = reqSecondDate;
+                this.formData.taxComponents = scope.taxComponents;
 
                 //Interest recalculation data
                 if (this.formData.isInterestRecalculationEnabled) {

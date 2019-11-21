@@ -505,7 +505,7 @@
                      <div class="col-sm-3" >
                         <select chosen="stateOptions"  ng-model="addressArray[$index].stateProvinceId"  class="form-control"
                            ng-options="stateOption.id as stateOption.name for stateOption in stateOptions track by stateOption.id"
-                           value="stateProvinceId"></select>
+                           ng-change="filterMunicipality(addressArray[$index].stateProvinceId)" value="stateProvinceId"></select>
                      </div>
                   </div>
                   <div class="form-group" ng-show="municipality">

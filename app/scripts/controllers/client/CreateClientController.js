@@ -125,6 +125,18 @@
 
             });
 
+            scope.filterMunicipality = function (stateProvinceId) {
+                for (var i=0; i < scope.stateOptions.length; i++) {
+                    if (scope.stateOptions[i].id === stateProvinceId) {
+                        const state = scope.stateOptions[i].name;
+                        scope.municipalityOptions = scope.allMunicipalityOptions.filter(function(item) {
+                            return item.description == state;
+                        });
+                        break;
+                    }
+                }
+            }
+
             scope.updateColumnHeaders = function(columnHeaderData) {
                 var colName = columnHeaderData[0].columnName;
                 if (colName == 'id') {
@@ -442,10 +454,6 @@
                     temp.dateFormat = scope.df;
                     scope.formData.familyMembers.push(temp);
                 }
-
-                //
-
-
 
                 resourceFactory.clientResource.save(this.formData, function (data) {
                     location.path('/viewclient/' + data.clientId);
