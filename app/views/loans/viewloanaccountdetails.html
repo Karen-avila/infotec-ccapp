@@ -67,9 +67,9 @@
             </div>
             <br>
             <div class="col-sm-12 col-md-12 primarydiv">
-                <div class="pull-right btn-group">
+                <div class="btn-group">
                     <a ng-repeat="button in buttons.singlebuttons" ng-show="button.name" ng-click="clickEvent(button.name.replace('button.',''), loandetails.id)"
-                       class="btn btn-primary" has-permission='{{button.taskPermissionName}}'><i
+                       class="btn btn-primary btn-2ls" has-permission='{{button.taskPermissionName}}'><i
                             class="{{button.icon}} "></i>&nbsp;{{'label.' + button.name |
                         translate}}</a>
 
@@ -502,7 +502,7 @@
 
                     <uib-tab heading="{{'label.heading.repaymentschedule' | translate}}">
 
-                        <table class="table table-striped .width100">
+                        <table class="table table-striped .width100 repaymentschedule">
                             <colgroup span="4"></colgroup>
                             <thead>
                             <tr>
@@ -522,6 +522,7 @@
                                 <th scope="col">{{'label.heading.balanceofloan' | translate}}</th>
 
                                 <th scope="col">{{'label.heading.interest' | translate}}</th>
+                                <th scope="col">{{'label.heading.taxes' | translate}}</th>
                                 <th scope="col">{{'label.heading.fees' | translate}}</th>
                                 <th scope="col">{{'label.heading.penalties' | translate}}</th>
 
@@ -546,6 +547,7 @@
                                 <td>{{period.principalDue | number}}</td>
                                 <td>{{period.principalLoanBalanceOutstanding | number}}</td>
                                 <td>{{period.interestOriginalDue | number}}</td>
+                                <td>{{period.taxOnInterestDue | number}}</td>
                                 <td>{{period.feeChargesDue | number}}</td>
                                 <td>{{period.penaltyChargesDue | number}}</td>
 
@@ -566,6 +568,7 @@
                                 <th>{{loandetails.repaymentSchedule.totalPrincipalExpected | number}}</th>
                                 <th>&nbsp;</th>
                                 <th>{{loandetails.repaymentSchedule.totalInterestCharged | number}}</th>
+                                <th>{{loandetails.repaymentSchedule.totalTaxes | number}}</th>
                                 <th>{{loandetails.repaymentSchedule.totalFeeChargesCharged | number}}</th>
                                 <th>{{loandetails.repaymentSchedule.totalPenaltyChargesCharged | number}}</th>
 

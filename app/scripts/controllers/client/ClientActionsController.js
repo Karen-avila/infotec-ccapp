@@ -71,6 +71,7 @@
                         if (data.timeline.submittedOnDate) {
                             scope.mindate = new Date(data.timeline.submittedOnDate);
                         }
+                        console.log(scope.mindate);
                     });
                     scope.labelName = 'label.input.activationdate';
                     scope.breadcrumbName = 'label.anchor.activate';

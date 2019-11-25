@@ -1302,7 +1302,7 @@
                             </tr>
                             <tr ng-repeat="component in taxComponents">
                                 <td>{{component.name}}</td>
-                                <td><input type="text" ng-model="component.percentage" /></td>
+                                <td>{{component.percentage}} %</td>
                                 <td>{{component.startDate | DateFormat}}</td>
                                 <td><a ng-click="deleteTaxComponent($index)"><i
                                             class="fa fa-times-circle fa-2x"></i></a></td>

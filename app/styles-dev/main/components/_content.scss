@@ -45,15 +45,35 @@ footer {
   margin-top: -60px;
   height: 60px;
   clear:both;
-  padding-top:20px;
+  padding-top:30px;
+  z-index: -100;
 }
 
 .row-form {
   min-height: 350px;
 }
 
+.control-label-checkbox {
+  text-align: left !important;
+}
+
 .chosen-container .chosen-container-single{
     width: 442px;
+}
+
+.wiz-container {
+  min-height: 420px;
+}
+
+.repaymentschedule {
+  font-size: 12px;
+  > tbody {
+    > tr {
+      > td {
+        text-align: right;
+      }
+    }
+  }
 }
 
 .well {
@@ -247,12 +267,15 @@ li a i .fa {
   justify-content: center;
 }
 
+.table {
+  font-size:13px;
+}
+
 .table th{
     background:$table-bg-active;
 }
 
 // Wizard Progress Bar..
-
 .flexer {
   display: -webkit-box;
   display: -moz-box;
@@ -457,6 +480,7 @@ li a i .fa {
   &>.content{
     padding:20px 10px;
     font-size: 13px;
+    min-height: 420px;
   }
 
   h4{ font-size: 14px; }
