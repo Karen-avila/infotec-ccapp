@@ -576,8 +576,9 @@ li a i .fa {
         border:none;
         border-radius:0;
         border-left:1px solid $gray-light;
-        height:39px;
+        height:30px;
         min-width:39px;
+        margin-left:2px;
         &:hover{
           border:none;
           border-left:1px solid $gray-light;
