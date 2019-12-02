@@ -1,19 +1,57 @@
-<h3>{{'label.heading.systemusers' | translate}}</h3>
 <div id="systemUsers" data-ng-controller="UserController">
-    <div class="users-actions">
-        <div class="action create"  has-permission='CREATE_USER' data-ng-click="newUserFormDialog()">{{'label.heading.newuser' | translate}}</div>
+    <ul class="breadcrumb">
+        <li class="active">{{'label.anchor.systemusers' | translate}}</li>
+    </ul>
+    <api-validate></api-validate>
+
+    <div class="card">
+        <div class="toolbar">
+            <h4>{{'label.anchor.systemusers' | translate}}</h4>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <form ng-submit="search()" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input ng-autofocus="true" ng-model="filterText" ng-keyup="onFilter()" type="text"
+                                    class="form-control unstyled"
+                                    placeholder="{{'label.input.filterbynameaccno' | translate}}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input data-ng-model="searchText" type="text"
+                                        placeholder="{{'label.input.searchByNameAccNo' | translate}}"
+                                        class="form-control unstyled" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary form-control">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                    <div class="action create" has-permission='CREATE_USER' data-ng-click="newUserFormDialog()">
+                            {{'label.heading.newuser' | translate}}</div>
+                </div>
+            </div>
+            <hr />
+
+            <table class="table" id="usersTable" data-ng-show="users.length > 0"
+                data-mf-data-table="{sScrollY: 280, sPaginationType: 'full_numbers'}"
+                data-mf-data-table-columns="username,firstname,lastname,surname" data-mf-data-table-items="users">
+                <thead>
+                    <tr>
+                        <th>{{'label.heading.username' | translate}}</th>
+                        <th>{{'label.heading.givenname' | translate}}</th>
+                        <th>{{'label.heading.familyname' | translate}}</th>
+                    </tr>
+                </thead>
+            </table>
+            <div data-ng-include="'html/administration/userFormDialog.html'"></div>
+        </div>
     </div>
-    <table id="usersTable" data-ng-show="users.length > 0"
-           data-mf-data-table="{sScrollY: 280, sPaginationType: 'full_numbers'}"
-           data-mf-data-table-columns="username,firstname,lastname"
-           data-mf-data-table-items="users">
-        <thead>
-        <tr>
-            <th>{{'label.heading.username' | translate}}</th>
-            <th>{{'label.heading.givenname' | translate}}</th>
-            <th>{{'label.heading.familyname' | translate}}</th>
-        </tr>
-        </thead>
-    </table>
-    <div data-ng-include="'html/administration/userFormDialog.html'"></div>
 </div>

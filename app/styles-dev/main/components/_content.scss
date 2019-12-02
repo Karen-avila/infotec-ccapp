@@ -23,7 +23,7 @@ body {
 }
 
 #loaderWrapper {
-  position: absolute;
+  // position: absolute;
   height: 100%;
   min-height: 100%;
   width: 100%;
@@ -249,7 +249,7 @@ li a i .fa {
     max-width: 1200px;
     margin: 0 auto;
   }
-  background-color: $body-bg;
+  // background-color: $body-bg;
 }
 
 .centerloader {
@@ -267,9 +267,19 @@ li a i .fa {
   text-align:right;
 }
 
+.left{
+  text-align:left;
+}
+
+.image-loader {
+    display: flex;
+    justify-content: center;
+}
+
 .image-container {
   display: flex;
   justify-content: center;
+  max-height: 350px;;
 }
 
 .table {

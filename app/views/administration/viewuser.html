@@ -28,8 +28,8 @@
         </div>
 
         <div class="modal-footer silver">
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="save()">{{'label.button.save' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="save()">{{'label.button.save' | translate}}</button>
         </div>
     </script>
     <script type="text/ng-template" id="deleteuser.html">
@@ -39,66 +39,71 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <div class="card well">
         <div class="pull-right">
             <div class="form-group">
-                <a href="#!/edituser/{{user.id}}" class="btn btn-primary" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                <a href="#!/edituser/{{user.id}}" class="btn btn-primary" has-permission='UPDATE_USER'><i
+                        class="fa fa-edit "></i>
                     {{'label.button.edit' | translate}}</a>
                 <button type="button" ng-click="deleteuser()" class="btn btn-danger" has-permission='DELETE_USER'>
                     <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
                 </button>
-                <button type="button" class="btn btn-primary" data-ng-click="open()" has-permission='UPDATE_USER'><i class="fa fa-cog "></i>
+                <button type="button" class="btn btn-primary" data-ng-click="open()" has-permission='UPDATE_USER'><i
+                        class="fa fa-cog "></i>
                     {{'label.button.changepassword' | translate}}
                 </button>
             </div>
         </div>
         <h3 class="bolder">{{user.firstname}}&nbsp;{{user.lastname}}</h3>
         <div class="row">
-	        <div class="col-md-5">
-		        <table class="table table-bordered table-striped">
-		            <tr>
-		                <td>{{'label.heading.loginname' | translate}}:</td>
-		                <td>{{user.username}}</td>
-		            </tr>
-		            <tr>
-		                <td>{{'label.heading.firstname' | translate}}:</td>
-		                <td>{{user.firstname}}</td>
-		            </tr>
-		            <tr>
-		                <td>{{'label.heading.lastname' | translate}}:</td>
-		                <td>{{user.lastname}}</td>
-		            </tr>
-		            <tr>
-		                <td>{{'label.heading.email' | translate}}:</td>
-		                <td>{{user.email}}</td>
-		            </tr>
-		            <tr>
-		                <td>{{'label.heading.office' | translate}}:</td>
-		                <td>{{user.officeName}}</td>
-		            </tr>
-		            <tr data-ng-show="user.staff">
-		                <td>{{'label.heading.staff' | translate}}:</td>
-		                <td>{{user.staff.displayName}}</td>
-		            </tr>
-		            <tr>
-		                <td valign="top">{{'label.heading.roles' | translate}}:</td>
-		                <td>
-		                    <table>
-		                        <tr ng-repeat="role in user.selectedRoles">
-		                            <td>
-		                                <span>{{role.name}}</span>
-		                            </td>
-		                        </tr>
-		                    </table>
-		                </td>
-		            </tr>
-		        </table>
-			</div>
-		</div>
+            <div class="col-md-5">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>{{'label.heading.loginname' | translate}}:</td>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.firstname' | translate}}:</td>
+                        <td>{{user.firstname}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.lastname' | translate}}:</td>
+                        <td>{{user.lastname}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.surname' | translate}}:</td>
+                        <td>{{user.surname}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.email' | translate}}:</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.office' | translate}}:</td>
+                        <td>{{user.officeName}}</td>
+                    </tr>
+                    <tr data-ng-show="user.staff">
+                        <td>{{'label.heading.staff' | translate}}:</td>
+                        <td>{{user.staff.displayName}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top">{{'label.heading.roles' | translate}}:</td>
+                        <td>
+                            <table>
+                                <tr ng-repeat="role in user.selectedRoles">
+                                    <td>
+                                        <span>{{role.name}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-          

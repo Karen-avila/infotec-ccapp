@@ -239,6 +239,7 @@
                 }
             }
             translate.use(scope.optlang.code);
+            localStorageService.addToLocalStorage('Language', scope.optlang);
 
             scope.isActive = function (route) {
                 if (route == 'clients') {

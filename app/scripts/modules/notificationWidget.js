@@ -162,45 +162,47 @@ angular.module('notificationWidget', [])
                         for(var i = 0; i < data.length; i++) {
                             //console.log(data[i]);
                             var jsonErrors = JSON.parse(data[i].body);
-                            var valErrors = jsonErrors.errors;
-                            var errorArray = new Array();
-                            var arrayIndex = 0;
-                            if (valErrors) {
-                                for (var j in valErrors) {
-                                    var temp = valErrors[j];
-                                    // add error class to input in dialog
-                                    var fieldId = '#' + temp.parameterName;
-                                    $(fieldId).addClass("validationerror");
+                            if (jsonErrors) {
+                                var valErrors = jsonErrors.errors;
+                                var errorArray = new Array();
+                                var arrayIndex = 0;
+                                if (valErrors) {
+                                    for (var j in valErrors) {
+                                        var temp = valErrors[j];
+                                        // add error class to input in dialog
+                                        var fieldId = '#' + temp.parameterName;
+                                        $(fieldId).addClass("validationerror");
 
-                                    // for views using ui add the classes instead of ids
-                                    var fieldClass = "."+temp.parameterName;
-                                    $(fieldClass).eq(data[i].requestId).addClass("validationerror");
+                                        // for views using ui add the classes instead of ids
+                                        var fieldClass = "."+temp.parameterName;
+                                        $(fieldClass).eq(data[i].requestId).addClass("validationerror");
 
-                                    var errorObj = new Object();
-                                    errorObj.field = temp.parameterName;
-                                    errorObj.code = temp.userMessageGlobalisationCode;
-                                    errorObj.body = jsonErrors;
-                                    errorObj.args = {params: []};
-                                    for (var k in temp.args) {
-                                        errorObj.args.params.push({value: temp.args[k].value});
+                                        var errorObj = new Object();
+                                        errorObj.field = temp.parameterName;
+                                        errorObj.code = temp.userMessageGlobalisationCode;
+                                        errorObj.body = jsonErrors;
+                                        errorObj.args = {params: []};
+                                        for (var k in temp.args) {
+                                            errorObj.args.params.push({value: temp.args[k].value});
+                                        }
+                                        errorArray[arrayIndex] = errorObj;
+                                        arrayIndex++;
+                                    };
+                                } else {
+                                    /***
+                                     * Update user password api call won't return errors array,
+                                     * if user enters a password which is used previously
+                                     */
+                                    if (jsonErrors.userMessageGlobalisationCode) {
+                                        var errorObj = new Object();
+                                        errorObj.code = jsonErrors.userMessageGlobalisationCode;
+                                        errorArray[arrayIndex] = errorObj;
+                                        arrayIndex++;
                                     }
-                                    errorArray[arrayIndex] = errorObj;
-                                    arrayIndex++;
-                                };
-                            } else {
-                                /***
-                                 * Update user password api call won't return errors array,
-                                 * if user enters a password which is used previously
-                                 */
-                                if (jsonErrors.userMessageGlobalisationCode) {
-                                    var errorObj = new Object();
-                                    errorObj.code = jsonErrors.userMessageGlobalisationCode;
-                                    errorArray[arrayIndex] = errorObj;
-                                    arrayIndex++;
                                 }
+                                $rootScope.errorDetails.push(errorArray);
+                                console.log(errorArray);
                             }
-                            $rootScope.errorDetails.push(errorArray);
-                            console.log(errorArray);
                         }
                     }
                     return $q.reject(rejection);
