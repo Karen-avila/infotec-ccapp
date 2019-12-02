@@ -1,6 +1,6 @@
 <div class="col-md-12" ng-controller="BulkImportCOAController" ng-init="refreshImportTable()">
     <ul class="breadcrumb">
-        <li><a href="#/bulkimport">{{'label.anchor.bulkimport' | translate}}</a></li>
+        <li><a href="#!/bulkimport">{{'label.anchor.bulkimport' | translate}}</a></li>
         <li class="active">{{'label.anchor.importcoa' | translate}}</li>
     </ul>
     <api-validate></api-validate>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-sm-2">
                         <button type="button" class="form-control btn btn-primary" ng-click="upload()">
-                            {{'label.button.upload' | translate}}
+                            <i class="fa fa-cloud-upload"></i> {{'label.button.upload' | translate}}
                         </button>
                     </div>
                 </form>
@@ -68,7 +68,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">{{'label.heading.documents' | translate}}</h3>
             <button style="margin-left:1050px;" type="button" class="btn btn-primary" ng-click="refreshImportTable()">
-                <i class="fa fa-repeat "></i> {{'label.button.refresh' | translate}}
+                <i class="fa fa-repeat"></i> {{'label.button.refresh' | translate}}
             </button>
         </div>
         <div class="panel-body">

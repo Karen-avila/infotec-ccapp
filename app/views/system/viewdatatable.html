@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewDataTableController">
     <ul class="breadcrumb">
-        <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-        <li><a href="#/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
+        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+        <li><a href="#!/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
         <li class="active">{{datatable.registeredTableName}}</li>
     </ul>
     <div class="card">
@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                     <div class="pull-right">
                         <div class="form-group">
-                            <a href="#/editdatatable/{{datatable.registeredTableName}}" class="btn btn-primary" has-permission='UPDATE_DATATABLE'><i
+                            <a href="#!/editdatatable/{{datatable.registeredTableName}}" class="btn btn-primary" has-permission='UPDATE_DATATABLE'><i
                                     class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
                             <button type="button" class="btn btn-danger" ng-click="deleteTable()" has-permission='DELETE_DATATABLE'><i
                                     class="fa fa-trash-o "></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}

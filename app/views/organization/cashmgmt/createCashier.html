@@ -1,9 +1,9 @@
 <div class="content-container"  ng-controller="CreateCashierForTellerController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#/tellers">{{'label.anchor.tellers' | translate}}</a></li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/tellers">{{'label.anchor.tellers' | translate}}</a></li>
         <li>{{cashier.officeName}}</li>
-        <li><a href="#/tellers/{{tellerId}}/cashiers">{{cashier.tellerName}}</a></li>
+        <li><a href="#!/tellers/{{tellerId}}/cashiers">{{cashier.tellerName}}</a></li>
         <li class="active">{{'label.anchor.createCashier' | translate}}</li>
     </ul>
     <div class="card">
@@ -99,7 +99,7 @@
 
     			<div class="form-group">
     				<div class="col-md-offset-3">
-    					<a id="cancel" href="#/tellers/{{cashier.tellerId}}/cashiers">
+    					<a id="cancel" href="#!/tellers/{{cashier.tellerId}}/cashiers">
     						<button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
     					</a>
     					<button id="save" type="submit" class="btn btn-primary" has-permission='UPDATECASHIERALLOCATION_TELLER'>{{'label.button.save' | translate}}</button>

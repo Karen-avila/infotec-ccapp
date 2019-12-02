@@ -5,7 +5,7 @@
 
             this.get = function (data) {
                 var isOauth = SECURITY === 'oauth';
-		        var accessToken = null;
+                var accessToken = null;
                 if(isOauth){
                     accessToken = localStorageService.getFromLocalStorage("tokendetails").access_token;
                 }

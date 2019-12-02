@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewAccRuleController">
     <ul class="breadcrumb">
-        <li><a href="#/accounting">{{'label.anchor.accounting' | translate}}</a></li>
-        <li><a href="#/accounting_rules">{{'label.anchor.accountingrules' | translate}}</a></li>
+        <li><a href="#!/accounting">{{'label.anchor.accounting' | translate}}</a></li>
+        <li><a href="#!/accounting_rules">{{'label.anchor.accountingrules' | translate}}</a></li>
         <li class="active">{{rule.name}}</li>
     </ul>
     <script type="text/ng-template" id="deleteaccrule.html">
@@ -25,7 +25,7 @@
     		    	<div class="col-md-6"></div>
     		        <div class="col-md-6">
     		            <div class="pull-right">
-    		               <a href="#/editaccrule/{{rule.id}}" class="btn btn-primary" has-permission='UPDATE_ACCOUNTINGRULE'><i
+    		               <a href="#!/editaccrule/{{rule.id}}" class="btn btn-primary" has-permission='UPDATE_ACCOUNTINGRULE'><i
     		                       class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' |translate}}</a>
     		               <a class="btn btn-danger" ng-click="deleteRule()"has-permission='DELETE_ACCOUNTINGRULE'><i
     		                       class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete'| translate}}</a>

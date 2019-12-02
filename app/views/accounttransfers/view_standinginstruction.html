@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ViewStandingInstructionController">
     <ul class="breadcrumb">
-        <li><a href="#/liststandinginstructions/{{standinginstruction.fromOffice.id}}/{{
+        <li><a href="#!/liststandinginstructions/{{standinginstruction.fromOffice.id}}/{{
         standinginstruction.fromClient.id}}">{{'label.heading.liststandinginstruction'| translate}}</a></li>
         <li class="active">{{'label.anchor.standinginstruction' | translate}}>
     </ul>
@@ -14,7 +14,7 @@
                 <fieldset>
                     <div class="">
                         <a title="{{'label.button.viewtransactionhistory' | translate}}"  has-permission='READ_ACCOUNTTRANSFER'
-                        href="#/listaccounttransactions/{{standinginstruction.id}}">{{'label.button.viewtransactionhistory' | translate}}</a>
+                        href="#!/listaccounttransactions/{{standinginstruction.id}}">{{'label.button.viewtransactionhistory' | translate}}</a>
                     </div>
                     <div class="table-responsive">
                         <table class = "table">
@@ -132,7 +132,7 @@
                     <td>&nbsp;</td>
                     <td>
                         <a id="cancel" class="btn btn-default" data-ng-click="cancel()" has-permission='READ_STANDINGINSTRUCTION'>{{ 'label.button.cancel' | translate }}</a>
-                        <a id="edit" class="btn btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="standinginstruction.status.value!='Deleted'"  href="#/editstandinginstruction/{{standinginstruction.id}}/view">{{ 'label.button.edit' | translate }}</a>
+                        <a id="edit" class="btn btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="standinginstruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{standinginstruction.id}}/view">{{ 'label.button.edit' | translate }}</a>
                     </td>
                 </tr>
                 </table>

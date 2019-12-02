@@ -1,12 +1,12 @@
 <div class="content-container" ng-controller="AttachMeetingController">
     <ul class="breadcrumb" ng-show="entityType=='groups'">
-        <li><a href="#/groups">{{'label.anchor.groups' | translate}}</a></li>
-        <li><a href="#/viewgroup/{{groupOrCenterId}}">{{'label.anchor.viewgroup' | translate}}</a></li>
+        <li><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
+        <li><a href="#!/viewgroup/{{groupOrCenterId}}">{{'label.anchor.viewgroup' | translate}}</a></li>
         <li class="active">{{'label.anchor.attachmeeting' | translate }}</li>
     </ul>
     <ul class="breadcrumb" ng-show="entityType=='centers'">
-        <li><a href="#/centers">{{'label.anchor.centers' | translate}}</a></li>
-        <li><a href="#/viewcenter/{{groupOrCenterId}}">{{'label.anchor.viewcenter' | translate}}</a></li>
+        <li><a href="#!/centers">{{'label.anchor.centers' | translate}}</a></li>
+        <li><a href="#!/viewcenter/{{groupOrCenterId}}">{{'label.anchor.viewcenter' | translate}}</a></li>
         <li class="active">{{'label.anchor.attachmeeting' | translate }}</li>
     </ul>
     <api-validate></api-validate>
@@ -68,9 +68,9 @@
                     </table>
                 </div>
                 <div class="col-md-offset-1">
-                    <a ng-show="entityType=='groups'" href="#/viewgroup/{{groupOrCenterId}}" class="btn btn-default">{{'label.button.cancel'
+                    <a ng-show="entityType=='groups'" href="#!/viewgroup/{{groupOrCenterId}}" class="btn btn-default">{{'label.button.cancel'
                         | translate}} </a>
-                    <a id="cancel" ng-show="entityType=='centers'" href="#/viewcenter/{{groupOrCenterId}}"
+                    <a id="cancel" ng-show="entityType=='centers'" href="#!/viewcenter/{{groupOrCenterId}}"
                        class="btn btn-default">{{'label.button.cancel'
                         | translate}} </a>
                     <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_MEETING'>

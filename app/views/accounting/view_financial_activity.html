@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewFinancialActivityController">
     <ul class="breadcrumb">
-        <li><a href="#/accounting">{{'label.anchor.accounting' | translate}}</a></li>
-        <li><a href="#/financialactivityaccountmappings">{{'label.anchor.financialactivity.accountmappings' | translate}}</a></li>
+        <li><a href="#!/accounting">{{'label.anchor.accounting' | translate}}</a></li>
+        <li><a href="#!/financialactivityaccountmappings">{{'label.anchor.financialactivity.accountmappings' | translate}}</a></li>
         <li class="active">{{'label.anchor.viewfinancialmapping' | translate}}</li>
     </ul>
     <script type="text/ng-template" id="deletemapping.html">
@@ -22,7 +22,7 @@
             <h4>{{ 'label.heading.viewfinancialmapping' | translate }}</h4>
             <div class="col-md-8">
               <div class="pull-right">
-                <a href="#/editfinancialactivitymapping/{{mapping.id}}" class="btn btn-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
+                <a href="#!/editfinancialactivitymapping/{{mapping.id}}" class="btn btn-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
                     <i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}} </a>
                 <a class="btn btn-danger" ng-click="deletemapping()" has-permission='DELETE_FINANCIALACTIVITYACCOUNT'><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</a>
               </div>

@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ViewTemplateController">
     <ul class="breadcrumb">
-        <li><a href="#/templates">{{'label.anchor.templates' | translate}}</a></li>
+        <li><a href="#!/templates">{{'label.anchor.templates' | translate}}</a></li>
         <li class="active">{{template.name}}</li>
     </ul>
     <div class="card">
@@ -11,7 +11,7 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#/edittemplate/{{template.id}}" class="btn btn-primary" has-permission='UPDATE_TEMPLATE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
+                        <a href="#!/edittemplate/{{template.id}}" class="btn btn-primary" has-permission='UPDATE_TEMPLATE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
                         <button type="button" class="btn btn-danger" ng-click="deleteTemplate()" has-permission='DELETE_TEMPLATE'><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
                         </button>
                     </div>

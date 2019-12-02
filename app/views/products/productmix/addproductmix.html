@@ -1,7 +1,7 @@
 <div class="content-container">
     <ul class="breadcrumb">
-        <li><a href="#/products">{{'label.anchor.products' | translate}}</a></li>
-        <li><a href="#/productmix">{{'label.anchor.productmix' | translate}}</a></li>
+        <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+        <li><a href="#!/productmix">{{'label.anchor.productmix' | translate}}</a></li>
         <li class="active">{{'label.anchor.addproductmix' | translate}}</li>
     </ul>
 	<form name="addproductmixform" novalidate class="card form-horizontal well" ng-controller="AddProductMixController"
@@ -45,7 +45,7 @@
 	            </div>
 	        </div>
 	        <div class="col-md-offset-3">
-	            <a href="#/productmix" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
+	            <a href="#!/productmix" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
 	            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_PRODUCTMIX'>{{ 'label.button.save' | translate }}</button>
 	        </div>
 	    </fieldset>

@@ -61,9 +61,9 @@
             } ;
 
             if($routeParams.parent){
-            	scope.cancel = '#/viewglaccount/' + $routeParams.parent
+            	scope.cancel = '#!/viewglaccount/' + $routeParams.parent
         	}else{
-        		scope.cancel = "#/accounting_coa"
+        		scope.cancel = "#!/accounting_coa"
         	}
             
 

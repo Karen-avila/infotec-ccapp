@@ -341,7 +341,7 @@
                             reportURL = $sce.trustAsResourceUrl(reportURL);
                             reportURL = $sce.valueOf(reportURL);
                             http.get(reportURL, {responseType: 'arraybuffer'}).
-                              success(function(data, status, headers, config) {
+                              then(function(data, status, headers, config) {
                                 var contentType = headers('Content-Type');
                                 var file = new Blob([data], {type: contentType});
                                 var fileContent = URL.createObjectURL(file);

@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewReportController">
         <ul class="breadcrumb">
-            <li><a href="#/system">{{'label.anchor.system' | translate}}</a> </li>
-            <li><a href="#/reports">{{'label.anchor.managereports' | translate}}</a> </li>
+            <li><a href="#!/system">{{'label.anchor.system' | translate}}</a> </li>
+            <li><a href="#!/reports">{{'label.anchor.managereports' | translate}}</a> </li>
             <li class="active">{{report.reportName}}</li>
         </ul>
     <div class="card">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#/editreport/{{report.id}}" class="btn btn-primary" has-permission='UPDATE_REPORT'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit'
+                        <a href="#!/editreport/{{report.id}}" class="btn btn-primary" has-permission='UPDATE_REPORT'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit'
                             | translate}}</a>
                         <button type="button" class="btn btn-danger" ng-show="noncoreReport" ng-click="deletereport()" has-permission='DELETE_REPORT'><i
                                 class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}

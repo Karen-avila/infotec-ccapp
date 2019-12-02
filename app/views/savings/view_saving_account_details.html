@@ -1,9 +1,9 @@
 <div class="content-container" ng-controller="ViewSavingDetailsController">
     <div>
         <ul class="breadcrumb">
-            <li ng-show="groupLevel == 1"><a href="#/viewcenter/{{savingaccountdetails.groupId}}">{{savingaccountdetails.groupName}}</a>
-            <li ng-show="groupLevel == 2"><a href="#/viewgroup/{{savingaccountdetails.groupId}}">{{savingaccountdetails.groupName}}</a>
-            <li ng-show="savingaccountdetails.clientName"><a href="#/viewclient/{{savingaccountdetails.clientId}}">{{savingaccountdetails.clientName}}</a>
+            <li ng-show="groupLevel == 1"><a href="#!/viewcenter/{{savingaccountdetails.groupId}}">{{savingaccountdetails.groupName}}</a>
+            <li ng-show="groupLevel == 2"><a href="#!/viewgroup/{{savingaccountdetails.groupId}}">{{savingaccountdetails.groupName}}</a>
+            <li ng-show="savingaccountdetails.clientName"><a href="#!/viewclient/{{savingaccountdetails.clientId}}">{{savingaccountdetails.clientName}}</a>
             <li class="active">{{savingaccountdetails.savingsProductName}}({{savingaccountdetails.accountNo}})</li>
         </ul>
     </div>
@@ -350,7 +350,7 @@
                                     <td><span class="padded-td">
                                      <a class="btn-link"
                                         has-permission='READ_SAVINGSACCOUNT'
-                                        href="#/viewonholdtransactions/{{savingaccountdetails.id}}/viewsavingaccount/{{savingaccountdetails.id}}">
+                                        href="#!/viewonholdtransactions/{{savingaccountdetails.id}}/viewsavingaccount/{{savingaccountdetails.id}}">
                                          {{savingaccountdetails.onHoldFunds| number}}
                                      </a>
                                     </span></td>
@@ -545,14 +545,14 @@
                                 <td>{{instruction.instructionType.value}}/{{instruction.amount | number}}</td>
                                 <td>{{instruction.validFrom | DateFormat}} to {{instruction.validTill | DateFormat}}</td>
                                 <td class="select-row:selection">
-                                    <a type="button"  class="btn btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#/editstandinginstruction/{{instruction.id}}/list">
+                                    <a type="button"  class="btn btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a type="button" class="btn btn-danger" uib-tooltip="{{'label.tooltip.deleteInstruction' | translate}}" has-permission='DELETE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  data-ng-click="deletestandinginstruction(instruction.id)">
                                         <i class="fa fa-times"></i>
                                     </a>
                                     <a type="button" class="btn btn-warning" uib-tooltip="{{'label.tooltip.viewInstruction' | translate}}" has-permission='READ_STANDINGINSTRUCTION'
-                                       href="#/viewstandinginstruction/{{instruction.id}}">
+                                       href="#!/viewstandinginstruction/{{instruction.id}}">
                                         <i class="fa fa-eye-slash"></i>
                                     </a>
 
@@ -573,12 +573,12 @@
                                ng-click="deleteAll(savingdatatable.registeredTableName, savingaccountdetails.id)"><i
                                     class="fa fa-trash "></i>{{'label.button.deleteall' | translate}}</a>
                             <a data-ng-show="showDataTableAddButton"
-                               href="#/makedatatableentry/{{savingdatatable.registeredTableName}}/{{savingaccountdetails.id}}?fromEntity=savings"
+                               href="#!/makedatatableentry/{{savingdatatable.registeredTableName}}/{{savingaccountdetails.id}}?fromEntity=savings"
                                class="btn btn-primary"
                                has-permission='CREATE_{{savingdatatable.registeredTableName}}'><i
                                     class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
                             <a data-ng-show="showDataTableEditButton"
-                               ng-href="#/viewsingledatatableentry/{{savingdatatable.registeredTableName}}/{{savingaccountdetails.id}}?mode=edit"
+                               ng-href="#!/viewsingledatatableentry/{{savingdatatable.registeredTableName}}/{{savingaccountdetails.id}}?mode=edit"
                                class="btn btn-primary"
                                has-permission='UPDATE_{{savingdatatable.registeredTableName}}'><i
                                     class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
@@ -676,27 +676,27 @@
                                 <td>
                                 <span ng-show="chargeAction">
                                     <a title="{{'label.edit' | translate}}" has-permission="UPDATE_SAVINGSACCOUNTCHARGE"
-                                       href="#/savingaccountcharge/{{savingaccountdetails.id}}/editsavingcharge/{{charge.id}}"><i
+                                       href="#!/savingaccountcharge/{{savingaccountdetails.id}}/editsavingcharge/{{charge.id}}"><i
                                             class="fa fa-pencil "></i></a>
                                     <a title="{{'label.delete' | translate}}"
                                        has-permission="DELETE_SAVINGSACCOUNTCHARGE"
-                                       href="#/savingaccountcharge/{{savingaccountdetails.id}}/deletesavingcharge/{{charge.id}}"><i
+                                       href="#!/savingaccountcharge/{{savingaccountdetails.id}}/deletesavingcharge/{{charge.id}}"><i
                                             class="fa fa-times-circle fa-2x"></i></a>
                                 </span>
                                     <span ng-show="chargePayAction">
                                     <span ng-hide="charge.amountOutstanding == 0">
                                         <a title="{{'label.button.paycharge' | translate}}"
                                            has-permission="PAY_SAVINGSACCOUNTCHARGE"
-                                           href="#/savingaccountcharge/{{savingaccountdetails.id}}/paycharge/{{charge.id}}"><i
+                                           href="#!/savingaccountcharge/{{savingaccountdetails.id}}/paycharge/{{charge.id}}"><i
                                                 class="fa fa-check "></i></a>
                                         <a title="{{'label.button.waivecharge' | translate}}"
                                            has-permission="WAIVE_SAVINGSACCOUNTCHARGE"
-                                           href="#/savingaccountcharge/{{savingaccountdetails.id}}/waive/{{charge.id}}"><i
+                                           href="#!/savingaccountcharge/{{savingaccountdetails.id}}/waive/{{charge.id}}"><i
                                                 class="fa fa-flag "></i></a>
                                         <span ng-show="isRecurringCharge(charge)">
                                             <a title="{{'label.button.inactivatecharge' | translate}}"
                                                has-permission="INACTIVATE_SAVINGSACCOUNTCHARGE"
-                                               href="#/savingaccountcharge/{{savingaccountdetails.id}}/inactivate/{{charge.id}}"><i
+                                               href="#!/savingaccountcharge/{{savingaccountdetails.id}}/inactivate/{{charge.id}}"><i
                                                     class="fa fa-ban-circle "></i></a>
                                         </span>
                                     </span>

@@ -1,7 +1,7 @@
 <div class="content-container">
     <ul class="breadcrumb">
-        <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-        <li><a href="#/reports">{{'label.anchor.managereports' | translate}}</a></li>
+        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+        <li><a href="#!/reports">{{'label.anchor.managereports' | translate}}</a></li>
         <li class="active">{{'label.anchor.editreport' | translate}}</li>
     </ul>
     <div class="card">
@@ -163,7 +163,7 @@
                     </table>
                 </div>
                 <div class="col-md-offset-6">
-                    <a id="cancel" class="btn btn-default" href="#/system/viewreport/{{reportdetail.id}}">{{'label.button.cancel' | translate}}</a>
+                    <a id="cancel" class="btn btn-default" href="#!/system/viewreport/{{reportdetail.id}}">{{'label.button.cancel' | translate}}</a>
                     <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_REPORT'>{{'label.button.save' | translate}}</button>
                 </div>
             </form>

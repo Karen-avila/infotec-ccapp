@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ListGuarantorController">
     <ul class="breadcrumb">
-        <li><a href="#/viewloanaccount/{{loandetails.id}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
+        <li><a href="#!/viewloanaccount/{{loandetails.id}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
         <li class="active">{{'label.anchor.guarantordetails' | translate}}</li>
     </ul>
     <div class="card">
@@ -106,7 +106,7 @@
                             <button class="btn btn-info" data-ng-click="showDetails($parent.$index,$index)"
                                     ><i class="fa fa-eye "></i></button>
                             <a has-permission='READ_SAVINGSACCOUNT' id="viewtransactions"
-                               href="#/viewguarantortransactions/{{guarantorfund.savingsAccount.id}}/{{guarantorfund.id}}/listguarantors/{{guarantor.loanId}}"
+                               href="#!/viewguarantortransactions/{{guarantorfund.savingsAccount.id}}/{{guarantorfund.id}}/listguarantors/{{guarantor.loanId}}"
                                class="btn btn-default">{{ 'label.button.viewtransactions' |
                                 translate }}</a>
                             <button class="btn btn-warning"
@@ -129,7 +129,7 @@
                             <button class="btn btn-info" data-ng-click="showDetails($index,null)"
                                     ><i class="fa fa-eye "></i></button>
                             <a data-ng-show="guarantor.status && guarantor.guarantorType.id == 3 && guarantor.id"
-                               href="#/editguarantor/{{guarantor.id}}/{{guarantor.loanId}}" class="btn btn-primary"><i
+                               href="#!/editguarantor/{{guarantor.id}}/{{guarantor.loanId}}" class="btn btn-primary"><i
                                     class="fa fa-edit"></i></a>
                             <button class="btn btn-warning" data-ng-click="deleteGuarantor(guarantor.id,null)"
                                     has-permission='DELETE_GUARANTOR'
@@ -232,7 +232,7 @@
 
             <div ng-show="guarantorDetails" class="col-md-offset-10"
                 style="margin-bottom: 40px">
-                <a id="cancel" href="#/viewloanaccount/{{loandetails.id}}" class="btn btn-default">{{ 'label.button.cancel' |
+                <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}" class="btn btn-default">{{ 'label.button.cancel' |
                     translate }}</a>
             </div>
         </div>

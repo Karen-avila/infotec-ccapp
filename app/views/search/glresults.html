@@ -9,19 +9,19 @@
             <div ng-repeat="result in searchResults">
                 <div class="blockquoteresult" ng-class="{grbgcolor: result.entityId == selected}">
                     <span ng-show="result.entityType  == 'LOAN' || result.entityType  == 'SAVING' || result.entityType  == 'SHARE'">
-                        <a href="#/view{{result.entityType | lowercase}}account/{{result.entityId}}">{{result.entityName}}</a>&nbsp;|&nbsp;#{{result.entityAccountNo}}</a>
+                        <a href="#!/view{{result.entityType | lowercase}}account/{{result.entityId}}">{{result.entityName}}</a>&nbsp;|&nbsp;#{{result.entityAccountNo}}</a>
                     </span>
                     <span ng-show="result.entityType  == 'CLIENT'">
-                        <a href="#/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;|&nbsp;#{{result.entityAccountNo}}</a>
+                        <a href="#!/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;|&nbsp;#{{result.entityAccountNo}}</a>
                     </span>
                     <span ng-show="result.entityType  == 'GROUP'">
-                        <a href="#/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;</a>
+                        <a href="#!/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;</a>
                     </span>
                     <span ng-show="result.entityType  == 'CENTER'">
-                        <a href="#/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;</a>
+                        <a href="#!/view{{result.entityType | lowercase}}/{{result.entityId}}">{{result.entityName}}</a>&nbsp;</a>
                     </span>
                     <span ng-show="result.entityType  == 'CLIENTIDENTIFIER'">
-                        <a href="#/viewclient/{{result.parentId}}">{{result.entityName}}</a>&nbsp;</a>
+                        <a href="#!/viewclient/{{result.parentId}}">{{result.entityName}}</a>&nbsp;</a>
                     </span>
                     <span ng-show="result.entityType  == 'CLIENT'">
                       <a ng-click="getClientDetails(result.entityId)"

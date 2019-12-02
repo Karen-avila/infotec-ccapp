@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditHolidayController">
         <ul class="breadcrumb">
-            <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
-            <li><a href="#/holidays">{{'label.anchor.manageholidays' | translate}}</a></li>
-            <li><a href="#/viewholiday/{{holiday.id}}">{{holiday.name}}</a></li>
+            <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+            <li><a href="#!/holidays">{{'label.anchor.manageholidays' | translate}}</a></li>
+            <li><a href="#!/viewholiday/{{holiday.id}}">{{holiday.name}}</a></li>
             <li class="active">{{'label.anchor.editholiday' | translate}}</li>
         </ul>
         <div class="card">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="col-md-offset-3">
-                            <a class="btn btn-default" id="cancel" href="#/viewholiday/{{holiday.id}}">
+                            <a class="btn btn-default" id="cancel" href="#!/viewholiday/{{holiday.id}}">
                                     {{'label.button.cancel' | translate}}
                             </a>
                             <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_HOLIDAY'>{{'label.button.save' | translate}}</button>

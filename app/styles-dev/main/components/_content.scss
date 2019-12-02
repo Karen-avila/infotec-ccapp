@@ -13,7 +13,8 @@ body {
 #wrapper {
   min-height: 620px;
   height: 100%;
-  padding-bottom: 30px;
+  padding-top:10px;
+  padding-bottom:30px;
 }
 
 #content {
@@ -260,6 +261,10 @@ li a i .fa {
 
 .center{
   text-align:center;
+}
+
+.right{
+  text-align:right;
 }
 
 .image-container {

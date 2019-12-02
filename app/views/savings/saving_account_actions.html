@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="SavingAccountActionsController">
     <ul class="breadcrumb">
-        <li><a href="#/viewsavingaccount/{{accountId}}">{{'label.anchor.viewsavingaccount' | translate}}</a></li>
+        <li><a href="#!/viewsavingaccount/{{accountId}}">{{'label.anchor.viewsavingaccount' | translate}}</a></li>
         <li class="active">{{action}}</li>
     </ul>
     <wizard current-step="step" on-finish="submitDatatable()" class="card well">

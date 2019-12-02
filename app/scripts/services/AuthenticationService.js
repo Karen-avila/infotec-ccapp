@@ -6,6 +6,7 @@
             var twoFactorAccessToken = null;
 
             var onLoginSuccess = function (data) {
+                if (data.data) data = data.data;
                 if(data.isTwoFactorAuthenticationRequired != null && data.isTwoFactorAuthenticationRequired == true) {
                     if(hasValidTwoFactorToken(data.username)) {
                         var token = getTokenFromStorage(data.username);
@@ -15,8 +16,8 @@
                         scope.$broadcast("UserAuthenticationTwoFactorRequired", data);
                     }
                 } else {
-                    scope.$broadcast("UserAuthenticationSuccessEvent", data);
                     localStorageService.addToLocalStorage('userData', data);
+                    scope.$broadcast("UserAuthenticationSuccessEvent", data);
                 }
             };
 
@@ -26,14 +27,11 @@
 
             var apiVer = '/fineract-provider/api/v1';
 
-            var getUserDetails = function(data){
-
+            var getUserDetails = function(data) {
                 localStorageService.addToLocalStorage('tokendetails', data);
                 setTimer(data.expires_in);
                 httpService.get( apiVer + "/userdetails?access_token=" + data.access_token)
-                    .success(onLoginSuccess)
-                    .error(onLoginFailure);
-
+                    .then(onLoginSuccess, onLoginFailure);
             }
 
             var updateAccessDetails = function(data){
@@ -56,23 +54,20 @@
                 var refreshToken = localStorageService.getFromLocalStorage("tokendetails").refresh_token;
                 httpService.cancelAuthorization();
                 httpService.post( "/fineract-provider/api/oauth/token?&client_id=community-app&grant_type=refresh_token&client_secret=123&refresh_token=" + refreshToken)
-                    .success(updateAccessDetails);
+                    .then(updateAccessDetails);
             }
 
             this.authenticateWithUsernamePassword = function (credentials) {
                 scope.$broadcast("UserAuthenticationStartEvent");
+                var payload = {
+                    username: credentials.username,
+                    password: credentials.password
+                }
         		if(SECURITY === 'oauth'){
-	                httpService.post( "/fineract-provider/api/oauth/token?username=" + credentials.username + "&password=" + credentials.password +"&client_id=community-app&grant_type=password&client_secret=123")
-	                    .success(getUserDetails)
-	                    .error(onLoginFailure);
+	                httpService.post( "/fineract-provider/api/oauth/token?client_id=community-app&grant_type=password&client_secret=123", payload)
+	                    .then(getUserDetails, onLoginFailure);
         		} else {
-        			 var payload = {
-        					 username: credentials.username,
-                             password: credentials.password
-                    }
-	                httpService.post(apiVer + "/authentication",payload)
-	                    .success(onLoginSuccess)
-	                    .error(onLoginFailure);
+	                httpService.post(apiVer + "/authentication",payload).then(onLoginSuccess, onLoginFailure);
         		}
             };
 
@@ -138,8 +133,7 @@
             this.validateOTP = function (token, rememberMe) {
                 twoFactorIsRememberMeRequest = rememberMe;
                 httpService.post(apiVer + "/twofactor/validate?token=" + token)
-                    .success(onOTPValidateSuccess)
-                    .error(onOTPValidateError);
+                    .then(onOTPValidateSuccess, onOTPValidateError);
             };
 
             scope.$on("OnUserPreLogout", function (event) {

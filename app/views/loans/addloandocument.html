@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="LoanDocumentController">
     <ul class="breadcrumb">
-        <li><a href="#/viewloanaccount/{{loanId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
+        <li><a href="#!/viewloanaccount/{{loanId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
         <li class="active">{{'label.anchor.uploaddocument' | translate}}</li>
     </ul>
     <api-validate></api-validate>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-md-offset-3">
-                    <a id="cancel" href="#/viewloanaccount/{{loanId}}">
+                    <a id="cancel" href="#!/viewloanaccount/{{loanId}}">
                         <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
                     </a>
                     <button id="save" type="submit" ng-disabled="!loandocumentform.$valid" has-permission='CREATE_DOCUMENT' class="btn btn-primary">

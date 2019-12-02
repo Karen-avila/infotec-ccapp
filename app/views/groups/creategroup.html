@@ -1,9 +1,9 @@
 
 <div class="content-container" ng-controller="CreateGroupController">
     <ul class="breadcrumb">
-        <li ng-if="!centerid"><a href="#/groups">{{'label.anchor.groups' | translate}}</a></li>
-        <li ng-if="centerid"><a href="#/centers">{{'label.anchor.centers' | translate}}</a></li>
-        <li ng-if="centerid"><a href="#/viewcenter/{{centerid}}">{{'label.anchor.viewcenter' | translate}}</a></li>
+        <li ng-if="!centerid"><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
+        <li ng-if="centerid"><a href="#!/centers">{{'label.anchor.centers' | translate}}</a></li>
+        <li ng-if="centerid"><a href="#!/viewcenter/{{centerid}}">{{'label.anchor.viewcenter' | translate}}</a></li>
         <li class="active">{{'label.anchor.creategroup' | translate}}</li>
     </ul>
 	<wizard current-step="step" class="card well" on-finish="submit()">

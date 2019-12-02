@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ViewLoanChargeController">
         <ul class="breadcrumb">
-            <li><a href="#/viewloanaccount/{{loanId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
+            <li><a href="#!/viewloanaccount/{{loanId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
             <li class="active">{{ 'label.anchor.viewcharge' | translate}}({{charge.name}})</li>
         </ul>
     <script type="text/ng-template" id="deletecharge.html">
@@ -19,7 +19,7 @@
             <div class="toolbar">
                 <h4>{{'label.anchor.viewcharge' | translate}}</h4>
                 <div class="pull-right btn-group" ng-show="showEditButtons">
-                    <a href="#/loan/{{loanId}}/editcharge/{{chargeId}}" class="btn btn-primary btn-sm" has-permission='UPDATE_LOANCHARGE'><i
+                    <a href="#!/loan/{{loanId}}/editcharge/{{chargeId}}" class="btn btn-primary btn-sm" has-permission='UPDATE_LOANCHARGE'><i
                             class="fa fa-edit "></i> {{'label.button.edit' | translate}}</a>
                     <button type="button" ng-click="deleteCharge()" class="btn btn-danger btn-sm" has-permission='DELETE_LOANCHARGE'><i
                             class="fa fa-trash "></i>{{'label.button.delete' | translate}}

@@ -140,10 +140,10 @@
             };
 
             if(routeParams.centerId) {
-            	scope.cancel = '#/viewcenter/' + routeParams.centerId
+            	scope.cancel = '#!/viewcenter/' + routeParams.centerId
             	scope.centerid = routeParams.centerId;
         	}else {
-        		scope.cancel = "#/groups"
+        		scope.cancel = "#!/groups"
         	}
 
             //return input type

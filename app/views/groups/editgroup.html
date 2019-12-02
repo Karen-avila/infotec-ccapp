@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditGroupController">
 <div class="content-container" data-ng-controller="MemberManageController">
     <ul class="breadcrumb">
-        <li><a href="#/groups">{{'label.anchor.groups' | translate}}</a></li>
-        <li><a href="#/viewgroup/{{group.id}}">{{'label.anchor.viewgroup' | translate}}</a></li>
+        <li><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
+        <li><a href="#!/viewgroup/{{group.id}}">{{'label.anchor.viewgroup' | translate}}</a></li>
     </ul>
     <wizard current-step="step" on-finish="submitDatatable()">
         <div class="card well">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="col-md-offset-3">
-                                <a href="#/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
+                                <a href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
                                 <button type="submit" class="btn btn-primary" has-permission='UPDATE_GROUP'>{{'label.button.save' | translate}}</button>
                             </div>
                         </fieldset>
@@ -85,7 +85,7 @@
                             </button>
 
                             <div class="col-sm-3 col-md-offset-2" ng-hide="isEntityDatatables">
-                                <a id="cancel" href="#/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
+                                <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
                                 <button id="save" type="button" class="btn btn-primary" wz-next ><i
                                         class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
                                 </button>
@@ -161,7 +161,7 @@
                                 </button>
                             </div>
                             <div class="col-md-offset-5" ng-if="$last">
-                                    <a id="cancel" href="#/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
+                                    <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
                                     <button id="save" type="button" class="btn btn-primary" wz-next><i
                                             class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
                                     </button>

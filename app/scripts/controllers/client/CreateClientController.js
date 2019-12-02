@@ -206,10 +206,10 @@
                 }
             };
             if(routeParams.groupId) {
-                scope.cancel = '#/viewgroup/' + routeParams.groupId
+                scope.cancel = '#!/viewgroup/' + routeParams.groupId
                 scope.groupid = routeParams.groupId;
             }else {
-                scope.cancel = "#/clients"
+                scope.cancel = "#!/clients"
             }
 
             //return input type

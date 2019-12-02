@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="EmployeeController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
         <li class="active">{{'label.anchor.manageemployees' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
     </ul>
     <div class="card">
@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#/createemployee" class="btn btn-primary" has-permission='CREATE_STAFF'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createemployee' | translate }}</a>
-                        <a href="#/bulkimportemployees" class="btn btn-primary" has-permission='CREATE_STAFF'>
+                        <a href="#!/createemployee" class="btn btn-primary" has-permission='CREATE_STAFF'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createemployee' | translate }}</a>
+                        <a href="#!/bulkimportemployees" class="btn btn-primary" has-permission='CREATE_STAFF'>
                             <i class="fa fa-upload"></i>&nbsp;{{'label.button.importemployees' | translate}}</a>
                     </div>
                 </div>

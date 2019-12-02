@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="DefineOpeningBalancesController">
     <ul class="breadcrumb">
-        <li><a href="#/accounting">{{'label.anchor.accounting' | translate}}</a></li>
+        <li><a href="#!/accounting">{{'label.anchor.accounting' | translate}}</a></li>
         <li class="active">{{'label.anchor.define.openingbalances' | translate}}</li>
     </ul>
     <div class="card">
@@ -79,7 +79,7 @@
                     </tbody>
                 </table>
                 <div class="col-md-offset-3" ng-show="data.contraAccount.name" >
-                    <a id="cancel" href="#/accounting" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
+                    <a id="cancel" href="#!/accounting" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
                     <button id="save" type="submit" class="btn btn-primary" has-permission='DEFINEOPENINGBALANCE_JOURNALENTRY'>{{ 'label.button.save' | translate }}</button>
                 </div>
             </form>

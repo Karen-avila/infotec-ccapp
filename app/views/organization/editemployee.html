@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditEmployeeController">
         <ul class="breadcrumb">
-            <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
-            <li><a href="#/employees">{{'label.anchor.manageemployees' | translate}}</a></li>
-            <li><a href="#/viewemployee/{{staffId}}">{{formData.firstname}}&nbsp;{{formData.lastname}}</a></li>
+            <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+            <li><a href="#!/employees">{{'label.anchor.manageemployees' | translate}}</a></li>
+            <li><a href="#!/viewemployee/{{staffId}}">{{formData.firstname}}&nbsp;{{formData.lastname}}</a></li>
             <li class="active">{{'label.anchor.editemployee' | translate}}</li>
         </ul>
     <div class="card">
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="col-md-offset-3">
-                        <a id="cancel" href="#/viewemployee/{{staffId}}">
+                        <a id="cancel" href="#!/viewemployee/{{staffId}}">
                             <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
                         </a>
                         <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_STAFF'>{{'label.button.save' | translate}}</button>

@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="ViewFixedDepositProductController">
 <div id="viewlptop"></div>
         <ul class="breadcrumb">
-            <li><a href="#/products">{{'label.anchor.products' | translate}}</a></li>
-            <li><a href="#/fixeddepositproducts">{{'label.anchor.fixeddepositproducts' | translate}}</a></li>
+            <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+            <li><a href="#!/fixeddepositproducts">{{'label.anchor.fixeddepositproducts' | translate}}</a></li>
             <li class="active">{{depositproduct.name}}</li>
         </ul>
     
@@ -10,7 +10,7 @@
     <div class="content">
     <div class="pull-right">
         <div class="btn-group">
-            <a href="#/editfixeddepositproduct/{{depositproduct.id}}" class="btn btn-primary"><i
+            <a href="#!/editfixeddepositproduct/{{depositproduct.id}}" class="btn btn-primary"><i
                     class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
         </div>
     </div>
@@ -137,7 +137,7 @@
     <tr>
         <td colspan="4">
             <div class="pull-right">
-                <a href="#/interestratecharts/{{depositproduct.id}}/{{depositproduct.name}}/fixeddepositproduct">{{'label.anchor.interestratechartviewedit'
+                <a href="#!/interestratecharts/{{depositproduct.id}}/{{depositproduct.name}}/fixeddepositproduct">{{'label.anchor.interestratechartviewedit'
                     | translate}}</a>
             </div>
         </td>

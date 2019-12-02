@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ViewHookController">
     <ul class="breadcrumb">
-        <li><a href="#/hooks">{{'label.anchor.managehooks' | translate}}</a></li>
+        <li><a href="#!/hooks">{{'label.anchor.managehooks' | translate}}</a></li>
         <li class="active">{{hook.displayName}}</li>
     </ul>
 
@@ -25,7 +25,7 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#/edithook/{{hook.id}}" class="btn btn-primary" has-permission='UPDATE_HOOK'>
+                        <a href="#!/edithook/{{hook.id}}" class="btn btn-primary" has-permission='UPDATE_HOOK'>
                             <i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}
                         </a>
                         <button type="button" ng-click="deletehook()" class="btn btn-danger" has-permission='DELETE_HOOK'>

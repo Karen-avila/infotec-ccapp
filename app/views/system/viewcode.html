@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewCodeController">
     <ul class="breadcrumb">
-        <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-        <li><a href="#/codes">{{'label.anchor.managecodes' | translate}}</a></li>
+        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+        <li><a href="#!/codes">{{'label.anchor.managecodes' | translate}}</a></li>
         <li class="active">{{code.name | translate}}</li>
     </ul>
     <api-validate></api-validate>
@@ -18,7 +18,7 @@
                         <div class="pull-right">
                             <button type="button" data-ng-hide="code.systemDefined" data-ng-click="showEditCode()" class="btn btn-primary" has-permission='UPDATE_CODE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.editcode' | translate}}
                             </button>
-                            <a href="#/editcode/{{code.id}}" class="btn btn-primary"  has-permission='CREATE_CODEVALUE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcodevalues' | translate}}</a>
+                            <a href="#!/editcode/{{code.id}}" class="btn btn-primary"  has-permission='CREATE_CODEVALUE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcodevalues' | translate}}</a>
                             <a data-ng-click="delCode()" class="btn btn-danger" has-permission='DELETE_CODE' ng-show="code.systemDefined == false"><i
                             class="fa fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</a>
                         </div>

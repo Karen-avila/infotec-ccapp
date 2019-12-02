@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="CreatePaymentTypeController">
         <ul class="breadcrumb">
-            <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a> </li>
-            <li><a href="#/viewpaymenttype">{{'label.anchor.paymentTypes' | translate}}</a></li>
+            <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a> </li>
+            <li><a href="#!/viewpaymenttype">{{'label.anchor.paymentTypes' | translate}}</a></li>
             <li class="active">{{'label.anchor.createpaymenttype' | translate}} </li>
         </ul>
     <div class="card">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="col-md-offset-2 paddedleft">
-                            <a id="cancel" href="#/viewpaymenttype" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
+                            <a id="cancel" href="#!/viewpaymenttype" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
                             <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_PAYMENTTYPE'>{{'label.button.save' | translate}}</button>
                         </div>
                     </fieldset>

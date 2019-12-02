@@ -1,6 +1,7 @@
 (function (module) {
     mifosX.models = _.extend(module, {
         LoggedInUser: function (data) {
+            if (data.data) data = data.data;
             this.name = data.username;
             this.userId = data.userId;
             this.userPermissions = data.userPermissions || data.permissions || [];

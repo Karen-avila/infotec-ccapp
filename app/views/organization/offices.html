@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="OfficesController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
         <li class="active">{{'label.anchor.manageoffices' | translate}}</li>
     </ul>
     <div class="card">
@@ -9,8 +9,8 @@
                 <div class="pull-right">
                     <a ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</a>
                     <a ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-primary"><i class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</a>
-                    <a href="#/createoffice" class="btn btn-primary" has-permission='CREATE_OFFICE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</a>&nbsp;&nbsp;
-                		<a href="#/bulkimportoffices" class="btn btn-primary pull-right" has-permission='CREATE_OFFICE'><i
+                    <a href="#!/createoffice" class="btn btn-primary" has-permission='CREATE_OFFICE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</a>&nbsp;&nbsp;
+                		<a href="#!/bulkimportoffices" class="btn btn-primary pull-right" has-permission='CREATE_OFFICE'><i
  +                            class="fa fa-upload"></i>&nbsp;{{'label.button.importoffices' | translate}}</a>
                 </div>
             </div>

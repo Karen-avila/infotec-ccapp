@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ListOnHoldTransactionController" xmlns="http://www.w3.org/1999/html">
     <ul class="breadcrumb">
-        <li><a href="#/{{fromPath}}/{{fromPathId}}">{{'label.heading.' +fromPath | translate}}</a></li>
+        <li><a href="#!/{{fromPath}}/{{fromPathId}}">{{'label.heading.' +fromPath | translate}}</a></li>
         <li class="active">{{'label.anchor.onholdtransaction' | translate}}</li>
     </ul>
     <api-validate></api-validate>
@@ -38,9 +38,9 @@
                     <tr ng-repeat="transaction in transactions.currentPageItems"
                         ng-class="{strikeoff : transaction.reversed==true}">
                         <td>{{transaction.id}}</td>
-                        <td ng-show="fromPath === 'listguarantors'"><a href="#/viewsavingaccount/{{transaction.savingsId}}"> {{transaction.savingsAccountNo}}</a></td>
+                        <td ng-show="fromPath === 'listguarantors'"><a href="#!/viewsavingaccount/{{transaction.savingsId}}"> {{transaction.savingsAccountNo}}</a></td>
                         <td ng-show="fromPath === 'listguarantors'">{{transaction.savingsClientName}}</td>
-                        <td ng-show="fromPath === 'viewsavingaccount'"><a href="#/viewloanaccount/{{transaction.loanId}}"> {{transaction.loanAccountNo}}</a></td>
+                        <td ng-show="fromPath === 'viewsavingaccount'"><a href="#!/viewloanaccount/{{transaction.loanId}}"> {{transaction.loanAccountNo}}</a></td>
                         <td ng-show="fromPath === 'viewsavingaccount'">{{transaction.loanClientName}}</td>
                         <td>{{transaction.transactionType.code | translate}}</td>
                         <td>{{transaction.transactionDate | DateFormat}}</td>

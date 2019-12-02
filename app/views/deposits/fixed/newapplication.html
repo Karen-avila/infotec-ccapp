@@ -1,17 +1,17 @@
 <div class="content-container" ng-controller="CreateFixedDepositAccountController">
     <ul class="breadcrumb">
         <li ng-show="centerEntity">
-            <a href="#/viewcenter/{{groupId}}">
+            <a href="#!/viewcenter/{{groupId}}">
                 <strong>{{groupName}}</strong>
             </a>
         </li>
         <li ng-show="groupName && !centerEntity">
-            <a href="#/viewgroup/{{groupId}}">
+            <a href="#!/viewgroup/{{groupId}}">
                 <strong>{{groupName}}</strong>
             </a>
         </li>
         <li ng-show="clientName">
-            <a href="#/viewclient/{{clientId}}">
+            <a href="#!/viewclient/{{clientId}}">
                 <strong>{{clientName}}</strong>
             </a>
         </li>

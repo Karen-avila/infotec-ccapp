@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ClientChargesOverviewController">
         <ul class="breadcrumb">
-            <li><a ng-href="#/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
+            <li><a ng-href="#!/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
             <li class="active">{{label.heading.charges | translate}}</li>
         </ul>
     <form novalidate="" class="card form-horizontal well">
@@ -32,7 +32,7 @@
                                  on-page-change="getClientChargeResultsPage(newPageNumber)"
                                  pagination-id="chargesPage"></dir-pagination-controls>
         <div class="col-md-offset-5">
-            <a id="cancel" href="#/viewclient/{{clientId}}" class="btn btn-default">{{'label.button.back' |
+            <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-default">{{'label.button.back' |
                 translate}}</a>
         </div>
 

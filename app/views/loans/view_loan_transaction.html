@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="ViewLoanTransactionController">
     <ul class="breadcrumb">
-        <li><a href="#/viewloanaccount/{{transaction.accountId}}">{{'label.anchor.viewloanaccount' | translate}}</a>
+        <li><a href="#!/viewloanaccount/{{transaction.accountId}}">{{'label.anchor.viewloanaccount' | translate}}</a>
         </li>
         <li class="active">{{ 'label.anchor.viewtransaction' | translate}}</li>
     </ul>
@@ -20,7 +20,7 @@
             <div class="toolbar">
                 <h4>{{ 'label.heading.details' | translate}}</h4>
                 <div ng-hide="transaction.type.contra" class="btn-group pull-right">
-                    <a href="#/loanaccount/{{transaction.accountId}}/modifytransaction?transactionId={{transaction.id}}"
+                    <a href="#!/loanaccount/{{transaction.accountId}}/modifytransaction?transactionId={{transaction.id}}"
                         class="btn btn-primary" has-permission='ADJUST_LOAN'><i
                             class="fa fa-pencil "></i>{{ 'label.button.edit' | translate}}</a>
                     <a ng-click="undo(transaction.accountId, transaction.id)" class="btn btn-danger"

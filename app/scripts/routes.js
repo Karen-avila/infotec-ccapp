@@ -1009,8 +1009,7 @@
             })
             .otherwise({
                 templateUrl: "views/errors/404.html"
-            })
-            ;
+            });
         $locationProvider.html5Mode(false);
     };
     mifosX.ng.application.config(defineRoutes).run(function ($log) {

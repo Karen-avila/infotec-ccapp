@@ -1,6 +1,6 @@
 <div class="col-md-12" ng-controller="ViewAdHocQueryController">
     <ul class="breadcrumb">
-        <li><a href="#/adhocquery">{{'label.anchor.adhoc' | translate}}</a></li>
+        <li><a href="#!/adhocquery">{{'label.anchor.adhoc' | translate}}</a></li>
         <li class="active">{{adhocquery.name}}</li>
     </ul>
     <script type="text/ng-template" id="deleteadhocquery.html">
@@ -19,7 +19,7 @@
     <div class="well">
         <div class="pull-right">
             <div class="btn-group">
-                <a href="#/editadhocquery/{{adhocquery.id}}" class="btn btn-primary" has-permission='UPDATE_ADHOC'><i class="icon-edit icon-white"></i>
+                <a href="#!/editadhocquery/{{adhocquery.id}}" class="btn btn-primary" has-permission='UPDATE_ADHOC'><i class="icon-edit icon-white"></i>
                     {{'label.button.edit' | translate}}</a>
                 <button type="button" ng-click="deleteadhocquery()" class="btn btn-primary" has-permission='DELETE_ADHOC'>
                     <i class="icon-trash icon-white"></i>{{'label.button.delete' | translate}}

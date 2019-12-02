@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="TellersController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
         <li class="active">{{'label.anchor.tellers' | translate}}</li>
     </ul>
 
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-6">
                 <div class="pull-right">
-                    <a href="#/createTeller" class="btn btn-primary" has-permission='CREATE_TELLER'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createteller' | translate}}</a>
+                    <a href="#!/createTeller" class="btn btn-primary" has-permission='CREATE_TELLER'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createteller' | translate}}</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <td >
 
                     <a class="btn btn-info" data-ng-click="routeTo(teller.id)"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#/editteller/{{teller.id}}" class="btn btn-primary" has-permission='UPDATE_TELLER'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
+                    <a href="#!/editteller/{{teller.id}}" class="btn btn-primary" has-permission='UPDATE_TELLER'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
                         'label.button.edit' | translate }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="btn btn-danger" has-permission='DELETE_TELLER' data-ng-click="routeToDelete(teller.id)"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</a>
                 </td>

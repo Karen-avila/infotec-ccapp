@@ -128,7 +128,7 @@
                 scope.transactions = paginatorService.paginate(fetchFunction, 14);
                 scope.isCollapsed = false;
                 scope.isValid = true;
-                scope.path = "#/viewloanaccount/" + scope.formData.loanaccountId;
+                scope.path = "#!/viewloanaccount/" + scope.formData.loanaccountId;
             }
 
             if(location.search().savingsId != null){
@@ -137,7 +137,7 @@
                 scope.transactions = paginatorService.paginate(fetchFunction, 14);
                 scope.isCollapsed = false;
                 scope.isValid = true;
-                scope.path = "#/viewsavingaccount/" + scope.formData.savingsaccountId;
+                scope.path = "#!/viewsavingaccount/" + scope.formData.savingsaccountId;
             }
         }
     });

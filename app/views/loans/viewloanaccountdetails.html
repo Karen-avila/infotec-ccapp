@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="ViewLoanDetailsController">
     <ul class="breadcrumb">
         <li ng-show="loandetails.clientName"><a
-                ng-href="#/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
-        <li ng-show="loandetails.group"><a ng-href="#/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
+                ng-href="#!/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
+        <li ng-show="loandetails.group"><a ng-href="#!/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
         <li class="active">{{loandetails.loanProductName}} - {{loandetails.accountNo}}</li>
     </ul>
 
@@ -410,7 +410,7 @@
                             </tr>
                             <tr data-ng-show="loandetails.isTopup">
                                 <td>{{'label.heading.loanIdToClose' | translate}}</td>
-                                <td><span class="padded-td"><a href="#/viewloanaccount/{{loandetails.closureLoanId| number}}">{{loandetails.closureLoanAccountNo}}</a></span></td>
+                                <td><span class="padded-td"><a href="#!/viewloanaccount/{{loandetails.closureLoanId| number}}">{{loandetails.closureLoanAccountNo}}</a></span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isTopup">
                                 <td>{{'label.heading.topupAmount' | translate}}</td>
@@ -755,11 +755,11 @@
                                 </td>
                                 <td align="right">
                                 <a type="button" ng-show="showAddDeleteTrancheButtons('adddisbursedetails')" class="btn btn-primary" align="right"
-                                   href="#/loandisbursedetail/{{loandetails.id}}/adddisbursedetails">
+                                   href="#!/loandisbursedetail/{{loandetails.id}}/adddisbursedetails">
                                     <i class="fa fa-plus"></i>{{ 'label.button.add' | translate }}
                                 </a>
                                     <a type="button" ng-show="showAddDeleteTrancheButtons('deletedisbursedetails')" class="btn btn-danger" align="right"
-                                       href="#/loandisbursedetail/{{loandetails.id}}/deletedisbursedetails">
+                                       href="#!/loandisbursedetail/{{loandetails.id}}/deletedisbursedetails">
                                         <i class="fa fa-trash"></i>{{ 'label.button.delete' | translate }}
                                     </a>
                                 </td>
@@ -781,7 +781,7 @@
                                     </div>
                                     <a title="{{'label.edit' | translate}}"
                                        data-ng-show="showEdit(disbursementDetail)"
-                                       href="#/loandisbursedetail/{{loandetails.id}}/editdisbursedate/{{disbursementDetail.id}}"><i
+                                       href="#!/loandisbursedetail/{{loandetails.id}}/editdisbursedate/{{disbursementDetail.id}}"><i
                                             class="fa fa-pencil "></i></a>
                                 </td>
                             </tr>
@@ -864,16 +864,16 @@
                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountOutstanding| number}}</td>
                                 <td>
                                     <a title="{{'label.edit' | translate}}" class="btn btn-primary" data-ng-show="status=='Submitted and pending approval'"
-                                       href="#/loanaccountcharge/{{loandetails.id}}/editcharge/{{charge.id}}"><i
+                                       href="#!/loanaccountcharge/{{loandetails.id}}/editcharge/{{charge.id}}"><i
                                             class="fa fa-edit "></i></a>
                                     <a title="{{'label.delete' | translate}}" class="btn btn-primary" class="btn-warning"
                                        data-ng-show="status=='Submitted and pending approval'" data-ng-click="delCharge(charge.id)"
                                        title="delete"><i class="fa fa-trash-o "></i></a>
                                     <a class="btn-primary" data-ng-hide="charge.actionFlag"
-                                       href="#/loanaccountcharge/{{loandetails.id}}/waivecharge/{{charge.id}}"><i
+                                       href="#!/loanaccountcharge/{{loandetails.id}}/waivecharge/{{charge.id}}"><i
                                             class="fa fa-flag "></i></a>
                                     <a class="btn-success" data-ng-show="charge.chargePayable && status=='Active'"
-                                       href="#/loanaccountcharge/{{loandetails.id}}/paycharge/{{charge.id}}">{{"label.button.pay" |
+                                       href="#!/loanaccountcharge/{{loandetails.id}}/paycharge/{{charge.id}}">{{"label.button.pay" |
                                         translate}}</a>
                                 </td>
                             </tr>
@@ -882,7 +882,7 @@
 
                     <uib-tab heading="{{'label.heading.loandocuments' | translate}}" select="getLoanDocuments()">
                         <div class="pull-right" data-ng-show="choice">
-                            <a href="#/addloandocument/{{loandetails.id}}" class="btn btn-primary"><i class="fa fa-plus "></i>{{'label.button.upload'
+                            <a href="#!/addloandocument/{{loandetails.id}}" class="btn btn-primary"><i class="fa fa-plus "></i>{{'label.button.upload'
                                 | translate}}</a>
                         </div>
                         <br>
@@ -968,14 +968,14 @@
                                 <td>{{instruction.instructionType.value}}/{{instruction.amount | number}}</td>
                                 <td>{{instruction.validFrom | DateFormat}} to {{instruction.validTill | DateFormat}}</td>
                                 <td class="select-row:selection">
-                                    <a type="button"  class="btn btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#/editstandinginstruction/{{instruction.id}}/list">
+                                    <a type="button"  class="btn btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a type="button" class="btn btn-danger" uib-tooltip="{{'label.tooltip.deleteInstruction' | translate}}" has-permission='DELETE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  data-ng-click="deletestandinginstruction(instruction.id)">
                                         <i class="fa fa-times"></i>
                                     </a>
                                     <a type="button" class="btn btn-warning" uib-tooltip="{{'label.tooltip.viewInstruction' | translate}}" has-permission='READ_STANDINGINSTRUCTION'
-                                       href="#/viewstandinginstruction/{{instruction.id}}">
+                                       href="#!/viewstandinginstruction/{{instruction.id}}">
                                         <i class="fa fa-eye-slash"></i>
                                     </a>
 
@@ -994,11 +994,11 @@
                                    ng-click="deleteAll(loandatatable.registeredTableName, loandetails.id)"><i
                                         class="fa fa-trash "></i>{{'label.button.deleteall' | translate}}</a>
                                 <a data-ng-show="showDataTableAddButton"
-                                   href="#/makedatatableentry/{{loandatatable.registeredTableName}}/{{loandetails.id}}?fromEntity=loan"
+                                   href="#!/makedatatableentry/{{loandatatable.registeredTableName}}/{{loandetails.id}}?fromEntity=loan"
                                    has-permission='CREATE_{{loandatatable.registeredTableName}}' class="btn btn-primary"><i
                                         class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
                                 <a data-ng-show="showDataTableEditButton"
-                                   ng-href="#/viewsingledatatableentry/{{loandatatable.registeredTableName}}/{{loandetails.id}}?mode=edit"
+                                   ng-href="#!/viewsingledatatableentry/{{loandatatable.registeredTableName}}/{{loandetails.id}}?mode=edit"
                                    class="btn btn-primary" has-permission='UPDATE_{{loandatatable.registeredTableName}}'><i
                                         class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
                             </div>

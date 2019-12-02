@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditDataTableController">
         <ul class="breadcrumb">
-            <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-            <li><a href="#/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
-            <li><a href="#/viewdatatable/{{datatable.registeredTableName}}">{{datatable.registeredTableName}}</a></li>
+            <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+            <li><a href="#!/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
+            <li><a href="#!/viewdatatable/{{datatable.registeredTableName}}">{{datatable.registeredTableName}}</a></li>
             <li class="active">{{'label.anchor.editdatatable' | translate}}</li>
         </ul>
     <div class="card">
@@ -141,7 +141,7 @@
                             </tr>
                         </table>
                         <div class="col-md-offset-3">
-                            <a id="cancel" href="#/datatables">
+                            <a id="cancel" href="#!/datatables">
                                 <button type="reset" class="btn btn-default">{{ 'label.button.cancel' | translate }}</button>
                             </a>
                             <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_DATATABLE'>{{ 'label.button.save' | translate }}</button>

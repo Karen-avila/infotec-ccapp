@@ -26,20 +26,19 @@
 
     <div id="wrapper" data-ng-hide="!domReady" data-ng-cloak>
         <!-- Login Form  -->
-        <div id="content" class="container" style="margin-top:4vh;" data-ng-hide="currentSession.user != null"
+        <div id="content" class="container" style="margin-top:10px;" data-ng-hide="currentSession.user != null"
             data-ng-controller="LoginFormController">
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="pull-right ">
-                        <div>
-                            <select id="language" ng-model="optlang" class="form-control"
-                                ng-options="lang.code as lang.name for lang in langs" ng-change="changeLang(optlang)"
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-10 right">{{'label.input.changelanguage' | translate}} :</div>
+                        <div class="col-sm-2 pull-right">
+                            <select id="language" ng-model="optlang.code" class="form-control"
+                                ng-options="lang.code as lang.name for lang in langs" ng-change="changeLang(optlang.code)"
                                 value="{{lang.code}}">
-                                <option value="">{{'label.input.changelanguage' | translate}}</option>
                             </select>
                         </div>
                     </div>
-
                     <div ng-show="resetPassword">
                         <form class="form-inline pull-right" role="form">
                             <label><strong>{{ 'label.message.password.expired' | translate }}</strong></label>
@@ -206,75 +205,75 @@
                         <div class="left-nav">
                             <ul>
                                 <li>
-                                    <a class="black" href="#/help">
+                                    <a class="black" href="/#!/help">
                                         <i class="fa fa-keyboard-o"></i>
                                         <span>{{'label.anchor.keyboardshortcut' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/notifications">
+                                    <a class="black" href="/#!/notifications">
                                         <i class="fa fa-bell"></i>
                                         <span>{{'label.heading.notification' | translate }}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/createclient">
+                                    <a class="black" href="/#!/createclient">
                                         <i class="fa fa-user "></i><span> + {{'label.anchor.client' |translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/creategroup">
+                                    <a class="black" href="/#!/creategroup">
                                         <i class="fa fa-group "></i><span> + {{'label.anchor.group' |translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/createcenter">
+                                    <a class="black" href="/#!/createcenter">
                                         <i class="fa fa-map-marker "></i><span> +
                                             {{'label.anchor.center' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/nav/offices">
+                                    <a class="black" href="/#!/nav/offices">
                                         <i class="fa fa-compass "></i>
                                         <span>{{'label.anchor.navigation' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/tasks">
+                                    <a class="black" href="/#!/tasks">
                                         <i class="fa fa-check "></i>
                                         <span>{{ 'label.anchor.tasks'| translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/freqposting">
+                                    <a class="black" href="/#!/freqposting">
                                         <i class="fa fa-repeat "></i>
                                         <span>{{'label.anchor.frequentpostings' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/journalentry">
+                                    <a class="black" href="/#!/journalentry">
                                         <i class="fa fa-plus "></i>
                                         <span>{{'label.anchor.addjournalentries' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/accounts_closure">
+                                    <a class="black" href="/#!/accounts_closure">
                                         <i class="fa fa-folder "></i>
                                         <span>{{'label.anchor.closingentries' | translate}}</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="black" href="#/accounting_coa">
+                                    <a class="black" href="/#!/accounting_coa">
                                         <i class="fa fa-sitemap "></i>
                                         <span>{{'label.heading.chartofaccounts' | translate}}</span>
                                     </a>

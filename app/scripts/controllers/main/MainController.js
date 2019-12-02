@@ -1,8 +1,8 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, $idle, tmhDynamicLocale,
-                  uiConfigService, $http) {
-            $http.get('release.json').success(function(data) {
+            uiConfigService, $http) {
+            $http({ method: 'GET', url: 'release.json' }).then(function (data) {
                 scope.version = data.version;
                 scope.releasedate = data.releasedate;
             });
@@ -14,28 +14,28 @@
             scope.isBigLogoPath = false;
             scope.isLargeLogoPath = false;
 
-            if(!scope.islogofoldernamefetched && $rootScope.tenantIdentifier && $rootScope.tenantIdentifier != "default"){
+            if (!scope.islogofoldernamefetched && $rootScope.tenantIdentifier && $rootScope.tenantIdentifier != "default") {
                 scope.islogofoldernamefetched = true;
-                $http.get('scripts/config/LogoConfig.json').success(function(datas) {
-                    for(var i in datas){
+                $http({ method: 'GET', url: 'scripts/config/LogoConfig.json' }).then(function (datas) {
+                    for (var i in datas) {
                         var data = datas[i];
-                        if(data.tenantIdentifier != undefined && data.tenantIdentifier == $rootScope.tenantIdentifier){
-                            if(data.logofoldername != undefined && data.logofoldername != ""){
+                        if (data.tenantIdentifier != undefined && data.tenantIdentifier == $rootScope.tenantIdentifier) {
+                            if (data.logofoldername != undefined && data.logofoldername != "") {
                                 scope.islogofoldernameconfig = true;
                                 scope.logofoldername = data.logofoldername;
-                                if(data.faviconPath){
+                                if (data.faviconPath) {
                                     scope.isFaviconPath = true;
                                     scope.faviconPath = data.faviconPath;
                                 }
-                                if(data.bigLogoPath){
+                                if (data.bigLogoPath) {
                                     scope.isBigLogoPath = true;
                                     scope.bigLogoPath = data.bigLogoPath;
                                 }
-                                if(data.headerLogoPath){
+                                if (data.headerLogoPath) {
                                     scope.isHeaderLogoPath = true;
                                     scope.headerLogoPath = data.headerLogoPath;
                                 }
-                                if(data.largeLogoPath){
+                                if (data.largeLogoPath) {
                                     scope.isLargeLogoPath = true;
                                     scope.largeLogoPath = data.largeLogoPath;
                                 }
@@ -44,17 +44,17 @@
                     }
                 });
             }
-            
-            scope.$on('scrollbar.show', function(){
-                  console.log('Scrollbar show');
-                });
-            scope.$on('scrollbar.hide', function(){
-                  console.log('Scrollbar hide');
-                });
+
+            scope.$on('scrollbar.show', function () {
+                console.log('Scrollbar show');
+            });
+            scope.$on('scrollbar.hide', function () {
+                console.log('Scrollbar hide');
+            });
 
             uiConfigService.init(scope);
-            
-            scope.$on('configJsonObj',function(e,response){
+
+            scope.$on('configJsonObj', function (e, response) {
                 scope.response = response;
             });
             //hides loader
@@ -84,7 +84,7 @@
                 scope.dft = scope.dateformat + ' ' + 'HH:mm:ss'
             };
 
-            scope.updateDf = function(dateFormat){
+            scope.updateDf = function (dateFormat) {
                 localStorageService.addToLocalStorage('dateformat', dateFormat);
                 scope.dateformat = dateFormat;
                 scope.setDf();
@@ -171,11 +171,10 @@
                 } else {
                     scope.loggedInUserId = data.userId;
                 }
-                ;
             });
 
             var setSearchScopes = function () {
-                var all = {name: "label.search.scope.all", value: "clients,clientIdentifiers,groups,savings,shares,loans"};
+                var all = { name: "label.search.scope.all", value: "clients,clientIdentifiers,groups,savings,shares,loans" };
                 var clients = {
                     name: "label.search.scope.clients.and.clientIdentifiers",
                     value: "clients,clientIdentifiers"
@@ -184,32 +183,31 @@
                     name: "label.search.scope.groups.and.centers",
                     value: "groups"
                 };
-                var savings = {name: "label.input.adhoc.search.loans", value: "loans"};
-                var shares = {name: "label.search.scope.shares", value: "shares"};
-                var loans = {name: "label.search.scope.savings", value: "savings"};
-                scope.searchScopes = [all,clients,groups,loans,savings,shares];
+                var savings = { name: "label.input.adhoc.search.loans", value: "loans" };
+                var shares = { name: "label.search.scope.shares", value: "shares" };
+                var loans = { name: "label.search.scope.savings", value: "savings" };
+                scope.searchScopes = [all, clients, groups, loans, savings, shares];
                 scope.currentScope = all;
             }
 
             setSearchScopes();
 
             scope.changeScope = function (searchScope) {
-                scope.currentScope = searchScope ;
+                scope.currentScope = searchScope;
             }
 
             scope.search = function () {
                 var resource;
-                var searchString=scope.search.query;
-                var exactMatch=false;
-                if(searchString != null){
+                var searchString = scope.search.query;
+                var exactMatch = false;
+                if (searchString != null) {
                     searchString = searchString.replace(/(^"|"$)/g, '');
                     var n = searchString.localeCompare(scope.search.query);
-                    if(n!=0)
-                    {
-                        exactMatch=true;
+                    if (n != 0) {
+                        exactMatch = true;
                     }
                 }
-                location.path('/search/' + searchString).search({exactMatch: exactMatch, resource: scope.currentScope.value});
+                location.path('/search/' + searchString).search({ exactMatch: exactMatch, resource: scope.currentScope.value });
 
             };
             scope.text = ' ';
@@ -232,11 +230,11 @@
                     }
                 }
             } else {
-                for (var i=0; i < scope.langs.length; i++) {
+                for (var i = 0; i < scope.langs.length; i++) {
                     if (scope.langs[i].default == true) {
                         scope.optlang = scope.langs[i];
                         tmhDynamicLocale.set(scope.langs[i].code);
-                        break;        
+                        break;
                     }
                 }
             }
@@ -340,85 +338,81 @@
             });
             scope.changeLang = function (langCode) {
                 if (langCode) {
-                    for (var i=0; i < scope.langs.length; i++) {
+                    for (var i = 0; i < scope.langs.length; i++) {
                         if (scope.langs[i].code === langCode) {
                             scope.optlang = scope.langs[i];
                             localStorageService.addToLocalStorage('Language', scope.optlang);
                             tmhDynamicLocale.set(scope.langs[i].code);
                             translate.use(scope.optlang.code);
-                            break;        
+                            break;
                         }
                     }
                 }
             };
 
-            scope.helpf = function() {
+            scope.helpf = function () {
                 // first, create addresses array
-            var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup","https://mifosforge.jira.com/wiki/display/docs/Organization",
-                "https://mifosforge.jira.com/wiki/display/docs/System", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=products&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67141762","https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=report&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=accounting&startIndex=0&where=docs",  "https://mifosforge.jira.com/wiki/display/docs/Manage+Clients",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Groups","https://mifosforge.jira.com/wiki/display/docs/Manage+Centers",
-                "https://mifosforge.jira.com/wiki/display/docs/User+Manual","https://mifosforge.jira.com/wiki/display/docs/Manage+Offices",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Holidays","https://mifosforge.jira.com/wiki/display/docs/Manage+Employees",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Funds","https://mifosforge.jira.com/wiki/display/docs/Bulk+Loan+Reassignment",
-                "https://mifosforge.jira.com/wiki/display/docs/Currency+Configuration","https://mifosforge.jira.com/wiki/display/docs/Standing+Instructions+History",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Data+Tables","https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895350",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Roles+and+Permissions","https://mifosforge.jira.com/wiki/display/docs/Maker-Checker",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Hooks","https://mifosforge.jira.com/wiki/display/docs/Audit+Trails",
-                "https://mifosforge.jira.com/wiki/display/docs/Manage+Reports","https://mifosforge.jira.com/wiki/display/docs/Manage+Scheduler+Jobs",
-                "https://mifosforge.jira.com/wiki/display/docs/Global+Configuration","https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=account%20number%20preferences&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=loan%20products&startIndex=0&where=docs","https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=saving%20products&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=charges&startIndex=0&where=docs","https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=products%20mix&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=fixed%20deposit%20products&startIndex=0&where=docs","https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=recurring%20deposit%20products&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895308","https://mifosforge.jira.com/wiki/display/docs/Add+Journal+Entries",
-                "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=search%20journal%20entries&startIndex=0&where=docs",  "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=accounts%20linked&startIndex=0&where=docs",
-                "https://mifosforge.jira.com/wiki/display/docs/Chart+of+Accounts+and+General+Ledger+Setup", "https://mifosforge.jira.com/wiki/display/docs/Closing+Entries",
-                "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895308","https://mifosforge.jira.com/wiki/display/docs/Accruals"];
-            // array is huge, but working good
-            // create second array with address models
-            var addrmodels = ['/users/','/organization','/system','/products','/templates', '', '/accounting',
-                                '/clients', '/groups','/centers','','/offices', '/holidays','/employees','/managefunds/',
-                                '/bulkloan','/currconfig','/standinginstructions/history','/datatables','/codes','/admin/roles',
-                                '/admin/viewmctasks','/hooks','/audit', '/reports','/jobs','/global','/accountnumberpreferences','/loanproducts',
-                                '/savingproducts','/charges','/productmix', '/fixeddepositproducts','/recurringdepositproducts','/freqposting',
-                                '/journalentry','/searchtransaction','/financialactivityaccountmappings','/accounting_coa', '/accounts_closure','/accounting_rules','/run_periodic_accrual'];
-            // * text-based address-recognize system *
-            var actualadr = location.absUrl();  // get full URL
-            var lastchar = 0;
-            for( var i = 0; i<actualadr.length;i++) {
-                if(actualadr.charAt(i) == '#') {
-                    lastchar = i+1;
-                    break;
-                    // found '#' and save position of it
-                }
-            }//for
+                var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup", "https://mifosforge.jira.com/wiki/display/docs/Organization",
+                    "https://mifosforge.jira.com/wiki/display/docs/System", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=products&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67141762", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=report&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=accounting&startIndex=0&where=docs", "https://mifosforge.jira.com/wiki/display/docs/Manage+Clients",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Groups", "https://mifosforge.jira.com/wiki/display/docs/Manage+Centers",
+                    "https://mifosforge.jira.com/wiki/display/docs/User+Manual", "https://mifosforge.jira.com/wiki/display/docs/Manage+Offices",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Holidays", "https://mifosforge.jira.com/wiki/display/docs/Manage+Employees",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Funds", "https://mifosforge.jira.com/wiki/display/docs/Bulk+Loan+Reassignment",
+                    "https://mifosforge.jira.com/wiki/display/docs/Currency+Configuration", "https://mifosforge.jira.com/wiki/display/docs/Standing+Instructions+History",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Data+Tables", "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895350",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Roles+and+Permissions", "https://mifosforge.jira.com/wiki/display/docs/Maker-Checker",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Hooks", "https://mifosforge.jira.com/wiki/display/docs/Audit+Trails",
+                    "https://mifosforge.jira.com/wiki/display/docs/Manage+Reports", "https://mifosforge.jira.com/wiki/display/docs/Manage+Scheduler+Jobs",
+                    "https://mifosforge.jira.com/wiki/display/docs/Global+Configuration", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=account%20number%20preferences&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=loan%20products&startIndex=0&where=docs", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=saving%20products&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=charges&startIndex=0&where=docs", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=products%20mix&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=fixed%20deposit%20products&startIndex=0&where=docs", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=recurring%20deposit%20products&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895308", "https://mifosforge.jira.com/wiki/display/docs/Add+Journal+Entries",
+                    "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=search%20journal%20entries&startIndex=0&where=docs", "https://mifosforge.jira.com/wiki/dosearchsite.action?queryString=accounts%20linked&startIndex=0&where=docs",
+                    "https://mifosforge.jira.com/wiki/display/docs/Chart+of+Accounts+and+General+Ledger+Setup", "https://mifosforge.jira.com/wiki/display/docs/Closing+Entries",
+                    "https://mifosforge.jira.com/wiki/pages/viewpage.action?pageId=67895308", "https://mifosforge.jira.com/wiki/display/docs/Accruals"];
+                // array is huge, but working good
+                // create second array with address models
+                var addrmodels = ['/users/', '/organization', '/system', '/products', '/templates', '', '/accounting',
+                    '/clients', '/groups', '/centers', '', '/offices', '/holidays', '/employees', '/managefunds/',
+                    '/bulkloan', '/currconfig', '/standinginstructions/history', '/datatables', '/codes', '/admin/roles',
+                    '/admin/viewmctasks', '/hooks', '/audit', '/reports', '/jobs', '/global', '/accountnumberpreferences', '/loanproducts',
+                    '/savingproducts', '/charges', '/productmix', '/fixeddepositproducts', '/recurringdepositproducts', '/freqposting',
+                    '/journalentry', '/searchtransaction', '/financialactivityaccountmappings', '/accounting_coa', '/accounts_closure', '/accounting_rules', '/run_periodic_accrual'];
+                // * text-based address-recognize system *
+                var actualadr = location.absUrl();  // get full URL
+                var lastchar = 0;
+                for (var i = 0; i < actualadr.length; i++) {
+                    if (actualadr.charAt(i) == '#') {
+                        lastchar = i + 1;
+                        break;
+                        // found '#' and save position of it
+                    }
+                }//for
 
-            var whereweare = actualadr.substring(lastchar); // cut full URL to after-'#' part
+                var whereweare = actualadr.substring(lastchar); // cut full URL to after-'#' part
 
-            // string after '#' is compared with model
-            var addrfound = false;
-            if(whereweare == '/reports/all' || whereweare == '/reports/clients' || whereweare == '/reports/loans' || whereweare == '/reports/savings' || whereweare == '/reports/funds' || whereweare == '/reports/accounting' || whereweare == '/xbrl'  )
-                     {
-                        window.open(addresses[5]);
-                        addrfound = true;
-                     }// '/reports/...' are exception -> link to Search in Documentation word 'report'
-                     else{
-                            for(var i = 0; i< addrmodels.length; i++)
-                            {
-                                if(i != 5 && i != 10)
-                                    {
-                                        if(whereweare == addrmodels[i])
-                                        {
-                                                addrfound = true;
-                                                window.open(addresses[i]);
-                                                break;
-                                                // model found -> open address and break
-                                        }
-                                    }
-                            }//for
-                          }//else
-                if(addrfound == false) window.open(addresses[10]); // substring not matching to any model -> open start user manual page
+                // string after '#' is compared with model
+                var addrfound = false;
+                if (whereweare == '/reports/all' || whereweare == '/reports/clients' || whereweare == '/reports/loans' || whereweare == '/reports/savings' || whereweare == '/reports/funds' || whereweare == '/reports/accounting' || whereweare == '/xbrl') {
+                    window.open(addresses[5]);
+                    addrfound = true;
+                }// '/reports/...' are exception -> link to Search in Documentation word 'report'
+                else {
+                    for (var i = 0; i < addrmodels.length; i++) {
+                        if (i != 5 && i != 10) {
+                            if (whereweare == addrmodels[i]) {
+                                addrfound = true;
+                                window.open(addresses[i]);
+                                break;
+                                // model found -> open address and break
+                            }
+                        }
+                    }//for
+                }//else
+                if (addrfound == false) window.open(addresses[10]); // substring not matching to any model -> open start user manual page
 
             };//helpf
 

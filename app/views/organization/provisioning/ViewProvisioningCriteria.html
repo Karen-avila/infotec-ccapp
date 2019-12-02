@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewProvisioningCriteriaController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#/viewallprovisionings">{{'label.anchor.provisioningcriteria' | translate}}</a></li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/viewallprovisionings">{{'label.anchor.provisioningcriteria' | translate}}</a></li>
         <li class="active">{{'label.anchor.viewprovisioningcriteria' | translate}}</li>
     </ul>
     <div class="card">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="pull-right">
-                            <a href="#/editprovisioningcriteria/{{criteriaId}}" class="btn btn-primary" has-permission='UPDATE_CRITERIA'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
+                            <a href="#!/editprovisioningcriteria/{{criteriaId}}" class="btn btn-primary" has-permission='UPDATE_CRITERIA'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
                             <button type="button" data-ng-click="deleteProvisionigCriteria()" class="btn btn-danger" has-permission='DELETE_CRITERIA'><i
                                     class="fa fa-trash-o "></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
                             </button>

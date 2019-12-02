@@ -1,8 +1,8 @@
 <div class="content-container">
     <ul class="breadcrumb">
-        <li><a href="#/products">{{'label.anchor.products' | translate}}</a></li>
-        <li><a href="#/taxconfiguration">{{'label.anchor.managetaxconfigurations' | translate}}</a></li>
-        <li><a href="#/taxcomponents">{{'label.anchor.managetaxcomponents' | translate}}</a></li>
+        <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+        <li><a href="#!/taxconfiguration">{{'label.anchor.managetaxconfigurations' | translate}}</a></li>
+        <li><a href="#!/taxcomponents">{{'label.anchor.managetaxcomponents' | translate}}</a></li>
         <li class="active">{{'label.anchor.createtaxcomponent' | translate}}</li>
     </ul>
     <form name="createtaxcomponentform" novalidate="" class="card form-horizontal well"
@@ -99,7 +99,7 @@
 
 
             <div class="col-md-offset-3">
-                <a id="cancel" href="#/taxcomponents">
+                <a id="cancel" href="#!/taxcomponents">
                     <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
                 </a>
                 <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_TAXCOMPONENT'>

@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditLoanProductController">
 	<ul class="breadcrumb">
-		<li><a href="#/products">{{'label.anchor.products' | translate}}</a></li>
-		<li><a href="#/loanproducts">{{'label.anchor.loanproducts' | translate}}</a></li>
-		<li><a href="#/viewloanproduct/{{product.id}}">{{product.name}}</a></li>
+		<li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+		<li><a href="#!/loanproducts">{{'label.anchor.loanproducts' | translate}}</a></li>
+		<li><a href="#!/viewloanproduct/{{product.id}}">{{product.name}}</a></li>
 		<li class="active">{{'label.anchor.editloanproduct' | translate}}</li>
 	</ul>
 	<form name="editloanproductform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
@@ -1335,7 +1335,7 @@
 				</div>
 			</div>
 			<div class="col-md-offset-5 paddedtop">
-				<a id="cancel" href="#/viewloanproduct/{{product.id}}" type="reset" class="btn btn-sm btn-default"
+				<a id="cancel" href="#!/viewloanproduct/{{product.id}}" type="reset" class="btn btn-sm btn-default"
 					ng-click="cancel()">{{'label.button.cancel' | translate}}</a>
 				<button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_LOANPRODUCT'>{{'label.button.save'
 	        | translate}}

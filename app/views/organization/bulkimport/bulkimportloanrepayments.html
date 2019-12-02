@@ -1,6 +1,6 @@
 <div class="col-md-12" ng-controller="BulkImportLoanRepaymentController" ng-init="refreshImportTable()">
     <ul class="breadcrumb">
-        <li><a href="#/bulkimport">{{'label.anchor.bulkimport' | translate}}</a></li>
+        <li><a href="#!/bulkimport">{{'label.anchor.bulkimport' | translate}}</a></li>
         <li class="active">{{'label.anchor.importloanrepayments' | translate}}</li>
     </ul>
     <api-validate></api-validate>
@@ -16,18 +16,18 @@
                         <label class="control-label col-sm-2">
                             {{'label.anchor.office' | translate}}
                         </label>
-                        <div class="col-sm-3">
-                            <div>
-                                <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-                                    ng-options="office.id as office.name for office in offices" value="{{office.id}}"
-                                    ng-change="changeOffice()">
-                                    <option value="">--{{'label.menu.selectoffice' | translate}}--</option>
-                                </select>
-                            </div>
-                        </div> &nbsp; &nbsp; &nbsp;
-                        <a target="_blank" class='btn btn-primary'
+                        <div class="col-sm-4">
+                            <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
+                                ng-options="office.id as office.name for office in offices" value="{{office.id}}"
+                                ng-change="changeOffice()">
+                                <option value="">--{{'label.menu.selectoffice' | translate}}--</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 pull-right">
+                        <a class='btn btn-sm btn-primary'
                             href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}" has-permission='READ_CLIENT'><i
-                                class="fa fa-cloud-download"></i>{{'label.button.download' | translate}}</a>
+                                class="fa fa-cloud-download"></i>&nbsp;{{'label.button.download' | translate}}</a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -41,15 +41,15 @@
             <div class="form-group">
                 <form class="form-inline" role="form">
                     <label class="control-label col-sm-2" for="file">{{'label.input.selectexcelfile' | translate}}<span
-                            class="required">*</span></label>
+                        class="required">*</span></label>
 
                     <div class="col-sm-4">
                         <input type="file" id="file" accept=".xls,.xlsx" class="form-control btn btn-default"
                             ngf-select="onFileSelect($files)">
                     </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="form-control btn btn-primary" ng-click="upload()">
-                            {{'label.button.upload' | translate}}
+                    <div class="col-sm-3 pull-right">
+                        <button type="button" class="form-control btn btn-sm btn-primary" ng-click="upload()">
+                            <i class="fa fa-cloud-download"></i> {{'label.button.upload' | translate}}
                         </button>
                     </div>
                 </form>
@@ -59,8 +59,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'label.heading.documents' | translate}}</h3>
-            <button style="margin-left:1050px;" type="button" class="btn btn-primary" ng-click="refreshImportTable()">
-                <i class="fa fa-repeat "></i> {{'label.button.refresh' | translate}}
+            <button style="margin-left:1050px;" type="button" class="btn btn-sm btn-primary" ng-click="refreshImportTable()">
+                <i class="fa fa-repeat"></i> {{'label.button.refresh' | translate}}
             </button>
         </div>
         <div class="panel-body">

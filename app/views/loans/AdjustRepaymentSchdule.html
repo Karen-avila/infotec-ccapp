@@ -1,9 +1,9 @@
 <div class="content-container" ng-controller="AdjustRepaymentSchedule">
 <ul class="breadcrumb">
     <li ng-show="loandetails.clientName"><a
-            ng-href="#/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
+            ng-href="#!/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
     <li ng-show="loandetails.group"><a
-            ng-href="#/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
+            ng-href="#!/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
     <li class="active">{{loandetails.loanProductName}}({{loandetails.accountNo}})</li>
 </ul>
 <script type="text/ng-template" id="resetschedule.html">
@@ -210,7 +210,7 @@
         </fieldset>
 
         <div class="col-md-offset-4">
-            <a id="cancel" href="#/viewloanaccount/{{loandetails.id}}">
+            <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}">
                 <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
             </a>
             <button id="pattern" class="btn btn-primary" ng-click="pattern()" type="button"

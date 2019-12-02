@@ -1,8 +1,8 @@
 <div class="col-md-12" ng-controller="EditAdHocQueryController">
     <div>
         <ul class="breadcrumb">
-            <li><a href="#/adhocquery">{{'label.anchor.adhoc' | translate}}</a></li>
-            <li><a href="#/viewadhocquery/{{adHocId}}">{{formData.name}}</a></li>
+            <li><a href="#!/adhocquery">{{'label.anchor.adhoc' | translate}}</a></li>
+            <li><a href="#!/viewadhocquery/{{adHocId}}">{{formData.name}}</a></li>
             <li class="active">{{'label.heading.editadhocquery' | translate}}</li>
         </ul>
     </div>
@@ -93,7 +93,7 @@
 	        </div>
 
             <div class="col-md-offset-3">
-                <a id="cancel" href="#/viewadhocquery/{{adHocId}}">
+                <a id="cancel" href="#!/viewadhocquery/{{adHocId}}">
                     <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
                 </a>
                 <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_ADHOC'>{{'label.button.save' | translate}}</button>

@@ -1,15 +1,15 @@
 <div class="content-container" data-ng-controller="ViewRoleController">
     <div ng-show="isDisabled">
         <ul class="breadcrumb">
-            <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-            <li><a href="#/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
+            <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+            <li><a href="#!/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
             <li class="active">{{'label.anchor.viewrole' | translate}}</li>
         </ul>
     </div>
     <div ng-hide="isDisabled">
         <ul class="breadcrumb">		
-			<li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-            <li><a href="#/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
+			<li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+            <li><a href="#!/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
             <li class="active">{{ role.name}}</li>
             <li class="active">{{'label.anchor.editrole' | translate}}</li>
         </ul>

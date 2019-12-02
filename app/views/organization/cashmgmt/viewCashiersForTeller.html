@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewCashierController">
     <ul class="breadcrumb">
-        <li><a href="#/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#/tellers/{{cashier.tellerId}}/cashiers">{{ 'label.heading.cashmgmt.cashierName' | translate }}</a> </li>
+        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+        <li><a href="#!/tellers/{{cashier.tellerId}}/cashiers">{{ 'label.heading.cashmgmt.cashierName' | translate }}</a> </li>
         <li class="active">{{cashier.staffName}}</li>
     </ul>
 
@@ -11,7 +11,7 @@
                 <h4>{{ 'label.heading.cashmgmt.cashierName' | translate }} : {{cashier.staffName}}</h4>
                 <div class="pull-right">
                     <div class="btn-group">
-                    <a href="#/tellers/{{cashier.tellerId}}/editcashier/{{cashier.id}}" class="btn btn-primary" has-permission='UPDATE_CASHIER'><i class="fa fa-edit "></i>
+                    <a href="#!/tellers/{{cashier.tellerId}}/editcashier/{{cashier.id}}" class="btn btn-primary" has-permission='UPDATE_CASHIER'><i class="fa fa-edit "></i>
                     {{'label.button.edit' | translate }}</a>
                 </div>
                 </div>

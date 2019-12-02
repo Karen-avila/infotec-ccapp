@@ -1,8 +1,8 @@
 <div class="content-container" ng-controller="EditHookController">
         <ul class="breadcrumb">
-            <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-            <li><a href="#/hooks">{{'label.anchor.managehooks' | translate}}</a></li>
-            <li><a href="#/viewhook/{{hookId}}">{{hook.name}}</a></li>
+            <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+            <li><a href="#!/hooks">{{'label.anchor.managehooks' | translate}}</a></li>
+            <li><a href="#!/viewhook/{{hookId}}">{{hook.name}}</a></li>
             <li class="active">{{'label.anchor.edithook' | translate}}</li>
         </ul>
     <div class="card">
@@ -108,7 +108,7 @@
                     </table>
 
                     <div class="col-md-offset-3">
-                        <a id="cancel" href="#/viewhook/{{hookId}}">
+                        <a id="cancel" href="#!/viewhook/{{hookId}}">
                             <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
                         </a>
                         <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_HOOK'>{{'label.button.save' | translate}}</button>

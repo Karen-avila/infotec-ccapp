@@ -1,11 +1,11 @@
 <div class="content-container" ng-controller="ViewTransactionController">
         <ul class="breadcrumb" ng-if="productName == null">
-            <li><a href="#/accounting">{{'label.anchor.accounting' | translate}}</a></li>
+            <li><a href="#!/accounting">{{'label.anchor.accounting' | translate}}</a></li>
             <li class="active">{{'label.anchor.viewtransaction' | translate}}</li>
         </ul>
         <ul class="breadcrumb" ng-if="productName != null">
-            <li ng-if="groupId != null"><a href="#/viewgroup/{{groupId}}">{{groupName}}</a></li>
-            <li ng-if="clientId != null"><a href="#/viewclient/{{clientId}}">{{clientName}}</a></li>
+            <li ng-if="groupId != null"><a href="#!/viewgroup/{{groupId}}">{{groupName}}</a></li>
+            <li ng-if="clientId != null"><a href="#!/viewclient/{{clientId}}">{{clientName}}</a></li>
             <li class="active">{{productName}}({{accountNo}})</li>
             <li class="active">{{'label.anchor.journalentries' | translate}}</li>
         </ul>
@@ -189,7 +189,7 @@
                         </table>
                     </div>
                     <div class="center" ng-if="productName != null">
-                        <a href="#/viewloanaccount/{{loanId}}"
+                        <a href="#!/viewloanaccount/{{loanId}}"
                           class="btn btn-primary center"><i
                             class=""></i>{{'label.button.back' | translate}}</a></div>
                 </div>

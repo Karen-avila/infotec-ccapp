@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="CreateRoleController">
         <ul class="breadcrumb">
-            <li><a href="#/system">{{'label.anchor.system' | translate}}</a></li>
-            <li><a href="#/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
+            <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+            <li><a href="#!/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
             <li class="active">{{'label.anchor.addrole' | translate}}</li>
         </ul>
     <form name="addroleform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-md-offset-3">
-                <a id="cancel" href="#/admin/roles" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
+                <a id="cancel" href="#!/admin/roles" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
                 <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_ROLE'>{{'label.button.save' | translate}}</button>
             </div>
         </fieldset>

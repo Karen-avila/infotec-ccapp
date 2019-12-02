@@ -12,7 +12,7 @@
                     method: 'GET',
                     url: $rootScope.hostUrl + API_VERSION + '/mixmapping'
                 })
-                    .success(function (data) {
+                    .then(function (data) {
                         var mappingJson = data.config;
                         if (mappingJson != undefined && mappingJson.length > 0) {
                             for (var i = scope.mixtaxonomyArray.length - 1; i >= 0; i--) {
@@ -95,7 +95,7 @@
                 http({
                     method: 'GET',
                     url: $rootScope.hostUrl + API_VERSION + '/mixreport?startDate=' + scope.startDate + '&endDate=' + scope.endDate
-                }).success(function (data) {
+                }).then(function (data) {
                         var parser = new DOMParser();
                         var xmlDoc = parser.parseFromString(data, "text/xml");
                         $rootScope.xmlData = xmlDoc;
