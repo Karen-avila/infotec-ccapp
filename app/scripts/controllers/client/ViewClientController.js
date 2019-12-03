@@ -587,10 +587,11 @@
                             if (!scope.datatabledetails.isMultirow) {
                                 var row = {};
                                 row.key = data.columnHeaders[i].columnName;
-                                row.value = data.data[0].row[i].value;
+                                row.value = data.data[0].row[i];
                                 if (data.data[0].row[i].score) {
                                     row.value = data.data[0].row[i].value + " (" + data.data[0].row[i].score + ")";
                                 }
+                                console.log(row);
                                 scope.singleRow.push(row);
                             }
                         }
