@@ -296,6 +296,7 @@
                     delete this.formData.firstname;
                     delete this.formData.middlename;
                     delete this.formData.lastname;
+                    delete this.formData.surname;
                 }
 
                 if(scope.first.incorpValidityTillDate) {

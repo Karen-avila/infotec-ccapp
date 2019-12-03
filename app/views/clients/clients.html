@@ -53,6 +53,7 @@
                     <tr>
                         <th>{{'label.heading.name' | translate}}</th>
                         <th>{{'label.heading.clientno' | translate}}</th>
+                        <th>{{'label.heading.uniqueid' | translate}}</th>
                         <th>{{'label.heading.externalid' | translate}}</th>
                         <th>{{'label.heading.status' | translate}}</th>
                         <th>{{'label.heading.office' | translate}}</th>
@@ -66,10 +67,12 @@
                         ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.displayName}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.accountNo}}</td>
+                        <td class="pointer" data-ng-click="routeTo(client.id)">{{client.uniqueid}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.externalId}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">
                             <i class="fa fa-stop {{client.status.code | StatusLookup}}"
                                 uib-tooltip="{{client.status.value}}" uib-tooltip-placement="top"></i>
+                            <small>[{{client.status.value}}]</small>
                             <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
                         </td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.officeName}}</td>

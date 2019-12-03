@@ -1,5 +1,7 @@
 <div class="content-container" ng-controller="ViewClientController">
 	<ul class="breadcrumb">
+		<li ng-if="!groupid"><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
+		<li ng-if="groupid"><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
 		<li>{{client.officeName}}</li>
 		<li>{{client.staffName}}</li>
 	</ul>
@@ -626,7 +628,16 @@
 										<td><span class="padded-td">{{client.clientClassification.name}}</span>
 										</td>
 									</tr>
-
+									<tr data-ng-show="client.uniqueId">
+										<th class="table-bold">{{ 'label.input.uniqueId' | translate }}</th>
+										<td><span class="padded-td">{{client.uniqueId}}</span>
+										</td>
+									</tr>
+									<tr data-ng-show="client.externalId">
+										<th class="table-bold">{{ 'label.input.externalId' | translate }}</th>
+										<td><span class="padded-td">{{client.externalId}}</span>
+										</td>
+									</tr>
 									<tr data-ng-show="client.dateOfBirth">
 										<th class="table-bold">{{ 'label.input.dateofbirth' | translate }}</th>
 										<td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>

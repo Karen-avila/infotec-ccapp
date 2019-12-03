@@ -57,8 +57,6 @@
             scope.$on('configJsonObj', function (e, response) {
                 scope.response = response;
             });
-            //hides loader
-            scope.domReady = true;
             scope.activity = {};
             scope.activityQueue = [];
             if (localStorageService.getFromLocalStorage('Location')) {
@@ -195,6 +193,8 @@
             scope.changeScope = function (searchScope) {
                 scope.currentScope = searchScope;
             }
+            //hides loader
+            scope.domReady = true;
 
             scope.search = function () {
                 var resource;
@@ -424,7 +424,6 @@
                     $rootScope.setPermissions(session.user.userPermissions);
                     localStorageService.addToLocalStorage('userPermissions', session.user.userPermissions);
                 }
-                ;
             });
         }
     });

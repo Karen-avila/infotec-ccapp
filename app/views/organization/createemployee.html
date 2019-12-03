@@ -53,8 +53,6 @@
 						<div class="col-sm-3">
 							<input type="text" id="lastname" name="lastname" ng-model="formData.lastname"
 								class="form-control" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
-						</div>
-						<div class="col-sm-3">
 							<span ng-show="createemployeeform.lastname.$invalid && createemployeeform.lastname.$dirty">
 								<small class="error required" ng-show="createemployeeform.lastname.$error.pattern">
 									{{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -86,7 +84,7 @@
 								<input type="checkbox" id="isLoanOfficer" ng-model="formData.isLoanOfficer">
 							</label>
 						</div>
-						<label class="control-label col-sm-3"
+						<label class="control-label col-sm-6"
 							for="isLoanOfficer">{{ 'label.input.isLoanOfficer' | translate }}</label>
 					</div>
 

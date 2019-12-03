@@ -198,6 +198,8 @@
   "label.input.middlename": "Middle name",
   "label.input.qualification": "Qualification",
   "label.input.mobileNumber": "Mobile Number",
+  "label.input.uniqueId": "Unique Identifier",
+  "label.heading.uniqueid": "Unique Identifier",
   "label.input.age": "age",
   "label.input.isDependent": "is Dependent?",
   "label.input.maritalstatus": "Marital Status",

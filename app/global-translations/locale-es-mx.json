@@ -220,6 +220,8 @@
 	"label.input.middlename": "Segundo Nombre",
 	"label.input.qualification": "Calificación",
 	"label.input.mobileNumber": "Teléfono Móvil",
+	"label.input.uniqueId": "Clave Única",
+	"label.heading.uniqueid": "Clave Única",
 	"label.input.age": "Edad",
 	"label.input.isDependent": "¿Es dependiente?",
 	"label.input.maritalstatus": "Estado civil",
