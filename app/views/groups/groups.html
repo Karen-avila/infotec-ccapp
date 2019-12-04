@@ -66,6 +66,7 @@
                             <i class="fa fa-stop {{group.status.code | StatusLookup}}"
                                 uib-tooltip="{{group.status.value}}" uib-tooltip-placement="top">
                             </i>
+                            <small>[{{group.status.value}}]</small>
                         </td>
                         <td data-ng-click="routeTo(group.id)">{{group.officeName}}</td>
                     </tr>
