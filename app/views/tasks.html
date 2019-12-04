@@ -373,19 +373,20 @@
                                             <td>
                                                 <input type="checkbox" ng-model="loanTemplate[record.loan.id]">
                                             </td>
-                                            <td>{{record.office.name}}</td>
-                                            <td ng-if="!record.individual" class="pointer">
+                                            <td ng-if="record.individual">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual" class="pointer" data-ng-click="showGroupDetail(record.client.id)">
                                                     <i class="fa fa-users"></i>&nbsp;<a href='#!/viewgroup/{{record.client.id}}'>{{record.client.name}}</a>
                                             </td>
                                             <td ng-if="record.individual" class="pointer">
                                                 <i class="fa fa-user"></i>&nbsp;<a href='#!/viewclient/{{record.client.id}}'>{{record.client.name}}</a>
                                             </td>
                                             <td class="pointer">{{record.loan.productName}} </td>
-                                            <td ng-if="!record.individual"></td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)"></td>
                                             <td ng-if="record.individual" class="pointer"><a
                                                     href='#!/viewloanaccount/{{record.loan.id}}'>{{record.loan.accountNo}}</a>
                                             </td>
-                                            <td ng-if="!record.individual">{{record.loan.amount | number}} ({{record.loans.length}})</td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)">{{record.loan.amount | number}} ({{record.loans.length}})</td>
                                             <td ng-if="record.individual">{{record.loan.amount | number}}</td>
                                             <td class="pointer">{{record.loan.loanPurposeName}}</td>
                                         </tr>

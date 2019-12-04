@@ -426,6 +426,10 @@
                 scope.groupedGroups = data;
             });
 
+            scope.showGroupDetail = function (groupId) {
+                angular.element(document.querySelector("#grp_a" + group)).toggleClass("collapse");
+            }
+
             scope.search = function () {
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
