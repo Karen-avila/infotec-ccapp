@@ -427,7 +427,7 @@
             });
 
             scope.showGroupDetail = function (groupId) {
-                angular.element(document.querySelector("#grp_a" + group)).toggleClass("collapse");
+                angular.element(document.querySelector("#grp_a" + groupId)).toggleClass("collapse");
             }
 
             scope.search = function () {
