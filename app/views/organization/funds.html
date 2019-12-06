@@ -1,0 +1,43 @@
+<div class="content-container" ng-controller="ManageFundsController">
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li class="active">{{'label.anchor.managefunds' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<api-validate></api-validate>
+			<div class="toolbar">
+				<h4>{{'label.heading.fundsources' | translate}}</h4>
+				<div class="pull-right">
+					<a href="#!/createfund" class="btn btn-sm btn-primary" has-permission='CREATE_FUND'><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.addfund' | translate}}</a>
+				</div>
+			</div>
+			<div ng-hide="isTreeView">
+				<div class="">
+					<input ng-model="filterText" type="text" ng-keyup="onFilter()"
+					class="form-control " placeholder="{{'label.input.filterbyFundNameAmount' | translate}}">
+				</div>
+				<br>
+				<table class="table">
+					<thead>
+						<tr class="graybg">
+							<th>{{ 'label.heading.fundname' | translate }}</th>
+							<th>{{ 'label.heading.externalid' | translate }}</th>
+							<th>{{ 'label.heading.amount' | translate }}</th>
+							<th>{{ 'label.heading.active' | translate}}</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="fund in funds">
+							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.name}}</td>
+							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.externalId}}</td>
+							<td class="pointer" data-ng-click="routeTo(fund.id)">$ {{fund.amount | number}}</td>
+							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.active}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

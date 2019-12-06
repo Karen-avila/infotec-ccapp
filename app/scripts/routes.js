@@ -323,8 +323,17 @@
             .when('/createemployee/', {
                 templateUrl: 'views/organization/createemployee.html'
             })
-            .when('/managefunds/', {
-                templateUrl: 'views/organization/managefunds.html'
+            .when('/funds/', {
+                templateUrl: 'views/organization/funds.html'
+            })
+            .when('/viewfund/:id', {
+                templateUrl: 'views/organization/viewfund.html'
+            })
+            .when('/createfund/', {
+                templateUrl: 'views/organization/createfund.html'
+            })
+            .when('/editfund/:id', {
+                templateUrl: 'views/organization/editfund.html'
             })
             .when('/nav/offices', {
                 templateUrl: 'views/navigation/offices.html'

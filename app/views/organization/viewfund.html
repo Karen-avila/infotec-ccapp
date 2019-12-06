@@ -1,0 +1,44 @@
+<div class="content-container" ng-controller="ViewFundController">
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li><a href="#!/funds">{{'label.anchor.funds' | translate}}</a></li>
+		<li class="active">{{fund.name}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="col-md-12 col-sm-12">
+					<div class="row primarydiv">
+						<div class="pull-right">
+							<div class="btn-group">
+								<a href="#!/editfund/{{fund.id}}" class="btn btn-sm btn-primary"
+									has-permission='UPDATE_FUND'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
+										'label.button.edit' | translate }}</a>
+							</div>
+						</div>
+					</div>
+
+					<h3><strong>{{fund.name}}</strong></h3>
+					<table class="table-bordered table view-table" style="width: 350px">
+						<tr>
+							<td>{{ 'label.heading.fundsource' | translate }}</td>
+							<td>{{fund.name}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.heading.externalid' | translate }}</td>
+							<td>{{fund.externalId}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.heading.amount' | translate }}</td>
+							<td>{{fund.amount}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.heading.active' | translate }}</td>
+							<td>{{fund.active}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

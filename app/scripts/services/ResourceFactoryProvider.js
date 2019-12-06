@@ -248,6 +248,7 @@
                     }),
                     fundsResource: defineResource(apiVer + "/funds/:fundId", {fundId: '@fundId'}, {
                         getAllFunds: {method: 'GET', params: {}, isArray: true},
+                        getFunds: {method: 'GET', params: {}, isArray: true},
                         getFund: {method: 'GET', params: {}},
                         update: {method: 'PUT', params: {}}
                     }),

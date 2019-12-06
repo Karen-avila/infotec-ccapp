@@ -124,7 +124,7 @@
 		              break;
 		          case 'manage funds':
 				  case 'configurar los fondos':
-		              location.path('/managefunds');
+		              location.path('/funds');
 		              break;
 		          case 'chart of accounts':
 				  case 'plan de cuentas':
