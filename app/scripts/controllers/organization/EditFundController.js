@@ -1,8 +1,9 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        EditFundController: function (scope, resourceFactory, location) {
+        EditFundController: function (scope, routeParams, resourceFactory, location) {
             resourceFactory.fundsResource.getFund({fundId: routeParams.id}, function (data) {
-                scope.fund = data;
+                scope.formData = data;
+                delete formData.id;
             });
 
             scope.submit = function () {
@@ -12,7 +13,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('EditFundController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.EditFundController]).run(function ($log) {
+    mifosX.ng.application.controller('EditFundController', ['$scope', '$routeParams', 'ResourceFactory', '$location', mifosX.controllers.EditFundController]).run(function ($log) {
         $log.info("EditFundController initialized");
     });
 }(mifosX.controllers || {}));
