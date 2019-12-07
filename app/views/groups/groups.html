@@ -50,6 +50,7 @@
                         <th>{{'label.heading.name' | translate}}</th>
                         <th> {{'label.heading.accnum' | translate}}</th>
                         <th> {{'label.heading.externalid' | translate}}</th>
+                        <th> {{'label.heading.loancounter' | translate}}</th>
                         <th>{{'label.heading.status' | translate}}</th>
                         <th>{{'label.heading.office' | translate}}</th>
                     </tr>
@@ -62,6 +63,7 @@
                         <td class="pointer" data-ng-click="routeTo(group.id)">{{group.name}}</td>
                         <td class="pointer" data-ng-click="routeTo(group.id)">{{group.accountNo}}</td>
                         <td class="pointer" data-ng-click="routeTo(group.id)">{{group.externalId}}</td>
+                        <td class="pointer" data-ng-click="routeTo(group.id)">{{group.loanCounter}}</td>
                         <td class="pointer" data-ng-click="routeTo(group.id)">
                             <i class="fa fa-stop {{group.status.code | StatusLookup}}"
                                 uib-tooltip="{{group.status.value}}" uib-tooltip-placement="top">

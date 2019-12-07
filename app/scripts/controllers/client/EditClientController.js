@@ -134,6 +134,29 @@
                     delete this.formData.firstname;
                     delete this.formData.middlename;
                     delete this.formData.lastname;
+                    delete this.formData.surname;
+                }
+
+                if (this.formData.firstname) {
+                    this.formData.firstname = this.formData.firstname.toUpperCase();
+                }
+                if (this.formData.middlename) {
+                    this.formData.middlename = this.formData.middlename.toUpperCase();
+                }
+                if (this.formData.lastname) {
+                    this.formData.lastname = this.formData.lastname.toUpperCase();
+                }
+                if (this.formData.surname) {
+                    this.formData.surname = this.formData.surname.toUpperCase();
+                }
+                if (this.formData.fullname) {
+                    this.formData.fullname = this.formData.fullname.toUpperCase();
+                }
+                if (this.formData.externalId) {
+                    this.formData.externalId = this.formData.externalId.toUpperCase();
+                }
+                if (this.formData.uniqueId) {
+                    this.formData.uniqueId = this.formData.uniqueId.toUpperCase();
                 }
 
                 resourceFactory.clientResource.update({'clientId': routeParams.id}, this.formData, function (data) {

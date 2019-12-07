@@ -55,7 +55,7 @@
                         for="firstname">{{ 'label.input.firstname' | translate }}<span class="required">*</span></label>
                      <div class="col-sm-3">
                         <input type="text" id="firstname" name="firstname" ng-model="formData.firstname"
-                           class="form-control" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
+                           class="form-control uppercase" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
                         <span ng-show="createclientform.firstname.$invalid && createclientform.firstname.$dirty">
                            <small class="error required" ng-show="createclientform.firstname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -67,7 +67,7 @@
                         for="middlename">{{'label.input.middlename' | translate}}</label>
                      <div class="col-sm-3">
                         <input type="text" id="middlename" name="middlename" ng-model="formData.middlename"
-                           class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" />
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" />
                         <span ng-show="createclientform.middlename.$invalid && createclientform.middlename.$dirty">
                            <small class="error required" ng-show="createclientform.middlename.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -82,7 +82,7 @@
                      </label>
                      <div class="col-sm-3">
                         <input type="text" id="lastname" name="lastname" ng-model="formData.lastname"
-                           class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
                         <span ng-show="createclientform.lastname.$invalid && createclientform.lastname.$dirty">
                            <small class="error required" ng-show="createclientform.lastname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -93,7 +93,7 @@
                      <label class="control-label col-sm-3" for="lastname">{{'label.input.surname' | translate}}
                      </label>
                      <div class="col-sm-3">
-                        <input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control"
+                        <input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase"
                            ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
                         <span ng-show="createclientform.surname.$invalid && createclientform.surname.$dirty">
                            <small class="error required" ng-show="createclientform.surname.$error.pattern">
@@ -111,7 +111,7 @@
                            class="required">*</span></label>
                      <div class="col-sm-6">
                         <input type="text" id="fullname" name="fullname" ng-model="formData.fullname"
-                           class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate/>
                         <form-validate valattributeform="createclientform" valattribute="fullname" />
                      </div>
                   </div>
@@ -131,10 +131,10 @@
                   </span>
                </div>
                <label class="control-label col-sm-3" for="uniqueId">{{'label.input.uniqueId' | translate}}
-               </label>
+               <span class="required">*</span></label>
                <div class="col-sm-3">
-                  <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId" class="form-control"
-                     ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
+                  <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId" class="form-control uppercase"
+                     ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
                   <span ng-show="createclientform.uniqueId.$invalid && createclientform.uniqueId.$dirty">
                      <small class="error required" ng-show="createclientform.uniqueId.$error.pattern">
                         {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -157,10 +157,11 @@
                </div>
                <div data-ng-switch on="showNonPersonOptions">
                   <div data-ng-switch-when="false">
-                     <label class="control-label col-sm-3">{{'label.input.gender' | translate}}</label>
+                     <label class="control-label col-sm-3">{{'label.input.gender' | translate}}<span
+                        class="required">*</span></label>
                      <div class="col-sm-3">
                         <select id="genderId" ng-model="formData.genderId" class="form-control"
-                           ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}">
+                           ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}" required>
                            <option value="">--{{'label.menu.gender' | translate}}--</option>
                         </select>
                      </div>
@@ -245,14 +246,14 @@
                      <label class="control-label col-sm-3" for="remarks">{{'label.input.remarks' | translate}}</label>
                      <div class="col-sm-3">
                         <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="4"
-                           class="form-control" />
+                           class="form-control uppercase" />
                         </div>
                   </div>
 
                   <div class="form-group">
                      <label class="control-label col-sm-3" for="externalId">{{'label.input.externalid' | translate}}</label>
                      <div class="col-sm-3">
-                        <input type="text" id="externalId" name="externalId" ng-model="formData.externalId"  class="form-control"/>
+                        <input type="text" id="externalId" name="externalId" ng-model="formData.externalId" class="form-control uppercase"/>
                      </div>
                   </div>
 

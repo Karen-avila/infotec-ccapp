@@ -3,10 +3,11 @@
         EditFundController: function (scope, routeParams, resourceFactory, location) {
             resourceFactory.fundsResource.getFund({fundId: routeParams.id}, function (data) {
                 scope.formData = data;
-                delete formData.id;
+                delete scope.formData.id;
             });
 
             scope.submit = function () {
+                this.formData.locale = scope.optlang.code;
                 resourceFactory.fundsResource.update({'fundId': routeParams.id}, this.formData, function (data) {
                     location.path('/viewfund/' + data.resourceId);
                 });

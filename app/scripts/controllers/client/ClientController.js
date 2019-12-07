@@ -13,7 +13,7 @@
             scope.clientsPerPage = 15;
 
             scope.getResultsPage = function (pageNumber) {
-                if(scope.searchText){
+                if (scope.searchText) {
                     var startPosition = (pageNumber - 1) * scope.clientsPerPage;
                     scope.clients = scope.actualClients.slice(startPosition, startPosition + scope.clientsPerPage);
                     return;
@@ -26,7 +26,6 @@
                 });
             }
             scope.initPage = function () {
-
                 var items = resourceFactory.clientResource.getAllClients({
                     offset: 0,
                     limit: scope.clientsPerPage
@@ -43,17 +42,16 @@
                 scope.filterText = "";
                 var searchString = scope.searchText;
                 searchString = searchString.replace(/(^"|"$)/g, '');
-                var exactMatch=false;
+                var exactMatch = false;
                 var n = searchString.localeCompare(scope.searchText);
-                if(n!=0)
-                {
-                    exactMatch=true;
+                if (n != 0) {
+                    exactMatch = true;
                 }
 
-                if(!scope.searchText){
+                if (!scope.searchText) {
                     scope.initPage();
                 } else {
-                    resourceFactory.globalSearch.search({query: searchString , resource: "clients,clientIdentifiers",exactMatch: exactMatch}, function (data) {
+                    resourceFactory.globalSearch.search({ query: searchString, resource: "clients,clientIdentifiers", exactMatch: exactMatch }, function (data) {
                         var arrayLength = data.length;
                         for (var i = 0; i < arrayLength; i++) {
                             var result = data[i];
@@ -61,15 +59,15 @@
                             client.status = {};
                             client.subStatus = {};
                             client.status.value = result.entityStatus.value;
-                            client.status.code  = result.entityStatus.code;
-                            if(result.entityType  == 'CLIENT'){
+                            client.status.code = result.entityStatus.code;
+                            if (result.entityType == 'CLIENT') {
 
                                 client.displayName = result.entityName;
                                 client.accountNo = result.entityAccountNo;
                                 client.id = result.entityId;
                                 client.externalId = result.entityExternalId;
                                 client.officeName = result.parentName;
-                            }else if (result.entityType  == 'CLIENTIDENTIFIER'){
+                            } else if (result.entityType == 'CLIENTIDENTIFIER') {
                                 numberOfClients = numberOfClients + 1;
                                 client.displayName = result.parentName;
                                 client.id = result.parentId;
@@ -87,8 +85,6 @@
 
         }
     });
-
-
 
     mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.ClientController]).run(function ($log) {
         $log.info("ClientController initialized");

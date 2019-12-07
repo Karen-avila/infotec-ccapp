@@ -84,6 +84,7 @@
 	"label.heading.id": "Id.",
 	"label.heading.activationdate": "Fecha de activación",
 	"label.heading.externalid": "Id. externo",
+	"label.heading.loancounter": "Ciclo",
 	"label.heading.summary": "Resumen",
 	"label.heading.products": "Productos",
 	"label.heading.branch": "Sucursal",

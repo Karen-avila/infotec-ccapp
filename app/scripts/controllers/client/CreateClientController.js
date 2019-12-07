@@ -7,7 +7,7 @@
             scope.savingproducts = [];
             scope.first = {};
             scope.first.date = new Date();
-            scope.first.submitondate = new Date ();
+            scope.first.submitondate = new Date();
             scope.formData = {};
             scope.formDat = {};
             scope.clientNonPersonDetails = {};
@@ -19,18 +19,18 @@
             scope.showNonPersonOptions = false;
             scope.clientPersonId = 1;
             //address
-            scope.addressTypes=[];
-            scope.countryOptions=[];
-            scope.stateOptions=[];
-            scope.allMunicipalityOptions=[];
-            scope.municipalityOptions=[];
-            scope.addressTypeId={};
-            entityname="ADDRESS";
-            scope.addressArray=[];
-            scope.formData.address=[];
+            scope.addressTypes = [];
+            scope.countryOptions = [];
+            scope.stateOptions = [];
+            scope.allMunicipalityOptions = [];
+            scope.municipalityOptions = [];
+            scope.addressTypeId = {};
+            entityname = "ADDRESS";
+            scope.addressArray = [];
+            scope.formData.address = [];
             //familymembers
-            scope.formData.familyMembers=[];
-            scope.familyArray=[];
+            scope.formData.familyMembers = [];
+            scope.familyArray = [];
             scope.datatables = [];
             scope.noOfTabs = 1;
             scope.step = '-';
@@ -39,8 +39,7 @@
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
 
-
-            var requestParams = {staffInSelectedOfficeOnly:true};
+            var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
                 requestParams.groupId = routeParams.groupId;
             }
@@ -65,13 +64,13 @@
                         scope.updateColumnHeaders(datatable.columnHeaderData);
                         angular.forEach(datatable.columnHeaderData, function (colHeader, i) {
                             if (_.isEmpty(scope.formDat.datatables[index])) {
-                                scope.formDat.datatables[index] = {data: {}};
+                                scope.formDat.datatables[index] = { data: {} };
                             }
 
                             if (_.isEmpty(scope.formData.datatables[index])) {
                                 scope.formData.datatables[index] = {
                                     registeredTableName: datatable.registeredTableName,
-                                    data: {locale: scope.optlang.code}
+                                    data: { locale: scope.optlang.code }
                                 };
                             }
 
@@ -86,50 +85,50 @@
                     scope.showSavingOptions = true;
                 }
 
-                if(routeParams.officeId) {
+                if (routeParams.officeId) {
                     scope.formData.officeId = routeParams.officeId;
-                    for(var i in data.officeOptions) {
-                        if(data.officeOptions[i].id == routeParams.officeId) {
+                    for (var i in data.officeOptions) {
+                        if (data.officeOptions[i].id == routeParams.officeId) {
                             scope.forceOffice = data.officeOptions[i];
                             break;
                         }
                     }
                 }
 
-                if(routeParams.groupId) {
-                    if(typeof data.staffId !== "undefined") {
+                if (routeParams.groupId) {
+                    if (typeof data.staffId !== "undefined") {
                         scope.formData.staffId = data.staffId;
                     }
                 }
 
-                scope.enableAddress=data.isAddressEnabled;
+                scope.enableAddress = data.isAddressEnabled;
 
-                if(scope.enableAddress===true) {
-                    scope.addressTypes=data.address[0].addressTypeIdOptions;
-                    scope.countryOptions=data.address[0].countryIdOptions;
-                    scope.stateOptions=data.address[0].stateProvinceIdOptions;
-                    scope.municipalityOptions=data.address[0].municipalityIdOptions;
-                    scope.allMunicipalityOptions=data.address[0].municipalityIdOptions;
-                    resourceFactory.addressFieldConfiguration.get({entity:entityname},function(data) {
-                        for(var i=0;i<data.length;i++) {
-                            data[i].field='scope.'+data[i].field;
-                            eval(data[i].field+"="+data[i].is_enabled);
+                if (scope.enableAddress === true) {
+                    scope.addressTypes = data.address[0].addressTypeIdOptions;
+                    scope.countryOptions = data.address[0].countryIdOptions;
+                    scope.stateOptions = data.address[0].stateProvinceIdOptions;
+                    scope.municipalityOptions = data.address[0].municipalityIdOptions;
+                    scope.allMunicipalityOptions = data.address[0].municipalityIdOptions;
+                    resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            data[i].field = 'scope.' + data[i].field;
+                            eval(data[i].field + "=" + data[i].is_enabled);
                         }
                     })
                 }
 
-                scope.relationshipIdOptions=data.familyMemberOptions.relationshipIdOptions;
-                scope.genderIdOptions=data.familyMemberOptions.genderIdOptions;
-                scope.maritalStatusIdOptions=data.familyMemberOptions.maritalStatusIdOptions;
-                scope.professionIdOptions=data.familyMemberOptions.professionIdOptions;
+                scope.relationshipIdOptions = data.familyMemberOptions.relationshipIdOptions;
+                scope.genderIdOptions = data.familyMemberOptions.genderIdOptions;
+                scope.maritalStatusIdOptions = data.familyMemberOptions.maritalStatusIdOptions;
+                scope.professionIdOptions = data.familyMemberOptions.professionIdOptions;
 
             });
 
             scope.filterMunicipality = function (stateProvinceId) {
-                for (var i=0; i < scope.stateOptions.length; i++) {
+                for (var i = 0; i < scope.stateOptions.length; i++) {
                     if (scope.stateOptions[i].id === stateProvinceId) {
                         const state = scope.stateOptions[i].name;
-                        scope.municipalityOptions = scope.allMunicipalityOptions.filter(function(item) {
+                        scope.municipalityOptions = scope.allMunicipalityOptions.filter(function (item) {
                             return item.description == state;
                         });
                         break;
@@ -137,7 +136,7 @@
                 }
             }
 
-            scope.updateColumnHeaders = function(columnHeaderData) {
+            scope.updateColumnHeaders = function (columnHeaderData) {
                 var colName = columnHeaderData[0].columnName;
                 if (colName == 'id') {
                     columnHeaderData.splice(0, 1);
@@ -150,47 +149,35 @@
             };
 
             // address
-
-            scope.addAddress=function()
-            {
+            scope.addAddress = function () {
                 scope.addressArray.push({});
             }
 
-            scope.removeAddress=function(index)
-            {
-                scope.addressArray.splice(index,1);
+            scope.removeAddress = function (index) {
+                scope.addressArray.splice(index, 1);
             }
-
-
             // end of address
 
-
             // family members
-
-            scope.addFamilyMember=function()
-            {
+            scope.addFamilyMember = function () {
                 scope.familyArray.push({});
             }
 
-            scope.removeFamilyMember=function(index)
-            {
-                scope.familyArray.splice(index,1);
+            scope.removeFamilyMember = function (index) {
+                scope.familyArray.splice(index, 1);
             }
-
-
             // end of family members
-
-
             scope.displayPersonOrNonPersonOptions = function (legalFormId) {
-                if(legalFormId == scope.clientPersonId || legalFormId == null) {
+                if (legalFormId == scope.clientPersonId || legalFormId == null) {
                     scope.showNonPersonOptions = false;
-                }else {
+                } else {
                     scope.showNonPersonOptions = true;
                 }
             };
 
             scope.changeOffice = function (officeId) {
-                resourceFactory.clientTemplateResource.get({staffInSelectedOfficeOnly:true, officeId: officeId
+                resourceFactory.clientTemplateResource.get({
+                    staffInSelectedOfficeOnly: true, officeId: officeId
                 }, function (data) {
                     scope.staffs = data.staffOptions;
                     scope.savingproducts = data.savingProductOptions;
@@ -205,15 +192,13 @@
                     scope.choice = 0;
                 }
             };
-            if(routeParams.groupId) {
+            if (routeParams.groupId) {
                 scope.cancel = '#!/viewgroup/' + routeParams.groupId
                 scope.groupid = routeParams.groupId;
-            }else {
+            } else {
                 scope.cancel = "#!/clients"
             }
 
-            //return input type
-            //return input type
             scope.fieldType = function (type) {
                 var fieldType = "";
                 if (type) {
@@ -299,7 +284,7 @@
                     delete this.formData.surname;
                 }
 
-                if(scope.first.incorpValidityTillDate) {
+                if (scope.first.incorpValidityTillDate) {
                     this.formData.clientNonPersonDetails.locale = scope.optlang.code;
                     this.formData.clientNonPersonDetails.dateFormat = scope.df;
                     this.formData.clientNonPersonDetails.incorpValidityTillDate = dateFilter(scope.first.incorpValidityTillDate, scope.df);
@@ -309,151 +294,137 @@
                     this.formData.savingsProductId = null;
                 }
 
-                if(scope.enableAddress===true)
-                {
+                if (scope.enableAddress === true) {
                     scope.formData.address = [];
-                    for(var i=0;i<scope.addressArray.length;i++)
-                    {
-                        var temp=new Object();
-                        if(scope.addressArray[i].addressTypeId)
-                        {
-                            temp.addressTypeId=scope.addressArray[i].addressTypeId;
+                    for (var i = 0; i < scope.addressArray.length; i++) {
+                        var temp = new Object();
+                        if (scope.addressArray[i].addressTypeId) {
+                            temp.addressTypeId = scope.addressArray[i].addressTypeId;
                         }
-                        if(scope.addressArray[i].street)
-                        {
-                            temp.street=scope.addressArray[i].street;
+                        if (scope.addressArray[i].street) {
+                            temp.street = scope.addressArray[i].street;
                         }
-                        if(scope.addressArray[i].addressLine1)
-                        {
-                            temp.addressLine1=scope.addressArray[i].addressLine1;
+                        if (scope.addressArray[i].addressLine1) {
+                            temp.addressLine1 = scope.addressArray[i].addressLine1;
                         }
-                        if(scope.addressArray[i].addressLine2)
-                        {
-                            temp.addressLine2=scope.addressArray[i].addressLine2;
+                        if (scope.addressArray[i].addressLine2) {
+                            temp.addressLine2 = scope.addressArray[i].addressLine2;
                         }
-                        if(scope.addressArray[i].addressLine3)
-                        {
-                            temp.addressLine3=scope.addressArray[i].addressLine3;
+                        if (scope.addressArray[i].addressLine3) {
+                            temp.addressLine3 = scope.addressArray[i].addressLine3;
                         }
-                        if(scope.addressArray[i].addressLine4)
-                        {
-                            temp.addressLine4=scope.addressArray[i].addressLine4;
+                        if (scope.addressArray[i].addressLine4) {
+                            temp.addressLine4 = scope.addressArray[i].addressLine4;
                         }
-                        if(scope.addressArray[i].addressLine5)
-                        {
-                            temp.addressLine5=scope.addressArray[i].addressLine5;
+                        if (scope.addressArray[i].addressLine5) {
+                            temp.addressLine5 = scope.addressArray[i].addressLine5;
                         }
-                        if(scope.addressArray[i].addressLine6)
-                        {
-                            temp.addressLine6=scope.addressArray[i].addressLine6;
+                        if (scope.addressArray[i].addressLine6) {
+                            temp.addressLine6 = scope.addressArray[i].addressLine6;
                         }
-                        if(scope.addressArray[i].townVillage)
-                        {
-                            temp.townVlage=scope.addressArray[i].townVillage;
+                        if (scope.addressArray[i].townVillage) {
+                            temp.townVlage = scope.addressArray[i].townVillage;
                         }
-                        if(scope.addressArray[i].city)
-                        {
-                            temp.city=scope.addressArray[i].city;
+                        if (scope.addressArray[i].city) {
+                            temp.city = scope.addressArray[i].city;
                         }
-                        if(scope.addressArray[i].countyDistrict)
-                        {
-                            temp.countyDistrict=scope.addressArray[i].countyDistrict;
+                        if (scope.addressArray[i].countyDistrict) {
+                            temp.countyDistrict = scope.addressArray[i].countyDistrict;
                         }
-                        if(scope.addressArray[i].countryId)
-                        {
-                            temp.countryId=scope.addressArray[i].countryId;
+                        if (scope.addressArray[i].countryId) {
+                            temp.countryId = scope.addressArray[i].countryId;
                         }
-                        if(scope.addressArray[i].municipalityId)
-                        {
-                            temp.municipalityId=scope.addressArray[i].municipalityId;
+                        if (scope.addressArray[i].municipalityId) {
+                            temp.municipalityId = scope.addressArray[i].municipalityId;
                         }
-                        if(scope.addressArray[i].antiquity)
-                        {
-                            temp.antiquity=scope.addressArray[i].antiquity;
+                        if (scope.addressArray[i].antiquity) {
+                            temp.antiquity = scope.addressArray[i].antiquity;
                         }
-                        if(scope.addressArray[i].stateProvinceId)
-                        {
-                            temp.stateProvinceId=scope.addressArray[i].stateProvinceId;
+                        if (scope.addressArray[i].stateProvinceId) {
+                            temp.stateProvinceId = scope.addressArray[i].stateProvinceId;
                         }
-                        if(scope.addressArray[i].postalCode)
-                        {
-                            temp.postalCode=scope.addressArray[i].postalCode;
+                        if (scope.addressArray[i].postalCode) {
+                            temp.postalCode = scope.addressArray[i].postalCode;
                         }
-                        if(scope.addressArray[i].latitude)
-                        {
-                            temp.latitude=scope.addressArray[i].latitude;
+                        if (scope.addressArray[i].latitude) {
+                            temp.latitude = scope.addressArray[i].latitude;
                         }
-                        if(scope.addressArray[i].longitude)
-                        {
-                            temp.longitude=scope.addressArray[i].longitude;
+                        if (scope.addressArray[i].longitude) {
+                            temp.longitude = scope.addressArray[i].longitude;
                         }
-                        if(scope.addressArray[i].isActive)
-                        {
-                            temp.isActive=scope.addressArray[i].isActive;
+                        if (scope.addressArray[i].isActive) {
+                            temp.isActive = scope.addressArray[i].isActive;
                         }
                         scope.formData.address.push(temp);
                     }
                 }
 
-
                 // family array
+                for (var i = 0; i < scope.familyArray.length; i++) {
+                    var temp = new Object();
+                    if (scope.familyArray[i].relationshipId) {
+                        temp.relationshipId = scope.familyArray[i].relationshipId;
+                    }
+                    if (scope.familyArray[i].firstName) {
+                        temp.firstName = scope.familyArray[i].firstName;
+                    }
+                    if (scope.familyArray[i].middleName) {
+                        temp.middleName = scope.familyArray[i].middleName;
+                    }
+                    if (scope.familyArray[i].lastName) {
+                        temp.lastName = scope.familyArray[i].lastName;
+                    }
+                    if (scope.familyArray[i].qualification) {
+                        temp.qualification = scope.familyArray[i].qualification;
+                    }
+                    if (scope.familyArray[i].mobileNumber) {
+                        temp.mobileNumber = scope.familyArray[i].mobileNumber;
+                    }
+                    if (scope.familyArray[i].age) {
+                        temp.age = scope.familyArray[i].age;
+                    }
+                    if (scope.familyArray[i].isDependent) {
+                        temp.isDependent = scope.familyArray[i].isDependent;
+                    }
+                    if (scope.familyArray[i].genderId) {
+                        temp.genderId = scope.familyArray[i].genderId;
+                    }
+                    if (scope.familyArray[i].professionId) {
+                        temp.professionId = scope.familyArray[i].professionId;
+                    }
+                    if (scope.familyArray[i].maritalStatusId) {
+                        temp.maritalStatusId = scope.familyArray[i].maritalStatusId;
+                    }
+                    if (scope.familyArray[i].dateOfBirth) {
 
-                for(var i=0;i<scope.familyArray.length;i++)
-                {
-                    var temp=new Object();
-                    if(scope.familyArray[i].relationshipId)
-                    {
-                        temp.relationshipId=scope.familyArray[i].relationshipId;
-                    }
-                    if(scope.familyArray[i].firstName)
-                    {
-                        temp.firstName=scope.familyArray[i].firstName;
-                    }
-                    if(scope.familyArray[i].middleName)
-                    {
-                        temp.middleName=scope.familyArray[i].middleName;
-                    }
-                    if(scope.familyArray[i].lastName)
-                    {
-                        temp.lastName=scope.familyArray[i].lastName;
-                    }
-                    if(scope.familyArray[i].qualification)
-                    {
-                        temp.qualification=scope.familyArray[i].qualification;
-                    }
-                    if(scope.familyArray[i].mobileNumber)
-                    {
-                        temp.mobileNumber=scope.familyArray[i].mobileNumber;
-                    }
-                    if(scope.familyArray[i].age)
-                    {
-                        temp.age=scope.familyArray[i].age;
-                    }
-                    if(scope.familyArray[i].isDependent)
-                    {
-                        temp.isDependent=scope.familyArray[i].isDependent;
-                    }
-                    if(scope.familyArray[i].genderId)
-                    {
-                        temp.genderId=scope.familyArray[i].genderId;
-                    }
-                    if(scope.familyArray[i].professionId)
-                    {
-                        temp.professionId=scope.familyArray[i].professionId;
-                    }
-                    if(scope.familyArray[i].maritalStatusId)
-                    {
-                        temp.maritalStatusId=scope.familyArray[i].maritalStatusId;
-                    }
-                    if(scope.familyArray[i].dateOfBirth)
-                    {
-
-                        temp.dateOfBirth=dateFilter(scope.familyArray[i].dateOfBirth, scope.df);
+                        temp.dateOfBirth = dateFilter(scope.familyArray[i].dateOfBirth, scope.df);
                     }
 
                     temp.locale = scope.optlang.code;
                     temp.dateFormat = scope.df;
                     scope.formData.familyMembers.push(temp);
+                }
+                
+                if (this.formData.firstname) {
+                    this.formData.firstname = this.formData.firstname.toUpperCase();
+                }
+                if (this.formData.middlename) {
+                    this.formData.middlename = this.formData.middlename.toUpperCase();
+                }
+                if (this.formData.lastname) {
+                    this.formData.lastname = this.formData.lastname.toUpperCase();
+                }
+                if (this.formData.surname) {
+                    this.formData.surname = this.formData.surname.toUpperCase();
+                }
+                if (this.formData.fullname) {
+                    this.formData.fullname = this.formData.fullname.toUpperCase();
+                }
+                if (this.formData.externalId) {
+                    this.formData.externalId = this.formData.externalId.toUpperCase();
+                }
+                if (this.formData.uniqueId) {
+                    this.formData.uniqueId = this.formData.uniqueId.toUpperCase();
                 }
 
                 resourceFactory.clientResource.save(this.formData, function (data) {
