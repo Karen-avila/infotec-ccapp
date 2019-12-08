@@ -66,9 +66,9 @@
                         <td class="pointer" data-ng-click="routeTo(group.id)">{{group.loanCounter}}</td>
                         <td class="pointer" data-ng-click="routeTo(group.id)">
                             <i class="fa fa-stop {{group.status.code | StatusLookup}}"
-                                uib-tooltip="{{group.status.value}}" uib-tooltip-placement="top">
+                                uib-tooltip="{{'loanStatusType.' + group.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top">
                             </i>
-                            <small>[{{group.status.value}}]</small>
+                            <small>[{{'loanStatusType.' + group.status.value.toLowerCase() | translate}}]</small>
                         </td>
                         <td data-ng-click="routeTo(group.id)">{{group.officeName}}</td>
                     </tr>

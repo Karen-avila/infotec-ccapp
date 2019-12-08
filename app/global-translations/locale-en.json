@@ -1650,6 +1650,7 @@
   "loanStatusType.submitted.and.pending.approval": "Submitted and pending approval",
   "loanStatusType.approved": "Approved",
   "loanStatusType.active": "Active",
+  "loanStatusType.pending": "Pending Approval",
   "loanStatusType.withdrawn.by.applicant": "Withdrawn by applicant",
   "loanStatusType.rejected": "Rejected",
   "loanStatusType.closed.obligations.met": "Closed (obligations met)",

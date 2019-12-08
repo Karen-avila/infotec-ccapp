@@ -126,6 +126,8 @@
                 this.formData.activationDate = dateFilter(scope.first.date, scope.df);
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
+                this.formData.name = this.formData.name.toUpperCase();
+                this.formData.externalid = this.formData.externalid.toUpperCase();
                 resourceFactory.groupResource.update({groupId: routeParams.id}, this.formData, function (data) {
                     location.path('/viewgroup/' + routeParams.id);
                 });

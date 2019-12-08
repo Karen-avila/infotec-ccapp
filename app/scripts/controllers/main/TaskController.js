@@ -31,6 +31,11 @@
             resourceFactory.checkerInboxResource.get({ templateResource: 'searchtemplate' }, function (data) {
                 scope.checkerTemplate = data;
             });
+
+            resourceFactory.fundsResource.getFunds({ activeOnly: 'true' }, function (data) {
+                scope.funds = data;
+            });
+
             resourceFactory.checkerInboxResource.search(function (data) {
                 scope.searchData = data;
             });
@@ -539,8 +544,11 @@
             };
 
             var DisburseLoanCtrl = function ($scope, $uibModalInstance) {
+                $scope.funds = scope.funds;
+
                 $scope.disburse = function () {
-                    scope.bulkDisbursal();
+                    console.log($scope.fundId);
+                    scope.bulkDisbursal($scope.fundId);
                     route.reload();
                     $uibModalInstance.close('disburse');
                 };
@@ -549,10 +557,11 @@
                 };
             }
 
-            scope.bulkDisbursal = function () {
+            scope.bulkDisbursal = function (fundId) {
                 scope.formData.actualDisbursementDate = dateFilter(new Date(), scope.df);
                 scope.formData.dateFormat = scope.df;
                 scope.formData.locale = scope.optlang.code;
+                scope.formData.fundId = fundId;
 
                 var selectedAccounts = 0;
                 var approvedAccounts = 0;

@@ -52,7 +52,7 @@
                             <textarea rows="2" class="form-control" ng-model="formData.description"></textarea>
                         </div>
                         <div class="col-sm-2">
-                            <label class="control-label">{{ 'label.input.fund' | translate }}
+                            <label class="control-label">{{ 'label.input.fundsource' | translate }}
                                 <i class="fa fa-question-circle "
                                     uib-tooltip="{{'label.tooltip.loanproduct.fund' | translate}}"
                                     tooltip-append-to-body="true"></i>
@@ -94,25 +94,24 @@
 
                     <div class="form-group">
                         <div class="col-sm-2">
-                            <label
-                                class="control-label">{{ 'label.input.includeinborrowerloancounter' | translate }}
-                                <i class="fa fa-question-circle "
-                                    uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
-                                    tooltip-append-to-body="true"></i>
-                            </label>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="checkbox col">
+                            <div class="checkbox col pull-right">
                                 <input type="checkbox" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
                                     ng-false-value="false">
-                            </div>
+                            </div>        
+                        </div>
+                        <div class="col-sm-4">
+                                <label class="control-label">{{ 'label.input.includeinborrowerloancounter' | translate }}
+                                    <i class="fa fa-question-circle "
+                                        uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
+                                        tooltip-append-to-body="true"></i>
+                                </label>
                         </div>
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -183,9 +182,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -241,7 +240,8 @@
                         </label>
 
                         <div class="col-sm-2">
-                            <a class="btn btn-primary btn-sm" ng-click="addPrincipalVariation()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate
+                            <a class="btn btn-primary btn-sm" ng-click="addPrincipalVariation()"><i
+                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate
                         }}</a>
                         </div>
                         <div data-ng-show="pvFlag" class="col-md-9 col-sm-offset-2">
@@ -475,7 +475,8 @@
                         </label>
 
                         <div class="col-sm-2">
-                            <a class="btn btn-primary btn-sm" ng-click="addInterestRateVariation()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate
+                            <a class="btn btn-primary btn-sm" ng-click="addInterestRateVariation()"><i
+                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate
                         }}</a>
                         </div>
                         <div data-ng-show="irFlag" class="col-md-9 col-sm-offset-2">
@@ -558,9 +559,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -1178,9 +1179,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -1244,7 +1245,8 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" ng-click="chargeSelected(penalityId)"><i
+                            <button type="button" class="btn btn-primary btn-sm"
+                                ng-click="chargeSelected(penalityId)"><i
                                     class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate }}
                             </button>
                         </div>
@@ -1311,9 +1313,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -1653,9 +1655,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
@@ -2256,9 +2258,9 @@
                     </div>
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                        class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}} <i
-                            class="fa fa-arrow-right"></i></button>
+                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
+                    <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
+                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>

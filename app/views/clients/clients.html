@@ -71,8 +71,8 @@
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.externalId}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">
                             <i class="fa fa-stop {{client.status.code | StatusLookup}}"
-                                uib-tooltip="{{client.status.value}}" uib-tooltip-placement="top"></i>
-                            <small>[{{client.status.value}}]</small>
+                                uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
+                            <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
                             <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
                         </td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.officeName}}</td>

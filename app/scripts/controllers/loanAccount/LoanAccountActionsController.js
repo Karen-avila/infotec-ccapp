@@ -5,7 +5,7 @@
             scope.action = routeParams.action || "";
             scope.accountId = routeParams.id;
             scope.formData = {};
-            scope.entityformData = {datatables:{}};
+            scope.entityformData = { datatables: {} };
             scope.showDateField = true;
             scope.showNoteField = true;
             scope.showAmountField = false;
@@ -22,18 +22,18 @@
             scope.submittedDatatables = [];
             var submitStatus = [];
 
-            rootScope.RequestEntities = function(entity,status,productId){
-                resourceFactory.entityDatatableChecksResource.getAll({limit:-1},function (response) {
-                    scope.entityDatatableChecks = _.filter(response.pageItems , function(datatable){
+            rootScope.RequestEntities = function (entity, status, productId) {
+                resourceFactory.entityDatatableChecksResource.getAll({ limit: -1 }, function (response) {
+                    scope.entityDatatableChecks = _.filter(response.pageItems, function (datatable) {
                         var specificProduct = (datatable.entity == entity && datatable.status.value == status && datatable.productId == productId);
                         var AllProducts = (datatable.entity == entity && datatable.status.value == status);
-                        return (datatable.productId?specificProduct:AllProducts);
+                        return (datatable.productId ? specificProduct : AllProducts);
                     });
-                    scope.entityDatatableChecks = _.pluck(scope.entityDatatableChecks,'datatableName');
+                    scope.entityDatatableChecks = _.pluck(scope.entityDatatableChecks, 'datatableName');
                     scope.datatables = [];
-                    var k=0;
-                    _.each(scope.entityDatatableChecks,function(entitytable) {
-                        resourceFactory.DataTablesResource.getTableDetails({datatablename:entitytable,entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
+                    var k = 0;
+                    _.each(scope.entityDatatableChecks, function (entitytable) {
+                        resourceFactory.DataTablesResource.getTableDetails({ datatablename: entitytable, entityId: routeParams.id, genericResultSet: 'true' }, function (data) {
                             data.registeredTableName = entitytable;
                             var colName = data.columnHeaders[0].columnName;
                             if (colName == 'id') {
@@ -48,33 +48,34 @@
 
 
                             data.noData = (data.data.length == 0);
-                            if(data.noData){
+                            if (data.noData) {
                                 scope.datatables.push(data);
-                                scope.entityformData.datatables[k] = {data:{}};
+                                scope.entityformData.datatables[k] = { data: {} };
                                 submitStatus[k] = "save";
-                                _.each(data.columnHeaders,function(Header){
+                                _.each(data.columnHeaders, function (Header) {
                                     scope.entityformData.datatables[k].data[Header.columnName] = "";
                                 });
                                 k++;
                                 scope.isEntityDatatables = true;
                             }
                         });
-
-
                     });
-
                 });
             };
 
-            scope.fetchEntities = function(entity,status,productId){
-                if(!productId){
-                    resourceFactory.LoanAccountResource.getLoanAccountDetails({loanId: routeParams.id}, function (data) {
+            resourceFactory.fundsResource.getFunds({ activeOnly: 'true' }, function (data) {
+                scope.funds = data;
+            });
+
+            scope.fetchEntities = function (entity, status, productId) {
+                if (!productId) {
+                    resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id }, function (data) {
                         scope.productId = data.loanProductId;
-                        rootScope.RequestEntities(entity,status,scope.productId);
+                        rootScope.RequestEntities(entity, status, scope.productId);
                     });
                 }
-                else{
-                   rootScope.RequestEntities(entity,status,productId);
+                else {
+                    rootScope.RequestEntities(entity, status, productId);
                 }
             };
 
@@ -83,7 +84,7 @@
                 var index = 0;
                 var done = false;
                 var loop = {
-                    next: function() {
+                    next: function () {
                         if (done) {
                             return;
                         }
@@ -98,11 +99,11 @@
                         }
                     },
 
-                    iteration: function() {
+                    iteration: function () {
                         return index - 1;
                     },
 
-                    break: function() {
+                    break: function () {
                         done = true;
                     }
                 };
@@ -113,28 +114,28 @@
             switch (scope.action) {
                 case "approve":
                     scope.taskPermissionName = 'APPROVE_LOAN';
-                    resourceFactory.loanTemplateResource.get({loanId: scope.accountId, templateType: 'approval'}, function (data) {
+                    resourceFactory.loanTemplateResource.get({ loanId: scope.accountId, templateType: 'approval' }, function (data) {
 
                         scope.title = 'label.heading.approveloanaccount';
                         scope.labelName = 'label.input.approvedondate';
                         scope.modelName = 'approvedOnDate';
-                        scope.formData[scope.modelName] =  new Date();
+                        scope.formData[scope.modelName] = new Date();
                         scope.showApprovalAmount = true;
-                        scope.formData.approvedLoanAmount =  data.approvalAmount;
+                        scope.formData.approvedLoanAmount = data.approvalAmount;
                     });
-                    resourceFactory.LoanAccountResource.getLoanAccountDetails({loanId: routeParams.id, associations: 'multiDisburseDetails'}, function (data) {
+                    resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
                         scope.productId = data.loanProductId;
-                        if(data.disbursementDetails != ""){
+                        if (data.disbursementDetails != "") {
                             scope.disbursementDetails = data.disbursementDetails;
                             scope.approveTranches = true;
                         }
-                        for(var i in data.disbursementDetails){
+                        for (var i in data.disbursementDetails) {
                             scope.disbursementDetails[i].expectedDisbursementDate = new Date(data.disbursementDetails[i].expectedDisbursementDate);
                             scope.disbursementDetails[i].principal = data.disbursementDetails[i].principal;
-                            scope.showTrancheAmountTotal += Number(data.disbursementDetails[i].principal) ;
+                            scope.showTrancheAmountTotal += Number(data.disbursementDetails[i].principal);
                         }
-                        scope.fetchEntities('m_loan','APPROVE',scope.productId);
+                        scope.fetchEntities('m_loan', 'APPROVE', scope.productId);
                     });
                     break;
                 case "reject":
@@ -143,7 +144,7 @@
                     scope.modelName = 'rejectedOnDate';
                     scope.formData[scope.modelName] = new Date();
                     scope.taskPermissionName = 'REJECT_LOAN';
-                    scope.fetchEntities('m_loan','REJECTED');
+                    scope.fetchEntities('m_loan', 'REJECTED');
                     break;
                 case "withdrawnByApplicant":
                     scope.title = 'label.heading.withdrawloanaccount';
@@ -151,7 +152,7 @@
                     scope.modelName = 'withdrawnOnDate';
                     scope.formData[scope.modelName] = new Date();
                     scope.taskPermissionName = 'WITHDRAW_LOAN';
-                    scope.fetchEntities('m_loan','WITHDRAWN');
+                    scope.fetchEntities('m_loan', 'WITHDRAWN');
                     break;
                 case "undoapproval":
                     scope.title = 'label.heading.undoapproveloanaccount';
@@ -165,7 +166,7 @@
                     break;
                 case "disburse":
                     scope.modelName = 'actualDisbursementDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'disburse'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'disburse' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
@@ -182,12 +183,12 @@
                     scope.isTransaction = true;
                     scope.showAmountField = true;
                     scope.taskPermissionName = 'DISBURSE_LOAN';
-                    scope.fetchEntities('m_loan','DISBURSE');
+                    scope.fetchEntities('m_loan', 'DISBURSE');
                     break;
                 case "disbursetosavings":
                     scope.modelName = 'actualDisbursementDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'disburseToSavings'}, function (data) {
-                       scope.formData.transactionAmount = data.amount;
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'disburseToSavings' }, function (data) {
+                        scope.formData.transactionAmount = data.amount;
                         scope.formData[scope.modelName] = new Date();
                         if (data.fixedEmiAmount) {
                             scope.formData.fixedEmiAmount = data.fixedEmiAmount;
@@ -202,14 +203,14 @@
                     break;
                 case "repayment":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'repayment'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'repayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
                         scope.formData.transactionAmount = data.amount;
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
-                        if(data.penaltyChargesPortion>0){
+                        if (data.penaltyChargesPortion > 0) {
                             scope.showPenaltyPortionDisplay = true;
                         }
                     });
@@ -221,14 +222,14 @@
                     break;
                 case "prepayloan":
                     scope.modelName = 'transactionDate';
-                    scope.formData.transactionDate =  new Date();
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'prepayLoan'}, function (data) {
+                    scope.formData.transactionDate = new Date();
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'prepayLoan' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
                         scope.formData.transactionAmount = data.amount;
-                        if(data.penaltyChargesPortion>0){
+                        if (data.penaltyChargesPortion > 0) {
                             scope.showPenaltyPortionDisplay = true;
                         }
                         scope.principalPortion = data.principalPortion;
@@ -245,7 +246,7 @@
                     break;
                 case "waiveinterest":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'waiveinterest'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'waiveinterest' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         scope.formData.transactionAmount = data.amount;
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
@@ -257,7 +258,7 @@
                     break;
                 case "writeoff":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'writeoff'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'writeoff' }, function (data) {
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
                         scope.writeOffAmount = data.amount;
                         scope.isLoanWriteOff = true;
@@ -265,11 +266,11 @@
                     scope.title = 'label.heading.writeoffloanaccount';
                     scope.labelName = 'label.input.writeoffondate';
                     scope.taskPermissionName = 'WRITEOFF_LOAN';
-                    scope.fetchEntities('m_loan','WRITE_OFF');
+                    scope.fetchEntities('m_loan', 'WRITE_OFF');
                     break;
                 case "close-rescheduled":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'close-rescheduled'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'close-rescheduled' }, function (data) {
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
                     });
                     scope.title = 'label.heading.closeloanaccountasrescheduled';
@@ -278,7 +279,7 @@
                     break;
                 case "close":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'close'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'close' }, function (data) {
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
                     });
                     scope.title = 'label.heading.closeloanaccount';
@@ -294,7 +295,7 @@
                     scope.taskPermissionName = 'REMOVELOANOFFICER_LOAN';
                     break;
                 case "modifytransaction":
-                    resourceFactory.loanTrxnsResource.get({loanId: scope.accountId, transactionId: routeParams.transactionId, template: 'true'},
+                    resourceFactory.loanTrxnsResource.get({ loanId: scope.accountId, transactionId: routeParams.transactionId, template: 'true' },
                         function (data) {
                             scope.title = 'label.heading.editloanaccounttransaction';
                             scope.labelName = 'label.input.transactiondate';
@@ -333,7 +334,7 @@
                     scope.taskPermissionName = 'RECOVERGUARANTEES_LOAN';
                     break;
                 case "waivecharge":
-                    resourceFactory.LoanAccountResource.get({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, function (data) {
+                    resourceFactory.LoanAccountResource.get({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, function (data) {
                         if (data.chargeTimeType.value !== "Specified due date" && data.installmentChargeData) {
                             scope.installmentCharges = data.installmentChargeData;
                             scope.formData.installmentNumber = data.installmentChargeData[0].installmentNumber;
@@ -351,7 +352,7 @@
                     scope.taskPermissionName = 'WAIVE_LOANCHARGE';
                     break;
                 case "paycharge":
-                    resourceFactory.LoanAccountResource.get({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: 'pay'}, function (data) {
+                    resourceFactory.LoanAccountResource.get({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: 'pay' }, function (data) {
                         if (data.dueDate) {
                             scope.formData.transactionDate = new Date(data.dueDate);
                         }
@@ -368,7 +369,7 @@
                     scope.taskPermissionName = 'PAY_LOANCHARGE';
                     break;
                 case "editcharge":
-                    resourceFactory.LoanAccountResource.get({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, function (data) {
+                    resourceFactory.LoanAccountResource.get({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, function (data) {
                         if (data.amountOrPercentage) {
                             scope.showEditChargeAmount = true;
                             scope.formData.amount = data.amountOrPercentage;
@@ -385,12 +386,12 @@
                     scope.taskPermissionName = 'UPDATE_LOANCHARGE';
                     break;
                 case "editdisbursedate":
-                    resourceFactory.LoanAccountResource.getLoanAccountDetails({loanId: routeParams.id, associations: 'multiDisburseDetails'}, function (data) {
+                    resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
                         scope.showEditDisburseDate = true;
                         scope.formData.approvedLoanAmount = data.approvedPrincipal;
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
-                        for(var i in data.disbursementDetails){
-                            if(routeParams.disbursementId == data.disbursementDetails[i].id){
+                        for (var i in data.disbursementDetails) {
+                            if (routeParams.disbursementId == data.disbursementDetails[i].id) {
                                 scope.formData.updatedExpectedDisbursementDate = new Date(data.disbursementDetails[i].expectedDisbursementDate);
                                 scope.formData.updatedPrincipal = data.disbursementDetails[i].principal;
                                 scope.id = data.disbursementDetails[i].id;
@@ -405,7 +406,7 @@
                     break;
                 case "recoverypayment":
                     scope.modelName = 'transactionDate';
-                    resourceFactory.loanTrxnsTemplateResource.get({loanId: scope.accountId, command: 'recoverypayment'}, function (data) {
+                    resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'recoverypayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
@@ -420,12 +421,12 @@
                     scope.taskPermissionName = 'RECOVERYPAYMENT_LOAN';
                     break;
                 case "adddisbursedetails":
-                    resourceFactory.LoanAccountResource.getLoanAccountDetails({loanId: routeParams.id, associations: 'multiDisburseDetails'}, function (data) {
+                    resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
                         scope.addDisburseDetails = true;
                         scope.formData.approvedLoanAmount = data.approvedPrincipal;
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
 
-                        if(data.disbursementDetails != ""){
+                        if (data.disbursementDetails != "") {
                             scope.disbursementDetails = data.disbursementDetails;
                         }
                         if (scope.disbursementDetails.length > 0) {
@@ -443,11 +444,11 @@
                     scope.taskPermissionName = 'UPDATE_DISBURSEMENTDETAIL';
                     break;
                 case "deletedisbursedetails":
-                    resourceFactory.LoanAccountResource.getLoanAccountDetails({loanId: routeParams.id, associations: 'multiDisburseDetails'}, function (data) {
+                    resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
                         scope.deleteDisburseDetails = true;
                         scope.formData.approvedLoanAmount = data.approvedPrincipal;
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
-                        if(data.disbursementDetails != ""){
+                        if (data.disbursementDetails != "") {
                             scope.disbursementDetails = data.disbursementDetails;
                         }
                         if (scope.disbursementDetails.length > 0) {
@@ -468,9 +469,9 @@
                 location.path('/viewloanaccount/' + routeParams.id);
             };
 
-            scope.addTrancheAmounts = function(){
+            scope.addTrancheAmounts = function () {
                 scope.showTrancheAmountTotal = 0;
-                for(var i in scope.disbursementDetails ){
+                for (var i in scope.disbursementDetails) {
                     scope.showTrancheAmountTotal += Number(scope.disbursementDetails[i].principal);
                 }
             };
@@ -486,25 +487,25 @@
 
             scope.submit = function () {
                 scope.processDate = false;
-                var params = {command: scope.action};
-                if(scope.action == "recoverguarantee"){
+                var params = { command: scope.action };
+                if (scope.action == "recoverguarantee") {
                     params.command = "recoverGuarantees";
                 }
-                if(scope.action == "approve"){
+                if (scope.action == "approve") {
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
-                    if(scope.disbursementDetails != null) {
+                    if (scope.disbursementDetails != null) {
                         this.formData.disbursementData = [];
-                        for (var i in  scope.disbursementDetails) {
+                        for (var i in scope.disbursementDetails) {
                             this.formData.disbursementData.push({
                                 id: scope.disbursementDetails[i].id,
                                 principal: scope.disbursementDetails[i].principal,
                                 expectedDisbursementDate: dateFilter(scope.disbursementDetails[i].expectedDisbursementDate, scope.df),
-                                loanChargeId : scope.disbursementDetails[i].loanChargeId
+                                loanChargeId: scope.disbursementDetails[i].loanChargeId
                             });
                         }
                         console.log("DISBURSEMENT DATA", this.formData.expectedDisbursementDate);
                     }
-                    if(scope.formData.approvedLoanAmount == null){
+                    if (scope.formData.approvedLoanAmount == null) {
                         scope.formData.approvedLoanAmount = scope.showTrancheAmountTotal;
                     }
                 }
@@ -527,27 +528,27 @@
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else if (scope.action == "deleteloancharge") {
-                    resourceFactory.LoanAccountResource.delete({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, this.formData, function (data) {
+                    resourceFactory.LoanAccountResource.delete({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else if (scope.action === "waivecharge") {
-                    resourceFactory.LoanAccountResource.save({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, 'command': 'waive'}, this.formData, function (data) {
+                    resourceFactory.LoanAccountResource.save({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, 'command': 'waive' }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else if (scope.action === "paycharge") {
                     this.formData.transactionDate = dateFilter(this.formData.transactionDate, scope.df);
-                    resourceFactory.LoanAccountResource.save({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, 'command': 'pay'}, this.formData, function (data) {
+                    resourceFactory.LoanAccountResource.save({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, 'command': 'pay' }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else if (scope.action === "editcharge") {
                     this.formData.dueDate = dateFilter(this.formData.dueDate, scope.df);
-                    resourceFactory.LoanAccountResource.update({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, this.formData, function (data) {
+                    resourceFactory.LoanAccountResource.update({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else if (scope.action === "editdisbursedate") {
                     this.formData.expectedDisbursementDate = dateFilter(this.formData.expectedDisbursementDate, scope.df);
-                    for(var i in scope.disbursementDetails){
-                        if(scope.disbursementDetails[i].id == scope.id){
+                    for (var i in scope.disbursementDetails) {
+                        if (scope.disbursementDetails[i].id == scope.id) {
                             scope.disbursementDetails[i].principal = scope.formData.updatedPrincipal;
                             scope.disbursementDetails[i].expectedDisbursementDate = dateFilter(scope.formData.updatedExpectedDisbursementDate, scope.df);
                         }
@@ -556,35 +557,35 @@
                     this.formData.updatedExpectedDisbursementDate = dateFilter(scope.formData.updatedExpectedDisbursementDate, scope.df);
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
 
-                    for (var i in  scope.disbursementDetails) {
+                    for (var i in scope.disbursementDetails) {
                         this.formData.disbursementData.push({
                             id: scope.disbursementDetails[i].id,
                             principal: scope.disbursementDetails[i].principal,
                             expectedDisbursementDate: dateFilter(scope.disbursementDetails[i].expectedDisbursementDate, scope.df),
-                            loanChargeId : scope.disbursementDetails[i].loanChargeId
+                            loanChargeId: scope.disbursementDetails[i].loanChargeId
                         });
                     }
-                    resourceFactory.LoanEditDisburseResource.update({loanId: routeParams.id, disbursementId: routeParams.disbursementId}, this.formData, function (data) {
+                    resourceFactory.LoanEditDisburseResource.update({ loanId: routeParams.id, disbursementId: routeParams.disbursementId }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
-                }else if(scope.action === "adddisbursedetails" || scope.action === "deletedisbursedetails") {
+                } else if (scope.action === "adddisbursedetails" || scope.action === "deletedisbursedetails") {
                     this.formData.disbursementData = [];
-                    for (var i in  scope.disbursementDetails) {
-                            this.formData.disbursementData.push({
-                                id:scope.disbursementDetails[i].id,
-                                principal: scope.disbursementDetails[i].principal,
-                                expectedDisbursementDate: dateFilter(scope.disbursementDetails[i].expectedDisbursementDate, scope.df),
-                                loanChargeId : scope.disbursementDetails[i].loanChargeId
-                            });
+                    for (var i in scope.disbursementDetails) {
+                        this.formData.disbursementData.push({
+                            id: scope.disbursementDetails[i].id,
+                            principal: scope.disbursementDetails[i].principal,
+                            expectedDisbursementDate: dateFilter(scope.disbursementDetails[i].expectedDisbursementDate, scope.df),
+                            loanChargeId: scope.disbursementDetails[i].loanChargeId
+                        });
                     }
 
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
-                    resourceFactory.LoanAddTranchesResource.update({loanId: routeParams.id}, this.formData, function (data) {
+                    resourceFactory.LoanAddTranchesResource.update({ loanId: routeParams.id }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 }
                 else if (scope.action == "deleteloancharge") {
-                    resourceFactory.LoanAccountResource.delete({loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, this.formData, function (data) {
+                    resourceFactory.LoanAccountResource.delete({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, this.formData, function (data) {
                         location.path('/viewloanaccount/' + data.loanId);
                     });
                 } else {
@@ -596,56 +597,54 @@
                 }
             };
 
-             scope.submitDatatable = function(){
-                if(scope.datatables) {
-                    asyncLoop(Object.keys(scope.entityformData.datatables).length,function(loop){
-                            var cnt = loop.iteration();
-                            var formData = scope.entityformData.datatables[cnt];
-                            formData.registeredTableName = scope.datatables[cnt].registeredTableName;
+            scope.submitDatatable = function () {
+                if (scope.datatables) {
+                    asyncLoop(Object.keys(scope.entityformData.datatables).length, function (loop) {
+                        var cnt = loop.iteration();
+                        var formData = scope.entityformData.datatables[cnt];
+                        formData.registeredTableName = scope.datatables[cnt].registeredTableName;
 
-                            var params = {
-                                datatablename: formData.registeredTableName,
-                                entityId: routeParams.id,
-                                genericResultSet: 'true'
-                            };
+                        var params = {
+                            datatablename: formData.registeredTableName,
+                            entityId: routeParams.id,
+                            genericResultSet: 'true'
+                        };
 
-                            angular.extend(formData.data,{dateFormat: scope.df, locale: scope.optlang.code});
+                        angular.extend(formData.data, { dateFormat: scope.df, locale: scope.optlang.code });
 
-                            _.each(formData.data, function (columnHeader) {
-                                if (columnHeader.dateType) {
-                                    columnHeader = dateFilter(columnHeader.dateType.date, params.dateFormat);
-                                }
-                                else if (columnHeader.dateTimeType) {
-                                    columnHeader = dateFilter(columnHeader.columnName.date, scope.df) + " " + dateFilter(columnHeader.columnName.time, scope.tf);
-                                }
-                            });
+                        _.each(formData.data, function (columnHeader) {
+                            if (columnHeader.dateType) {
+                                columnHeader = dateFilter(columnHeader.dateType.date, params.dateFormat);
+                            }
+                            else if (columnHeader.dateTimeType) {
+                                columnHeader = dateFilter(columnHeader.columnName.date, scope.df) + " " + dateFilter(columnHeader.columnName.time, scope.tf);
+                            }
+                        });
 
-                            var action = submitStatus[cnt];
-                            resourceFactory.DataTablesResource[action](params, formData.data, function (data) {
+                        var action = submitStatus[cnt];
+                        resourceFactory.DataTablesResource[action](params, formData.data, function (data) {
 
-                                submitStatus[cnt] = "update";
-                                scope.submittedDatatables.push(scope.datatables[cnt].registeredTableName);
-                                loop.next();
+                            submitStatus[cnt] = "update";
+                            scope.submittedDatatables.push(scope.datatables[cnt].registeredTableName);
+                            loop.next();
 
-                            },function(){
-                                rootScope.errorDetails[0].push({datatable:scope.datatables[cnt].registeredTableName});
-                                loop.break();
-                            });
+                        }, function () {
+                            rootScope.errorDetails[0].push({ datatable: scope.datatables[cnt].registeredTableName });
+                            loop.break();
+                        });
 
-                    },function(){
-                            scope.submit();
+                    }, function () {
+                        scope.submit();
                     });
                 }
-                else{
+                else {
                     scope.submit();
                 }
             };
 
-            scope.$watch('formData.transactionDate',function(){
+            scope.$watch('formData.transactionDate', function () {
                 scope.onDateChange();
-             });
-
-
+            });
 
             scope.fieldType = function (type) {
                 var fieldType = "";
@@ -665,10 +664,8 @@
                 return fieldType;
             };
 
-
-
-            scope.onDateChange = function(){
-                if(scope.processDate) {
+            scope.onDateChange = function () {
+                if (scope.processDate) {
                     var params = {};
                     params.locale = scope.optlang.code;
                     params.dateFormat = scope.df;
@@ -687,7 +684,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('LoanAccountActionsController', ['$scope','$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.LoanAccountActionsController]).run(function ($log) {
+    mifosX.ng.application.controller('LoanAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.LoanAccountActionsController]).run(function ($log) {
         $log.info("LoanAccountActionsController initialized");
     });
 }(mifosX.controllers || {}));

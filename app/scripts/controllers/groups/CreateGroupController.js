@@ -85,7 +85,6 @@
                 }
             };
 
-            
             scope.clientOptions = function(value){
                 var deferred = $q.defer();
                 resourceFactory.clientResource.getAllClientsWithoutLimit({displayName: value, orderBy : 'displayName', officeId : scope.formData.officeId,
@@ -166,10 +165,6 @@
             };
 
             scope.submit = function () {
-                // if (WizardHandler.wizard().getCurrentStep() != scope.noOfTabs) {
-                //     WizardHandler.wizard().next();
-                //     return;
-                // }
                 for (var i in scope.addedClients) {
                     scope.formData.clientMembers[i] = scope.addedClients[i].id;
                 }
@@ -185,6 +180,9 @@
                 if (scope.first.submitondate) {
                     this.formData.submittedOnDate = dateFilter(scope.first.submitondate, scope.df);
                 }
+                this.formData.name = this.formData.name.toUpperCase();
+                this.formData.externalid = this.formData.externalid.toUpperCase();
+                this.formData.loanCounter = 0;
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
                 this.formData.active = this.formData.active || false;

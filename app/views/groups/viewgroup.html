@@ -1,7 +1,7 @@
 <div ng-controller="ViewGroupController" class="content-container">
 	<ul class="breadcrumb">
-		<li><a ng-href="#!/viewoffice/{{group.officeId}}">{{group.officeName}}</a></li>
-		<li ng-show="group.centerName"><a ng-href="#!/viewcenter/{{group.centerId}}">{{group.centerName}}</a></li>
+			<li><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
+			<li ng-show="group.centerName"><a ng-href="#!/viewcenter/{{group.centerId}}">{{group.centerName}}</a></li>
 		<li>{{group.name}}</li>
 	</ul>
 	<script type="text/ng-template" id="deletegroup.html">
@@ -36,7 +36,7 @@
 					<i class="fa fa-barcode"></i>
 					{{ 'label.heading.accnum' | translate }}: {{group.accountNo}} | <i class="fa fa-building"></i>
 					{{ 'label.heading.office' | translate }}: {{group.officeName}} |
-					<i class="fa fa-map-marker"></i> {{ 'label.heading.center' | translate }}: {{group.centerName}}
+					<div ng-show="group.centerName"><i class="fa fa-map-marker"></i> {{ 'label.heading.center' | translate }}: {{group.centerName}}</div>
 				</h4>
 			</div>
 			<br>
@@ -126,7 +126,7 @@
 										<h3>{{'label.heading.groupclosed' | translate}}</h3>
 									</div>
 									<div id="center" class="row">
-										<div class="col-md-7">
+										<div class="col-md-12">
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h3 class="panel-title ng-binding">
@@ -191,35 +191,6 @@
 														</table>
 													</div>
 												</div>
-											</div>
-										</div>
-										<div class="col-md-5 meeting">
-											<div class="alert alert-warning" role="alert">
-												<table>
-													<tr>
-														<th>{{ 'label.heading.nextmeetingon' | translate }}</th>
-														<td><span
-																class="padded-td">{{group.collectionMeetingCalendar.nextTenRecurringDates[0] | DateFormat}}&nbsp;
-																<a href="#!/editcalendar/{{entityType | lowercase}}/{{entityId}}/{{group.collectionMeetingCalendar.id}}"
-																	ng-show="group.collectionMeetingCalendar && editMeeting"><i
-																		class="fa fa-edit "></i></a>
-																<span class="marginleftn7px"
-																	data-ng-hide="group.collectionMeetingCalendar.nextTenRecurringDates[0]">{{ 'label.unassigned' | translate }}</span></span>
-														</td>
-													</tr>
-													<tr data-ng-show="group.collectionMeetingCalendar.humanReadable">
-														<th>{{ 'label.heading.meetingfrequency' | translate }}</th>
-														<td><span
-																class="padded-td">{{group.collectionMeetingCalendar.humanReadable}}</span>
-														</td>
-													</tr>
-													<tr data-ng-show="group.status.value=='Closed'">
-														<th>{{ 'label.heading.closedate' | translate }}</th>
-														<td><span
-																class="padded-td">{{group.timeline.closedOnDate | DateFormat}}</span>
-														</td>
-													</tr>
-												</table>
 											</div>
 										</div>
 									</div>
@@ -476,8 +447,39 @@
 									</div>
 								</div>
 								<div class="col-sm-3 col-md-3">
-									<div class="thumbnail">
-										<div class="">
+									<div class="row">
+										<div class="col-md-12 meeting">
+											<div class="info info-warning" role="info">
+												<table>
+													<tr>
+														<th>{{ 'label.heading.nextmeetingon' | translate }}</th>
+														<td><span
+																class="padded-td">{{group.collectionMeetingCalendar.nextTenRecurringDates[0] | DateFormat}}&nbsp;
+																<a href="#!/editcalendar/{{entityType | lowercase}}/{{entityId}}/{{group.collectionMeetingCalendar.id}}"
+																	ng-show="group.collectionMeetingCalendar && editMeeting"><i
+																		class="fa fa-edit "></i></a>
+																<span class="marginleftn7px"
+																	data-ng-hide="group.collectionMeetingCalendar.nextTenRecurringDates[0]">{{ 'label.unassigned' | translate }}</span></span>
+														</td>
+													</tr>
+													<tr data-ng-show="group.collectionMeetingCalendar.humanReadable">
+														<th>{{ 'label.heading.meetingfrequency' | translate }}</th>
+														<td><span
+																class="padded-td">{{group.collectionMeetingCalendar.humanReadable}}</span>
+														</td>
+													</tr>
+													<tr data-ng-show="group.status.value=='Closed'">
+														<th>{{ 'label.heading.closedate' | translate }}</th>
+														<td><span
+																class="padded-td">{{group.timeline.closedOnDate | DateFormat}}</span>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>										
+									</div>
+									<div class="row card">
+										<div class="col-md-12">
 											<h4><strong>{{group.name}}
 													{{ 'label.heading.details' | translate }}</strong></h4>
 											<table class="table-minified">
@@ -506,6 +508,10 @@
 											</table>
 											<h4><strong>{{ 'label.heading.summary' | translate }}</strong></h4>
 											<table class="table-minified">
+												<tr>
+													<th>{{ 'label.heading.loancounter' | translate }}</th>
+													<td>{{group.loanCounter}}</td>
+												</tr>
 												<tr>
 													<th>{{ 'label.numofactiveclient' | translate }}</th>
 													<td>{{summary.activeClients}}</td>

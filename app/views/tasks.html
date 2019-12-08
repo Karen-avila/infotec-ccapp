@@ -451,11 +451,28 @@
                             </div>
                             <script type="text/ng-template" id="disburseloan.html">
                                 <div class="modal-header silver">
-                                    <h3 class="bolder">{{'label.heading.rescheduleloan' | translate}}</h3>
+                                    <h3 class="bolder">{{'label.heading.disburseloanaccount' | translate}}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <api-validate></api-validate>
                                     <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table">
+                                                <tr>                            
+                                                    <td><label>{{ 'label.input.fundsource' | translate }}: </label></td>
+                                                    <td>
+                                                        <select id="fundId" ng-model="fundId"
+                                                            class="form-control width170px"
+                                                            ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
+                                                            <option value="">{{'label.selectfund' | translate}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </table>                                           
+                                        </div>
+                                    </div>
                                     <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
                                     </button>

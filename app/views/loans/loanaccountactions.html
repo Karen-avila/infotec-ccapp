@@ -111,8 +111,6 @@
                                 <input id="approvedAmount" type="text" name="amount"
                                     ng-model="formData.approvedLoanAmount" class="form-control" number-format required
                                     late-Validate>
-                            </div>
-                            <div class="col-sm-6">
                                 <form-validate valattributeform="loanactionform" valattribute="amount" />
                             </div>
                         </div>
@@ -124,8 +122,6 @@
                                 <input id="transactionAmount" type="text" name="amount"
                                     ng-model="formData.transactionAmount" class="form-control" number-format required
                                     late-Validate>
-                            </div>
-                            <div class="col-sm-6">
                                 <form-validate valattributeform="loanactionform" valattribute="amount" />
                             </div>
                         </div>
@@ -135,7 +131,7 @@
                         translate}}</label>
 
                             <div class="col-sm-6">
-                                <input id="principalPortion" type="text" name="principa" ng-model="principalPortion"
+                                <input id="principalPortion" type="text" name="principal" ng-model="principalPortion"
                                     class="form-control" number-format readonly>
                             </div>
                         </div>
@@ -186,6 +182,17 @@
                         </div>
 
                         <div ng-show="isTransaction">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="fundId">{{ 'label.input.fundsource' |
+                            translate}}<span class="required">*</span></label>
+
+                                <div class="col-sm-6">
+                                    <select id="fundId" ng-model="formData.fundId" class="form-control"
+                                    class="form-control" required
+                                    ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
+                                    <option value="">{{'label.selectfund' | translate}}</option>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3" for="paymentTypeId">{{ 'label.input.paymenttype' |
                             translate}}</label>
