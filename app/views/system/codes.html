@@ -26,7 +26,7 @@
                 <tbody>
                 <tr class="pointer-main" dir-paginate="code in codes | filter:filterText |  itemsPerPage: CodesPerPage">
                     <td class="pointer" data-ng-click="routeTo(code.id)">{{code.name | translate}}</td>
-                    <td class="pointer" data-ng-click="routeTo(code.id)">{{code.systemDefined}}</td>
+                    <td class="pointer" data-ng-click="routeTo(code.id)">{{code.systemDefined | translate}}</td>
                 </tr>
                 </tbody>
             </table>

@@ -484,6 +484,10 @@ li a i .fa {
   }
 }
 
+.min-content {
+  min-height: 420px;
+}
+
 .card{
   background:#fff;
   display:block;
@@ -499,14 +503,13 @@ li a i .fa {
   &>.content{
     padding:20px 10px;
     font-size: 13px;
-    min-height: 420px;
   }
 
   h4{ font-size: 14px; }
   /*just for the presentation */
   .pointer-main:hover{
     cursor: pointer;
-    background-color: $brand-primary;
+    background-color: $brand-primary-light;
     color: #fff;
   }
 
