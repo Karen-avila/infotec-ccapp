@@ -293,18 +293,19 @@
                 </div>
                 <div id="mifos-reskin-body-view">
                     <div class="" ng-view></div>
+
+                    <!-- Footer -->
+                    <footer data-ng-hide="!domReady">
+                        <p align="center">
+                            <small> {{'label.relVersion' | translate}} {{version}}
+                                <br>{{'label.relDate' | translate}} {{releasedate}} </small>
+                        </p>
+                    </footer>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer data-ng-hide="!domReady">
-        <p align="center">
-            <small> {{'label.relVersion' | translate}} {{version}}
-                <br>{{'label.relDate' | translate}} {{releasedate}} </small>
-        </p>
-    </footer>
     <!-- Le javascript -->
     <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
 </body>

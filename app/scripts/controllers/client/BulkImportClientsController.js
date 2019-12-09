@@ -55,9 +55,9 @@
             scope.changeLegalForm=function () {
             if (scope.formData.legalForm){
                 var changedLegalForm;
-                if(scope.formData.legalForm=="Person"){
+                if(scope.formData.legalForm=="Person" || scope.formData.legalForm=="Persona Física"){
                     changedLegalForm="CLIENTS_PERSON";
-                }else if(scope.formData.legalForm=="Entity") {
+                }else if(scope.formData.legalForm=="Entity" || scope.formData.legalForm=="Persona Moral") {
                     changedLegalForm = "CLIENTS_ENTTTY";
                 }
                     if (scope.first.queryParams.indexOf("legalFormType") == -1) {
