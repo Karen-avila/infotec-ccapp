@@ -97,6 +97,7 @@ ul.nav-tabs {
 
 div.scrollable {
   position: relative;
+  margin-top: 20px;
 
   &:before, &:after {
     background: #ffffff;
@@ -247,7 +248,7 @@ li a i .fa {
 }
 
 #mifos-reskin-body-view {
-  padding: 30px 30px 30px 50px;
+  padding: 70px 15px 70px 50px;
   .content-container {
     width: 100%;
     max-width: 1200px;
@@ -581,7 +582,7 @@ li a i .fa {
   }
 
   .toolbar{
-    height:40px;
+    height:50px;
     border-bottom:1px solid $gray-light;
 
     &>h4{

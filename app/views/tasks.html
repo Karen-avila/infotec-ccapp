@@ -217,102 +217,45 @@
                             </script>
                             <div ng-repeat="(officeName,values) in groupedClients">
                                 <table class="table condensed-table">
-                                    <tr>
-                                        <td>
-                                            <strong>{{officeName}}</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <table class="table condensed-table">
-                                                <thead>
-                                                    <tr class="graybg">
-                                                        <th><input type="checkbox"
-                                                                ng-click="clientApprovalAllCheckBoxesClicked(officeName)"
-                                                                ng-checked="clientApprovalAllCheckBoxesMet(officeName)" />
-                                                        </th>
-                                                        <th>{{'label.heading.name' | translate}}</th>
-                                                        <th>{{'label.heading.accnum' | translate}}</th>
-                                                        <th>{{'label.heading.staff' | translate}}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="pointer-main"
-                                                        dir-paginate="client in values | filter : {active: 'false', status: { value:'Pending'}} | filter:filterText | itemsPerPage: itemsPerPage"
-                                                        pagination-id="'_' + $index">
-                                                        <td><input type="checkbox"
-                                                                data-ng-model="approveData[client.id]" />
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.displayName}}
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.accountNo}}
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.staffName}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th><input type="checkbox"
+                                                    ng-click="clientApprovalAllCheckBoxesClicked(officeName)"
+                                                    ng-checked="clientApprovalAllCheckBoxesMet(officeName)" />
+                                            </th>
+                                            <th>{{'label.heading.office' | translate}}</th>
+                                            <th>{{'label.heading.name' | translate}}</th>
+                                            <th>{{'label.heading.accnum' | translate}}</th>
+                                            <th>{{'label.heading.staff' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="pointer-main"
+                                            dir-paginate="client in values | filter : {active: 'false', status: { value:'Pending'}} | filter:filterText | itemsPerPage: itemsPerPage"
+                                            pagination-id="'_' + $index">
+                                            <td><input type="checkbox"
+                                                    data-ng-model="approveData[client.id]" />
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeToClient(client.id)"></td>
+                                                {{officeName}}
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeToClient(client.id)">
+                                                {{client.displayName}}
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeToClient(client.id)">
+                                                {{client.accountNo}}
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeToClient(client.id)">
+                                                {{client.staffName}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                                 <div class="text-center">
                                     <dir-pagination-controls pagination-id="'_' + $index" boundary-links="true"
                                         template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
                                 </div>
                             </div>
-                            <!--
-                            <div ng-repeat="(officeName,values) in groupedGroups">
-                                <table class="table condensed-table">
-                                    <tr>
-                                        <td>
-                                            <strong>{{officeName}}</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <table class="table condensed-table">
-                                                <thead>
-                                                    <tr class="graybg">
-                                                        <th><input type="checkbox"
-                                                                ng-click="clientApprovalAllCheckBoxesClicked(officeName)"
-                                                                ng-checked="clientApprovalAllCheckBoxesMet(officeName)" />
-                                                        </th>
-                                                        <th>{{'label.heading.name' | translate}}</th>
-                                                        <th>{{'label.heading.accnum' | translate}}</th>
-                                                        <th>{{'label.heading.staff' | translate}}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="pointer-main"
-                                                        dir-paginate="client in values | filter : {active: 'false', status: { value:'Pending'}} | filter:filterText | itemsPerPage: itemsPerPage"
-                                                        pagination-id="'_' + $index">
-                                                        <td><input type="checkbox"
-                                                                data-ng-model="approveData[client.id]" />
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.displayName}}
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.accountNo}}
-                                                        </td>
-                                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                                            {{client.staffName}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="text-center">
-                                    <dir-pagination-controls pagination-id="'_' + $index" boundary-links="true"
-                                        template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
-                                </div>
-                            </div>
-                            -->
                         </uib-tab>
                         <uib-tab heading="{{'label.heading.loanapproval' | translate}}" has-permission='READ_LOAN'>
                             <div class="head-affix">
