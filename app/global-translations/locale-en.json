@@ -1650,6 +1650,7 @@
   "loanStatusType.submitted.and.pending.approval": "Submitted and pending approval",
   "loanStatusType.approved": "Approved",
   "loanStatusType.active": "Active",
+	"loanStatusType.blacklisted": "BlackList",
   "loanStatusType.closed": "Closed",
   "loanStatusType.pending": "Pending Approval",
   "loanStatusType.withdrawn.by.applicant": "Withdrawn by applicant",

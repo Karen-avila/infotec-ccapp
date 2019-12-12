@@ -1560,6 +1560,7 @@
 	"loanStatusType.submitted.and.pending.approval": "Presentado y pendiente de aprobación",
 	"loanStatusType.approved": "Aprobado",
 	"loanStatusType.active": "Activo",
+	"loanStatusType.blacklisted": "Lista Negra",
 	"loanStatusType.withdrawn.by.applicant": "Retirado por solicitante",
 	"loanStatusType.rejected": "Rechazado",
 	"loanStatusType.closed.obligations.met": "Cerrado (obligaciones cumplidas)",

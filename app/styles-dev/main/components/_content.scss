@@ -288,7 +288,7 @@ li a i .fa {
 }
 
 .table {
-  font-size:13px;
+  font-size:1.2rem;
 }
 
 .table th{
@@ -515,7 +515,7 @@ li a i .fa {
   }
 
   .statusoverpaid {
-      color: #800080
+      color: $step-info;
   }
 
   .statusactiveoverdue {
@@ -531,7 +531,15 @@ li a i .fa {
   }
 
   .statusactive {
-      color: #00CE00;
+      color: $brand-success;
+  }
+
+  .statusblacklisted {
+      color: $brand-danger-darker;
+  }
+
+  .statusrejected {
+      color: $brand-danger-light;
   }
 
   .statusmatured {
@@ -539,14 +547,15 @@ li a i .fa {
   }
 
   .statusdeleted {
-      color: #000000;
+      color: $gray-base;
   }
 
   .statuspending {
-      color: #FFA500;
+      color: $step-pending;
   }
+
   .statusApproved {
-      color: #0F36E4;
+      color: $brand-success;
   }
 
   .statusbad {
@@ -554,23 +563,23 @@ li a i .fa {
   }
 
   .statusgood {
-      color: #008000;
+      color: $brand-color;
   }
 
   .statushold {
-      color: #FFFF00;
+      color: $brand-warning;
   }
 
   .statusprogresspendingtab {
-      color: #F7FE2E;
+      color: $brand-warning;
   }
 
   .statusprogresstab {
-      color: #FFA500;
+      color: $step-pending;
   }
 
   .statusprogresscompletedtab {
-      color: #298A08;
+      color: $brand-color;
   }
 
   a{

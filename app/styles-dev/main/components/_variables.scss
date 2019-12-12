@@ -23,6 +23,8 @@ $brand-success:         #5cb85c !default;
 $brand-info:            #36BAF0 !default;
 $brand-warning:         #E8F036 !default;
 $brand-danger:          #ff2825 !default;
+$brand-danger-light:    lighten($brand-danger, 33.5%) !default;
+$brand-danger-darker:   darken($brand-danger, 8.5%) !default;
 
 $brand-loader:          #008a1f;
 
@@ -33,6 +35,7 @@ $active: #36BAF0 !default;
 $hover: #365DF0 !default;
 $step-danger: #ff2825 !default;
 $step-warning: #E8F036 !default;
+$step-pending: darken($step-warning, 8.5%) !default;
 $step-info: #F036BA !default;
 // sizing
 
