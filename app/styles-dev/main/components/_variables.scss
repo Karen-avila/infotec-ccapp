@@ -23,7 +23,7 @@ $brand-success:         #5cb85c !default;
 $brand-info:            #36BAF0 !default;
 $brand-warning:         #E8F036 !default;
 $brand-danger:          #ff2825 !default;
-$brand-danger-light:    lighten($brand-danger, 33.5%) !default;
+$brand-danger-dark:     darken($brand-danger, 23.5%) !default;
 $brand-danger-darker:   darken($brand-danger, 8.5%) !default;
 
 $brand-loader:          #008a1f;

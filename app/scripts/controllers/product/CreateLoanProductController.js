@@ -349,6 +349,10 @@
                 this.formData.closeDate = reqSecondDate;
                 this.formData.taxComponents = scope.taxComponents;
 
+                if (("isInterestRecalculationEnabled" in this.formData) == false) {
+                    this.formData.isInterestRecalculationEnabled = false;
+                }
+
                 //Interest recalculation data
                 if (this.formData.isInterestRecalculationEnabled) {
                     var restFrequencyDate = dateFilter(scope.date.recalculationRestFrequencyDate, scope.df);

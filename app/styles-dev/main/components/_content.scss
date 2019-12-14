@@ -220,11 +220,11 @@ span.required {
 }
 
 li a i .fa {
-  color: $brand-success;
+  color: $brand-primary;
 }
 
 .fa-question-circle {
-  color: $brand-success;
+  color: $brand-primary;
 }
 
 .scrollme {
@@ -531,15 +531,15 @@ li a i .fa {
   }
 
   .statusactive {
-      color: $brand-success;
+      color: $brand-primary;
   }
 
   .statusblacklisted {
-      color: $brand-danger-darker;
+      color: $brand-danger-dark;
   }
 
   .statusrejected {
-      color: $brand-danger-light;
+      color: $brand-danger-darker;
   }
 
   .statusmatured {
@@ -555,7 +555,7 @@ li a i .fa {
   }
 
   .statusApproved {
-      color: $brand-success;
+      color: $brand-primary;
   }
 
   .statusbad {

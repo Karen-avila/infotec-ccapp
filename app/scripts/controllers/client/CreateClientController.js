@@ -426,6 +426,7 @@
                 if (this.formData.uniqueId) {
                     this.formData.uniqueId = this.formData.uniqueId.toUpperCase();
                 }
+                this.formData.groupLoanCounter = 0;
 
                 resourceFactory.clientResource.save(this.formData, function (data) {
                     location.path('/viewclient/' + data.clientId);
