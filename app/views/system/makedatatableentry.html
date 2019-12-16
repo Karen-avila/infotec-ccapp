@@ -15,11 +15,11 @@
                     <h3>{{ 'label.heading.datatablename' | translate }} - <strong>{{tableName}}</strong></h3>
                     <hr />
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
-                        <label class="control-label col-md-6">{{ tableName + '.' + columnHeader.columnName | prettifyDataTableColumn | translate }}
+                        <label class="control-label col-md-5">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
                             <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
                         </label>
 
-                        <div class="col-md-4">
+                        <div class="col-md-7">
                             <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
                                 ng-model="formData[columnHeader.columnName]" class="form-control" />
                             <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"

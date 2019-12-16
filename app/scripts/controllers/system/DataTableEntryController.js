@@ -16,25 +16,33 @@
             scope.formData = {};
             scope.isViewMode = true;
             scope.tf = "HH:mm";
-            if(routeParams.mode && routeParams.mode == 'edit'){
+            if (routeParams.mode && routeParams.mode == 'edit') {
                 scope.isViewMode = false;
             }
 
-            var reqparams = {datatablename: scope.tableName, entityId: scope.entityId, genericResultSet: 'true'};
+            var reqparams = { datatablename: scope.tableName, entityId: scope.entityId, genericResultSet: 'true' };
             if (scope.resourceId) {
                 reqparams.resourceId = scope.resourceId;
             }
 
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
+                }               
+                return tableName + '.' + columnName;
+            }
+            
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
                 for (var i in data.columnHeaders) {
                     if (data.columnHeaders[i].columnCode) {
                         //logic for display codeValue instead of codeId in view datatable details
                         for (var j in data.columnHeaders[i].columnValues) {
-                            if(data.columnHeaders[i].columnDisplayType=='CODELOOKUP'){
+                            if (data.columnHeaders[i].columnDisplayType == 'CODELOOKUP') {
                                 if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].id) {
                                     data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
                                 }
-                            } else if(data.columnHeaders[i].columnDisplayType=='CODEVALUE'){
+                            } else if (data.columnHeaders[i].columnDisplayType == 'CODEVALUE') {
                                 if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].value) {
                                     data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
                                 }
@@ -45,7 +53,7 @@
                     }
                 }
                 scope.columnHeaders = data.columnHeaders;
-                if(routeParams.mode && routeParams.mode == 'edit'){
+                if (routeParams.mode && routeParams.mode == 'edit') {
                     scope.editDatatableEntry();
                 }
             });
@@ -71,7 +79,7 @@
 
             scope.dateTimeFormat = function () {
                 for (var i in scope.columnHeaders) {
-                    if(scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
+                    if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         return scope.df + " " + scope.tf;
                     }
                 }
@@ -97,7 +105,7 @@
                         scope.formDat[scope.columnHeaders[i].columnName] = scope.columnHeaders[i].value;
                     } else if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         scope.formDat[scope.columnHeaders[i].columnName] = {};
-                        if(scope.columnHeaders[i].value != null) {
+                        if (scope.columnHeaders[i].value != null) {
                             scope.formDat[scope.columnHeaders[i].columnName] = {
                                 date: dateFilter(new Date(scope.columnHeaders[i].value), scope.df),
                                 time: new Date(scope.columnHeaders[i].value)
@@ -109,9 +117,9 @@
                     if (scope.columnHeaders[i].columnCode) {
                         for (var j in scope.columnHeaders[i].columnValues) {
                             if (scope.columnHeaders[i].value == scope.columnHeaders[i].columnValues[j].value) {
-                                if(scope.columnHeaders[i].columnDisplayType=='CODELOOKUP'){
+                                if (scope.columnHeaders[i].columnDisplayType == 'CODELOOKUP') {
                                     scope.formData[scope.columnHeaders[i].columnName] = scope.columnHeaders[i].columnValues[j].id;
-                                } else if(scope.columnHeaders[i].columnDisplayType=='CODEVALUE'){
+                                } else if (scope.columnHeaders[i].columnDisplayType == 'CODEVALUE') {
                                     scope.formData[scope.columnHeaders[i].columnName] = scope.columnHeaders[i].columnValues[j].value;
                                 }
                             }
@@ -154,12 +162,11 @@
             };
 
             scope.cancel = function () {
-                if(routeParams.mode){
+                if (routeParams.mode) {
                     window.history.back();
-                } else{
+                } else {
                     route.reload();
                 }
-
             };
 
             scope.submit = function () {
@@ -171,9 +178,9 @@
                     }
                     if (scope.columnHeaders[i].columnDisplayType == 'DATE') {
                         this.formData[scope.columnHeaders[i].columnName] = dateFilter(this.formDat[scope.columnHeaders[i].columnName], this.formData.dateFormat);
-                    } else if(scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
+                    } else if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         this.formData[scope.columnHeaders[i].columnName] = dateFilter(this.formDat[scope.columnHeaders[i].columnName].date, scope.df) + " " +
-                        dateFilter(this.formDat[scope.columnHeaders[i].columnName].time, scope.tf);
+                            dateFilter(this.formDat[scope.columnHeaders[i].columnName].time, scope.tf);
                     }
                 }
                 resourceFactory.DataTablesResource.update(reqparams, this.formData, function (data) {
@@ -196,7 +203,6 @@
                     location.path(destination);
                 });
             };
-
         }
     });
     mifosX.ng.application.controller('DataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory', '$uibModal', 'dateFilter', mifosX.controllers.DataTableEntryController]).run(function ($log) {

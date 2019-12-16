@@ -27,8 +27,15 @@
                     }
                 }
                 scope.columnHeaders = data.columnHeaders;
-
             });
+
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
+                }               
+                return tableName + '.' + columnName;
+            }
 
             //return input type
             scope.fieldType = function (type) {
@@ -51,7 +58,7 @@
 
             scope.dateTimeFormat = function () {
                 for (var i in scope.columnHeaders) {
-                    if(scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
+                    if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         return scope.df + " " + scope.tf;
                     }
                 }
@@ -61,11 +68,11 @@
             scope.cancel = function () {
                 if (scope.fromEntity == 'client') {
                     location.path('/viewclient/' + routeParams.entityId).search({});
-                } else if (scope.fromEntity == 'group') {                    
+                } else if (scope.fromEntity == 'group') {
                     location.path('/viewgroup/' + routeParams.entityId).search({});
-                } else if (scope.fromEntity == 'center') {                    
+                } else if (scope.fromEntity == 'center') {
                     location.path('/viewcenter/' + routeParams.entityId).search({});
-                } else if (scope.fromEntity == 'loan') {                    
+                } else if (scope.fromEntity == 'loan') {
                     location.path('/viewloanaccount/' + routeParams.entityId).search({});
                 } else if (scope.fromEntity == 'savings') {
                     location.path('/viewsavingaccount/' + routeParams.entityId).search({});
@@ -73,8 +80,9 @@
                     location.path('/viewoffice/' + routeParams.entityId).search({});
                 };
             };
+
             scope.submit = function () {
-                var params = {datatablename: scope.tableName, entityId: scope.entityId, genericResultSet: 'true'};
+                var params = { datatablename: scope.tableName, entityId: scope.entityId, genericResultSet: 'true' };
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.dateTimeFormat();
                 //below logic, for the input field if data is not entered, this logic will put "", because
@@ -88,10 +96,9 @@
                             this.formData.dateFormat);
                     } else if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         this.formData[scope.columnHeaders[i].columnName] = dateFilter(this.formDat[scope.columnHeaders[i].columnName].date, scope.df)
-                        + " " + dateFilter(this.formDat[scope.columnHeaders[i].columnName].time, scope.tf);
+                            + " " + dateFilter(this.formDat[scope.columnHeaders[i].columnName].time, scope.tf);
                     }
                 }
-
 
                 resourceFactory.DataTablesResource.save(params, this.formData, function (data) {
                     var destination = "";
