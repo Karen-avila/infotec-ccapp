@@ -1094,7 +1094,7 @@
 						<div ng-show="datatabledetails.isData">
 							<table class="table" data-ng-show="datatabledetails.isMultirow">
 								<thead>
-								<th ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName | prettifyDataTableColumn}}</th>
+								<th ng-repeat="column in datatabledetails.columnHeaders">{{clientdatatable.registeredTableName +'.'+ column.columnName | translate</th>
 								</thead>
 								<tbody>
 								<tr class="pointer-main" ng-repeat="data in datatabledetails.data">
@@ -1106,7 +1106,7 @@
 							</table>
 							<table class="table" data-ng-hide="datatabledetails.isMultirow">
 								<tr ng-repeat="value in singleRow">
-									<td class="graybg table-font-nav">{{value.key | prettifyDataTableColumn}}</td>
+									<td class="graybg table-font-nav">{{clientdatatable.registeredTableName +'.'+ value.key | prettifyDataTableColumn | translate}}</td>
 									<td><span class="padded-td">{{value.value}}</span></td>
 								</tr>
 								<tr>
