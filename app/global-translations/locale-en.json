@@ -331,6 +331,8 @@
   "label.all": "All",
   "currency.USD": "US Dollar",
   "currency.KES": "Kenyan Shillings",
+	"currency.MXP": "Peso Mexicano",
+	"currency.MXN": "Peso Mexicano",
   "label.selectone": "Select one",
   "label.requirefield": "Required Field",
   "label.none": "None",

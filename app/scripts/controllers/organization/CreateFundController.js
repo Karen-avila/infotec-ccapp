@@ -2,6 +2,7 @@
     mifosX.controllers = _.extend(module, {
         CreateFundController: function (scope, resourceFactory, location) {
             scope.submit = function () {
+                this.formData.locale = scope.optlang.code;
                 resourceFactory.fundsResource.save(this.formData, function (data) {
                     location.path('/viewfund/' + data.resourceId);
                 });

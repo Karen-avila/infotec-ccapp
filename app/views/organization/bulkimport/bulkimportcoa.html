@@ -33,8 +33,8 @@
                                 <option value="">--{{'label.menu.selectloanofficer' | translate}}--</option>
                             </select>
                         </div>
-                        <a class='btn btn-sm btn-primary'
-                            href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}" has-permission='READ_CLIENT'><i
+                        <a class='btn btn-sm btn-primary' href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}"
+                            has-permission='READ_CLIENT'><i
                                 class="fa fa-cloud-download"></i>{{'label.button.download' | translate}}</a>
                     </div>
                 </form>
@@ -55,8 +55,8 @@
                         <input type="file" id="file" accept=".xls,.xlsx" class="form-control btn btn-default"
                             ngf-select="onFileSelect($files)">
                     </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="form-control btn btn-primary" ng-click="upload()">
+                    <div class="col-sm-3 pull-right">
+                        <button type="button" class="form-control btn btn-sm btn-primary" ng-click="upload()">
                             <i class="fa fa-cloud-upload"></i> {{'label.button.upload' | translate}}
                         </button>
                     </div>
@@ -67,7 +67,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'label.heading.documents' | translate}}</h3>
-            <button style="margin-left:1050px;" type="button" class="btn btn-primary" ng-click="refreshImportTable()">
+            <button style="margin-left:1050px;" type="button" class="btn btn-sm btn-primary"
+                ng-click="refreshImportTable()">
                 <i class="fa fa-repeat"></i> {{'label.button.refresh' | translate}}
             </button>
         </div>

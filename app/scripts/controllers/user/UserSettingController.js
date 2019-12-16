@@ -10,6 +10,8 @@
                 'MMMM dd yyyy',
                 'MMMM/dd/yyyy',
                 'MM-dd-yy',
+                'MM/dd/yyyy',
+                'M/d/yyyy',
                 'yyyy-MM-dd'
             ];
 
