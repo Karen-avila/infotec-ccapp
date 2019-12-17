@@ -63,7 +63,7 @@
                 }
             });
 
-            if (scope.reportType == 'Pentaho') {
+            if (scope.reportType == 'Pentaho' || scope.reportType == 'Jasper') {
                 resourceFactory.reportsResource.get({id: scope.reportId, fields: 'reportParameters'}, function (data) {
                     scope.pentahoReportParameters = data.reportParameters || [];
                 });
@@ -324,7 +324,8 @@
                                 }
                             });
                             break;
-
+                            
+                        case "Jasper":
                         case "Pentaho":
                             scope.hideTable = true;
                             scope.hidePentahoReport = false;
