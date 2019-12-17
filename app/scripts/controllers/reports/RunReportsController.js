@@ -343,8 +343,8 @@
                             reportURL = $sce.valueOf(reportURL);
                             http.get(reportURL, {responseType: 'arraybuffer'}).
                               then(function(data, status, headers, config) {
-                                var contentType = headers('Content-Type');
-                                var file = new Blob([data], {type: contentType});
+                                var contentType = data.headers('Content-Type');
+                                var file = new Blob([data.data], {type: contentType});
                                 var fileContent = URL.createObjectURL(file);
 
                                 // Pass the form data to the iframe as a data url.
