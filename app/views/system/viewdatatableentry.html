@@ -48,11 +48,11 @@
                         <legend>{{ 'label.heading.datatablename' | translate }}-<strong>{{tableName}}</strong></legend>
                     </fieldset>
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
-                        <label class="control-label col-sm-3">{{ getDatatableColumn(tableName, column.columnName) | translate }}
+                        <label class="control-label col-sm-4">{{ getDatatableColumn(tableName, column.columnName) | translate }}
                             <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
                         </label>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-8">
                             <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
                                 ng-model="formData[columnHeader.columnName]" class="form-control" />
                             <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"

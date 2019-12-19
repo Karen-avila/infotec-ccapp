@@ -56,30 +56,20 @@
 
 
             // family members
-
             scope.families = [];
 
             resourceFactory.familyMembers.get({ clientId: routeParams.id }, function (data) {
-
                 scope.families = data;
-
-
             });
 
             scope.deleteFamilyMember = function (clientFamilyMemberId) {
-
                 resourceFactory.familyMember.delete({ clientId: routeParams.id, clientFamilyMemberId: clientFamilyMemberId }, function (data) {
-
                     route.reload();
                 })
-
             }
 
             scope.editFamilyMember = function (clientFamilyMemberId) {
-
                 location.path('/editfamilymember/' + routeParams.id + '/' + clientFamilyMemberId);
-
-
             }
 
             scope.routeToaddFamilyMember = function () {
@@ -116,6 +106,21 @@
             scope.routeToShareAccount = function (id) {
                 location.path('/viewshareaccount/' + id)
             };
+
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
+                }               
+                return tableName + '.' + columnName;
+            }
+
+            scope.getDatatableValue = function (data) {
+                if (data.value) {
+                    return data.value + ' (' + data.score + ')';
+                }
+                return data;
+            }
 
             scope.haveFile = [];
             resourceFactory.clientResource.get({ clientId: routeParams.id }, function (data) {
@@ -551,15 +556,19 @@
 
             resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
                 scope.clientdatatables = data;
+                for (clientdatatable in scope.clientdatatables) {
+                    scope.dataTableChange(clientdatatable.registeredTableName);
+                }
             });
 
-            scope.dataTableChange = function (clientdatatable) {
+            scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({
-                    datatablename: clientdatatable.registeredTableName,
+                    datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
                 }, function (data) {
                     scope.datatabledetails = data;
-                    scope.datatabledetails.isData = data.data.length > 0 ? true : false;
+                    console.log(JSON.stringify(data));
+                    scope.datatabledetails.isData = data.length > 0 ? true : false;
                     scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
                     scope.showDataTableAddButton = !scope.datatabledetails.isData || scope.datatabledetails.isMultirow;
                     scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
@@ -591,7 +600,6 @@
                                 if (data.data[0].row[i].score) {
                                     row.value = data.data[0].row[i].value + " (" + data.data[0].row[i].score + ")";
                                 }
-                                console.log(row);
                                 scope.singleRow.push(row);
                             }
                         }

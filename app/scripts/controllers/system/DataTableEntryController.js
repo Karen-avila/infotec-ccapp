@@ -29,6 +29,14 @@
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
+                }
+                return tableName + '.' + columnName;
+            }
+
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
                 }               
                 return tableName + '.' + columnName;
             }
