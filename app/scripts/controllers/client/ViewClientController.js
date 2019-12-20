@@ -118,10 +118,14 @@
 
             scope.getDatatableValue = function (data) {
                 if (typeof data != "undefined") {
-                    if (typeof data.value != "undefined" && data.value.value) {
+                    if (typeof data.value != "undefined" && typeof data.value.value != "undefined") {
                         return data.value.value + ' (' + data.value.score + ')';
+                    } else {
+                        if (typeof data.value != "undefined") {
+                            return data.value;
+                        }
                     }
-                    return data.value;
+                    return data;
                 } else {
                     return '';
                 }
