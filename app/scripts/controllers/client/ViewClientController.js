@@ -121,10 +121,10 @@
                     return '';
                 }
                 if (typeof data != "undefined") {
-                    if (typeof data.value != "undefined" && typeof data.value.value != "undefined") {
+                    if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
                         return data.value.value + ' (' + data.value.score + ')';
                     } else {
-                        if (typeof data.value != "undefined") {
+                        if (typeof data.value != "undefined" && data.value != null) {
                             return data.value;
                         }
                     }
