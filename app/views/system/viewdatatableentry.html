@@ -32,7 +32,7 @@
                             <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                         </div>
                     </script>
-                    <h3>{{ 'label.heading.datatablename' | translate }}-<strong>{{tableName}}</strong></h3>
+                    <strong>{{tableName}}</strong>
                     <hr>
                     <table class="width100">
                         <tr ng-repeat="column in columnHeaders">
@@ -48,7 +48,7 @@
                         <legend>{{ 'label.heading.datatablename' | translate }}-<strong>{{tableName}}</strong></legend>
                     </fieldset>
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
-                        <label class="control-label col-sm-4">{{ getDatatableColumn(tableName, column.columnName) | translate }}
+                        <label class="control-label col-sm-4">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
                             <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
                         </label>
 

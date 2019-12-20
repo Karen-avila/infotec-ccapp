@@ -5,6 +5,7 @@
             scope.identitydocuments = [];
             scope.buttons = [];
             scope.clientdocuments = [];
+            scope.datatabledetails = [];
             scope.staffData = {};
             scope.formData = {};
             scope.openLoan = true;
@@ -116,10 +117,14 @@
             }
 
             scope.getDatatableValue = function (data) {
-                if (data.value) {
-                    return data.value + ' (' + data.score + ')';
+                if (typeof data != "undefined") {
+                    if (typeof data.value != "undefined" && data.value.value) {
+                        return data.value.value + ' (' + data.value.score + ')';
+                    }
+                    return data.value;
+                } else {
+                    return '';
                 }
-                return data;
             }
 
             scope.haveFile = [];
@@ -556,8 +561,10 @@
 
             resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
                 scope.clientdatatables = data;
-                for (clientdatatable in scope.clientdatatables) {
-                    scope.dataTableChange(clientdatatable.registeredTableName);
+                for (var i in data) {
+                    if (data[i].registeredTableName) {
+                        scope.dataTableChange(data[i].registeredTableName);
+                    }
                 }
             });
 
@@ -566,44 +573,62 @@
                     datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
                 }, function (data) {
-                    scope.datatabledetails = data;
-                    console.log(JSON.stringify(data));
-                    scope.datatabledetails.isData = data.length > 0 ? true : false;
-                    scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
-                    scope.showDataTableAddButton = !scope.datatabledetails.isData || scope.datatabledetails.isMultirow;
-                    scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
-                    scope.singleRow = [];
-                    scope.dataTableScoring = 0;
+                    var datatabledetail = data;
+                    datatabledetail.registeredTableName = registeredTableName;
+                    datatabledetail.isData = false;
+                    if (data.data) {
+                        datatabledetail.isData = data.data.length > 0 ? true : false;
+                    }
+                    datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
+                    datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
+                    datatabledetail.singleRow = [];
+                    datatabledetail.dataTableScoring = 0;
                     for (var i in data.columnHeaders) {
-                        if (scope.datatabledetails.columnHeaders[i].columnCode) {
-                            for (var j in scope.datatabledetails.columnHeaders[i].columnValues) {
+                        if (datatabledetail.columnHeaders[i].columnCode) {
+                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
-                                    if (data.data[k].row[i] == scope.datatabledetails.columnHeaders[i].columnValues[j].id) {
+                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
                                         data.data[k].row[i] = {
-                                            value: scope.datatabledetails.columnHeaders[i].columnValues[j].value,
-                                            score: scope.datatabledetails.columnHeaders[i].columnValues[j].score
+                                            value: datatabledetail.columnHeaders[i].columnValues[j].value,
+                                            score: datatabledetail.columnHeaders[i].columnValues[j].score
                                         }
-                                        if (scope.datatabledetails.columnHeaders[i].columnValues[j].score) {
-                                            scope.dataTableScoring += scope.datatabledetails.columnHeaders[i].columnValues[j].score;
+                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
+                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    if (scope.datatabledetails.isData) {
+                    if (datatabledetail.isData) {
+                        datatabledetail.scoring = 0;
                         for (var i in data.columnHeaders) {
-                            if (!scope.datatabledetails.isMultirow) {
-                                var row = {};
-                                row.key = data.columnHeaders[i].columnName;
-                                row.value = data.data[0].row[i];
-                                if (data.data[0].row[i].score) {
-                                    row.value = data.data[0].row[i].value + " (" + data.data[0].row[i].score + ")";
+                            if (!datatabledetail.isMultirow) {
+                                if (data.columnHeaders[i].columnName != "client_id") {
+                                    var row = {};
+                                    row.key = data.columnHeaders[i].columnName;
+                                    row.value = data.data[0].row[i];
+
+                                    if (data.columnHeaders[i].columnDisplayType == "CODELOOKUP") {
+                                        var score = '';
+                                        for (var j in data.columnHeaders[i].columnValues) {
+                                            if (data.columnHeaders[i].columnValues[j].value == data.data[0].row[i]) {
+                                                score = data.columnHeaders[i].columnValues[j].score;
+                                                datatabledetail.scoring += data.columnHeaders[i].columnValues[j].score;
+                                                break;
+                                            }
+                                        }
+                                        if (score != '') {
+                                            row.value = row.value + " (" + score + ")";
+                                        } 
+                                    }
+                                    datatabledetail.singleRow.push(row);
                                 }
-                                scope.singleRow.push(row);
                             }
                         }
                     }
+                    scope.datatabledetails.push(datatabledetail);
                 });
             };
 
