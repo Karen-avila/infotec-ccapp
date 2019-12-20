@@ -117,6 +117,9 @@
             }
 
             scope.getDatatableValue = function (data) {
+                if (data === null) {
+                    return '';
+                }
                 if (typeof data != "undefined") {
                     if (typeof data.value != "undefined" && typeof data.value.value != "undefined") {
                         return data.value.value + ' (' + data.value.score + ')';
