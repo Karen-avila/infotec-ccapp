@@ -13,6 +13,7 @@
             scope.openShares = true;
             scope.updateDefaultSavings = false;
             scope.charges = [];
+            scope.datatableLoaded = false;
 
             // address
             scope.addresses = [];
@@ -121,11 +122,14 @@
                     return '';
                 }
                 if (typeof data != "undefined") {
+                    console.log(JSON.stringify(data));
                     if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
                         return data.value.value + ' (' + data.value.score + ')';
                     } else {
                         if (typeof data.value != "undefined" && data.value != null) {
                             return data.value;
+                        } else {
+                            return '';
                         }
                     }
                     return data;
@@ -541,10 +545,10 @@
                 }
             };
 
-
             resourceFactory.clientNotesResource.getAllNotes({ clientId: routeParams.id }, function (data) {
                 scope.clientNotes = data;
             });
+            
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: routeParams.id, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
@@ -568,10 +572,13 @@
 
             resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
                 scope.clientdatatables = data;
-                for (var i in data) {
-                    if (data[i].registeredTableName) {
-                        scope.dataTableChange(data[i].registeredTableName);
+                if (scope.datatableLoaded == false) {
+                    for (var i in data) {
+                        if (data[i].registeredTableName) {
+                            scope.dataTableChange(data[i].registeredTableName);
+                        }
                     }
+                    scope.datatableLoaded = true;
                 }
             });
 
@@ -609,27 +616,14 @@
                         }
                     }
                     if (datatabledetail.isData) {
-                        datatabledetail.scoring = 0;
                         for (var i in data.columnHeaders) {
                             if (!datatabledetail.isMultirow) {
                                 if (data.columnHeaders[i].columnName != "client_id") {
                                     var row = {};
                                     row.key = data.columnHeaders[i].columnName;
                                     row.value = data.data[0].row[i];
+                                    console.log(JSON.stringify(data.data[0].row[i]));
 
-                                    if (data.columnHeaders[i].columnDisplayType == "CODELOOKUP") {
-                                        var score = '';
-                                        for (var j in data.columnHeaders[i].columnValues) {
-                                            if (data.columnHeaders[i].columnValues[j].value == data.data[0].row[i]) {
-                                                score = data.columnHeaders[i].columnValues[j].score;
-                                                datatabledetail.scoring += data.columnHeaders[i].columnValues[j].score;
-                                                break;
-                                            }
-                                        }
-                                        if (score != '') {
-                                            row.value = row.value + " (" + score + ")";
-                                        } 
-                                    }
                                     datatabledetail.singleRow.push(row);
                                 }
                             }

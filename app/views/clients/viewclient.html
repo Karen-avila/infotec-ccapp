@@ -184,7 +184,7 @@
 			<uib-tabset class="scrollable" tabset-name="clientTabset" scrollable persistent-tab>
 				<uib-tab heading="{{'label.heading.general' | translate}}">
 					<div class="col-md-11 col-sm-11 btn-group row">
-						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-primary btn-offset"
+						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-sm btn-primary btn-offset"
 							has-permission='{{button.taskPermissionName}}'
 							ng-repeat="button in buttonsArray.singlebuttons">
 							<i class="{{button.icon}} icon-white"></i>{{button.name | translate}}</a>
@@ -193,7 +193,7 @@
 								class="fa fa-trash-o "></i>{{"label.button.delete"
 								| translate}}
 						</button>
-						<a href="#!/client/{{client.id}}/updatedefaultaccount" class="btn btn-primary btn-offset"
+						<a href="#!/client/{{client.id}}/updatedefaultaccount" class="btn btn-sm btn-primary btn-offset"
 							data-ng-show="updateDefaultSavings" has-permission='UPDATESAVINGSACCOUNT_CLIENT'><i
 								class="fa fa-edit "></i>{{"label.button.updatedefaultsavings" | translate}}
 						</a>
@@ -349,13 +349,13 @@
 												<a uib-tooltip="{{'label.button.paycharge' | translate}}"
 													has-permission='PAY_CLIENTCHARGE'
 													ng-href="#!/viewclient/{{client.id}}/paycharge/{{charge.id}}"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-dollar "></i>
 												</a>&thinsp;
 												<a uib-tooltip="{{'label.button.waivecharge' | translate}}"
 													has-permission='WAIVE_CLIENTCHARGE'
 													ng-click="waiveCharge(charge.id)"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-flag "></i>
 												</a>
 											</td>
@@ -420,7 +420,7 @@
 											<td class="pointer center" ng-if="loanaccount.status.active">
 												<a uib-tooltip="{{'label.button.makerepayment' | translate}}"
 													ng-href="#!/loanaccount/{{loanaccount.id}}/repayment"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-dollar"></i>
 												</a>
 											</td>
@@ -428,7 +428,7 @@
 												<a uib-tooltip="{{'label.button.approve' | translate}}"
 													has-permission='APPROVE_LOAN'
 													ng-href="#!/loanaccount/{{loanaccount.id}}/approve"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-check"></i>
 												</a>
 											</td>
@@ -437,7 +437,7 @@
 												<a uib-tooltip="{{'label.button.disburse' | translate}}"
 													has-permission='DISBURSE_LOAN'
 													ng-href="#!/loanaccount/{{loanaccount.id}}/disburse"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-flag"></i>
 												</a>
 											</td>
@@ -446,7 +446,7 @@
 												<a uib-tooltip="{{'label.button.transferFunds' | translate}}"
 													has-permission='DISBURSE_LOAN'
 													ng-href="#!/accounttransfers/fromloans/{{loanaccount.id}}"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-exchange"></i>
 												</a>
 											</td>
@@ -548,7 +548,7 @@
 														ng-show="button.name"
 														has-permission='{{button.taskPermissionName}}'
 														ng-click="navigateToSavingsOrDepositAccount(button.name.replace('button.',''), savingaccount.id, savingaccount.depositType.id)"
-														class="btn btn-xs btn-primary ng-binding"
+														class="btn btn-sm btn-primary ng-binding"
 														ng-if="savingaccount.depositType.id==button.type"><i
 															class="{{button.icon}} "></i>
 													</a>
@@ -559,7 +559,7 @@
 												<a uib-tooltip="{{'label.button.approve' | translate}}"
 													has-permission='APPROVE_SAVINGSACCOUNT'
 													ng-href="#!/savingaccount/{{savingaccount.id}}/approve"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-check "></i>
 												</a>
 											</td>
@@ -568,13 +568,13 @@
 												<a uib-tooltip="{{'label.button.undoapproval' | translate}}"
 													has-permission='APPROVALUNDO_SAVINGSACCOUNT'
 													ng-href="#!/savingaccount/{{savingaccount.id}}/undoapproval"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-undo "></i>
 												</a>
 												<a uib-tooltip="{{'label.button.activate' | translate}}"
 													has-permission='ACTIVATE_SAVINGSACCOUNT'
 													ng-href="#!/savingaccount/{{savingaccount.id}}/activate"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-check-circle "></i>
 												</a>
 											</td>
@@ -653,7 +653,7 @@
 														ng-show="button.name"
 														has-permission='{{button.taskPermissionName}}'
 														ng-click="navigateToSavingsOrDepositAccount(button.name.replace('button.',''), shareaccount.id)"
-														class="btn btn-xs btn-primary ng-binding"
+														class="btn btn-sm btn-primary ng-binding"
 														ng-if="shareaccount.depositType.id==button.type"><i
 															class="{{button.icon}} "></i>
 													</a>
@@ -663,7 +663,7 @@
 												<a uib-tooltip="{{'label.button.approve' | translate}}"
 													has-permission='APPROVE_SHAREACCOUNT'
 													ng-href="#!/shareaccount/{{shareaccount.id}}/approve"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-check "></i>
 												</a>
 											</td>
@@ -672,13 +672,13 @@
 												<a uib-tooltip="{{'label.button.undoapproval' | translate}}"
 													has-permission='APPROVALUNDO_SHAREACCOUNT'
 													ng-href="#!/shareaccount/{{shareaccount.id}}/undoapproval"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-undo "></i>
 												</a>
 												<a uib-tooltip="{{'label.button.activate' | translate}}"
 													has-permission='ACTIVATE_SHAREACCOUNT'
 													ng-href="#!/shareaccount/{{shareaccount.id}}/activate"
-													class="btn btn-xs btn-primary ng-binding">
+													class="btn btn-sm btn-primary ng-binding">
 													<i class="fa fa-check-circle "></i>
 												</a>
 											</td>
@@ -979,7 +979,7 @@
 									</tr>
 									<tr ng-show="view.antiquity">
 										<th>
-											{{ 'label.input.antiquity' | translate }}
+											{{ 'label.input.antiquity.address' | translate }}
 										</th>
 										<td>
 											{{address.antiquity}}
@@ -1050,7 +1050,7 @@
 														</tr>
 														<tr class="graybg">
 															<th class="graybg table-font-nav">{{'label.heading.score' | translate}}</th>
-															<td><span class="padded-td">{{datatabledetail.scoring}}</span></td>
+															<td><span class="padded-td">{{datatabledetail.dataTableScoring}}</span></td>
 														</tr>
 													</tbody>
 												</table>

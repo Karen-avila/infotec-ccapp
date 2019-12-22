@@ -2550,6 +2550,7 @@
 	"label.input.addressline5": "Referencia de ubicación",
 	"label.input.addressline6": "Descripción del Exterior",
 	"label.input.antiquity": "Antiguedad",
+	"label.input.antiquity.address": "Antiguedad en domicilio",
 	"label.input.municipality": "Municipio",
 	"label.input.town_village": "Ciudad o localidad",
 	"label.input.county_district": "País / Distrito",
