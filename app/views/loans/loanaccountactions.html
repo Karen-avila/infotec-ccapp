@@ -8,7 +8,7 @@
     <wizard on-finish="submitDatatable()" current-step="step" class="card well">
         <wz-step wz-title="{{ title | translate}}">
             <form class="form-horizontal" name="loanactionform" novalidate="">
-                <fieldset>
+                <div>
                     <div ng-show="submittedDatatables.length > 0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
                             has been made successfully. If the inputs are changed, the datatable entries will be
@@ -180,89 +180,37 @@
                                     ng-model="formData.fixedEmiAmount">
                             </div>
                         </div>
+                    </div>
+                    <div ng-show="isTransaction">
+                        <div class="form-group" ng-show="action == 'disburse'">
+                            <label class="control-label col-sm-3" for="fundId">{{ 'label.input.fundsource' |
+                        translate}}<span class="required">*</span></label>
 
-                        <div ng-show="isTransaction">
-                            <div class="form-group">
-                                <label class="control-label col-sm-3" for="fundId">{{ 'label.input.fundsource' |
-                            translate}}<span class="required">*</span></label>
-
-                                <div class="col-sm-6">
-                                    <select id="fundId" ng-model="formData.fundId" class="form-control"
-                                    class="form-control" required
-                                    ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
-                                    <option value="">{{'label.selectfund' | translate}}</option>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3" for="paymentTypeId">{{ 'label.input.paymenttype' |
-                            translate}}</label>
-
-                                <div class="col-sm-6">
-                                    <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
-                                        ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-                                        value="{{paymentType.id}}"></select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label
-                                    class="control-label col-sm-3">{{ 'label.anchor.showpaymentdetails' | translate}}</label>
-
-                                <div class="col-sm-6">
-                                    <a class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
-                                        <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
-                                        <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div uib-collapse="!showPaymentDetails">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="accountNumber">{{ 'label.input.accnum' |
-                                translate}}</label>
-
-                                    <div class="col-sm-6">
-                                        <input id="accountNumber" type="text" class="form-control"
-                                            ng-model="formData.accountNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="checkNumber">{{ 'label.input.checknumber' |
-                                translate}}</label>
-
-                                    <div class="col-sm-6">
-                                        <input id="checkNumber" class="form-control" type="text"
-                                            ng-model="formData.checkNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="routingCode">{{ 'label.input.routingcode' |
-                                translate}}</label>
-
-                                    <div class="col-sm-6">
-                                        <input id="routingCode" class="form-control" type="text"
-                                            ng-model="formData.routingCode">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="receiptNumber">{{ 'label.input.receiptnumber' |
-                                translate}}</label>
-
-                                    <div class="col-sm-6">
-                                        <input id="receiptNumber" class="form-control" type="text"
-                                            ng-model="formData.receiptNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="bankNumber">{{ 'label.input.banknumber' |
-                                translate}}</label>
-
-                                    <div class="col-sm-6">
-                                        <input id="bankNumber" class="form-control" type="text"
-                                            ng-model="formData.bankNumber">
-                                    </div>
-                                </div>
+                            <div class="col-sm-6">
+                                <select id="fundId" ng-model="formData.fundId" class="form-control"
+                                class="form-control" required
+                                ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
+                                <option value="">{{'label.selectfund' | translate}}</option>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group" ng-show="action == 'repayment'">
+                        <label class="control-label col-sm-3" for="channelId">{{ 'label.input.instrumenttype' | translate}}</label>
+                        <div class="col-sm-6">
+                            <select id="channelId" ng-model="formData.channelId" class="form-control"
+                                ng-options="channel.id as channel.name for channel in channelOptions"
+                                value="{{channel.id}}"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="action == 'repayment'">
+                        <label class="control-label col-sm-3" for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
+                        <div class="col-sm-6">
+                            <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
+                                ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
+                                value="{{paymentType.id}}"></select>
+                        </div>
+                    </div>
+
                     <div class="form-group" ng-show="showNoteField">
                         <label class="control-label col-sm-3" for="note">{{ 'label.input.note' | translate}}</label>
 

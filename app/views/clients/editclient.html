@@ -9,7 +9,25 @@
     <div class="card well">
 	    <fieldset>
 	        <legend>{{'label.heading.editclient' | translate}}</legend>
-
+	        <div class="form-group">
+	            <label class="control-label col-sm-3">{{ 'label.input.accno' | translate }}:</label>
+	
+	            <div class="col-sm-3">
+	                <input id="accountNo" type="text" ng-model="formData.accountNo" class="form-control" disabled="disabled">
+	            </div>
+			</div>
+			<div class="form-group">
+			    <label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}:</label>
+			
+			    <div class="col-sm-3">
+			        <input id="externalId" type="text" ng-model="formData.externalId" class="form-control uppercase">
+				</div>
+			    <label class="control-label col-sm-3">{{ 'label.input.uniqueId' | translate }}:</label>
+			
+			    <div class="col-sm-3">
+			        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
+			    </div>
+			</div>
 	        <div class="form-group">
 	            <label class="control-label col-sm-3">{{ 'label.heading.office' | translate }}:<span
 	                    class="required">*</span></label>
@@ -41,6 +59,12 @@
 						<option value="">--{{'label.menu.legalForm' | translate}}--</option>
 					</select>
 				</div>
+				<div class="col-sm-3 pull-right">
+					<label class="checkbox">
+						<input type="checkbox" id="isStaff" ng-model="formData.isStaff">
+					</label>
+				</div>
+				<label class="control-label col-sm-3" for="isStaff">{{ 'label.input.isStaff' | translate }}</label>
 			</div>
 
 			<div data-ng-switch on="showNonPersonOptions">
@@ -54,24 +78,11 @@
 								   late-Validate/>
 							<form-validate valattributeform="editclientform" valattribute="firstname"/>
 						</div>
-					</div>
-				</div>
-	        </div>
-
-			<div data-ng-switch on="showNonPersonOptions">
-				<div data-ng-switch-when="false">
-					<div class="form-group">
 						<label class="control-label col-sm-3">{{ 'label.input.middlename' | translate }}:</label>
 
 						<div class="col-sm-3">
 							<input id="middlename" type="text" ng-model="formData.middlename" class="form-control uppercase">
 						</div>
-						<div class="col-sm-3 pull-right">
-							<label class="checkbox">
-								<input type="checkbox" id="isStaff" ng-model="formData.isStaff">
-							</label>
-						</div>
-						<label class="control-label col-sm-3" for="isStaff">{{ 'label.input.isStaff' | translate }}</label>
 					</div>
 				</div>
 	        </div>
@@ -87,7 +98,14 @@
 								   late-Validate/>
 							<form-validate valattributeform="editclientform" valattribute="lastname"/>
 						</div>
-					</div>
+						<label class="control-label col-sm-3">{{ 'label.input.surname' | translate }}:<span
+							class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase" />
+							<form-validate valattributeform="editclientform" valattribute="surname"/>
+						</div>
+				</div>
 				</div>
 	        </div>
 			<div data-ng-switch on="showNonPersonOptions">
@@ -104,25 +122,7 @@
 					</div>
 				</div>
 			</div>
-	        <div class="form-group">
-	            <label class="control-label col-sm-3">{{ 'label.input.accno' | translate }}:</label>
-	
-	            <div class="col-sm-3">
-	                <input id="accountNo" type="text" ng-model="formData.accountNo" class="form-control" disabled="disabled">
-	            </div>
-	        </div>
-			<div class="form-group">
-			    <label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}:</label>
-			
-			    <div class="col-sm-3">
-			        <input id="externalId" type="text" ng-model="formData.externalId" class="form-control uppercase">
-				</div>
-			    <label class="control-label col-sm-3">{{ 'label.input.uniqueId' | translate }}:</label>
-			
-			    <div class="col-sm-3">
-			        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
-			    </div>
-			</div>
+
 	        <div class="form-group">
 	            <label class="control-label col-sm-3" for="mobileNo">{{'label.input.mobilenumber' | translate}}</label>
 	

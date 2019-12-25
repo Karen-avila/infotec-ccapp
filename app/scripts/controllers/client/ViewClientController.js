@@ -122,7 +122,6 @@
                     return '';
                 }
                 if (typeof data != "undefined") {
-                    console.log(JSON.stringify(data));
                     if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
                         return data.value.value + ' (' + data.value.score + ')';
                     } else {
@@ -622,8 +621,6 @@
                                     var row = {};
                                     row.key = data.columnHeaders[i].columnName;
                                     row.value = data.data[0].row[i];
-                                    console.log(JSON.stringify(data.data[0].row[i]));
-
                                     datatabledetail.singleRow.push(row);
                                 }
                             }

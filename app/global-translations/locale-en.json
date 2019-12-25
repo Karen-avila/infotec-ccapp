@@ -1460,6 +1460,7 @@
   "label.input.closedondate": "Closed on",
   "label.input.loanofficerunassigneddate": "Unassigned on",
   "label.input.paymenttype": "Payment type",
+	"label.input.instrumenttype": "Channel",
   "label.input.actions": "Actions",
   "label.input.linksavings": "Link savings",
   "label.input.installment": "Select Installment",

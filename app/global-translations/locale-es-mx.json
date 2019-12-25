@@ -1410,6 +1410,7 @@
 	"label.input.closedondate": "Cerrado el",
 	"label.input.loanofficerunassigneddate": "Desasignado el",
 	"label.input.paymenttype": "Tipo de pago",
+	"label.input.instrumenttype": "Medio",
 	"label.input.actions": "Acciones",
 	"label.input.linksavings": "Ahorros de enlace",
 	"label.input.installment": "Seleccionar entrega",
