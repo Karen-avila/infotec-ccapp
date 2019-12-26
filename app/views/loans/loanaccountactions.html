@@ -8,7 +8,7 @@
     <wizard on-finish="submitDatatable()" current-step="step" class="card well">
         <wz-step wz-title="{{ title | translate}}">
             <form class="form-horizontal" name="loanactionform" novalidate="">
-                <div>
+                <fielset>
                     <div ng-show="submittedDatatables.length > 0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
                             has been made successfully. If the inputs are changed, the datatable entries will be
@@ -187,27 +187,34 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
-                                <select id="fundId" ng-model="formData.fundId" class="form-control"
-                                class="form-control" required
-                                ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
-                                <option value="">{{'label.selectfund' | translate}}</option>
+                                <select id="fundId" ng-model="formData.fundId" class="form-control" class="form-control"
+                                    required ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
+                                    <option value="">{{'label.selectfund' | translate}}</option>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="action == 'repayment'">
-                        <label class="control-label col-sm-3" for="channelId">{{ 'label.input.instrumenttype' | translate}}</label>
-                        <div class="col-sm-6">
-                            <select id="channelId" ng-model="formData.channelId" class="form-control"
-                                ng-options="channel.id as channel.name for channel in channelOptions"
-                                value="{{channel.id}}"></select>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3"
+                                for="channelId">{{ 'label.input.instrumenttype' | translate}}</label>
+                            <div class="col-sm-6">
+                                <select id="channelId" ng-model="formData.channelId" class="form-control"
+                                    ng-options="channel.id as channel.name for channel in channelOptions"
+                                    value="{{channel.id}}"></select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="action == 'repayment'">
-                        <label class="control-label col-sm-3" for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
-                        <div class="col-sm-6">
-                            <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
-                                ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-                                value="{{paymentType.id}}"></select>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3"
+                                for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
+                            <div class="col-sm-6">
+                                <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
+                                    ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
+                                    value="{{paymentType.id}}"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.solidarity' | translate}}</label>
+                            <div class="col-sm-3">
+                                <input id="activeCheckbox" type="checkbox" ng-model="formData.isSolidarity">
+                            </div>
                         </div>
                     </div>
 
@@ -334,7 +341,8 @@
                         </tbody>
                     </table>
                     <div class="">
-                        <button id="save1" wz-next class="btn btn-sm btn-primary pull-right" ng-show="isEntityDatatables">
+                        <button id="save1" wz-next class="btn btn-sm btn-primary pull-right"
+                            ng-show="isEntityDatatables">
                             {{'label.button.proceed' | translate}}
                         </button>
                         <div ng-hide="isEntityDatatables">
@@ -342,8 +350,7 @@
                                 <label
                                     class="control-label col-sm-2 col-md-offset-10">{{ 'label.areyousure' | translate}}</label>
                             </div>
-                            <div class="col-md-8 pull-right"
-                                ng-show="showDelete || showwaiveforspecicficduedate">
+                            <div class="col-md-8 pull-right" ng-show="showDelete || showwaiveforspecicficduedate">
                                 <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
                             translate}}
                                 </button>
@@ -353,8 +360,7 @@
                             translate}}
                                 </button>
                             </div>
-                            <div class="col-md-8 pull-right"
-                                ng-hide="showDelete || showwaiveforspecicficduedate">
+                            <div class="col-md-8 pull-right" ng-hide="showDelete || showwaiveforspecicficduedate">
                                 <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{ 'label.button.cancel' |
                             translate}}
                                 </button>
@@ -365,7 +371,7 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
+                </fielset>
             </form>
         </wz-step>
         <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables"

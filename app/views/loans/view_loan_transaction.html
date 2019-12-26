@@ -31,8 +31,8 @@
             <div class="table-responsive">
                 <table class="table" width="100%">
                     <tr>
-                        <th width="20%">{{ 'label.heading.id' | translate}}</th>
-                        <td width="80%">{{transaction.id}}</td>
+                        <th width="30%">{{ 'label.heading.id' | translate}}</th>
+                        <td width="70%">{{transaction.id}}</td>
                     </tr>
                     <tr>
                         <th>{{ 'label.heading.type' | translate}}</th>
@@ -54,8 +54,8 @@
                 </table>
                 <table class="table" width="100%" ng-show="transaction.paymentDetailData">
                     <tr>
-                        <td width="20%"><strong>{{ 'label.heading.paymentdetails' | translate}}</strong></td>
-                        <td width="80%"></td>
+                        <td width="30%"><strong>{{ 'label.heading.paymentdetails' | translate}}</strong></td>
+                        <td width="70%"></td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.paymentType">
                         <th>{{ 'label.heading.paymenttype' | translate}}</th>
@@ -80,6 +80,14 @@
                     <tr ng-show="transaction.paymentDetailData.bankNumber">
                         <th>{{ 'label.heading.banknumber' | translate}}</th>
                         <td>{{transaction.paymentDetailData.bankNumber}}</td>
+                    </tr>
+                    <tr ng-show="transaction.paymentDetailData.channel">
+                        <th>{{ 'label.heading.channel' | translate}}</th>
+                        <td>{{transaction.paymentDetailData.channel.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'label.heading.isSolidarity' | translate}}</th>
+                        <td>{{transaction.paymentDetailData.isSolidarity | translate}}</td>
                     </tr>
                 </table>
             </div>
