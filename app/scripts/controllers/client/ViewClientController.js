@@ -367,6 +367,21 @@
                     controller: UploadSigCtrl
                 });
             };
+            scope.reports = function () {
+                $uibModal.open({
+                    templateUrl: 'reporte.html',
+                    controller: ReporteController
+                });
+            };
+            
+            var ReporteController=function (){
+            var aux=angular.copy(routeParams);
+            routeParams.name='BoletaDePago';
+            routeParams.type='Jasper';
+            routeParams.reportId=189;
+            console.log(aux);	
+            };
+            
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {
@@ -391,6 +406,31 @@
                     $uibModalInstance.dismiss('cancel');
                 };
             };
+            
+//            var RunReportsController = function ($scope, $uibModalInstance) {
+//                $scope.upload = function (file) {
+//                    if (file) {
+//                        Upload.upload({
+//                            url: $rootScope.hostUrl + API_VERSION + '/clients/' + routeParams.id + '/documents',
+//                            data: {
+//                                name: 'clientSignature',
+//                                description: 'client signature'
+//                            },
+//                            file: file
+//                        }).then(function (imageData) {
+//                            // to fix IE not refreshing the model
+//                            if (!scope.$$phase) {
+//                                scope.$apply();
+//                            }
+//                            $uibModalInstance.close('upload');
+//                            route.reload();
+//                        });
+//                    }
+//                };
+//                $scope.cancel = function () {
+//                    $uibModalInstance.dismiss('cancel');
+//                };
+//            };
 
             scope.deleteSig = function () {
                 $uibModal.open({

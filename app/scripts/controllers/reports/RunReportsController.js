@@ -332,7 +332,9 @@
                             scope.hideChart = true;
 
                             var reportURL = $rootScope.hostUrl + API_VERSION + "/runreports/" + encodeURIComponent(scope.reportName);
-                            reportURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier + "&locale=" + scope.optlang.code + "&dateFormat=" + scope.df;
+                            reportURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier + 
+                            "&locale=" + ((scope.optlang==undefined||scope.optlang==null)?"es-mx":scope.optlang.code) 
+                            		+ "&dateFormat=" +((scope.df==undefined||scope.df==null)?"dd MMMM yyyy":scope.df);
 
                             var inQueryParameters = buildReportParms();
                             if (inQueryParameters > "") reportURL += "&" + inQueryParameters;
