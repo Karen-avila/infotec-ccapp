@@ -13,6 +13,7 @@
             scope.editMeeting = false;
             scope.isGroupMembersAvailable = false;
             scope.datatableLoaded = false;
+            scope.repSelect={};
             scope.routeToLoan = function (id) {
                 location.path('/viewloanaccount/' + id);
             };
@@ -265,6 +266,21 @@
                     return '';
                 }
             }
+            
+            scope.reportsGroup = function (rep) {
+                $uibModal.open({
+                    templateUrl: 'reporte.html',
+                    controller: ReporteControllerGroup(rep)
+                });
+            };
+            
+            var ReporteControllerGroup=function (rep){
+            var aux=angular.copy(routeParams);
+            routeParams.name= rep.report_name;
+            routeParams.type='Jasper';
+            routeParams.reportId= rep.id;
+            console.log(aux);	
+            };
 
             scope.deleteAll = function (apptableName, entityId) {
                 resourceFactory.DataTablesResource.delete({datatablename: apptableName, entityId: entityId, genericResultSet: 'true'}, {}, function (data) {

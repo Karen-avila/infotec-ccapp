@@ -372,18 +372,18 @@
                     controller: UploadSigCtrl
                 });
             };
-            scope.reports = function () {
+            scope.reportsClient = function (rep) {
                 $uibModal.open({
                     templateUrl: 'reporte.html',
-                    controller: ReporteController
+                    controller: ReporteControllerClient(rep)
                 });
             };
             
-            var ReporteController=function (){
+            var ReporteControllerClient=function (rep){
             var aux=angular.copy(routeParams);
-            routeParams.name='BoletaDePago';
+            routeParams.name= rep.report_name;
             routeParams.type='Jasper';
-            routeParams.reportId=189;
+            routeParams.reportId= rep.id;
             console.log(aux);	
             };
             

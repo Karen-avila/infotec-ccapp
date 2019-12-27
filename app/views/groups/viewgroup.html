@@ -15,6 +15,12 @@
     	    <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' 	| translate}}</button>
     	</div>
 	</script>
+	<script type="text/ng-template" id="reporte.html">
+	<div data-ng-include="'views/reports/run_reports_from.html'"></div>  
+	<div class="modal-body ">
+	<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+	</div>
+	</script>
 	<script type="text/ng-template" id="groupunassignstaff.html">
     	<div class="modal-header silver">
     	    <h3 class="bolder">{{'label.heading.unassignstaff' | translate}}</h3>
@@ -78,7 +84,7 @@
 									</a>
 									<ul class="dropdown-menu dropdown-menu-right">
 										<li ng-repeat="rep in groupReports">
-											<a>{{rep.report_name}}</a>
+											<a data-ng-click="reportsGroup(rep)">{{rep.report_name}}</a>
 										</li>
 										
 									</ul>

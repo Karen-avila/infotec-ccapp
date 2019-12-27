@@ -257,7 +257,7 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right">
-								<li ng-repeat="rep in clientReports">
+								<li data-ng-click="reportsClient(rep)" ng-repeat="rep in clientReports">
 									<a>{{rep.report_name}}</a>
 								</li>
 							</ul>
