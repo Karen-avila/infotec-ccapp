@@ -4,6 +4,7 @@
             scope.group = [];
             scope.template = [];
             scope.formData = {};
+            scope.groupReports = [];
             scope.choice = 0;
             scope.staffData = {};
             scope.openLoan = true;
@@ -34,10 +35,13 @@
                         scope.editMeeting = true;
                     }
                 }
-
+                
             });
             resourceFactory.runReportsResource.get({reportSource: 'GroupSummaryCounts', genericResultSet: 'false', R_groupId: routeParams.id}, function (data) {
                 scope.summary = data[0];
+            });
+            resourceFactory.runReportsResource.get({ reportSource: 'GroupReports', genericResultSet: 'false', R_groupId: routeParams.id }, function (data) {
+                scope.groupReports = data;
             });
             resourceFactory.groupAccountResource.get({groupId: routeParams.id}, function (data) {
                 scope.groupAccounts = data;

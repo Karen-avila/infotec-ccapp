@@ -73,6 +73,18 @@
 								</a>
 								<span uib-dropdown class="btn-group" on-toggle="toggled(open)">
 									<a class="btn btn-primary " uib-dropdown-toggle>
+										{{ 'label.button.reports'| translate }}
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li ng-repeat="rep in groupReports">
+											<a>{{rep.report_name}}</a>
+										</li>
+										
+									</ul>
+								</span>
+								<span uib-dropdown class="btn-group" on-toggle="toggled(open)">
+									<a class="btn btn-primary " uib-dropdown-toggle>
 										{{ 'label.button.more' | translate}}
 										<span class="caret"></span>
 									</a>

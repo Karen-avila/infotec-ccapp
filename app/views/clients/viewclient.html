@@ -183,7 +183,7 @@
 			</div>
 			<uib-tabset class="scrollable" tabset-name="clientTabset" scrollable persistent-tab>
 				<uib-tab heading="{{'label.heading.general' | translate}}">
-					<div class="col-md-11 col-sm-11 btn-group row">
+					<div class="col-md-12 col-sm-12 btn-group row">
 						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-sm btn-primary btn-offset"
 							has-permission='{{button.taskPermissionName}}'
 							ng-repeat="button in buttonsArray.singlebuttons">
@@ -201,6 +201,17 @@
 							data-ng-show="client.staffId" has-permission='UNASSIGNSTAFF_CLIENT'><i
 								class="fa fa-user "></i>{{"label.button.unassignstaff" | translate}}
 						</button>
+						<span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)">
+							<a class="btn btn-sm btn-primary" uib-dropdown-toggle>
+								{{ 'label.button.reports'| translate }}
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li ng-repeat="rep in clientReports">
+									<a>{{rep.report_name}}</a>
+								</li>
+							</ul>
+						</span>
 						<span uib-dropdown ng-show="buttonsArray.options" class="btn-group dropdown"
 							on-toggle="toggled(open)">
 							<a uib-dropdown-toggle class="btn btn-sm btn-primary">
