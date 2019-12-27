@@ -166,8 +166,51 @@
 	</script>
 	<div class="card">
 		<div class="content">
-			<div class="toolbar">
-				<h3 class="client-title">
+			<div class="toolbar" style="height: 100px;">
+			
+				<div class="col-sm-2 col-md-2">
+					<div class="row center" style="margin-left: 0px;">
+						<img ng-hide="client.imagePresent" ng-src="./images/client-image-placeholder.png"
+							alt="Avatar" style="height: 60px;">
+						<img ng-show="client.imagePresent" ng-src="{{image}}" alt="Avatar"
+							data-ng-click="showPicture()" title="{{'label.zoom' | translate}}" style="height: 60px;">
+						<div class="btn-group-xs center">
+							<button type="button" class="btn btn-xs btn-primary" data-ng-click="uploadPic()"
+								has-permission='CREATE_CLIENTIMAGE'
+								uib-tooltip="{{'label.button.uploadpic' | translate}}">
+								<i class="fa fa-upload"></i>
+							</button>
+							<button type="button" class="btn btn-xs btn-primary" data-ng-click="capturePic()"
+								has-permission='CREATE_CLIENTIMAGE'
+								uib-tooltip="{{'label.button.capturepic' | translate}}">
+								<i class="fa fa-camera"></i>
+							</button>
+							<button type="button" class="btn btn-xs btn-primary" ng-show="client.imagePresent"
+								data-ng-click="deletePic()" has-permission='DELETE_CLIENTIMAGE'
+								uib-tooltip="{{'label.button.deletepic' | translate}}">
+								<i class="fa fa-trash-o"></i>
+							</button>
+						</div>
+						<div ng-show="signature_url" class="show-large-picture center"
+							data-ng-click="showSignature()"><a>{{'label.showClientSignature' | translate}}</a>
+						</div>
+						<div ng-hide="signature_url" class="show-large-picture center"
+							data-ng-click="showWithoutSignature()">
+							<a>{{'label.showClientSignature' | translate}}</a></div>
+					</div>
+					<div data-ng-show="client.status.value=='Closed'" class="row center">
+						<h3>{{'label.heading.clientclosed' | translate}}</h3>
+					</div>
+					<div data-ng-show="client.status.value=='Rejected'" class="row center">
+						<h3>{{'label.heading.clientrejected' | translate}}</h3>
+					</div>
+					<div data-ng-show="client.status.value=='Withdrawn'" class="row center">
+						<h3>{{'label.heading.withdrawn' | translate}}</h3>
+					</div>
+				</div>
+					
+			
+				<h3 class="client-title" style="display: inline-block;">
 					<i class="fa fa-circle {{client.status.code | StatusLookup}}" uib-tooltip="{{client.status.value}}"
 						uib-tooltip-placement="top"></i>
 					<small ng-if="client.subStatus.description">
@@ -260,49 +303,7 @@
 					<br>
 					<br>
 					<div class="row">
-						<div class="col-sm-3 col-md-3">
-							<div class="thumbnail card row center" style="margin-left: 0px;">
-								<h4><strong>{{client.displayName}}</strong></h4>
-								<img ng-hide="client.imagePresent" ng-src="./images/client-image-placeholder.png"
-									alt="Avatar">
-								<img ng-show="client.imagePresent" ng-src="{{image}}" alt="Avatar"
-									data-ng-click="showPicture()" title="{{'label.zoom' | translate}}">
-								<div class="btn-group-xs center">
-									<button type="button" class="btn btn-sm btn-primary" data-ng-click="uploadPic()"
-										has-permission='CREATE_CLIENTIMAGE'
-										uib-tooltip="{{'label.button.uploadpic' | translate}}">
-										<i class="fa fa-upload"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-primary" data-ng-click="capturePic()"
-										has-permission='CREATE_CLIENTIMAGE'
-										uib-tooltip="{{'label.button.capturepic' | translate}}">
-										<i class="fa fa-camera"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-primary" ng-show="client.imagePresent"
-										data-ng-click="deletePic()" has-permission='DELETE_CLIENTIMAGE'
-										uib-tooltip="{{'label.button.deletepic' | translate}}">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</div>
-								<div ng-show="signature_url" class="show-large-picture center"
-									data-ng-click="showSignature()"><a>{{'label.showClientSignature' | translate}}</a>
-								</div>
-								<div ng-hide="signature_url" class="show-large-picture center"
-									data-ng-click="showWithoutSignature()">
-									<a>{{'label.showClientSignature' | translate}}</a></div>
-							</div>
-							<div data-ng-show="client.status.value=='Closed'" class="row center">
-								<h3>{{'label.heading.clientclosed' | translate}}</h3>
-							</div>
-							<div data-ng-show="client.status.value=='Rejected'" class="row center">
-								<h3>{{'label.heading.clientrejected' | translate}}</h3>
-							</div>
-							<div data-ng-show="client.status.value=='Withdrawn'" class="row center">
-								<h3>{{'label.heading.withdrawn' | translate}}</h3>
-							</div>
-						</div>
-						<br>
-						<div class="col-sm-9 col-md-9">
+						<div class="col-sm-12 col-md-12">
 							<br>
 							<div>
 								<api-validate></api-validate>
@@ -1010,12 +1011,12 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12 col-md-12">
+						<div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
 							<table class="table-minified">
 								<tbody>
-									<tr ng-repeat="datatabledetail in datatabledetails" 
+									<tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
 										has-permission='READ_{{datatabledetail.registeredTableName}}'>
-										<td>
+										<td style="display: block;">
 											<div>
 												<table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
 													<tbody>
