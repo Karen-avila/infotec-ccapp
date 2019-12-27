@@ -231,8 +231,13 @@
                     ]
                 };
                 scope.buttonsArray.singlebuttons = scope.buttons;
+                
                 resourceFactory.runReportsResource.get({ reportSource: 'ClientSummary', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
                     scope.client.ClientSummary = data[0];
+                });
+                
+                resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
+                    scope.clientReports = data;
                 });
             });
             scope.deleteClient = function () {
