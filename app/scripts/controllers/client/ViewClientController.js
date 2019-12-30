@@ -375,18 +375,26 @@
             scope.reportsClient = function (rep) {
                 $uibModal.open({
                     templateUrl: 'reporte.html',
-                    controller: ReporteControllerClient(rep)
+                    controller: function ($scope, $uibModalInstance){
+                        var aux=angular.copy(routeParams);
+                        routeParams.name= rep.report_name;
+                        routeParams.type='Jasper';
+                        routeParams.reportId= rep.id;
+                        routeParams.clientAccountNo=scope.client.accountNo;
+                        var aux2=angular.copy(routeParams);
+                        console.log(aux);	
+                        console.log(aux2);
+                        $scope.cancel = function () {
+                        	$uibModalInstance.dismiss('cancel');
+                        	routeParams=aux;
+                        	console.log(routeParams);	
+                        }
+                        },
+                        backdrop: 'static',
+                        keyboard: false
                 });
             };
-            
-            var ReporteControllerClient=function (rep){
-            var aux=angular.copy(routeParams);
-            routeParams.name= rep.report_name;
-            routeParams.type='Jasper';
-            routeParams.reportId= rep.id;
-            console.log(aux);	
-            };
-            
+                       
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {

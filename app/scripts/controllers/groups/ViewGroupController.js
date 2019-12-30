@@ -270,18 +270,26 @@
             scope.reportsGroup = function (rep) {
                 $uibModal.open({
                     templateUrl: 'reporte.html',
-                    controller: ReporteControllerGroup(rep)
+                    controller: function ($scope, $uibModalInstance){
+                        var aux=angular.copy(routeParams);
+                        routeParams.name= rep.report_name;
+                        routeParams.type='Jasper';
+                        routeParams.reportId= rep.id;
+                        routeParams.groupAccountNo=scope.group.accountNo;
+                        var aux2=angular.copy(routeParams);
+                        console.log(aux);	
+                        console.log(aux2);	
+                        $scope.cancel = function () {
+                        	$uibModalInstance.dismiss('cancel');
+                        	routeParams=aux;
+                        	 console.log(routeParams);	
+                        }
+                        },
+                        backdrop: 'static',
+                        keyboard: false
                 });
             };
-            
-            var ReporteControllerGroup=function (rep){
-            var aux=angular.copy(routeParams);
-            routeParams.name= rep.report_name;
-            routeParams.type='Jasper';
-            routeParams.reportId= rep.id;
-            console.log(aux);	
-            };
-
+                        
             scope.deleteAll = function (apptableName, entityId) {
                 resourceFactory.DataTablesResource.delete({datatablename: apptableName, entityId: entityId, genericResultSet: 'true'}, {}, function (data) {
                     route.reload();
