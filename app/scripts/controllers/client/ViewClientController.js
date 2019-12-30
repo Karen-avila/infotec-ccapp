@@ -381,13 +381,10 @@
                         routeParams.type='Jasper';
                         routeParams.reportId= rep.id;
                         routeParams.clientAccountNo=scope.client.accountNo;
-                        var aux2=angular.copy(routeParams);
-                        console.log(aux);	
-                        console.log(aux2);
                         $scope.cancel = function () {
                         	$uibModalInstance.dismiss('cancel');
                         	routeParams=aux;
-                        	console.log(routeParams);	
+                        	 route.reload();	
                         }
                         },
                         backdrop: 'static',
