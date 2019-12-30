@@ -70,6 +70,13 @@
             }
 
             function getSuccuessFunction(paramData) {
+//            	var pr = (routeParams.clientAccountNo=!undefined&&routeParams.clientAccountNo=!null)?routeParams.clientAccountNo
+//            			:((routeParams.groupAccountNo=!undefined&&routeParams.groupAccountNo=!null)?routeParams.groupAccountNo:null);
+//            	
+            	var pr =  (routeParams.clientAccountNo == null ||  routeParams.clientAccountNo == undefined)?
+            			  ((routeParams.groupAccountNo == null || routeParams.groupAccountNo == undefined)?null:routeParams.groupAccountNo):routeParams.clientAccountNo;
+            	
+            	
                 var tempDataObj = new Object();
                 var successFunction = function (data) {
                     var selectData = [];
@@ -89,6 +96,16 @@
                         }
                         paramData.selectOptions = selectData;
                         scope.reportParams.push(paramData);
+                    }
+                    if(pr!=null){
+                    	for (var j in scope.reportParams) {
+                            var nombReport = scope.reportParams[j].inputName;
+                            for(var i in scope.reportParams[j].selectOptions){
+                            if(scope.reportParams[j].selectOptions[i].id == pr){
+                            scope.formData[nombReport]=scope.reportParams[j].selectOptions[i].id;
+                            }
+                            }
+                            }	
                     }
                 };
                 return successFunction;
