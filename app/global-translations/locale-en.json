@@ -2060,6 +2060,7 @@
   "label.on": "on",
   "label.annaulfeedueon": "Annual fee (due on)",
   "label.selectfieldofficer": "Select field officer",
+	"label.selectachannel": "Select a Channel",
   "label.minimumdepositterm.and.inmultiplesof": "Minimum Deposit Term",
   "label.maximumdepositterm": "Maximum Deposit Term",
   "label.interestfreetoperiod": "Period when interest will not be paid",

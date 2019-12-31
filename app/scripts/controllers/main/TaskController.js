@@ -66,7 +66,7 @@
             }
             scope.clientApprovalAllCheckBoxesClicked = function (officeName) {
                 var newValue = !scope.clientApprovalAllCheckBoxesMet(officeName);
-                if (!angular.isUndefined(scope.groupedClients[officeName])) {
+                if (!angular.isUndefined(scope.groupedClients) && !angular.isUndefined(scope.groupedClients[officeName])) {
                     for (var i = scope.groupedClients[officeName].length - 1; i >= 0; i--) {
                         scope.approveData[scope.groupedClients[officeName][i].id] = newValue;
                     };
@@ -74,7 +74,7 @@
             }
             scope.clientApprovalAllCheckBoxesMet = function (officeName) {
                 var checkBoxesMet = 0;
-                if (!angular.isUndefined(scope.groupedClients[officeName])) {
+                if (!angular.isUndefined(scope.groupedClients) && !angular.isUndefined(scope.groupedClients[officeName])) {
                     _.each(scope.groupedClients[officeName], function (data) {
                         if (_.has(scope.approveData, data.id)) {
                             if (scope.approveData[data.id] == true) {
@@ -425,6 +425,7 @@
 
             resourceFactory.clientResource.getAllClients({ sqlSearch: 'c.status_enum=100' }, function (data) {
                 scope.groupedClients = _.groupBy(data.pageItems, "officeName");
+                scope.pendingClientApproval = data.pageItems;
             });
 
             resourceFactory.groupResource.getAllGroups({ sqlSearch: 'g.status_enum=100' }, function (data) {
