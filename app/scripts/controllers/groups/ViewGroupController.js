@@ -4,12 +4,16 @@
             scope.group = [];
             scope.template = [];
             scope.formData = {};
+            scope.groupReports = [];
             scope.choice = 0;
+            scope.datatabledetails = [];
             scope.staffData = {};
             scope.openLoan = true;
             scope.openSaving = true;
             scope.editMeeting = false;
             scope.isGroupMembersAvailable = false;
+            scope.datatableLoaded = false;
+            scope.repSelect={};
             scope.routeToLoan = function (id) {
                 location.path('/viewloanaccount/' + id);
             };
@@ -34,10 +38,13 @@
                         scope.editMeeting = true;
                     }
                 }
-
+                
             });
             resourceFactory.runReportsResource.get({reportSource: 'GroupSummaryCounts', genericResultSet: 'false', R_groupId: routeParams.id}, function (data) {
                 scope.summary = data[0];
+            });
+            resourceFactory.runReportsResource.get({ reportSource: 'GroupReports', genericResultSet: 'false', R_groupId: routeParams.id }, function (data) {
+                scope.groupReports = data;
             });
             resourceFactory.groupAccountResource.get({groupId: routeParams.id}, function (data) {
                 scope.groupAccounts = data;
@@ -173,40 +180,116 @@
 
             resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_group'}, function (data) {
                 scope.groupdatatables = data;
+                if(scope.datatableLoaded == false) {
+                	for(var i in data){
+                		if(data[i].registeredTableName){
+                			scope.dataTableChange(data[i].registeredTableName);
+                		}
+                	}
+                	scope.datatableLoaded = true;
+                }
             });
 
-            scope.dataTableChange = function (datatable) {
-                resourceFactory.DataTablesResource.getTableDetails({datatablename: datatable.registeredTableName, entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
-                    scope.datatabledetails = data;
-                    scope.datatabledetails.isData = data.data.length > 0 ? true : false;
-                    scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
-                    scope.showDataTableAddButton = !scope.datatabledetails.isData || scope.datatabledetails.isMultirow;
-                    scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
-                    scope.singleRow = [];
+            scope.dataTableChange = function (registeredTableName) {
+                resourceFactory.DataTablesResource.getTableDetails({
+                	datatablename: registeredTableName,
+                	entityId: routeParams.id, genericResultSet: 'true'
+                }, function (data) {
+                	var datatabledetail = data;
+                	datatabledetail.registeredTableName = registeredTableName;
+                	datatabledetail.isData = false;
+                	if (data.data) {
+                        datatabledetail.isData = data.data.length > 0 ? true : false;
+                    }
+                	datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
+                    datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
+                    datatabledetail.singleRow = [];
+                    datatabledetail.dataTableScoring = 0;
                     for (var i in data.columnHeaders) {
-                        if (scope.datatabledetails.columnHeaders[i].columnCode) {
-                            for (var j in scope.datatabledetails.columnHeaders[i].columnValues) {
+                        if (datatabledetail.columnHeaders[i].columnCode) {
+                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
-                                    if (data.data[k].row[i] == scope.datatabledetails.columnHeaders[i].columnValues[j].id) {
-                                        data.data[k].row[i] = scope.datatabledetails.columnHeaders[i].columnValues[j].value;
+                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
+                                        data.data[k].row[i] = {
+                                        		value: datatabledetail.columnHeaders[i].columnValues[j].value,
+                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
+                                        }
+                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
+                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    if (scope.datatabledetails.isData) {
+                    if (datatabledetail.isData) {
                         for (var i in data.columnHeaders) {
-                            if (!scope.datatabledetails.isMultirow) {
-                                var row = {};
-                                row.key = data.columnHeaders[i].columnName;
-                                row.value = data.data[0].row[i];
-                                scope.singleRow.push(row);
+                            if (!datatabledetail.isMultirow) {
+                            	if (data.columnHeaders[i].columnName != "group_id") {
+                            		var row = {};
+                            		row.key = data.columnHeaders[i].columnName;
+                            		row.value = data.data[0].row[i];
+                            		datatabledetail.singleRow.push(row);                            		
+                            	}
                             }
                         }
                     }
+                    scope.datatabledetails.push(datatabledetail);
                 });
             };
+            
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
+                }               
+                return tableName + '.' + columnName;
+            }
 
+            scope.getDatatableValue = function (data) {
+                if (data === null) {
+                    return '';
+                }
+                if (typeof data != "undefined") {
+                    if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
+                        return data.value.value + ' (' + data.value.score + ')';
+                    } else {
+                        if (typeof data.value != "undefined" && data.value != null) {
+                            return data.value;
+                        } else {
+                            return '';
+                        }
+                    }
+                    return data;
+                } else {
+                    return '';
+                }
+            }
+            
+            scope.reportsGroup = function (rep) {
+                $uibModal.open({
+                    templateUrl: 'reporte.html',
+                    controller: function ($scope, $uibModalInstance){
+                        var aux=angular.copy(routeParams);
+                        routeParams.name= rep.report_name;
+                        routeParams.type='Jasper';
+                        routeParams.reportId= rep.id;
+                        routeParams.groupAccountNo=scope.group.accountNo;
+                        var aux2=angular.copy(routeParams);
+                        console.log(aux);	
+                        console.log(aux2);	
+                        $scope.cancel = function () {
+                        	$uibModalInstance.dismiss('cancel');
+                        	routeParams=aux;
+                        	 console.log(routeParams);	
+                        }
+                        },
+                        backdrop: 'static',
+                        keyboard: false
+                });
+            };
+                        
             scope.deleteAll = function (apptableName, entityId) {
                 resourceFactory.DataTablesResource.delete({datatablename: apptableName, entityId: entityId, genericResultSet: 'true'}, {}, function (data) {
                     route.reload();

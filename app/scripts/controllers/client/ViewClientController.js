@@ -231,8 +231,13 @@
                     ]
                 };
                 scope.buttonsArray.singlebuttons = scope.buttons;
+                
                 resourceFactory.runReportsResource.get({ reportSource: 'ClientSummary', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
                     scope.client.ClientSummary = data[0];
+                });
+                
+                resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
+                    scope.clientReports = data;
                 });
             });
             scope.deleteClient = function () {
@@ -367,6 +372,29 @@
                     controller: UploadSigCtrl
                 });
             };
+            scope.reportsClient = function (rep) {
+                $uibModal.open({
+                    templateUrl: 'reporte.html',
+                    controller: function ($scope, $uibModalInstance){
+                        var aux=angular.copy(routeParams);
+                        routeParams.name= rep.report_name;
+                        routeParams.type='Jasper';
+                        routeParams.reportId= rep.id;
+                        routeParams.clientAccountNo=scope.client.accountNo;
+                        var aux2=angular.copy(routeParams);
+                        console.log(aux);	
+                        console.log(aux2);
+                        $scope.cancel = function () {
+                        	$uibModalInstance.dismiss('cancel');
+                        	routeParams=aux;
+                        	console.log(routeParams);	
+                        }
+                        },
+                        backdrop: 'static',
+                        keyboard: false
+                });
+            };
+                       
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {
@@ -391,6 +419,31 @@
                     $uibModalInstance.dismiss('cancel');
                 };
             };
+            
+//            var RunReportsController = function ($scope, $uibModalInstance) {
+//                $scope.upload = function (file) {
+//                    if (file) {
+//                        Upload.upload({
+//                            url: $rootScope.hostUrl + API_VERSION + '/clients/' + routeParams.id + '/documents',
+//                            data: {
+//                                name: 'clientSignature',
+//                                description: 'client signature'
+//                            },
+//                            file: file
+//                        }).then(function (imageData) {
+//                            // to fix IE not refreshing the model
+//                            if (!scope.$$phase) {
+//                                scope.$apply();
+//                            }
+//                            $uibModalInstance.close('upload');
+//                            route.reload();
+//                        });
+//                    }
+//                };
+//                $scope.cancel = function () {
+//                    $uibModalInstance.dismiss('cancel');
+//                };
+//            };
 
             scope.deleteSig = function () {
                 $uibModal.open({
