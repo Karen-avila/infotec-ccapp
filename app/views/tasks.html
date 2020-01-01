@@ -234,13 +234,13 @@
                                                 data-ng-model="approveData[client.id]" />
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)"></td>
-                                            {{client.officeName}}
-                                        </td>
-                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
-                                            {{client.uniqurId}}
+                                            {{client.officeId}}
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)">
                                             {{client.displayName}}
+                                        </td>
+                                        <td class="pointer" data-ng-click="routeToClient(client.id)">
+                                            {{client.uniqueId}}
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)">
                                             {{client.accountNo}}
@@ -317,19 +317,19 @@
                                                 <input type="checkbox" ng-model="loanTemplate[record.loan.id]">
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
-                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)">{{record.office.name}}</td>
-                                            <td ng-if="!record.individual" class="pointer" data-ng-click="showGroupDetail(record.client.id)">
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'a')">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual" class="pointer" data-ng-click="showGroupDetail(record.client.id, 'a')">
                                                     <i class="fa fa-users"></i>&nbsp;<a href='#!/viewgroup/{{record.client.id}}'>{{record.client.name}}</a>
                                             </td>
                                             <td ng-if="record.individual" class="pointer">
                                                 <i class="fa fa-user"></i>&nbsp;<a href='#!/viewclient/{{record.client.id}}'>{{record.client.name}}</a>
                                             </td>
                                             <td class="pointer">{{record.loan.productName}} </td>
-                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)"></td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'a')"></td>
                                             <td ng-if="record.individual" class="pointer"><a
                                                     href='#!/viewloanaccount/{{record.loan.id}}'>{{record.loan.accountNo}}</a>
                                             </td>
-                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id)">{{record.loan.amount | number}} ({{record.loans.length}})</td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'a')">{{record.loan.amount | number}} ({{record.loans.length}})</td>
                                             <td ng-if="record.individual">{{record.loan.amount | number}}</td>
                                             <td class="pointer">{{record.loan.loanPurposeName}}</td>
                                         </tr>
@@ -371,6 +371,7 @@
                                 </div>
                             </div>
                         </uib-tab>
+                        <!-- LOAN DISBURSAL -->
                         <uib-tab heading="{{'label.heading.loandisbursal' | translate}}" has-permission='READ_LOAN'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
@@ -430,21 +431,63 @@
                                         <tr class="graybg">
                                             <th><input type="checkbox" ng-click="loanDisbursalAllCheckBoxesClicked()"
                                                     ng-checked="loanDisbursalAllCheckBoxesMet()" /></th>
-                                            <th>{{'label.heading.client' | translate}}</th>
-                                            <th>{{'label.heading.loanaccountnum' | translate}}</th>
-                                            <th>{{'label.heading.loanproduct' | translate}}</th>
-                                            <th>{{'label.heading.principal' | translate}}</th>
+                                            <th>{{'label.heading.office' | translate}}</th>
+                                            <th>{{'label.heading.grouporclient' | translate}}</th>
+                                            <th>{{'label.heading.product' | translate}}</th>
+                                            <th>{{'label.heading.loan' | translate}}</th>
+                                            <th>{{'label.heading.amount' | translate}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr dir-paginate="loan in loans | filter : {status : { waitingForDisbursal :'true' }}| filter:filterText2 | itemsPerPage: itemsPerPage"
-                                            pagination-id="loan-disbursal">
-                                            <td><input type="checkbox" ng-model="loanDisbursalTemplate[loan.id]"></td>
-                                            <td><a href="#!/viewclient/{{loan.clientId}}">{{loan.clientName}}</a></td>
-                                            <td><a href="#!/viewloanaccount/{{loan.id}}">{{loan.accountNo}}</a></td>
-                                            <td><a href="#!/viewloanaccount/{{loan.id}}">{{loan.loanProductName}}</a>
+                                        <tr ng-repeat-start="record in pendingDisburse | filter:filterText1" class="{{record.individual ? '' : 'accordion-toggle'}}" 
+                                            data-toggle="collapse" data-target="#grp_d{{record.individual ? '' : record.client.id}}"
+                                            >
+                                            <td>
+                                                <input type="checkbox" ng-model="loanTemplate[record.loan.id]">
                                             </td>
-                                            <td>{{loan.principal | number}}</td>
+                                            <td ng-if="record.individual">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'd')">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual" class="pointer" data-ng-click="showGroupDetail(record.client.id, 'd')">
+                                                    <i class="fa fa-users"></i>&nbsp;<a href='#!/viewgroup/{{record.client.id}}'>{{record.client.name}}</a>
+                                            </td>
+                                            <td ng-if="record.individual" class="pointer">
+                                                <i class="fa fa-user"></i>&nbsp;<a href='#!/viewclient/{{record.client.id}}'>{{record.client.name}}</a>
+                                            </td>
+                                            <td class="pointer">{{record.loan.productName}} </td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'd')"></td>
+                                            <td ng-if="record.individual" class="pointer"><a
+                                                    href='#!/viewloanaccount/{{record.loan.id}}'>{{record.loan.accountNo}}</a>
+                                            </td>
+                                            <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'd')">{{record.loan.amount | number}} ({{record.loans.length}})</td>
+                                            <td ng-if="record.individual">{{record.loan.amount | number}}</td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="!record.individual">
+                                            <td colspan="7" ng-if="!record.individual" class="accordion-body collapse" id="grp_d{{record.client.id}}">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="graybg">
+                                                            <th></th>
+                                                            <th>{{'label.heading.office' | translate}}</th>
+                                                            <th colspan="2">{{'label.heading.grouporclient' | translate}}</th>
+                                                            <th>{{'label.heading.loan' | translate}}</th>
+                                                            <th>{{'label.heading.amount' | translate}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="loan in record.loans">
+                                                            <td></td>
+                                                            <td>{{record.office.name}}</td>
+                                                            <td  colspan="2" class="pointer">
+                                                                <a href='#!/viewclient/{{loan.client.id}}'>{{loan.client.name}}</a>
+                                                            </td>
+                                                            <td class="pointer"><a
+                                                                    href='#!/viewloanaccount/{{loan.id}}'>{{loan.accountNo}}</a>
+                                                            </td>
+                                                            <td class="pointer">{{loan.amount | number}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
