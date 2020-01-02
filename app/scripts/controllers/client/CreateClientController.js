@@ -52,6 +52,7 @@
                 scope.formData.officeId = scope.offices[0].id;
                 scope.savingproducts = data.savingProductOptions;
                 scope.genderOptions = data.genderOptions;
+                scope.birthPlaceOptions = data.birthPlaceOptions;
                 scope.clienttypeOptions = data.clientTypeOptions;
                 scope.clientClassificationOptions = data.clientClassificationOptions;
                 scope.clientNonPersonConstitutionOptions = data.clientNonPersonConstitutionOptions;
@@ -225,7 +226,37 @@
                 });
                 return scope.df;
             };
-
+            
+            scope.createCurpRfc=function (){
+            	if(scope.formData.firstname && scope.formData.lastname && scope.formData.surname && scope.first.dateOfBirth && scope.formData.genderId && scope.formData.birthPlaceId){
+            		var nombre=scope.formData.middlename?scope.formData.firstname+" "+scope.formData.middlename:scope.formData.firstname;
+            		var genero="";
+            		var lugarNacimiento="";
+            		for(var i in scope.genderIdOptions){
+            			if(scope.genderIdOptions[i].id===scope.formData.genderId){
+            				genero=scope.genderIdOptions[i].name;
+            				break;
+            			}
+            		}
+            		for(var i in scope.birthPlaceOptions){
+            			if(scope.birthPlaceOptions[i].id===scope.formData.birthPlaceId){
+            				lugarNacimiento=scope.birthPlaceOptions[i].name;
+            				break;
+            			}
+            		}
+            		var vcurp=generarCURP(nombre, scope.formData.lastname, scope.formData.surname, 
+            				dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"), genero, lugarNacimiento);
+            		scope.formData.uniqueId=vcurp;
+            		var vrfc=generarRFC(nombre, scope.formData.lastname, scope.formData.surname, 
+            				dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"));
+            		scope.formData.rfc=vrfc;
+            	}
+            };
+            
+            scope.$watch('first.dateOfBirth', function (value) {
+            	scope.createCurpRfc();
+            });
+            
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);
 

@@ -48,7 +48,10 @@
             'ng-scrollbar':'../bower_components/ng-scrollbar/dist/ng-scrollbar',
             'ng-scrollbar-css':'../bower_components/ng-scrollbar/dist/ng-scrollbar.css',
             'styles-css': '../styles/styles.css',
-            'ui-config': '../scripts/config/UIconfig.json'
+            'ui-config': '../scripts/config/UIconfig.json',
+            'moment': '../bower_components/moment/min/moment.min',
+            'CURPUtils': '../scripts/js/CURPUtils',
+            'RFCUtils': '../scripts/js/RFCUtils'
         },
         shim: {
             'selectize': {deps: ['jquery', 'microplugin', 'sifter']},
@@ -84,6 +87,9 @@
             'angular-wizard': {deps: ['angular', 'underscore']},
             'angular-utils-pagination': {deps: ['angular']},
             'ng-scrollbar': {deps: ['angular']},
+            'moment': {exports: 'moment'},
+            'CURPUtils': {deps: ['moment']},
+            'RFCUtils': {deps: ['moment']},
             'mifosX': {
                 deps: [
                     'jquery',
@@ -118,7 +124,10 @@
                     'webcam-directive',
                     'angular-wizard',
                     'angular-utils-pagination',
-                    'ng-scrollbar'
+                    'ng-scrollbar',
+                    'moment',
+                    'CURPUtils',
+                    'RFCUtils'
                 ],
                 exports: 'mifosX'
             }

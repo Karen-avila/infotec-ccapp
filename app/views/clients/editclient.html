@@ -11,23 +11,15 @@
 	        <legend>{{'label.heading.editclient' | translate}}</legend>
 	        <div class="form-group">
 	            <label class="control-label col-sm-3">{{ 'label.input.accno' | translate }}:</label>
-	
 	            <div class="col-sm-3">
 	                <input id="accountNo" type="text" ng-model="formData.accountNo" class="form-control" disabled="disabled">
 	            </div>
-			</div>
-			<div class="form-group">
-			    <label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}:</label>
-			
+	            <label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}:</label>
 			    <div class="col-sm-3">
 			        <input id="externalId" type="text" ng-model="formData.externalId" class="form-control uppercase">
 				</div>
-			    <label class="control-label col-sm-3">{{ 'label.input.uniqueId' | translate }}:</label>
-			
-			    <div class="col-sm-3">
-			        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
-			    </div>
 			</div>
+			
 	        <div class="form-group">
 	            <label class="control-label col-sm-3">{{ 'label.heading.office' | translate }}:<span
 	                    class="required">*</span></label>
@@ -48,7 +40,7 @@
 					</select>
 				</div>
 	        </div>
-
+	        
 			<div class="form-group">
 				<label class="control-label col-sm-3">{{'label.input.legalForm' | translate}}</label>
 
@@ -124,6 +116,18 @@
 			</div>
 
 	        <div class="form-group">
+	        	<div data-ng-switch on="showNonPersonOptions">
+					<div data-ng-switch-when="false">
+						<label class="control-label col-sm-3">{{'label.input.gender' | translate}}</label>
+
+						<div class="col-sm-3">
+							<select id="genderId" ng-model="formData.genderId"  class="form-control"
+									ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}">
+								<option value="">--{{'label.menu.gender' | translate}}--</option>
+							</select>
+						</div>
+					</div>
+				</div>
 	            <label class="control-label col-sm-3" for="mobileNo">{{'label.input.mobilenumber' | translate}}</label>
 	
 	            <div class="col-sm-3">
@@ -145,20 +149,20 @@
 			        <input id="dateofbirth" type="text" name="dateofbirth" datepicker-pop="dd MMMM yyyy"
 			               ng-model="date.dateOfBirth" is-open="opened1" min="minDate" max="restrictDate"  class="form-control"/>
 			    </div>
-
-				<div data-ng-switch on="showNonPersonOptions">
+			    
+			    <div data-ng-switch on="showNonPersonOptions">
 					<div data-ng-switch-when="false">
-						<label class="control-label col-sm-3">{{'label.input.gender' | translate}}</label>
+						<label class="control-label col-sm-3">{{'label.input.birthplace' | translate}}</label>
 
 						<div class="col-sm-3">
-							<select id="genderId" ng-model="formData.genderId"  class="form-control"
-									ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}">
-								<option value="">--{{'label.menu.gender' | translate}}--</option>
+							<select id="birthPlaceId" ng-model="formData.birthPlaceId"  class="form-control"
+									ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions" value="{{birthplace.id}}">
+								<option value="">--{{'label.menu.birthplace' | translate}}--</option>
 							</select>
 						</div>
 					</div>
 				</div>
-
+		
 				<div data-ng-switch on="showNonPersonOptions">
 					<div data-ng-switch-when="true">
 						<label class="control-label col-sm-3">{{'label.input.incorpValidityTillDate' | translate}}</label>
@@ -171,6 +175,31 @@
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label class="control-label col-sm-3">{{ 'label.input.rfc' | translate }}:</label>
+			    <div class="col-sm-3">
+			    	<div class="input-group">
+			        	<input id="rfc" type="text" ng-model="formData.rfc" class="form-control uppercase">
+			        	<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="createCurpRfc()">
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+							</button>
+						</span>
+			        </div>
+			    </div>
+			    <label class="control-label col-sm-3">{{ 'label.input.uniqueId' | translate }}:</label>
+			    <div class="col-sm-3">
+			    	<div class="input-group">
+				        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
+				        <span class="input-group-btn">
+					        <button class="btn btn-default" type="button" ng-click="createCurpRfc()">
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+							</button>
+						</span>
+					</div>
+			    </div>
+			</div>
+			
 			<div class="form-group">
 				<label class="control-label col-sm-3">{{'label.input.clienttype' | translate}}</label>
 

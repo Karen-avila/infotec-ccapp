@@ -15,6 +15,7 @@
                 scope.staffs = data.staffOptions;
                 scope.savingproducts = data.savingProductOptions;
                 scope.genderOptions = data.genderOptions;
+                scope.birthPlaceOptions = data.birthPlaceOptions;
                 scope.clienttypeOptions = data.clientTypeOptions;
                 scope.clientClassificationOptions = data.clientClassificationOptions;
                 scope.clientNonPersonConstitutionOptions = data.clientNonPersonConstitutionOptions;
@@ -30,10 +31,13 @@
                     staffId: data.staffId,
                     externalId: data.externalId,
                     uniqueId: data.uniqueId,
+                    rfc: data.rfc,
+                    surname: data.surname,
                     isStaff:data.isStaff,
                     mobileNo: data.mobileNo,
                     savingsProductId: data.savingsProductId,
                     genderId: data.gender.id,
+                    birthPlaceId: data.birthplace.id,
                     fullname: data.fullname,
                     clientNonPersonDetails : {
                         incorpNumber: data.clientNonPersonDetails.incorpNumber,
@@ -43,6 +47,10 @@
 
                 if(data.gender){
                     scope.formData.genderId = data.gender.id;
+                }
+                
+                if(data.birthPlace){
+                    scope.formData.birthPlaceId = data.birthPlace.id;
                 }
 
                 if(data.clientType){
@@ -105,7 +113,35 @@
                     scope.showNonPersonOptions = true;
                 }
             };
-
+            
+            scope.createCurpRfc=function (){
+            	if (typeof scope.formData !== 'undefined' && scope.formData){
+	            	if(scope.formData.firstname && scope.formData.lastname && scope.formData.surname && scope.date.dateOfBirth && scope.formData.genderId && scope.formData.birthPlaceId){
+	            		var nombre=scope.formData.middlename?scope.formData.firstname+" "+scope.formData.middlename:scope.formData.firstname;
+	            		var genero="";
+	            		var lugarNacimiento="";
+	            		for(var i in scope.genderOptions){
+	            			if(scope.genderOptions[i].id===scope.formData.genderId){
+	            				genero=scope.genderOptions[i].name;
+	            				break;
+	            			}
+	            		}
+	            		for(var i in scope.birthPlaceOptions){
+	            			if(scope.birthPlaceOptions[i].id===scope.formData.birthPlaceId){
+	            				lugarNacimiento=scope.birthPlaceOptions[i].name;
+	            				break;
+	            			}
+	            		}
+	            		var vcurp=generarCURP(nombre, scope.formData.lastname, scope.formData.surname, 
+	            				dateFilter(scope.date.dateOfBirth, "yyyy-MM-dd"), genero, lugarNacimiento);
+	            		scope.formData.uniqueId=vcurp;
+	            		var vrfc=generarRFC(nombre, scope.formData.lastname, scope.formData.surname, 
+	            				dateFilter(scope.date.dateOfBirth, "yyyy-MM-dd"));
+	            		scope.formData.rfc=vrfc;
+	            	}
+            	}
+            };
+            
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;

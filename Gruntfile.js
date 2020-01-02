@@ -156,6 +156,7 @@ module.exports = function(grunt) {
             'scripts/config/*.json',
             'scripts/services/*.js',
             'scripts/modules/*.js',
+            'scripts/js/*.js',
             '!scripts/routes.js',
             '!scripts/initialTasks.js',
             '!scripts/webstorage-configuration.js',
@@ -197,7 +198,7 @@ module.exports = function(grunt) {
             '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js',
             '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**',
             'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
-            'angular-utils-pagination/dirPagination.tpl.html'
+            'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js'
           ]
         }
         ]

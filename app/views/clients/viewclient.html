@@ -802,6 +802,16 @@
 									<td><span class="padded-td">{{client.clientClassification.name}}</span>
 									</td>
 								</tr>
+								<tr data-ng-show="client.birthplace.name">
+									<th class="table-bold">{{ 'label.input.birthplace' | translate }}</th>
+									<td><span class="padded-td">{{client.birthplace.name}}</span>
+									</td>
+								</tr>
+								<tr data-ng-show="client.rfc">
+									<th class="table-bold">{{ 'label.input.rfc' | translate }}</th>
+									<td><span class="padded-td">{{client.rfc}}</span>
+									</td>
+								</tr>
 								<tr data-ng-show="client.uniqueId">
 									<th class="table-bold">{{ 'label.input.uniqueId' | translate }}</th>
 									<td><span class="padded-td">{{client.uniqueId}}</span>
