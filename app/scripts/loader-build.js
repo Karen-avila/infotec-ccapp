@@ -38,7 +38,10 @@
             'webcam-directive':'../bower_components/webcam-directive/dist/webcam.min',
             'angular-wizard': '../scripts/modules/angular-wizard',
             'angular-utils-pagination':'../bower_components/angular-utils-pagination/dirPagination.min',
-            'ng-scrollbar':'../bower_components/ng-scrollbar/dist/ng-scrollbar.min'
+            'ng-scrollbar':'../bower_components/ng-scrollbar/dist/ng-scrollbar.min',
+            'moment': '../bower_components/moment/min/moment.min',
+            'CURPUtils': '../scripts/js/CURPUtils',
+            'RFCUtils': '../scripts/js/RFCUtils'
         },
         shim: {
             'angular': { deps: ['jquery','chosen.jquery.min'], exports: 'angular' },
@@ -73,6 +76,9 @@
             'angular-wizard': {deps: ['angular', 'underscore']},
             'angular-utils-pagination': {deps: ['angular']},
             'ng-scrollbar': {deps: ['angular']},
+            'moment': {exports: 'moment'},
+            'CURPUtils': {deps: ['moment']},
+            'RFCUtils': {deps: ['moment']},
             'mifosX': {
                 deps: [
                     'jquery',
@@ -105,7 +111,10 @@
                     'angular-wizard',
                     'webcam-directive',
                     'angular-utils-pagination',
-                    'ng-scrollbar'
+                    'ng-scrollbar',
+                    'moment',
+                    'CURPUtils',
+                    'RFCUtils'
                 ],
                 exports: 'mifosX'
             }
