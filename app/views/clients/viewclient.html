@@ -176,7 +176,7 @@
 			<div class="toolbar" style="height: 100px;">
 			
 				<div class="col-sm-2 col-md-2">
-					<div class="row center" style="margin-left: 0px;">
+					<div class="row center" style="margin-left: 0px;" ng-show="client.legalForm.value == 'FISICA'">
 						<img ng-hide="client.imagePresent" ng-src="./images/client-image-placeholder.png"
 							alt="Avatar" style="height: 60px;">
 						<img ng-show="client.imagePresent" ng-src="{{image}}" alt="Avatar"

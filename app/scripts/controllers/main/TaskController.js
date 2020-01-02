@@ -4,6 +4,8 @@
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
+            scope.pendingApproval = [];
+            scope.pendingDisburse = [];
             var idToNodeMap = {};
             scope.formData = {};
             scope.loanTemplate = {};
@@ -66,7 +68,7 @@
             }
             scope.clientApprovalAllCheckBoxesClicked = function (officeName) {
                 var newValue = !scope.clientApprovalAllCheckBoxesMet(officeName);
-                if (!angular.isUndefined(scope.groupedClients[officeName])) {
+                if (!angular.isUndefined(scope.groupedClients) && !angular.isUndefined(scope.groupedClients[officeName])) {
                     for (var i = scope.groupedClients[officeName].length - 1; i >= 0; i--) {
                         scope.approveData[scope.groupedClients[officeName][i].id] = newValue;
                     };
@@ -74,7 +76,7 @@
             }
             scope.clientApprovalAllCheckBoxesMet = function (officeName) {
                 var checkBoxesMet = 0;
-                if (!angular.isUndefined(scope.groupedClients[officeName])) {
+                if (!angular.isUndefined(scope.groupedClients) && !angular.isUndefined(scope.groupedClients[officeName])) {
                     _.each(scope.groupedClients[officeName], function (data) {
                         if (_.has(scope.approveData, data.id)) {
                             if (scope.approveData[data.id] == true) {
@@ -129,23 +131,23 @@
             }
             scope.loanDisbursalAllCheckBoxesClicked = function () {
                 var newValue = !scope.loanDisbursalAllCheckBoxesMet();
-                if (!angular.isUndefined(scope.loans)) {
-                    for (var i = scope.loans.length - 1; i >= 0; i--) {
-                        scope.loanDisbursalTemplate[scope.loans[i].id] = newValue;
+                if (!angular.isUndefined(scope.pendingDisburse)) {
+                    for (var i = scope.pendingDisburse.length - 1; i >= 0; i--) {
+                        scope.loanDisbursalTemplate[scope.pendingDisburse[i].id] = newValue;
                     };
                 }
             }
             scope.loanDisbursalAllCheckBoxesMet = function () {
                 var checkBoxesMet = 0;
-                if (!angular.isUndefined(scope.loans)) {
-                    _.each(scope.loans, function (data) {
+                if (!angular.isUndefined(scope.pendingDisburse)) {
+                    _.each(scope.pendingDisburse, function (data) {
                         if (_.has(scope.loanDisbursalTemplate, data.id)) {
                             if (scope.loanDisbursalTemplate[data.id] == true) {
                                 checkBoxesMet++;
                             }
                         }
                     });
-                    return (checkBoxesMet === scope.loans.length);
+                    return (checkBoxesMet === scope.pendingDisburse.length);
                 }
             }
             scope.approveOrRejectChecker = function (action) {
@@ -409,6 +411,80 @@
                                     });
                                 }
                             }
+                            else if (scope.loans[i].status.waitingForDisbursal) {
+                                var tempOffice = undefined;
+                                if (scope.loans[i].group) {
+                                    tempOffice = idToNodeMap[scope.loans[i].group.officeId];
+                                    tempOffice.loans.push(scope.loans[i]);
+
+                                    var wasFound = false;
+                                    for (var j=0; j < scope.pendingDisburse.length; j++) {
+                                        if (scope.pendingDisburse[j].client.name === scope.loans[i].group.name) {
+                                            scope.pendingDisburse[j].loans.push({
+                                                id: scope.loans[i].id,
+                                                accountNo: scope.loans[i].accountNo,
+                                                client: {
+                                                    id: scope.loans[i].clientId,
+                                                    name: scope.loans[i].clientName
+                                                },
+                                                productName: scope.loans[i].loanProductName,
+                                                amount: scope.loans[i].principal,
+                                                loanPurposeName: scope.loans[i].loanPurposeName
+                                            });
+                                            scope.pendingDisburse[j].loan.amount += scope.loans[i].principal;
+                                            wasFound = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!wasFound) {
+                                        scope.pendingDisburse.push({
+                                            office: tempOffice,
+                                            individual: false,
+                                            client: {
+                                                id: scope.loans[i].group.officeId,
+                                                name: scope.loans[i].group.name
+                                            },
+                                            loan: {
+                                                id: scope.loans[i].id,
+                                                accountNo: scope.loans[i].accountNo,
+                                                productName: scope.loans[i].loanProductName,
+                                                amount: scope.loans[i].principal,
+                                                loanPurposeName: scope.loans[i].loanPurposeName
+                                            },
+                                            loans: [{
+                                                id: scope.loans[i].id,
+                                                accountNo: scope.loans[i].accountNo,
+                                                client: {
+                                                    id: scope.loans[i].clientId,
+                                                    name: scope.loans[i].clientName
+                                                },
+                                                productName: scope.loans[i].loanProductName,
+                                                amount: scope.loans[i].principal,
+                                                loanPurposeName: scope.loans[i].loanPurposeName
+                                            }]
+                                        });
+                                    }
+
+                                } else if (scope.loans[i].clientOfficeId) {
+                                    tempOffice = idToNodeMap[scope.loans[i].clientOfficeId];
+                                    tempOffice.loans.push(scope.loans[i]);
+                                    scope.pendingDisburse.push({
+                                        office: tempOffice,
+                                        individual: true,
+                                        client: {
+                                            id: scope.loans[i].clientId,
+                                            name: scope.loans[i].clientName
+                                        },
+                                        loan: {
+                                            id: scope.loans[i].id,
+                                            accountNo: scope.loans[i].accountNo,
+                                            productName: scope.loans[i].loanProductName,
+                                            amount: scope.loans[i].principal,
+                                            loanPurposeName: scope.loans[i].loanPurposeName
+                                        }
+                                    });
+                                }
+                            }
                         }
 
                         var finalArray = [];
@@ -424,6 +500,7 @@
             });
 
             resourceFactory.clientResource.getAllClients({ sqlSearch: 'c.status_enum=100' }, function (data) {
+                scope.pendingClientApproval = data.pageItems;
                 scope.groupedClients = _.groupBy(data.pageItems, "officeName");
             });
 
@@ -431,8 +508,8 @@
                 scope.groupedGroups = data;
             });
 
-            scope.showGroupDetail = function (groupId) {
-                angular.element(document.querySelector("#grp_a" + groupId)).toggleClass("collapse");
+            scope.showGroupDetail = function (groupId, prefix) {
+                angular.element(document.querySelector("#grp_" + prefix + groupId)).toggleClass("collapse");
             }
 
             scope.search = function () {

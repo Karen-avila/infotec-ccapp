@@ -42,6 +42,17 @@
                         <table class="table">
                             <tr>
                                 <td class="width14">
+                                    <label>{{ 'label.input.paymentFor1000' | translate }}<span
+                                        class="required">*</span>:&nbsp;</label>
+                                </td>
+                                <td class="width36 paddedbottom10">
+                                    <select id="paymentFor1000Id" ng-model="loanApplicationCommonData.paymentFor1000Id"
+                                        ng-options="paymentFor1000.id as paymentFor1000.name for paymentFor1000 in paymentFor1000Options | orderBy:'position'"
+                                        class="form-control width170px" value="{{paymentFor1000.id}}">
+                                        <option value="">{{'label.selectloanofficer' | translate}}</option>
+                                    </select>
+                                </td>
+                                <td class="width14">
                                     <label>{{ 'label.input.loanofficer' | translate }}:&nbsp;</label>
                                 </td>
                                 <td class="width36 paddedbottom10">
@@ -49,14 +60,6 @@
                                         ng-options="loanOfficer.id as loanOfficer.displayName for loanOfficer in loanOfficers | orderBy:'displayName':reverse"
                                         class="form-control width170px" value="{{loanOfficer.id}}">
                                         <option value="">{{'label.selectloanofficer' | translate}}</option>
-                                    </select>
-                                </td>
-                                <td><label>{{ 'label.input.fund' | translate }}:&nbsp;</label></td>
-                                <td class="paddedbottom10">
-                                    <select id="fundId" ng-model="loanApplicationCommonData.fundId"
-                                        class="form-control width170px"
-                                        ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
-                                        <option value="">{{'label.selectfund' | translate}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -80,6 +83,26 @@
                                         class="form-control" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label>{{ 'label.input.firstrepaymenton' | translate }}</label></td>
+                                <td class="paddedbottom10">
+                                    <input type="text" id="firstrepaymentOnDate" name="firstrepaymenton"
+                                        datepicker-pop="dd MMMM yyyy"
+                                        ng-model="loanApplicationCommonData.firstrepaymenton" is-open="opened2"
+                                        class="form-control" />
+                                </td>
+                                <td>
+                                    <label title="{{ 'label.input.channel' | translate }}">{{ 'label.input.channel' |
+                                            translate }}</label>
+                                </td>
+                                <td class="paddedbottom10">
+                                    <select ng-model="loanApplicationCommonData.channelId"
+                                        ng-options="channel.id as channel.name for channel in channelOptions | orderBy:'name'"
+                                        class="form-control width170px" value="{{channel.id}}">
+                                        <option value="">{{'label.selectachannel' | translate}}</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -92,9 +115,7 @@
                                         ng-checked="checkerInboxAllCheckBoxesMet()" /></th>
                                 <th>{{'label.heading.clientid' | translate}}</th>
                                 <th>{{'label.heading.clientname' | translate}}</th>
-                                <th>{{'label.heading.loanpurpose' | translate}}</th>
                                 <th>{{'label.heading.loanamount' | translate}}</th>
-                                <th>{{'label.heading.charges' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,26 +126,11 @@
                                 </td>
                                 <td>{{client.id}}</td>
                                 <td>{{client.displayName}}</td>
-                                <td><select ng-model="group.clients[outerIndex].loanPurposeId"
-                                        ng-options="loanPurpose.id as loanPurpose.name for loanPurpose in loanPurposes | orderBy:'name':reverse"
-                                        class="loanPurposeId form-control width170px" value="{{loanPurpose.id}}">
-                                        <option value="">{{'label.selectpurpose' | translate}}</option>
-                                    </select>
-                                </td>
                                 <td>
                                     <input type="text" class="form-control principal" name="principal"
                                         ng-model="group.clients[outerIndex].principal" required number-format
                                         late-Validate />&nbsp;{{productDetails.currency.displaySymbol}}
                                     <form-validate valattributeform="newjlgloanaccountform" valattribute="principal" />
-                                </td>
-                                <td>
-                                    <span
-                                        ng-class="{'label':true,'label-primary':charge.isDeleted==false, 'label-default':charge.isDeleted}"
-                                        ng-repeat="charge in client.charges" ng-init="innerIndex = $index">
-                                        {{charge.name}}
-                                        <i ng-click="toggleCharge(outerIndex, innerIndex)"
-                                            ng-class="{'fa fa-times':charge.isDeleted==false,'fa fa-plus-sign':charge.isDeleted}"></i>
-                                    </span>
                                 </td>
                             </tr>
                         <tbody>
