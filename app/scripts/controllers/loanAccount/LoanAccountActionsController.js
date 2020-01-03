@@ -15,6 +15,7 @@
             scope.showPaymentDetails = false;
             scope.paymentTypes = [];
             scope.channelOptions = [];
+            scope.currencyOptions = [];
             scope.form = {};
             scope.form.expectedDisbursementDate = [];
             scope.disbursementDetails = [];
@@ -217,6 +218,9 @@
                         if (data.penaltyChargesPortion > 0) {
                             scope.showPenaltyPortionDisplay = true;
                         }
+                    });
+                    resourceFactory.currencyConfigResource.get({}, function (data) {
+                        scope.currencyOptions = data.selectedCurrencyOptions;
                     });
                     scope.title = 'label.heading.loanrepayments';
                     scope.labelName = 'label.input.transactiondate';

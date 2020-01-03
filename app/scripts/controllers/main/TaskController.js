@@ -351,7 +351,9 @@
                                                 accountNo: scope.loans[i].accountNo,
                                                 client: {
                                                     id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName
+                                                    name: scope.loans[i].clientName,
+                                                    loanCounter: scope.loans[i].groupLoanCounter,
+                                                    staffName: scope.loans[i].loanOfficerName,
                                                 },
                                                 productName: scope.loans[i].loanProductName,
                                                 amount: scope.loans[i].principal,
@@ -363,12 +365,15 @@
                                         }
                                     }
                                     if (!wasFound) {
+                                        console.log(JSON.stringify(scope.loans[i]));
                                         scope.pendingApproval.push({
                                             office: tempOffice,
                                             individual: false,
                                             client: {
                                                 id: scope.loans[i].group.officeId,
-                                                name: scope.loans[i].group.name
+                                                name: scope.loans[i].group.name,
+                                                loanCounter: scope.loans[i].group.loanCounter,
+                                                staffName: scope.loans[i].loanOfficerName,
                                             },
                                             loan: {
                                                 id: scope.loans[i].id,
@@ -382,7 +387,9 @@
                                                 accountNo: scope.loans[i].accountNo,
                                                 client: {
                                                     id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName
+                                                    name: scope.loans[i].clientName,
+                                                    loanCounter: scope.loans[i].groupLoanCounter,
+                                                    staffName: scope.loans[i].loanOfficerName,
                                                 },
                                                 productName: scope.loans[i].loanProductName,
                                                 amount: scope.loans[i].principal,
@@ -399,7 +406,9 @@
                                         individual: true,
                                         client: {
                                             id: scope.loans[i].clientId,
-                                            name: scope.loans[i].clientName
+                                            name: scope.loans[i].clientName,
+                                            loanCounter: scope.loans[i].groupLoanCounter,
+                                            staffName: scope.loans[i].loanOfficerName,
                                         },
                                         loan: {
                                             id: scope.loans[i].id,
@@ -425,7 +434,9 @@
                                                 accountNo: scope.loans[i].accountNo,
                                                 client: {
                                                     id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName
+                                                    name: scope.loans[i].clientName,
+                                                    loanCounter: scope.loans[i].group.loanCounter,
+                                                    staffName: scope.loans[i].loanOfficerName,
                                                 },
                                                 productName: scope.loans[i].loanProductName,
                                                 amount: scope.loans[i].principal,
@@ -442,7 +453,9 @@
                                             individual: false,
                                             client: {
                                                 id: scope.loans[i].group.officeId,
-                                                name: scope.loans[i].group.name
+                                                name: scope.loans[i].group.name,
+                                                loanCounter: scope.loans[i].group.loanCounter,
+                                                staffName: scope.loans[i].loanOfficerName,
                                             },
                                             loan: {
                                                 id: scope.loans[i].id,
@@ -456,7 +469,9 @@
                                                 accountNo: scope.loans[i].accountNo,
                                                 client: {
                                                     id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName
+                                                    name: scope.loans[i].clientName,
+                                                    loanCounter: scope.loans[i].groupLoanCounter,
+                                                    staffName: scope.loans[i].loanOfficerName,
                                                 },
                                                 productName: scope.loans[i].loanProductName,
                                                 amount: scope.loans[i].principal,
@@ -473,7 +488,9 @@
                                         individual: true,
                                         client: {
                                             id: scope.loans[i].clientId,
-                                            name: scope.loans[i].clientName
+                                            name: scope.loans[i].clientName,
+                                            loanCounter: scope.loans[i].groupLoanCounter,
+                                            staffName: scope.loans[i].loanOfficerName,
                                         },
                                         loan: {
                                             id: scope.loans[i].id,

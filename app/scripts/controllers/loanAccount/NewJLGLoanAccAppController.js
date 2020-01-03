@@ -237,7 +237,7 @@
                             loanApplication.interestRatePerPeriod = scope.productDetails.interestRatePerPeriod;
                         }
                         // loanApplication.channelId = scope.loanApplicationCommonData.channelId;
-                        loanApplication.repaymentsStartingFromDate = dateFilter(scope.loanApplicationCommonData.firstrepaymenton, scope.dateFormat);
+                        loanApplication.repaymentsStartingFromDate = dateFilter(scope.loanApplicationCommonData.firstrepaymenton, scope.df);
                         loanApplication.numberOfRepayments = scope.productDetails.numberOfRepayments;
                         loanApplication.repaymentEvery = scope.productDetails.repaymentEvery;
                         loanApplication.repaymentFrequencyType = scope.productDetails.repaymentFrequencyType.id;

@@ -192,22 +192,44 @@
                                     <option value="">{{'label.selectfund' | translate}}</option>
                             </div>
                         </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3"
-                                for="channelId">{{ 'label.input.instrumenttype' | translate}}</label>
-                            <div class="col-sm-6">
-                                <select id="channelId" ng-model="formData.channelId" class="form-control"
-                                    ng-options="channel.id as channel.name for channel in channelOptions"
-                                    value="{{channel.id}}"></select>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
+                        <div class="form-group">
                             <label class="control-label col-sm-3"
                                 for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
                                 <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
                                     ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
                                     value="{{paymentType.id}}"></select>
+                                    <option value="">{{'label.selectone' | translate}}</option>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3"
+                                for="channelId">{{ 'label.input.channel' | translate}}</label>
+                            <div class="col-sm-6">
+                                <select id="channelId" ng-model="formData.channelId" class="form-control"
+                                    ng-options="channel.id as channel.name for channel in channelOptions"
+                                    value="{{channel.id}}"></select>
+                                    <option value="">{{'label.selectachannel' | translate}}</option>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
+                            <div class="col-sm-3">
+                                <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
+                                    ng-options="currency.code as currency.name for currency in currencyOptions"
+                                    value="{{currency.code}}"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
+                            <div class="col-sm-3">
+                                <input id="bankRecord" type="text" class="form-control" ng-model="formData.bankRecord">
+                             </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.idRecord' | translate}}</label>
+                            <div class="col-sm-3">
+                                <input id="idRecord" type="text" class="form-control" ng-model="formData.idRecord">
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
