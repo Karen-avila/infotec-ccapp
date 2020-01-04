@@ -38,6 +38,11 @@
                 scope.funds = data;
             });
 
+            resourceFactory.codeOptionsResource.get({ codeName: 'PAYMENT_CHANNEL' }, function (data) {
+                console.log(JSON.stringify(data));
+                scope.channelOptions = data.data.codevalues;
+            });
+
             resourceFactory.checkerInboxResource.search(function (data) {
                 scope.searchData = data;
             });
@@ -365,7 +370,6 @@
                                         }
                                     }
                                     if (!wasFound) {
-                                        console.log(JSON.stringify(scope.loans[i]));
                                         scope.pendingApproval.push({
                                             office: tempOffice,
                                             individual: false,
@@ -641,7 +645,6 @@
                 $scope.funds = scope.funds;
 
                 $scope.disburse = function () {
-                    console.log($scope.fundId);
                     scope.bulkDisbursal($scope.fundId);
                     route.reload();
                     $uibModalInstance.close('disburse');

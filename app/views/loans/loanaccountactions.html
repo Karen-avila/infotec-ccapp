@@ -190,6 +190,7 @@
                                 <select id="fundId" ng-model="formData.fundId" class="form-control" class="form-control"
                                     required ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
                                     <option value="">{{'label.selectfund' | translate}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -198,8 +199,9 @@
                             <div class="col-sm-6">
                                 <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
                                     ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-                                    value="{{paymentType.id}}"></select>
+                                    value="{{paymentType.id}}">
                                     <option value="">{{'label.selectone' | translate}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -208,8 +210,9 @@
                             <div class="col-sm-6">
                                 <select id="channelId" ng-model="formData.channelId" class="form-control"
                                     ng-options="channel.id as channel.name for channel in channelOptions"
-                                    value="{{channel.id}}"></select>
+                                    value="{{channel.id}}">
                                     <option value="">{{'label.selectachannel' | translate}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">

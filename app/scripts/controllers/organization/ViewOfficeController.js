@@ -32,6 +32,7 @@
                     if (data.data) {
                         datatabledetail.isData = data.data.length > 0 ? true : false;
                     }
+                    datatabledetail.registeredTableName = registeredTableName;
                     datatabledetail.isData = data.data.length > 0 ? true : false;
                     datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
                     datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
@@ -85,6 +86,33 @@
                     location.path("/viewsingledatatableentry/" + registeredTableName + "/" + scope.office.id);
                 }
             };
+
+            scope.getDatatableColumn = function (tableName, columnName) {
+                var temp = columnName.split("_cd_");
+                if (temp[1] && temp[1] != "") {
+                    columnName = temp[1];
+                }               
+                return tableName + '.' + columnName;
+            }
+
+            scope.getDatatableValue = function (data) {
+                if (data === null) {
+                    return '';
+                }
+                if (typeof data != "undefined") {
+                    if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
+                        return data.value.value + ' (' + data.value.score + ')';
+                    } else {
+                        if (typeof data.value != "undefined" && data.value != null) {
+                            return data.value;
+                        } else {
+                            return '';
+                        }
+                    }
+                } else {
+                    return '';
+                }
+            }
         }
 
     });

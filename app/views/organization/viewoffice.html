@@ -55,12 +55,12 @@
                                                         <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
                                                         <td style="width: 50%;">
                                                             <div class="form-group pull-right">
-                                                                <a data-ng-show="showDataTableAddButton"
+                                                                <a data-ng-show="datatabledetail.showDataTableAddButton"
                                                                     ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?fromEntity=office"
                                                                     class="btn btn-primary"
                                                                     has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
                                                                         class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</a>
-                                                                <a data-ng-show="showDataTableEditButton"
+                                                                <a data-ng-show="datatabledetail.showDataTableEditButton"
                                                                     ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?mode=edit"
                                                                     class="btn btn-primary"
                                                                     has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i

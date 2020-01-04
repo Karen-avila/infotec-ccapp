@@ -131,7 +131,6 @@
                             return '';
                         }
                     }
-                    return data;
                 } else {
                     return '';
                 }
