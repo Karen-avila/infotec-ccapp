@@ -219,8 +219,8 @@
                             <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
                             <div class="col-sm-3">
                                 <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                                    ng-options="currency.code as currency.name for currency in currencyOptions"
-                                    value="{{currency.code}}"></select>
+                                    ng-options="currency.id as currency.name for currency in currencyOptions"
+                                    value="{{currency.id}}"></select>
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
