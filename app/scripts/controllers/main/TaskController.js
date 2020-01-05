@@ -39,8 +39,7 @@
             });
 
             resourceFactory.codeOptionsResource.get({ codeName: 'PAYMENT_CHANNEL' }, function (data) {
-                console.log(JSON.stringify(data));
-                scope.channelOptions = data.data.codevalues;
+                scope.channelOptions = data.codeValues;
             });
 
             resourceFactory.checkerInboxResource.search(function (data) {
@@ -643,6 +642,7 @@
 
             var DisburseLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.funds = scope.funds;
+                $scope.channelOptions = scope.channelOptions;
 
                 $scope.disburse = function () {
                     scope.bulkDisbursal($scope.fundId);

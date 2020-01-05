@@ -70,7 +70,7 @@
             });
 
             resourceFactory.codeOptionsResource.get({ codeName: 'PAYMENT_CHANNEL' }, function (data) {
-                scope.channelOptions = data.data.codevalues;
+                scope.channelOptions = data.codeValues;
             });
 
             scope.fetchEntities = function (entity, status, productId) {
@@ -175,7 +175,7 @@
                     scope.modelName = 'actualDisbursementDate';
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'disburse' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
-                        scope.channelOptions = data.channelOptions;
+                        // scope.channelOptions = data.channelOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
@@ -213,7 +213,7 @@
                     scope.modelName = 'transactionDate';
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'repayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
-                        scope.channelOptions = data.channelOptions;
+                        // scope.channelOptions = data.channelOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
@@ -237,7 +237,7 @@
                     scope.formData.transactionDate = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'prepayLoan' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
-                        scope.channelOptions = data.channelOptions;
+                        // scope.channelOptions = data.channelOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
@@ -314,7 +314,7 @@
                             scope.labelName = 'label.input.transactiondate';
                             scope.modelName = 'transactionDate';
                             scope.paymentTypes = data.paymentTypeOptions || [];
-                            scope.channelOptions = data.channelOptions || [];
+                            // scope.channelOptions = data.channelOptions || [];
                             scope.formData.transactionAmount = data.amount;
                             scope.formData[scope.modelName] = new Date(data.date) || new Date();
                             if (data.paymentDetailData) {
@@ -422,7 +422,7 @@
                     scope.modelName = 'transactionDate';
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'recoverypayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
-                        scope.channelOptions = data.channelOptions;
+                        // scope.channelOptions = data.channelOptions;
                         if (data.paymentTypeOptions.length > 0) {
                             scope.formData.paymentTypeId = data.paymentTypeOptions[0].id;
                         }
