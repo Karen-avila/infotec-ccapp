@@ -1841,6 +1841,8 @@
 	"label.heading.rejectsharespurchase": "Rehusar Petición de Compra de las Participaciones",
 	"label.heading.initiatedividend": "Iniciar Dividendo",
 	"label.heading.closeshareaccount": "Cierre De La Cuenta Compartida",
+	"label.heading.bankRecord": "Movimiento bancario",
+	"label.heading.idRecord": "Identificador",
 	"label.anchor.addsavingcharges": "Añadir cargos de ahorro",
 	"label.anchor.viewsavingaccount": "Ver cuenta de ahorro",
 	"label.anchor.editsavingapplication": "Editar solicitud de ahorro",

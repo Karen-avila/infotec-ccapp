@@ -89,10 +89,6 @@
                         <th>{{ 'label.heading.idRecord' | translate}}</th>
                         <td>{{transaction.paymentDetailData.idRecord}}</td>
                     </tr>
-                    <tr ng-show="transaction.paymentDetailData.currency.code">
-                        <th>{{ 'label.heading.currency' | translate}}</th>
-                        <td>{{transaction.paymentDetailData.currency.name}}</td>
-                    </tr>
                     <tr ng-show="transaction.paymentDetailData.channel">
                         <th>{{ 'label.heading.channel' | translate}}</th>
                         <td>{{transaction.paymentDetailData.channel.name}}</td>
