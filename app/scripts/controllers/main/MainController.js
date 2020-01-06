@@ -3,7 +3,6 @@
         MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, $idle, tmhDynamicLocale,
             uiConfigService, $http) {
             $http.get('release.json').then(function (data) {
-                console.log("DATA: " + JSON.stringify(data));
                 scope.version = data.data.version;
                 scope.releasedate = data.data.releasedate;
             });

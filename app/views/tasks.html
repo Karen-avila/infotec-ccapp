@@ -449,7 +449,7 @@
                                             data-toggle="collapse" data-target="#grp_d{{record.individual ? '' : record.client.id}}"
                                             >
                                             <td>
-                                                <input type="checkbox" ng-model="loanDisbursalTemplate[record.loan.id]">
+                                                <input type="checkbox" ng-model="loanDisbursalTemplate[record.client.id]">
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
                                             <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'd')">{{record.office.name}}</td>

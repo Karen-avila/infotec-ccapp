@@ -682,7 +682,7 @@
                         });
                     }
                 });
-                // console.log("Loans for approval selected: " + selectedAccounts);
+                // console.log("Loans for disburse selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'disburseloan.html',
@@ -696,7 +696,7 @@
                 $scope.channelOptions = scope.channelOptions;
 
                 $scope.disburse = function () {
-                    scope.bulkDisbursal($scope.fundId);
+                    scope.bulkDisbursal($scope.fundId, $scope.channelId);
                     route.reload();
                     $uibModalInstance.close('disburse');
                 };
@@ -705,11 +705,12 @@
                 };
             }
 
-            scope.bulkDisbursal = function (fundId) {
+            scope.bulkDisbursal = function (fundId, channelId) {
                 scope.formData.actualDisbursementDate = dateFilter(new Date(), scope.df);
                 scope.formData.dateFormat = scope.df;
                 scope.formData.locale = scope.optlang.code;
                 scope.formData.fundId = fundId;
+                scope.formData.channelId = channelId;
 
                 var selectedAccounts = 0;
                 var approvedAccounts = 0;
