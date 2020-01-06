@@ -9,6 +9,7 @@
             var idToNodeMap = {};
             scope.formData = {};
             scope.loanTemplate = {};
+            scope.loanGroupTemplate = {};
             scope.loanDisbursalTemplate = {};
             scope.date = {};
             scope.checkData = [];
@@ -194,7 +195,6 @@
                     });
                     scope.checkData = {};
                     $uibModalInstance.close('approve');
-
                 };
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss('cancel');
@@ -310,7 +310,6 @@
                                     route.reload();
                                 }
                             }
-
                         }
                     });
 
@@ -572,7 +571,22 @@
             };
 
             scope.approveLoan = function () {
-                if (scope.loanTemplate) {
+                var selectedAccounts = 0;
+                _.each(scope.loanTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingApproval, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
+                        });
+                    }
+                });
+                // console.log("Loans for approval selected: " + selectedAccounts);
+                if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'approveloan.html',
                         controller: ApproveLoanCtrl
@@ -597,25 +611,48 @@
                 scope.formData.locale = scope.optlang.code;
                 var selectedAccounts = 0;
                 var approvedAccounts = 0;
-                _.each(scope.loanTemplate, function (value, key) {
+                _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
-                        selectedAccounts++;
-                    }
-                });
-
-                scope.batchRequests = [];
-                scope.requestIdentifier = "loanId";
-
-                var reqId = 1;
-                _.each(scope.loanTemplate, function (value, key) {
-                    if (value == true) {
-                        scope.batchRequests.push({
-                            requestId: reqId++, relativeUrl: "loans/" + key + "?command=approve",
-                            method: "POST", body: JSON.stringify(scope.formData)
+                        _.each(scope.pendingApproval, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
                         });
                     }
                 });
 
+                // console.log("Loans to be approved " + selectedAccounts);
+                scope.batchRequests = [];
+                scope.requestIdentifier = "loanId";
+
+                var reqId = 1;
+                _.each(scope.loanTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingApproval, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    scope.batchRequests.push({
+                                        requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=approve",
+                                        method: "POST", body: JSON.stringify(scope.formData)
+                                    });
+                                } else {
+                                    _.each(item.loans, function(loan) {
+                                        scope.batchRequests.push({
+                                            requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=approve",
+                                            method: "POST", body: JSON.stringify(scope.formData)
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+                
+                // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].statusCode = '200') {
@@ -626,13 +663,27 @@
                                 scope.loanResource();
                             }
                         }
-
                     }
                 });
             };
 
             scope.disburseLoan = function () {
-                if (scope.loanDisbursalTemplate) {
+                var selectedAccounts = 0;
+                _.each(scope.loanDisbursalTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingDisburse, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
+                        });
+                    }
+                });
+                // console.log("Loans for approval selected: " + selectedAccounts);
+                if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'disburseloan.html',
                         controller: DisburseLoanCtrl
@@ -662,9 +713,17 @@
 
                 var selectedAccounts = 0;
                 var approvedAccounts = 0;
-                _.each(scope.loanDisbursalTemplate, function (value, key) {
+                _.each(scope.loanDisbursalTemplate, function (value, id) {
                     if (value == true) {
-                        selectedAccounts++;
+                        _.each(scope.pendingDisburse, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -672,11 +731,24 @@
                 scope.requestIdentifier = "loanId";
 
                 var reqId = 1;
-                _.each(scope.loanDisbursalTemplate, function (value, key) {
+                _.each(scope.loanDisbursalTemplate, function (value, id) {
                     if (value == true) {
-                        scope.batchRequests.push({
-                            requestId: reqId++, relativeUrl: "loans/" + key + "?command=disburse",
-                            method: "POST", body: JSON.stringify(scope.formData)
+                        _.each(scope.pendingDisburse, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    scope.batchRequests.push({
+                                        requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=approve",
+                                        method: "POST", body: JSON.stringify(scope.formData)
+                                    });
+                                } else {
+                                    _.each(item.loans, function(loan) {
+                                        scope.batchRequests.push({
+                                            requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=approve",
+                                            method: "POST", body: JSON.stringify(scope.formData)
+                                        });
+                                    });
+                                }
+                            }
                         });
                     }
                 });

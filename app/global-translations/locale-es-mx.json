@@ -73,6 +73,8 @@
 	"label.heading.description": "Descripción",
 	"label.heading.shortname": "Nombre corto",
 	"label.heading.approve": "Aprobar",
+	"label.heading.confirm.approve": "¿Desea aprobar los créditos?",
+	"label.heading.confirm.disburse": "¿Desea desembolsar los créditos?",
 	"label.heading.actions": "Acciones",
 	"label.heading.loanaccoverview": "Resumen de cuenta de crédito",
 	"label.heading.upcomingcharges": "Cargas próximas",

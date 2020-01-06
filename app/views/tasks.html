@@ -280,7 +280,7 @@
                             </div>
                             <script type="text/ng-template" id="approveloan.html">
                                 <div class="modal-header silver">
-                                    <h3 class="bolder">{{'label.heading.approve' | translate}}</h3>
+                                    <h3 class="bolder">{{'label.heading.confirm.approve' | translate}}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <api-validate></api-validate>
@@ -288,7 +288,7 @@
                                     <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
                                     </button>
-                                    <button class="btn btn-sm btn-primary" ng-click="approve()">{{'label.button.confirm' |
+                                    <button class="btn btn-sm btn-primary" ng-click="approve()">{{'label.heading.approve |
                                         translate}}
                                     </button>
                                 </div>
@@ -297,10 +297,7 @@
                                 <table class="table condensed-table">
                                     <thead>
                                         <tr class="graybg">
-                                            <th><input type="checkbox"
-                                                    ng-click="loanApprovalAllLoansClicked()"
-                                                    ng-checked="loanApprovalAllLoansCheckMet()" />
-                                            </th>
+                                            <th></th>
                                             <th>{{'label.heading.office' | translate}}</th>
                                             <th>{{'label.heading.grouporclient' | translate}}</th>
                                             <th>{{'label.heading.numofloancycle' | translate}}</th>
@@ -315,8 +312,7 @@
                                             data-toggle="collapse" data-target="#grp_a{{record.individual ? '' : record.client.id}}"
                                             >
                                             <td>
-                                                <input type="checkbox" ng-model="loanTemplate[record.client.id]" ng-show="record.individual">
-                                                <input type="checkbox" ng-model="loanGroupTemplate[record.id]" ng-hide="record.individual">
+                                                <input type="checkbox" ng-model="loanTemplate[record.client.id]" >
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
                                             <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'a')">{{record.office.name}}</td>
@@ -395,7 +391,7 @@
                             </div>
                             <script type="text/ng-template" id="disburseloan.html">
                                 <div class="modal-header silver">
-                                    <h3 class="bolder">{{'label.heading.disburseloanaccount' | translate}}</h3>
+                                    <h3 class="bolder">{{'label.heading.confirm.disburse' | translate}}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <api-validate></api-validate>
@@ -430,7 +426,7 @@
                                     <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
                                     </button>
-                                    <button class="btn btn-sm btn-primary" ng-click="disburse()">{{'label.button.confirm' |
+                                    <button class="btn btn-sm btn-primary" ng-click="disburse()">{{'label.heading.disburse' |
                                         translate}}
                                     </button>
                                 </div>
@@ -439,8 +435,7 @@
                                 <table class="table condensed-table">
                                     <thead>
                                         <tr class="graybg">
-                                            <th><input type="checkbox" ng-click="loanDisbursalAllCheckBoxesClicked()"
-                                                    ng-checked="loanDisbursalAllCheckBoxesMet()" /></th>
+                                            <th></th>
                                             <th>{{'label.heading.office' | translate}}</th>
                                             <th>{{'label.heading.grouporclient' | translate}}</th>
                                             <th>{{'label.heading.numofloancycle' | translate}}</th>
@@ -454,7 +449,7 @@
                                             data-toggle="collapse" data-target="#grp_d{{record.individual ? '' : record.client.id}}"
                                             >
                                             <td>
-                                                <input type="checkbox" ng-model="loanTemplate[record.loan.id]">
+                                                <input type="checkbox" ng-model="loanDisbursalTemplate[record.loan.id]">
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
                                             <td ng-if="!record.individual" data-ng-click="showGroupDetail(record.client.id, 'd')">{{record.office.name}}</td>
