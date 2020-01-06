@@ -737,13 +737,13 @@
                             if (id == item.client.id) {
                                 if (item.individual == true) {
                                     scope.batchRequests.push({
-                                        requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=approve",
+                                        requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=disburse",
                                         method: "POST", body: JSON.stringify(scope.formData)
                                     });
                                 } else {
                                     _.each(item.loans, function(loan) {
                                         scope.batchRequests.push({
-                                            requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=approve",
+                                            requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=disburse",
                                             method: "POST", body: JSON.stringify(scope.formData)
                                         });
                                     });
