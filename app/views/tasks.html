@@ -401,6 +401,13 @@
                                         <div class="col-md-12">
                                             <table class="table">
                                                 <tr>                            
+                                                    <td><label>{{ 'label.input.disbursedondate' | translate }}: </label></td>
+                                                    <td>
+                                                        <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="disbursedondate"
+                                                        is-open="opened" min="restrictDate" max="restrictDate"/>        
+                                                    </td>
+                                                </tr>
+                                                <tr>                            
                                                     <td><label>{{ 'label.input.fundsource' | translate }}: </label></td>
                                                     <td>
                                                         <select id="fundId" ng-model="fundId"

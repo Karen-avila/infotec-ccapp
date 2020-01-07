@@ -55,7 +55,8 @@
                         for="firstname">{{ 'label.input.firstname' | translate }}<span class="required">*</span></label>
                      <div class="col-sm-3">
                         <input type="text" id="firstname" name="firstname" ng-model="formData.firstname"
-                           class="form-control uppercase" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate ng-blur="createCurpRfc()"/>
+                           class="form-control uppercase" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
+                           ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.firstname.$invalid && createclientform.firstname.$dirty">
                            <small class="error required" ng-show="createclientform.firstname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -82,7 +83,8 @@
                      </label>
                      <div class="col-sm-3">
                         <input type="text" id="lastname" name="lastname" ng-model="formData.lastname"
-                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate ng-blur="createCurpRfc()"/>
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate
+                           ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.lastname.$invalid && createclientform.lastname.$dirty">
                            <small class="error required" ng-show="createclientform.lastname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -93,8 +95,9 @@
                      <label class="control-label col-sm-3" for="lastname">{{'label.input.surname' | translate}}
                      </label>
                      <div class="col-sm-3">
-                        <input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase"
-                           ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate ng-blur="createCurpRfc()"/>
+                        <input type="text" id="surname" name="surname" ng-model="formData.surname"
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
+                           ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.surname.$invalid && createclientform.surname.$dirty">
                            <small class="error required" ng-show="createclientform.surname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -111,7 +114,7 @@
                            class="required">*</span></label>
                      <div class="col-sm-6">
                         <input type="text" id="fullname" name="fullname" ng-model="formData.fullname"
-                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate/>
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
                         <form-validate valattributeform="createclientform" valattribute="fullname" />
                      </div>
                   </div>
@@ -127,30 +130,57 @@
                <div class="col-sm-3">
                   <input id="dateofbirth" type="text" name="dateofbirth" required datepicker-pop="dd-MM-yyyy"
                      ng-model="first.dateOfBirth" is-open="opened1" min="minDate" max="restrictDate"
-                     class="form-control"/>
+                     class="form-control" />
                </div>
                <div data-ng-switch on="showNonPersonOptions">
                   <div data-ng-switch-when="false">
                      <label class="control-label col-sm-3">{{'label.input.birthplace' | translate}}<span
-                        class="required">*</span></label>
+                           class="required">*</span></label>
                      <div class="col-sm-3">
-                        <select id="birthplaceId" ng-model="formData.birthPlaceId" class="form-control" ng-blur="createCurpRfc()"
-                           ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions" value="{{birthplace.id}}" required>
+                        <select id="birthplaceId" ng-model="formData.birthPlaceId" class="form-control"
+                           ng-blur="createCurpRfc()"
+                           ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions"
+                           value="{{birthplace.id}}" required>
                            <option value="">--{{'label.menu.birthplace' | translate}}--</option>
                         </select>
                      </div>
-               	  </div>
+                  </div>
                </div>
-            </div>
-            <div class="form-group">
 
+               <script type="text/ng-template" id="duplicated.html">
+                  <div class="modal-header silver">
+                      <h3 class="bolder">{{'label.heading.duplicate' | translate}}</h3>
+                  </div>
+                  <div class="modal-body">
+                      <api-validate></api-validate>
+                      <div class="row">
+                        <label class="control-label col-sm-3">{{'label.heading.status' | translate}}</label>
+                        <label class="control-label col-sm-9">{{duplicateData.status}}</label>
+                      </div>
+                      <div class="row">
+                        <label class="control-label col-sm-3">{{'label.heading.staff' | translate}}</label>
+                        <label class="control-label col-sm-9">{{duplicateData.staffName}}</label>
+                     </div>
+                     <div class="row">
+                        <label class="control-label col-sm-3">{{'label.heading.office' | translate}}</label>
+                        <label class="control-label col-sm-9">{{duplicateData.officeName}}</label>
+                     </div>
+                     <button class="btn btn-sm btn-primary" ng-click="done()">{{'label.button.submit' |
+                          translate}}
+                      </button>
+                  </div>
+              </script>
+            </div>
+
+            <div class="form-group">
                <div data-ng-switch on="showNonPersonOptions">
                   <div data-ng-switch-when="false">
                      <label class="control-label col-sm-3">{{'label.input.gender' | translate}}<span
-                        class="required">*</span></label>
+                           class="required">*</span></label>
                      <div class="col-sm-3">
-                        <select id="genderId" ng-model="formData.genderId" class="form-control" ng-blur="createCurpRfc()"
-                           ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}" required>
+                        <select id="genderId" ng-model="formData.genderId" class="form-control"
+                           ng-blur="createCurpRfc()" ng-options="gender.id as gender.name for gender in genderOptions"
+                           value="{{gender.id}}" required>
                            <option value="">--{{'label.menu.gender' | translate}}--</option>
                         </select>
                      </div>
@@ -179,10 +209,10 @@
                   </div>
                </div>
             </div>
-			
-			<div class="form-group">
+
+            <div class="form-group">
                <label class="control-label col-sm-3" for="rfc">{{'label.input.rfc' | translate}}
-               <span class="required">*</span></label>
+                  <span class="required">*</span></label>
                <div class="col-sm-3">
                   <input type="text" id="rfc" name="rfc" ng-model="formData.rfc" class="form-control uppercase"
                      ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
@@ -194,10 +224,10 @@
                   <form-validate valattributeform="createclientform" valattribute="rfc" />
                </div>
                <label class="control-label col-sm-3" for="uniqueId">{{'label.input.uniqueId' | translate}}
-               <span class="required">*</span></label>
+                  <span class="required">*</span></label>
                <div class="col-sm-3">
-                  <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId" class="form-control uppercase"
-                     ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
+                  <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId"
+                     class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
                   <span ng-show="createclientform.uniqueId.$invalid && createclientform.uniqueId.$dirty">
                      <small class="error required" ng-show="createclientform.uniqueId.$error.pattern">
                         {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}

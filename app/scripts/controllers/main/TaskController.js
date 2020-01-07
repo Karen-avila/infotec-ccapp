@@ -696,7 +696,7 @@
                 $scope.channelOptions = scope.channelOptions;
 
                 $scope.disburse = function () {
-                    scope.bulkDisbursal($scope.fundId, $scope.channelId);
+                    scope.bulkDisbursal($scope.fundId, $scope.channelId, $scope.disbursedondate);
                     route.reload();
                     $uibModalInstance.close('disburse');
                 };
@@ -705,8 +705,8 @@
                 };
             }
 
-            scope.bulkDisbursal = function (fundId, channelId) {
-                scope.formData.actualDisbursementDate = dateFilter(new Date(), scope.df);
+            scope.bulkDisbursal = function (fundId, channelId, disbursedondate) {
+                scope.formData.actualDisbursementDate = disbursedondate; // dateFilter(new Date(), scope.df);
                 scope.formData.dateFormat = scope.df;
                 scope.formData.locale = scope.optlang.code;
                 scope.formData.fundId = fundId;

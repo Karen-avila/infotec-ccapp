@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateClientController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, Upload, $rootScope, routeParams, WizardHandler) {
+        CreateClientController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, Upload, $rootScope, routeParams, $uibModal) {
 
             scope.offices = [];
             scope.staffs = [];
@@ -226,37 +226,37 @@
                 });
                 return scope.df;
             };
-            
-            scope.createCurpRfc=function (){
-            	if(scope.formData.firstname && scope.formData.lastname && scope.formData.surname && scope.first.dateOfBirth && scope.formData.genderId && scope.formData.birthPlaceId){
-            		var nombre=scope.formData.middlename?scope.formData.firstname+" "+scope.formData.middlename:scope.formData.firstname;
-            		var genero="";
-            		var lugarNacimiento="";
-            		for(var i in scope.genderIdOptions){
-            			if(scope.genderIdOptions[i].id===scope.formData.genderId){
-            				genero=scope.genderIdOptions[i].name;
-            				break;
-            			}
-            		}
-            		for(var i in scope.birthPlaceOptions){
-            			if(scope.birthPlaceOptions[i].id===scope.formData.birthPlaceId){
-            				lugarNacimiento=scope.birthPlaceOptions[i].name;
-            				break;
-            			}
-            		}
-            		var vcurp=generarCURP(nombre, scope.formData.lastname, scope.formData.surname, 
-            				dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"), genero, lugarNacimiento);
-            		scope.formData.uniqueId=vcurp;
-            		var vrfc=generarRFC(nombre, scope.formData.lastname, scope.formData.surname, 
-            				dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"));
-            		scope.formData.rfc=vrfc;
-            	}
+
+            scope.createCurpRfc = function () {
+                if (scope.formData.firstname && scope.formData.lastname && scope.formData.surname && scope.first.dateOfBirth && scope.formData.genderId && scope.formData.birthPlaceId) {
+                    var nombre = scope.formData.middlename ? scope.formData.firstname + " " + scope.formData.middlename : scope.formData.firstname;
+                    var genero = "";
+                    var lugarNacimiento = "";
+                    for (var i in scope.genderIdOptions) {
+                        if (scope.genderIdOptions[i].id === scope.formData.genderId) {
+                            genero = scope.genderIdOptions[i].name;
+                            break;
+                        }
+                    }
+                    for (var i in scope.birthPlaceOptions) {
+                        if (scope.birthPlaceOptions[i].id === scope.formData.birthPlaceId) {
+                            lugarNacimiento = scope.birthPlaceOptions[i].name;
+                            break;
+                        }
+                    }
+                    var vcurp = generarCURP(nombre, scope.formData.lastname, scope.formData.surname,
+                        dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"), genero, lugarNacimiento);
+                    scope.formData.uniqueId = vcurp;
+                    var vrfc = generarRFC(nombre, scope.formData.lastname, scope.formData.surname,
+                        dateFilter(scope.first.dateOfBirth, "yyyy-MM-dd"));
+                    scope.formData.rfc = vrfc;
+                }
             };
-            
+
             scope.$watch('first.dateOfBirth', function (value) {
-            	scope.createCurpRfc();
+                scope.createCurpRfc();
             });
-            
+
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);
 
@@ -427,7 +427,6 @@
                         temp.maritalStatusId = scope.familyArray[i].maritalStatusId;
                     }
                     if (scope.familyArray[i].dateOfBirth) {
-
                         temp.dateOfBirth = dateFilter(scope.familyArray[i].dateOfBirth, scope.df);
                     }
 
@@ -435,7 +434,7 @@
                     temp.dateFormat = scope.df;
                     scope.formData.familyMembers.push(temp);
                 }
-                
+
                 if (this.formData.firstname) {
                     this.formData.firstname = this.formData.firstname.toUpperCase();
                 }
@@ -459,13 +458,41 @@
                 }
                 this.formData.groupLoanCounter = 0;
 
-                resourceFactory.clientResource.save(this.formData, function (data) {
-                    location.path('/viewclient/' + data.clientId);
+                scope.clientData = this.formData;
+                // Validate 
+                scope.validateDuplicates(this.formData.uniqueId);
+            }
+
+            var ClientDuplicateCtrl = function ($scope, $uibModalInstance) {
+                $scope.duplicateData = scope.duplicateData;
+
+                $scope.done = function () {
+                    $uibModalInstance.close('cancel');
+                };
+            }
+
+            // Duplicates validation
+            scope.validateDuplicates = function (uniqueId) {
+                var duplicateData = {};
+                duplicateData.uniqueId = uniqueId.toUpperCase();
+                resourceFactory.clientDuplicatesResource.duplicates(duplicateData, function (data) {
+                    if (data.clientId) {
+                        scope.duplicateData = data.changes;
+                        $uibModal.open({
+                            templateUrl: 'duplicated.html',
+                            controller: ClientDuplicateCtrl
+                        });
+                    } else {
+                        resourceFactory.clientResource.save(scope.clientData, function (data) {
+                            location.path('/viewclient/' + data.clientId);
+                        });
+                    }
                 });
-            };
+            }
         }
+
     });
-    mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter', 'API_VERSION', 'Upload', '$rootScope', '$routeParams', 'WizardHandler', mifosX.controllers.CreateClientController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter', 'API_VERSION', 'Upload', '$rootScope', '$routeParams', '$uibModal', mifosX.controllers.CreateClientController]).run(function ($log) {
         $log.info("CreateClientController initialized");
     });
 }(mifosX.controllers || {}));

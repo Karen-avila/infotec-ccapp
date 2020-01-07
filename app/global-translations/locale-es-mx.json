@@ -52,6 +52,7 @@
 	"label.heading.staff": "Personal",
 	"label.heading.office": "Oficina",
 	"label.heading.delete": "Eliminar",
+	"label.heading.duplicate": "Cliente potencialmente duplicado",
 	"label.heading.reject": "Rechazar",
 	"label.heading.deleterole": "Eliminar rol",
 	"label.heading.disablerole": "Deshabilitar rol",
@@ -4199,5 +4200,8 @@
 	"DATOS_GENERALES_DE_SUCURSAL.column_06": "Estado",
 	"DATOS_GENERALES_DE_SUCURSAL.column_07": "Número Interior",
 	"DATOS_GENERALES_DE_SUCURSAL.column_08": "Responsable de Sucursal",
-	"DATOS_GENERALES_DE_SUCURSAL.column_09": "Teléfono"
+	"DATOS_GENERALES_DE_SUCURSAL.column_09": "Teléfono",
+	"DATOS_DEL_CREDITO.column_01": "Pago por cada mil",
+	"DATOS_DEL_CREDITO.column_02": "Convenio",
+	"DATOS_DEL_CREDITO.column_03": "Número de cuenta"
 }
