@@ -3,32 +3,37 @@
         BulkLoanReassignmentController: function (scope, resourceFactory, route, dateFilter) {
             scope.offices = [];
             scope.accounts = {};
-            scope.officeIdTemp = {};
+            scope.fromOfficeId = '';
+            scope.toOfficeId = '';
             scope.first = {};
             scope.toOfficers = [];
             scope.first.date = new Date();
+
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
             });
-            scope.getOfficers = function () {
-                scope.officerChoice = true;
-                resourceFactory.loanReassignmentResource.get({templateSource: 'template', officeId: scope.officeIdTemp}, function (data) {
-                    scope.officers = data.loanOfficerOptions;
 
+            scope.getOfficers = function (officeId, source) {
+                resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: officeId }, function (data) {
+                    if (source === 0) {
+                        scope.fromOfficers = data.loanOfficerOptions;
+                    } else {
+                        scope.toOfficers = data.loanOfficerOptions;
+                    }
                 });
             };
 
-            scope.getOfficerClients = function () {
-                var toOfficers = angular.copy(scope.officers);
+            scope.getOfficerClients = function (officerId, source) {
+                var officerTmp = _.filter(scope.officers, function (officer) {
+                    return (officer.id == officerId);
+                });
 
-                for (var i in toOfficers) {
-                    if (toOfficers[i].id == this.formData.fromLoanOfficerId) {
-                        var index = i;
-                    }
+                if (source === 0) {
+                    scope.fromOfficers = officerTmp;
+                } else {
+                    scope.toOfficers = officerTmp;
                 }
-                toOfficers.splice(index, 1);
-                scope.toOfficers = toOfficers;
-                resourceFactory.loanReassignmentResource.get({templateSource: 'template', officeId: scope.officeIdTemp, fromLoanOfficerId: scope.formData.fromLoanOfficerId}, function (data) {
+                resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: scope.fromOfficeId, fromLoanOfficerId: scope.formData.fromLoanOfficerId }, function (data) {
                     scope.clients = data.accountSummaryCollection.clients;
                     scope.groups = data.accountSummaryCollection.groups;
                 });

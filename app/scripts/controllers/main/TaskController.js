@@ -706,7 +706,7 @@
             }
 
             scope.bulkDisbursal = function (fundId, channelId, disbursedondate) {
-                scope.formData.actualDisbursementDate = disbursedondate; // dateFilter(new Date(), scope.df);
+                scope.formData.actualDisbursementDate = dateFilter(disbursedondate, scope.df); // dateFilter(new Date(), scope.df);
                 scope.formData.dateFormat = scope.df;
                 scope.formData.locale = scope.optlang.code;
                 scope.formData.fundId = fundId;

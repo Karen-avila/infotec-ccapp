@@ -287,6 +287,9 @@
             .when('/tasks', {
                 templateUrl: 'views/tasks.html'
             })
+            .when('/transfers', {
+                templateUrl: 'views/organization/transfers/transfers.html'
+            })
             .when('/currconfig', {
                 templateUrl: 'views/organization/currencyconfig.html'
             })
