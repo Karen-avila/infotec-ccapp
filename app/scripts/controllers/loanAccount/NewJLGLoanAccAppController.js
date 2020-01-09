@@ -53,7 +53,6 @@
                 resourceFactory.loanResource.get(scope.inparams, function (data) {
 
                     scope.productDetails = data.product;
-                    console.log('scope', scope.productDetails);
                     scope.group.clients = data.group.clientMembers.map(function (client) {
                         client.principal = data.product.principal;
                         client.charges = data.product.charges.map(function (charge) {
@@ -209,13 +208,11 @@
                 }
 
                 // Interest Rate Per Period using payment for each 1,000
-                var interestRatePerPeriod = 0;
-                for (var i in scope.paymentFor1000Options) {
-                    if (scope.paymentFor1000Id == scope.paymentFor1000Options[i].id) {
-                        interestRatePerPeriod = scope.paymentFor1000Options[i].description;
-                        break;
-                    }
-                }
+                var paymentFor1000 = _.filter(scope.paymentFor1000Options, function (option) {
+                    return option.id === scope.paymentFor1000Id;
+                });
+                var temp = paymentFor1000[0].description.split("|");
+                var interestRatePerPeriod = temp[0].trim() * 1;
 
                 this.batchRequests = [];
                 for (var i in scope.group.clients) {
@@ -236,7 +233,6 @@
                         } else {
                             loanApplication.interestRatePerPeriod = scope.productDetails.interestRatePerPeriod;
                         }
-                        // loanApplication.channelId = scope.loanApplicationCommonData.channelId;
                         loanApplication.repaymentsStartingFromDate = dateFilter(scope.loanApplicationCommonData.firstrepaymenton, scope.df);
                         loanApplication.numberOfRepayments = scope.productDetails.numberOfRepayments;
                         loanApplication.repaymentEvery = scope.productDetails.repaymentEvery;

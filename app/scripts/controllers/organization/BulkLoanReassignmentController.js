@@ -17,8 +17,10 @@
                 resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: officeId }, function (data) {
                     if (source === 0) {
                         scope.fromOfficers = data.loanOfficerOptions;
+                        console.log(JSON.stringify(scope.fromOfficers));
                     } else {
                         scope.toOfficers = data.loanOfficerOptions;
+                        console.log(JSON.stringify(scope.toOfficers));
                     }
                 });
             };
