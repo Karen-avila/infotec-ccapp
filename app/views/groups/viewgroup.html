@@ -304,7 +304,7 @@
 											<thead>
 												<tr class="graybg">
 													<th>{{'label.heading.accnum' | translate}}</th>
-													<th>{{ 'label.heading.products' | translate }}</th>
+													<th>{{'label.heading.products' | translate }}</th>
 													<th>{{'label.heading.type' | translate}}</th>
 													<th>{{'label.heading.closedate' | translate}}</th>
 												</tr>
@@ -563,8 +563,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								
+							<!-- DATATABLES -->
+							<div class="row">						
 								<div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
 									<table class="table-minified" style="width: 100%;">
 										<tbody>
@@ -614,6 +614,37 @@
 									</table>
 								</div>
 							</div>
+							<!-- DATATABLES -->
+							<!-- LOAN ACCOUNTS -->
+							<div class="row">
+								<div class="col-sm-1 col-md-1"></div>					
+								<div class="col-sm-11 col-md-11" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
+									<table class="table table-condensed" style="width: 100%;">
+										<thead>
+											<tr class="graybg">
+												<th>{{'label.heading.client' | translate}}</th>
+												<th>{{'label.heading.account' | translate}}</th>
+												<th>{{'label.heading.externalid' | translate}}</th>
+												<th>{{'label.heading.productname' | translate}}</th>											
+												<th>{{'label.heading.principal' | translate}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="loan in group.activeLoans"  class="pointer-main" data-ng-click="routeToLoan(loan.id)">
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.clientName}}</td>
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">
+													<i tooltip-placement="right"
+													uib-tooltip="{{loan.status.value}}"
+													class="fa fa-stop {{loan.status.code | StatusLookup}}"></i>{{loan.accountNo}}</td>
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.externalId}}</td>
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.loanProductName}}</td>
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.principal | number}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- LOAN ACCOUNTS -->
 						</div>
 					</div>
 				</uib-tab>

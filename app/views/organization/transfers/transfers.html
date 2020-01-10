@@ -17,7 +17,7 @@
                             {{ 'label.input.assignmentdate' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="assignmentDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
+                            <input id="assignmentDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="transactionDate"
                                 is-open="opened" min="minDate" max="'2030-06-22'" date-disabled="disabled(date, mode)"
                                 class="form-control" required late-Validate />
                         </div>
@@ -27,20 +27,23 @@
                         <label class="control-label col-sm-3">{{ 'label.input.fromoffice' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
-                            <select chosen="offices" name="office" id="office" ng-model="fromOfficeId"
+                            <select id="fromOfficeId" chosen="offices" name="office" id="office" ng-model="fromOfficeId"
                                 data-ng-options="office.id as office.name for office in offices"
                                 data-ng-change="getOfficers(fromOfficeId, 0)" class="form-control">
                                 <option value="">{{'label.selectoffice' | translate}}</option>
                             </select>
                         </div>
-                        <label class="control-label col-sm-3">{{ 'label.input.tooffice' | translate }}<span
-                            class="required">*</span></label>
-                        <div class="col-sm-3">
-                            <select chosen="offices" name="office" id="office" ng-model="toOfficeId"
-                                data-ng-options="office.id as office.name for office in offices"
-                                data-ng-change="getOfficers(toOfficeId, 1)" class="form-control">
-                                <option value="">{{'label.selectoffice' | translate}}</option>
-                            </select>
+
+                        <div data-ng-show="formData.fromLoanOfficerId">
+                            <label class="control-label col-sm-3">{{ 'label.input.tooffice' | translate }}<span
+                                class="required">*</span></label>
+                            <div class="col-sm-3">
+                                <select id="toOfficeId" chosen="offices" name="office" id="office" ng-model="toOfficeId"
+                                    data-ng-options="office.id as office.name for office in offices"
+                                    data-ng-change="getOfficers(toOfficeId, 1)" class="form-control">
+                                    <option value="">{{'label.selectoffice' | translate}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -49,22 +52,24 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select chosen="officers" id="fromLoanOfficerId" ng-model="formData.fromLoanOfficerId"
-                                data-ng-options="officer.id as officer.displayName for officer in fromOfficers"
-                                ng-change="getOfficerClients(fromLoanOfficerId, 0)" class="form-control">
+                            <select chosen="fromOfficers" id="fromLoanOfficerId" ng-model="formData.fromLoanOfficerId"
+                                data-ng-options="fromOfficer.id as fromOfficer.displayName for fromOfficer in fromOfficers"
+                                ng-change="getOfficerClients()" class="form-control">
                                 <option value="">{{'label.selectone' | translate}}</option>
                             </select>
                         </div>
 
-                        <label class="control-label col-sm-3">{{ 'label.input.toloanofficer' | translate }}<span
-                                class="required">*</span></label>
+                        <div data-ng-show="formData.fromLoanOfficerId">
+                            <label class="control-label col-sm-3">{{ 'label.input.toloanofficer' | translate }}<span
+                                    class="required">*</span></label>
 
-                        <div class="col-sm-3">
-                            <select chosen="toOfficers" id="toLoanOfficerId" ng-model="formData.toLoanOfficerId"
-                                class="form-control"
-                                data-ng-options="toOfficer.id as toOfficer.displayName for toOfficer in toOfficers">
-                                <option value="">{{'label.selectone' | translate}}</option>
-                            </select>
+                            <div class="col-sm-3">
+                                <select chosen="toOfficers" id="toLoanOfficerId" ng-model="formData.toLoanOfficerId"
+                                    class="form-control"
+                                    data-ng-options="toOfficer.id as toOfficer.displayName for toOfficer in toOfficers">
+                                    <option value="">{{'label.selectone' | translate}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -78,16 +83,8 @@
                                     <tbody>
                                         <tr ng-repeat="client in clients">
                                             <td>
-                                                <table>
-                                                    <tr>
-                                                        <td><strong>{{client.displayName}}</strong></td>
-                                                    </tr>
-                                                    <tr ng-repeat="loan in client.loans">
-                                                        <td><input class="pull-left" type="checkbox"
-                                                                ng-model="accounts[loan.id]">&nbsp;&nbsp;{{loan.productName}}({{loan.accountNo}})
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                <input class="pull-left" type="checkbox"
+                                                                ng-model="transfers['c_' + client.id]">&nbsp;({{client.externalId}})&nbsp;{{client.displayName}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -101,29 +98,19 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="group in groups">
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td><strong>{{group.displayName}}</strong></td>
-                                                </tr>
-                                                <tr ng-repeat="loan in group.loans">
-                                                    <td><input class="pull-left" type="checkbox"
-                                                            ng-model="accounts[loan.id]">&nbsp;&nbsp;{{loan.productName}}({{loan.accountNo}})
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        <td>&nbsp;({{group.externalId}})&nbsp;{{group.displayName}}
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-offset-3">
+                    <div class="col-md-12 center">
                         <a href="#!/organization">
-                            <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+                            <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
                         </a>
-                        <button type="submit" class="btn btn-primary"
-                            has-permission='BULKREASSIGN_LOAN'>{{'label.button.save' | translate}}</button>
+                        <button type="submit" class="btn btn-sm btn-primary"
+                            has-permission='BULKREASSIGN_LOAN'>{{'label.button.transfer' | translate}}</button>
                     </div>
                 </fieldset>
             </form>
