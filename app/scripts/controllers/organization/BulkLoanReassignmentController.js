@@ -17,12 +17,16 @@
             });
 
             scope.getOfficers = function (officeId, source) {
+                if (source === 0)
+                    scope.fromOfficers = [];
+                else
+                    scope.toOfficers = [];
                 resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: officeId }, function (data) {
                     if (source === 0) {
                         scope.fromOfficers = data.loanOfficerOptions;
                     } else {
                         scope.toOfficers = _.filter(data.loanOfficerOptions, function (officer) {
-                            return officer.if != scope.formData.fromLoanOfficerId;
+                            return officer.id != scope.formData.fromLoanOfficerId;
                         });
                     }
                 });
@@ -68,7 +72,11 @@
                 this.formData.assignmentDate = reqDate;
                 this.formData.dateFormat = scope.df;
                 this.formData.locale = scope.optlang.code;
-                this.formData.loans = loans;
+                if (scope.transferTypeId == 1) {
+                    this.formData.loans = loans;
+                } else {
+                    this.formData.groups = groups;
+                }
 
                 // Transfer Clients
                 if (scope.transferTypeId == 1) {
