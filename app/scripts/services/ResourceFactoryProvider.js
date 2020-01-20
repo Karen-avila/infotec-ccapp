@@ -122,6 +122,9 @@
                     groupMeetingResource: defineResource(apiVer + "/groups/:groupId/meetings/:templateSource", { groupId: '@groupId', templateSource: '@templateSource' }, {
                         getMeetingInfo: { method: 'GET', params: {} }
                     }),
+                    groupReassignmentResource: defineResource(apiVer + "/groups/groupreassignment/:templateSource", { templateSource: '@templateSource' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
                     attachMeetingResource: defineResource(apiVer + "/:groupOrCenter/:groupOrCenterId/calendars/:templateSource", {
                         groupOrCenter: '@groupOrCenter', groupOrCenterId: '@groupOrCenterId',
                         templateSource: '@templateSource'

@@ -10,6 +10,7 @@
             scope.first = {};
             scope.toOfficers = [];
             scope.transactionDate = new Date();
+            scope.transferTypes = [{id: 1, name: "label.input.clients"}, {id: 2, name: "label.input.groups"}]
 
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
@@ -28,6 +29,9 @@
             };
 
             scope.getOfficerClients = function () {
+                scope.transferTypeId = null;
+                scope.clients = [];
+                scope.groups = [];
                 var officerId = scope.formData.fromLoanOfficerId;
                 resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: scope.fromOfficeId, fromLoanOfficerId: officerId }, function (data) {
                     scope.clients = data.accountSummaryCollection.clients;
@@ -44,7 +48,7 @@
                     if (value == true) {
                         var tmp = key.split("_");
                         // Clients
-                        if (tmp[0] === "c") {
+                        if ((tmp[0] === "c") && (scope.transferTypeId == 1)) {
                             var client = _.filter(scope.clients, function(item) {
                                 return item.id == tmp[1];
                             });
@@ -53,7 +57,7 @@
                             for (var i in clientLoans) {
                                 loans.push(clientLoans[i].id);
                             }
-                        } else {
+                        } else if ((tmp[0] === "g") && (scope.transferTypeId == 2)) {
                             var group = _.filter(scope.groups, function(item) {
                                 return item.id == tmp[1];
                             });
@@ -66,13 +70,16 @@
                 this.formData.locale = scope.optlang.code;
                 this.formData.loans = loans;
 
-                // Transfer Loans
-                resourceFactory.loanReassignmentResource.save(this.formData, function (data) {
-                    route.reload();
-                });
-
                 // Transfer Clients
-
+                if (scope.transferTypeId == 1) {
+                    resourceFactory.loanReassignmentResource.save(this.formData, function (data) {
+                        route.reload();
+                    });
+                } else {
+                    resourceFactory.groupReassignmentResource.save(this.formData, function (data) {
+                        route.reload();
+                    });
+                }
                 // Transfer Groups
             };
         }

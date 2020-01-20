@@ -72,8 +72,21 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">
+                            {{ 'label.input.transfertype' | translate }}<span class="required">*</span></label>
 
-                    <div class="container">
+                        <div class="col-sm-3">
+                            <select chosen="transferTypes" id="transferTypeId" ng-model="transferTypeId"
+                                data-ng-options="transferType.id as transferType.name | translate for transferType in transferTypes"
+                                class="form-control">
+                                <option value="">{{'label.selectone' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="container" data-ng-show="transferTypeId == 1">
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group" data-ng-show="clients">
                                 <table>
@@ -105,6 +118,27 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="container" data-ng-show="transferTypeId == 2">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group" data-ng-show="groups">
+                                <table>
+                                    <thead>
+                                        <th>{{'label.heading.groups' | translate}}</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="group in groups">
+                                            <td>
+                                                <input class="pull-left" type="checkbox"
+                                                                ng-model="transfers['g_' + group.id]">&nbsp;({{group.externalId}})&nbsp;{{group.displayName}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-12 center">
                         <a href="#!/organization">
                             <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
