@@ -27,7 +27,7 @@
                         <label class="control-label col-sm-3">{{ 'label.input.fromoffice' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
-                            <select id="fromOfficeId" chosen="offices" name="office" id="office" ng-model="fromOfficeId"
+                            <select id="fromOfficeId" chosen="offices" name="fromOffice" id="fromOffice" ng-model="fromOfficeId"
                                 data-ng-options="office.id as office.name for office in offices"
                                 data-ng-change="getOfficers(0)" class="form-control">
                                 <option value="">{{'label.selectoffice' | translate}}</option>
@@ -38,7 +38,7 @@
                             <label class="control-label col-sm-3">{{ 'label.input.tooffice' | translate }}<span
                                 class="required">*</span></label>
                             <div class="col-sm-3">
-                                <select id="toOfficeId" chosen="offices" name="office" id="office" ng-model="toOfficeId"
+                                <select id="toOfficeId" chosen="offices" name="toOffice" id="toOffice" ng-model="toOfficeId"
                                     data-ng-options="office.id as office.name for office in offices"
                                     data-ng-change="getOfficers(1)" class="form-control">
                                     <option value="">{{'label.selectoffice' | translate}}</option>

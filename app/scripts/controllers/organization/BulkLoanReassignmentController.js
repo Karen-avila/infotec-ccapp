@@ -5,8 +5,6 @@
             scope.fromOfficers = [];
             scope.toOfficers = [];
             scope.transfers = {};
-            scope.fromOfficeId = '';
-            scope.toOfficeId = '';
             scope.first = {};
             scope.toOfficers = [];
             scope.transactionDate = new Date();
@@ -16,12 +14,15 @@
                 scope.offices = data;
             });
 
-            scope.getOfficers = function (officeId, source) {
+            scope.getOfficers = function (source) {
+                var _officeId = scope.fromOfficeId;
                 if (source === 0)
                     scope.fromOfficers = [];
-                else
+                else {
                     scope.toOfficers = [];
-                resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: officeId }, function (data) {
+                    _officeId = scope.toOfficeId;
+                }
+                resourceFactory.loanReassignmentResource.get({ templateSource: 'template', officeId: _officeId }, function (data) {
                     if (source === 0) {
                         scope.fromOfficers = data.loanOfficerOptions;
                     } else {
