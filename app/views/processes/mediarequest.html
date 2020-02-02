@@ -1,0 +1,121 @@
+<div class="col-md-12" ng-controller="MediaRequestController" ng-init="refreshImportTable()">
+	<ul class="breadcrumb">
+		<li><a href="#!/processes">{{'label.anchor.processes' | translate}}</a></li>
+		<li class="active">{{'label.heading.processes.mediarequest' | translate}}</li>
+	</ul>
+	<api-validate></api-validate>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{'label.heading.processes.mediarequest' | translate}}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<form name="bulkMediaRequests" role="form">
+					<div class="form-group">
+						<div class="col-sm-4">
+							<a class='btn btn-sm btn-primary'
+								href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}"
+								has-permission='READ_CENTERS'><i
+									class="fa fa-cloud-download"></i>&nbsp;{{'label.button.downloadtemplate' | translate}}</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="form-group">
+				<form role="form">
+					<fieldset>
+						<div class="form-group">
+							<label class="control-label col-sm-3">
+								{{'label.input.program' | translate}}<span
+								class="required">*</span>
+							</label>
+							<div class="col-sm-3">
+								<div>
+									<select chosen="programs" id="programId" ng-model="formData.programId"
+										class="form-control" ng-options="program.id as program.name for program in programs"
+										value="{{program.id}}">
+										<option value="">--{{'label.menu.selectprogram' | translate}}--</option>
+									</select>
+								</div>
+							</div>
+
+							<label class="control-label col-sm-3">
+								{{'label.input.program.channel' | translate}}<span
+								class="required">*</span>
+							</label>
+							<div class="col-sm-3">
+								<div>
+									<select chosen="channels" id="channelId" ng-model="formData.channelId"
+										class="form-control" ng-options="channel.id as channel.name for channel in channels"
+										value="{{channel.id}}">
+										<option value="">--{{'label.menu.selectchannel' | translate}}--</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="file">{{'label.input.selectfile' | translate}}<span
+									class="required">*</span></label>
+							<div class="col-sm-4">
+								<input type="file" id="file" accept=".xls,.xlsx" class="form-control btn btn-sm btn-default no-border"
+									ngf-select="onFileSelect($files)">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12 center">
+								<a class='btn btn-sm btn-primary' href="#" has-permission='READ_CENTERS'
+									ng-click="upload()">
+									<i class="fa fa-send"></i>&nbsp;{{'label.button.send.requests' | translate}}
+								</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{'label.anchor.requests' | translate}}</h3>
+			<div class="col-sm-12 center">
+				<a class='btn btn-sm btn-primary' href="#" has-permission='READ_CENTERS'
+					ng-click="refreshImportTable()">
+					<i class="fa fa-repeat"></i>&nbsp;{{'label.button.refresh' | translate}}
+				</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr class="graybg">
+						<th>{{ 'label.heading.name' | translate }}</th>
+						<th>{{ 'label.heading.importtime' | translate }}</th>
+						<th>{{ 'label.heading.endtime' | translate }}</th>
+						<th>{{ 'label.heading.completed' | translate }}</th>
+						<th>{{ 'label.heading.totalrecords' | translate }}</th>
+						<th>{{ 'label.heading.successcount' | translate }}</th>
+						<th>{{ 'label.heading.failurecount' | translate }}</th>
+						<th>{{ 'label.button.download' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="import in imports"
+						ng-class="{'bg-success': import.completed, 'bg-danger': !import.completed}">
+						<td>{{import.name}}</td>
+						<td>{{import.importTime | DateFormat}}</td>
+						<td>{{import.endTime | DateFormat}}</td>
+						<td>{{import.completed}}</td>
+						<td>{{import.totalRecords}}</td>
+						<td>{{import.successCount}}</td>
+						<td>{{import.failureCount}}</td>
+						<td ng-show='import.completed'><a href="{{hostUrl}}{{import.docUrl}}"
+								has-permission='READ_DOCUMENT'><i class="fa fa-cloud-download"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+</div>

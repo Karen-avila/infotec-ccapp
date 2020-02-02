@@ -37,6 +37,7 @@ $sidebar-hover-width : 240px;
   background-color: $body-bg;
   
   #mifos-reskin-side-nav {
+    display: none;
     position: fixed;
     top: 52px;
     bottom: 0;

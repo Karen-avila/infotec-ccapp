@@ -14,11 +14,14 @@
   }
 
   .navbar-brand {
-    padding:10px 15px;
+    padding:10px 5px;
     img{
-      max-width:80px;
-
+      max-width:120px;
     }
   }
-  background-color:white;
+  background-color: $brand-success;
+}
+
+.navbar-form {
+  background-color: transparent;
 }

@@ -287,16 +287,12 @@
                 </div>
                 <div id="mifos-reskin-body-view">
                     <div class="" ng-view></div>
-
-                    <!-- Footer -->
-                    <footer data-ng-hide="!domReady">
-                        <p align="center">
-                            <small> {{'label.relVersion' | translate}} {{version}}
-                            <br>{{'label.relDate' | translate}} {{releasedate}} </small>
-                        </p>
-                    </footer>
                 </div>
             </div>
+            <!-- Footer -->
+            <footer data-ng-hide="!domReady">
+                <div ng-include="'views/footer.html'"></div>
+            </footer>
         </div>
     </div>
 

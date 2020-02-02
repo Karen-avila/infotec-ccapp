@@ -150,7 +150,7 @@ module.exports = function(grunt) {
             '.htaccess',
             '.nojekyll',
             'images/{,*/}*.{webp}',
-            'fonts/*',
+            'fonts/**',
             'images/*',
             'scripts/*.js',
             'scripts/config/*.json',

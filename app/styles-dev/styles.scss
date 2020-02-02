@@ -1,13 +1,16 @@
 /* Variables */
-$brand-primary:#386533;
-$brand-success:#f0c936;
-$state-success-text:#f0c936;
+$brand-primary:#285c4d;
+$brand-secondary: #f2ede4;
+$brand-success: $brand-secondary;
+$state-success-text: #fff;
 
 /* Mixins and Colors */
 @import "./main/custom_mixins";
 
 /* Load External Stylesheets */
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+/* Fonts */
+@import "../fonts/montserrat/montserrat.css";
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 // @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";

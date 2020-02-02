@@ -341,6 +341,12 @@
             .when('/nav/offices', {
                 templateUrl: 'views/navigation/offices.html'
             })
+            .when('/processes', {
+                templateUrl: 'views/processes/processes.html'
+            })
+            .when('/mediarequest', {
+                templateUrl: 'views/processes/mediarequest.html'
+            })
             .when('/accounting', {
                 templateUrl: 'views/accounting/accounting.html'
             })

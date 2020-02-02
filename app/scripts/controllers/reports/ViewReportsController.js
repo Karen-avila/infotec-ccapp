@@ -4,8 +4,8 @@
             scope.reports = [];
             scope.type = routeParams.type;
             //to display type of report on breadcrumb
-            var typeReport = routeParams.type.replace(routeParams.type[0], routeParams.type[0].toUpperCase()) + " " + "Reports";
-            scope.type = typeReport;
+            // var typeReport = routeParams.type.replace(routeParams.type[0], routeParams.type[0].toUpperCase()) + " " + "Reports";
+            // scope.type = typeReport;
 
             scope.routeTo = function (report) {
                 location.path('/run_report/' + report.report_name).search({reportId: report.report_id, type: report.report_type});
