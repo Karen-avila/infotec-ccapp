@@ -11,19 +11,21 @@
                 };
             });
 
-             scope.minDat = function() {
-                 for(var i=0;i<scope.offices.length;i++) {
-                     if ((scope.offices[i].id) === (scope.formData.officeId)) {
-                         return scope.offices[i].openingDate;
-                     }
-                 }
-                };
+            scope.minDat = function () {
+                for (var i = 0; i < scope.offices.length; i++) {
+                    if ((scope.offices[i].id) === (scope.formData.officeId)) {
+                        return scope.offices[i].openingDate;
+                    }
+                }
+            };
 
             scope.submit = function () {
+                this.formData = scope.formData;
                 this.formData.locale = scope.optlang.code;
-                var joiningDate = dateFilter(scope.formData.joiningDate, scope.df);
                 this.formData.dateFormat = scope.df;
+                const joiningDate = dateFilter(scope.formData.joiningDate, scope.df);
                 this.formData.joiningDate = joiningDate;
+                console.log(JSON.stringify(this.formData));
                 resourceFactory.employeeResource.save(this.formData, function (data) {
                     location.path('/viewemployee/' + data.resourceId);
                 });
