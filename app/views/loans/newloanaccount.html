@@ -1301,19 +1301,21 @@
                     </table>
                     <br>
                     <br>
-                    <div class="col-md-offset-5">
-                        <button id="cancel3" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
-                            {{'label.button.cancel' | translate}}
+                    <div class="col-md-6 pull-right">
+                        <button id="cancel" ng-click="cancel()"
+                            class="btn btn-sm btn-warning">{{ 'label.button.cancel' | translate }}
                         </button>
-                        <button id="save" type="submit" has-permission='CREATE_LOAN' class="btn btn-primary"
-                            ng-show="loanaccountinfo" wz-next>{{'label.button.save' | translate}}
+                    </div>
+                    <div class="col-md-6 pull-left">
+                        <button id="save" wz-next class="btn btn-sm btn-primary" ng-show="data"
+                            has-permission='CREATE_SAVINGSACCOUNT' type="submit">{{ 'label.button.save' | translate }}
                         </button>
                     </div>
                     <hr>
                     <button class="btn btn-sm btn-default pull-left" wz-previous>
                         <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
                     </button>
-                    <button class="btn btn-sm btn-default pull-right" disabled>{{'label.button.next' | translate}}
+                    <button class="btn btn-sm btn-default pull-right" disabled ng-hide="disabled">{{'label.button.next' | translate}}
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </fieldset>
