@@ -9,19 +9,19 @@
         <fieldset>
             <legend>{{'label.heading.editcharge' | translate}}</legend>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{'label.input.chargesappliesto' | translate}}<span
+                <label class="control-label col-sm-3">{{'label.input.chargesappliesto' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="chargeAppliesTo" ng-model="formData.chargeAppliesTo"
-                            data-ng-options="chargesapply.id as chargesapply.value for chargesapply in template.chargeAppliesToOptions"
+                            data-ng-options="chargesapply.id as chargesapply.value | translate for chargesapply in template.chargeAppliesToOptions"
                             value="{{chargesapply.id}}" ng-disabled="true" class="form-control">
                     </select>
                 </div>
             </div>
             <hr/>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">{{'label.input.name' | translate}}<span
+                <label class="control-label col-sm-3" for="name">{{'label.input.name' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -31,50 +31,50 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{'label.input.currency' | translate}}<span
+                <label class="control-label col-sm-3">{{'label.input.currency' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="currencyCode" ng-model="formData.currencyCode"
-                            data-ng-options="currency.code as currency.name for currency in template.currencyOptions"
+                            data-ng-options="currency.code as currency.name | translate for currency in template.currencyOptions"
                             value="{{currency.code}}" class="form-control">
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{'label.input.chargetimetype' | translate}}<span class="required">*</span></label>
+                <label class="control-label col-sm-3">{{'label.input.chargetimetype' | translate}}<span class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="chargeTimeType" ng-model="formData.chargeTimeType"
-                            data-ng-options="timetype.id as timetype.value for timetype in chargeTimeTypeOptions"
+                            data-ng-options="timetype.id as timetype.value | translate for timetype in chargeTimeTypeOptions"
                             value="{{timetype.id}}" ng-change="chargeTimeChange(formData.chargeTimeType)" class="form-control">
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{'label.input.chargecalculation' | translate}}<span
+                <label class="control-label col-sm-3">{{'label.input.chargecalculation' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="chargeCalculationType" ng-model="formData.chargeCalculationType"
-                            data-ng-options="chargecalculation.id as chargecalculation.value for chargecalculation in template.chargeCalculationTypeOptions | filter:filterChargeCalculations(formData.chargeTimeType)"
+                            data-ng-options="chargecalculation.id as chargecalculation.value | translate for chargecalculation in template.chargeCalculationTypeOptions | filter:filterChargeCalculations(formData.chargeTimeType)"
                             value="{{chargecalculation.id}}" class="form-control">
                     </select>
                 </div>
             </div>
             <div class="form-group" ng-hide="showdatefield || flag">
-                <label class="control-label col-sm-2">{{'label.input.chargepaymentby' | translate}}<span
+                <label class="control-label col-sm-3">{{'label.input.chargepaymentby' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="chargePaymentMode" ng-model="formData.chargePaymentMode"
-                            data-ng-options="chargepayment.id as chargepayment.value for chargepayment in template.chargePaymetModeOptions"
+                            data-ng-options="chargepayment.id as chargepayment.value | translate for chargepayment in template.chargePaymetModeOptions"
                             value="{{chargepayment.id}}" class="form-control">
                     </select>
                 </div>
             </div>
             <div class="form-group" ng-show="showdatefield">
-                <label class="control-label col-sm-2">{{'label.input.duedate' | translate}}<span
+                <label class="control-label col-sm-3">{{'label.input.duedate' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -83,22 +83,22 @@
                 </div>
             </div>
             <div class="form-group" ng-show="showFrequencyOptions">
-                <label class="control-label col-sm-2">{{ 'label.input.addfeefrequency' | translate }}&nbsp;</label>
-                <div class="col-sm-3">
+                <div class="col-sm-3 right">
                     <label class="checkbox">
                         <input id="addfeefrequency" type="checkbox" ng-model="addfeefrequency" ng-true-value="true"
                                    ng-false-value="false">
                     </label>
                 </div>
+                <label class="control-label col-sm-3 left">{{ 'label.input.addfeefrequency' | translate }}&nbsp;</label>
             </div>
 
             <div class="form-group" ng-show="addfeefrequency ">
-                <label class="control-label col-sm-2" for="feeFrequency">{{'label.input.feefrequency' | translate}}<span
+                <label class="control-label col-sm-3" for="feeFrequency">{{'label.input.feefrequency' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="feeFrequency" name="feeFrequency" ng-model="formData.feeFrequency"
-                        ng-options="frequency.id as frequency.value for frequency in template.feeFrequencyOptions"
+                        ng-options="frequency.id as frequency.value | translate for frequency in template.feeFrequencyOptions"
                         value="{{frequency.id}}" class="form-control">
                     <option value="">{{'label.selectone' | translate}}</option>
                 </select>
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="form-group" ng-show="addfeefrequency">
-                <label class="control-label col-sm-2" for="feeInterval">{{'label.input.frequencyInterval' | translate}}<span
+                <label class="control-label col-sm-3" for="feeInterval">{{'label.input.frequencyInterval' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="form-group" ng-show="repeatEvery">
-                <label class="control-label col-sm-2" for="feeInterval">{{'label.input.repeatsevery' | translate}}<span
+                <label class="control-label col-sm-3" for="feeInterval">{{'label.input.repeatsevery' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="amount">{{'label.input.amount' | translate}}<span
+                <label class="control-label col-sm-3" for="amount">{{'label.input.amount' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -136,25 +136,23 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="active">{{'label.input.active' | translate}}</label>
-
-                <div class="col-sm-3">
+                <div class="col-sm-3 right">
                     <label class="checkbox">
                         <input id="active" type="checkbox" ng-model="formData.active">
                     </label>
                 </div>
+                <label class="control-label col-sm-3 left" for="active">{{'label.input.active' | translate}}</label>
             </div>
             <div class="form-group" ng-show="showPenalty">
-                <label class="control-label col-sm-2" for="ispenalty">{{'label.input.ispenalty' | translate}}</label>
-
-                <div class="col-sm-3">
+                <div class="col-sm-3 right">
                     <label class="checkbox">
                         <input id="ispenalty" type="checkbox" ng-model="formData.penalty">
                     </label>
                 </div>
+                <label class="control-label col-sm-3 left" for="ispenalty">{{'label.input.ispenalty' | translate}}</label>
             </div>
             <div class="form-group" ng-show="showGLAccount">
-                <label class="control-label col-sm-2">{{ 'label.input.incomefromcharges' | translate }}</label>
+                <label class="control-label col-sm-3">{{ 'label.input.incomefromcharges' | translate }}</label>
                 <div class="col-sm-3">
                     <select id="incomeOrLiabilityAccountId" ng-model="formData.incomeAccountId"
                             chosen="incomeAndLiabilityAccountOptions"
@@ -164,7 +162,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{ 'label.input.taxgroup' | translate }}</label>
+                <label class="control-label col-sm-3">{{ 'label.input.taxgroup' | translate }}</label>
                 <div class="col-sm-3">
                     <select id="taxGroupId" ng-model="formData.taxGroupId"
                             chosen="template.taxGroupOptions"
