@@ -75,7 +75,7 @@
                                     <td md-cell >{{client.uniqueId}}</td>
                                     <td md-cell >{{client.externalId}}</td>
                                     <td md-cell >
-                                        <i class="fa fa-stop {{client.status.code | StatusLookup}}"
+                                        <i class="fa fa-circle {{client.status.code | StatusLookup}}"
                                             uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
                                         <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
                                         <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>

@@ -104,7 +104,7 @@
                                                 <div class="panel-body">
                                                     <div class="list-group">
                                                         <a href="#!/viewgroup/{{group.id}}" ng-repeat="group in center.groupMembers" class="list-group-item">
-                                                            <i uib-tooltip="{{group.status.value}}" class="fa fa-stop {{group.status.code | StatusLookup}}" uib-tooltip=""></i> {{group.name}}
+                                                            <i uib-tooltip="{{group.status.value}}" class="fa fa-circle {{group.status.code | StatusLookup}}" uib-tooltip=""></i> {{group.name}}
                                                         </a>
                                                         <p ng-if="!center.groupMembers" class="list-group-item">No Groups added.</p>
                                                     </div>
@@ -156,7 +156,7 @@
                                             <tbody>
                                                 <tr class="pointer-main" ng-repeat="savingaccount in accounts.savingsAccounts | orderBy:'productName':reverse">
                                                     <td class="pointer" data-ng-click="routeTo(savingaccount.id)">
-                                                        <i tooltip-placement="left" uib-tooltip="{{savingaccount.status.value}}" class="fa fa-stop {{savingaccount.status.code | StatusLookup}}"></i> {{savingaccount.accountNo}}
+                                                        <i tooltip-placement="left" uib-tooltip="{{savingaccount.status.value}}" class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i> {{savingaccount.accountNo}}
                                                     </td>
                                                     <td class="pointer" data-ng-click="routeTo(savingaccount.id)">{{savingaccount.productName}}</td>
                                                     <td class="pointer" data-ng-click="routeTo(savingaccount.id)">{{savingaccount.accountBalance}}</td>

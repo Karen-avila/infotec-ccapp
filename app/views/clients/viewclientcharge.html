@@ -4,7 +4,7 @@
             <li class="active">{{'label.anchor.viewcharge' | translate }}</li>
         </ul>
     <div class="card well">
-        <h3 class="bolder"><i class="fa fa-stop  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;&nbsp;{{charge.name}}
+        <h3 class="bolder"><i class="fa fa-circle  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;&nbsp;{{charge.name}}
             <div class="btn-group pull-right">
                 <a uib-tooltip="{{'label.button.paycharge' | translate}}" ng-show="!charge.isPaid && !charge.isWaived"
                    has-permission='PAY_CLIENTCHARGE' ng-href="#!/viewclient/{{clientId}}/paycharge/{{charge.id}}"
