@@ -297,6 +297,13 @@
     </div>
 
     <!-- Le javascript -->
+    <script>
+        // define waitSeconds above require script tag
+        // to override the default, until main.js loads
+        window.require = {
+            waitSeconds: 120
+        };
+    </script>
     <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
 </body>
 

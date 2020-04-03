@@ -457,10 +457,15 @@
                     this.formData.uniqueId = this.formData.uniqueId.toUpperCase();
                 }
                 this.formData.groupLoanCounter = 0;
-
                 scope.clientData = this.formData;
                 // Validate 
-                scope.validateDuplicates(this.formData.uniqueId);
+                if (this.formData.legalFormId == scope.clientPersonId || this.formData.legalFormId == null) {
+                    scope.validateDuplicates(this.formData.uniqueId);
+                } else {
+                    resourceFactory.clientResource.save(scope.clientData, function (data) {
+                        location.path('/viewclient/' + data.clientId);
+                    });
+                }
             }
 
             var ClientDuplicateCtrl = function ($scope, $uibModalInstance) {
