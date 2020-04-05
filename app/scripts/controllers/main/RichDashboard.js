@@ -16,10 +16,6 @@
             scope.officeId = 1;
             scope.officeIdCollection = 1;
 
-            scope.switch = function() {
-	        	location.path('/richdashboard');
-			}
-
             scope.$on("UserAuthenticationSuccessEvent", function (event, data) {
 	            if (sessionManager.get(data)) {
 	                scope.currentSession = sessionManager.get(data);
@@ -95,8 +91,8 @@
             scope.chartType = 'Days';
             scope.collectionPieData = [];
 
-            scope.switch = function() {
-	        	location.path('/home');
+            scope.switch = function(goTo) {
+	        	location.path(goTo);
 			}
 
             scope.formatdate = function () {

@@ -36,9 +36,7 @@
             resourceFactory.loanResource.get(scope.inparams, function (data) {
                 scope.products = [];
                 for (var i in data.productOptions) {
-                    if (data.productOptions[i].shortName.startsWith("GR")) {
-                        scope.products.push(data.productOptions[i]);
-                    }
+                    scope.products.push(data.productOptions[i]);
                 }
                 scope.datatables = data.datatables;
                 if (data.group) {

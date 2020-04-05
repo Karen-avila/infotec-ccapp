@@ -50,18 +50,13 @@
 
             resourceFactory.loanResource.get(scope.inparams, function (data) {
                 scope.products = [];
-                var prefix = "";
                 if (data.clientName) {
                     scope.clientName = data.clientName;
-                    prefix = "IN";
                 } else if (data.group) {
                     scope.groupName = data.group.name;
-                    prefix = "GR";
                 }
                 for (var i = 0; i < data.productOptions.length; i++) {
-                    if (data.productOptions[i].shortName.startsWith(prefix)) {
-                        scope.products.push(data.productOptions[i]);
-                    }
+                    scope.products.push(data.productOptions[i]);
                 }
             });
 

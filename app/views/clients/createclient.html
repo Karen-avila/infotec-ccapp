@@ -8,7 +8,7 @@
 
    <div class="card-content">
       <legend>{{'label.heading.createclient' | translate}}</legend>
-      <form name="createclientform" novalidate="" class="form-horizontal" rc-submit="submit()">
+      <form name="createclientform" class="form-horizontal" ng-submit="submit()">
          <api-validate></api-validate>
          <fieldset>
             <div class="form-group">
@@ -126,7 +126,8 @@
                   ng-hide="showNonPersonOptions">{{'label.input.dateofbirth' | translate}}<span
                      class="required">*</span></label>
                <label class="control-label col-sm-3"
-                  ng-show="showNonPersonOptions">{{'label.input.incorporationdate' | translate}}</label>
+                  ng-show="showNonPersonOptions">{{'label.input.incorporationdate' | translate}}<span
+                     class="required">*</span></label>
                <div class="col-sm-3">
                   <input id="dateofbirth" type="text" name="dateofbirth" required datepicker-pop="dd-MM-yyyy"
                      ng-model="first.dateOfBirth" is-open="opened1" min="minDate" max="restrictDate"
@@ -223,17 +224,20 @@
                   </span>
                   <form-validate valattributeform="createclientform" valattribute="rfc" />
                </div>
-               <label class="control-label col-sm-3" for="uniqueId">{{'label.input.uniqueId' | translate}}
-                  <span class="required">*</span></label>
-               <div class="col-sm-3">
-                  <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId"
-                     class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
-                  <span ng-show="createclientform.uniqueId.$invalid && createclientform.uniqueId.$dirty">
-                     <small class="error required" ng-show="createclientform.uniqueId.$error.pattern">
-                        {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
-                     </small>
-                  </span>
-                  <form-validate valattributeform="createclientform" valattribute="uniqueId" />
+               <div data-ng-switch on="showNonPersonOptions">
+                  <div data-ng-switch-when="false">
+                     <label class="control-label col-sm-3" for="uniqueId">{{'label.input.uniqueId' | translate}}
+                        <span class="required">*</span></label>
+                     <div class="col-sm-3">
+                        <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId"
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
+                        <span ng-show="createclientform.uniqueId.$invalid && createclientform.uniqueId.$dirty">
+                           <small class="error required" ng-show="createclientform.uniqueId.$error.pattern">
+                              {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
+                           </small>
+                        </span>
+                     </div>
+                  </div>
                </div>
             </div>
 
@@ -668,9 +672,9 @@
             </div>
 
             <div class="col-md-offset-5 btn-bar">
-               <a id="cancel2" ng-href="{{cancel}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-               <button id="save2" type="submit" class="btn btn-primary" ng-hide="blockUI" has-permission='CREATE_CLIENT'>{{'label.button.save' | translate}}</button>
-               <button class="btn btn-info" ng-show="blockUI"><strong>{{'label.button.processing' | translate}}</strong></button>
+               <a ng-href="{{cancel}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+               <button type="submit" class="btn btn-sm btn-primary" ng-hide="blockUI" has-permission='CREATE_CLIENT'>{{'label.button.save' | translate}}</button>
+               <button class="btn btn-sm btn-info" ng-show="blockUI"><strong>{{'label.button.processing' | translate}}</strong></button>
             </div>
          </fieldset>
       </form>

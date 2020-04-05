@@ -56,6 +56,12 @@
             }
             // end of address
 
+            scope.isLegalEntity = function () {
+                if (typeof scope.client == "undefined" || typeof scope.client.legalForm == "undefined") {
+                    return true;
+                }
+                return (scope.client.legalForm.value == 'MORAL');
+            }
 
             // family members
             scope.families = [];

@@ -52,6 +52,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{'label.heading.name' | translate}}</th>
                         <th>{{'label.heading.clientno' | translate}}</th>
                         <th>{{'label.heading.uniqueId' | translate}}</th>
@@ -66,6 +67,8 @@
                     <tr dir-paginate="client in clients | orderBy:'displayName':reverse  | filter:filterText | itemsPerPage: clientsPerPage"
                         class="pointer-main" total-items="totalClients" pagination-id="clients"
                         ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
+                        <td ng-show="client.legalForm.value == 'MORAL'" class="pointer" data-ng-click="routeTo(client.id)"><i class="fa fa-building"></i></td>
+                        <td ng-show="client.legalForm.value == 'FISICA'" class="pointer" data-ng-click="routeTo(client.id)"><i class="fa fa-user"></i></td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.displayName}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.accountNo}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.uniqueId}}</td>

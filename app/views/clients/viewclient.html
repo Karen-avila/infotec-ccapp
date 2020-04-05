@@ -12,14 +12,14 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
 	<script type="text/ng-template" id="reporte.html">
 	<div data-ng-include="'views/reports/run_reports_from.html'"></div>  
 	<div class="modal-body ">
-	<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+	<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 	</div>
 	</script>
 	
@@ -30,7 +30,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<span ng-show="docId == -1">{{'label.noClientSignature' | translate}}</span> <br> <br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-show="docId != -1" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -39,7 +39,7 @@
 			<img ng-src="{{largeImage}}" alt="Avatar">
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 		</div>
 	</script>
 	<script type="text/ng-template" id="clientSignature.html">
@@ -47,8 +47,8 @@
 			<img ng-src="{{largeImage}}" alt="Signature">
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-			<button class="btn btn-danger" ng-click="deleteSig()" has-permission='DELETE_CLIENTIMAGE'><i class="fa fa-trash-o" aria-hidden="true"></i>{{'label.button.delete' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-danger" ng-click="deleteSig()" has-permission='DELETE_CLIENTIMAGE'><i class="fa fa-trash-o" aria-hidden="true"></i>{{'label.button.delete' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadSig()" has-permission='CREATE_CLIENTIMAGE'><i class="fa fa-upload" aria-hidden="true"></i>{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -57,7 +57,7 @@
 			<h3 class="bolder">{{'label.noClientSignature' | translate}}</h3>
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadSig()" has-permission='CREATE_CLIENTIMAGE'><i class="fa fa-upload" aria-hidden="true"></i>{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -72,7 +72,7 @@
 			<input type="file" ngf-select ng-model="file">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="upload(file)">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -96,14 +96,14 @@
 				</div>
 			</div>
 			<div class="center" style="margin-top: 10px">
-				<button class="btn btn-warning" ng-click="takeScreenshot()">
+				<button class= "btn btn-sm btn-warning" ng-click="takeScreenshot()">
 					<i class="fa fa-camera "></i>
 					{{'label.button.capture' | translate}}
 				</button>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadscreenshot()">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -114,7 +114,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -125,7 +125,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="unassign()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -139,7 +139,7 @@
 			<input type="file" ngf-select ng-model="file">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="upload(file)">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -152,7 +152,7 @@
 		</div>
 		<div class="modal-footer">
 			<span class="pull-right">
-				<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+				<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 				<button class="btn btn-sm btn-primary" ng-click="deleteNote(client.id,clientNote.id,$index)">{{'label.button.confirm' | translate}}</button>
 			</span>
 		</div>
@@ -166,7 +166,7 @@
 		</div>
 		<div class="modal-footer">
 			<span class="pull-right">
-				<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+				<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 				<button class="btn btn-sm btn-primary" ng-click="editNote(client.id,clientNote.id,$index)">{{'label.button.confirm' | translate}}</button>
 			</span>
 		</div>
@@ -176,7 +176,7 @@
 			<div class="toolbar" style="height: 100px;">
 			
 				<div class="col-sm-2 col-md-2">
-					<div class="row center" style="margin-left: 0px;" ng-show="client.legalForm.value == 'FISICA'">
+					<div class="row center" style="margin-left: 0px;" ng-hide="isLegalEntity()">
 						<img ng-hide="client.imagePresent" ng-src="./images/client-image-placeholder.png"
 							alt="Avatar" style="height: 60px;">
 						<img ng-show="client.imagePresent" ng-src="{{image}}" alt="Avatar"
@@ -215,8 +215,7 @@
 						<h3>{{'label.heading.withdrawn' | translate}}</h3>
 					</div>
 				</div>
-					
-			
+
 				<h3 class="client-title" style="display: inline-block;">
 					<i class="fa fa-circle {{client.status.code | StatusLookup}}" uib-tooltip="{{client.status.value}}"
 						uib-tooltip-placement="top"></i>
@@ -759,7 +758,7 @@
 									<td><span class="padded-td">{{client.legalForm.value}}</span>
 									</td>
 								</tr>
-								<tr>
+								<tr ng-hide="isLegalEntity()">
 									<th class="table-bold">{{ 'label.heading.memberof' | translate }}</th>
 									<td>
 										<span class="padded-td"
@@ -772,7 +771,7 @@
 										</span>
 									</td>
 								</tr>
-								<tr>
+								<tr ng-hide="isLegalEntity()">
 									<th class="table-bold">{{ 'label.input.isStaff' | translate }}</th>
 									<td><span class="padded-td">{{client.isStaff}}</span>
 									</td>
@@ -787,7 +786,7 @@
 									<td><span class="padded-td">{{client.mobileNo}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.gender.name">
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
 									<th class="table-bold">{{ 'label.input.gender' | translate }}</th>
 									<td><span class="padded-td">{{client.gender.name}}</span>
 									</td>
@@ -802,7 +801,7 @@
 									<td><span class="padded-td">{{client.clientClassification.name}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.birthplace.name">
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
 									<th class="table-bold">{{ 'label.input.birthplace' | translate }}</th>
 									<td><span class="padded-td">{{client.birthplace.name}}</span>
 									</td>
@@ -812,7 +811,7 @@
 									<td><span class="padded-td">{{client.rfc}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.uniqueId">
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
 									<th class="table-bold">{{ 'label.input.uniqueId' | translate }}</th>
 									<td><span class="padded-td">{{client.uniqueId}}</span>
 									</td>
@@ -822,8 +821,9 @@
 									<td><span class="padded-td">{{client.externalId}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.dateOfBirth">
-									<th class="table-bold">{{ 'label.input.dateofbirth' | translate }}</th>
+								<tr data-ng-show="client.dateOfBiafrth">
+									<th ng-hide="isLegalEntity()" class="table-bold">{{ 'label.input.dateofbirth' | translate }}</th>
+									<th ng-show="isLegalEntity()" class="table-bold">{{ 'label.input.incorporationdate' | translate }}</th>
 									<td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
 									</td>
 								</tr>
@@ -832,7 +832,7 @@
 									<td><span class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.groupLoanCounter">
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
 									<th class="table-bold">{{ 'label.input.groupLoanCounter' | translate }}</th>
 									<td><span class="padded-td">{{client.groupLoanCounter}}</span>
 									</td>
