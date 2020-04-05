@@ -47,8 +47,6 @@
             scope.EXPENSE = translate.instant('EXPENSE');
             scope.CREDITORDER = translate.instant('CREDITORDER');
             scope.DEBITORDER = translate.instant('DEBITORDER');
-            scope.CREDITTRANSITORY = translate.instant('CREDITTRANSITORY');
-            scope.DEBITTRANSITORY = translate.instant('DEBITTRANSITORY');
             scope.Accounting = translate.instant('Accounting');
 
             resourceFactory.accountCoaResource.getAllAccountCoas(function (data) {
@@ -59,8 +57,10 @@
                 var equitiyObject = { id: -3, name: scope.EQUITY, parentId: -999, children: [] };
                 var incomeObject = { id: -4, name: scope.INCOME, parentId: -999, children: [] };
                 var expenseObject = { id: -5, name: scope.EXPENSE, parentId: -999, children: [] };
+                var debitOrderObject = { id: -6, name: scope.DEBITORDER, parentId: -999, children: [] };
+                var creditOrderObject = { id: -7, name: scope.CREDITORDER, parentId: -999, children: [] };
                 var rootObject = { id: -999, name: scope.Accounting, children: [] };
-                var rootArray = [rootObject, assetObject, liabilitiesObject, equitiyObject, incomeObject, expenseObject];
+                var rootArray = [rootObject, assetObject, liabilitiesObject, equitiyObject, incomeObject, expenseObject, debitOrderObject, creditOrderObject];
 
                 var idToNodeMap = {};
                 for (var i in rootArray) {
@@ -78,14 +78,10 @@
                         if (data[i].parentId == null) data[i].parentId = -4;
                     } else if (data[i].type.value == "EXPENSE") {
                         if (data[i].parentId == null) data[i].parentId = -5;
-                    } else if (data[i].type.value == "CREDITORDER") {
-                        if (data[i].parentId == null) data[i].parentId = -6;
                     } else if (data[i].type.value == "DEBITORDER") {
+                        if (data[i].parentId == null) data[i].parentId = -6;
+                    } else if (data[i].type.value == "CREDITORDER") {
                         if (data[i].parentId == null) data[i].parentId = -7;
-                    } else if (data[i].type.value == "CREDITTRANSITORY") {
-                        if (data[i].parentId == null) data[i].parentId = -8;
-                    } else if (data[i].type.value == "DEBITTRANSITORY") {
-                        if (data[i].parentId == null) data[i].parentId = -9;
                     }
                     delete data[i].disabled;
                     delete data[i].manualEntriesAllowed;
