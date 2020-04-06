@@ -74,8 +74,8 @@
         		scope.cancel = "#!/accounting_coa"
         	}
             
-
             scope.submit = function () {
+                this.formData.name = this.formData.name.toUpperCase();
                 resourceFactory.accountCoaResource.save(this.formData, function (data) {
                     location.path('/viewglaccount/' + data.resourceId);
                 });

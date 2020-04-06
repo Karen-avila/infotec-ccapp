@@ -41,10 +41,19 @@
                 } else if (scope.formData.type == 5) {
                     scope.types = scope.coadata.allowedExpensesTagOptions;
                     scope.headerTypes = scope.coadata.expenseHeaderAccountOptions;
-                }
-            } ;
+                } else if (scope.formData.type == 6) {
+                    scope.types = scope.coadata.allowedDebitOrderTagOptions;
+                    scope.headerTypes = scope.coadata.debitOrderHeaderAccountOptions;
+                } else if (scope.formData.type == 7) {
+                    scope.types = scope.coadata.allowedCreditOrderTagOptions;
+                    scope.headerTypes = scope.coadata.creditOrderHeaderAccountOptions;
+                } else {
+                    scope.types = [];
+                    scope.headerTypes = [];
+                }            } ;
 
             scope.submit = function () {
+                this.formData.name = this.formData.name.toUpperCase();
                 resourceFactory.accountCoaResource.update({'glAccountId': routeParams.id}, this.formData, function (data) {
                     location.path('/viewglaccount/' + data.resourceId);
                 });
