@@ -11,7 +11,7 @@
                 if (data.accountingRule.id == 2 || data.accountingRule.id == 3 || data.accountingRule.id == 4) {
                     scope.isAccountingEnabled = true;
 
-                    if (scope.loanproduct.accountingMappings.orderInterestAccountId) {
+                    if (scope.loanproduct.accountingMappings.orderInterestAccount) {
                         scope.includeOrderAccounts = true;
                     }
                 }
