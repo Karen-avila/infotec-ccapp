@@ -467,11 +467,11 @@
 						ng-options="interestType.id as interestType.value | translate for interestType in product.interestTypeOptions"
 						value="{{interestType.id}}" />
 				</div>
-				<div class="checkbox col-sm-2">
+				<div class="checkbox col-sm-1 right">
 					<input type="checkbox" ng-model="formData.isEqualAmortization" ng-true-value="true"
 						ng-false-value="false">
 				</div>
-				<label class="control-label control-label-checkbox col-sm-2">{{ 'label.input.isequalamortization' | translate }}</label>
+				<label class="control-label control-label-checkbox col-sm-3 left">{{ 'label.input.isequalamortization' | translate }}</label>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">{{ 'label.input.interestcalculationperiod' | translate }}<span
@@ -493,7 +493,7 @@
 							ng-model="formData.allowPartialPeriodInterestCalcualtion">
 					</label>
 				</div>
-				<label class="control-label col-sm-5"
+				<label class="control-label col-sm-5 left"
 					ng-show="formData.interestCalculationPeriodType == 1">{{ 'label.input.allowpartialperiodinterestcalcualtion' | translate }}
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.allowpartialperiodinterestcalcualtion' | translate}}"
@@ -513,13 +513,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">{{ 'label.input.graceOnPrincipalPayment' | translate }}</label>
+				<label class="control-label col-sm-2">{{ 'label.input.graceonprincipalpayment' | translate }}</label>
 				<div class="col-sm-4">
 					<input id="graceOnPrincipalPayment" class="form-control"
 						placeholder="{{'label.input.onprincipalpayment' | translate}}" type="text"
 						ng-model="formData.graceOnPrincipalPayment">
 				</div>
-				<label class="control-label col-sm-2">{{ 'label.input.graceOnInterestPayment' | translate }}</label>
+				<label class="control-label col-sm-2">{{ 'label.input.graceoninterestpayment' | translate }}</label>
 				<div class="col-sm-4">
 					<input id="graceOnInterestPayment" placeholder="{{'label.input.oninterestpayment' | translate}}"
 						type="text" class="form-control" ng-model="formData.graceOnInterestPayment">
@@ -1222,6 +1222,87 @@
 						</select>
 					</div>
 				</div>
+				<hr>
+                <div class="form-group">
+                    <div class="col-sm-3 right">
+                        <input type="checkbox" ng-model="includeOrderAccounts" />
+                    </div>
+                    <label class="control-label left col-sm-6">{{ 'label.input.includeOrderAccounts' | translate }}</label>
+                    <hr>
+                    <h4 ng-show="includeOrderAccounts">{{"label.heading.order.accounts" | translate}}</h4>
+                    <div ng-show="includeOrderAccounts">
+                        <label class="control-label col-sm-2">{{ 'label.input.accounting.debit.order.not.performed' | translate }}
+                            <i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.debit.order.not.performed' | translate}}"
+                                tooltip-append-to-body="true"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <select id="orderNotPerfomedAccountId" ng-model="formData.orderNotPerfomedAccountId"
+                                chosen="debitOrderAccountOptions"
+                                ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in debitOrderAccountOptions'
+                                ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerfomedAccountId,'id','name')"
+                                value="{{orderAccount.id}}">
+                            </select>
+                        </div>
+                        <label class="control-label col-sm-2">{{ 'label.input.accounting.debit.order.performed' | translate }}
+                            <i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.debit.order.performed' | translate}}"
+                                tooltip-append-to-body="true"></i>
+                        </label>
+                        <div class="col-sm-4">
+                            <select id="orderPerformedAccountId" ng-model="formData.orderPerformedAccountId"
+                                chosen="debitOrderAccountOptions"
+                                ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in debitOrderAccountOptions'
+                                ng-change="loanproduct.accountingMappings.orderPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderPerformedAccountId,'id','name')"
+                                value="{{orderAccount.id}}">
+                            </select>
+                        </div>
+                    </div>
+				</div>
+                <div class="form-group" ng-show="includeOrderAccounts">
+                    <label class="control-label col-sm-2">{{ 'label.input.accounting.debit.order.interest' | translate }}
+                        <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.debit.order.interest' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                    </label>
+                    <div class="col-sm-4">
+                        <select id="orderInterestAccountId" ng-model="formData.orderInterestAccountId"
+                            chosen="debitOrderAccountOptions"
+                            ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in debitOrderAccountOptions'
+                            ng-change="loanproduct.accountingMappings.orderInterestAccount.name = formValue(debitOrderAccountOptions,formData.orderInterestAccountId,'id','name')"
+                            value="{{orderAccount.id}}">
+                        </select>
+                    </div>
+                </div>
+				<hr>
+                <div class="form-group" ng-show="includeOrderAccounts">
+                    <label class="control-label col-sm-2">{{ 'label.input.accounting.credit.order.commitments' | translate }}
+                        <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.credit.order.commitments' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                    </label>
+                    <div class="col-sm-4">
+                        <select id="creditCommitmentsAccountId" ng-model="formData.creditCommitmentsAccountId"
+                            chosen="creditOrderAccountOptions"
+                            ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in creditOrderAccountOptions'
+                            ng-change="loanproduct.accountingMappings.creditCommitmentsAccount.name = formValue(creditOrderAccountOptions,formData.creditCommitmentsAccountId,'id','name')"
+                            value="{{orderAccount.id}}">
+                        </select>
+                    </div>
+                    <label class="control-label col-sm-2">{{ 'label.input.accounting.credit.order.interest' | translate }}
+                        <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.credit.order.interest' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                    </label>
+                    <div class="col-sm-4">
+                        <select id="creditOrderInterestAccountId" ng-model="formData.creditOrderInterestAccountId"
+                            chosen="creditOrderAccountOptions"
+                            ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in creditOrderAccountOptions'
+                            ng-change="loanproduct.accountingMappings.creditOrderInterestAccount.name = formValue(creditOrderAccountOptions,formData.creditOrderInterestAccountId,'id','name')"
+                            value="{{orderAccount.id}}">
+                        </select>
+                    </div>
+                </div>
 				<hr>
 				<h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
 						ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]</h4>
