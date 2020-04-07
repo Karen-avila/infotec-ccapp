@@ -1,7 +1,7 @@
 FROM node:10.19.0-buster as builder
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
-	&& apt-get install -y --no-install-recommends ruby-full && gem install bundler \	
+	&& apt-get install -y --no-install-recommends ruby-full locales && gem install bundler \	
 	&& export LANGUAGE=es_MX.UTF-8 \
 	&& export LANG=es_MX.UTF-8 \
 	&& export LC_ALL=es_MX.UTF-8 \
