@@ -101,7 +101,7 @@
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.currency' | translate}}</th>
-                            <td><span class="padded-td">{{loandetails.currency.name}}</span></td>
+                            <td><span class="padded-td">{{loandetails.currency.name | translate}}</span></td>
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.loanofficer' | translate}}</th>
@@ -110,7 +110,7 @@
                                       <a ng-click="clickEvent('unassignloanofficer', loandetails.id)" has-permission = 'REMOVELOANOFFICER_LOAN'><i
                                               class="fa fa-times"></i></a>
                                     </span>
-                                    </span>
+                                </span>
                             </td>
                         </tr>
                         <tr>
@@ -125,7 +125,6 @@
                                     data-ng-hide="loandetails.summary.totalOverdue>=0">{{'label.heading.notprovided' | translate}}</span></span></b>
                     <br>
                         <br>
-                    <!--<b>{{'label.heading.amountDue' | translate}}(as of dd/mm/yyyy): <span class="padded-td">{{'label.heading.notprovided' | translate}}</span></b>-->
                     </div>
                     <br>
                     <br>
@@ -317,24 +316,25 @@
                                 <td>{{'label.heading.repaymentstrategy' |
                                     translate}}
                                 </td>
-                                <td><span class="padded-td">{{loandetails.transactionProcessingStrategyName}}</span></td>
+                                <td><span class="padded-td">{{loandetails.transactionProcessingStrategyName | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.repayments' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.numberOfRepayments}} every {{loandetails.repaymentEvery}}&nbsp;{{loandetails.repaymentFrequencyType.value}}</span><span ng-show="loandetails.repaymentFrequencyType.id == 2 && loandetails.repaymentFrequencyNthDayType.id != 0 && loandetails.repaymentFrequencyDayOfWeekType.id != 0">&nbsp;on&nbsp;{{loandetails.repaymentFrequencyNthDayType.value}}&nbsp;{{loandetails.repaymentFrequencyDayOfWeekType.value}}</span>
+                                <td><span class="padded-td">{{loandetails.numberOfRepayments}} {{'label.heading.every' | translate}} {{loandetails.repaymentEvery}}&nbsp;{{loandetails.repaymentFrequencyType.value | translate}}</span><span ng-show="loandetails.repaymentFrequencyType.id == 2 && loandetails.repaymentFrequencyNthDayType.id != 0 && loandetails.repaymentFrequencyDayOfWeekType.id != 0">&nbsp;{{'label.heading.on' | translate}}&nbsp;{{loandetails.repaymentFrequencyNthDayType.value | translate}}&nbsp;{{loandetails.repaymentFrequencyDayOfWeekType.value | translate}}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.amortization' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.amortizationType.value}}</span></td>
+                                <td><span class="padded-td">{{loandetails.amortizationType.value | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.equalamortization' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.isEqualAmortization}}</span></td>
+                                <td><span class="padded-td">{{loandetails.isEqualAmortization | translate}}</span></td>
                             </tr>
                             <tr ng-show="!loandetails.isLoanProductLinkedToFloatingRate">
                                 <td>{{'label.heading.interest' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.annualInterestRate}} per annum ({{loandetails.interestRatePerPeriod}}%&nbsp; {{loandetails.interestRateFrequencyType.value}}) - {{loandetails.interestType.value}}</span>
+                                <td>
+                                    <span class="padded-td">{{loandetails.annualInterestRate}} {{'label.heading.per.annum' | translate}} ({{loandetails.interestRatePerPeriod | translate}}%&nbsp; {{loandetails.interestRateFrequencyType.value | translate}}) - {{loandetails.interestType.value | translate}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -369,22 +369,22 @@
                                 <td>{{'label.heading.interestcalculationperiod' |
                                     translate}}
                                 </td>
-                                <td><span class="padded-td">{{loandetails.interestCalculationPeriodType.value}}</span></td>
+                                <td><span class="padded-td">{{loandetails.interestCalculationPeriodType.value | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.allowpartialperiodinterestcalcualtion' |
                                     translate}}
                                 </td>
-                                <td><span class="padded-td">{{loandetails.allowPartialPeriodInterestCalcualtion}}</span></td>
+                                <td><span class="padded-td">{{loandetails.allowPartialPeriodInterestCalcualtion | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.interesttype' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.interestType.value}}</span></td>
+                                <td><span class="padded-td">{{loandetails.interestType.value | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.submittedondate' | translate}}
                                 </td>
-                                <td><span class="padded-td">{{loandetails.timeline.submittedOnDate | DateFormat }}</span></td>
+                                <td><span class="padded-td">{{loandetails.timeline.submittedOnDate | DateFormat}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.approvedondate' | translate}}
@@ -406,7 +406,7 @@
                             </tr>
                             <tr data-ng-show="loandetails.isTopup">
                                 <td>{{'label.input.isTopup' | translate}}</td>
-                                <td><span class="padded-td">{{loandetails.isTopup}}</span></td>
+                                <td><span class="padded-td">{{loandetails.isTopup | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isTopup">
                                 <td>{{'label.heading.loanIdToClose' | translate}}</td>
@@ -418,42 +418,41 @@
                             </tr>
                             <tr>
                                 <td>{{ 'label.input.recalculateinterest' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.isInterestRecalculationEnabled | YesOrNo }}</span></td>
+                                <td><span class="padded-td">{{ loandetails.isInterestRecalculationEnabled | translate }}</span></td>
                             </tr>
                             <tr>
                                 <td>{{ 'label.input.daysinyears' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.daysInYearType.value}}</span></td>
+                                <td><span class="padded-td">{{ loandetails.daysInYearType.value | translate}}</span></td>
                             </tr>
                             <tr>
                                 <td>{{ 'label.input.daysinmonth' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.daysInMonthType.value }}</span></td>
+                                <td><span class="padded-td">{{ loandetails.daysInMonthType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
                                 <td>{{ 'label.input.interest.recalculation.compounding.method' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.interestRecalculationCompoundingType.value}}</span></td>
+                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.interestRecalculationCompoundingType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
                                 <td>{{ 'label.input.interest.recalculation.reschdule.strategy' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.rescheduleStrategyType.value}}</span></td>
+                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.rescheduleStrategyType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
                                 <td>{{ 'label.input.frequency.for.recalculte.outstanding.principal' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.calendarData.humanReadable}}</span></td>
+                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.calendarData.humanReadable | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled && loandetails.interestRecalculationData.interestRecalculationCompoundingType.id !=0">
                                 <td>{{ 'label.input.frequency.for.compounding' | translate }}</td>
-                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.compoundingCalendarData.humanReadable}}</span></td>
+                                <td><span class="padded-td">{{ loandetails.interestRecalculationData.compoundingCalendarData.humanReadable | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isVariableInstallmentsAllowed">
                                 <td>{{ 'label.input.variable.installments.allowed' | translate }}</td>
-                                <td><span class="padded-td">{{loandetails.isVariableInstallmentsAllowed}}</span></td>
+                                <td><span class="padded-td">{{loandetails.isVariableInstallmentsAllowed | translate}}</span></td>
                             </tr>
 
                             <tr data-ng-show="loandetails.isVariableInstallmentsAllowed">
                                 <td>{{'label.input.variable.installments.gap' | translate}}</td>
                                 <td colspan="3">(Min:{{loandetails.minimumGap}}&nbsp;{{'label.input.days' | translate }} &nbsp;, Max:{{loandetails.maximumGap}}&nbsp;{{'label.input.days' | translate }})
                                 </td>
-
                             </tr>
                             </tbody>
                         </table>
