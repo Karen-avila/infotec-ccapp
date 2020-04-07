@@ -32,6 +32,8 @@ RUN npm install
 
 RUN bundle install
 
+RUN find . -type f -print0 | xargs -0 dos2unix
+
 RUN grunt prod
 
 FROM nginx AS runner
