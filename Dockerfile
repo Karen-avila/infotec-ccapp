@@ -1,12 +1,12 @@
 FROM node:10.19.0-buster as builder
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
-	&& apt-get install -y --no-install-recommends ruby-full locales && gem install bundler \	
-	&& export LANGUAGE=es_US.UTF-8 \
-	&& export LANG=es_US.UTF-8 \
-	&& export LC_ALL=es_US.UTF-8 \
-	&& echo "en_US UTF-8" > /etc/locale.gen \
-	&& locale-gen es_US.UTF-8 \
+	&& apt-get install -y --no-install-recommends ruby-full locales dos2unix && gem install bundler \	
+	&& export LANGUAGE=es_MX.UTF-8 \
+	&& export LANG=es_MX.UTF-8 \
+	&& export LC_ALL=es_MX.UTF-8 \
+	&& echo "es_MX UTF-8" > /etc/locale.gen \
+	&& locale-gen es_MX.UTF-8 \
 	dpkg-reconfigure locales \
 	&& ln -fs /usr/share/zoneinfo/America/Mexico_City /etc/localtime \
 	&& dpkg-reconfigure --frontend noninteractive tzdata dos2unix \
