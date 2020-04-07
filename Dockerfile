@@ -1,4 +1,4 @@
-FROM node:10.19.0-buster as builder
+FROM node:12.16.1-buster as builder
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends ruby-full locales dos2unix && gem install bundler \	
@@ -34,7 +34,7 @@ RUN bundle install
 
 RUN find . -type f -print0 | xargs -0 dos2unix
 
-RUN grunt prod --force
+RUN grunt prod
 
 FROM nginx AS runner
 
