@@ -1,8 +1,8 @@
 
 (function (mifosX) {
-    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, $idleProvider, $keepaliveProvider, IDLE_DURATION, WARN_DURATION, KEEPALIVE_INTERVAL) {
+    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider, IDLE_DURATION, WARN_DURATION, KEEPALIVE_INTERVAL) {
         var mainLink = getLocation(window.location.href);
-        var baseApiUrl = "https://demo.openmf.org";
+        var baseApiUrl = "https://mifos.infotec.mx";
         var host = "";
         var portNumber = "";
         //accessing from openmf server
@@ -47,6 +47,7 @@
 
         ResourceFactoryProvider.setBaseUrl(host);
         HttpServiceProvider.addRequestInterceptor('demoUrl', function (config) {
+            var _ = require('underscore');
             return _.extend(config, {url: host + config.url });
         });
 
@@ -69,13 +70,13 @@
         $translateProvider.preferredLanguage('es-mx');
         $translateProvider.fallbackLanguage('en');
         //Timeout settings.
-        $idleProvider.idleDuration(IDLE_DURATION); //Idle time 
-        $idleProvider.warningDuration(WARN_DURATION); //warning time(sec)
-        $keepaliveProvider.interval(KEEPALIVE_INTERVAL); //keep-alive ping
+        IdleProvider.idle(30*60); //Idle time (seconds)
+        IdleProvider.timeout(10); // in seconds
+        KeepaliveProvider.interval(15*60); //keep-alive ping
     };
-    mifosX.ng.application.config(defineHeaders).run(function ($log, $idle) {
+    mifosX.ng.application.config(defineHeaders).run(function ($log, Idle) {
         $log.info("Initial tasks are done!");
-        $idle.watch();
+        Idle.watch();
     });
 }(mifosX || {}));
 
