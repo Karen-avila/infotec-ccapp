@@ -1,4 +1,9 @@
-FROM timbru31/ruby-node:2.7 as builder
+FROM node:10.19.0-buster as builder
+
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
+	&& apt-get install -y --no-install-recommends ruby-full \	
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 RUN mkdir /usr/src/app
 
