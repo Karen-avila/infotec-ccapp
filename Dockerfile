@@ -22,7 +22,7 @@ RUN bundle install
 
 RUN grunt prod
 
-FROM nginx:1.17.9
+FROM nginx AS runner
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends wget telnet unzip tzdata telnet vim dos2unix curl software-properties-common gnupg apt-transport-https \
