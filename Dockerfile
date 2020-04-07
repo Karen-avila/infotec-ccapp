@@ -34,6 +34,8 @@ COPY --from=builder /usr/src/app/dist/community-app /usr/share/nginx/html
 
 COPY ./nginx.develop.conf /etc/nginx/nginx.conf
 
+COPY ./options-ssl-nginx.conf /etc/nginx/options-ssl-nginx.conf
+
 EXPOSE 80 443
 
 CMD ["nginx", "-g", "daemon off;"]
