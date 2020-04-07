@@ -2,11 +2,11 @@ FROM node:10.19.0-buster as builder
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends ruby-full locales dos2unix && gem install bundler \	
-	&& export LANGUAGE=en_US.UTF-8 \
-	&& export LANG=en_US.UTF-8 \
-	&& export LC_ALL=en_US.UTF-8 \
-	&& echo "en_US UTF-8" > /etc/locale.gen \
-	&& locale-gen en_US.UTF-8 \
+	&& export LANGUAGE=en_MX.UTF-8 \
+	&& export LANG=es_MX.UTF-8 \
+	&& export LC_ALL=es_MX.UTF-8 \
+	&& echo "es_MX UTF-8" > /etc/locale.gen \
+	&& locale-gen es_MX.UTF-8 \
 	dpkg-reconfigure locales \
 	&& ln -fs /usr/share/zoneinfo/America/Mexico_City /etc/localtime \
 	&& dpkg-reconfigure --frontend noninteractive tzdata dos2unix \
@@ -34,9 +34,7 @@ RUN bundle install
 
 RUN find . -type f -print0 | xargs -0 dos2unix
 
-RUN cat app/bower_components/angular-material/modules/scss/angular-material.scss
-
-RUN grunt prod
+RUN grunt prod --force
 
 FROM nginx AS runner
 
