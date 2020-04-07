@@ -197,7 +197,7 @@ module.exports = function(grunt) {
           src: [
             '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js', 'pdfmake/build/*.js',
             '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**',
-            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
+            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 'fontawesome/css/*.min.css',
             'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js'
           ]
         }
