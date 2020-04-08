@@ -90,7 +90,7 @@ RUN apt-get update && apt-get -qqyy install nodejs yarn && rm -rf /var/lib/apt/l
 RUN echo 'LC_ALL="en_US.UTF-8"' > /etc/default/locale
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update
-RUN apt-get install -y openssl libpq-dev build-essential libcurl4-openssl-dev software-properties-common	
+RUN apt-get install -y openssl libpq-dev build-essential libcurl4-openssl-dev git software-properties-common	
 
 RUN mkdir /usr/src/app
 
