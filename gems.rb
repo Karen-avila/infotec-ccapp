@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-gem 'compass', 
+gem 'compass', '>=1' 
 gem 'sass', '3.5'
 gem 'sass-css-importer', '~> 1.0.0.beta.0'
 gem 'scss_lint', '~> 0.59.0'
