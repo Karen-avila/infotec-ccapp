@@ -34,7 +34,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }               
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
 
             //return input type
@@ -87,6 +88,7 @@
                 this.formData.dateFormat = scope.dateTimeFormat();
                 //below logic, for the input field if data is not entered, this logic will put "", because
                 //if no data entered in input field , that field name won't send to server side.
+                var _ = require('underscore');
                 for (var i = 0; i < scope.columnHeaders.length; i++) {
                     if (!_.contains(_.keys(this.formData), scope.columnHeaders[i].columnName)) {
                         this.formData[scope.columnHeaders[i].columnName] = "";

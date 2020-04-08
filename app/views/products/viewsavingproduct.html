@@ -13,7 +13,7 @@
                     <div class="btn-group">
                         <a href="#" class="btn btn-sm btn-primary" ng-click="downloadPDF()"
                             download><i class="fa fa-print "></i>&nbsp;{{'label.button.print' | translate}}</a>
-                        <a href="#!/editsavingproduct/{{savingproduct.id}}" class="btn btn-primary"
+                        <a href="#!/editsavingproduct/{{savingproduct.id}}" class="btn btn-sm btn-primary"
                             has-permission='UPDATE_SAVINGSPRODUCT'><i
                                 class="fa fa-edit "></i>&nbsp;{{'label.button.edit' | translate}}</a>
                     </div>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.currency' | translate}}</td>
-                    <td colspan="3">{{savingproduct.currency.name}}</td>
+                    <td colspan="3">{{savingproduct.currency.name | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.decimalplaces' | translate}}</td>
@@ -53,23 +53,23 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.nominalannualinterestrate' | translate}}</td>
-                    <td colspan="3">{{savingproduct.nominalAnnualInterestRate}}</td>
+                    <td colspan="3">{{savingproduct.nominalAnnualInterestRate | number}} %</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.interestcompoundingperiod' | translate}}</td>
-                    <td colspan="3">{{savingproduct.interestCompoundingPeriodType.value}}</td>
+                    <td colspan="3">{{savingproduct.interestCompoundingPeriodType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.interestpostingperiod' | translate}}</td>
-                    <td colspan="3">{{savingproduct.interestPostingPeriodType.value}}</td>
+                    <td colspan="3">{{savingproduct.interestPostingPeriodType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.interestcalculatedusing' | translate}}</td>
-                    <td colspan="3">{{savingproduct.interestCalculationType.value}}</td>
+                    <td colspan="3">{{savingproduct.interestCalculationType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.daysinyears' | translate}}</td>
-                    <td colspan="3">{{savingproduct.interestCalculationDaysInYearType.value}}</td>
+                    <td colspan="3">{{savingproduct.interestCalculationDaysInYearType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td colspan="4"><br /></td>
@@ -92,15 +92,15 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.allowoverdraft' | translate}}</td>
-                    <td colspan="3">{{savingproduct.allowOverdraft}}</td>
+                    <td colspan="3">{{savingproduct.allowOverdraft | translate}}</td>
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.overdraftlimit' | translate}}</td>
-                    <td colspan="3">{{savingproduct.overdraftLimit}}</td>
+                    <td colspan="3">{{savingproduct.overdraftLimit|number}}</td>
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.nominalannualinterestrateoverdraft' | translate}}</td>
-                    <td colspan="3">{{savingproduct.nominalAnnualInterestRateOverdraft}}</td>
+                    <td colspan="3">{{savingproduct.nominalAnnualInterestRateOverdraft}} %</td>
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.minoverdraftforinterestcalculation' | translate}}</td>
@@ -156,7 +156,7 @@
                 </tr>
                 <tr ng-repeat="charge in savingproduct.charges">
                     <td>{{charge.name}}</td>
-                    <td>{{charge.chargeCalculationType.value}}</td>
+                    <td>{{charge.chargeCalculationType.value | translate}}</td>
                     <td>{{charge.amount|number}}</td>
                     <td>{{charge.chargeTimeType.value}}</td>
                 </tr>
@@ -176,7 +176,7 @@
                                 <td colspan="3">{{savingproduct.accountingMappings.savingsReferenceAccount.name}}</td>
                             </tr>
                             <tr>
-                                <td>{{'label.input.overdraftportfoliocontrol' | translate}}({{'label.heading.assets' |
+                                <td>{{'label.input.overdraftportfoliocontrol' | translate}} ({{'label.heading.assets' |
                             translate}})
                                 </td>
                                 <td colspan="3">{{savingproduct.accountingMappings.overdraftPortfolioControl.name}}</td>

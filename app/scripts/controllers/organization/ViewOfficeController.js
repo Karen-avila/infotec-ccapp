@@ -92,7 +92,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }               
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
 
             scope.getDatatableValue = function (data) {
