@@ -8,7 +8,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin \
 	&& rvm install 2.6.1 \
 	&& rvm use 2.6.1 --default \
-	&& gem install bundler \	
+	&& /bin/bash -l -c "gem install bundler" \	
 	&& export LANGUAGE=en_MX.UTF-8 \
 	&& export LANG=es_MX.UTF-8 \
 	&& export LC_ALL=es_MX.UTF-8 \
