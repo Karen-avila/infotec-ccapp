@@ -106,7 +106,7 @@ RUN npm install -g grunt-cli
 
 COPY . /usr/src/app
 
-RUN gem install compass && gem install sass && gem install font-awesome-sass && gem install sass-css-importer-load-paths && gem install scss_lint
+RUN gem install compass && gem install font-awesome-sass && gem install sass-css-importer-load-paths && gem install scss_lint
 
 RUN bower --allow-root install
 
