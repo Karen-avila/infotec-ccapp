@@ -116,7 +116,7 @@ RUN export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin && bundle install
 
 #RUN find . -type f -print0 | xargs -0 dos2unix
 
-RUN grunt prod
+RUN grunt prod --force
 
 FROM nginx AS runner
 
