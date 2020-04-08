@@ -23,7 +23,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& /bin/bash -l -c "rvm install 2.6.1" \
 	&& /bin/bash -l -c "echo \"gem: --no-ri --no-rdoc\" > ~/.gemrc && gem install bundler && gem install sass" \
 	&& export PATH=/usr/src/app/node_modules/.bin:$PATH \
-	&& /usr/src/app/ \
+	&& cd /usr/src/app/ \
 	&& npm install -g bower \
 	&& npm install -g grunt-cli \
 	&& bower --allow-root install \
