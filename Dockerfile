@@ -6,9 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& \curl -sSL https://get.rvm.io | bash -s stable \
 	&& /bin/bash -l -c "rvm requirements" \
 	&& /bin/bash -l -c "rvm install 2.6.1" \
-	&& /bin/bash -l -c "echo \"gem: --no-ri --no-rdoc\" > ~/.gemrc && gem install bundler" \
-	&& gem update --system \
-	&& gem install sass \
+	&& /bin/bash -l -c "echo \"gem: --no-ri --no-rdoc\" > ~/.gemrc && gem install bundler && gem install sass" \	
 	&& export LANGUAGE=en_MX.UTF-8 \
 	&& export LANG=es_MX.UTF-8 \
 	&& export LC_ALL=es_MX.UTF-8 \
