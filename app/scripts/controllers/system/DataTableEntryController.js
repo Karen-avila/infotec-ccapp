@@ -30,7 +30,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
 
             scope.getDatatableColumn = function (tableName, columnName) {
@@ -38,7 +39,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }               
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
             
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
