@@ -4,11 +4,11 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends locales dos2unix curl gnupg2 \	
 	&& gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
 	&& \curl -sSL https://get.rvm.io | bash -s stable \
-	&& . /etc/profile.d/rvm.sh \
-	&& export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin \
-	&& rvm install 2.6.1 \
-	&& rvm use 2.6.1 --default \
-	&& /bin/bash -l -c "gem install bundler" \	
+	&& /bin/bash -l -c "rvm requirements" \
+	&& /bin/bash -l -c "rvm install 2.6.1" \
+	&& /bin/bash -l -c "echo \"gem: --no-ri --no-rdoc\" > ~/.gemrc && gem install bundler" \
+	&& gem update --system \
+	&& gem install sass \
 	&& export LANGUAGE=en_MX.UTF-8 \
 	&& export LANG=es_MX.UTF-8 \
 	&& export LC_ALL=es_MX.UTF-8 \
