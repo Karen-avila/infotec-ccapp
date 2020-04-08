@@ -113,8 +113,9 @@ RUN npm install
 RUN export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin && bundle install
 
 #RUN find . -type f -print0 | xargs -0 dos2unix
+RUN gem install compass && npm i compass
 
-RUN grunt prod --force
+RUN grunt prod
 
 FROM nginx AS runner
 
