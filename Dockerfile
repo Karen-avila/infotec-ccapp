@@ -1,17 +1,8 @@
 FROM ubuntu:18.04 AS builder
 
-ENV MIRROR="mirrors.ocf.berkeley.edu"
-
-RUN sed -i "s|deb.debian.org|$MIRROR|g" /etc/apt/sources.list \
-  && apt-get update \
-  && apt-get -y upgrade \
-  && apt-get -y install wget \
-  && apt-get -y remove --purge wget \
-  && apt-get -y autoremove --purge \
-&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
+  	wget \
     bzip2 \
     ca-certificates \
     openssl \
