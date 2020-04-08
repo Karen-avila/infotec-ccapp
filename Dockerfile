@@ -106,13 +106,13 @@ RUN npm install -g grunt-cli
 
 COPY . /usr/src/app
 
-RUN gem install compass && gem install font-awesome-sass && gem install sass-css-importer-load-paths && gem install scss_lint
+#RUN gem install compass && gem install font-awesome-sass && gem install sass-css-importer-load-paths && gem install scss_lint
 
 RUN bower --allow-root install
 
 RUN npm install
 
-#RUN export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin && bundle install
+RUN export PATH=$PATH:/usr/local/rvm/bin:/usr/local/rvm/sbin && bundle install
 
 #RUN find . -type f -print0 | xargs -0 dos2unix
 
