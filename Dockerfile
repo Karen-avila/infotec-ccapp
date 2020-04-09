@@ -1,5 +1,20 @@
 FROM ubuntu:18.04 AS builder
 
+# Install program to configure locales
+RUN apt-get install -y locales
+RUN dpkg-reconfigure locales && \
+  locale-gen C.UTF-8 && \
+  /usr/sbin/update-locale LANG=C.UTF-8
+
+# Install needed default locale for Makefly
+RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && \
+  locale-gen
+
+# Set default locale for the environment
+ENV LC_ALL C.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
   	wget \
@@ -87,7 +102,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get -qqyy install nodejs yarn && rm -rf /var/lib/apt/lists/*
 
-RUN echo 'LC_ALL="en_US.UTF-8"' > /etc/default/locale
+#RUN echo 'LC_ALL="en_US.UTF-8"' > /etc/default/locale
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update
 RUN apt-get install -y openssl libpq-dev build-essential libcurl4-openssl-dev git software-properties-common	
