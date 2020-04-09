@@ -1,7 +1,7 @@
 FROM ubuntu:18.04 AS builder
 
 # Install program to configure locales
-RUN apt-get install -y locales
+RUN apt-get install -y locales-all
 RUN dpkg-reconfigure locales && \
   locale-gen C.UTF-8 && \
   /usr/sbin/update-locale LANG=C.UTF-8
