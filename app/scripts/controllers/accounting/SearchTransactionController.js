@@ -40,6 +40,7 @@
             scope.formData.manualEntriesOnly = scope.searchCriteria.journals[3];
             scope.date.first = scope.searchCriteria.journals[4];
             scope.date.second = scope.searchCriteria.journals[5];
+            console.log(JSON.stringify(scope.formData));
 
             var fetchFunction = function (offset, limit, callback) {
                 var reqFirstDate = dateFilter(scope.date.first, scope.df);
@@ -99,6 +100,8 @@
                     scope.searchCriteria.journals[7] = params.savingsId;
                 } else
                     scope.searchCriteria.journals[7] = null;
+                    
+                console.log(JSON.stringify(params));
 
                 scope.saveSC();
                 resourceFactory.journalEntriesResource.search(params, callback);
