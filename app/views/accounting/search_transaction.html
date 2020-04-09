@@ -107,12 +107,12 @@
                 </table>
                 <div class="center" ng-show="(formData.loanaccountId != null && isValid == true) || (formData.savingsaccountId != null && isValid == true)">
                     <a href="{{path}}"
-                       class="btn btn-default center"
+                       class="btn btn-sm btn-primary center"
                             ><i
                            class=""></i>{{'label.button.back' | translate}}</a></div>
                 <ul class="pager">
-                    <li class="previous"><a id="prev" ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; {{'label.button.previous' | translate}}</a></li>
-                    <li class="next"><a id="next" ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">{{'label.button.next' | translate}} &rarr;</a></li>
+                    <li class="btn btn-default btn-sm previous"><a id="prev" ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; {{'label.button.previous' | translate}}</a></li>
+                    <li class="btn btn-default btn-sm next"><a id="next" ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">{{'label.button.next' | translate}} &rarr;</a></li>
                 </ul>
             </div>
         </div>

@@ -42,7 +42,6 @@
             scope.formValue = function(array,model,findattr,retAttr){
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
-                console.log(findattr,retAttr,model);
                 return _.find(array, function (obj) {
                     return obj[findattr] === model;
                 })[retAttr];

@@ -4,7 +4,6 @@
             var baseUrl = "", apiVer = "/fineract-provider/api/v1", tenantIdentifier = "";
             this.setBaseUrl = function (url) {
                 baseUrl = url;
-                console.log(baseUrl);
             };
 
             this.setTenantIdenetifier = function (tenant) {

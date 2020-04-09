@@ -49,7 +49,10 @@
             scope.DEBITORDER = translate.instant('DEBITORDER');
             scope.Accounting = translate.instant('Accounting');
 
-            resourceFactory.accountCoaResource.getAllAccountCoas(function (data) {
+            var params = {
+                detailed: true
+            }
+            resourceFactory.accountCoaResource.getAllAccountCoas(params, function (data) {
                 scope.coadatas = scope.deepCopy(data);
 
                 var assetObject = { id: -1, name: scope.ASSET, parentId: -999, children: [] };
