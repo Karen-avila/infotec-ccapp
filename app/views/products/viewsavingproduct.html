@@ -83,12 +83,12 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.lockinPeriodFrequency' | translate}}</td>
-                    <td colspan="3">{{savingproduct.lockinPeriodFrequency}}
-                        {{savingproduct.lockinPeriodFrequencyType.value}}</td>
+                    <td colspan="3">{{savingproduct.lockinPeriodFrequency | translate}}
+                        {{savingproduct.lockinPeriodFrequencyType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.withdrawalfeefortransfers' | translate}}</td>
-                    <td colspan="3">{{savingproduct.withdrawalFeeForTransfers}}</td>
+                    <td colspan="3">{{savingproduct.withdrawalFeeForTransfers | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.allowoverdraft' | translate}}</td>
@@ -104,7 +104,7 @@
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.minoverdraftforinterestcalculation' | translate}}</td>
-                    <td colspan="3">{{savingproduct.minOverdraftForInterestCalculation}}</td>
+                    <td colspan="3">{{savingproduct.minOverdraftForInterestCalculation | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.minbalanceforinterestcalculation' | translate}}</td>
@@ -112,7 +112,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.enforceMinRequiredBalance' | translate}}</td>
-                    <td colspan="3">{{savingproduct.enforceMinRequiredBalance}}</td>
+                    <td colspan="3">{{savingproduct.enforceMinRequiredBalance | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.minRequiredBalance' | translate}}</td>
@@ -120,7 +120,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.withholdtax' | translate}}</td>
-                    <td colspan="3">{{savingproduct.withHoldTax}}</td>
+                    <td colspan="3">{{savingproduct.withHoldTax | translate}}</td>
                 </tr>
                 <tr ng-show="savingproduct.withHoldTax">
                     <td>{{'label.heading.withholdtaxgroup' | translate}}</td>
@@ -128,7 +128,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.isDormancyTrackingActive' | translate}}</td>
-                    <td colspan="3">{{savingproduct.isDormancyTrackingActive}}</td>
+                    <td colspan="3">{{savingproduct.isDormancyTrackingActive | translate}}</td>
                 </tr>
                 <tr ng-show="savingproduct.isDormancyTrackingActive">
                     <td>{{'label.heading.daysToInactive' | translate}}</td>
@@ -158,7 +158,7 @@
                     <td>{{charge.name}}</td>
                     <td>{{charge.chargeCalculationType.value | translate}}</td>
                     <td>{{charge.amount|number}}</td>
-                    <td>{{charge.chargeTimeType.value}}</td>
+                    <td>{{charge.chargeTimeType.value | translate}}</td>
                 </tr>
                 <tr>
                     <td colspan="4"><br /></td>

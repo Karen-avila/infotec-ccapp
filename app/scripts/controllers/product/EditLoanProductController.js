@@ -110,6 +110,8 @@
                     isEqualAmortization: scope.product.isEqualAmortization,
                 };
 
+                scope.formData.accountingRule = scope.product.accountingRule.id;
+
                 if (scope.product.isInterestRecalculationEnabled) {
                     scope.formData.interestRecalculationCompoundingMethod = scope.product.interestRecalculationData.interestRecalculationCompoundingType.id;
                     scope.formData.rescheduleStrategyMethod = scope.product.interestRecalculationData.rescheduleStrategyType.id;
@@ -142,7 +144,6 @@
                     }
                 }
                 if (scope.product.allowAttributeOverrides != null) {
-                    console.log('scope.product.allowAttributeOverrides : ', scope.product.allowAttributeOverrides);
                     scope.amortization = scope.product.allowAttributeOverrides.amortizationType;
                     scope.arrearsTolerance = scope.product.allowAttributeOverrides.inArrearsTolerance;
                     scope.graceOnArrearsAging = scope.product.allowAttributeOverrides.graceOnArrearsAgeing;
@@ -217,6 +218,14 @@
                     scope.formData.incomeFromRecoveryAccountId = scope.product.accountingMappings.incomeFromRecoveryAccount.id;
                     scope.formData.writeOffAccountId = scope.product.accountingMappings.writeOffAccount.id;
                     scope.formData.overpaymentLiabilityAccountId = scope.product.accountingMappings.overpaymentLiabilityAccount.id;
+                    if (scope.product.accountingMappings.orderPerformedAccount) {
+                        scope.includeOrderAccounts = true;
+                        scope.formData.orderNotPerformedAccountId = scope.product.accountingMappings.orderNotPerformedAccount.id;
+                        scope.formData.orderPerformedAccountId = scope.product.accountingMappings.orderPerformedAccount.id;
+                        scope.formData.orderInterestAccountId = scope.product.accountingMappings.orderInterestAccount.id;
+                        scope.formData.creditCommitmentsAccountId = scope.product.accountingMappings.creditCommitmentsAccount.id;
+                        scope.formData.creditOrderInterestAccountId = scope.product.accountingMappings.creditOrderInterestAccount.id;
+                    }
 
                     _.each(scope.product.paymentChannelToFundSourceMappings, function (fundSource) {
                         scope.configureFundOptions.push({
@@ -558,7 +567,7 @@
                 // Order Accounts
                 this.formData.includeOrderAccounts = scope.includeOrderAccounts;
                 if (! this.formData.includeOrderAccounts) {
-                    delete this.formData.orderNotPerfomedAccountId;
+                    delete this.formData.orderNotPerformedAccountId;
                     delete this.formData.orderPerformedAccountId;
                     delete this.formData.orderInterestAccountId;
                     delete this.formData.creditCommitmentsAccountId;

@@ -410,6 +410,16 @@
                 });
             });
 
+            scope.getPeriodsUnPaid = function () {
+                var periodsUnPaid = 0;
+                for (var i in scope.loandetails.repaymentSchedule.periods) {
+                    if (!scope.loandetails.repaymentSchedule.periods[i].obligationsMetOnDate) {
+                        periodsUnPaid++;
+                    }
+                }
+                return periodsUnPaid;
+            }
+
             var fetchFunction = function (offset, limit, callback) {
                 var params = {};
                 params.offset = offset;
@@ -670,7 +680,6 @@
                         groupId :scope.loandetails.group.id,groupName :scope.loandetails.group.name});
 
                 }
-
             };
 
             scope.printReport = function () {

@@ -72,17 +72,15 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label control-label-checkbox col-sm-2">{{ 'label.input.includeinborrowerloancounter' | translate }}
+				<div class="checkbox col-sm-2 right">
+						<input type="checkbox" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
+							ng-false-value="false">
+				</div>
+				<label class="control-label col-sm-4 left">{{ 'label.input.includeinborrowerloancounter' | translate }}
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
 						tooltip-append-to-body="true"></i>
 				</label>
-				<div class="checkbox col-sm-2">
-					<label>
-						<input type="checkbox" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
-							ng-false-value="false">
-					</label>
-				</div>
 			</div>
 			<h3>{{ 'label.heading.currency' | translate }}</h3>
 			<hr>
@@ -92,38 +90,38 @@
 					<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.loanproduct.currency' | translate}}"
 						tooltip-append-to-body="true"></i>
 				</label>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
 						ng-options="currency.code as currency.name | translate for currency in product.currencyOptions"
 						value="{{currency.code}}" />
 				</div>
-			</div>
-			<div class="form-group">
 				<label class="control-label col-sm-2">{{ 'label.input.decimalplaces' | translate }}<span
 						class="required">*</span>
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.loanproduct.decimalplaces' | translate}}"
 						tooltip-append-to-body="true"></i>
 				</label>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
 						ng-model="formData.digitsAfterDecimal" required late-validate />
 					<form-validate valattributeform="editloanproductform" valattribute="decimalplace" />
-				</div>
+                </div>
+			</div>
+			<div class="form-group">
 				<label class="control-label col-sm-2">{{ 'label.input.currencyinmultiplesof' | translate }}<span
 						class="required">*</span>
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.loanproduct.currencyinmultiplesof' | translate}}"
 						tooltip-append-to-body="true"></i>
 				</label>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<input type="text" id="inMultiplesOf" class="form-control" name="multiplesof"
 						ng-model="formData.inMultiplesOf" required late-validate />
 					<form-validate valattributeform="editloanproductform" valattribute="multiplesof" />
 				</div>
 				<label class="control-label col-sm-2">{{ 'label.input.installmentinmultiplesof' | translate }}<span
 						class="required">*</span></label>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<input type="text" id="installmentAmountInMultiplesOf" class="form-control"
 						name="installmentAmountInMultiplesOf" ng-model="formData.installmentAmountInMultiplesOf" />
 				</div>
@@ -131,11 +129,11 @@
 			<h3>{{ 'label.heading.terms' | translate }}</h3>
 			<hr>
 			<div class="form-group">
-				<div class="checkbox col-sm-2">
+				<div class="checkbox col-sm-2 right">
 					<input type="checkbox" ng-model="formData.useborrowerloancounter" ng-true-value="true"
 						ng-false-value="false">
 				</div>
-				<label class="control-label control-label-checkbox col-sm-2">{{ 'label.input.useborrowerloancounter' | translate }}
+				<label class="control-label col-sm-6 left">{{ 'label.input.useborrowerloancounter' | translate }}
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.loanproduct.useborrowerloancounter' | translate}}"
 						tooltip-append-to-body="true"></i>
@@ -290,10 +288,11 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-4">
+				<div class="col-sm-2 right">
 					<input type="checkbox" name="name1" ng-model="formData.isLinkedToFloatingInterestRates" />
-					{{'label.input.islinedtofloatinginterestrates' | translate}}
 				</div>
+                <label class="control-label col-sm-6 left">{{'label.input.islinedtofloatinginterestrates' | translate}}
+				</label>
 			</div>
 
 			<div class="form-group" ng-show="formData.isLinkedToFloatingInterestRates">
@@ -471,7 +470,7 @@
 					<input type="checkbox" ng-model="formData.isEqualAmortization" ng-true-value="true"
 						ng-false-value="false">
 				</div>
-				<label class="control-label control-label-checkbox col-sm-3 left">{{ 'label.input.isequalamortization' | translate }}</label>
+				<label class="control-label col-sm-3 left">{{ 'label.input.isequalamortization' | translate }}</label>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">{{ 'label.input.interestcalculationperiod' | translate }}<span
@@ -487,13 +486,11 @@
 						value="{{interestCalculationPeriodType.id}}" />
 				</div>
 
-				<div class="col-sm-1" ng-show="formData.interestCalculationPeriodType == 1">
-					<label class="checkbox control-label">
-						<input id="allowPartialPeriodInterestCalcualtion" type="checkbox"
-							ng-model="formData.allowPartialPeriodInterestCalcualtion">
-					</label>
+				<div class="col-sm-2 right" ng-show="formData.interestCalculationPeriodType == 1">
+                    <input id="allowPartialPeriodInterestCalcualtion" type="checkbox"
+                        ng-model="formData.allowPartialPeriodInterestCalcualtion">
 				</div>
-				<label class="control-label col-sm-5 left"
+				<label class="control-label col-sm-4 left"
 					ng-show="formData.interestCalculationPeriodType == 1">{{ 'label.input.allowpartialperiodinterestcalcualtion' | translate }}
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.allowpartialperiodinterestcalcualtion' | translate}}"
@@ -568,30 +565,26 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4">{{ 'label.input.no.of.overdue.days.to.change.loan.into.npa'
                    | translate }}</label>
-				<div class="col-sm-4">
+				<div class="col-sm-2">
 					<input id="overdueDaysForNPA" class="form-control"
 						placeholder="{{'label.input.overduedaysfornpa' | translate}}" type="text"
 						ng-model="formData.overdueDaysForNPA">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-4">{{'label.input.loan.account.moves.out.of.npa.only.on.arrears.completion'
-            | translate }}<span class="required">*</span></label>
-				<div class="col-sm-4">
-					<label class="checkbox control-label">
-						<input id="accountMovesOutOfNPAOnlyOnArrearsCompletion" type="checkbox"
-							ng-model="formData.accountMovesOutOfNPAOnlyOnArrearsCompletion">
-					</label>
-				</div>
+				<div class="col-sm-2 right">
+                    <input id="accountMovesOutOfNPAOnlyOnArrearsCompletion" type="checkbox"
+                        ng-model="formData.accountMovesOutOfNPAOnlyOnArrearsCompletion">
+                </div>
+				<label class="control-label col-sm-8 left">{{'label.input.loan.account.moves.out.of.npa.only.on.arrears.completion'
+                    | translate }}<span class="required">*</span></label>        
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4">{{ 'label.input.candefineinstallmentamount' | translate }}</label>
-				<div class="col-sm-4">
-					<label class="checkbox control-label">
-						<input type="checkbox" ng-model="formData.canDefineInstallmentAmount" />
-					</label>
+				<div class="col-sm-2 right">
+                    <input type="checkbox" ng-model="formData.canDefineInstallmentAmount" />
 				</div>
+				<label class="control-label col-sm-8 left">{{ 'label.input.candefineinstallmentamount' | translate }}</label>
 			</div>
 
 			<div class="form-group">
@@ -604,13 +597,15 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-4">
+                <div class="col-sm-2 right">
 					<input type="checkbox" name="name1" ng-model="formData.allowVariableInstallments" />
-					{{'label.input.isvariableinstallmentsallowed' | translate}}
+				</div>
+				<label
+                    class="control-label col-sm-4 left">{{ 'label.input.isvariableinstallmentsallowed' | translate }}
 					<i class="fa fa-question-circle"
 						uib-tooltip="{{'label.tooltip.loanproduct.variableinstallments' | translate}}"
-						tooltip-append-to-body="true"></i>
-				</div>
+						tooltip-append-to-body="true"></i>                
+                </label>
 			</div>
 
 			<div class="form-group" ng-show="formData.allowVariableInstallments">
@@ -631,23 +626,22 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-12">
+                <div class="col-sm-2 right">
 					<input type="checkbox" name="canUseForTopup" ng-model="formData.canUseForTopup" />
-					{{'label.input.canUseForTopup' | translate}}
-					<i class="icon-question-sign" tooltip="{{'label.tooltip.loanproduct.canUseForTopup' | translate}}"
-						tooltip-append-to-body="true"></i>
 				</div>
+				<label class="control-label col-sm-6 left">{{ 'label.input.canUseForTopup' | translate }}
+                    <i class="icon-question-sign" tooltip="{{'label.tooltip.loanproduct.canUseForTopup' | translate}}"
+                    tooltip-append-to-body="true"></i>
+                </label>
 			</div>
 
 			<h3>{{ 'label.heading.interestRecalculation' | translate }}</h3>
 			<hr>
 			<div class="form-group">
-				<label class="control-label control-label-checkbox col-sm-2">{{ 'label.input.recalculateinterest' | translate }}</label>
-				<div class="col-sm-4">
-					<label class="checkbox control-label">
-						<input type="checkbox" ng-model="formData.isInterestRecalculationEnabled" />
-					</label>
+				<div class="col-sm-2 right">
+                    <input type="checkbox" ng-model="formData.isInterestRecalculationEnabled" />
 				</div>
+				<label class="control-label col-sm-6">{{ 'label.input.recalculateinterest' | translate }}</label>
 			</div>
 			<div class="form-group" data-ng-show="formData.isInterestRecalculationEnabled">
 				<label class="control-label col-sm-2">{{'label.input.preclose.interest.calculation.strategy'
@@ -789,24 +783,20 @@
 				</div>
 			</div>
 			<div class="form-group" data-ng-show="formData.isInterestRecalculationEnabled">
-				<div class="col-sm-2">
-					<label class="checkbox control-label">
-						<input id="isArrearsBasedOnOriginalSchedule" type="checkbox"
-							ng-model="formData.isArrearsBasedOnOriginalSchedule">
-					</label>
+				<div class="col-sm-2 right">
+                    <input id="isArrearsBasedOnOriginalSchedule" type="checkbox"
+                        ng-model="formData.isArrearsBasedOnOriginalSchedule">
 				</div>
-				<label class="control-label control-label-checkbox col-sm-6">{{'label.input.arrearsbasedonoriginalschedule'
+				<label class="control-label col-sm-6 left">{{'label.input.arrearsbasedonoriginalschedule'
             | translate }}<span class="required">*</span></label>
 			</div>
 			<h3>{{ 'label.heading.gauranteeRequirements' | translate }}</h3>
 			<hr>
 			<div class="form-group">
-				<div class="col-sm-2">
-					<label class="checkbox control-label">
-						<input type="checkbox" ng-model="formData.holdGuaranteeFunds" />
-					</label>
+				<div class="col-sm-2 right">
+                    <input type="checkbox" ng-model="formData.holdGuaranteeFunds" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-6">{{ 'label.input.holdguaranteefunds' | translate }}</label>
+				<label class="control-label col-sm-6 left">{{ 'label.input.holdguaranteefunds' | translate }}</label>
 			</div>
 
 			<div class="form-group" data-ng-show="formData.holdGuaranteeFunds">
@@ -839,22 +829,27 @@
 			<h3>{{ 'label.heading.tranchedetails' | translate }}</h3>
 			<hr>
 			<div class="form-group">
-				<div class="checkbox col-sm-2">
+				<div class="checkbox col-sm-2 right">
 					<label>
 						<input type="checkbox" ng-model="formData.multiDisburseLoan" />
 					</label>
 				</div>
-				<label class="control-label control-label-checkbox col-sm-6">{{ 'label.input.multidisburseloan' | translate }}</label>
+				<label class="control-label col-sm-6 left">{{ 'label.input.multidisburseloan' | translate }}</label>
 			</div>
 			<div class="form-group" ng-show="formData.multiDisburseLoan">
+				<label class="control-label col-sm-2">{{ 'label.input.mintranchecount' | translate }}</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="minTrancheCount" name="minTrancheCount"
+						ng-model="minTrancheCount" />
+				</div>
 				<label class="control-label col-sm-2">{{ 'label.input.maxtranchecount' | translate }}</label>
-				<div class="col-sm-4">
+				<div class="col-sm-2">
 					<input type="text" class="form-control" id="maxTrancheCount" name="maxTrancheCount"
 						ng-model="formData.maxTrancheCount" />
 				</div>
 				<label
-					class="control-label col-sm-3">{{ 'label.input.outstandingloanbalance' | translate }}</label>
-				<div class="col-sm-4">
+					class="control-label col-sm-2">{{ 'label.input.outstandingloanbalance' | translate }}</label>
+				<div class="col-sm-2">
 					<input type="text" class="form-control" id="outstandingLoanBalance" name="outstandingLoanBalance"
 						number-format ng-model="formData.outstandingLoanBalance" />
 				</div>
@@ -862,55 +857,53 @@
 			<h3>{{ 'label.heading.configurableAttributes' | translate }}</h3>
 			<hr>
 			<div class="form-group">
-				<div class="checkbox col-sm-1">
-					<label>
-						<input type="checkbox" ng-model="allowAttributeConfiguration"
-							ng-change="setAttributeValues()" />
-					</label>
+				<div class="checkbox col-sm-2 right">
+                    <input type="checkbox" ng-model="allowAttributeConfiguration"
+                        ng-change="setAttributeValues()" />
 				</div>
 				<label
-					class="control-label control-label-checkbox col-sm-8">{{ 'label.input.isConfigLoanAttributes' | translate }}</label>
+					class="control-label col-sm-8 left">{{ 'label.input.isConfigLoanAttributes' | translate }}</label>
 			</div>
 			<div class="form-group" ng-show="allowAttributeConfiguration">
-				<div class="col-sm-1">
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="amortization" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.amortization' | translate }}</label>
-				<div class="col-sm-1">
+				<label class="control-label col-sm-4 left">{{ 'label.input.amortization' | translate }}</label>
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="interestMethod" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.interestmethod' | translate }}</label>
+				<label class="control-label col-sm-4 left">{{ 'label.input.interestmethod' | translate }}</label>
 			</div>
 			<div class="form-group" ng-show="allowAttributeConfiguration">
-				<div class="col-sm-1">
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="transactionProcessingStrategy" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.repaymentstrategy' | translate }}</label>
-				<div class="col-sm-1">
+				<label class="control-label col-sm-4 left">{{ 'label.input.repaymentstrategy' | translate }}</label>
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="interestCalcPeriod" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.interestcalculationperiod' | translate }}</label>
+				<label class="control-label col-sm-4 left">{{ 'label.input.interestcalculationperiod' | translate }}</label>
 			</div>
 			<div class="form-group" ng-show="allowAttributeConfiguration">
-				<div class="col-sm-1">
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="arrearsTolerance" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.arearstolerance' | translate }}</label>
-				<div class="col-sm-1">
+				<label class="control-label col-sm-4 left">{{ 'label.input.arearstolerance' | translate }}</label>
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="repaymentFrequency" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.repaidevery' | translate }}</label>
+				<label class="control-label col-sm-4 left">{{ 'label.input.repaidevery' | translate }}</label>
 			</div>
 			<div class="form-group" ng-show="allowAttributeConfiguration">
-				<div class="col-sm-1">
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="graceOnPrincipalAndInterest" />
 				</div>
-				<label class="control-label control-label-checkbox col-sm-5">{{ 'label.input.grace' | translate }}</label>
-				<div class="col-sm-1">
+				<label class="control-label col-sm-4 left">{{ 'label.input.grace' | translate }}</label>
+				<div class="col-sm-2 right">
 					<input type="checkbox" ng-model="graceOnArrearsAging" />
 				</div>
 				<label
-					class="control-label control-label-checkbox col-sm-5">{{ 'label.input.no.of.overdue.days.to.move.loan.into.arrears' | translate }}</label>
+					class="control-label col-sm-4 left">{{ 'label.input.no.of.overdue.days.to.move.loan.into.arrears' | translate }}</label>
 			</div>
 			<h3>{{ 'label.heading.charges' | translate }}</h3>
 			<hr>
@@ -1224,7 +1217,7 @@
 				</div>
 				<hr>
                 <div class="form-group">
-                    <div class="col-sm-3 right">
+                    <div class="col-sm-2 right">
                         <input type="checkbox" ng-model="includeOrderAccounts" />
                     </div>
                     <label class="control-label left col-sm-6">{{ 'label.input.includeOrderAccounts' | translate }}</label>
@@ -1237,10 +1230,10 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-4">
-                            <select id="orderNotPerfomedAccountId" ng-model="formData.orderNotPerfomedAccountId"
+                            <select id="orderNotPerformedAccountId" ng-model="formData.orderNotPerformedAccountId"
                                 chosen="debitOrderAccountOptions"
                                 ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in debitOrderAccountOptions'
-                                ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerfomedAccountId,'id','name')"
+                                ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerformedAccountId,'id','name')"
                                 value="{{orderAccount.id}}">
                             </select>
                         </div>
