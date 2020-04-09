@@ -74,6 +74,7 @@
                 } else
                     scope.searchCriteria.journals[3] = null;
 
+                /*
                 if (scope.date.first) {
                     params.fromDate = reqFirstDate;
                     scope.searchCriteria.journals[4] = params.fromDate;
@@ -85,6 +86,7 @@
                     scope.searchCriteria.journals[5] = params.toDate;
                 } else
                     scope.searchCriteria.journals[5] = null;
+                */
 
                 if(scope.formData.loanaccountId){
                     params.loanId = scope.formData.loanaccountId;

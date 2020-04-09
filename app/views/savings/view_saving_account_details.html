@@ -459,10 +459,11 @@
                         <button class="btn btn-sm btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">
                             {{'label.button.export' | translate}}
                         </button>
+                        <!--
                         <button class="btn btn-sm btn-primary pull-right" ng-show="checkStatus()"
                             ng-click="viewJournalEntries()" style="margin-right: 8px;">
                             {{'label.button.viewjournalentries' | translate}}
-                        </button>
+                        </button> -->
                         <br>
                         <table class="table table-bordered">
                             <colgroup span="4"></colgroup>
@@ -489,6 +490,7 @@
                                     <th class="pointer" ng-click="changeTransactionSort('runningBalance')">
                                         {{'label.heading.viewreceipts' | translate}}
                                     </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -526,6 +528,10 @@
                                             ng-click="viewSavingsTransactionReceipts(transaction.id)">
                                             <i class="fa fa-file-text fa fa-large"></i>
                                         </span>
+                                    </td>
+                                    <td> <span uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}" tooltip-placement="left" ng-click="viewsavingtransactionjournalentries(transaction.id)">
+                                        <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
+                                    </span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -684,7 +690,7 @@
                                 </td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)"></td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)">
-                                    {{charge.chargeTimeType.value}}
+                                    {{charge.chargeTimeType.value | translate}}
                                 </td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)"></td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)">{{charge.dueDate |
@@ -694,7 +700,7 @@
                                     DayMonthFormat}}
                                 </td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)">
-                                    {{charge.chargeCalculationType.value}}
+                                    {{charge.chargeCalculationType.value | translate}}
                                 </td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)"></td>
                                 <td class="pointer" data-ng-click="viewCharge(charge.id)">

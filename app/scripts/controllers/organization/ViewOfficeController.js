@@ -68,7 +68,6 @@
                             }
                         }
                     }
-                    console.log(JSON.stringify(datatabledetail));
                     scope.datatabledetails.push(datatabledetail);
                 });
             };
