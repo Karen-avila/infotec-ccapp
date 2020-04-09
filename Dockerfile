@@ -6,7 +6,8 @@ ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-  	wget \
+  	locales locales-all \
+    wget \
     bzip2 \
     ca-certificates \
     openssl \
