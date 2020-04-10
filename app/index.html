@@ -17,11 +17,6 @@
 <body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-controller="MainController">
 
     <!--Loader -->
-    <div id="loaderWrapper" data-ng-hide="domReady">
-        <div id="loader" class="col-md-12 image-loader">
-            <img src="images/loader.gif" class="img-responsive">
-        </div>
-    </div>
 
     <div id="wrapper" data-ng-hide="!domReady" data-ng-cloak>
         <!-- Login Form  -->
@@ -169,9 +164,7 @@
         <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" data-ng-hide="currentSession.user == null">
             <div class="loading-widget-div" data-ng-show="blockUI">
                 <!-- TODO : insert loader here-->
-                <span class="centerloader">
-                    <img src="images/833.svg" class="img-responsive">
-                </span>
+
                 <!--<div style="margin: 175px auto">
                 </div>-->
             </div>
@@ -182,84 +175,7 @@
                 <div id="mifos-reskin-body-container">
                     <nav id="mifos-reskin-side-nav" ng-scrollbar>
                         <div class="left-nav">
-                            <ul>
 
-                                <li>
-                                    <a class="black" href="/#!/notifications">
-                                        <i class="fa fa-bell"></i>
-                                        <span>{{'label.heading.notification' | translate }}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/createclient">
-                                        <i class="fa fa-user "></i><span> + {{'label.anchor.client' |translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/creategroup">
-                                        <i class="fa fa-group "></i><span> + {{'label.anchor.group' |translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/createcenter">
-                                        <i class="fa fa-map-marker "></i><span> +
-                                            {{'label.anchor.center' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/nav/offices">
-                                        <i class="fa fa-compass "></i>
-                                        <span>{{'label.anchor.navigation' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/tasks">
-                                        <i class="fa fa-check "></i>
-                                        <span>{{ 'label.anchor.tasks'| translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/transfers">
-                                        <i class="fa fa-repeat "></i>
-                                        <span>{{'label.anchor.transfers' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/journalentry">
-                                        <i class="fa fa-plus "></i>
-                                        <span>{{'label.anchor.addjournalentries' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/accounts_closure">
-                                        <i class="fa fa-folder "></i>
-                                        <span>{{'label.anchor.closingentries' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/accounting_coa">
-                                        <i class="fa fa-sitemap "></i>
-                                        <span>{{'label.heading.chartofaccounts' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" ng-click="helpf()">
-                                        <i class="fa fa-question-circle"></i>
-                                        <span>{{'label.anchor.help' | translate }}</span> &nbsp; <i class="fa fa-external-link"></i>
-                                    </a>
-                                </li>
-
-                            </ul>
                         </div>
                     </nav>
                 </div>
@@ -268,9 +184,6 @@
                 </div>
             </div>
             <!-- Footer -->
-            <footer data-ng-hide="!domReady">
-                <div ng-include="'views/footer.html'"></div>
-            </footer>
         </div>
     </div>
 
@@ -293,77 +206,44 @@
 
                         <!-- Grid column -->
 
+                    </div>
+                    <!-- Footer links -->
+
+                    <hr>
+
+
+                    <!-- Grid row -->
+                    <div class="row d-flex align-items-center">
+
                         <!-- Grid column -->
+                        <div class="col-md-7 col-lg-8">
 
+                            <!--Copyright-->
+                            <p class="text-center text-md-left t-letra3"> Banco del Ahorro Nacional y Servicios Financieros S. N. C. Av. Rio Magdalena Núm. 115, Col. Tizapán San Ángel, del Álvaro Obregón, C. P. 01090, Ciudad de México.
+                            </p>
 
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                         </div>
-
-
                         <!-- Grid column -->
 
-                        <ul class="list-unstyled list-inline text-left">
-                            <li class="list-inline-item">
-                                <a class="btn btn-block btn-social btn-twitter">
-                                    <span class="fa fa-twitter"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn btn-block btn-social btn-facebook">
-                                    <span class="fa fa-facebook"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn btn-block btn-social btn-instagram">
-                                    <span class="fa fa-instagram"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn btn-block btn-social btn-google">
-                                    <span class="fa fa-google"></span>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- Social buttons -->
-                    </div>
-                    <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-5 col-lg-4 ml-lg-0 t-letra3">
 
-                </div>
-                <!-- Footer links -->
+                            © Banco del Ahorro Nacional y Servicios Financieros SNC. Banca Electrónica. Derechos reservados.
 
-                <hr>
-
-
-                <!-- Grid row -->
-                <div class="row d-flex align-items-center">
-
-                    <!-- Grid column -->
-                    <div class="col-md-7 col-lg-8">
-
-                        <!--Copyright-->
-                        <p class="text-center text-md-left t-letra3"> Banco del Ahorro Nacional y Servicios Financieros S. N. C. Av. Rio Magdalena Núm. 115, Col. Tizapán San Ángel, del Álvaro Obregón, C. P. 01090, Ciudad de México.
-                        </p>
+                        </div>
+                        <!-- Grid column -->
 
                     </div>
-                    <!-- Grid column -->
+                    <!-- Grid row -->
 
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
 
                 </div>
-                <!-- Grid row -->
-
-
-        </div>
-        <!-- Footer Links -->
-        </footer>
-        <div class="container-fluid footer-pleca">
-            <br>
-            <br>
-        </div>
+                <!-- Footer Links -->
+            </footer>
+            <div class="container-fluid footer-pleca">
+                <br>
+                <br>
+            </div>
         </div>
     </layout-footer>
 
