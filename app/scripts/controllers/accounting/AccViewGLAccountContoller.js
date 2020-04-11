@@ -4,7 +4,7 @@
             scope.glaccountdata = [];
             scope.accountOptions = [];
 
-            resourceFactory.accountCoaResource.get({glAccountId: routeParams.id, template: 'true'}, function (data) {
+            resourceFactory.accountCoaResource.get({glAccountId: routeParams.id, template: 'true', detailed: 'true'}, function (data) {
 
                 //to display parent name
                 if (data.type.value == "ASSET") {

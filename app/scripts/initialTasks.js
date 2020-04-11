@@ -12,6 +12,7 @@
             domains = hostname.split('.');
             console.log('domains---' + domains);
             // For multi tenant hosting
+            $httpProvider.defaults.headers.common['Content-Encoding'] = 'gzip';
             if (domains[0] == "demo") {
                 $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
                 ResourceFactoryProvider.setTenantIdenetifier('default');
@@ -37,6 +38,7 @@
             host = "https://" + queryLink.hostname + (queryLink.port ? ':' + queryLink.port : '');
             portNumber = queryLink.port;
 
+            $httpProvider.defaults.headers.common['Content-Encoding'] = 'gzip';
             $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
             ResourceFactoryProvider.setTenantIdenetifier('default');
             if (QueryParameters["tenantIdentifier"]) {
