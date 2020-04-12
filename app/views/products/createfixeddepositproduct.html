@@ -425,7 +425,7 @@
                                 <td>{{'label.heading.interestratedetails.description' | translate}}</td>
                                 <td>
                                     <div ng-show="chart.chartSlabs.length < 1">
-                                        <a class="btn btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
+                                        <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
                                     </div>
                                 </td>
@@ -492,7 +492,7 @@
 
                                     <div ng-show="$last">
                                         <br />
-                                        <a ng-click="addNewRow()" class="btn btn-primary"><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row'
+                                        <a ng-click="addNewRow()" class="btn btn-sm btn-primary"><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
                                     </div>
                                 </td>
@@ -525,7 +525,7 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
-                            <a class="btn btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
+                            <a class="btn btn-sm btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
                                 'label.button.add' |
                                 translate }}</a>
                         </div>
@@ -665,7 +665,7 @@
                                 translate}}
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-primary" ng-click="addConfigureFundSource()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
+                                <a class="btn btn-sm btn-primary" ng-click="addConfigureFundSource()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
                                     'label.button.add' |
                                     translate}}</a>
                             </div>
@@ -699,7 +699,7 @@
                             </table>
                             <div class="col-md-8">{{'label.heading.mapfeestoincomeaccounts' | translate}}</div>
                             <div class="col-md-4">
-                                <a class="btn btn-primary" ng-click="mapFees()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
+                                <a class="btn btn-sm btn-primary" ng-click="mapFees()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
                                     'label.button.add' | translate }}</a>
                             </div>
                             <table class="table">
@@ -733,7 +733,7 @@
                             <div class="col-md-8">{{'label.heading.mappenaltiestospecificincomeaccounts' | translate}}
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-primary" ng-click="mapPenalty()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
+                                <a class="btn btn-sm btn-primary" ng-click="mapPenalty()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
                                     'label.button.add' | translate
                                     }}</a>
                             </div>
@@ -1085,10 +1085,10 @@
                     <br>
                     <br>
                     <div class="col-md-offset-5 paddedtop">
-                        <button id="cancel" type="reset" class="btn btn-default" ng-click="cancel()">
+                        <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
                             {{'label.button.cancel' | translate}}
                         </button>
-                        <button id="save" wz-next class="btn btn-primary" type="submit">
+                        <button id="save" wz-next class="btn btn-sm btn-primary" type="submit">
                             {{'label.button.createfixeddepositproduct' | translate}}
                         </button>
                     </div>
@@ -1114,7 +1114,7 @@
                     <td class="width15">{{'label.heading.interestratedetails.incentive.amount' | translate}}</td>
                     <td>
                         <div ng-show="chartSlab.incentives.length < 1">
-                            <a class="btn btn-primary" ng-click="addNewRow()"><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row'
+                            <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row'
                                 | translate}}</a>
                         </div>
                     </td>
@@ -1147,12 +1147,12 @@
                         <input id="amount" name="amount" type="text" class="form-control" number-format ng-model="incentiveData.amount" />
                     </td>
                     <td>
-                        <a class="btn btn-primary" ng-click="removeRow($index)"><i class="fa fa-times "></i>&nbsp;&nbsp;{{'label.remove.row'
+                        <a class="btn btn-sm btn-primary" ng-click="removeRow($index)"><i class="fa fa-times "></i>&nbsp;&nbsp;{{'label.remove.row'
                             | translate}}</a>
 
                         <div ng-show="$last">
                             <br/>
-                            <a class="btn btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
+                            <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
                                 | translate}}</a>
                         </div>
                     </td>
@@ -1160,7 +1160,7 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.close' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.close' | translate}}</button>
         </div>
     </script>
 </div>

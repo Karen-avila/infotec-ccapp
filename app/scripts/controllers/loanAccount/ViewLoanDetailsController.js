@@ -12,6 +12,13 @@
             scope.hideAccrualTransactions = false;
             scope.isHideAccrualsCheckboxChecked = true;
             scope.loandetails = [];
+            scope.payments = {
+                total: 0,
+                paid: 0,
+                pending: 0,
+                expired: 0
+            };
+
             scope.routeTo = function (loanId, transactionId, transactionTypeId) {
                 if (transactionTypeId == 2 || transactionTypeId == 4 || transactionTypeId == 1) {
                     location.path('/viewloantrxn/' + loanId + '/trxnId/' + transactionId);
@@ -161,6 +168,7 @@
                 scope.status = data.status.value;
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
+
                 if (scope.loandetails.charges) {
                     scope.charges = scope.loandetails.charges;
                     for (var i in scope.charges) {
@@ -404,21 +412,26 @@
                     };
                 }
 
+                scope.payments.total = (scope.loandetails.repaymentSchedule.periods.length) - 1;
+                const today = new Date();
+                for (var i in scope.loandetails.repaymentSchedule.periods) {
+                    if (typeof scope.loandetails.repaymentSchedule.periods[i].period != "undefined") {
+                        if (typeof scope.loandetails.repaymentSchedule.periods[i].obligationsMetOnDate != "undefined") {
+                            scope.paid++;
+                        } else {
+                            scope.payments.pending++;
+                            if (scope.loandetails.repaymentSchedule.periods[i] < today) {
+                                scope.expired++;
+                            }
+                        }
+                    }
+                }
+
                 resourceFactory.standingInstructionTemplateResource.get({fromClientId: scope.loandetails.clientId,fromAccountType: 1,fromAccountId: routeParams.id},function (response) {
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
             });
-
-            scope.getPeriodsUnPaid = function () {
-                var periodsUnPaid = 0;
-                for (var i in scope.loandetails.repaymentSchedule.periods) {
-                    if (!scope.loandetails.repaymentSchedule.periods[i].obligationsMetOnDate) {
-                        periodsUnPaid++;
-                    }
-                }
-                return periodsUnPaid;
-            }
 
             var fetchFunction = function (offset, limit, callback) {
                 var params = {};
@@ -467,8 +480,6 @@
             resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
                 scope.loanNotes = data;
             });
-
-
 
             scope.saveNote = function () {
                 resourceFactory.loanResource.save({loanId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {

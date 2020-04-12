@@ -282,11 +282,19 @@
                         </tr>
                         <tr>
                             <th>{{'label.heading.numberOfRepayments' | translate}}</th>
-                            <td>{{loandetails.numberOfRepayments | number }}</td>
+                            <td>{{payments.total | number }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'label.heading.numberOfPaidPayments' | translate}}</th>
+                            <td>{{payments.paid | number }}</td>
                         </tr>
                         <tr>
                             <th>{{'label.heading.numberOfMissedPayments' | translate}}</th>
-                            <td>{{getPeriodsUnPaid()}}</td>
+                            <td>{{payments.pending | number }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'label.heading.numberOfExpiredPayments' | translate}}</th>
+                            <td>{{payments.expired | number }}</td>
                         </tr>
                         <!--<tr>-->
                             <!--<th>{{'label.heading.daysInArrears' | translate}}</th>-->
@@ -692,7 +700,6 @@
 
                     </uib-tab>
 
-
                     <uib-tab heading="{{'label.heading.transactions' | translate}}" ng-show="loandetails.transactions" select="convertDateArrayToObject('date')">
                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export' | translate}}</button>
                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="viewJournalEntries()" style="margin-right: 8px;">{{'label.button.viewjournalentries' | translate}}</button>
@@ -894,7 +901,6 @@
                         </table>
                     </uib-tab>
 
-
                     <uib-tab ng-show="chargeTableShow" heading="{{'label.heading.charges' | translate}}">
                         <table class="table width100">
                             <tr class="graybg">
@@ -968,6 +974,7 @@
                           <object height="60%" width="70%" ng-show="preview" data="{{fileUrl}}" type="{{fileType}}"></object>
                         </div>
                     </uib-tab>
+
                     <uib-tab heading="{{ 'label.heading.notes' | translate }}" has-permission='READ_LOANNOTE'>
                         <br/>
 
@@ -999,6 +1006,7 @@
                             </div>
                         </div>
                     </uib-tab>
+
                     <uib-tab heading="{{'label.anchor.standinginstruction' | translate}}" ng-show="instructions.currentPageItems.length > 0">
                         <br>
                         <table class="table">
