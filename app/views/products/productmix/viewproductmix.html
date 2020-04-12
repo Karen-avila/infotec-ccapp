@@ -6,7 +6,7 @@
     </ul>
     <div class="well card">
         <div class="form-group pull-right" data-ng-hide="center.status.value == 'Closed'">
-            <a href="#!/editproductmix/{{productmix.productId}}" class="btn btn-primary" has-permission='UPDATE_PRODUCTMIX'><i
+            <a href="#!/editproductmix/{{productmix.productId}}" class="btn btn-sm btn-primary" has-permission='UPDATE_PRODUCTMIX'><i
                     class="fa fa-edit "></i>&nbsp;&nbsp;{{ 'label.button.edit' | translate }}</a>
             <button class="btn btn-danger" data-ng-click="deleteProductmix()" has-permission='DELETE_PRODUCTMIX'><i
                     class="fa fa-trash-o"></i>&nbsp;&nbsp;{{ 'label.button.delete' | translate }}
@@ -20,8 +20,8 @@
             <div class="modal-body ">
                 <api-validate></api-validate>
                 <br>
-                <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
             </div>
         </script>
         <div class="row paddedtop">

@@ -7,7 +7,7 @@
             scope.headerTypes = [];
             scope.accountOptions = [];
 
-            resourceFactory.accountCoaResource.get({glAccountId: routeParams.id, template: 'true'}, function (data) {
+            resourceFactory.accountCoaResource.get({glAccountId: routeParams.id, template: 'true', detailed: 'true'}, function (data) {
                 scope.coadata = data;
                 scope.glAccountId = data.id;
                 scope.accountTypes = data.accountTypeOptions;
