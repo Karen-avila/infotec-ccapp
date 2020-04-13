@@ -236,7 +236,7 @@
 						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-sm btn-primary btn-offset"
 							has-permission='{{button.taskPermissionName}}'
 							ng-repeat="button in buttonsArray.singlebuttons">
-							<i class="{{button.icon}} icon-white"></i>{{button.name | translate}}</a>
+							<i class="{{button.icon}}"></i>{{button.name | translate}}</a>
 						<button type="button" class="btn btn-sm btn-primary" data-ng-click="deleteClient()"
 							data-ng-show="client.status.value=='Pending'" has-permission='DELETE_CLIENT'><i
 								class="fa fa-trash-o "></i>{{"label.button.delete"
@@ -872,7 +872,7 @@
 										<td>
 											<button class="btn btn-primary pull-right btn-sm"
 												ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i
-													class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
+													class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
 										</td>
 									</tr>
 								</thead>
@@ -1034,7 +1034,7 @@
 								</tbody>
 							</table>
 							<button class="btn btn-sm btn-primary pull-right" ng-click="routeTo()"><i
-								class="icon-plus icon-white"></i>{{'label.button.addAddress' | translate}}</button>
+								class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</button>
 						<br>
 						</div>
 					</div>
@@ -1088,7 +1088,7 @@
 										<td>
 											<div>
 												<button class="btn btn-primary pull-right" ng-click="routeToaddFamilyMember()"><i
-														class="icon-plus icon-white"></i>{{'label.button.addfamilymember' | translate}}</button>
+														class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</button>
 												<br>
 												<table class="table" ng-repeat="family in families" class="table table-condensed">
 													<thead>
@@ -1097,11 +1097,11 @@
 															<td>
 																<button class="btn btn-primary pull-right"
 																	ng-click="deleteFamilyMember(family.id)"><i
-																		class="icon-plus icon-white"></i>{{'label.button.delete' | translate}}</button>
+																		class="fa fa-plus"></i>{{'label.button.delete' | translate}}</button>
 						
 																<button class="btn btn-primary pull-right"
 																	ng-click="editFamilyMember(family.id)"><i
-																		class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
+																		class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
 															</td>
 														</tr>
 													</thead>
