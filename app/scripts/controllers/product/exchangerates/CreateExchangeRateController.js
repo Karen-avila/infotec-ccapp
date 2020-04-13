@@ -4,12 +4,15 @@
             scope.formData = {};
             scope.formData.rateValues = [] ;
             scope.formData.isActive = false;
-            scope.addRatePeriod = function () {
+            scope.addRateValue = function () {
                 scope.formData.rateValues.push({
+                    locale: scope.optlang.code,
+                    dateFormat: scope.df,
+                    fromDate: new Date()
                 });
             };
 
-            scope.deleteRatePeriod = function (index) {
+            scope.deleteRateValue = function (index) {
                 scope.formData.rateValues.splice(index, 1);
             } ;
 
@@ -18,7 +21,7 @@
                 var length = this.formData.rateValues.length;
                 for(i = 0 ; i < length; i++) {
                     this.formData.rateValues[i].locale = scope.optlang.code;
-                    this.formData.rateValues[i].dateFormat =  scope.df;
+                    this.formData.rateValues[i].dateFormat = scope.df;
                     this.formData.rateValues[i].fromDate = dateFilter(this.formData.rateValues[i].fromDate, scope.df);
                 }
 

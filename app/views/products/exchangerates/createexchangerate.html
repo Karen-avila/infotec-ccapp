@@ -17,16 +17,18 @@
                         tooltip-append-to-body="true"></i>
                     </label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <input name="name" type="text" id="name" ng-model="formData.name" class="form-control"
                            required late-Validate/>
-                </div>
-                <div class="col-sm-2">
                     <form-validate valattributeform="newexchangerateform" valattribute="name"/>
                 </div>
+            </div>
 
-                <div class="col-sm-2">
+            <div class="form-group">
+                <div class="col-sm-2 right">
                     <input type="checkbox" name="name1" ng-model="formData.isActive"/>
+                </div>
+                <div class="col-sm-2 left">
                     <label class="control-label" >{{'label.input.active' | translate}}
                     &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.isActive' | translate}}"></i>
                     </label>
@@ -42,8 +44,8 @@
                          tooltip-append-to-body="true"></i>
                     </label>
                 </div>
-                <div class="col-sm-1">
-                    <button id="add" data-ng-click="addRatePeriod()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
+                <div class="col-sm-3">
+                    <button id="add" data-ng-click="addRateValue()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
                 </div>
             </div>
             <BR>
@@ -78,7 +80,7 @@
                                       ng-model="ratevalue.isDifferentialToBaseLendingRate"/>
                     </td>
                     <td>
-                        <a ng-click="deleteRatePeriod($index)"><i class="fa fa-times-circle fa-2x"></i></a>
+                        <a ng-click="deleteRateValue($index)"><i class="fa fa-times-circle fa-2x"></i></a>
                     </td>
                    </tr>
             </table>

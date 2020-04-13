@@ -187,9 +187,7 @@
                     }
                 }
 
-
                 var clientStatus = new mifosX.models.ClientStatus();
-
                 if (clientStatus.statusKnown(data.status.value)) {
                     scope.buttons = clientStatus.getStatus(data.status.value);
                     scope.savingsActionbuttons = [

@@ -304,11 +304,13 @@
                             icon: "fa fa-plus",
                             taskPermissionName: 'CREATE_LOANCHARGE'
                         },
+                        /*
                         {
                             name: "button.foreclosure",
                             icon: "icon-dollar",
                             taskPermissionName: 'FORECLOSURE_LOAN'
                         },
+                        */
                         {
                             name: "button.makerepayment",
                             icon: "fa fa-dollar",
@@ -358,7 +360,6 @@
                                 taskPermissionName: 'RECOVERGUARANTEES_LOAN'
                             }
                         ]
-
                     };
 
                     if (data.canDisburse) {
