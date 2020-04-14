@@ -413,18 +413,25 @@
                     };
                 }
 
-                scope.payments.total = (scope.loandetails.repaymentSchedule.periods.length) - 1;
                 const today = new Date();
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
-                    if (typeof scope.loandetails.repaymentSchedule.periods[i].period != "undefined") {
-                        if (typeof scope.loandetails.repaymentSchedule.periods[i].obligationsMetOnDate != "undefined") {
-                            scope.paid++;
+                    const period = scope.loandetails.repaymentSchedule.periods[i];
+                    if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
+                        console.log("====  " + JSON.stringify(period));
+                        console.log(period.complete);
+                        console.log((period.complete == true));
+                        if (period.complete == true) {
+                            scope.payments.paid++;
                         } else {
                             scope.payments.pending++;
-                            if (scope.loandetails.repaymentSchedule.periods[i] < today) {
-                                scope.expired++;
+                            console.log(new Date(period.dueDate));
+                            console.log(today);
+                            console.log((new Date(period.dueDate) < today));
+                            if (new Date(period.dueDate) < today) {
+                                scope.payments.expired++;
                             }
                         }
+                        scope.payments.total++;
                     }
                 }
 
