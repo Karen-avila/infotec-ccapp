@@ -1323,6 +1323,7 @@
 	"label.button.parameters": "Parámetros",
 	"label.button.exportcsv": "Exportar a CSV",
 	"label.button.export": "Exportar",
+	"label.button.export.statement": "Estado de Cuenta",
 	"label.selectallowedparameter": "Seleccionar el parámetro permitido",
 	"startDateSelect": "Fecha de inicio",
 	"endDateSelect": "Fecha de finalización",

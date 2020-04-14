@@ -417,16 +417,10 @@
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
-                        console.log("====  " + JSON.stringify(period));
-                        console.log(period.complete);
-                        console.log((period.complete == true));
                         if (period.complete == true) {
                             scope.payments.paid++;
                         } else {
                             scope.payments.pending++;
-                            console.log(new Date(period.dueDate));
-                            console.log(today);
-                            console.log((new Date(period.dueDate) < today));
                             if (new Date(period.dueDate) < today) {
                                 scope.payments.expired++;
                             }
