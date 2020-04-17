@@ -30,7 +30,7 @@
             var getUserDetails = function(data) {
                 localStorageService.addToLocalStorage('tokendetails', data);
                 setTimer(data.expires_in);
-                httpService.get(apiVer + "/userdetails?access_token=" + data.access_token)
+                httpService.get( apiVer + "/userdetails?access_token=" + data.access_token)
                     .then(onLoginSuccess, onLoginFailure);
             }
 
@@ -53,7 +53,7 @@
             var getAccessToken = function(){
                 var refreshToken = localStorageService.getFromLocalStorage("tokendetails").refresh_token;
                 httpService.cancelAuthorization();
-                httpService.post(apiVer + "/oauth/token?&client_id=community-app&grant_type=refresh_token&client_secret=123&refresh_token=" + refreshToken)
+                httpService.post( "/fineract-provider/api/oauth/token?&client_id=community-app&grant_type=refresh_token&client_secret=123&refresh_token=" + refreshToken)
                     .then(updateAccessDetails);
             }
 
@@ -64,7 +64,7 @@
                     password: credentials.password
                 }
         		if(SECURITY === 'oauth'){
-	                httpService.post(apiVer + "/oauth/token?client_id=community-app&grant_type=password&client_secret=123", payload)
+	                httpService.post( "/fineract-provider/api/oauth/token?client_id=community-app&grant_type=password&client_secret=123", payload)
 	                    .then(getUserDetails, onLoginFailure);
         		} else {
 	                httpService.post(apiVer + "/authentication",payload).then(onLoginSuccess, onLoginFailure);
