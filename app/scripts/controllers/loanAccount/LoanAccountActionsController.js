@@ -26,6 +26,7 @@
 
             rootScope.RequestEntities = function (entity, status, productId) {
                 resourceFactory.entityDatatableChecksResource.getAll({ limit: -1 }, function (response) {
+                    var _ = require('underscore');
                     scope.entityDatatableChecks = _.filter(response.pageItems, function (datatable) {
                         var specificProduct = (datatable.entity == entity && datatable.status.value == status && datatable.productId == productId);
                         var AllProducts = (datatable.entity == entity && datatable.status.value == status);
@@ -117,7 +118,6 @@
                 return loop;
             }
 
-            console.log(scope.action);
             switch (scope.action) {
                 case "approve":
                     scope.taskPermissionName = 'APPROVE_LOAN';
