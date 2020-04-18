@@ -283,7 +283,7 @@
                     value="{{charge.id}}" class="form-control width170px">
                     <option class="displaynone" value="">{{'label.selectcharge' | translate}}</option>
                 </select>
-                <a class="btn btn-primary" ng-click="addCharge(chargeId)">
+                <a class="btn btn-sm btn-primary" ng-click="addCharge(chargeId)">
                     <i class="fa fa-plus "></i>&nbsp;Add</a>
                 <span ng-show="errorchargeevent">
                     <small class="error">
@@ -334,8 +334,8 @@
                 </table>
             </div>
             <div class="col-md-offset-5 ">
-                <button id="cancel" ng-click="cancel()" class="btn btn-default">{{ 'label.button.cancel' | translate }}</button>
-                <button id="save" type="submit" class="btn btn-primary" ng-show="data">{{ 'label.button.save' | translate }}
+                <button id="cancel" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</button>
+                <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="data">{{ 'label.button.save' | translate }}
                 </button>
             </div>
             <script type="text/ng-template" id="incentive.html">

@@ -13,7 +13,7 @@
                             <div class="row primarydiv">
                                 <div class="pull-right">
                                     <div class="btn-group">
-                                        <a href="#!/editoffice/{{office.id}}" class="btn btn-primary"
+                                        <a href="#!/editoffice/{{office.id}}" class="btn btn-sm btn-primary"
                                             has-permission='UPDATE_OFFICE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
                                             'label.button.edit' | translate }}</a>
                                     </div>
@@ -57,12 +57,12 @@
                                                             <div class="form-group pull-right">
                                                                 <a data-ng-show="datatabledetail.showDataTableAddButton"
                                                                     ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?fromEntity=office"
-                                                                    class="btn btn-primary"
+                                                                    class="btn btn-sm btn-primary"
                                                                     has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
                                                                         class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</a>
                                                                 <a data-ng-show="datatabledetail.showDataTableEditButton"
                                                                     ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?mode=edit"
-                                                                    class="btn btn-primary"
+                                                                    class="btn btn-sm btn-primary"
                                                                     has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
                                                                         class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
                                                                 <a ng-show="datatabledetails.isData" class="btn btn-danger"

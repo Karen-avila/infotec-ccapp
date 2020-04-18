@@ -64,9 +64,9 @@
                                             <select ng-model="availableDebit" multiple class="form-control clear" ng-options="debitTag.name for debitTag in debitTagOptions"></select>
                                         </div>
                                         <div class="col-sm-1 col-md-1 paddedtop25px">
-                                            <button type="button" class="btn btn-primary" data-ng-click="addDebitTag()"><i class="fa fa-angle-double-right"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-ng-click="addDebitTag()"><i class="fa fa-angle-double-right"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="removeDebitTag()"><i class="fa fa-angle-double-left"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-ng-click="removeDebitTag()"><i class="fa fa-angle-double-left"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-5 col-md-5">
@@ -92,9 +92,9 @@
                                             <select ng-model="availableCredit" multiple class="form-control clear" ng-options="creditTag.name for creditTag in creditTagOptions"></select>
                                         </div>
                                         <div class="col-sm-1 col-md-1 paddedtop25px">
-                                            <button type="button" class="btn btn-primary" data-ng-click="addCreditTag()"><i class="fa fa-angle-double-right"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-ng-click="addCreditTag()"><i class="fa fa-angle-double-right"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="removeCreditTag()"><i class="fa fa-angle-double-left"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-ng-click="removeCreditTag()"><i class="fa fa-angle-double-left"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-5 col-md-5">
@@ -110,8 +110,8 @@
                         </div>
                     </div>
                     <div class="col-md-offset-5">
-                        <a id="cancel" href="#!/accounting_rules" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_ACCOUNTINGRULE'>{{ 'label.button.save' | translate }}</button>
+                        <a id="cancel" href="#!/accounting_rules" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</a>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_ACCOUNTINGRULE'>{{ 'label.button.save' | translate }}</button>
                     </div>
                 </fieldset>
             </form>

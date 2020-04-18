@@ -7,7 +7,7 @@
     <div class="card">
         <div class="content">
                 <div class="col-md-offset-9 ">
-                    <button class="btn btn-primary" ng-click="viewFullScreen()">{{'label.button.viewfullscreen' | translate}}
+                    <button class="btn btn-sm btn-primary" ng-click="viewFullScreen()">{{'label.button.viewfullscreen' | translate}}
                     </button>
                 </div>
                 <div id="productive_sheet" class="whitebg paddedtop" style="width:950px; height:850px; overflow: auto;">
@@ -32,7 +32,7 @@
                     </div>
                     <div ng-hide="noData">
                         <span>
-                            <button id="add" class="btn btn-primary" ng-click="detailsShow()">
+                            <button id="add" class="btn btn-sm btn-primary" ng-click="detailsShow()">
                                 <i class="fa fa-plus" ng-hide="details"></i>
                                 <i class="fa fa-minus" ng-show="details"></i>
                             </button>
@@ -102,10 +102,10 @@
                         </table>
                     </div>
                     <div class="col-md-offset-9" ng-hide"noData">
-                        <button id="save" type="submit" class="btn btn-primary" ng-show="submitNextShow" ng-click="submit()">
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="submitNextShow" ng-click="submit()">
                             {{'label.button.submitandnextcenter' | translate}}
                         </button>
-                        <button id="save" type="submit" class="btn btn-primary" ng-show="submitShow" ng-click="submit()">
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="submitShow" ng-click="submit()">
                             {{'label.button.save' | translate}}
                         </button>
                     </div>

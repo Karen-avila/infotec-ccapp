@@ -99,7 +99,7 @@
                         <label class="control-label col-sm-2">{{ 'label.anchor.showpaymentdetails' | translate}}</label>
 
                         <div class="col-sm-3">
-                            <a id="clickToShow" class="btn btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+                            <a id="clickToShow" class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
                                 <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
                                 <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
                             </a>
@@ -155,8 +155,8 @@
                         </div>
                     </div>
                     <div class="col-md-offset-5">
-                        <a id="cancel" href="#!/accounting" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_JOURNALENTRY'>{{ 'label.button.save' | translate }}</button>
+                        <a id="cancel" href="#!/accounting" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</a>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_JOURNALENTRY'>{{ 'label.button.save' | translate }}</button>
                     </div>
                 </fieldset>
             </form>

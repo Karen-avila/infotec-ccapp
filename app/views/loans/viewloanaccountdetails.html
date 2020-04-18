@@ -45,7 +45,7 @@
 
         </div>
         <div ng-hide="hidePentahoReport" ng-show="report" class="col-md-12 alert-block span tab-content">
-            <button ng-show="printbtn" ng-click="printReport()" class="btn btn-primary">{{'label.button.print' |
+            <button ng-show="printbtn" ng-click="printReport()" class="btn btn-sm btn-primary">{{'label.button.print' |
                 translate}}
             </button>
             <div id="printcontent">
@@ -74,7 +74,7 @@
                         translate}}</a>
 
                       <span ng-show="buttons.options" uib-dropdown  class="btn-group dropdown" on-toggle="toggled(open)">
-                          <a class="btn btn-primary" uib-dropdown-toggle>
+                          <a class="btn btn-sm btn-primary" uib-dropdown-toggle>
                               {{ 'label.button.more' | translate}}
                               <span class="caret"></span>
                           </a>
@@ -780,7 +780,7 @@
                             </tbody>
                         </table>
                         <div>
-                            <button ng-show="printbtn" ng-click="printReport()" class="btn btn-primary"><i class="fa fa-print ">{{'label.button.print' |
+                            <button ng-show="printbtn" ng-click="printReport()" class="btn btn-sm btn-primary"><i class="fa fa-print ">{{'label.button.print' |
                                 translate}}
                             </i></button>
                             <div id="printreceiptcontent">
@@ -819,7 +819,7 @@
                                     <b>{{'label.heading.tranchedetails' | translate}}</b>
                                 </td>
                                 <td align="right">
-                                <a type="button" ng-show="showAddDeleteTrancheButtons('adddisbursedetails')" class="btn btn-primary" align="right"
+                                <a type="button" ng-show="showAddDeleteTrancheButtons('adddisbursedetails')" class="btn btn-sm btn-primary" align="right"
                                    href="#!/loandisbursedetail/{{loandetails.id}}/adddisbursedetails">
                                     <i class="fa fa-plus"></i>{{ 'label.button.add' | translate }}
                                 </a>
@@ -927,10 +927,10 @@
                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountWaived| number}}</td>
                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountOutstanding| number}}</td>
                                 <td>
-                                    <a title="{{'label.edit' | translate}}" class="btn btn-primary" data-ng-show="status=='Submitted and pending approval'"
+                                    <a title="{{'label.edit' | translate}}" class="btn btn-sm btn-primary" data-ng-show="status=='Submitted and pending approval'"
                                        href="#!/loanaccountcharge/{{loandetails.id}}/editcharge/{{charge.id}}"><i
                                             class="fa fa-edit "></i></a>
-                                    <a title="{{'label.delete' | translate}}" class="btn btn-primary" class="btn-warning"
+                                    <a title="{{'label.delete' | translate}}" class="btn btn-sm btn-primary" class="btn-warning"
                                        data-ng-show="status=='Submitted and pending approval'" data-ng-click="delCharge(charge.id)"
                                        title="delete"><i class="fa fa-trash-o "></i></a>
                                     <a class="btn-primary" data-ng-hide="charge.actionFlag"
@@ -946,7 +946,7 @@
 
                     <uib-tab heading="{{'label.heading.loandocuments' | translate}}" select="getLoanDocuments()">
                         <div class="pull-right" data-ng-show="choice">
-                            <a href="#!/addloandocument/{{loandetails.id}}" class="btn btn-primary"><i class="fa fa-plus "></i>{{'label.button.upload'
+                            <a href="#!/addloandocument/{{loandetails.id}}" class="btn btn-sm btn-primary"><i class="fa fa-plus "></i>{{'label.button.upload'
                                 | translate}}</a>
                         </div>
                         <br>
@@ -986,7 +986,7 @@
                                     <br>
                                     <div class="notewrapper col-sm-12 col-md-12">
                                         <span class="pull-right noteaddbuttonwrapper">
-                                            <button class="btn btn-primary" type="submit" ng-click="saveNote()"
+                                            <button class="btn btn-sm btn-primary" type="submit" ng-click="saveNote()"
                                                     has-permission='CREATE_LOANNOTE'>{{'label.button.add' | translate}}
                                             </button>
                                         </span>
@@ -1034,7 +1034,7 @@
                                 <td>{{instruction.instructionType.value}}/{{instruction.amount | number}}</td>
                                 <td>{{instruction.validFrom | DateFormat}} to {{instruction.validTill | DateFormat}}</td>
                                 <td class="select-row:selection">
-                                    <a type="button"  class="btn btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
+                                    <a type="button"  class="btn btn-sm btn-primary" uib-tooltip="{{'label.tooltip.editInstruction' | translate}}" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a type="button" class="btn btn-danger" uib-tooltip="{{'label.tooltip.deleteInstruction' | translate}}" has-permission='DELETE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  data-ng-click="deletestandinginstruction(instruction.id)">
@@ -1063,6 +1063,6 @@
         <api-validate></api-validate>
         <br>
         <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-        <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
     </div>
 </script>

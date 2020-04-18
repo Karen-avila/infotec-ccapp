@@ -13,15 +13,15 @@
 			<label class="control-label col-sm-4" for="repeatPassword">Are you sure to delete the data</label>
 
             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <div class="well">
         <div class="pull-right">
             <div class="btn-group">
-                <a href="#!/editadhocquery/{{adhocquery.id}}" class="btn btn-primary" has-permission='UPDATE_ADHOC'><i class="fa fa-edit"></i>
+                <a href="#!/editadhocquery/{{adhocquery.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_ADHOC'><i class="fa fa-edit"></i>
                     {{'label.button.edit' | translate}}</a>
-                <button type="button" ng-click="deleteadhocquery()" class="btn btn-primary" has-permission='DELETE_ADHOC'>
+                <button type="button" ng-click="deleteadhocquery()" class="btn btn-sm btn-primary" has-permission='DELETE_ADHOC'>
                     <i class="fa fa-trash"></i>{{'label.button.delete' | translate}}
                 </button>
             </div>

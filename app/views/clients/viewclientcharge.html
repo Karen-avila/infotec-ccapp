@@ -8,15 +8,15 @@
             <div class="btn-group pull-right">
                 <a uib-tooltip="{{'label.button.paycharge' | translate}}" ng-show="!charge.isPaid && !charge.isWaived"
                    has-permission='PAY_CLIENTCHARGE' ng-href="#!/viewclient/{{clientId}}/paycharge/{{charge.id}}"
-                   class="btn btn-primary">
+                   class="btn btn-sm btn-primary">
                     <i class="fa fa-dollar ">{{'label.button.pay' | translate}}</i>
                 </a> &nbsp;
                 <a uib-tooltip="{{'label.button.waivecharge' | translate}}" ng-show="!charge.isPaid && !charge.isWaived"
-                   has-permission='WAIVE_CLIENTCHARGE' ng-click="waiveCharge(charge.id)" class="btn btn-primary">
+                   has-permission='WAIVE_CLIENTCHARGE' ng-click="waiveCharge(charge.id)" class="btn btn-sm btn-primary">
                     <i class="fa fa-flag ">{{'label.button.waivecharge' | translate}}</i>
                 </a>
                 <button type="button" data-ng-click="deleteCharge()" ng-show="!charge.isPaid && !charge.isWaived"
-                        class="btn btn-primary" has-permission='DELETE_CLIENTCHARGE'><i
+                        class="btn btn-sm btn-primary" has-permission='DELETE_CLIENTCHARGE'><i
                         class="fa fa-trash-o"></i>{{'label.button.delete' | translate}}
                 </button>
             </div>
@@ -93,7 +93,7 @@
             </table>
         </div>
         <div class="col-md-offset-5">
-            <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-default">{{'label.button.back' |
+            <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-sm btn-default">{{'label.button.back' |
                 translate}}</a>
         </div>
     </div>

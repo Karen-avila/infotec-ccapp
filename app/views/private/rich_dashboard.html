@@ -2,9 +2,9 @@
 	<div id="expertsearch" class="card well" data-ng-controller="RichDashboard">
 		<h3 class="paddedleft"><strong>{{'label.heading.dashboard' | translate}}</strong>
 			<div class="btn-group pull-right">
-				<label class="btn btn-primary" ng-click="switch('/home')" ng-model="dashModel" btn-radio="'dashboard'"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-click="switch('/home')" ng-model="dashModel" btn-radio="'dashboard'"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
 				<label class="btn btn-sm btn-primary" ng-click="switch('/tasks')" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.tasks' | translate}}</label>
-				<label class="btn btn-primary" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
 			</div>
 		</h3>
 		<hr/>
@@ -29,13 +29,13 @@
 					</div>
 					<div class="panel-body">
 						<div>
-							<button type="button" class="btn btn-default" data-ng-click="getWeeklyData()"><i
+							<button type="button" class="btn btn-sm btn-default" data-ng-click="getWeeklyData()"><i
 									class="fa fa-table"></i>&nbsp;{{'label.button.week' | translate}}
 							</button>
-							<button type="button" class="btn btn-default" data-ng-click="getMonthlyData()"><i
+							<button type="button" class="btn btn-sm btn-default" data-ng-click="getMonthlyData()"><i
 									class="fa fa-table"></i>&nbsp;{{'label.button.month' | translate}}
 							</button>
-							<button type="button" class="btn btn-default" data-ng-click="getDailyData()"><i
+							<button type="button" class="btn btn-sm btn-default" data-ng-click="getDailyData()"><i
 									class="fa fa-table"></i>&nbsp;{{'label.button.day' | translate}}
 							</button>
 						</div>

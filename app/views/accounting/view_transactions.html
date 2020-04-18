@@ -29,8 +29,8 @@
     <div class="modal-footer">
         <api-validate></api-validate>
         <br>
-        <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-        <button class="btn btn-primary" ng-click="redirect()">{{'label.button.redirecttonewtrx' | translate}}
+        <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="redirect()">{{'label.button.redirecttonewtrx' | translate}}
         </button>
     </div>
   </script>
@@ -113,7 +113,7 @@
         </table>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+        <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
     </div>
   </script>
   <script type="text/ng-template" id="reverseTransaction.html">
@@ -128,8 +128,8 @@
             <textarea rows="4" ng-model="data.reverseComments"></textarea>
         </div>
         <br>
-        <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-        <button class="btn btn-primary" ng-click="reverse()">{{'label.button.reverse' | translate}}</button>
+        <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="reverse()">{{'label.button.reverse' | translate}}</button>
     </div>
   </script>
   <div class="card">
@@ -151,7 +151,7 @@
                 <a
                   data-ng-show="flag"
                   ng-click="reverseTransaction(transactionNumber)"
-                  class="btn btn-primary"
+                  class="btn btn-sm btn-primary"
                   has-permission="REVERSE_JOURNALENTRY"
                   ><i class="fa fa-undo"></i
                   >&nbsp;&nbsp;{{'label.button.reverse' | translate}}</a
