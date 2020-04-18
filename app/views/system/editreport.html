@@ -143,7 +143,7 @@
                                                 value="{{allowedParameter.id}}">{{allowedParameter.parameterName | translate}}
                                         </option>
                                     </select>
-                                    <a class="btn btn-primary" ng-click="parameterSelected(allowedParameterId)">
+                                    <a class="btn btn-sm btn-primary" ng-click="parameterSelected(allowedParameterId)">
                                         <i class="fa fa-plus "></i>&nbsp;&nbsp;{{ 'label.button.add' | translate }}</a>
                                 </form>
                                 <table class="table width100" ng-hide="reportdetail.coreReport">
@@ -165,8 +165,8 @@
                     </table>
                 </div>
                 <div class="col-md-offset-6">
-                    <a id="cancel" class="btn btn-default" href="#!/system/viewreport/{{reportdetail.id}}">{{'label.button.cancel' | translate}}</a>
-                    <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_REPORT'>{{'label.button.save' | translate}}</button>
+                    <a id="cancel" class="btn btn-sm btn-default" href="#!/system/viewreport/{{reportdetail.id}}">{{'label.button.cancel' | translate}}</a>
+                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_REPORT'>{{'label.button.save' | translate}}</button>
                 </div>
             </form>
         </div>

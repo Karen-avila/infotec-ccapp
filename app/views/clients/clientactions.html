@@ -89,9 +89,9 @@
                 </div>
                 <div class="col-md-offset-3" ng-show="!showDeleteClient && !isEntityDatatables">
                     <button id="cancel" type="reset" ng-click="cancel()"
-                        class="btn btn-default">{{'label.button.cancel' | translate}}
+                        class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
                     </button>
-                    <button id="save" type="submit" has-permission='{{taskPermissionName}}' class="btn btn-primary"
+                    <button id="save" type="submit" has-permission='{{taskPermissionName}}' class="btn btn-sm btn-primary"
                         wz-next>{{'label.button.save' | translate}}</button>
                 </div>
             </form>
@@ -167,16 +167,16 @@
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <button id="save4" type="submit" class="btn btn-primary" wz-next>
+                            <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
                             </button>
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
                             <button id="cancel" type="reset" ng-click="cancel()"
-                                class="btn btn-default">{{'label.button.cancel' | translate}}
+                                class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
                             </button>
                             <button id="save" type="submit" has-permission='{{taskPermissionName}}'
-                                class="btn btn-primary" wz-next>{{'label.button.save' | translate}}</button>
+                                class="btn btn-sm btn-primary" wz-next>{{'label.button.save' | translate}}</button>
                         </div>
                     </fieldset>
                 </form>

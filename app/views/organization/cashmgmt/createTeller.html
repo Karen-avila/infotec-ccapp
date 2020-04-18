@@ -65,7 +65,7 @@
 								class="required">*</span></label>
 						<div class="col-sm-3">
 							<select id="usage" ng-model="formData.status"
-								ng-options="tellerStatus.id as tellerStatus.value for tellerStatus in tellerStatuses"
+								ng-options="tellerStatus.id as tellerStatus.value 1 translate for tellerStatus in tellerStatuses"
 								value="{{tellerStatus.id}}" class="form-control"></select>
 						</div>
 					</div>

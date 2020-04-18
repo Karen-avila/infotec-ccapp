@@ -75,7 +75,7 @@
                                 <td>{{instruction.instructionType.value}}/{{instruction.amount | number}}</td>
                                 <td>{{instruction.validFrom | DateFormat}} to {{instruction.validTill | DateFormat}}</td>
                                 <td class="select-row:selection">
-                                    <a type="button"  class="btn btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
+                                    <a type="button"  class="btn btn-sm btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a type="button" class="btn btn-danger" has-permission='DELETE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  data-ng-click="deletestandinginstruction(instruction.id)">
@@ -108,7 +108,7 @@
                             <api-validate></api-validate>
                             <br>
                             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                         </div>
                     </script>
                 </form>

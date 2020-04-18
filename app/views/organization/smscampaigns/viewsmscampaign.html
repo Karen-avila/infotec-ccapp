@@ -20,12 +20,12 @@
                             <h3 class="bolder col-md-12">{{campaignData.campaignName}}
                                 <div class="pull-right">
                                     <div class="btn-group">
-                                        <a href="#!/editsmscampaign/{{campaignData.id}}" class="btn btn-primary" has-permission='UPDATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'active'"><i class="fa fa-edit"></i>{{'label.button.edit' | translate}}</a>
-                                        <a data-ng-click="activateSmsCampaign()" class="btn btn-primary" has-permission='ACTIVATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value === 'Pending'"><i
+                                        <a href="#!/editsmscampaign/{{campaignData.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'active'"><i class="fa fa-edit"></i>{{'label.button.edit' | translate}}</a>
+                                        <a data-ng-click="activateSmsCampaign()" class="btn btn-sm btn-primary" has-permission='ACTIVATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value === 'Pending'"><i
                                                 class="fa fa-ok-sign"></i>{{'label.button.activate' | translate}}</a>
-                                        <a data-ng-click="closeSmsCampaign()" class="btn btn-primary" has-permission='CLOSE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'closed'"><i
+                                        <a data-ng-click="closeSmsCampaign()" class="btn btn-sm btn-primary" has-permission='CLOSE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'closed'"><i
                                                 class="fa fa-remove-circle"></i>{{'label.button.close' | translate}}</a>
-                                        <a data-ng-click="reActivateSmsCampaign()" class="btn btn-primary" has-permission='REACTIVATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'Pending' && campaignData.campaignStatus.value != 'active'"><i
+                                        <a data-ng-click="reActivateSmsCampaign()" class="btn btn-sm btn-primary" has-permission='REACTIVATE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value != 'Pending' && campaignData.campaignStatus.value != 'active'"><i
                                                 class="fa fa-repeat"></i>{{'label.button.reactivate' | translate}}</a>
                                         <a data-ng-click="deleteSmsCampaign()" class="btn btn-danger" has-permission='DELETE_SMSCAMPAIGN' ng-show="campaignData.campaignStatus.value === 'closed'"><i
                                                 class="fa fa-trash"></i>{{'label.button.delete' | translate}}</a>
@@ -161,7 +161,7 @@
                     <br/>
                     <div class="col-md-offset-4">
                         <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="activate()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="activate()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                     <br/>
                     <div class="col-md-offset-4">
                         <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="closeSms()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="closeSms()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                     <br/>
                     <div class="col-md-offset-4">
                         <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="reactivate()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="reactivate()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@
                 <br/>
                 <div class="col-md-offset-4">
                     <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                    <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                    <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                 </div>
             </div>
         </form>

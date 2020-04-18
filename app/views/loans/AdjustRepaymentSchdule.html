@@ -19,7 +19,7 @@
         <br>
         <div class="col-md-offset-4">
             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </div>
 </script>
@@ -118,7 +118,7 @@
                 <div class="row col-md-offset-4">
                     <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}
                     </button>
-                    <button id="save1" type="submit" class="btn btn-primary">{{'label.button.confirm' |
+                    <button id="save1" type="submit" class="btn btn-sm btn-primary">{{'label.button.confirm' |
                         translate}}
                     </button>
                 </div>
@@ -211,21 +211,21 @@
 
         <div class="col-md-offset-4">
             <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}">
-                <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+                <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
             </a>
-            <button id="pattern" class="btn btn-primary" ng-click="pattern()" type="button"
+            <button id="pattern" class="btn btn-sm btn-primary" ng-click="pattern()" type="button"
                     has-permission='CREATESCHEDULEEXCEPTIONS_LOAN'>{{'label.button.pattern' | translate}}
             </button>
 
-            <button id="reset" class="btn btn-primary" ng-click="resetToOriginalSchedule()" type="button"
+            <button id="reset" class="btn btn-sm btn-primary" ng-click="resetToOriginalSchedule()" type="button"
                     has-permission='DELETESCHEDULEEXCEPTIONS_LOAN'>{{'label.button.reset' | translate}}
             </button>
 
-            <button id="validate" class="btn btn-primary" ng-click="visitValidation=validate()" type="button" value="validate"
+            <button id="validate" class="btn btn-sm btn-primary" ng-click="visitValidation=validate()" type="button" value="validate"
                     has-permission='CREATESCHEDULEEXCEPTIONS_LOAN'>{{'label.button.validate' | translate}}
             </button>
 
-            <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-primary" value="submit"
+            <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-sm btn-primary" value="submit"
                     has-permission='CREATESCHEDULEEXCEPTIONS_LOAN'>{{'label.button.save' | translate}}
             </button>
         </div>

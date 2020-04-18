@@ -102,7 +102,7 @@
                             <label class="control-label col-sm-2">{{ 'label.input.showpaymentdetails' | translate}}</label>
 
                             <div class="col-sm-3">
-                                <a class="btn btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+                                <a class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
                                     <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
                                     <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
                                 </a>
@@ -180,14 +180,14 @@
                     </div>
                     <div class="col-md-offset-2" ng-show="showDelete">
                         <button type="reset" ng-click="submit()" class="btn">{{ 'label.button.confirm' | translate }}</button>
-                        <button type="submit" ng-click="cancel()" class="btn btn-primary">{{ 'label.button.cancel' | translate
+                        <button type="submit" ng-click="cancel()" class="btn btn-sm btn-primary">{{ 'label.button.cancel' | translate
                             }}
                         </button>
                     </div>
 
                     <div class="col-md-offset-2" ng-hide="showDelete">
                         <button id="cancel" ng-click="cancel()" class="btn">{{ 'label.button.cancel' | translate }}</button>
-                        <button id="save" type="submit" class="btn btn-primary">{{ 'label.button.save' | translate }}</button>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary">{{ 'label.button.save' | translate }}</button>
                     </div>
 
                 </fieldset>

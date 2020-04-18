@@ -22,7 +22,7 @@
     	<h3 class="bolder">{{glaccount.name}}
 	      <div class="pull-right">
 	          <div class="form-group">
-	              <a ng-show="glaccount.usage.value == 'HEADER'" class="btn btn-primary" href="#!/createglaccount?parent={{glaccount.id}}&acctype={{glaccount.type.value}}" has-permission='CREATE_GLACCOUNT'><i
+	              <a ng-show="glaccount.usage.value == 'HEADER'" class="btn btn-sm btn-primary" href="#!/createglaccount?parent={{glaccount.id}}&acctype={{glaccount.type.value}}" has-permission='CREATE_GLACCOUNT'><i
 	                      class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.addchildaccount' | translate}}</a>
 	              <a ng-show="glaccount.disabled" class="btn btn-sm btn-primary" ng-click="changeState(glaccount.disabled)" has-permission='UPDATE_GLACCOUNT'><i
 	                      class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{{'label.button.enable' | translate}}</a>

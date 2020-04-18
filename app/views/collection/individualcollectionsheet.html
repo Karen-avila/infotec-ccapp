@@ -53,7 +53,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <button class="btn btn-primary" ng-click="previewCollectionSheet()">
+                        <button class="btn btn-sm btn-primary" ng-click="previewCollectionSheet()">
                             {{'label.button.collectionsheet' |
                             translate}}
                             <i class="fa fa-arrow-circle-right"></i></button>
@@ -96,7 +96,7 @@
                                 {{loan.feeDue}}
                             </td>
                             <td>
-                                <button class="btn btn-default" ng-show="!loan.showPaymentDetails"
+                                <button class="btn btn-sm btn-default" ng-show="!loan.showPaymentDetails"
                                         data-ng-click="showLoanPaymentDetails($parent.$index,$index)"
                                         >{{'label.button.addpaymentdetail'| translate}}
                                 </button>
@@ -168,7 +168,7 @@
                                        ng-model="saving.dueAmount">
                             </td>
                             <td>
-                                <button class="btn btn-default" ng-show="!saving.showPaymentDetails"
+                                <button class="btn btn-sm btn-default" ng-show="!saving.showPaymentDetails"
                                         data-ng-click="showSavingsPaymentDetails($parent.$index,$index)"
                                         >{{'label.button.addpaymentdetail'| translate}}
                                 </button>
@@ -219,11 +219,11 @@
 
             <div class="col-sm-12 col-md-12 paddedtop10">
             <div class="col-md-offset-3 paddedtop">
-                <button id="cancel" type="reset" class="btn btn-default" ng-click="cancel()">{{'label.button.cancel'
+                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel'
                     |
                     translate}}
                 </button>
-                <button id="save" type="submit" class="btn btn-primary" ng-show="collectionsheetdata"
+                <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="collectionsheetdata"
                         ng-click="submit()">{{'label.button.save' | translate}}
                 </button>
             </div>

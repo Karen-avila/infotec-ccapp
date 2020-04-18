@@ -8,7 +8,7 @@
 			<div class="toolbar">
 				<h4>{{'label.heading.adhoc.search.query.for.loans' | translate}}</h4>
 				<div class="pull-right">
-					<a ng-show="showResults" class="btn btn-primary" ng-click="showResults=!showResults"><i class="fa fa-plus "></i>
+					<a ng-show="showResults" class="btn btn-sm btn-primary" ng-click="showResults=!showResults"><i class="fa fa-plus "></i>
 					</a>
 				</div>
 			</div>
@@ -131,7 +131,7 @@
 				            </div>
 				        </div>
 						<div class="col-md-offset-5">
-							<button id="save" type="submit" class="btn btn-primary" ng-click="submit()">{{'label.button.summary' | translate}}</button>
+							<button id="save" type="submit" class="btn btn-sm btn-primary" ng-click="submit()">{{'label.button.summary' | translate}}</button>
 						</div>
 				    </div>
 				    <div ng-show="showResults">
@@ -161,7 +161,7 @@
 					<div ng-show="showClientResults">
 						<input class="form-control marginbottom0px" type="text" ng-autofocus="true" ng-model="filterText">
 						<div class="pull-right">
-							<button type="button" class="btn btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>{{'label.button.exportcsv'
+							<button type="button" class="btn btn-sm btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>{{'label.button.exportcsv'
 								| translate }}
 							</button>
 						</div>
