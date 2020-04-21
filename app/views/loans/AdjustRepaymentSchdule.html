@@ -164,7 +164,7 @@
                                    type="text"
                                    ng-model="period.dueDate" is-open="opened" min="'2000-01-01'" max="restrictDate"
                                    required/>
-                            <span class="error" ng-show="visitValidation&&dueDate{{$index}}.dueDate.$error.required">{{ 'label.requirefield' | translate }}</span>
+                            <span class="error" ng-show="visitValidation&&dueDate{{$index}}.dueDate.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>
                     </td>
                     <td ng-show="enablePrincipal">

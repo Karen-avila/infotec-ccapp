@@ -9,10 +9,10 @@
             <form name="Details" ng-submit="goNext(Details)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.details' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.details' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.productname' | translate }}<span class="required">*</span></label>
+                        <label class="control-label col-sm-2">{{'label.input.productname' | translate }}<span class="required">*</span></label>
                         <div class="col-sm-2">
                             <input type="text" id="name" class="form-control" name="name" ng-model="formData.name"
                                 required late-validate />
@@ -20,7 +20,7 @@
                         <div class="col-sm-2">
                             <form-validate valattributeform="Details" valattribute="name" />
                         </div>
-                        <label class="control-label col-sm-2">{{ 'label.input.product.shortname' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.product.shortname' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-2">
                             <input type="text" id="shortName" name="shortName" ng-model="formData.shortName" class="form-control"
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.description' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.description' | translate }}</label>
                         <div class="col-sm-2">
                             <textarea rows="2" id="description" name="description" ng-model="formData.description"
                                       class="form-control" ></textarea>
@@ -45,21 +45,21 @@
                 </fieldset>
             </form>
         </wz-step>
-        <wz-step wz-title="{{ 'label.heading.currency' | translate }}">
+        <wz-step wz-title="{{'label.heading.currency' | translate }}">
             <form name="Currency" ng-submit="goNext(Currency)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.currency' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.currency' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.currency' | translate }}<span class="required">*</span></label>
+                        <label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span class="required">*</span></label>
                         <div class="col-sm-2">
                             <select id="currencyCode" ng-model="formData.currencyCode" class="form-control" ng-options="currency.code as currency.name for currency in product.currencyOptions"
                                 ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
                                 value="{{currency.code}}">
                             </select>
                         </div>
-                        <label class="control-label col-sm-2 col-sm-offset-2">{{ 'label.input.decimalplaces' |
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' |
                             translate
                             }}<span class="required">*</span></label>
                         <div class="col-sm-2">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.multiplesof' | translate }}<span class="required">*</span></label>
+                        <label class="control-label col-sm-2">{{'label.input.multiplesof' | translate }}<span class="required">*</span></label>
                         <div class="col-sm-2">
                             <input type="text" id="inMultiplesOf" class="form-control" name="multiplesof" number-format
                                 ng-model="formData.inMultiplesOf" required 
@@ -103,10 +103,10 @@
             <form name="Terms" ng-submit="goNext(Terms)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.terms' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.default.deposit.amount' | translate
+                        <label class="control-label col-sm-2">{{'label.input.default.deposit.amount' | translate
                             }}<span class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.defaultamount' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.minDepositAmount' | translate }}
+                        <label class="control-label col-sm-2">{{'label.input.minDepositAmount' | translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.minimumamount' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
@@ -135,7 +135,7 @@
                                 number-format ng-model="formData.minDepositAmount" late-validate decimal-number=true />
                             <form-validate valattributeform="Terms" valattribute="minDepositAmount" />
                         </div>
-                        <label class="control-label col-sm-2">{{ 'label.input.maxDepositAmount' |
+                        <label class="control-label col-sm-2">{{'label.input.maxDepositAmount' |
                             translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.maximumamount' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -148,7 +148,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.interestcompoundingperiod' | translate
+                        <label class="control-label col-sm-2">{{'label.input.interestcompoundingperiod' | translate
                             }}<span class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.compoundperiod' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -160,7 +160,7 @@
                                 value="{{type.id}}">
                             </select>
                         </div>
-                        <label class="control-label col-sm-2 col-sm-offset-2">{{ 'label.input.interestpostingperiod' |
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.interestpostingperiod' |
                             translate }}<span class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.postingperiod' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.interestcalculatedusing' | translate
+                        <label class="control-label col-sm-2">{{'label.input.interestcalculatedusing' | translate
                             }}<span class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.calcmethod' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -186,7 +186,7 @@
                                 value="{{type.id}}">
                             </select>
                         </div>
-                        <label class="control-label col-sm-2 col-sm-offset-2">{{ 'label.input.daysinyears' | translate
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.daysinyears' | translate
                             }}<span class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.daysinyear' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -211,10 +211,10 @@
             <form name="Settings" ng-submit="goNext(Settings)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.settings' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.settings' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.lockinPeriodFrequency' | translate }}
+                        <label class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.lockinperiod' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
@@ -232,7 +232,7 @@
                                 <option class="displaynone" value="">{{'label.selectone' | translate}}</option>
                             </select>
                         </div>
-                        <label class="control-label col-sm-2">{{ 'label.input.minimumdepositterm' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.minimumdepositterm' | translate }}<span
                                 class="required">*</span>
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.minimumterm' | translate}}"
                                 tooltip-append-to-body="true"></i>
@@ -253,7 +253,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.inmultiplesof' | translate }}
+                        <label class="control-label col-sm-2">{{'label.input.inmultiplesof' | translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.termmultiplesof' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
@@ -270,7 +270,7 @@
                                 <option class="displaynone" value="">{{'label.selectone' | translate}}</option>
                             </select>
                         </div>
-                        <label class="control-label col-sm-2">{{ 'label.input.maximumdepositterm' | translate }}
+                        <label class="control-label col-sm-2">{{'label.input.maximumdepositterm' | translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.maximumterm' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
@@ -289,14 +289,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.prematureclosure' | translate }}
+                        <label class="control-label col-sm-2">{{'label.prematureclosure' | translate }}
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.prematureclosure' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-2">
                             <label class="checkbox">
                                 <input id="preClosurePenalApplicable" type="checkbox" ng-model="formData.preClosurePenalApplicable">
-                                {{ 'label.checkbox.applypreclosurepenalinterest' | translate }}
+                                {{'label.checkbox.applypreclosurepenalinterest' | translate }}
                             </label>
                         </div>
                         <div class="col-sm-2">
@@ -309,7 +309,7 @@
                             </span>
                         </div>
                         <div class="col-sm-1 col-sm-offset-1">
-                            {{ 'label.on' | translate }}
+                            {{'label.on' | translate }}
                         </div>
                         <div class="col-sm-2">
                             <select class="form-control" id="preClosurePenalInterestOnTypeId" ng-model="formData.preClosurePenalInterestOnTypeId"
@@ -319,14 +319,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3">{{ 'label.input.withholdtax' | translate }}</label>
+                        <label class="control-label col-sm-3">{{'label.input.withholdtax' | translate }}</label>
                         <i class="fa fa-question-circle col-sm-1" uib-tooltip="{{'label.tooltip.withholdtax' | translate}}"></i>
                         <div class="col-sm-2">
                             <input id="withHoldTax" type="checkbox" ng-model="formData.withHoldTax" ng-true-value="true"
                                 ng-false-value="false">
                         </div>
                         <div ng-show="formData.withHoldTax">
-                            <label class="control-label col-sm-2">{{ 'label.input.taxgroup' | translate }}</label>
+                            <label class="control-label col-sm-2">{{'label.input.taxgroup' | translate }}</label>
                             <div class="col-sm-2">
                                 <select id="taxGroupId" ng-model="formData.taxGroupId" chosen="product.taxGroupOptions"
                                     ng-options="taxGroup.id as taxGroup.name for taxGroup in product.taxGroupOptions"
@@ -348,7 +348,7 @@
             <form name="interestchart" ng-submit="goNext(interestchart)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <h3>{{ 'label.heading.interestchart' | translate }}
+                    <h3>{{'label.heading.interestchart' | translate }}
                         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.interesetchart' | translate}}"
                             tooltip-append-to-body="true"></i>
                     </h3>
@@ -356,7 +356,7 @@
                     <!--<tr>
                            <td>
                                <div class="control-group">
-                                   <label class="control-label" for="name">{{ 'label.input.interestratechart.name' | translate
+                                   <label class="control-label" for="name">{{'label.input.interestratechart.name' | translate
                                        }}<span
                                                class="required">*</span></label>
 
@@ -367,7 +367,7 @@
                            </td>
                            <td>
                                <div class="control-group">
-                                   <label class="control-label" for="name">{{ 'label.input.interestratechart.description' |
+                                   <label class="control-label" for="name">{{'label.input.interestratechart.description' |
                                        translate
                                        }}</label>
 
@@ -381,7 +381,7 @@
                            <td>&nbsp;</td>
                        </tr>-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">{{ 'label.input.interestratechart.valid.from'
+                        <label class="control-label col-sm-2" for="name">{{'label.input.interestratechart.valid.from'
                             |
                             translate }}<span class="required">*</span></label>
                         <div class="col-sm-2">
@@ -515,7 +515,7 @@
             <form name="Charges" ng-submit="goNext(Charges)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.charges' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.charges' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
                         <div class="col-sm-3">
@@ -560,7 +560,7 @@
             <form name="Accounting" ng-submit="goNext(Accounting)" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.accounting' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.accounting' | translate }}</h3>-->
                     <hr>
                     <div class="radio-inline">
                         <label>
@@ -578,7 +578,7 @@
                     <div class="col-md-12" ng-show="formData.accountingRule==2">
                         <div class="form-group">
                             <h4>{{"label.heading.assets" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{ 'label.input.savingreference' | translate }}
+                            <label class="control-label col-sm-2">{{'label.input.savingreference' | translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.savingreference' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
@@ -593,7 +593,7 @@
                         <hr>
                         <div class="form-group">
                             <h4>{{"label.heading.liabilities" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{ 'label.input.savingcontrol' | translate }}
+                            <label class="control-label col-sm-2">{{'label.input.savingcontrol' | translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.savingcontrol' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
@@ -604,7 +604,7 @@
                                     value="{{liabilityAccount.id}}">
                                 </select>
                             </div>
-                            <label class="control-label col-sm-2">{{ 'label.input.savingstransfersinsuspenpense' |
+                            <label class="control-label col-sm-2">{{'label.input.savingstransfersinsuspenpense' |
                                 translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.savingsuspense' | translate}}"
                                     tooltip-append-to-body="true"></i>
@@ -620,7 +620,7 @@
                         <hr>
                         <div class="form-group">
                             <h4>{{"label.heading.expenses" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{ 'label.input.interestonsavings' | translate }}
+                            <label class="control-label col-sm-2">{{'label.input.interestonsavings' | translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.interestonsavings' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
@@ -635,7 +635,7 @@
                         <hr>
                         <div class="form-group">
                             <h4>{{"label.heading.income" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{ 'label.input.incomefromfees' | translate }}
+                            <label class="control-label col-sm-2">{{'label.input.incomefromfees' | translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.incomefromfees' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
@@ -646,7 +646,7 @@
                                     value="{{incomeAccount.id}}">
                                 </select>
                             </div>
-                            <label class="control-label col-sm-2">{{ 'label.input.incomefrompenalties' | translate }}
+                            <label class="control-label col-sm-2">{{'label.input.incomefrompenalties' | translate }}
                                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.incomefrompenalties' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>

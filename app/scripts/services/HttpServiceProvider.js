@@ -39,9 +39,11 @@
                             return http(config);
                         };
                     });
-                    this.setAuthorization = function (key, isOauth) {
-                        if(isOauth){
+                    this.setAuthorization = function (key, security) {
+                        if (security == 'oauth') {
                             http.defaults.headers.common.Authorization = "bearer " + key;
+                        } else if (security == 'jwt') {
+                            http.defaults.headers.common.Authorization = "Bearer " + key;
                         } else {
                             http.defaults.headers.common.Authorization = "Basic " + key;
                         }

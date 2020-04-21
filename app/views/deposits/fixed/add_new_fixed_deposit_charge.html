@@ -2,7 +2,7 @@
 	<ul class="breadcrumb">
 		<li><a href="#!/viewfixeddepositaccount/{{cancelRoute}}">{{'label.anchor.viewfixeddepositaccount' |
                 translate}}</a></li>
-	    <li class="active">{{ 'label.anchor.add.fixed.deposit.charges' | translate }}</li>
+	    <li class="active">{{'label.anchor.add.fixed.deposit.charges' | translate }}</li>
 	</ul>
 	<div class="content-container">
 		<div class="card">
@@ -11,14 +11,14 @@
 				    <api-validate></api-validate>
 				    <fieldset>
 				        <div class="form-group">
-				            <label class="control-label col-sm-2">{{ 'label.input.charges' | translate }}<span class="required">*</span></label>
+				            <label class="control-label col-sm-2">{{'label.input.charges' | translate }}<span class="required">*</span></label>
 				
 				            <div class="col-sm-3">
 				                <select class="form-control" ng-model="formData.chargeId" id="chargeId" name="charge"
 				                        ng-options="charge.id as (charge.name+&nbsp;+'('+charge.currency.name+')') for charge in chargeOptions"
 				                        value="{{formData.chargeId}}"
 				                        ng-change="chargeSelected(formData.chargeId)" required>
-				                    <option style="display:none" value="">{{ 'label.selectcharge' | translate }}</option>
+				                    <option style="display:none" value="">{{'label.selectcharge' | translate }}</option>
 				                </select>
 				            </div>
 				            <div class="col-sm-3">
@@ -28,7 +28,7 @@
 				
 				        <div ng-show="chargeDetails">
 				            <div class="form-group">
-				                <label class="control-label col-sm-2">{{ 'label.input.amount' | translate }}<span
+				                <label class="control-label col-sm-2">{{'label.input.amount' | translate }}<span
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
@@ -40,7 +40,7 @@
 				            </div>
 				
 				            <div class="form-group">
-				                <label class="control-label col-sm-2">{{ 'label.input.chargecalculation' | translate }}</label>
+				                <label class="control-label col-sm-2">{{'label.input.chargecalculation' | translate }}</label>
 				
 				                <div class="col-sm-3">
 				                    <select class="form-control" id="chargeCalculationType" ng-model="chargeCalculationType"
@@ -51,7 +51,7 @@
 				            </div>
 				
 				            <div class="form-group">
-				                <label class="control-label col-sm-2">{{ 'label.input.chargetimetype' | translate }}</label>
+				                <label class="control-label col-sm-2">{{'label.input.chargetimetype' | translate }}</label>
 				
 				                <div class="col-sm-3">
 				                    <select class="form-control" id="chargeTimeType" ng-model="chargeTimeType"
@@ -61,7 +61,7 @@
 				                </div>
 				            </div>
 				            <div class="form-group" ng-show="!withDrawCharge && !chargeTimeTypeAnnualOrMonth">
-				                <label class="control-label col-sm-2">{{ 'label.input.dueforcollectedon' | translate }}<span
+				                <label class="control-label col-sm-2">{{'label.input.dueforcollectedon' | translate }}<span
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
@@ -70,7 +70,7 @@
 				                </div>
 				            </div>
 				            <div class="form-group" ng-show="!withDrawCharge && chargeTimeTypeAnnualOrMonth">
-				                <label class="control-label col-sm-2">{{ 'label.input.dueon' | translate }}<span
+				                <label class="control-label col-sm-2">{{'label.input.dueon' | translate }}<span
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
@@ -79,7 +79,7 @@
 				                </div>
 				            </div>
 				            <div class="form-group" ng-show="chargeTimeType.value == 'Monthly Fee' ">
-				                <label class="control-label col-sm-2">{{ 'label.repeatsevery' | translate }}<span
+				                <label class="control-label col-sm-2">{{'label.repeatsevery' | translate }}<span
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">

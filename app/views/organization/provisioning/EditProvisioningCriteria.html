@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                         <div class="col-sm-3 col-md-3 col-md-offset-1">
-                            <label class="control-label col-sm-9">{{ 'label.input.allproducts' | translate }}</label>
+                            <label class="control-label col-sm-9">{{'label.input.allproducts' | translate }}</label>
                             <select id="available" ng-model="available" name="available" class="form-control multiselectmin" multiple>
                                 <option ng-repeat="allowedProduct in allloanproducts" value="{{allowedProduct.id}}">
                                     {{allowedProduct.name}}
@@ -39,7 +39,7 @@
                                     class="fa fa-angle-double-left"></i></button>
                         </div>
                         <div class="col-sm-3 col-md-3">
-                            <label class="control-label col-sm-9">{{ 'label.input.selectedproducts' | translate }}</label>
+                            <label class="control-label col-sm-9">{{'label.input.selectedproducts' | translate }}</label>
                             <select id="selected" ng-model="selected" name="selected" class="form-control multiselectmin" multiple>
                                 <option ng-repeat="selectedproduct in selectedloanproducts" value="{{selectedproduct.id}}">
                                     {{selectedproduct.name}}
@@ -63,7 +63,7 @@
                                 <input id="minAge" name="minAge" class="form-control" type="text"
                                        ng-model="provisioningcategory.minAge"
                                        placeholder="{{'label.input.indays' | translate}}" number-format required ng-focus="doFocus($index)" ng-blur="doBlur($index)"/>
-                                <span class="error" ng-show="visitValidation&&minage{{$index}}.minAge.$error.required">{{ 'label.requirefield' | translate }}</span>
+                                <span class="error" ng-show="visitValidation&&minage{{$index}}.minAge.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
 
@@ -72,7 +72,7 @@
                                 <input id="maxAge" name="maxAge" class="form-control" type="text"
                                        ng-model="provisioningcategory.maxAge"
                                        placeholder="{{'label.input.indays' | translate}}" number-format required/>
-                                <span class="error" ng-show="visitValidation&&maxage{{$index}}.maxAge.$error.required">{{ 'label.requirefield' | translate }}</span>
+                                <span class="error" ng-show="visitValidation&&maxage{{$index}}.maxAge.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
 
@@ -82,7 +82,7 @@
                                        ng-model="provisioningcategory.provisioningPercentage"
                                        placeholder="{{'label.input.amount' | translate}}" number-format required/>
                                 <span class="error"
-                                      ng-show="visitValidation&&percentage{{$index}}.percentage.$error.required">{{ 'label.requirefield' | translate }}</span>
+                                      ng-show="visitValidation&&percentage{{$index}}.percentage.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
 
@@ -95,7 +95,7 @@
                                     <option value="">{{'label.selectliabilitiaccount' | translate}}</option>
                                 </select>
                                 <span class="error"
-                                      ng-show="visitValidation&&liabilityaccount{{$index}}.liabilitaccont.$error.required">{{ 'label.requirefield' | translate }}</span>
+                                      ng-show="visitValidation&&liabilityaccount{{$index}}.liabilitaccont.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
 
@@ -108,7 +108,7 @@
                                     <option value="">{{'label.selectexpenseaccount' | translate}}</option>
                                 </select>
                                 <span class="error"
-                                      ng-show="visitValidation&&expenseaccount{{$index}}.expenseaccount.$error.required">{{ 'label.requirefield' | translate }}</span>
+                                      ng-show="visitValidation&&expenseaccount{{$index}}.expenseaccount.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
                     </tr>

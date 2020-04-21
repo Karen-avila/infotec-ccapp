@@ -202,10 +202,10 @@
                                     </td>
                                     <td class="col-md-3">
                     <span data-ng-hide="savingaccountdetails.expectedFirstDepositOnDate" class="padded-td">{{savingaccountdetails.timeline.activatedOnDate | DateFormat}}<span
-                            data-ng-hide="savingaccountdetails.timeline.activatedOnDate">{{ 'label.notactivated' | translate }}</span>
+                            data-ng-hide="savingaccountdetails.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span>
                     </span>
                                         <span ng-show="savingaccountdetails.expectedFirstDepositOnDate" class="padded-td">{{savingaccountdetails.expectedFirstDepositOnDate | DateFormat}}<span
-                                                data-ng-hide="savingaccountdetails.expectedFirstDepositOnDate">{{ 'label.notactivated' | translate }}</span>
+                                                data-ng-hide="savingaccountdetails.expectedFirstDepositOnDate">{{'label.notactivated' | translate }}</span>
                     </span>
                                     </td>
                                     <td class="active fontnormal col-md-3">{{'label.account.deposit.principal.amount' | translate}}
@@ -341,7 +341,7 @@
                                 </tr>
                             </table>
                         <hr class="marginbottom"/>
-                        <label><strong>{{ 'label.heading.interestchart' | translate }}</strong></label>
+                        <label><strong>{{'label.heading.interestchart' | translate }}</strong></label>
                             <table class="table table-bordered view-table">
                                 <tr class="graybg">
                                     <td ng-show="savingaccountdetails.accountChart.isPrimaryGroupingByAmount">{{'label.heading.interestratedetails.amount.range' | translate}}</td>

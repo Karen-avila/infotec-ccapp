@@ -1,6 +1,6 @@
 <div class="content-container">
     <ul class="breadcrumb">
-        <li class="active">{{ 'label.anchor.addsavingcharges' | translate }}</li>
+        <li class="active">{{'label.anchor.addsavingcharges' | translate }}</li>
     </ul>
     <div class="card">
         <div class="content">
@@ -8,14 +8,14 @@
             <api-validate></api-validate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{ 'label.input.charges' | translate }}<span class="required">*</span></label>
+                    <label class="control-label col-sm-2">{{'label.input.charges' | translate }}<span class="required">*</span></label>
 
                     <div class="col-sm-3">
                         <select ng-model="formData.chargeId" id="chargeId" name="charge"
                                 ng-options="charge.id as (charge.name+'('+charge.currency.name+')') for charge in chargeOptions"
                                 value="{{formData.chargeId}}"
                                 ng-change="chargeSelected(formData.chargeId)" class="form-control" required>
-                            <option style="display:none" value="">{{ 'label.selectcharge' | translate }}</option>
+                            <option style="display:none" value="">{{'label.selectcharge' | translate }}</option>
                         </select>
                         <form-validate valattributeform="savingccountchargeform" valattribute="charge"/>
                     </div>
@@ -23,7 +23,7 @@
 
                 <div ng-show="chargeDetails">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.amount' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.amount' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.chargecalculation' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.chargecalculation' | translate }}</label>
 
                         <div class="col-sm-3">
                             <select id="chargeCalculationType" ng-model="chargeCalculationType"
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.chargetimetype' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.chargetimetype' | translate }}</label>
 
                         <div class="col-sm-3">
                             <select id="chargeTimeType" ng-model="chargeTimeType"
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="!dueDateNotRequired && !chargeTimeTypeAnnualOrMonth">
-                        <label class="control-label col-sm-2">{{ 'label.input.dueforcollectedon' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.dueforcollectedon' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="!dueDateNotRequired && chargeTimeTypeAnnualOrMonth">
-                        <label class="control-label col-sm-2">{{ 'label.input.dueon' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.dueon' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="chargeTimeType.value == 'Monthly Fee' ">
-                        <label class="control-label col-sm-2">{{ 'label.repeatsevery' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.repeatsevery' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">

@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
 
-                <label class="control-label col-sm-2 width20" style="text-align: left;">{{ 'label.input.comments' | translate }}</label>
+                <label class="control-label col-sm-2 width20" style="text-align: left;">{{'label.input.comments' | translate }}</label>
                 <div class="col-sm-3 paddedbottom10 paddedtop">
 
                     <textarea rows="2"  style="width: 402px; height: 76px;" class="form-control" ng-model="comments" ></textarea>
@@ -47,10 +47,10 @@
             </div>
 
             <input type="checkbox" ng-model="changeRepaymentDate" > &nbsp;<span
-                class="control-label"><label>{{ 'label.input.changeRepaymentDate' | translate }}&nbsp;</label></span>
+                class="control-label"><label>{{'label.input.changeRepaymentDate' | translate }}&nbsp;</label></span>
             <div class="form-group">
 
-                <label class="control-label col-sm-2 width20" data-ng-show="changeRepaymentDate" style="padding-left: 32px;text-align: left;">{{ 'label.input.installemtrescheduledto' | translate
+                <label class="control-label col-sm-2 width20" data-ng-show="changeRepaymentDate" style="padding-left: 32px;text-align: left;">{{'label.input.installemtrescheduledto' | translate
                     }}&nbsp;</label>
                 <div class="col-sm-3 paddedbottom10">
                     <input id="adjustedDueDate" ng-show="changeRepaymentDate" type="text" name="adjustedDueDate" datepicker-pop="dd MMMM yyyy"
@@ -59,11 +59,11 @@
             </div>
 
             <input type="checkbox" ng-model="introduceGracePeriods" > &nbsp;<span
-                class="control-label">{{ 'label.input.introduceGracePeriods' | translate }}&nbsp;</span>
+                class="control-label">{{'label.input.introduceGracePeriods' | translate }}&nbsp;</span>
 
             <div class="form-group" ng-show="introduceGracePeriods">
 
-                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;">{{ 'label.input.graceOnPrincipal' | translate
+                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;">{{'label.input.graceOnPrincipal' | translate
                     }}&nbsp;</label>
                 <div class="col-sm-3 paddedbottom10">
                     <input id="principalgrace" type="text" ng-show="introduceGracePeriods"
@@ -72,7 +72,7 @@
             </div>
 
             <div class="form-group" ng-show="introduceGracePeriods">
-                <label class="control-label col-sm-2 width20"  style="padding-left: 32px;text-align: left;">{{ 'label.input.graceOnInterest' | translate
+                <label class="control-label col-sm-2 width20"  style="padding-left: 32px;text-align: left;">{{'label.input.graceOnInterest' | translate
                     }}&nbsp;</label>
 
                 <div class="col-sm-3 paddedbottom10">
@@ -83,11 +83,11 @@
             <div class="form-group" data-ng-hide="introduceGracePeriods"></div>
 
             <input type="checkbox" ng-model="extendRepaymentPeriod"> &nbsp;<span
-                class="control-label">{{ 'label.input.extendRepaymentPeriod' | translate }}&nbsp;</span>
+                class="control-label">{{'label.input.extendRepaymentPeriod' | translate }}&nbsp;</span>
 
             <div class="form-group">
 
-                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;" ng-show="extendRepaymentPeriod">{{ 'label.input.noofnewrepayments' | translate
+                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;" ng-show="extendRepaymentPeriod">{{'label.input.noofnewrepayments' | translate
                     }}&nbsp;</label>
                 <div class="col-sm-3 paddedbottom10">
                     <input id="newrepayments" type="text" ng-show="extendRepaymentPeriod" class="form-control"
@@ -96,10 +96,10 @@
             </div>
 
             <input type="checkbox" ng-model="adjustinterestrates"> &nbsp;<span
-                class="control-label">{{ 'label.input.adjustinterestrates' | translate }}&nbsp;</span>
+                class="control-label">{{'label.input.adjustinterestrates' | translate }}&nbsp;</span>
             <div class="form-group">
 
-                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;" ng-show="adjustinterestrates">{{ 'label.input.newinterestrate' | translate
+                <label class="control-label col-sm-2 width20" style="padding-left: 32px;text-align: left;" ng-show="adjustinterestrates">{{'label.input.newinterestrate' | translate
                     }}&nbsp;</label>
                 <div class="col-sm-3 paddedbottom10">
                     <input id="newinterestrate" type="text" ng-show="adjustinterestrates" class="form-control paddedbottom10"
@@ -107,14 +107,14 @@
             </div>
 
             <!--<input type="checkbox" ng-model="formData.recalculateInterest"> &nbsp;<span
-                class="control-label">{{ 'label.input.recalculateInterest' +
+                class="control-label">{{'label.input.recalculateInterest' +
                     '' | translate }}&nbsp;</span>
 
             <br>
             <br>-->
             <div align="center">
 
-                <button type="button" data-ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</button>
+                <button type="button" data-ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
 
                 <button type="button" data-ng-click="submit()" class="btn btn-sm btn-primary"  has-permission='APPROVE_RESCHEDULELOAN'>
                     {{'label.button.save' | translate}}

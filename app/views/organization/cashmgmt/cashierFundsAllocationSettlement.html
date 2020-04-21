@@ -12,22 +12,22 @@
 				<api-validate></api-validate>
 				<table class="table">
 					<tr>
-						<td>{{ 'label.input.office' | translate }} {{location.path()}} {{}} </td>
+						<td>{{'label.input.office' | translate }} {{location.path()}} {{}} </td>
 						<td>{{cashierTxnTemplate.officeName}}</td>
-						<td>{{ 'label.input.teller.name' | translate }}</td>
+						<td>{{'label.input.teller.name' | translate }}</td>
 						<td>{{cashierTxnTemplate.tellerName}}</td>
 					</tr>
 					<tr>
-						<td>{{ 'label.input.cashiername' | translate }}</td>
+						<td>{{'label.input.cashiername' | translate }}</td>
 						<td>{{cashierTxnTemplate.cashierName}}</td>
-						<td>{{ 'label.input.cashierallocationdetails' | translate }}</td>
+						<td>{{'label.input.cashierallocationdetails' | translate }}</td>
 						<td>
 							{{cashierTxnTemplate.startDate | DateFormat}} - {{cashierTxnTemplate.endDate | DateFormat}}
 						</td>
 					</tr>
 
 					<tr>
-						<td>{{ 'label.input.teller.cashiertxn.txnDate' | translate }}<span class="required">*</span>
+						<td>{{'label.input.teller.cashiertxn.txnDate' | translate }}<span class="required">*</span>
 						</td>
 						<td>
 							<div class="col-sm-8">
@@ -36,7 +36,7 @@
 									max="restrictDate" />
 							</div>
 						</td>
-						<td>{{ 'label.input.currency' | translate }}<span class="required">*</span></td>
+						<td>{{'label.input.currency' | translate }}<span class="required">*</span></td>
 						<td>
 							<div class="col-sm-2">
 								<select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
@@ -46,7 +46,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>{{ 'label.input.teller.cashiertxn.txnAmount' | translate }}<span class="required">*</span>
+						<td>{{'label.input.teller.cashiertxn.txnAmount' | translate }}<span class="required">*</span>
 						</td>
 						<td>
 							<div class="col-sm-8">
@@ -54,7 +54,7 @@
 									ng-model="formData.txnAmount" class="form-control" required late-Validate />
 							</div>
 						</td>
-						<td>{{ 'label.input.teller.cashiertxn.txnNote' | translate }}<span class="required">*</span>
+						<td>{{'label.input.teller.cashiertxn.txnNote' | translate }}<span class="required">*</span>
 						</td>
 						<td>
 							<div class="col-sm-8">

@@ -10,7 +10,7 @@
 			<form name="createcashierform" novalidate="" class="form-horizontal" rc-submit="submit()">
 				<api-validate></api-validate>
 				<div class="form-group">
-					<label class="control-label col-sm-3">{{ 'label.input.office' | translate }}</label>
+					<label class="control-label col-sm-3">{{'label.input.office' | translate }}</label>
 					<div class="col-sm-3">
 						<input id="office" type="text" ng-model="cashier.officeName" class="form-control"
 							ng-disabled="true" />
@@ -18,7 +18,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-3">{{ 'label.input.teller.name' | translate }}</label>
+					<label class="control-label col-sm-3">{{'label.input.teller.name' | translate }}</label>
 					<div class="col-sm-3">
 						<input id="teller" type="text" ng-model="cashier.tellerName" class="form-control"
 							ng-disabled="true" />
@@ -48,7 +48,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-3">{{ 'label.input.teller.cashier.startDate' | translate }}<span
+					<label class="control-label col-sm-3">{{'label.input.teller.cashier.startDate' | translate }}<span
 							class="required">*</span></label>
 					<div class="col-sm-3">
 						<input id="startDate" name="startDate" sort type="text" datepicker-pop="dd MMMM yyyy"
@@ -59,7 +59,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-3"> {{ 'label.input.teller.cashier.endDate' | translate }}<span
+					<label class="control-label col-sm-3"> {{'label.input.teller.cashier.endDate' | translate }}<span
 							class="required">*</span></label>
 					<div class="col-sm-3">
 						<input id="endDate" name="endDate" sort type="text" datepicker-pop="dd MMMM yyyy"
@@ -72,13 +72,13 @@
 						<input id="fullDayCheckbox" type="checkbox" data-ng-change="setChoice()" checked="true"
 							ng-model="formData.isFullDay" />
 					</div>
-					<label class="control-label col-sm-3 left">{{ 'label.input.teller.cashier.fullDay' | translate }}</label>
+					<label class="control-label col-sm-3 left">{{'label.input.teller.cashier.fullDay' | translate }}</label>
 				</div>
 
 				<div ng-show="formData.isFullDay==false">
 					<div class="form-group">
 						<label
-							class="control-label col-sm-3">{{ 'label.input.teller.cashier.startTime' | translate }}</label>
+							class="control-label col-sm-3">{{'label.input.teller.cashier.startTime' | translate }}</label>
 						<div class="col-sm-3">
 							<table>
 								<tr>
@@ -93,7 +93,7 @@
 					</div>
 					<div class="form-group">
 						<label
-							class="control-label col-sm-3">{{ 'label.input.teller.cashier.endTime' | translate }}</label>
+							class="control-label col-sm-3">{{'label.input.teller.cashier.endTime' | translate }}</label>
 						<div class="col-sm-3">
 							<table>
 								<tr>

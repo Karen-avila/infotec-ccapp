@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        BulkImportOfficesController: function (scope, resourceFactory, location, API_VERSION, $rootScope, Upload) {
+        BulkImportOfficesController: function (scope, resourceFactory, API_VERSION, $rootScope, Upload) {
         	
         	scope.first = {};
         	scope.first.templateUrl =  API_VERSION + '/offices/downloadtemplate' + '?tenantIdentifier=' + $rootScope.tenantIdentifier
@@ -23,7 +23,6 @@
                 });
             };
           
-         
              scope.upload = function () {
                  Upload.upload({
                      url: $rootScope.hostUrl + API_VERSION + '/offices/uploadtemplate',
@@ -37,7 +36,7 @@
              };
         }
     });
-    mifosX.ng.application.controller('BulkImportOfficesController', ['$scope', 'ResourceFactory', '$location', 'API_VERSION', '$rootScope', 'Upload', mifosX.controllers.BulkImportOfficesController]).run(function ($log) {
+    mifosX.ng.application.controller('BulkImportOfficesController', ['$scope', 'ResourceFactory', 'API_VERSION', '$rootScope', 'Upload', mifosX.controllers.BulkImportOfficesController]).run(function ($log) {
         $log.info("BulkImportOfficesController initialized");
     });
 }(mifosX.controllers || {}));

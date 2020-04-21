@@ -224,9 +224,9 @@
 					</small>
 					<strong>{{client.displayName}} </strong>
 					<small>
-						{{ 'label.heading.clientno' | translate }}: {{client.accountNo}}
-						<br />{{ 'label.input.externalid2' | translate }}: {{client.externalId}} |
-						{{ 'label.input.staff' | translate }}: {{client.staffName}}
+						{{'label.heading.clientno' | translate }}: {{client.accountNo}}
+						<br />{{'label.input.externalid2' | translate }}: {{client.externalId}} |
+						{{'label.input.staff' | translate }}: {{client.staffName}}
 					</small>
 				</h3>
 			</div>
@@ -252,7 +252,7 @@
 						</button>
 						<span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)">
 							<a class="btn btn-sm btn-primary" uib-dropdown-toggle>
-								{{ 'label.button.reports'| translate }}
+								{{'label.button.reports'| translate }}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right">
@@ -264,7 +264,7 @@
 						<span uib-dropdown ng-show="buttonsArray.options" class="btn-group dropdown"
 							on-toggle="toggled(open)">
 							<a uib-dropdown-toggle class="btn btn-sm btn-primary">
-								{{ 'label.button.more' | translate}}
+								{{'label.button.more' | translate}}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown dropdown-menu dropdown-menu-right">
@@ -335,7 +335,7 @@
 								<div data-ng-show="charges.length">
 									<div class="span gray-head">
 										<span class="boldlabel">
-											<strong>{{ 'label.heading.upcomingcharges' | translate }}</strong>
+											<strong>{{'label.heading.upcomingcharges' | translate }}</strong>
 										</span>
 									</div>
 									<table class="table table-condensed">
@@ -397,7 +397,7 @@
 
 									<table class="table table-condensed" data-ng-show="openLoan">
 										<span class="span gray-head">
-											<strong>{{ 'label.heading.loanaccoverview' | translate }}</strong>
+											<strong>{{'label.heading.loanaccoverview' | translate }}</strong>
 										</span>
 										<tr class="graybg">
 											<th>{{'label.heading.accnum' | translate}}</th>
@@ -518,11 +518,11 @@
 										<span data-ng-show="clientAccounts.savingsAccounts">
 											<button data-ng-show="openSaving" type="button" data-ng-click="setSaving()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewclosedsavings' | translate }}
+												{{'label.button.viewclosedsavings' | translate }}
 											</button>
 											<button data-ng-show="!openSaving" type="button" data-ng-click="setSaving()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewactivesavings' | translate }}
+												{{'label.button.viewactivesavings' | translate }}
 											</button>
 										</span>
 									</div>
@@ -628,11 +628,11 @@
 										<span data-ng-show="clientAccounts.shareAccounts">
 											<button data-ng-show="openShares" type="button" data-ng-click="setShares()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewclosedshares' | translate }}
+												{{'label.button.viewclosedshares' | translate }}
 											</button>
 											<button data-ng-show="!openShares" type="button" data-ng-click="setShares()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewactiveshares' | translate }}
+												{{'label.button.viewactiveshares' | translate }}
 											</button>
 										</span>
 									</div>
@@ -741,125 +741,125 @@
 						<div class="col-sm-6 col-md-6">
 							<table class="table-condensed" style="width: 100%;">
 								<tr>
-									<th class="table-bold" style="width: 50%;">{{ 'label.input.submittedOnDate' | translate }}</th>
+									<th class="table-bold" style="width: 50%;">{{'label.input.submittedOnDate' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.timeline.submittedOnDate | DateFormat}}</span>
 									</td>
 								</tr>
 								<tr>
-									<th class="table-bold">{{ 'label.input.activationdate' | translate }}</th>
+									<th class="table-bold">{{'label.input.activationdate' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.timeline.activatedOnDate | DateFormat}}<span
-												data-ng-hide="client.timeline.activatedOnDate">{{ 'label.notactivated' | translate }}</span></span>
+												data-ng-hide="client.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span></span>
 									</td>
 								</tr>
 								<tr>
-									<th class="table-bold">{{ 'label.input.legalForm' | translate }}</th>
+									<th class="table-bold">{{'label.input.legalForm' | translate }}</th>
 									<td><span class="padded-td">{{client.legalForm.value}}</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()">
-									<th class="table-bold">{{ 'label.heading.memberof' | translate }}</th>
+									<th class="table-bold">{{'label.heading.memberof' | translate }}</th>
 									<td>
 										<span class="padded-td"
-											data-ng-hide="client.groups">{{ 'label.unassigned' | translate }}</span>
+											data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span>
 										<span class="padded-td" ng-repeat="group in client.groups">
 											<a class="list-group-item-text"
 												href="#!/viewgroup/{{group.id}}">{{group.name}}</a>&nbsp;<span
-												data-ng-hide="client.groups">{{ 'label.unassigned' | translate }}</span><span
+												data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span><span
 												ng-show="!$last">|</span>
 										</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()">
-									<th class="table-bold">{{ 'label.input.isStaff' | translate }}</th>
+									<th class="table-bold">{{'label.input.isStaff' | translate }}</th>
 									<td><span class="padded-td">{{client.isStaff}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.officeName">
-									<th class="table-bold">{{ 'label.input.office' | translate }}</th>
+									<th class="table-bold">{{'label.input.office' | translate }}</th>
 									<td><span class="padded-td">{{client.officeName}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.mobileNo">
-									<th class="table-bold">{{ 'label.input.mobilenumber' | translate }}</th>
+									<th class="table-bold">{{'label.input.mobilenumber' | translate }}</th>
 									<td><span class="padded-td">{{client.mobileNo}}</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
-									<th class="table-bold">{{ 'label.input.gender' | translate }}</th>
+									<th class="table-bold">{{'label.input.gender' | translate }}</th>
 									<td><span class="padded-td">{{client.gender.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.clientType.name">
-									<th class="table-bold">{{ 'label.input.clienttype' | translate }}</th>
+									<th class="table-bold">{{'label.input.clienttype' | translate }}</th>
 									<td><span class="padded-td">{{client.clientType.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.clientClassification.name">
-									<th class="table-bold">{{ 'label.input.clientclassification' | translate }}</th>
+									<th class="table-bold">{{'label.input.clientclassification' | translate }}</th>
 									<td><span class="padded-td">{{client.clientClassification.name}}</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
-									<th class="table-bold">{{ 'label.input.birthplace' | translate }}</th>
+									<th class="table-bold">{{'label.input.birthplace' | translate }}</th>
 									<td><span class="padded-td">{{client.birthplace.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.rfc">
-									<th class="table-bold">{{ 'label.input.rfc' | translate }}</th>
+									<th class="table-bold">{{'label.input.rfc' | translate }}</th>
 									<td><span class="padded-td">{{client.rfc}}</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
-									<th class="table-bold">{{ 'label.input.uniqueId' | translate }}</th>
+									<th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
 									<td><span class="padded-td">{{client.uniqueId}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.externalId">
-									<th class="table-bold">{{ 'label.input.externalid2' | translate }}</th>
+									<th class="table-bold">{{'label.input.externalid2' | translate }}</th>
 									<td><span class="padded-td">{{client.externalId}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.dateOfBiafrth">
-									<th ng-hide="isLegalEntity()" class="table-bold">{{ 'label.input.dateofbirth' | translate }}</th>
-									<th ng-show="isLegalEntity()" class="table-bold">{{ 'label.input.incorporationdate' | translate }}</th>
+									<th ng-hide="isLegalEntity()" class="table-bold">{{'label.input.dateofbirth' | translate }}</th>
+									<th ng-show="isLegalEntity()" class="table-bold">{{'label.input.incorporationdate' | translate }}</th>
 									<td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.status.value=='Closed'">
-									<th class="table-bold">{{ 'label.heading.closedate' | translate }}</th>
+									<th class="table-bold">{{'label.heading.closedate' | translate }}</th>
 									<td><span class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
 									</td>
 								</tr>
 								<tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
-									<th class="table-bold">{{ 'label.input.groupLoanCounter' | translate }}</th>
+									<th class="table-bold">{{'label.input.groupLoanCounter' | translate }}</th>
 									<td><span class="padded-td">{{client.groupLoanCounter}}</span>
 									</td>
 								</tr>
 								<tr>
 									<th class="whitebg" colspan="2">
-										{{ 'label.heading.performancehistory' | translate }}</th>
+										{{'label.heading.performancehistory' | translate }}</th>
 								</tr>
 								<tr>
-									<th>{{ 'label.heading.numofloancycle' | translate }}</th>
+									<th>{{'label.heading.numofloancycle' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.loanCycle}}</span></td>
 								</tr>
 								<tr>
-									<th>{{ 'label.lastloanamount' | translate }}</th>
+									<th>{{'label.lastloanamount' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.ClientSummary.lastLoanAmount|number}}</span>
 									</td>
 								</tr>
 								<tr>
-									<th>{{ 'label.numofactiveloans' | translate }}</th>
+									<th>{{'label.numofactiveloans' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.activeLoans}}</span></td>
 								</tr>
 								<tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
-									<th>{{ 'label.totalsavings' | translate }}({{t.code}})</th>
+									<th>{{'label.totalsavings' | translate }}({{t.code}})</th>
 									<td><span class="padded-td">{{t.totalSavings|number}}</span></td>
 								<tr>
-									<th>{{ 'label.numofactivesavings' | translate }}</th>
+									<th>{{'label.numofactivesavings' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.activeSavings}}</span></td>
 								</tr>
 							</table>
@@ -935,7 +935,7 @@
 									</tr>
 									<tr ng-show="view.city">
 										<th>
-											{{ 'label.input.city' | translate }}
+											{{'label.input.city' | translate }}
 										</th>
 										<td>
 											{{address.city}}
@@ -951,7 +951,7 @@
 									</tr>
 									<tr ng-show="view.countyDistrict">
 										<th>
-											{{ 'label.input.county_district' | translate }}
+											{{'label.input.county_district' | translate }}
 										</th>
 										<td>
 											{{address.countyDistrict}}
@@ -959,7 +959,7 @@
 									</tr>
 									<tr ng-show="view.countryId">
 										<th>
-											{{ 'label.input.country' | translate }}
+											{{'label.input.country' | translate }}
 										</th>
 										<td>
 											{{address.countryName}}
@@ -967,7 +967,7 @@
 									</tr>
 									<tr ng-show="view.stateProvinceId">
 										<th>
-											{{ 'label.input.state_province' | translate }}
+											{{'label.input.state_province' | translate }}
 										</th>
 										<td>
 											{{address.stateName}}
@@ -975,7 +975,7 @@
 									</tr>
 									<tr ng-show="view.municipality">
 										<th>
-											{{ 'label.input.municipality' | translate }}
+											{{'label.input.municipality' | translate }}
 										</th>
 										<td>
 											{{address.municipalityName}}
@@ -983,7 +983,7 @@
 									</tr>
 									<tr ng-show="view.postalCode">
 										<th>
-											{{ 'label.input.postal_code' | translate }}
+											{{'label.input.postal_code' | translate }}
 										</th>
 										<td>
 											{{address.postalCode}}
@@ -991,7 +991,7 @@
 									</tr>
 									<tr ng-show="view.latitude">
 										<th>
-											{{ 'label.input.latitude' | translate }}
+											{{'label.input.latitude' | translate }}
 										</th>
 										<td>
 											{{address.latitude}}
@@ -1000,7 +1000,7 @@
 									</tr>
 									<tr ng-show="view.longitude">
 										<th>
-											{{ 'label.input.longitude' | translate }}
+											{{'label.input.longitude' | translate }}
 										</th>
 										<td>
 											{{address.longitude}}
@@ -1008,7 +1008,7 @@
 									</tr>
 									<tr ng-show="view.antiquity">
 										<th>
-											{{ 'label.input.antiquity.address' | translate }}
+											{{'label.input.antiquity.address' | translate }}
 										</th>
 										<td>
 											{{address.antiquity}}
@@ -1292,7 +1292,7 @@
 					</div>
 				</uib-tab>
 
-				<uib-tab heading="{{ 'label.heading.notes' | translate }}" has-permission='READ_CLIENTNOTE'>
+				<uib-tab heading="{{'label.heading.notes' | translate }}" has-permission='READ_CLIENTNOTE'>
 					<br />
 					<form class="form">
 						<div class="form-group">

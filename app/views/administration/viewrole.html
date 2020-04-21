@@ -65,19 +65,19 @@
         <div class="pull-right" ng-show="isDisabled">
             <div class="btn-group">
                 <a data-ng-click="editRoles(); backupCheckValues()" class="btn btn-sm btn-primary" has-permission='UPDATE_ROLE'><i class="fa fa-edit "></i>&nbsp;&nbsp;
-                {{ 'label.button.edit' | translate }}</a>
+                {{'label.button.edit' | translate }}</a>
 			</div>
             <div class="btn-group" ng-if="!isRoleEnable(role.disabled)">
                 <a data-ng-click="disableRolesConfirmation()" class="btn btn-danger" has-permission='DISABLE_ROLE'><i class="fa fa-lock "></i>&nbsp;&nbsp;
-                {{ 'label.button.disable' | translate }}</a>
+                {{'label.button.disable' | translate }}</a>
             </div>
             <div class="btn-group" ng-if="isRoleEnable(role.disabled)">
                 <a data-ng-click="enableRolesConfirmation()" class="btn btn-sm btn-primary" has-permission='ENABLE_ROLE'><i class="fa fa-unlock-alt "></i>&nbsp;&nbsp;
-                {{ 'label.button.enable' | translate }}</a>
+                {{'label.button.enable' | translate }}</a>
             </div>
 			<div class="btn-group">
 					<a data-ng-click="deleteRolesConfirmation()" class="btn btn-danger" has-permission='DELETE_ROLE'><i class="fa fa-trash-o "></i>&nbsp;&nbsp;
-					{{ 'label.button.delete' | translate }}</a>
+					{{'label.button.delete' | translate }}</a>
             </div>
 			
         </div>
@@ -110,8 +110,8 @@
             </tr>
         </table>
         <div class="col-md-offset-4" ng-hide="isDisabled">
-            <a class="btn btn-sm btn-default" ng-click="cancel(); restoreCheckboxes()">{{ 'label.button.cancel' | translate}}</a>
-            <button type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_ROLE'>{{ 'label.button.save' | translate}}</button>
+            <a class="btn btn-sm btn-default" ng-click="cancel(); restoreCheckboxes()">{{'label.button.cancel' | translate}}</a>
+            <button type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_ROLE'>{{'label.button.save' | translate}}</button>
         </div>
 	</form>
 </div>

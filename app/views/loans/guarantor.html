@@ -10,7 +10,7 @@
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.existingclient' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.existingclient' | translate }}</label>
 
                         <div class="col-sm-3">
                             <input type="checkbox" data-ng-model="temp" data-ng-change="checkClient()">
@@ -19,7 +19,7 @@
                     <div data-ng-switch on="temp">
                         <div data-ng-switch-when="true">
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.name' | translate }}<span
+                                <label class="control-label col-sm-2">{{'label.input.name' | translate }}<span
                                         class="required">*</span></label>
 
                                 <div class="col-sm-3">
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.relationship' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.relationship' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <select id="relationship" ng-model="formData.relationship" class="form-control"
@@ -46,7 +46,7 @@
                         </div>
                         <div data-ng-switch-when="false">
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.relationship' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.relationship' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <select id="relationshipType" ng-model="formData.relationshipType" class="form-control"
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="firstname">{{ 'label.input.firstname' | translate }}<span
+                                <label class="control-label col-sm-2" for="firstname">{{'label.input.firstname' | translate }}<span
                                         class="required">*</span></label>
 
                                 <div class="col-sm-3">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.lastname' | translate }}<span class="required">*</span></label>
+                                <label class="control-label col-sm-2">{{'label.input.lastname' | translate }}<span class="required">*</span></label>
 
                                 <div class="col-sm-3">
                                     <input id="lastname" type="text" name="lastname" ng-model="formData.lastname" class="form-control"
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.dob' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.dob' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="dob" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.first" class="form-control"
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.address' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.address' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="addressline1" type="text" placeholder="Line 1" class="form-control" ng-model="formData.addressLine1">
@@ -98,28 +98,28 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.city' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.city' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="city" type="text" class="form-control" ng-model="formData.city">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.zip' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.zip' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="zip" type="text" class="form-control" ng-model="formData.zip">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.mobile' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.mobile' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="mobile" type="text" class="form-control" ng-model="formData.mobile">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">{{ 'label.input.residence' | translate }}</label>
+                                <label class="control-label col-sm-2">{{'label.input.residence' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="residence" type="text" class="form-control" ng-model="formData.residence">
@@ -147,7 +147,7 @@
                             </div>
 
                             <div class="form-group" data-ng-show="accounts">
-                                <label class="control-label col-sm-2" for="savingsId">{{ 'label.input.account' | translate }}</label>
+                                <label class="control-label col-sm-2" for="savingsId">{{'label.input.account' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <select id="savingsId" ng-model="formData.savingsId" name="savingsId" class="form-control"
@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             <div class="form-group" data-ng-show="accounts">
-                                <label class="control-label col-sm-2" for="amount">{{ 'label.input.amount' | translate }}</label>
+                                <label class="control-label col-sm-2" for="amount">{{'label.input.amount' | translate }}</label>
 
                                 <div class="col-sm-3">
                                     <input id="amount" type="text" name="amount" ng-model="formData.amount" class="form-control" number-format
@@ -169,8 +169,8 @@
                             </div>
                     </div>
                     <div class="col-md-offset-2 paddedleft120">
-                        <a id="cancel" href="#!/viewloanaccount/{{loanId}}" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_GUARANTOR'>{{ 'label.button.save' | translate }}</button>
+                        <a id="cancel" href="#!/viewloanaccount/{{loanId}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_GUARANTOR'>{{'label.button.save' | translate }}</button>
                     </div>
                 </fieldset>
             </form>

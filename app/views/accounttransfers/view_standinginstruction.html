@@ -7,7 +7,7 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.viewstandinginstruction' | translate }}</h4>
+                <h4>{{'label.heading.viewstandinginstruction' | translate }}</h4>
             </div>
             <form class="form-horizontal" name="standinginstructionform" 
             novalidate="" rc-submit="submit()">
@@ -47,21 +47,21 @@
                                 <td>{{standinginstruction.status.value}}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.heading.fromaccounttype' | translate }}</td>
+                                <td>{{'label.heading.fromaccounttype' | translate }}</td>
 
                                 <td>
                                     {{standinginstruction.fromAccountType.value}}
                                 </td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.heading.fromaccount' | translate }}</td>
+                                <td>{{'label.heading.fromaccount' | translate }}</td>
 
                                 <td>
                                     {{standinginstruction.fromAccount.productName}} - {{standinginstruction.fromAccount.accountNo}}
                                 </td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.heading.destination' | translate }}</td>
+                                <td>{{'label.heading.destination' | translate }}</td>
 
                                 <td ng-show="allowclientedit">
                                  {{'label.heading.withinbank' | translate}}
@@ -71,22 +71,22 @@
                              </td>
                          </tr>
                          <tr>
-                            <td>{{ 'label.input.tooffice' | translate }}</td>
+                            <td>{{'label.input.tooffice' | translate }}</td>
                             <td >{{standinginstruction.toOffice.name}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.toclient' | translate }}</td>
+                            <td>{{'label.input.toclient' | translate }}</td>
                             <td >{{standinginstruction.toClient.displayName}}</td>
                         </tr>
                         <tr>
-                         <td>{{ 'label.input.toaccounttype' | translate }}</td>
+                         <td>{{'label.input.toaccounttype' | translate }}</td>
 
                          <td>
                             {{standinginstruction.toAccountType.value}}
                         </td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.input.toaccount' | translate }}</td>
+                        <td>{{'label.input.toaccount' | translate }}</td>
 
                         <td>
                             {{standinginstruction.toAccount.productName}} - {{standinginstruction.toAccount.accountNo}}
@@ -94,45 +94,45 @@
                     </tr>
 
                     <tr>
-                     <td>{{ 'label.input.instructiontype' | translate }}</td>
+                     <td>{{'label.input.instructiontype' | translate }}</td>
 
                      <td>{{standinginstruction.instructionType.value}}</td>
 
                  </tr>
                  <tr>
-                    <td>{{ 'label.input.amount' | translate }}</td>
+                    <td>{{'label.input.amount' | translate }}</td>
                     <td>{{standinginstruction.amount| number}}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'label.heading.validfrom' | translate }}</td> 
+                    <td>{{'label.heading.validfrom' | translate }}</td> 
                     <td>{{standinginstruction.validFrom | DateFormat}}</td>
                     <tr>
                     </tr>
-                    <td>{{ 'label.heading.validtill' | translate }}</td>
+                    <td>{{'label.heading.validtill' | translate }}</td>
 
                     <td>{{standinginstruction.validTill | DateFormat}}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'label.heading.recurrencetype' | translate }}</td>
+                    <td>{{'label.heading.recurrencetype' | translate }}</td>
                     <td>{{standinginstruction.recurrenceType.value}}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'label.heading.recurrenceinterval' | translate }}</td>
+                    <td>{{'label.heading.recurrenceinterval' | translate }}</td>
                     <td>{{standinginstruction.recurrenceInterval}}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'label.heading.recurrencefrequency' | translate }}</td>
+                    <td>{{'label.heading.recurrencefrequency' | translate }}</td>
                     <td>{{standinginstruction.recurrenceFrequency.value}}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'label.heading.recurrenceonmonthday' | translate }}</td>
+                    <td>{{'label.heading.recurrenceonmonthday' | translate }}</td>
                     <td>{{standinginstruction.recurrenceOnMonthDay | DayMonthFormat}}</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <a id="cancel" class="btn btn-sm btn-default" data-ng-click="cancel()" has-permission='READ_STANDINGINSTRUCTION'>{{ 'label.button.cancel' | translate }}</a>
-                        <a id="edit" class="btn btn-sm btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="standinginstruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{standinginstruction.id}}/view">{{ 'label.button.edit' | translate }}</a>
+                        <a id="cancel" class="btn btn-sm btn-default" data-ng-click="cancel()" has-permission='READ_STANDINGINSTRUCTION'>{{'label.button.cancel' | translate }}</a>
+                        <a id="edit" class="btn btn-sm btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="standinginstruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{standinginstruction.id}}/view">{{'label.button.edit' | translate }}</a>
                     </td>
                 </tr>
                 </table>

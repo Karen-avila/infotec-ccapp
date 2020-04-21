@@ -14,13 +14,13 @@
                     <table class="width100">
                         <tr class="form-group">
                             <td class="width11">
-                                <label class="control-label col-sm-2"><h4>{{ 'label.heading.reportdetails' | translate }}</h4></label>
+                                <label class="control-label col-sm-2"><h4>{{'label.heading.reportdetails' | translate }}</h4></label>
                             </td>
                             <td class="blockquoteresult width86" width="90%">
                                 <table>
                                     <tr>
                                         <td class="width30 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.reportname' | translate }}&nbsp;<span
+                                            <label class="control-label">{{'label.input.reportname' | translate }}&nbsp;<span
                                                     class="required">*</span></label>
 
                                             <div class="form-inline">
@@ -31,7 +31,7 @@
                                             </div>
                                         </td>
                                         <td class="width20 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.reporttype' | translate }}&nbsp;<span
+                                            <label class="control-label">{{'label.input.reporttype' | translate }}&nbsp;<span
                                                     class="required">*</span></label>
                                             <select id="reportType" ng-model="formData.reportType" class="form-control width170px"
                                                     ng-options="reportType for reportType in reportdetail.allowedReportTypes"
@@ -39,7 +39,7 @@
                                             </select>
                                         </td>
                                         <td class="width20 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.reportsubtype' | translate }}&nbsp;</label>
+                                            <label class="control-label">{{'label.input.reportsubtype' | translate }}&nbsp;</label>
                                             <select id="reportSubType" ng-model="formData.reportSubType" class="form-control width170px"
                                                     ng-options="reportSubType for reportSubType in reportdetail.allowedReportSubTypes"
                                                     value="">
@@ -49,7 +49,7 @@
                                     </tr>
                                     <tr>
                                         <td class="width30 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.reportcategory' | translate
+                                            <label class="control-label">{{'label.input.reportcategory' | translate
                                                 }}&nbsp;</label>
 
                                             <div class="form-inline">
@@ -59,7 +59,7 @@
                                         <td class="width20">
                                         </td>
                                         <td class="width20 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.userreportui' | translate }}</label>
+                                            <label class="control-label">{{'label.input.userreportui' | translate }}</label>
                                             <label class="checkbox margintopminustenpx">
                                                 <input type="checkbox" ng-model="formData.useReport" ng-true-value="true"
                                                        ng-false-value="false">
@@ -68,7 +68,7 @@
                                     </tr>
                                     <tr>
                                         <td class="width30 paddedbottom10">
-                                            <label class="control-label">{{ 'label.input.description' | translate }}</label>
+                                            <label class="control-label">{{'label.input.description' | translate }}</label>
                                             <div class="form-inline">
                                             <textarea id="description" class="form-control" rows="2" ng-model="formData.description"></textarea>
                                             </div>
@@ -86,7 +86,7 @@
                                     <div data-ng-switch-when="Pentaho"></div>
                                     <div data-ng-switch-when="Jasper"></div>
                                     <div data-ng-switch-default>
-                                        <label class="control-label col-sm-2"><h4>{{ 'label.heading.sql' | translate }}</h4></label>
+                                        <label class="control-label col-sm-2"><h4>{{'label.heading.sql' | translate }}</h4></label>
                                     </div>
                                 </div>
                             </td>
@@ -101,7 +101,7 @@
                                             <table class="width100">
                                                 <tr>
                                                     <td>
-                                                        <label class="control-label">{{ 'label.input.sql' | translate }}<span
+                                                        <label class="control-label">{{'label.input.sql' | translate }}<span
                                                                 class="required">*</span></label>
                                                         <textarea class="form-control width100" id="reportSql" rows="4" name="sql" ng-model="formData.reportSql"
                                                                   required></textarea>
@@ -119,7 +119,7 @@
 
                         <tr class="form-group">
                             <td class="width11">
-                                <label class="control-label col-sm-2"><h4>{{ 'label.heading.reportparameters' | translate }}</h4></label>
+                                <label class="control-label col-sm-2"><h4>{{'label.heading.reportparameters' | translate }}</h4></label>
                             </td>
                             <td class="blockquoteresult width86">
                                 <form class="form-inline">
@@ -130,7 +130,7 @@
                                         </option>
                                     </select>
                                     <a class="btn btn-sm btn-primary" ng-click="parameterSelected(allowedParameterId)"><i class="fa fa-plus "></i>
-                                        &nbsp;&nbsp;{{ 'label.button.add' | translate }}
+                                        &nbsp;&nbsp;{{'label.button.add' | translate }}
                                     </a>
                                 </form>
                                 <table data-ng-show="flag" class="table" width="50%">

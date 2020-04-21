@@ -8,7 +8,7 @@
                 <api-validate></api-validate>
                 <form class="form-horizontal" name="standinginstructionform" novalidate="" rc-submit="submit()">
                     <fieldset>
-                        <legend>{{ 'label.heading.liststandinginstruction' | translate }}</legend>
+                        <legend>{{'label.heading.liststandinginstruction' | translate }}</legend>
                          <div ng-hide="isCollapsed" width="100%" >
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="transferType">{{'label.heading.type' | translate}}</label>
@@ -22,25 +22,25 @@
                             </div>
                         </div>
                         <div class="form-group" ng-hide="fromClient">
-                            <label class="control-label col-sm-2" for="clientname">{{ 'label.heading.clientname' | translate }}</label>
+                            <label class="control-label col-sm-2" for="clientname">{{'label.heading.clientname' | translate }}</label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text" id="clientname" name="clientname" ng-model="formData.clientName"/>
                             </div>
-                            <label class="control-label col-sm-2" >{{ 'label.heading.or' | translate }}</label>
-                            <label class="control-label col-sm-2" for="clientid">{{ 'label.heading.clientid' | translate }}</label>
+                            <label class="control-label col-sm-2" >{{'label.heading.or' | translate }}</label>
+                            <label class="control-label col-sm-2" for="clientid">{{'label.heading.clientid' | translate }}</label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text" id="clientid" name="clientid" ng-model="formData.fromClientId"/>
                             </div>
                         </div>
                         <div class="form-group" ng-show="fromClient">
-                            <label class="control-label col-sm-2" for="clientname1">{{ 'label.heading.clientname' | translate }}</label>
+                            <label class="control-label col-sm-2" for="clientname1">{{'label.heading.clientname' | translate }}</label>
                             <div class="col-sm-3">
                                 {{formData.clientName}}
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="fromAccountId">{{ 'label.heading.fromaccountid' | translate }}</label>
+                            <label class="control-label col-sm-2" for="fromAccountId">{{'label.heading.fromaccountid' | translate }}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="fromAccountId" name="fromAccountId" ng-model="formData.fromAccountId"/>
                             </div>

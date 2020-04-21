@@ -14,11 +14,11 @@
     <form name="newsavingccountform" novalidate="" class="well form-inline card" rc-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
-            <h3>{{ 'label.heading.details' | translate }}</h3>
+            <h3>{{'label.heading.details' | translate }}</h3>
             <table class="" style="border-spacing: 10px; border-collapse: separate">
                 <tr>
                     <td class="width14">
-                        <label>{{ 'label.input.product' | translate }}
+                        <label>{{'label.input.product' | translate }}
                             <span class="required">*</span>:&nbsp;</label>
                     </td>
                     <td class="width36 paddedbottom20">
@@ -28,7 +28,7 @@
                         </select>
                     </td>
                     <td class="width14">
-                        <label ng-show="formData.productId" class="control-label">{{ 'label.input.submittedon' | translate }}&nbsp;
+                        <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate }}&nbsp;
                             <span class="required">*</span>
                         </label>
                     </td>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr ng-show="formData.productId">
                     <td class="width14">
-                        <label>{{ 'label.input.fieldofficer' | translate }}:&nbsp;</label>
+                        <label>{{'label.input.fieldofficer' | translate }}:&nbsp;</label>
                     </td>
                     <td class="width36 paddedbottom20">
                         <select id="fieldOfficerId" ng-model="formData.fieldOfficerId" class="form-control width170px" ng-options="fieldOfficer.id as fieldOfficer.displayName for fieldOfficer in fieldOfficers"
@@ -52,13 +52,13 @@
                 </tr>
             </table>
             <hr data-ng-show="formData.productId" />
-            <h3 ng-show="data">{{ 'label.heading.terms' | translate }}</h3>
+            <h3 ng-show="data">{{'label.heading.terms' | translate }}</h3>
 
             <div ng-show="data">
                 <table class="" style="border-spacing: 10px; border-collapse: separate">
                     <tr>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.heading.currency' | translate }}</label>
+                            <label class="control-label">{{'label.heading.currency' | translate }}</label>
                         </td>
                         <td class="width36">
                             <label>
@@ -66,7 +66,7 @@
                             </label>
                         </td>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.heading.decimalplaces' | translate}}</label>
+                            <label class="control-label">{{'label.heading.decimalplaces' | translate}}</label>
                         </td>
                         <td class="width36">
                             <label>
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.interestcompoundingperiod' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.interestcompoundingperiod' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -85,7 +85,7 @@
                                 value="{{type.id}}" class="form-control width170px"></select>
                         </td>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.interestpostingperiod' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.interestpostingperiod' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -97,7 +97,7 @@
                     </tr>
                     <tr>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.interestcalculatedusing' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.interestcalculatedusing' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -107,7 +107,7 @@
                             </select>
                         </td>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.daysinyears' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.daysinyears' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -120,7 +120,7 @@
                     </tr>
                     <tr>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.lockinPeriodFrequency' | translate }}</label>
+                            <label class="control-label">{{'label.input.lockinPeriodFrequency' | translate }}</label>
                         </td>
                         <td class="width36 paddedbottom20">
                             <div class="form-inline">
@@ -143,17 +143,17 @@
                         <td colspan="4" class="paddedbottom20">
                             <div class="form-inline">
                                 <input id="isMandatoryDeposit" type="checkbox" ng-model="formData.isMandatoryDeposit"> &nbsp;&nbsp;
-                                <label class="control-label">{{ 'label.checkbox.ismandatory.deposit' | translate }}&nbsp;</label>
+                                <label class="control-label">{{'label.checkbox.ismandatory.deposit' | translate }}&nbsp;</label>
                                 <input id="allowWithdrawal" type="checkbox" ng-model="formData.allowWithdrawal"> &nbsp;&nbsp;
-                                <label class="control-label">{{ 'label.checkbox.allowWithdrawal' | translate }}&nbsp;</label>
+                                <label class="control-label">{{'label.checkbox.allowWithdrawal' | translate }}&nbsp;</label>
                                 <input id="adjustAdvanceTowardsFuturePayments" type="checkbox" ng-model="formData.adjustAdvanceTowardsFuturePayments"> &nbsp;&nbsp;
-                                <label class="control-label">{{ 'label.checkbox.adjustAdvanceTowardsFuturePayments' | translate }}&nbsp;</label>
+                                <label class="control-label">{{'label.checkbox.adjustAdvanceTowardsFuturePayments' | translate }}&nbsp;</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="width14 paddedbottom20">
-                            <label class="control-label">{{ 'label.input.mandatory.recommended.deposit.amount' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.mandatory.recommended.deposit.amount' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -163,7 +163,7 @@
                             <form-validate valattributeform="newsavingccountform" valattribute="mandatoryRecommendedDepositAmount" />
                         </td>
                         <td class="width14 paddedbottom20">
-                            <label class="control-label">{{ 'label.input.depositperiod' | translate }}&nbsp;</label>
+                            <label class="control-label">{{'label.input.depositperiod' | translate }}&nbsp;</label>
                         </td>
 
                         <td class="width36 paddedbottom20">
@@ -180,13 +180,13 @@
                         <td colspan="4" class="paddedbottom20">
                             <div class="form-inline">
                                 <input id="isCalendarInherited" type="checkbox" ng-model="formData.isCalendarInherited">
-                                <label class="control-label">{{ 'label.input.same.as.group.meeting' | translate }}</label>
+                                <label class="control-label">{{'label.input.same.as.group.meeting' | translate }}</label>
                             </div>
                         </td>
                     </tr>
                     <tr ng-show="!formData.isCalendarInherited">
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.deposit.start.date' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.deposit.start.date' | translate }}&nbsp;
                             </label>
                         </td>
                         <td class="width14">
@@ -194,7 +194,7 @@
                                 is-open="opened" min="minDate" class="form-control" />
                         </td>
                         <td class="width14">
-                            <label class="control-label">{{ 'label.input.recurring.frequency' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.recurring.frequency' | translate }}&nbsp;
                                 <span class="required">*</span>
                             </label>
                         </td>
@@ -215,34 +215,34 @@
                     </tr>
                 </table>
                 <hr data-ng-show="formData.productId" />
-                <h3 ng-show="data">{{ 'label.heading.settings' | translate }}</h3>
+                <h3 ng-show="data">{{'label.heading.settings' | translate }}</h3>
 
                 <table class="" style="border-spacing: 10px; border-collapse: separate">
                     <tr>
                         <td colspan="2" class="width50">
-                            <label class="control-label">{{ 'label.input.minimumdepositterm' | translate }}:&nbsp;&nbsp;{{formData.minDepositTerm}}-{{data.minDepositTermType.value}}
+                            <label class="control-label">{{'label.input.minimumdepositterm' | translate }}:&nbsp;&nbsp;{{formData.minDepositTerm}}-{{data.minDepositTermType.value}}
                             </label>
                         </td>
                         <td colspan="2" class="width50">
-                            <label class="control-label">{{ 'label.input.inmultiplesof' | translate }}:&nbsp;&nbsp; {{formData.inMultiplesOfDepositTerm}}-{{data.inMultiplesOfDepositTermType.value}}
+                            <label class="control-label">{{'label.input.inmultiplesof' | translate }}:&nbsp;&nbsp; {{formData.inMultiplesOfDepositTerm}}-{{data.inMultiplesOfDepositTermType.value}}
                             </label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <label class="control-label">{{ 'label.input.maximumdepositterm' | translate }}:&nbsp;&nbsp;{{formData.maxDepositTerm}}-{{data.maxDepositTermType.value}}
+                            <label class="control-label">{{'label.input.maximumdepositterm' | translate }}:&nbsp;&nbsp;{{formData.maxDepositTerm}}-{{data.maxDepositTermType.value}}
                             </label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <label class="control-label">{{ 'label.prematureclosure' | translate }}&nbsp;</label>
+                            <label class="control-label">{{'label.prematureclosure' | translate }}&nbsp;</label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="4">
                             <div class="form-inline" data-ng-show="formData.preClosurePenalApplicable">
-                                <label class="control-label">{{ 'label.checkbox.applypreclosurepenalinterest' | translate }}&nbsp;&nbsp;{{formData.preClosurePenalInterest
+                                <label class="control-label">{{'label.checkbox.applypreclosurepenalinterest' | translate }}&nbsp;&nbsp;{{formData.preClosurePenalInterest
                                     | number}}&nbsp;&nbsp;-&nbsp;&nbsp;On&nbsp;&nbsp;{{data.preClosurePenalInterestOnType.value}}</label>
                             </div>
                         </td>
@@ -254,10 +254,10 @@
                     <tr ng-show="data.taxGroup">
                         <td colspan="2" class="paddedbottom20">
                             <input type="checkbox" ng-model="formData.withHoldTax"> &nbsp;
-                            <span class="control-label">{{ 'label.input.withholdtax' | translate }}&nbsp;</span>
+                            <span class="control-label">{{'label.input.withholdtax' | translate }}&nbsp;</span>
                         </td>
                         <td class="width14" ng-show="formData.withHoldTax">
-                            <label class="control-label">{{ 'label.input.taxgroup' | translate }}&nbsp;
+                            <label class="control-label">{{'label.input.taxgroup' | translate }}&nbsp;
                             </label>
                         </td>
                         <td class="width36 paddedbottom20" ng-show="formData.withHoldTax">
@@ -266,16 +266,16 @@
                     </tr>
                 </table>
                 <hr data-ng-show="formData.productId" />
-                <h3 ng-show="data">{{ 'label.heading.settings' | translate }}</h3>
+                <h3 ng-show="data">{{'label.heading.settings' | translate }}</h3>
 
                 <table class="" style="border-spacing: 10px; border-collapse: separate">
                     <tr>
                         <td class="width50">
-                            <label class="control-label">{{ 'label.input.interestratechart.valid.from' | translate }}
+                            <label class="control-label">{{'label.input.interestratechart.valid.from' | translate }}
                                 <span class="required">*</span>: {{fromDate.date | DateFormat}}</label>
                         </td>
                         <td class="width50">
-                            <label class="control-label">{{ 'label.input.interestratechart.valid.to' | translate}}: {{endDate.date | DateFormat}}</label>
+                            <label class="control-label">{{'label.input.interestratechart.valid.to' | translate}}: {{endDate.date | DateFormat}}</label>
                         </td>
                     </tr>
                     <tr>
@@ -308,7 +308,7 @@
                     </tr>
                 </table>
                 <hr/>
-                <h3 class="control-label">{{ 'label.heading.charges' | translate }}</h3>
+                <h3 class="control-label">{{'label.heading.charges' | translate }}</h3>
                 <br>
                 <select ng-model="chargeId" ng-options="charge.id as (charge.name + ',' + charge.currency.displaySymbol) for charge in chargeOptions|filter:data.currency.code:strict"
                     value="{{charge.id}}" class="form-control width170px">
@@ -366,8 +366,8 @@
                 </table>
             </div>
             <div class="paddedtop col-md-offset-5">
-                <button id="cancel" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</button>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="data">{{ 'label.button.save' | translate }}
+                <button id="cancel" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
+                <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="data">{{'label.button.save' | translate }}
                 </button>
             </div>
             <script type="text/ng-template" id="incentive.html">

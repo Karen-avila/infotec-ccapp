@@ -19,9 +19,6 @@
                     }
                     scope.datatableLoaded = true;
                 }
-                console.log("=============================");
-                console.log(JSON.stringify(scope.datatabledetails));
-
             });
             scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({

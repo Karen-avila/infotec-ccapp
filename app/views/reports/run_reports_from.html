@@ -8,10 +8,10 @@
 	                    'label.button.parameters' | translate }}
 	                </button>
 	                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypePie()">
-	                    {{ 'label.input.piechart' | translate }}
+	                    {{'label.input.piechart' | translate }}
 	                </button>
 	                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypeBar()">
-	                    <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;{{ 'label.input.barchart' | translate }}
+	                    <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;{{'label.input.barchart' | translate }}
 	                </button>
 	          </span>
 	    </div>
@@ -49,23 +49,23 @@
 	            </div>
 	        </div>
 	        <div class="form-group info" ng-show="reportType == 'Pentaho' || reportType == 'Jasper' ">
-	            <label class="control-label col-sm-2" for="outputType">{{ 'label.input.outputtype' | translate }}</label>
+	            <label class="control-label col-sm-2" for="outputType">{{'label.input.outputtype' | translate }}</label>
 
 	            <div class="col-sm-3">
 	                <select class="form-control input-xlarge" ng-model="formData.outputType">
-	                    <option value="HTML">{{ 'label.input.showreport' | translate }}</option>
-	                    <option value="XLS">{{ 'label.input.exportexcel' | translate }}</option>
-	                    <option value="XLSX">{{ 'label.input.exportexcel2' | translate }}</option>
-	                    <option value="CSV">{{ 'label.input.exportcsv' | translate }}</option>
-	                    <option value="PDF">{{ 'label.input.pdfformat' | translate }}</option>
+	                    <option value="HTML">{{'label.input.showreport' | translate }}</option>
+	                    <option value="XLS">{{'label.input.exportexcel' | translate }}</option>
+	                    <option value="XLSX">{{'label.input.exportexcel2' | translate }}</option>
+	                    <option value="CSV">{{'label.input.exportcsv' | translate }}</option>
+	                    <option value="PDF">{{'label.input.pdfformat' | translate }}</option>
 	                </select>
 	            </div>
 	        </div>
 	        <div class="form-group info">
-	            <label class="control-label col-sm-2" for="decimalsChoice">{{ 'label.input.decimalplace' | translate }}</label>
+	            <label class="control-label col-sm-2" for="decimalsChoice">{{'label.input.decimalplace' | translate }}</label>
 				<div class="col-sm-3">
 					<select id="decimalsChoice"  class="form-control input-xlarge" ng-model="decimalsChoice">
-			            <option value="">{{ 'label.input.no.decimalplaces' | translate }}</option>
+			            <option value="">{{'label.input.no.decimalplaces' | translate }}</option>
 			            <option value="4">4</option>
 			            <option value="3">3</option>
 			            <option value="2">2</option>
@@ -76,7 +76,7 @@
 	        </div>
 
 	        <span class="col-md-offset-3 paddedleft120"><a id="run" ng-click="runReport()" class="btn btn-sm btn-primary">
-	        <i class="fa fa-play"></i>&nbsp;&nbsp;{{ 'label.button.runreport' | translate }}</a></span>
+	        <i class="fa fa-play"></i>&nbsp;&nbsp;{{'label.button.runreport' | translate }}</a></span>
 	    </div>
 	    <div style="visibility: hidden">
 	        <table>
