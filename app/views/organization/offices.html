@@ -13,7 +13,7 @@
                             class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</a>
                     <a href="#!/createoffice" class="btn btn-sm btn-primary" has-permission='CREATE_OFFICE'><i
                             class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</a>&nbsp;&nbsp;
-                    <a href="#!/bulkimportoffices" class="btn btn-primary pull-right" has-permission='CREATE_OFFICE'><i
+                    <a href="#!/bulkimportoffices" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_OFFICE'><i
                             + class="fa fa-upload"></i>&nbsp;{{'label.button.importoffices' | translate}}</a>
                 </div>
             </div>
@@ -27,6 +27,8 @@
                     <thead>
                         <tr class="graybg">
                             <th>{{'label.heading.officeName' | translate}}</th>
+                            <th>{{'label.heading.office.cityid' | translate}}</th>
+                            <th>{{'label.heading.office.branchid' | translate}}</th>
                             <th>{{'label.heading.externalid' | translate}}</th>
                             <th>{{'label.heading.parentoffice' | translate}}</th>
                             <th>{{'label.heading.openedon' | translate}}</th>
@@ -36,6 +38,8 @@
                         <tr class="pointer-main"
                             dir-paginate="office in offices | orderBy:'name':reverse  | filter:filterText |  itemsPerPage: OfficesPerPage">
                             <td class="pointer" data-ng-click="routeTo(office.id)">{{office.name}}</td>
+                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.city}}</td>
+                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.branch}}</td>
                             <td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>
                             <td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
                             <td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}

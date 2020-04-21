@@ -75,7 +75,7 @@
 
                       <span ng-show="buttons.options" uib-dropdown  class="btn-group dropdown" on-toggle="toggled(open)">
                           <a class="btn btn-sm btn-primary" uib-dropdown-toggle>
-                              {{ 'label.button.more' | translate}}
+                              {{'label.button.more' | translate}}
                               <span class="caret"></span>
                           </a>
                           <ul style='margin-left:-95px;' class="dropdown dropdown-menu">
@@ -433,35 +433,35 @@
                                 <td><span class="padded-td">{{loandetails.topupAmount| number}}</span></td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.input.recalculateinterest' | translate }}</td>
+                                <td>{{'label.input.recalculateinterest' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.isInterestRecalculationEnabled | translate }}</span></td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.input.daysinyears' | translate }}</td>
+                                <td>{{'label.input.daysinyears' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.daysInYearType.value | translate}}</span></td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.input.daysinmonth' | translate }}</td>
+                                <td>{{'label.input.daysinmonth' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.daysInMonthType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
-                                <td>{{ 'label.input.interest.recalculation.compounding.method' | translate }}</td>
+                                <td>{{'label.input.interest.recalculation.compounding.method' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.interestRecalculationData.interestRecalculationCompoundingType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
-                                <td>{{ 'label.input.interest.recalculation.reschdule.strategy' | translate }}</td>
+                                <td>{{'label.input.interest.recalculation.reschdule.strategy' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.interestRecalculationData.rescheduleStrategyType.value | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled">
-                                <td>{{ 'label.input.frequency.for.recalculte.outstanding.principal' | translate }}</td>
+                                <td>{{'label.input.frequency.for.recalculte.outstanding.principal' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.interestRecalculationData.calendarData.humanReadable | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isInterestRecalculationEnabled && loandetails.interestRecalculationData.interestRecalculationCompoundingType.id !=0">
-                                <td>{{ 'label.input.frequency.for.compounding' | translate }}</td>
+                                <td>{{'label.input.frequency.for.compounding' | translate }}</td>
                                 <td><span class="padded-td">{{ loandetails.interestRecalculationData.compoundingCalendarData.humanReadable | translate}}</span></td>
                             </tr>
                             <tr data-ng-show="loandetails.isVariableInstallmentsAllowed">
-                                <td>{{ 'label.input.variable.installments.allowed' | translate }}</td>
+                                <td>{{'label.input.variable.installments.allowed' | translate }}</td>
                                 <td><span class="padded-td">{{loandetails.isVariableInstallmentsAllowed | translate}}</span></td>
                             </tr>
 
@@ -705,7 +705,7 @@
                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="viewJournalEntries()" style="margin-right: 8px;">{{'label.button.viewjournalentries' | translate}}</button>
                         <div class="pull-right">
                             <input type="checkbox" data-ng-model="hideAccrualTransactions" ng-init = "hideAccuralTransactions = true">&nbsp;
-                            <label class="control-label">{{ 'label.input.hide.accrual.transactions' | translate }}</label>&nbsp;&nbsp;
+                            <label class="control-label">{{'label.input.hide.accrual.transactions' | translate }}</label>&nbsp;&nbsp;
                         </div>
                         <br>
                         <table class="table">
@@ -821,11 +821,11 @@
                                 <td align="right">
                                 <a type="button" ng-show="showAddDeleteTrancheButtons('adddisbursedetails')" class="btn btn-sm btn-primary" align="right"
                                    href="#!/loandisbursedetail/{{loandetails.id}}/adddisbursedetails">
-                                    <i class="fa fa-plus"></i>{{ 'label.button.add' | translate }}
+                                    <i class="fa fa-plus"></i>{{'label.button.add' | translate }}
                                 </a>
                                     <a type="button" ng-show="showAddDeleteTrancheButtons('deletedisbursedetails')" class="btn btn-danger" align="right"
                                        href="#!/loandisbursedetail/{{loandetails.id}}/deletedisbursedetails">
-                                        <i class="fa fa-trash"></i>{{ 'label.button.delete' | translate }}
+                                        <i class="fa fa-trash"></i>{{'label.button.delete' | translate }}
                                     </a>
                                 </td>
                             </tr>
@@ -975,7 +975,7 @@
                         </div>
                     </uib-tab>
 
-                    <uib-tab heading="{{ 'label.heading.notes' | translate }}" has-permission='READ_LOANNOTE'>
+                    <uib-tab heading="{{'label.heading.notes' | translate }}" has-permission='READ_LOANNOTE'>
                         <br/>
 
                         <form>

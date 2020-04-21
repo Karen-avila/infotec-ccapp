@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewClientChargeController">
         <ul class="breadcrumb">
             <li><a ng-href="#!/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
-            <li class="active">{{ 'label.anchor.viewcharge' | translate }}</li>
+            <li class="active">{{'label.anchor.viewcharge' | translate }}</li>
         </ul>
     <div class="card well">
         <h3 class="bolder"><i class="fa fa-stop  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;&nbsp;{{charge.name}}
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row">
-            <h3>{{ 'label.heading.transactions' | translate}}</h3>
+            <h3>{{'label.heading.transactions' | translate}}</h3>
             <table id="transactionsTable" data-ng-show="charge.clientTransactionDatas.length > 0"
                    class="table table-condensed">
                 <tr class="graybg">

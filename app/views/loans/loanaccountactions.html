@@ -23,7 +23,7 @@
                             <td ng-show="addDisburseDetails" align="right">
                                 <legend>
                                     <button type="button" class="btn btn-sm btn-primary" align="right"
-                                        ng-click="addTranches()">{{ 'label.button.add' | translate }}
+                                        ng-click="addTranches()">{{'label.button.add' | translate }}
                                     </button>
                                 </legend>
                             </td>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="showApprovalAmount">
-                        <label class="control-label col-sm-3">{{ 'label.heading.approvedamount' |
+                        <label class="control-label col-sm-3">{{'label.heading.approvedamount' |
                     translate}}</label>
 
                         <div class="col-sm-6">
@@ -60,14 +60,14 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-3" ng-show="approveTranches" style="width: 100%;padding-left: 26px">
-                        <label class="control-label col-sm-3">{{ 'label.heading.tranchedetails' | translate }}</label>
+                        <label class="control-label col-sm-3">{{'label.heading.tranchedetails' | translate }}</label>
 
                         <div>
                             <table style="width:80%" class="table table-bordered">
                                 <tr>
                                     <td colspan="5" align="right">
                                         <button type="button" class="btn btn-sm btn-primary"
-                                            ng-click="addTranches()">{{ 'label.button.addTranche' | translate }}
+                                            ng-click="addTranches()">{{'label.button.addTranche' | translate }}
                                         </button>
                                     </td>
                                 </tr>
@@ -104,7 +104,7 @@
                     </div>
                     <div ng-show="disbursementDetails">
                         <div class="form-group" ng-show="showApprovalAmount">
-                            <label class="control-label col-sm-3" for="approvedAmount">{{ 'label.input.transactionamount' |
+                            <label class="control-label col-sm-3" for="approvedAmount">{{'label.input.transactionamount' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-show="showAmountField">
-                            <label class="control-label col-sm-3" for="transactionAmount">{{ 'label.input.transactionamount' |
+                            <label class="control-label col-sm-3" for="transactionAmount">{{'label.input.transactionamount' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="form-group" ng-show="principalPortion">
-                            <label class="control-label col-sm-3" for="principalPortion">{{ 'label.input.principal' |
+                            <label class="control-label col-sm-3" for="principalPortion">{{'label.input.principal' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -137,7 +137,7 @@
                         </div>
 
                         <div class="form-group" ng-show="interestPortion">
-                            <label class="control-label col-sm-3" for="interestPortion">{{ 'label.input.interest' |
+                            <label class="control-label col-sm-3" for="interestPortion">{{'label.input.interest' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="form-group" ng-show="feeChargesPortion">
-                            <label class="control-label col-sm-3" for="feeChargesPortion">{{ 'label.input.fees' |
+                            <label class="control-label col-sm-3" for="feeChargesPortion">{{'label.input.fees' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="form-group" ng-show="isLoanWriteOff">
-                            <label class="control-label col-sm-3" for="writeOffAmount">{{ 'label.input.amount' |
+                            <label class="control-label col-sm-3" for="writeOffAmount">{{'label.input.amount' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -167,12 +167,12 @@
                         </div>
 
                         <div class="form-group" ng-show="showPenaltyPortionDisplay">
-                            <label class="col-sm-3" for="transactionAmount">{{ 'label.input.payspenaltyportion' |
+                            <label class="col-sm-3" for="transactionAmount">{{'label.input.payspenaltyportion' |
                         translate}}</label>
                         </div>
 
                         <div class="form-group" ng-show="showEMIAmountField">
-                            <label class="control-label col-sm-3" for="fixedEmiAmount">{{ 'label.input.fixedemiamount' |
+                            <label class="control-label col-sm-3" for="fixedEmiAmount">{{'label.input.fixedemiamount' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -183,7 +183,7 @@
                     </div>
                     <div ng-show="isTransaction">
                         <div class="form-group" ng-show="action == 'disburse'">
-                            <label class="control-label col-sm-3" for="fundId">{{ 'label.input.fundsource' |
+                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -195,7 +195,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
-                                for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
+                                for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
                                 <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
                                     ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
@@ -206,7 +206,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
-                                for="channelId">{{ 'label.input.channel' | translate}}</label>
+                                for="channelId">{{'label.input.channel' | translate}}</label>
                             <div class="col-sm-6">
                                 <select id="channelId" ng-model="formData.channelId" class="form-control"
                                     ng-options="channel.id as channel.name for channel in channelOptions"
@@ -244,7 +244,7 @@
                     </div>
 
                     <div class="form-group" ng-show="showNoteField">
-                        <label class="control-label col-sm-3" for="note">{{ 'label.input.note' | translate}}</label>
+                        <label class="control-label col-sm-3" for="note">{{'label.input.note' | translate}}</label>
 
                         <div class="col-sm-6">
                             <textarea id="note" rows="2" class="form-control" ng-model="formData.note"></textarea>
@@ -252,7 +252,7 @@
                     </div>
                     <div class="form-group" ng-show="installmentchargeField">
                         <label class="control-label col-sm-3"
-                            for="note">{{ 'label.input.installment' | translate}}</label>
+                            for="note">{{'label.input.installment' | translate}}</label>
 
                         <div class="col-sm-6">
                             <select id="installmentNumber" ng-model="formData.installmentNumber" class="form-control"
@@ -271,7 +271,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="showEditChargeAmount">
-                        <label class="control-label col-sm-3">{{ 'label.input.amount' | translate}}<span
+                        <label class="control-label col-sm-3">{{'label.input.amount' | translate}}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
@@ -297,7 +297,7 @@
                                 is-open="opened" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3">{{ 'label.heading.principal' |
+                            <label class="control-label col-sm-3">{{'label.heading.principal' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -373,10 +373,10 @@
                         <div ng-hide="isEntityDatatables">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
                                 <label
-                                    class="control-label col-sm-2 col-md-offset-10">{{ 'label.areyousure' | translate}}</label>
+                                    class="control-label col-sm-2 col-md-offset-10">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-8 pull-right" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
+                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' |
                             translate}}
                                 </button>
                                 <button type="submit" has-permission='{{taskPermissionName}}' wz-next
@@ -386,7 +386,7 @@
                                 </button>
                             </div>
                             <div class="col-md-8 pull-right" ng-hide="showDelete || showwaiveforspecicficduedate">
-                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{ 'label.button.cancel' |
+                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                             translate}}
                                 </button>
                                 <button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
@@ -476,10 +476,10 @@
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <label class="control-label col-sm-3">{{ 'label.areyousure' | translate}}</label>
+                                <label class="control-label col-sm-3">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-offset-2" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
+                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' |
                                     translate}}
                                 </button>
                                 <button type="submit" has-permission='{{taskPermissionName}}' wz-next
@@ -489,7 +489,7 @@
                                 </button>
                             </div>
                             <div class="col-md-offset-2" ng-hide="showDelete || showwaiveforspecicficduedate">
-                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{ 'label.button.cancel' |
+                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                     translate}}
                                 </button>
                                 <button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next

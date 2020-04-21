@@ -23,7 +23,7 @@
   <script type="text/ng-template" id="confirmation.html">
     <div class="modal-header silver">
         <h3 class="bolder">{{'label.transactionreverse' | translate}}</h3>
-        <h4><strong class="required">{{ 'label.heading.transactionnumber' | translate }}&nbsp;:&nbsp;&nbsp;<b>{{transactionnumber}}</b></strong>
+        <h4><strong class="required">{{'label.heading.transactionnumber' | translate }}&nbsp;:&nbsp;&nbsp;<b>{{transactionnumber}}</b></strong>
         </h4>
     </div>
     <div class="modal-footer">
@@ -79,7 +79,7 @@
                 <td>{{'label.heading.paymentdetails' | translate}}</td>
             </tr>
             <tr>
-                <td>{{ 'label.input.paymentypeid' | translate}}</td>
+                <td>{{'label.input.paymentypeid' | translate}}</td>
                 <td> {{transaction.transactionDetails.paymentDetails.paymentType.name}}</td>
             </tr>
             <tr>
@@ -124,7 +124,7 @@
         <api-validate></api-validate>
         <br>
         <div class="form-group">
-            <label class="control-label col-sm-2">{{ 'label.input.comments' | translate }}</label>
+            <label class="control-label col-sm-2">{{'label.input.comments' | translate }}</label>
             <textarea rows="4" ng-model="data.reverseComments"></textarea>
         </div>
         <br>
@@ -138,13 +138,13 @@
         <div class="col-md-11">
           <span>
             <strong class="h4"
-              >{{ 'label.heading.transactionnumber' | translate
+              >{{'label.heading.transactionnumber' | translate
               }}&nbsp;-&nbsp;{{transactionNumber}}</strong
             >
             <div class="pull-right" ng-show="manualEntry">
               <span class="required" data-ng-show="!flag"
                 ><strong
-                  >{{ 'label.transactionisreversedonce' | translate }}</strong
+                  >{{'label.transactionisreversedonce' | translate }}</strong
                 ></span
               >
               <div class="btn-group">

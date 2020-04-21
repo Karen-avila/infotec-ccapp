@@ -107,7 +107,7 @@
                                     ><i class="fa fa-eye "></i></button>
                             <a has-permission='READ_SAVINGSACCOUNT' id="viewtransactions"
                                href="#!/viewguarantortransactions/{{guarantorfund.savingsAccount.id}}/{{guarantorfund.id}}/listguarantors/{{guarantor.loanId}}"
-                               class="btn btn-sm btn-default">{{ 'label.button.viewtransactions' |
+                               class="btn btn-sm btn-default">{{'label.button.viewtransactions' |
                                 translate }}</a>
                             <button class="btn btn-warning"
                                     data-ng-show="guarantorfund.status.code == 'guarantorFundStatusType.active'"
@@ -232,7 +232,7 @@
 
             <div ng-show="guarantorDetails" class="col-md-offset-10"
                 style="margin-bottom: 40px">
-                <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
+                <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' |
                     translate }}</a>
             </div>
         </div>

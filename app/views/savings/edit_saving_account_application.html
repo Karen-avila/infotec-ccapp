@@ -7,7 +7,7 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.editsavingapplication' | translate }}</h4>
+                <h4>{{'label.heading.editsavingapplication' | translate }}</h4>
             </div>
             <br />
             <form name="editsavingccountform" novalidate="" class="form-inline" rc-submit="         submit()">
@@ -15,7 +15,7 @@
                     <table class="width100">
                         <tr>
                             <td class="width19">
-                                <label>{{ 'label.input.product' | translate }}<span
+                                <label>{{'label.input.product' | translate }}<span
                                         class="required">*</span>:&nbsp;</label>
                             </td>
                             <td class="width31 paddedbottom10">
@@ -28,7 +28,7 @@
                                 </select>
                             </td>
                             <td class="width19">
-                                <label ng-show="formData.productId" class="control-label">{{ 'label.input.submittedon' | translate
+                                <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate
                         }}&nbsp;<span class="required">*</span></label>
                             </td>
                             <td class="width31 paddedbottom10">
@@ -39,7 +39,7 @@
                         </tr>
                         <tr ng-show="formData.productId">
                             <td class="width19">
-                                <label>{{ 'label.input.fieldofficer' | translate }}:&nbsp;</label>
+                                <label>{{'label.input.fieldofficer' | translate }}:&nbsp;</label>
                             </td>
                             <td class="width31 paddedbottom10">
                                 <select id="fieldOfficerId" ng-model="formData.fieldOfficerId"
@@ -50,7 +50,7 @@
                                 </select>
                             </td>
                             <td class="width19">
-                                <label ng-show="formData.productId" class="control-label">{{ 'label.input.externalid' | translate
+                                <label ng-show="formData.productId" class="control-label">{{'label.input.externalid' | translate
                         }}</label>
                             </td>
                             <td class="width31 paddedbottom10">
@@ -61,19 +61,19 @@
                         </tr>
                     </table>
                     <hr data-ng-show="formData.productId" />
-                    <label ng-show="data"><strong>{{ 'label.heading.terms' | translate }}</strong></label>
+                    <label ng-show="data"><strong>{{'label.heading.terms' | translate }}</strong></label>
 
                     <div ng-show="data">
                         <table class="width100">
                             <tr>
                                 <td class="width19"><label
-                                        class="control-label">{{ 'label.heading.currency' | translate }}</label>
+                                        class="control-label">{{'label.heading.currency' | translate }}</label>
                                 </td>
                                 <td class="width31">
                                     <label><b>{{data.currency.name | translate}} ({{data.currency.displaySymbol}})</b></label>
                                 </td>
                                 <td class="width19"><label
-                                        class="control-label">{{ 'label.heading.decimalplaces' | translate}}</label>
+                                        class="control-label">{{'label.heading.decimalplaces' | translate}}</label>
                                 </td>
                                 <td class="width31">
                                     <label><b>{{data.currency.decimalPlaces}}</b></label>
@@ -81,7 +81,7 @@
                             </tr>
                             <tr>
                                 <td class="width19">
-                                    <label class="control-label">{{ 'label.input.nominalannualinterestrate' | translate
+                                    <label class="control-label">{{'label.input.nominalannualinterestrate' | translate
                             }}&nbsp;<span class="required">*</span></label>
                                 </td>
 
@@ -93,7 +93,7 @@
                                         valattribute="nominalannualinterestrate" />
                                 </td>
                                 <td class="width19">
-                                    <label class="control-label">{{ 'label.input.interestcompoundingperiod' | translate
+                                    <label class="control-label">{{'label.input.interestcompoundingperiod' | translate
                             }}&nbsp;<span class="required">*</span></label>
                                 </td>
                                 <td class="width31 paddedbottom10">
@@ -107,7 +107,7 @@
                             <tr>
                                 <td class="width19">
                                     <label
-                                        class="control-label">{{ 'label.input.currencyinmultiplesof' | translate }}&nbsp;</label>
+                                        class="control-label">{{'label.input.currencyinmultiplesof' | translate }}&nbsp;</label>
                                 </td>
                                 </td>
                                 <td class="width31 paddedbottom10">
@@ -116,7 +116,7 @@
                                 </td>
                                 <td class="width19">
                                     <label
-                                        class="control-label">{{ 'label.input.interestpostingperiod' | translate }}&nbsp;<span
+                                        class="control-label">{{'label.input.interestpostingperiod' | translate }}&nbsp;<span
                                             class="required">*</span></label></td>
                                 <td class="width31 paddedbottom10">
                                     <select id="interestPostingPeriodType" ng-model="formData.interestPostingPeriodType"
@@ -127,7 +127,7 @@
                             </tr>
                             <tr>
                                 <td class="width19"><label
-                                        class="control-label">{{ 'label.input.interestcalculatedusing' | translate }}&nbsp;<span
+                                        class="control-label">{{'label.input.interestcalculatedusing' | translate }}&nbsp;<span
                                             class="required">*</span></label></td>
                                 <td class="width31 paddedbottom10">
                                     <select id="interestCalculationType" ng-model="formData.interestCalculationType"
@@ -135,7 +135,7 @@
                                         value="{{type.id}}" class="form-control width170px">
                                     </select></td>
                                 <td class="width19"><label
-                                        class="control-label">{{ 'label.input.daysinyears' | translate }}&nbsp;<span
+                                        class="control-label">{{'label.input.daysinyears' | translate }}&nbsp;<span
                                             class="required">*</span></label></td>
                                 <td class="width31 paddedbottom10">
                                     <select id="interestCalculationDaysInYearType"
@@ -148,7 +148,7 @@
                             <tr>
                                 <td class="width19">
                                     <label
-                                        class="control-label">{{ 'label.input.minimumopeningbalance' | translate }}&nbsp;</label>
+                                        class="control-label">{{'label.input.minimumopeningbalance' | translate }}&nbsp;</label>
                                 </td>
                                 <td class="width31 paddedbottom10">
                                     <input id="minRequiredOpeningBalance" type="text" number-format
@@ -156,7 +156,7 @@
                                 </td>
                                 <td class="width19">
                                     <label
-                                        class="control-label">{{ 'label.input.lockinPeriodFrequency' | translate }}</label>
+                                        class="control-label">{{'label.input.lockinPeriodFrequency' | translate }}</label>
                                 </td>
                                 <td class="width31 paddedbottom10">
                                     <div class="form-inline">
@@ -176,7 +176,7 @@
                                 <td colspan="2" class="paddedbottom10 paddedtop">
                                     <input type="checkbox" ng-model="formData.withdrawalFeeForTransfers">&nbsp;
                                     <label
-                                        class="control-label">{{ 'label.input.withdrawalfeefortransfers' | translate }}&nbsp;</label>
+                                        class="control-label">{{'label.input.withdrawalfeefortransfers' | translate }}&nbsp;</label>
                                 </td>
                                 <td class="width19"></td>
                                 <td class="width31 paddedbottom10"></td>
@@ -184,10 +184,10 @@
                             <tr>
                                 <td colspan="2" class="paddedbottom10">
                                     <input type="checkbox" ng-model="formData.allowOverdraft"> &nbsp;<span
-                                        class="control-label">{{ 'label.input.allowoverdraft' | translate }}&nbsp;</span>
+                                        class="control-label">{{'label.input.allowoverdraft' | translate }}&nbsp;</span>
                                 </td>
                                 <td class="width19" ng-show="formData.allowOverdraft">
-                                    <label class="control-label">{{ 'label.input.overdraftlimit' | translate
+                                    <label class="control-label">{{'label.input.overdraftlimit' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10" ng-show="formData.allowOverdraft">
                                     <input id="overdraftLimit" type="text" number-format
@@ -196,14 +196,14 @@
                             </tr>
                             <tr ng-show="formData.allowOverdraft">
                                 <td class="width19">
-                                    <label class="control-label">{{ 'label.input.nominalannualinterestrateoverdraft' | translate
+                                    <label class="control-label">{{'label.input.nominalannualinterestrateoverdraft' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10">
                                     <input id="nominalAnnualInterestRateOverdraft" type="text"
                                         ng-model="formData.nominalAnnualInterestRateOverdraft">
                                 </td>
                                 <td class="width19">
-                                    <label class="control-label">{{ 'label.input.minoverdraftforinterestcalculation' | translate
+                                    <label class="control-label">{{'label.input.minoverdraftforinterestcalculation' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10">
                                     <input id="minOverdraftForInterestCalculation" type="text" number-format
@@ -213,10 +213,10 @@
                             <tr>
                                 <td colspan="2" class="paddedbottom10" ng-hide="formData.allowOverdraft">
                                     <input type="checkbox" ng-model="formData.enforceMinRequiredBalance"> &nbsp;<span
-                                        class="control-label">{{ 'label.input.enforceMinRequiredBalance' | translate }}&nbsp;</span>
+                                        class="control-label">{{'label.input.enforceMinRequiredBalance' | translate }}&nbsp;</span>
                                 </td>
                                 <td class="width19" ng-hide="formData.allowOverdraft">
-                                    <label class="control-label">{{ 'label.input.minRequiredBalance' | translate
+                                    <label class="control-label">{{'label.input.minRequiredBalance' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10" ng-hide="formData.allowOverdraft">
                                     <input id="minRequiredBalance" type="text" class="form-control" number-format
@@ -229,10 +229,10 @@
                             <tr ng-show="data.taxGroup">
                                 <td colspan="2" class="paddedbottom10">
                                     <input type="checkbox" ng-model="formData.withHoldTax"> &nbsp;<span
-                                        class="control-label">{{ 'label.input.withholdtax' | translate }}&nbsp;</span>
+                                        class="control-label">{{'label.input.withholdtax' | translate }}&nbsp;</span>
                                 </td>
                                 <td class="width19" ng-show="formData.withHoldTax">
-                                    <label class="control-label">{{ 'label.input.taxgroup' | translate
+                                    <label class="control-label">{{'label.input.taxgroup' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10" ng-show="formData.withHoldTax">
                                     {{data.taxGroup.name}}
@@ -241,7 +241,7 @@
                         </table>
                         <hr />
 
-                        <label ng-show="data"><strong>{{ 'label.heading.charges' | translate }}</strong></label>
+                        <label ng-show="data"><strong>{{'label.heading.charges' | translate }}</strong></label>
                         <div class="col-sm-3">
                             <select ng-model="chargeId"
                                 ng-options="charge.id as charge.name for charge in data.chargeOptions|filter:data.currency.code:strict"
@@ -304,7 +304,7 @@
                     </div>
                     <div class="col-md-12 center">
                         <button id="cancel" ng-click="cancel()"
-                            class="btn btn-sm btn-default">{{ 'label.button.cancel' | translate }}</button>
+                            class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
                         <button id="save" type="submit" class="btn btn-primary btn-sm" ng-show="data"
                             has-permission='UPDATE_SAVINGSACCOUNT'>{{'label.button.save' | translate }}
                         </button>

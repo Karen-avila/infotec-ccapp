@@ -5,14 +5,14 @@
     </ul>
 <div class="card" ng-controller="AccountingClosureController">
     <div class="toolbar">
-        <h4>{{ 'label.heading.accountingclosures' | translate }}</h4>
+        <h4>{{'label.heading.accountingclosures' | translate }}</h4>
         <div class="pull-right">
               <a href="#!/createclosure" class="pull-right btn btn-primary" has-permission='CREATE_GLCLOSURE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createclosure' | translate}}</a>
         </div>
     </div>
     <div class="content">
         <div class="form-group">
-            <b>{{ 'label.input.filterclosuresbyoffice' | translate }}</b>
+            <b>{{'label.input.filterclosuresbyoffice' | translate }}</b>
             <div class="row">
             	<div class="col-md-6">
                     <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
@@ -21,7 +21,7 @@
                     </select>
                 </div>
             	<div class="col-md-6">
-                    <button class="btn btn-sm btn-primary" ng-click="closedAccountingDetails(formData.officeId)">{{ 'label.button.save' | translate }}</button>
+                    <button class="btn btn-sm btn-primary" ng-click="closedAccountingDetails(formData.officeId)">{{'label.button.save' | translate }}</button>
                 </div>
             </div>
         </div>
@@ -29,10 +29,10 @@
         <table class="table">
         <thead>
         <tr class="graybg">
-            <th>{{ 'label.heading.office' | translate }}</th>
-            <th>{{ 'label.heading.accountingclosuredate' | translate }}</th>
-            <th>{{ 'label.heading.comments' | translate }}</th>
-            <th>{{ 'label.heading.closeaccountingcreatedby' | translate }}</th>
+            <th>{{'label.heading.office' | translate }}</th>
+            <th>{{'label.heading.accountingclosuredate' | translate }}</th>
+            <th>{{'label.heading.comments' | translate }}</th>
+            <th>{{'label.heading.closeaccountingcreatedby' | translate }}</th>
         </tr>
         </thead>
         <tbody>

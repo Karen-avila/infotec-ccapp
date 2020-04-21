@@ -44,15 +44,15 @@
                 <div ng-show="$root.tempNodeID >= 0" class="col-md-6 divscrollable" >
                     <table class="table table-bordered table-striped">
                             <tr>
-                                <td>{{ 'label.heading.glcode' | translate }}</td>
+                                <td>{{'label.heading.glcode' | translate }}</td>
                                 <td ng-repeat="coadata in coadatas" ng-show="coadata.id == $root.tempNodeID">{{coadata.glCode}}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.heading.acctype' | translate }}</td>
+                                <td>{{'label.heading.acctype' | translate }}</td>
                                 <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">{{coadata.type.value | translate}}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'label.heading.accountusage' | translate }}</td>
+                                <td>{{'label.heading.accountusage' | translate }}</td>
                                 <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">{{coadata.usage.value | translate}}</td>
                             </tr>
                     </table>

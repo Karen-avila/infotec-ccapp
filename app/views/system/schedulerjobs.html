@@ -12,7 +12,7 @@
     		            <td></td>
     		            <td>
     		                <button class="btn btn-sm btn-warning" ng-show="schedulerstatus=='Active'" ng-click="suspendJobs()" has-permission='UPDATE_SCHEDULER'><i class="fa fa-times"></i>&nbsp;&nbsp;{{'label.button.suspend' | translate}}</button>
-    		                <button class="btn btn-sm btn-success" ng-show="schedulerstatus=='Standby'" ng-click="activeJobs()" has-permission='UPDATE_SCHEDULER'><i class="fa fa-check"></i>&nbsp;&nbsp;{{ 'label.button.activate' | translate }}</button>
+    		                <button class="btn btn-sm btn-success" ng-show="schedulerstatus=='Standby'" ng-click="activeJobs()" has-permission='UPDATE_SCHEDULER'><i class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.activate' | translate }}</button>
     		            </td>
     		        </tr>
     		    </table>

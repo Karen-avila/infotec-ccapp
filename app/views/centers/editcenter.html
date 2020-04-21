@@ -62,7 +62,7 @@
                     </form>
                     <form ng-switch-when="1" class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{ 'label.input.enteractivationdate' | translate }}<span
+                            <label class="control-label col-sm-2">{{'label.input.enteractivationdate' | translate }}<span
                                     class="required">*</span></label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="mindate" max="restrictDate"/>
@@ -72,7 +72,7 @@
                             <div class="col-sm-3 col-md-offset-2">
                                 <a id="cancel" href="#!/viewgroup/{{edit.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
                                 <button id="save" type="button" class="btn btn-sm btn-primary" data-ng-click="activate()" has-permission='ACTIVATE_CENTER'><i
-                                        class="fa fa-check-sign "></i>{{ 'label.button.activate' | translate }}
+                                        class="fa fa-check-sign "></i>{{'label.button.activate' | translate }}
                                 </button>
                             </div>
                         </div>
