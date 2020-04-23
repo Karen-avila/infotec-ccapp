@@ -426,6 +426,7 @@
                     delete this.formData.orderInterestAccountId;
                     delete this.formData.creditCommitmentsAccountId;
                     delete this.formData.creditOrderInterestAccountId;
+                    delete this.formData.creditOrderNotPerformedAccountId;
                 }
 
                 resourceFactory.loanProductResource.save(this.formData, function (data) {

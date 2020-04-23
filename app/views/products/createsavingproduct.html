@@ -47,8 +47,6 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
                     <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
                         <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
@@ -740,7 +738,7 @@
                 </fieldset>
             </form>
         </wz-step>
-        <wz-step ng-if="isClicked" wz-title="Preview">
+        <wz-step ng-if="isClicked" wz-title="{{'label.heading.preview' | translate }}">
             <form name="Preview" novalidate="" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
@@ -1054,9 +1052,6 @@
                     <hr>
                     <button class="btn btn-default btn-sm pull-left" wz-previous><i class="fa fa-arrow-left"></i>
                         {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" type="submit"
-                        disabled>{{'label.button.next' | translate}}
-                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>

@@ -107,8 +107,6 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-default btn-sm pull-left" wz-previous disabled><i
-                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}</button>
                     <button class="btn btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}
                         <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
@@ -1290,19 +1288,6 @@
                     <div class="col-md-12" ng-show="isAccountingEnabled()">
                         <div class="form-group">
                             <h4>{{"label.heading.assets" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{'label.input.fundsource' | translate }}
-                                <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.fundsource' | translate}}"
-                                    tooltip-append-to-body="true"></i>
-                            </label>
-                            <div class="col-sm-4">
-                                <select id="fundSourceAccountId" ng-model="formData.fundSourceAccountId"
-                                    chosen="assetAccountOptions"
-                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
-                                    ng-change="loanproduct.accountingMappings.fundSourceAccount.name = formValue(assetAccountOptions,formData.fundSourceAccountId,'id','name')"
-                                    value="{{assetAccount.id}}">
-                                </select>
-                            </div>
                             <label class="control-label col-sm-2">{{'label.input.loanportfolio' | translate }}
                                 <i class="fa fa-question-circle"
                                     uib-tooltip="{{'label.tooltip.loanportfolio' | translate}}"
@@ -1313,6 +1298,64 @@
                                     ng-model="formData.loanPortfolioAccountId" chosen="assetAccountOptions"
                                     ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
                                     ng-change="loanproduct.accountingMappings.loanPortfolioAccount.name = formValue(assetAccountOptions,formData.loanPortfolioAccountId,'id','name')"
+                                    value="{{assetAccount.id}}">
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">{{'label.input.accounting.assets.ordinary.interest' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.accounting.assets.ordinary.interest' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="assetOrdinaryInterestAccountId" ng-model="formData.assetOrdinaryInterestAccountId"
+                                    chosen="assetAccountOptions"
+                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.assetOrdinaryInterestAccount.name = formValue(assetAccountOptions,formData.assetOrdinaryInterestAccountId,'id','name')"
+                                    value="{{assetAccount.id}}">
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">{{'label.input.accounting.assets.overdue.interest' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.accounting.assets.overdue.interest' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="assetOverdueInterestAccountId" ng-model="formData.assetOverdueInterestAccountId"
+                                    chosen="assetAccountOptions"
+                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.assetOverdueInterestAccount.name = formValue(assetAccountOptions,formData.assetOverdueInterestAccountId,'id','name')"
+                                    value="{{assetAccount.id}}">
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">{{'label.input.accounting.assets.npa.loan.portfolio' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.accounting.assets.npa.loan.portfolio' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="assetNPALoanPortfolioAccountId" ng-model="formData.assetNPALoanPortfolioAccountId"
+                                    chosen="assetAccountOptions"
+                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.assetNPALoanPortfolioAccount.name = formValue(assetAccountOptions,formData.assetNPALoanPortfolioAccountId,'id','name')"
+                                    value="{{assetAccount.id}}">
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">{{'label.input.accounting.assets.npa.interest' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.accounting.assets.npa.interest' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="assetNPAInterestAccountId" ng-model="formData.assetNPAInterestAccountId"
+                                    chosen="assetAccountOptions"
+                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.assetNPAInterestAccount.name = formValue(assetAccountOptions,formData.assetNPAInterestAccountId,'id','name')"
                                     value="{{assetAccount.id}}">
                                 </select>
                             </div>
@@ -1360,18 +1403,33 @@
                                 </select>
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{'label.input.transfersinsuspense' | translate }}
+                            <h4>{{"label.heading.liabilities" | translate}}</h4>
+                            <label class="control-label col-sm-2">{{'label.input.fundsource'| translate }}
                                 <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.transfersinsuspense' | translate}}"
+                                    uib-tooltip="{{'label.tooltip.fundsource' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
                             <div class="col-sm-4">
-                                <select id="transfersInSuspenseAccountId"
-                                    ng-model="formData.transfersInSuspenseAccountId" chosen="assetAccountOptions"
-                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
-                                    ng-change="loanproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(assetAccountOptions,formData.transfersInSuspenseAccountId,'id','name')"
-                                    value="{{assetAccount.id}}">
+                                <select id="fundSourceAccountId"
+                                    ng-model="formData.fundSourceAccountId" chosen="liabilityAccountOptions"
+                                    ng-options='liabilityAccount.id as (liabilityAccount.glCode + " " + liabilityAccount.name) for liabilityAccount in liabilityAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.overpaymentLiabilityAccount.name = formValue(liabilityAccountOptions,formData.overpaymentLiabilityAccountId,'id','name')"
+                                    value="{{liabilityAccount.id}}">
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">{{'label.input.overpaymentliability' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.overpaymentliability' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="overpaymentLiabilityAccountId"
+                                    ng-model="formData.overpaymentLiabilityAccountId" chosen="liabilityAccountOptions"
+                                    ng-options='liabilityAccount.id as (liabilityAccount.glCode + " " + liabilityAccount.name) for liabilityAccount in liabilityAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.overpaymentLiabilityAccount.name = formValue(liabilityAccountOptions,formData.overpaymentLiabilityAccountId,'id','name')"
+                                    value="{{liabilityAccount.id}}">
                                 </select>
                             </div>
                         </div>
@@ -1405,6 +1463,7 @@
                                 </select>
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group">
                             <label class="control-label col-sm-2">{{'label.input.incomefrompenalties' | translate }}
                                 <i class="fa fa-question-circle"
@@ -1416,19 +1475,6 @@
                                     chosen="incomeAccountOptions"
                                     ng-options='incomeAccount.id as (incomeAccount.glCode + " " + incomeAccount.name) for incomeAccount in incomeAccountOptions'
                                     ng-change="loanproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')"
-                                    value="{{incomeAccount.id}}">
-                                </select>
-                            </div>
-                            <label class="control-label col-sm-2">{{'label.input.recoverypayments' | translate }}
-                                <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.recoverypayments' | translate}}"
-                                    tooltip-append-to-body="true"></i>
-                            </label>
-                            <div class="col-sm-4">
-                                <select id="incomeFromRecoveryAccountId" ng-model="formData.incomeFromRecoveryAccountId"
-                                    chosen="incomeAccountOptions"
-                                    ng-options='incomeAccount.id as (incomeAccount.glCode + " " + incomeAccount.name) for incomeAccount in incomeAccountOptions'
-                                    ng-change="loanproduct.accountingMappings.incomeFromRecoveryAccount.name = formValue(incomeAccountOptions,formData.incomeFromRecoveryAccountId,'id','name')"
                                     value="{{incomeAccount.id}}">
                                 </select>
                             </div>
@@ -1452,29 +1498,12 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                            <h4>{{"label.heading.liabilities" | translate}}</h4>
-                            <label class="control-label col-sm-2">{{'label.input.overpaymentliability' | translate }}
-                                <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.overpaymentliability' | translate}}"
-                                    tooltip-append-to-body="true"></i>
-                            </label>
-                            <div class="col-sm-4">
-                                <select id="overpaymentLiabilityAccountId"
-                                    ng-model="formData.overpaymentLiabilityAccountId" chosen="liabilityAccountOptions"
-                                    ng-options='liabilityAccount.id as (liabilityAccount.glCode + " " + liabilityAccount.name) for liabilityAccount in liabilityAccountOptions'
-                                    ng-change="loanproduct.accountingMappings.overpaymentLiabilityAccount.name = formValue(liabilityAccountOptions,formData.overpaymentLiabilityAccountId,'id','name')"
-                                    value="{{liabilityAccount.id}}">
-                                </select>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-group">
                             <div class="col-sm-3 right">
                                 <input type="checkbox" ng-model="includeOrderAccounts" />
                             </div>
                             <label class="control-label left col-sm-6">{{'label.input.includeOrderAccounts' | translate }}</label>
                             <hr>
-                            <h4 ng-show="includeOrderAccounts">{{"label.heading.order.accounts" | translate}}</h4>
+                            <h4 ng-show="includeOrderAccounts">{{'label.heading.debit.order' | translate}}</h4>
                             <div ng-show="includeOrderAccounts">
                                 <label class="control-label col-sm-2">{{'label.input.accounting.debit.order.not.performed' | translate }}
                                     <i class="fa fa-question-circle"
@@ -1482,10 +1511,10 @@
                                         tooltip-append-to-body="true"></i>
                                 </label>
                                 <div class="col-sm-4">
-                                    <select id="orderNotPerfomedAccountId" ng-model="formData.orderNotPerfomedAccountId"
+                                    <select id="orderNotPerformedAccountId" ng-model="formData.orderNotPerformedAccountId"
                                         chosen="debitOrderAccountOptions"
                                         ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in debitOrderAccountOptions'
-                                        ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerfomedAccountId,'id','name')"
+                                        ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerformedAccountId,'id','name')"
                                         value="{{orderAccount.id}}">
                                     </select>
                                 </div>
@@ -1521,6 +1550,22 @@
                         </div>
                         <hr>
                         <div class="form-group" ng-show="includeOrderAccounts">
+                            <h4>{{'label.heading.credit.order' | translate}}</h4>
+                        </div>
+                        <div class="form-group" ng-show="includeOrderAccounts">
+                            <label class="control-label col-sm-2">{{'label.input.accounting.credit.order.not.performed' | translate }}
+                                <i class="fa fa-question-circle"
+                                    uib-tooltip="{{'label.tooltip.credit.order.not.performed' | translate}}"
+                                    tooltip-append-to-body="true"></i>
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="creditOrderNotPerformedAccountId" ng-model="formData.creditOrderNotPerformedAccountId"
+                                    chosen="creditOrderAccountOptions"
+                                    ng-options='orderAccount.id as (orderAccount.glCode + " " + orderAccount.name) for orderAccount in creditOrderAccountOptions'
+                                    ng-change="loanproduct.accountingMappings.creditOrderNotPerformedAccount.name = formValue(creditOrderAccountOptions,formData.creditOrderNotPerformedAccountId,'id','name')"
+                                    value="{{orderAccount.id}}">
+                                </select>
+                            </div>
                             <label class="control-label col-sm-2">{{'label.input.accounting.credit.order.commitments' | translate }}
                                 <i class="fa fa-question-circle"
                                     uib-tooltip="{{'label.tooltip.credit.order.commitments' | translate}}"
@@ -1534,6 +1579,8 @@
                                     value="{{orderAccount.id}}">
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group" ng-show="includeOrderAccounts">
                             <label class="control-label col-sm-2">{{'label.input.accounting.credit.order.interest' | translate }}
                                 <i class="fa fa-question-circle"
                                     uib-tooltip="{{'label.tooltip.credit.order.interest' | translate}}"
@@ -1552,7 +1599,7 @@
                         <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
                                 ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                         </h4>
-
+        
                         <div class="col-md-12" ng-show="showOrHideValue == 'hide'">
                             <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}
                             </div>
@@ -1679,7 +1726,7 @@
                 </fieldset>
             </form>
         </wz-step>
-        <wz-step ng-if="isClicked" wz-title="Preview">
+        <wz-step ng-if="isClicked" wz-title="{{'label.heading.preview' | translate }}">
             <form name="Preview" novalidate="" class="form-horizontal  ">
                 <fieldset>
                     <api-validate></api-validate>
@@ -2276,9 +2323,6 @@
                     <hr>
                     <button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left" wz-previous></i>
                         {{'label.button.previous' | translate}}</button>
-                    <button class="btn btn-default btn-sm pull-right" wz-next disabled
-                        type="submit">{{'label.button.next' | translate}}
-                        <i class="fa fa-arrow-right"></i></button>
                 </fieldset>
             </form>
         </wz-step>
