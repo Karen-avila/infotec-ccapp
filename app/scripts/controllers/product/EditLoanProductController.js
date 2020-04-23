@@ -209,20 +209,27 @@
                         scope.formData.receivableInterestAccountId = scope.product.accountingMappings.receivableInterestAccount.id;
                         scope.formData.receivableFeeAccountId = scope.product.accountingMappings.receivableFeeAccount.id;
                         scope.formData.receivablePenaltyAccountId = scope.product.accountingMappings.receivablePenaltyAccount.id;
+                        scope.formData.transfersInSuspenseAccountId = scope.product.accountingMappings.transfersInSuspenseAccount.id;
+                        scope.formData.incomeFromRecoveryAccountId = scope.product.accountingMappings.incomeFromRecoveryAccount.id;
+                        scope.formData.overpaymentLiabilityAccountId = scope.product.accountingMappings.overpaymentLiabilityAccount.id;
+                    }
+                    if (scope.formData.accountingRule == 2) {
+                        scope.formData.assetOrdinaryInterestAccountId = scope.product.accountingMappings.assetOrdinaryInterestAccount.id;
+                        scope.formData.assetOverdueInterestAccountId = scope.product.accountingMappings.assetOverdueInterestAccount.id;
+                        scope.formData.assetNPALoanPortfolioAccountId = scope.product.accountingMappings.assetNPALoanPortfolioAccount.id;
+                        scope.formData.assetNPAInterestAccountId = scope.product.accountingMappings.assetNPAInterestAccount.id;
                     }
 
-                    scope.formData.transfersInSuspenseAccountId = scope.product.accountingMappings.transfersInSuspenseAccount.id;
                     scope.formData.interestOnLoanAccountId = scope.product.accountingMappings.interestOnLoanAccount.id;
                     scope.formData.incomeFromFeeAccountId = scope.product.accountingMappings.incomeFromFeeAccount.id;
                     scope.formData.incomeFromPenaltyAccountId = scope.product.accountingMappings.incomeFromPenaltyAccount.id;
-                    scope.formData.incomeFromRecoveryAccountId = scope.product.accountingMappings.incomeFromRecoveryAccount.id;
                     scope.formData.writeOffAccountId = scope.product.accountingMappings.writeOffAccount.id;
-                    scope.formData.overpaymentLiabilityAccountId = scope.product.accountingMappings.overpaymentLiabilityAccount.id;
-                    if (scope.product.accountingMappings.orderPerformedAccount) {
-                        scope.includeOrderAccounts = true;
+                    scope.includeOrderAccounts = scope.product.useOrderAccounts;
+                    if (scope.product.useOrderAccounts) {
                         scope.formData.orderNotPerformedAccountId = scope.product.accountingMappings.orderNotPerformedAccount.id;
                         scope.formData.orderPerformedAccountId = scope.product.accountingMappings.orderPerformedAccount.id;
                         scope.formData.orderInterestAccountId = scope.product.accountingMappings.orderInterestAccount.id;
+                        scope.formData.creditOrderNotPerformedAccountId = scope.product.accountingMappings.creditOrderNotPerformedAccount.id;
                         scope.formData.creditCommitmentsAccountId = scope.product.accountingMappings.creditCommitmentsAccount.id;
                         scope.formData.creditOrderInterestAccountId = scope.product.accountingMappings.creditOrderInterestAccount.id;
                     }
@@ -572,6 +579,7 @@
                     delete this.formData.orderInterestAccountId;
                     delete this.formData.creditCommitmentsAccountId;
                     delete this.formData.creditOrderInterestAccountId;
+                    delete this.formData.creditOrderNotPerformedAccountId;
                 }
                 
                 resourceFactory.loanProductResource.put({ loanProductId: routeParams.id }, this.formData, function (data) {
