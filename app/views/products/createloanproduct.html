@@ -1317,19 +1317,6 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{'label.input.accounting.assets.overdue.interest' | translate }}
-                                <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.accounting.assets.overdue.interest' | translate}}"
-                                    tooltip-append-to-body="true"></i>
-                            </label>
-                            <div class="col-sm-4">
-                                <select id="assetOverdueInterestAccountId" ng-model="formData.assetOverdueInterestAccountId"
-                                    chosen="assetAccountOptions"
-                                    ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
-                                    ng-change="loanproduct.accountingMappings.assetOverdueInterestAccount.name = formValue(assetAccountOptions,formData.assetOverdueInterestAccountId,'id','name')"
-                                    value="{{assetAccount.id}}">
-                                </select>
-                            </div>
                             <label class="control-label col-sm-2">{{'label.input.accounting.assets.npa.loan.portfolio' | translate }}
                                 <i class="fa fa-question-circle"
                                     uib-tooltip="{{'label.tooltip.accounting.assets.npa.loan.portfolio' | translate}}"
@@ -1343,9 +1330,6 @@
                                     value="{{assetAccount.id}}">
                                 </select>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="form-group">
                             <label class="control-label col-sm-2">{{'label.input.accounting.assets.npa.interest' | translate }}
                                 <i class="fa fa-question-circle"
                                     uib-tooltip="{{'label.tooltip.accounting.assets.npa.interest' | translate}}"

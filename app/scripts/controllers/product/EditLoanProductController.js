@@ -110,8 +110,6 @@
                     isEqualAmortization: scope.product.isEqualAmortization,
                 };
 
-                scope.formData.accountingRule = scope.product.accountingRule.id;
-
                 if (scope.product.isInterestRecalculationEnabled) {
                     scope.formData.interestRecalculationCompoundingMethod = scope.product.interestRecalculationData.interestRecalculationCompoundingType.id;
                     scope.formData.rescheduleStrategyMethod = scope.product.interestRecalculationData.rescheduleStrategyType.id;
@@ -215,7 +213,6 @@
                     }
                     if (scope.formData.accountingRule == 2) {
                         scope.formData.assetOrdinaryInterestAccountId = scope.product.accountingMappings.assetOrdinaryInterestAccount.id;
-                        scope.formData.assetOverdueInterestAccountId = scope.product.accountingMappings.assetOverdueInterestAccount.id;
                         scope.formData.assetNPALoanPortfolioAccountId = scope.product.accountingMappings.assetNPALoanPortfolioAccount.id;
                         scope.formData.assetNPAInterestAccountId = scope.product.accountingMappings.assetNPAInterestAccount.id;
                     }
