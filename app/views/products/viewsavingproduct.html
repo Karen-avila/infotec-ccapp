@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.nominalannualinterestrate' | translate}}</td>
-                    <td colspan="3">{{savingproduct.nominalAnnualInterestRate | number}} %</td>
+                    <td colspan="3">{{savingproduct.nominalAnnualInterestRate | FormatNumber}} %</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.interestcompoundingperiod' | translate}}</td>
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.minimumopeningbalance' | translate}}</td>
-                    <td colspan="3">{{savingproduct.minRequiredOpeningBalance|number}}</td>
+                    <td colspan="3">{{savingproduct.minRequiredOpeningBalance| FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.lockinPeriodFrequency' | translate}}</td>
@@ -96,7 +96,7 @@
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.overdraftlimit' | translate}}</td>
-                    <td colspan="3">{{savingproduct.overdraftLimit|number}}</td>
+                    <td colspan="3">{{savingproduct.overdraftLimit| FormatNumber}}</td>
                 </tr>
                 <tr ng-show="savingproduct.allowOverdraft">
                     <td>{{'label.heading.nominalannualinterestrateoverdraft' | translate}}</td>
@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.minbalanceforinterestcalculation' | translate}}</td>
-                    <td colspan="3">{{savingproduct.minBalanceForInterestCalculation|number}}</td>
+                    <td colspan="3">{{savingproduct.minBalanceForInterestCalculation| FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.enforceMinRequiredBalance' | translate}}</td>
@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.minRequiredBalance' | translate}}</td>
-                    <td colspan="3">{{savingproduct.minRequiredBalance|number}}</td>
+                    <td colspan="3">{{savingproduct.minRequiredBalance| FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.withholdtax' | translate}}</td>
@@ -157,7 +157,7 @@
                 <tr ng-repeat="charge in savingproduct.charges">
                     <td>{{charge.name}}</td>
                     <td>{{charge.chargeCalculationType.value | translate}}</td>
-                    <td>{{charge.amount|number}}</td>
+                    <td>{{charge.amount| FormatNumber}}</td>
                     <td>{{charge.chargeTimeType.value | translate}}</td>
                 </tr>
                 <tr>

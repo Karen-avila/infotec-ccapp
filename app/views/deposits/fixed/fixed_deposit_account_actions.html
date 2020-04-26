@@ -8,7 +8,7 @@
             <div class="toolbar">
                 <h3>{{ title | translate}}</h3>
             </div>
-            <form name="savingccountactionform" novalidate="" class="form-horizontal" ng-submit="submit()">
+            <form name="savingccountactionform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <api-validate></api-validate>
                     <div class="form-group" ng-show="showDateField">
@@ -47,7 +47,7 @@
                                 translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <span class="padded-td">{{currency.displaySymbol}}&nbsp;{{maturityAmount | number}}</span>
+                                <span class="padded-td">{{currency.displaySymbol}}&nbsp;{{maturityAmount | FormatNumber}}</span>
                             </div>
                             </tr>
                         </div>

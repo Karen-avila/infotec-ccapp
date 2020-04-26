@@ -9,7 +9,7 @@
          <wz-step wz-title="{{'label.heading.details' | translate}}">
                 <div ng-show="managecode == 1">
                
-                    <form name="editgroupform" novalidate="" class="form-horizontal" ng-submit="updateGroup()">
+                    <form name="editgroupform" novalidate="" class="form-horizontal form-extra" ng-submit="updateGroup()">
                         <fieldset>
                             <api-validate></api-validate>
                             <legend>{{'label.heading.editgroup' | translate}}</legend>
@@ -97,7 +97,7 @@
             </wz-step>
             <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables" wz-title="{{datatable.registeredTableName}}">
                 <div class="card-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal form-extra">
                         <div ng-show="submittedDatatables.length>0" uib-alert type="success">
                             <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} ` has been made successfully. If the inputs are changed, the datatable entries will be updated.<br></span>
                         </div>

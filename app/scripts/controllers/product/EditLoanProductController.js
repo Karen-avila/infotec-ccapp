@@ -110,8 +110,6 @@
                     isEqualAmortization: scope.product.isEqualAmortization,
                 };
 
-                scope.formData.accountingRule = scope.product.accountingRule.id;
-
                 if (scope.product.isInterestRecalculationEnabled) {
                     scope.formData.interestRecalculationCompoundingMethod = scope.product.interestRecalculationData.interestRecalculationCompoundingType.id;
                     scope.formData.rescheduleStrategyMethod = scope.product.interestRecalculationData.rescheduleStrategyType.id;
@@ -211,13 +209,14 @@
                         scope.formData.receivablePenaltyAccountId = scope.product.accountingMappings.receivablePenaltyAccount.id;
                         scope.formData.transfersInSuspenseAccountId = scope.product.accountingMappings.transfersInSuspenseAccount.id;
                         scope.formData.incomeFromRecoveryAccountId = scope.product.accountingMappings.incomeFromRecoveryAccount.id;
-                        scope.formData.overpaymentLiabilityAccountId = scope.product.accountingMappings.overpaymentLiabilityAccount.id;
                     }
+                    scope.formData.overpaymentLiabilityAccountId = scope.product.accountingMappings.overpaymentLiabilityAccount.id;
                     if (scope.formData.accountingRule == 2) {
                         scope.formData.assetOrdinaryInterestAccountId = scope.product.accountingMappings.assetOrdinaryInterestAccount.id;
-                        scope.formData.assetOverdueInterestAccountId = scope.product.accountingMappings.assetOverdueInterestAccount.id;
                         scope.formData.assetNPALoanPortfolioAccountId = scope.product.accountingMappings.assetNPALoanPortfolioAccount.id;
                         scope.formData.assetNPAInterestAccountId = scope.product.accountingMappings.assetNPAInterestAccount.id;
+                        scope.formData.assetOverdueInterestAccountId = scope.product.accountingMappings.assetOverdueInterestAccount.id;
+                        scope.formData.incomeFromOverdueInterestAccountId = scope.product.accountingMappings.incomeFromOverdueInterestAccount.id;
                     }
 
                     scope.formData.interestOnLoanAccountId = scope.product.accountingMappings.interestOnLoanAccount.id;
@@ -229,9 +228,11 @@
                         scope.formData.orderNotPerformedAccountId = scope.product.accountingMappings.orderNotPerformedAccount.id;
                         scope.formData.orderPerformedAccountId = scope.product.accountingMappings.orderPerformedAccount.id;
                         scope.formData.orderInterestAccountId = scope.product.accountingMappings.orderInterestAccount.id;
+                        scope.formData.orderOverdueInterestAccountId = scope.product.accountingMappings.orderOverdueInterestAccount.id;
                         scope.formData.creditOrderNotPerformedAccountId = scope.product.accountingMappings.creditOrderNotPerformedAccount.id;
                         scope.formData.creditCommitmentsAccountId = scope.product.accountingMappings.creditCommitmentsAccount.id;
                         scope.formData.creditOrderInterestAccountId = scope.product.accountingMappings.creditOrderInterestAccount.id;
+                        scope.formData.creditOrderOverdueInterestAccountId = scope.product.accountingMappings.creditOrderOverdueInterestAccount.id;
                     }
 
                     _.each(scope.product.paymentChannelToFundSourceMappings, function (fundSource) {
@@ -577,9 +578,11 @@
                     delete this.formData.orderNotPerformedAccountId;
                     delete this.formData.orderPerformedAccountId;
                     delete this.formData.orderInterestAccountId;
+                    delete this.formData.orderOverdueInterestAccountId;
                     delete this.formData.creditCommitmentsAccountId;
                     delete this.formData.creditOrderInterestAccountId;
                     delete this.formData.creditOrderNotPerformedAccountId;
+                    delete this.formData.creditOrderOverdueInterestAccountId;
                 }
                 
                 resourceFactory.loanProductResource.put({ loanProductId: routeParams.id }, this.formData, function (data) {

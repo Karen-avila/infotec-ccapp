@@ -66,7 +66,7 @@
                          <fieldset>
                         <div class="row">
                             <div class="col-sm-12 well" ng-repeat="question in formData.questionDatas" ng-show="formData.questionDatas.length>0">
-                                <div name="addquestion" class="form-horizontal">
+                                <div name="addquestion" class="form-horizontal form-extra">
                                   <div class="col-sm-12">
                                       <label class="col-sm-2">{{'label.heading.question' | translate}} :&nbsp;{{($index+1)}}</label>
                                       <a class="col-md-offset-9" ng-click="deleteQuestion($index)"><i class="fa fa-times-circle fa-2x"></i></a>

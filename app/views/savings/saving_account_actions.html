@@ -5,7 +5,7 @@
     </ul>
     <wizard current-step="step" on-finish="submitDatatable()" class="card well">
         <wz-step wz-title="{{title | translate}}">
-            <form name="savingccountactionform" novalidate="" class="form-horizontal" ng-submit="submit()">
+            <form name="savingccountactionform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <div ng-show="submittedDatatables.length > 0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
@@ -211,7 +211,7 @@
         <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables"
             wz-title="{{datatable.registeredTableName}}">
             <div class="card-content">
-                <form class="form-horizontal">
+                <form class="form-horizontal form-extra">
                     <div ng-show="submittedDatatables.length>0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
                             has been made successfully. If the inputs are changed, the datatable entries will be

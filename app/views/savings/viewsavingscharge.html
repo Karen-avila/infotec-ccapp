@@ -16,7 +16,7 @@
     </script>
     <div class="card">
         <div class="content">
-        <form class="form-horizontal">
+        <form class="form-horizontal form-extra">
             <div class="pull-right">
                 <div class="btn-group" ng-show="showEditButtons">
                     <a href="#!/savingaccountcharge/{{savingId}}/editsavingcharge/{{chargeId}}" class="btn btn-sm btn-primary" has-permission='UPDATE_SAVINGSACCOUNTCHARGE'>
@@ -64,19 +64,19 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.due' | translate}}</td>
-                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amount | number}}</td>
+                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amount | FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.paid' | translate}}</td>
-                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountPaid | number}}</td>
+                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountPaid | FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.waived' | translate}}</td>
-                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountWaived | number}}</td>
+                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountWaived | FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.outstanding' | translate}}</td>
-                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountOutstanding | number}}</td>
+                    <td>{{charge.currency.displaySymbol}}&nbsp;{{charge.amountOutstanding | FormatNumber}}</td>
                 </tr>
             </table>
         </form>

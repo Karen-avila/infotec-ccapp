@@ -421,12 +421,14 @@
                 // Order Accounts
                 this.formData.includeOrderAccounts = scope.includeOrderAccounts;
                 if (! this.formData.includeOrderAccounts) {
-                    delete this.formData.orderNotPerfomedAccountId;
+                    delete this.formData.orderNotPerformedAccountId;
                     delete this.formData.orderPerformedAccountId;
                     delete this.formData.orderInterestAccountId;
+                    delete this.formData.orderOverdueInterestAccountId;
                     delete this.formData.creditCommitmentsAccountId;
                     delete this.formData.creditOrderInterestAccountId;
                     delete this.formData.creditOrderNotPerformedAccountId;
+                    delete this.formData.creditOrderOverdueInterestAccountId;
                 }
 
                 resourceFactory.loanProductResource.save(this.formData, function (data) {

@@ -356,13 +356,13 @@
 											<td class="pointer" data-ng-click="routeToCharge(charge.id)">
 												{{charge.dueDate|DateFormat}}</td>
 											<td class="pointer" data-ng-click="routeToCharge(charge.id)">
-												{{charge.amount | number}}</td>
+												{{charge.amount | FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToCharge(charge.id)">
-												{{charge.amountPaid | number}}</td>
+												{{charge.amountPaid | FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToCharge(charge.id)">
-												{{charge.amountWaived | number}}</td>
+												{{charge.amountWaived | FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToCharge(charge.id)">
-												{{charge.amountOutstanding | number}}</td>
+												{{charge.amountOutstanding | FormatNumber}}</td>
 											<td class="pointer center">
 												<a uib-tooltip="{{'label.button.paycharge' | translate}}"
 													has-permission='PAY_CLIENTCHARGE'
@@ -422,11 +422,11 @@
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
 												{{loanaccount.productName}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.originalLoan|number}}</td>
+												{{loanaccount.originalLoan| FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.loanBalance|number}}</td>
+												{{loanaccount.loanBalance| FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.amountPaid|number}}</td>
+												{{loanaccount.amountPaid| FormatNumber}}</td>
 											<td class="pointer center" data-ng-click="routeToLoan(loanaccount.id)"
 												ng-if="loanaccount.loanType.value == 'Individual'">
 												<i uib-tooltip="{{loanaccount.loanType.value}}" class="fa fa-user"></i>
@@ -491,11 +491,11 @@
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
 												{{loanaccount.productName}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.originalLoan|number}}</td>
+												{{loanaccount.originalLoan| FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.loanBalance|number}}</td>
+												{{loanaccount.loanBalance| FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-												{{loanaccount.amountPaid|number}}</td>
+												{{loanaccount.amountPaid| FormatNumber}}</td>
 											<td class="pointer center" data-ng-click="routeToLoan(loanaccount.id)"
 												ng-if="loanaccount.loanType.value == 'Individual'">
 												<i uib-tooltip="{{loanaccount.loanType.value}}"
@@ -559,7 +559,7 @@
 												{{savingaccount.lastActiveTransactionDate|DateFormat}}</td>
 											<td class="pointer center"
 												data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
-												{{savingaccount.accountBalance|number}}</td>
+												{{savingaccount.accountBalance| FormatNumber}}</td>
 											<td class="pointer" ng-if="savingaccount.status.active">
 												<span ng-repeat="button in savingsActionbuttons">
 													<a uib-tooltip="{{'label.'+button.name | translate}}"
@@ -661,10 +661,10 @@
 												{{shareaccount.productName}}</td>
 											<td class="pointer center"
 												data-ng-click="routeToShareAccount(shareaccount.id)">
-												{{shareaccount.totalApprovedShares|number}}</td>
+												{{shareaccount.totalApprovedShares| FormatNumber}}</td>
 											<td class="pointer center"
 												data-ng-click="routeToShareAccount(shareaccount.id)">
-												{{shareaccount.totalPendingForApprovalShares|number}}</td>
+												{{shareaccount.totalPendingForApprovalShares| FormatNumber}}</td>
 											<td class="pointer" ng-if="shareaccount.status.active">
 												<span ng-repeat="button in savingsActionbuttons">
 													<a uib-tooltip="{{'label.'+button.name | translate}}"
@@ -721,10 +721,10 @@
 												{{shareaccount.productName}}</td>
 											<td class="pointer center"
 												data-ng-click="routeToShareAccount(shareaccount.id)">
-												{{shareaccount.totalApprovedShares|number}}</td>
+												{{shareaccount.totalApprovedShares| FormatNumber}}</td>
 											<td class="pointer center"
 												data-ng-click="routeToShareAccount(shareaccount.id)">
-												{{shareaccount.totalPendingForApprovalShares|number}}</td>
+												{{shareaccount.totalPendingForApprovalShares| FormatNumber}}</td>
 											<td class="pointer" data-ng-click="routeToShareAccount(shareaccount.id)">
 												<span
 													data-ng-show="shareaccount.timeline.closedDate">{{savingaccount.timeline.closedDate | DateFormat}}</span>
@@ -848,7 +848,7 @@
 								<tr>
 									<th>{{'label.lastloanamount' | translate }}</th>
 									<td><span
-											class="padded-td">{{client.ClientSummary.lastLoanAmount|number}}</span>
+											class="padded-td">{{client.ClientSummary.lastLoanAmount| FormatNumber}}</span>
 									</td>
 								</tr>
 								<tr>
@@ -857,7 +857,7 @@
 								</tr>
 								<tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
 									<th>{{'label.totalsavings' | translate }}({{t.code}})</th>
-									<td><span class="padded-td">{{t.totalSavings|number}}</span></td>
+									<td><span class="padded-td">{{t.totalSavings| FormatNumber}}</span></td>
 								<tr>
 									<th>{{'label.numofactivesavings' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.activeSavings}}</span></td>

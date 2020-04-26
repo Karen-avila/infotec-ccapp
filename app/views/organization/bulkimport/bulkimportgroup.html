@@ -21,7 +21,7 @@
                                 <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
                                     ng-options="office.id as office.name for office in offices" value="{{office.id}}"
                                     ng-change="changeOffice()">
-                                    <option value="">--{{'label.menu.selectoffice' | translate}}--</option>
+                                    <option value="">{{'label.menu.selectoffice' | translate}}</option>
                                 </select>
                             </div>
                         </div> &nbsp; &nbsp; &nbsp;
@@ -30,7 +30,7 @@
                             <select chosen="staffs" id="staffId" ng-model="formData.staffId" class="form-control"
                                 ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}"
                                 ng-change="changeStaff()">
-                                <option value="">--{{'label.menu.selectloanofficer' | translate}}--</option>
+                                <option value="">{{'label.menu.selectloanofficer' | translate}}</option>
                             </select>
                         </div>
                         <a class='btn btn-sm btn-primary'
