@@ -3,11 +3,19 @@
         ViewAccountNumberPreferencesController: function (scope, resourceFactory, location,routeParams,$uibModal) {
             scope.resourceId = routeParams.id;
             scope.addPrefix = false;
+            scope.isCustomFormat = false;
             resourceFactory.accountNumberResources.get({accountNumberFormatId:scope.resourceId},function(data){
                 scope.accountType = data["accountType"].value;
                 scope.prefixType = data["prefixType"].value;
                 if(scope.prefixType != null){
                     scope.addPrefix = true;
+                }
+                if (typeof data["customFormat"] === "undefined") {
+                    scope.isCustomFormat = false;
+                    scope.customFormat = "";
+                } else {
+                    scope.isCustomFormat = true;
+                    scope.customFormat = data["customFormat"];
                 }
             });
 
@@ -37,7 +45,6 @@
                     controller: DeleteCtrl
                 });
             }
-
         }
     });
     mifosX.ng.application.controller('ViewAccountNumberPreferencesController', ['$scope', 'ResourceFactory', '$location','$routeParams','$uibModal',mifosX.controllers.ViewAccountNumberPreferencesController]).run(function ($log) {

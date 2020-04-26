@@ -81,13 +81,28 @@
                 scope.df = scope.dateformat;
                 scope.dft = scope.dateformat + ' ' + 'HH:mm:ss'
             };
+            scope.setDecimals = function () {
+                if (localStorageService.getFromLocalStorage('numDecimals')) {
+                    scope.nd = localStorageService.getFromLocalStorage('numDecimals');
+                } else {
+                    scope.nd = 2;
+                    localStorageService.addToLocalStorage('numDecimals', scope.nd);
+                }
+            };
 
             scope.updateDf = function (dateFormat) {
                 localStorageService.addToLocalStorage('dateformat', dateFormat);
                 scope.dateformat = dateFormat;
                 scope.setDf();
             };
+
+            scope.updateDecimals = function (decimals) {
+                localStorageService.addToLocalStorage('numDecimals', decimals);
+                scope.setDecimals();
+            };
+            
             scope.setDf();
+            scope.setDecimals();
             $rootScope.setPermissions = function (permissions) {
                 $rootScope.permissionList = permissions;
                 localStorageService.addToLocalStorage('userPermissions', permissions);
@@ -221,6 +236,7 @@
             };
 
             scope.langs = mifosX.models.Langs;
+            scope.decimals = [0,1,2,4,6,8];
 
             if (localStorageService.getFromLocalStorage('Language')) {
                 var temp = localStorageService.getFromLocalStorage('Language');

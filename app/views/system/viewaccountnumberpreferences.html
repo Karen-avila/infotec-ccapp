@@ -20,15 +20,15 @@
                 <h4>{{'label.heading.viewAccountNumberPreferences' | translate}}</h4>
             </div>
             <br/>
-            <form name="viewprefform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="viewprefform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-2">{{'label.input.accountType' | translate}}<span class="required">*</span></label>
+                        <label class="col-sm-3">{{'label.input.accountType' | translate}}<span class="required">*</span></label>
                         <div class="col-sm-3">
-                            {{accountType}}
+                            {{accountType | translate}}
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-6">
                             <div class="pull-right">
                                 <button id="approve" type="button" ng-click="editPreferences()" class="btn btn-sm btn-primary" has-permission="UPDATE_ACCOUNTNUMBERFORMAT">
                                     <i class="fa fa-edit "></i>&nbsp;&nbsp;
@@ -40,16 +40,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2">{{'label.input.addPrefix' | translate}}</label>
-
                         <div class="col-sm-3">
                             <input id="activeCheckbox" type="checkbox" ng-model="addPrefix"  ng-disabled="true">
                         </div>
+                        <label class="col-sm-3">{{'label.input.addPrefix' | translate}}</label>
                     </div>
                     <div class="form-group" ng-show="addPrefix">
-                        <label class="col-sm-2">{{'label.input.prefixField' | translate}}</label>
+                        <label class="col-sm-3">{{'label.input.prefixField' | translate}}</label>
                         <div class="col-sm-3">
                             {{prefixType}}
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="isCustomFormat">
+                        <label class="col-sm-3">{{'label.input.accountnumber.custom' | translate}}</label>
+                        <div class="col-sm-3">
+                            {{customFormat}}
                         </div>
                     </div>
                     <div class="col-md-offset-5">

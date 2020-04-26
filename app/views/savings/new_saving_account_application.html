@@ -19,7 +19,7 @@
     </ul>
     <wizard current-step="step" on-finish="submit()" class="card well">
         <wz-step wz-title="{{'label.heading.details' | translate}}">
-            <form name="Details" novalidate="" ng-submit="goNext(Details)" class="form-horizontal">
+            <form name="Details" novalidate="" ng-submit="goNext(Details)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <hr>
@@ -80,7 +80,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.terms' | translate}}" wz-disabled="{{disabled}}">
-            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal">
+            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <hr>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="form-group" ng-show="data.minBalanceForInterestCalculation">
                         <div class="col-sm-2">{{'label.heading.minbalanceforinterestcalculation' | translate}}</div>
-                        <div class="col-sm-2">{{data.minBalanceForInterestCalculation | number}}</div>
+                        <div class="col-sm-2">{{data.minBalanceForInterestCalculation | FormatNumber}}</div>
                     </div>
                     <div class="form-group" ng-show="data.taxGroup">
                         <div class="col-sm-3 right">
@@ -260,7 +260,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.charges' | translate}}" wz-disabled="{{disabled}}">
-            <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal">
+            <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.charges' | translate }}</h3>-->
@@ -342,7 +342,7 @@
         </wz-step>
         <wz-step icon="fa fa-circle-o" wz-disabled="{{disabled}}" ng-repeat="datatable in datatables"
             wz-title="{{datatable.registeredTableName}}" id="dynamicSteps">
-            <form name="Datatables" class="form-horizontal" ng-submit="submit()">
+            <form name="Datatables" class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <api-validate></api-validate>
                     <hr />
@@ -412,7 +412,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="Review" ng-if="!disabled">
-            <form name="Preview" class="form-horizontal">
+            <form name="Preview" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>Review</h3>-->

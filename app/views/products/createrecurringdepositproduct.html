@@ -6,7 +6,7 @@
     </ul>
     <wizard current-step="step" on-finish="submit()" class="card well">
         <wz-step wz-title="{{'label.heading.details' | translate}}">
-            <form name="Details" novalidate="" ng-submit="goNext(Details)" class="form-horizontal">
+            <form name="Details" novalidate="" ng-submit="goNext(Details)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.details' | translate }}</h3>-->
@@ -48,7 +48,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.currency' | translate}}">
-            <form name="Currency" novalidate="" ng-submit="goNext(Currency)" class="form-horizontal">
+            <form name="Currency" novalidate="" ng-submit="goNext(Currency)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.currency' | translate }}</h3>-->
@@ -95,7 +95,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.terms' | translate}}">
-            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal">
+            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
@@ -179,7 +179,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.settings' | translate}}">
-            <form name="Settings" novalidate="" ng-submit="goNext(Settings)" class="form-horizontal">
+            <form name="Settings" novalidate="" ng-submit="goNext(Settings)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.settings' | translate }}</h3>-->
@@ -352,7 +352,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.interestchart' | translate}}">
-            <form name="interestchart" novalidate="" ng-submit="goNext(interestchart)" class="form-horizontal">
+            <form name="interestchart" novalidate="" ng-submit="goNext(interestchart)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <h3>{{'label.heading.interestchart' | translate }}</h3>
@@ -497,7 +497,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.charges' | translate}}">
-            <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal">
+            <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.charges' | translate }}</h3>-->
@@ -527,7 +527,7 @@
                             <tr ng-repeat="charge in charges">
                                 <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                 <td>{{charge.chargeCalculationType.value}}</td>
-                                <td>{{charge.amount | number}}</td>
+                                <td>{{charge.amount | FormatNumber}}</td>
                                 <td>{{charge.chargeTimeType.value}}</td>
                                 <td><a href="" ng-click="deleteCharge($index)"><i class="fa fa-times-circle fa-2x"></i></a></td>
                             </tr>
@@ -542,7 +542,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.accounting' | translate}}">
-            <form name="Accounting" novalidate="" ng-submit="goNext(Accounting)" class="form-horizontal">
+            <form name="Accounting" novalidate="" ng-submit="goNext(Accounting)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.accounting' | translate }}</h3>-->
@@ -784,7 +784,7 @@
             </form>
         </wz-step>
         <wz-step ng-if="isClicked" wz-title="Preview">
-            <form name="Preview" novalidate="" class="form-horizontal">
+            <form name="Preview" novalidate="" class="form-horizontal form-extra">
                 <br>
                 <br>
                 <fieldset>
@@ -822,19 +822,19 @@
                         </tr>
                         <tr>
                             <td>{{'label.heading.currencyinmultiplesof' | translate}}</td>
-                            <td colspan="3">{{depositproduct.inMultiplesOf | number}}</td>
+                            <td colspan="3">{{depositproduct.inMultiplesOf | FormatNumber}}</td>
                         </tr>
                         <tr>
                             <td>{{'label.input.minDepositAmount' | translate}}</td>
-                            <td colspan="3">{{depositproduct.minDepositAmount | number}}</td>
+                            <td colspan="3">{{depositproduct.minDepositAmount | FormatNumber}}</td>
                         </tr>
                         <tr>
                             <td>{{'label.input.default.deposit.amount' | translate}}</td>
-                            <td colspan="3">{{depositproduct.depositAmount | number}}</td>
+                            <td colspan="3">{{depositproduct.depositAmount | FormatNumber}}</td>
                         </tr>
                         <tr>
                             <td>{{'label.input.maxDepositAmount' | translate}}</td>
-                            <td colspan="3">{{depositproduct.maxDepositAmount | number}}</td>
+                            <td colspan="3">{{depositproduct.maxDepositAmount | FormatNumber}}</td>
                         </tr>
                         <!--<tr>
                             <td>{{'label.heading.nominalannualinterestrate' | translate}}</td>
@@ -920,7 +920,7 @@
                         </tr>
                         <tr ng-show="depositproduct.minBalanceForInterestCalculation">
                             <td>{{'label.heading.minbalanceforinterestcalculation' | translate}}</td>
-                            <td>{{depositproduct.minBalanceForInterestCalculation | number}}</td>
+                            <td>{{depositproduct.minBalanceForInterestCalculation | FormatNumber}}</td>
                         </tr>
                         <tr>
                             <td>{{'label.heading.withholdtax' | translate}}</td>
@@ -1001,7 +1001,7 @@
                         <tr ng-repeat="charge in charges">
                             <td>{{charge.name}}</td>
                             <td>{{charge.chargeCalculationType.value}}</td>
-                            <td>{{charge.amount | number}}</td>
+                            <td>{{charge.amount | FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value}}</td>
                         </tr>
                         <tr>

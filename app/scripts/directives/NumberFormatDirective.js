@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.directives = _.extend(module, {
-        NumberFormatDirective: function ($filter, $locale, $parse) {
+        NumberFormatDirective: function ($filter, $locale, $parse, localStorageService) {
             return {
                 replace: false,
                 require: 'ngModel',
@@ -8,7 +8,8 @@
                     var filter = $filter('number');
 
                     function number(value, fractionLength) {
-                        return filter(value, fractionLength);
+                        const numDecimals = localStorageService.getFromLocalStorage('numDecimals');
+                        return filter(value, numDecimals);
                     }
 
                     function initialNumber(value) {
@@ -80,7 +81,7 @@
         }
     });
 }(mifosX.directives || {}));
-mifosX.ng.application.directive("numberFormat", ['$filter', '$locale','$parse', mifosX.directives.NumberFormatDirective]).run(function ($log) {
+mifosX.ng.application.directive("numberFormat", ['$filter', '$locale','$parse', 'localStorageService', mifosX.directives.NumberFormatDirective]).run(function ($log) {
     $log.info("NumberFormatDirective initialized");
 });
 
