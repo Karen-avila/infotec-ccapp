@@ -12,14 +12,14 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
 	<script type="text/ng-template" id="reporte.html">
 	<div data-ng-include="'views/reports/run_reports_from.html'"></div>  
 	<div class="modal-body ">
-	<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+	<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 	</div>
 	</script>
 	
@@ -30,7 +30,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<span ng-show="docId == -1">{{'label.noClientSignature' | translate}}</span> <br> <br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-show="docId != -1" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -39,7 +39,7 @@
 			<img ng-src="{{largeImage}}" alt="Avatar">
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 		</div>
 	</script>
 	<script type="text/ng-template" id="clientSignature.html">
@@ -47,8 +47,8 @@
 			<img ng-src="{{largeImage}}" alt="Signature">
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-			<button class="btn btn-danger" ng-click="deleteSig()" has-permission='DELETE_CLIENTIMAGE'><i class="fa fa-trash-o" aria-hidden="true"></i>{{'label.button.delete' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-danger" ng-click="deleteSig()" has-permission='DELETE_CLIENTIMAGE'><i class="fa fa-trash-o" aria-hidden="true"></i>{{'label.button.delete' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadSig()" has-permission='CREATE_CLIENTIMAGE'><i class="fa fa-upload" aria-hidden="true"></i>{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -57,7 +57,7 @@
 			<h3 class="bolder">{{'label.noClientSignature' | translate}}</h3>
 		</div>
 		<div class="modal-body ">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadSig()" has-permission='CREATE_CLIENTIMAGE'><i class="fa fa-upload" aria-hidden="true"></i>{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -72,7 +72,7 @@
 			<input type="file" ngf-select ng-model="file">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="upload(file)">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -96,14 +96,14 @@
 				</div>
 			</div>
 			<div class="center" style="margin-top: 10px">
-				<button class="btn btn-warning" ng-click="takeScreenshot()">
+				<button class= "btn btn-sm btn-warning" ng-click="takeScreenshot()">
 					<i class="fa fa-camera "></i>
 					{{'label.button.capture' | translate}}
 				</button>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="uploadscreenshot()">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -114,7 +114,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -125,7 +125,7 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="unassign()">{{'label.button.confirm' | translate}}</button>
 		</div>
 	</script>
@@ -139,7 +139,7 @@
 			<input type="file" ngf-select ng-model="file">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+			<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 			<button class="btn btn-sm btn-primary" ng-click="upload(file)">{{'label.button.upload' | translate}}</button>
 		</div>
 	</script>
@@ -152,7 +152,7 @@
 		</div>
 		<div class="modal-footer">
 			<span class="pull-right">
-				<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+				<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 				<button class="btn btn-sm btn-primary" ng-click="deleteNote(client.id,clientNote.id,$index)">{{'label.button.confirm' | translate}}</button>
 			</span>
 		</div>
@@ -166,7 +166,7 @@
 		</div>
 		<div class="modal-footer">
 			<span class="pull-right">
-				<button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+				<button class= "btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
 				<button class="btn btn-sm btn-primary" ng-click="editNote(client.id,clientNote.id,$index)">{{'label.button.confirm' | translate}}</button>
 			</span>
 		</div>
@@ -176,7 +176,7 @@
 			<div class="toolbar" style="height: 100px;">
 			
 				<div class="col-sm-2 col-md-2">
-					<div class="row center" style="margin-left: 0px;" ng-show="client.legalForm.value == 'FISICA'">
+					<div class="row center" style="margin-left: 0px;" ng-hide="isLegalEntity()">
 						<img ng-hide="client.imagePresent" ng-src="./images/client-image-placeholder.png"
 							alt="Avatar" style="height: 60px;">
 						<img ng-show="client.imagePresent" ng-src="{{image}}" alt="Avatar"
@@ -215,8 +215,7 @@
 						<h3>{{'label.heading.withdrawn' | translate}}</h3>
 					</div>
 				</div>
-					
-			
+
 				<h3 class="client-title" style="display: inline-block;">
 					<i class="fa fa-circle {{client.status.code | StatusLookup}}" uib-tooltip="{{client.status.value}}"
 						uib-tooltip-placement="top"></i>
@@ -225,9 +224,9 @@
 					</small>
 					<strong>{{client.displayName}} </strong>
 					<small>
-						{{ 'label.heading.clientno' | translate }}: {{client.accountNo}}
-						<br />{{ 'label.input.externalid' | translate }}: {{client.externalId}} |
-						{{ 'label.input.staff' | translate }}: {{client.staffName}}
+						{{'label.heading.clientno' | translate }}: {{client.accountNo}}
+						<br />{{'label.input.externalid2' | translate }}: {{client.externalId}} |
+						{{'label.input.staff' | translate }}: {{client.staffName}}
 					</small>
 				</h3>
 			</div>
@@ -237,7 +236,7 @@
 						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-sm btn-primary btn-offset"
 							has-permission='{{button.taskPermissionName}}'
 							ng-repeat="button in buttonsArray.singlebuttons">
-							<i class="{{button.icon}} icon-white"></i>{{button.name | translate}}</a>
+							<i class="{{button.icon}}"></i>{{button.name | translate}}</a>
 						<button type="button" class="btn btn-sm btn-primary" data-ng-click="deleteClient()"
 							data-ng-show="client.status.value=='Pending'" has-permission='DELETE_CLIENT'><i
 								class="fa fa-trash-o "></i>{{"label.button.delete"
@@ -253,7 +252,7 @@
 						</button>
 						<span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)">
 							<a class="btn btn-sm btn-primary" uib-dropdown-toggle>
-								{{ 'label.button.reports'| translate }}
+								{{'label.button.reports'| translate }}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right">
@@ -265,7 +264,7 @@
 						<span uib-dropdown ng-show="buttonsArray.options" class="btn-group dropdown"
 							on-toggle="toggled(open)">
 							<a uib-dropdown-toggle class="btn btn-sm btn-primary">
-								{{ 'label.button.more' | translate}}
+								{{'label.button.more' | translate}}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown dropdown-menu dropdown-menu-right">
@@ -336,7 +335,7 @@
 								<div data-ng-show="charges.length">
 									<div class="span gray-head">
 										<span class="boldlabel">
-											<strong>{{ 'label.heading.upcomingcharges' | translate }}</strong>
+											<strong>{{'label.heading.upcomingcharges' | translate }}</strong>
 										</span>
 									</div>
 									<table class="table table-condensed">
@@ -398,7 +397,7 @@
 
 									<table class="table table-condensed" data-ng-show="openLoan">
 										<span class="span gray-head">
-											<strong>{{ 'label.heading.loanaccoverview' | translate }}</strong>
+											<strong>{{'label.heading.loanaccoverview' | translate }}</strong>
 										</span>
 										<tr class="graybg">
 											<th>{{'label.heading.accnum' | translate}}</th>
@@ -519,11 +518,11 @@
 										<span data-ng-show="clientAccounts.savingsAccounts">
 											<button data-ng-show="openSaving" type="button" data-ng-click="setSaving()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewclosedsavings' | translate }}
+												{{'label.button.viewclosedsavings' | translate }}
 											</button>
 											<button data-ng-show="!openSaving" type="button" data-ng-click="setSaving()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewactivesavings' | translate }}
+												{{'label.button.viewactivesavings' | translate }}
 											</button>
 										</span>
 									</div>
@@ -629,11 +628,11 @@
 										<span data-ng-show="clientAccounts.shareAccounts">
 											<button data-ng-show="openShares" type="button" data-ng-click="setShares()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewclosedshares' | translate }}
+												{{'label.button.viewclosedshares' | translate }}
 											</button>
 											<button data-ng-show="!openShares" type="button" data-ng-click="setShares()"
 												class="btn-primary btn btn-sm">
-												{{ 'label.button.viewactiveshares' | translate }}
+												{{'label.button.viewactiveshares' | translate }}
 											</button>
 										</span>
 									</div>
@@ -742,124 +741,125 @@
 						<div class="col-sm-6 col-md-6">
 							<table class="table-condensed" style="width: 100%;">
 								<tr>
-									<th class="table-bold" style="width: 50%;">{{ 'label.input.submittedOnDate' | translate }}</th>
+									<th class="table-bold" style="width: 50%;">{{'label.input.submittedOnDate' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.timeline.submittedOnDate | DateFormat}}</span>
 									</td>
 								</tr>
 								<tr>
-									<th class="table-bold">{{ 'label.input.activationdate' | translate }}</th>
+									<th class="table-bold">{{'label.input.activationdate' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.timeline.activatedOnDate | DateFormat}}<span
-												data-ng-hide="client.timeline.activatedOnDate">{{ 'label.notactivated' | translate }}</span></span>
+												data-ng-hide="client.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span></span>
 									</td>
 								</tr>
 								<tr>
-									<th class="table-bold">{{ 'label.input.legalForm' | translate }}</th>
+									<th class="table-bold">{{'label.input.legalForm' | translate }}</th>
 									<td><span class="padded-td">{{client.legalForm.value}}</span>
 									</td>
 								</tr>
-								<tr>
-									<th class="table-bold">{{ 'label.heading.memberof' | translate }}</th>
+								<tr ng-hide="isLegalEntity()">
+									<th class="table-bold">{{'label.heading.memberof' | translate }}</th>
 									<td>
 										<span class="padded-td"
-											data-ng-hide="client.groups">{{ 'label.unassigned' | translate }}</span>
+											data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span>
 										<span class="padded-td" ng-repeat="group in client.groups">
 											<a class="list-group-item-text"
 												href="#!/viewgroup/{{group.id}}">{{group.name}}</a>&nbsp;<span
-												data-ng-hide="client.groups">{{ 'label.unassigned' | translate }}</span><span
+												data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span><span
 												ng-show="!$last">|</span>
 										</span>
 									</td>
 								</tr>
-								<tr>
-									<th class="table-bold">{{ 'label.input.isStaff' | translate }}</th>
+								<tr ng-hide="isLegalEntity()">
+									<th class="table-bold">{{'label.input.isStaff' | translate }}</th>
 									<td><span class="padded-td">{{client.isStaff}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.officeName">
-									<th class="table-bold">{{ 'label.input.office' | translate }}</th>
+									<th class="table-bold">{{'label.input.office' | translate }}</th>
 									<td><span class="padded-td">{{client.officeName}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.mobileNo">
-									<th class="table-bold">{{ 'label.input.mobilenumber' | translate }}</th>
+									<th class="table-bold">{{'label.input.mobilenumber' | translate }}</th>
 									<td><span class="padded-td">{{client.mobileNo}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.gender.name">
-									<th class="table-bold">{{ 'label.input.gender' | translate }}</th>
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
+									<th class="table-bold">{{'label.input.gender' | translate }}</th>
 									<td><span class="padded-td">{{client.gender.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.clientType.name">
-									<th class="table-bold">{{ 'label.input.clienttype' | translate }}</th>
+									<th class="table-bold">{{'label.input.clienttype' | translate }}</th>
 									<td><span class="padded-td">{{client.clientType.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.clientClassification.name">
-									<th class="table-bold">{{ 'label.input.clientclassification' | translate }}</th>
+									<th class="table-bold">{{'label.input.clientclassification' | translate }}</th>
 									<td><span class="padded-td">{{client.clientClassification.name}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.birthplace.name">
-									<th class="table-bold">{{ 'label.input.birthplace' | translate }}</th>
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
+									<th class="table-bold">{{'label.input.birthplace' | translate }}</th>
 									<td><span class="padded-td">{{client.birthplace.name}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.rfc">
-									<th class="table-bold">{{ 'label.input.rfc' | translate }}</th>
+									<th class="table-bold">{{'label.input.rfc' | translate }}</th>
 									<td><span class="padded-td">{{client.rfc}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.uniqueId">
-									<th class="table-bold">{{ 'label.input.uniqueId' | translate }}</th>
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
+									<th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
 									<td><span class="padded-td">{{client.uniqueId}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.externalId">
-									<th class="table-bold">{{ 'label.input.externalid' | translate }}</th>
+									<th class="table-bold">{{'label.input.externalid2' | translate }}</th>
 									<td><span class="padded-td">{{client.externalId}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.dateOfBirth">
-									<th class="table-bold">{{ 'label.input.dateofbirth' | translate }}</th>
+								<tr data-ng-show="client.dateOfBiafrth">
+									<th ng-hide="isLegalEntity()" class="table-bold">{{'label.input.dateofbirth' | translate }}</th>
+									<th ng-show="isLegalEntity()" class="table-bold">{{'label.input.incorporationdate' | translate }}</th>
 									<td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
 									</td>
 								</tr>
 								<tr data-ng-show="client.status.value=='Closed'">
-									<th class="table-bold">{{ 'label.heading.closedate' | translate }}</th>
+									<th class="table-bold">{{'label.heading.closedate' | translate }}</th>
 									<td><span class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
 									</td>
 								</tr>
-								<tr data-ng-show="client.groupLoanCounter">
-									<th class="table-bold">{{ 'label.input.groupLoanCounter' | translate }}</th>
+								<tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
+									<th class="table-bold">{{'label.input.groupLoanCounter' | translate }}</th>
 									<td><span class="padded-td">{{client.groupLoanCounter}}</span>
 									</td>
 								</tr>
 								<tr>
 									<th class="whitebg" colspan="2">
-										{{ 'label.heading.performancehistory' | translate }}</th>
+										{{'label.heading.performancehistory' | translate }}</th>
 								</tr>
 								<tr>
-									<th>{{ 'label.heading.numofloancycle' | translate }}</th>
+									<th>{{'label.heading.numofloancycle' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.loanCycle}}</span></td>
 								</tr>
 								<tr>
-									<th>{{ 'label.lastloanamount' | translate }}</th>
+									<th>{{'label.lastloanamount' | translate }}</th>
 									<td><span
 											class="padded-td">{{client.ClientSummary.lastLoanAmount|number}}</span>
 									</td>
 								</tr>
 								<tr>
-									<th>{{ 'label.numofactiveloans' | translate }}</th>
+									<th>{{'label.numofactiveloans' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.activeLoans}}</span></td>
 								</tr>
 								<tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
-									<th>{{ 'label.totalsavings' | translate }}({{t.code}})</th>
+									<th>{{'label.totalsavings' | translate }}({{t.code}})</th>
 									<td><span class="padded-td">{{t.totalSavings|number}}</span></td>
 								<tr>
-									<th>{{ 'label.numofactivesavings' | translate }}</th>
+									<th>{{'label.numofactivesavings' | translate }}</th>
 									<td><span class="padded-td">{{client.ClientSummary.activeSavings}}</span></td>
 								</tr>
 							</table>
@@ -872,7 +872,7 @@
 										<td>
 											<button class="btn btn-primary pull-right btn-sm"
 												ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i
-													class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
+													class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
 										</td>
 									</tr>
 								</thead>
@@ -935,7 +935,7 @@
 									</tr>
 									<tr ng-show="view.city">
 										<th>
-											{{ 'label.input.city' | translate }}
+											{{'label.input.city' | translate }}
 										</th>
 										<td>
 											{{address.city}}
@@ -951,7 +951,7 @@
 									</tr>
 									<tr ng-show="view.countyDistrict">
 										<th>
-											{{ 'label.input.county_district' | translate }}
+											{{'label.input.county_district' | translate }}
 										</th>
 										<td>
 											{{address.countyDistrict}}
@@ -959,7 +959,7 @@
 									</tr>
 									<tr ng-show="view.countryId">
 										<th>
-											{{ 'label.input.country' | translate }}
+											{{'label.input.country' | translate }}
 										</th>
 										<td>
 											{{address.countryName}}
@@ -967,7 +967,7 @@
 									</tr>
 									<tr ng-show="view.stateProvinceId">
 										<th>
-											{{ 'label.input.state_province' | translate }}
+											{{'label.input.state_province' | translate }}
 										</th>
 										<td>
 											{{address.stateName}}
@@ -975,7 +975,7 @@
 									</tr>
 									<tr ng-show="view.municipality">
 										<th>
-											{{ 'label.input.municipality' | translate }}
+											{{'label.input.municipality' | translate }}
 										</th>
 										<td>
 											{{address.municipalityName}}
@@ -983,7 +983,7 @@
 									</tr>
 									<tr ng-show="view.postalCode">
 										<th>
-											{{ 'label.input.postal_code' | translate }}
+											{{'label.input.postal_code' | translate }}
 										</th>
 										<td>
 											{{address.postalCode}}
@@ -991,7 +991,7 @@
 									</tr>
 									<tr ng-show="view.latitude">
 										<th>
-											{{ 'label.input.latitude' | translate }}
+											{{'label.input.latitude' | translate }}
 										</th>
 										<td>
 											{{address.latitude}}
@@ -1000,7 +1000,7 @@
 									</tr>
 									<tr ng-show="view.longitude">
 										<th>
-											{{ 'label.input.longitude' | translate }}
+											{{'label.input.longitude' | translate }}
 										</th>
 										<td>
 											{{address.longitude}}
@@ -1008,7 +1008,7 @@
 									</tr>
 									<tr ng-show="view.antiquity">
 										<th>
-											{{ 'label.input.antiquity.address' | translate }}
+											{{'label.input.antiquity.address' | translate }}
 										</th>
 										<td>
 											{{address.antiquity}}
@@ -1034,7 +1034,7 @@
 								</tbody>
 							</table>
 							<button class="btn btn-sm btn-primary pull-right" ng-click="routeTo()"><i
-								class="icon-plus icon-white"></i>{{'label.button.addAddress' | translate}}</button>
+								class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</button>
 						<br>
 						</div>
 					</div>
@@ -1088,7 +1088,7 @@
 										<td>
 											<div>
 												<button class="btn btn-primary pull-right" ng-click="routeToaddFamilyMember()"><i
-														class="icon-plus icon-white"></i>{{'label.button.addfamilymember' | translate}}</button>
+														class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</button>
 												<br>
 												<table class="table" ng-repeat="family in families" class="table table-condensed">
 													<thead>
@@ -1097,11 +1097,11 @@
 															<td>
 																<button class="btn btn-primary pull-right"
 																	ng-click="deleteFamilyMember(family.id)"><i
-																		class="icon-plus icon-white"></i>{{'label.button.delete' | translate}}</button>
+																		class="fa fa-plus"></i>{{'label.button.delete' | translate}}</button>
 						
 																<button class="btn btn-primary pull-right"
 																	ng-click="editFamilyMember(family.id)"><i
-																		class="icon-plus icon-white"></i>{{'label.button.edit' | translate}}</button>
+																		class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
 															</td>
 														</tr>
 													</thead>
@@ -1292,7 +1292,7 @@
 					</div>
 				</uib-tab>
 
-				<uib-tab heading="{{ 'label.heading.notes' | translate }}" has-permission='READ_CLIENTNOTE'>
+				<uib-tab heading="{{'label.heading.notes' | translate }}" has-permission='READ_CLIENTNOTE'>
 					<br />
 					<form class="form">
 						<div class="form-group">

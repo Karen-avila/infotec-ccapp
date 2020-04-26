@@ -128,7 +128,7 @@
                                         <td>{{entityMappingItem.toEntity}}</td>
                                         <td>{{entityMappingItem.startDate | DateFormat }}</td>
                                         <td>{{entityMappingItem.endDate | DateFormat }}</td>
-                                        <td><a class="btn btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
+                                        <td><a class="btn btn-sm btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
                                                 <i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}
                                         </a></td>
                                         <td><a class="ng-binding" has-permission="DELETE_ENTITYMAPPING" data-ng-click="deleteMapping(entityMappingItem.mapId)">
@@ -154,7 +154,7 @@
                                         <td>{{entityMappingItem.toEntity}}</td>
                                         <td>{{entityMappingItem.startDate | DateFormat }}</td>
                                         <td>{{entityMappingItem.endDate | DateFormat}}</td>
-                                        <td><a class="btn btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
+                                        <td><a class="btn btn-sm btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
                                                 <i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}
                                         </a></td>
                                         <td><a class="ng-binding" has-permission="DELETE_ENTITYMAPPING" data-ng-click="deleteMapping(entityMappingItem.mapId)">
@@ -180,7 +180,7 @@
                                         <td>{{entityMappingItem.toEntity}}</td>
                                         <td>{{entityMappingItem.startDate | DateFormat }}</td>
                                         <td>{{entityMappingItem.endDate | DateFormat }}</td>
-                                        <td><a class="btn btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
+                                        <td><a class="btn btn-sm btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
                                                 <i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}
                                         </a></td>
                                         <td><a class="ng-binding" has-permission="DELETE_ENTITYMAPPING" data-ng-click="deleteMapping(entityMappingItem.mapId)">
@@ -205,7 +205,7 @@
                                         <td>{{entityMappingItem.toEntity}}</td>
                                         <td>{{entityMappingItem.startDate | DateFormat }}</td>
                                         <td>{{entityMappingItem.endDate | DateFormat }}</td>
-                                        <td><a class="btn btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
+                                        <td><a class="btn btn-sm btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'>
                                                 <i class="fa fa-edit "></i>{{'label.button.edit' | translate}}
                                         </a></td>
                                         <td><a class="ng-binding" has-permission="DELETE_ENTITYMAPPING" data-ng-click="deleteMapping(entityMappingItem.mapId)">
@@ -231,7 +231,7 @@
                                         <td>{{entityMappingItem.toEntity}}</td>
                                         <td>{{entityMappingItem.startDate | DateFormat }}</td>
                                         <td>{{entityMappingItem.endDate | DateFormat }}</td>
-                                        <td><a class="btn btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'><i
+                                        <td><a class="btn btn-sm btn-primary" data-ng-click="showEditScreen(entityMappingItem.mapId,selectedMappingType)" has-permission='UPDATE_ENTITYMAPPING'><i
                                                 class="fa fa-edit "></i>{{'label.button.edit' | translate}}
                                         </a></td>
                                         <td><a class="ng-binding" has-permission="DELETE_ENTITYMAPPING" data-ng-click="deleteMapping(entityMappingItem.mapId)">
@@ -378,8 +378,8 @@
                                             </div>
 
                                             <div class="col-md-offset-5">
-                                                <a id="cancel" ng-click="cancelOperation()" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                                <button ng-click="submit(relId)" class="btn btn-primary" has-permission='CREATE_ENTITYMAPPING'>{{'label.button.save' | translate}}</button>
+                                                <a id="cancel" ng-click="cancelOperation()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                                <button ng-click="submit(relId)" class="btn btn-sm btn-primary" has-permission='CREATE_ENTITYMAPPING'>{{'label.button.save' | translate}}</button>
                                             </div>
 
                                         </div>
@@ -523,8 +523,8 @@
                                             </div>
 
                                             <div class="col-md-offset-5">
-                                                <a id="cancel" ng-click="cancelOperation()" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                                <button ng-click="submitEdit(mapIdToEdit)" class="btn btn-primary" has-permission='CREATE_ENTITYMAPPING'>{{'label.button.save' | translate}}</button>
+                                                <a id="cancel" ng-click="cancelOperation()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                                <button ng-click="submitEdit(mapIdToEdit)" class="btn btn-sm btn-primary" has-permission='CREATE_ENTITYMAPPING'>{{'label.button.save' | translate}}</button>
                                             </div>
 
                                         </div>
@@ -551,8 +551,8 @@
         <div class="modal-body ">
 
             <br>
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
 

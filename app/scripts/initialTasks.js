@@ -1,28 +1,23 @@
 
 (function (mifosX) {
-    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, $idleProvider, $keepaliveProvider, IDLE_DURATION, WARN_DURATION, KEEPALIVE_INTERVAL) {
+    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider) {
         var mainLink = getLocation(window.location.href);
-        var baseApiUrl = "https://demo.openmf.org";
+        var baseApiUrl = "https://mifos.infotec.mx";
         var host = "";
         var portNumber = "";
         //accessing from openmf server
         if (mainLink.hostname.indexOf('openmf.org') >= 0) {
             var hostname = window.location.hostname;
-            console.log('hostname---' + hostname);
             domains = hostname.split('.');
-            console.log('domains---' + domains);
             // For multi tenant hosting
             if (domains[0] == "demo") {
                 $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
                 ResourceFactoryProvider.setTenantIdenetifier('default');
-                console.log("demo server", domains[0]);
             } else {
                 $httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = domains[0];
                 ResourceFactoryProvider.setTenantIdenetifier(domains[0]);
-                console.log("other than demo server", domains[0]);
             }
             host = "https://" + mainLink.hostname;
-            console.log('hostname from mainLink = ', host);
         }
         //accessing from a file system or other servers
         else {
@@ -46,20 +41,24 @@
         }
 
         ResourceFactoryProvider.setBaseUrl(host);
-        HttpServiceProvider.addRequestInterceptor('demoUrl', function (config) {
+        HttpServiceProvider.addRequestInterceptor('baseUrl', function (config) {
+            var _ = require('underscore');
             return _.extend(config, {url: host + config.url });
         });
+        // HTTP error handler for 401 error
+        // $httpProvider.interceptors.push('handleResponseError401');
 
         // Enable CORS! (see e.g. http://enable-cors.org/)
         $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         //Set headers
         $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+        $httpProvider.defaults.headers.common['Content-Encoding'] = 'gzip';
 
         // Configure i18n and preffer language
         //$translateProvider.translations('en', translationsEN);
-        //$translateProvider.translations('de', translationsDE);
         $translateProvider.useSanitizeValueStrategy('escaped');
         $translateProvider.useStaticFilesLoader({
             prefix: 'global-translations/locale-',
@@ -69,13 +68,13 @@
         $translateProvider.preferredLanguage('es-mx');
         $translateProvider.fallbackLanguage('en');
         //Timeout settings.
-        $idleProvider.idleDuration(IDLE_DURATION); //Idle time 
-        $idleProvider.warningDuration(WARN_DURATION); //warning time(sec)
-        $keepaliveProvider.interval(KEEPALIVE_INTERVAL); //keep-alive ping
+        IdleProvider.idle(30*60); //Idle time (seconds)
+        IdleProvider.timeout(10); // in seconds
+        KeepaliveProvider.interval(15*60); //keep-alive ping
     };
-    mifosX.ng.application.config(defineHeaders).run(function ($log, $idle) {
+    mifosX.ng.application.config(defineHeaders).run(function ($log, Idle) {
         $log.info("Initial tasks are done!");
-        $idle.watch();
+        Idle.watch();
     });
 }(mifosX || {}));
 

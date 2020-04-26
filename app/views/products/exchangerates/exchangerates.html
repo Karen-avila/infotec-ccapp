@@ -1,0 +1,33 @@
+<div class="content-container" ng-controller="ExchangeRatesController">
+    <ul class="breadcrumb">
+        <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+        <li class="active">{{'label.anchor.exchangerates' | translate}}</li>
+    </ul>
+<div class="card well">
+    <div class="row">
+        <div class="col-md-9">
+            <input ng-model="filterText" type="text" class="form-control" ng-keyup="onFilter()" placeholder="{{'label.input.filterbyname' | translate}}">
+        </div>
+        <div class="col-md-3">
+            <a href="#!/createexchangerate" class="btn btn-primary pull-right" has-permission='CREATE_EXCHANGERATE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createexchangerate' | translate}}</a>
+        </div>
+    </div>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr class="graybg">
+            <th>{{'label.heading.name' | translate}}</th>
+            <th>{{'label.heading.createdby' | translate}}</th>
+            <th>{{'label.heading.active' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="pointer-main" ng-repeat="exchangerate in exchangerates |orderBy:'name' | filter:filterText">
+            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.name}}</td>
+            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.createdBy}}</td>
+            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.isActive}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

@@ -22,7 +22,7 @@
                     <table class="" style="border-spacing: 10px; border-collapse: separate">
                         <tr>
                             <td class="width14">
-                                <label>{{ 'label.input.product' | translate }}
+                                <label>{{'label.input.product' | translate }}
                                     <span class="required">*</span>:&nbsp;
                                 </label>
                             </td>
@@ -34,7 +34,7 @@
                                 </select>
                             </td>
                             <td class="width14">
-                                <label ng-show="formData.productId" class="control-label">{{ 'label.input.submittedon' | translate }}&nbsp;
+                                <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate }}&nbsp;
                                     <span class="required">*</span>
                                 </label>
                             </td>
@@ -47,7 +47,7 @@
                         </tr>
                         <tr ng-show="formData.productId">
                             <td class="width14">
-                                <label ng-show="formData.productId" class="control-label">{{ 'label.input.externalid' | translate }}
+                                <label ng-show="formData.productId" class="control-label">{{'label.input.externalid' | translate }}
                                 </label>
                             </td>
                             <td class="width36 paddedbottom20">
@@ -70,13 +70,13 @@
             <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-inline">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.terms' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
                     <hr>
                     <div ng-show="data">
                         <table class="width100" style="border-spacing: 10px; border-collapse: separate">
                             <tr>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.heading.currency' | translate }}
+                                    <label class="control-label">{{'label.heading.currency' | translate }}
                                     </label>
                                 </td>
                                 <td class="width36">
@@ -85,7 +85,7 @@
                                     </label>
                                 </td>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.heading.decimalplaces' | translate}}
+                                    <label class="control-label">{{'label.heading.decimalplaces' | translate}}
                                     </label>
                                 </td>
                                 <td class="width36">
@@ -96,7 +96,7 @@
                             </tr>
                             <tr>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.totalnumberofshares' | translate }}&nbsp;
+                                    <label class="control-label">{{'label.input.totalnumberofshares' | translate }}&nbsp;
                                         <span class="required">*</span>
                                     </label>
                                 </td>
@@ -107,7 +107,7 @@
                                     <form-validate valattributeform="Terms" valattribute="requestedShares" />
                                 </td>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.todaysprice' | translate }}&nbsp;
+                                    <label class="control-label">{{'label.input.todaysprice' | translate }}&nbsp;
                                         <span class="required">*</span>
                                     </label>
                                 </td>
@@ -119,14 +119,14 @@
                             </tr>
                             <tr>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.currencyinmultiplesof' | translate }}&nbsp;</label>
+                                    <label class="control-label">{{'label.input.currencyinmultiplesof' | translate }}&nbsp;</label>
                                 </td>
                                 </td>
                                 <td class="width36 paddedbottom20">
                                     <input type="text" value="{{data.currency.inMultiplesOf}}" class="form-control" readonly/>
                                 </td>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.savingsaccount' | translate }}&nbsp;
+                                    <label class="control-label">{{'label.input.savingsaccount' | translate }}&nbsp;
                                         <span class="required">*</span>
                                     </label>
                                 </td>
@@ -141,7 +141,7 @@
                             </tr>
                             <tr>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.minimumactiveperiod' | translate }}&nbsp;</label>
+                                    <label class="control-label">{{'label.input.minimumactiveperiod' | translate }}&nbsp;</label>
                                 </td>
                                 <td class="width36 paddedbottom20">
                                     <div class="form-inline">
@@ -155,7 +155,7 @@
                                     </div>
                                 </td>
                                 <td class="width14">
-                                    <label class="control-label">{{ 'label.input.lockinPeriodFrequency' | translate }}
+                                    <label class="control-label">{{'label.input.lockinPeriodFrequency' | translate }}
                                     </label>
                                 </td>
                                 <td class="width36 paddedbottom20">
@@ -173,7 +173,7 @@
                             <tr>
 
                                 <td class="width14">
-                                    <label ng-show="formData.productId" class="control-label">{{ 'label.input.applicationdate' | translate }}&nbsp;
+                                    <label ng-show="formData.productId" class="control-label">{{'label.input.applicationdate' | translate }}&nbsp;
                                         <span class="required">*</span>
                                     </label>
                                 </td>
@@ -186,7 +186,7 @@
 
                                 <td colspan="2" class="paddedbottom20 paddedtop">
                                     <input type="checkbox" ng-model="formData.allowDividendCalculationForInactiveClients">&nbsp;
-                                    <label class="control-label">{{ 'label.input.allowdividendsforinactiveclients' | translate }}&nbsp;</label>
+                                    <label class="control-label">{{'label.input.allowdividendsforinactiveclients' | translate }}&nbsp;</label>
                                 </td>
 
                                 <td class="width14"></td>
@@ -216,7 +216,7 @@
             <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal">
                 <fieldset>
                     <api-validate></api-validate>
-                    <!--<h3>{{ 'label.heading.charges' | translate }}</h3>-->
+                    <!--<h3>{{'label.heading.charges' | translate }}</h3>-->
                     <hr>
                     <div class="form-group">
                         <div class="col-sm-3">
@@ -226,7 +226,7 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
-                            <a class="btn btn-primary" ng-click="addCharge(chargeId)">
+                            <a class="btn btn-sm btn-primary" ng-click="addCharge(chargeId)">
                                 <i class="fa fa-plus "></i>
                                 Add</a>
                         </div>
@@ -287,11 +287,11 @@
                             <td colspan="6">{{sharedetails.productName}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.submittedon' | translate}}</td>
+                            <td>{{'label.input.submittedon' | translate}}</td>
                             <td colspan="6">{{formData.submittedDate | DateFormat}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.externalid' | translate}}</td>
+                            <td>{{'label.input.externalid' | translate}}</td>
                             <td colspan="6">{{formData.externalId}}</td>
                         </tr>
                         <tr>
@@ -305,46 +305,46 @@
                             </td>
                         </tr>
                         <tr class="paddingtop">
-                            <td>{{ 'label.heading.currency' | translate }}</td>
+                            <td>{{'label.heading.currency' | translate }}</td>
                             <td colspan="6">{{data.currency.name}}({{data.currency.displaySymbol}})</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.heading.decimalplaces' | translate}}</td>
+                            <td>{{'label.heading.decimalplaces' | translate}}</td>
                             <td colspan="6">{{data.currency.decimalPlaces}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.totalnumberofshares' | translate}}</td>
+                            <td>{{'label.input.totalnumberofshares' | translate}}</td>
                             <td colspan="6">{{formData.requestedShares}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.todaysprice' | translate}}</td>
+                            <td>{{'label.input.todaysprice' | translate}}</td>
                             <td colspan="6">{{formData.unitPrice}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.currencyinmultiplesof' | translate }}</td>
+                            <td>{{'label.input.currencyinmultiplesof' | translate }}</td>
                             <td colspan="6">{{data.currency.inMultiplesOf}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.savingsaccount' | translate }}</td>
+                            <td>{{'label.input.savingsaccount' | translate }}</td>
                             <td colspan="6">{{sharedetails.savingsAccountNo}}</td>
 
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.minimumactiveperiod' | translate }}</td>
+                            <td>{{'label.input.minimumactiveperiod' | translate }}</td>
                             <td colspan="6">{{formData.minimumAcctivePeriod}} {{sharedetails.minimumActivePeriodFrequencyValue}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.lockinPeriodFrequency' | translate }}</td>
+                            <td>{{'label.input.lockinPeriodFrequency' | translate }}</td>
                             <td colspan="6">{{formData.lockinPeriodFrequency}} {{sharedetails.lockinPeriodFrequencyValue}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.applicationdate' | translate}}</td>
+                            <td>{{'label.input.applicationdate' | translate}}</td>
                             <td colspan="6">{{formData.applicationDate | DateFormat}}</td>
                         </tr>
                         <tr>
-                            <td>{{ 'label.input.allowdividendsforinactiveclients' | translate }}</td>
+                            <td>{{'label.input.allowdividendsforinactiveclients' | translate }}</td>
                             <td colspan="6">{{formData.allowDividendCalculationForInactiveClients}}</td>
                         </tr>
                         <tr>
@@ -374,9 +374,9 @@
                     <br>
                     <br>
                     <div class="col-md-offset-6">
-                        <button id="cancel" ng-click="cancel()" class="btn btn-warning">{{ 'label.button.cancel' | translate }}
+                        <button id="cancel" ng-click="cancel()" class="btn btn-warning">{{'label.button.cancel' | translate }}
                         </button>
-                        <button id="save" wz-next class="btn btn-primary" ng-show="data" has-permission='CREATE_SHAREACCOUNT' type="submit">{{ 'label.button.save' | translate }}
+                        <button id="save" wz-next class="btn btn-sm btn-primary" ng-show="data" has-permission='CREATE_SHAREACCOUNT' type="submit">{{'label.button.save' | translate }}
                         </button>
                     </div>
                     <hr>

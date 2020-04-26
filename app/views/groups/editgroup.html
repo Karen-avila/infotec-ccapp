@@ -62,8 +62,8 @@
                                 </div>
                             </div>
                             <div class="col-md-offset-3">
-                                <a href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                <button type="submit" class="btn btn-primary" has-permission='UPDATE_GROUP'>{{'label.button.save' | translate}}</button>
+                                <a href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                <button type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_GROUP'>{{'label.button.save' | translate}}</button>
                             </div>
                         </fieldset>
                     </form>
@@ -72,7 +72,7 @@
                     <legend>{{'label.heading.activate.group' | translate}}</legend>
                     <form class="form-horizontal card well">
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{ 'label.input.enteractivationdate' | translate }}<span
+                            <label class="control-label col-sm-2">{{'label.input.enteractivationdate' | translate }}<span
                                         class="required">*</span></label>
                             <div class="col-sm-3">
                                 <input id="activationDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
@@ -85,9 +85,9 @@
                             </button>
 
                             <div class="col-sm-3 col-md-offset-2" ng-hide="isEntityDatatables">
-                                <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                <button id="save" type="button" class="btn btn-primary" wz-next ><i
-                                        class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
+                                <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                <button id="save" type="button" class="btn btn-sm btn-primary" wz-next ><i
+                                        class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{'label.button.activate' | translate }}
                                 </button>
                             </div>
 
@@ -156,14 +156,14 @@
                                 </div>
                             </div>
                             <div class="pull-right" ng-if="!$last">
-                                <button id="save4" type="submit" class="btn btn-primary" wz-next>
+                                <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
                                     {{'label.button.proceed' | translate}}
                                 </button>
                             </div>
                             <div class="col-md-offset-5" ng-if="$last">
-                                    <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                    <button id="save" type="button" class="btn btn-primary" wz-next><i
-                                            class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
+                                    <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                    <button id="save" type="button" class="btn btn-sm btn-primary" wz-next><i
+                                            class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{'label.button.activate' | translate }}
                                     </button>
                             </div>
                         </fieldset>

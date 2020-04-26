@@ -12,6 +12,13 @@
             scope.hideAccrualTransactions = false;
             scope.isHideAccrualsCheckboxChecked = true;
             scope.loandetails = [];
+            scope.payments = {
+                total: 0,
+                paid: 0,
+                pending: 0,
+                expired: 0
+            };
+
             scope.routeTo = function (loanId, transactionId, transactionTypeId) {
                 if (transactionTypeId == 2 || transactionTypeId == 4 || transactionTypeId == 1) {
                     location.path('/viewloantrxn/' + loanId + '/trxnId/' + transactionId);
@@ -161,6 +168,7 @@
                 scope.status = data.status.value;
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
+
                 if (scope.loandetails.charges) {
                     scope.charges = scope.loandetails.charges;
                     for (var i in scope.charges) {
@@ -296,11 +304,13 @@
                             icon: "fa fa-plus",
                             taskPermissionName: 'CREATE_LOANCHARGE'
                         },
+                        /*
                         {
                             name: "button.foreclosure",
                             icon: "icon-dollar",
                             taskPermissionName: 'FORECLOSURE_LOAN'
                         },
+                        */
                         {
                             name: "button.makerepayment",
                             icon: "fa fa-dollar",
@@ -350,7 +360,6 @@
                                 taskPermissionName: 'RECOVERGUARANTEES_LOAN'
                             }
                         ]
-
                     };
 
                     if (data.canDisburse) {
@@ -402,6 +411,22 @@
                         }
                     ]
                     };
+                }
+
+                const today = new Date();
+                for (var i in scope.loandetails.repaymentSchedule.periods) {
+                    const period = scope.loandetails.repaymentSchedule.periods[i];
+                    if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
+                        if (period.complete == true) {
+                            scope.payments.paid++;
+                        } else {
+                            scope.payments.pending++;
+                            if (new Date(period.dueDate) < today) {
+                                scope.payments.expired++;
+                            }
+                        }
+                        scope.payments.total++;
+                    }
                 }
 
                 resourceFactory.standingInstructionTemplateResource.get({fromClientId: scope.loandetails.clientId,fromAccountType: 1,fromAccountId: routeParams.id},function (response) {
@@ -457,8 +482,6 @@
             resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
                 scope.loanNotes = data;
             });
-
-
 
             scope.saveNote = function () {
                 resourceFactory.loanResource.save({loanId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {
@@ -670,7 +693,6 @@
                         groupId :scope.loandetails.group.id,groupName :scope.loandetails.group.name});
 
                 }
-
             };
 
             scope.printReport = function () {

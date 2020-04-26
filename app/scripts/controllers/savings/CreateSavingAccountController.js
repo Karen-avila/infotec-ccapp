@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateSavingAccountController: function (scope, $rootScope, resourceFactory, location, routeParams, dateFilter,WizardHandler) {
+        CreateSavingAccountController: function (scope, $rootScope, resourceFactory, location, routeParams, dateFilter, WizardHandler) {
             scope.products = [];
             scope.fieldOfficers = [];
             scope.formData = {};
@@ -9,8 +9,8 @@
             scope.restrictDate = new Date();
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
-			scope.date = {};
-			scope.date.submittedOnDate = new Date();
+            scope.date = {};
+            scope.date.submittedOnDate = new Date();
             scope.datatables = [];
             scope.noOfTabs = 1;
             scope.step = '-';
@@ -37,9 +37,8 @@
                 scope.inparams.centerId = scope.centerId
             }
 
-
             scope.inparams.staffInSelectedOfficeOnly = true;
-            
+
             resourceFactory.savingsTemplateResource.get(scope.inparams, function (data) {
                 scope.products = data.productOptions;
                 scope.chargeOptions = data.chargeOptions;
@@ -56,13 +55,13 @@
                         scope.updateColumnHeaders(datatable.columnHeaderData);
                         angular.forEach(datatable.columnHeaderData, function (colHeader, i) {
                             if (_.isEmpty(scope.formDat.datatables[index])) {
-                                scope.formDat.datatables[index] = {data: {}};
+                                scope.formDat.datatables[index] = { data: {} };
                             }
 
                             if (_.isEmpty(scope.formData.datatables[index])) {
                                 scope.formData.datatables[index] = {
                                     registeredTableName: datatable.registeredTableName,
-                                    data: {locale: scope.optlang.code}
+                                    data: { locale: scope.optlang.code }
                                 };
                             }
 
@@ -74,11 +73,11 @@
                 }
             };
 
-            scope.goNext = function(form){
+            scope.goNext = function (form) {
                 WizardHandler.wizard().checkValid(form);
             }
 
-            scope.updateColumnHeaders = function(columnHeaderData) {
+            scope.updateColumnHeaders = function (columnHeaderData) {
                 var colName = columnHeaderData[0].columnName;
                 if (colName == 'id') {
                     columnHeaderData.splice(0, 1);
@@ -90,10 +89,10 @@
                 }
             };
 
-            scope.formValue = function(array,model,findattr,retAttr){
+            scope.formValue = function (array, model, findattr, retAttr) {
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
-                console.log(findattr,retAttr,model);
+                console.log(findattr, retAttr, model);
                 return _.find(array, function (obj) {
                     return obj[findattr] === model;
                 })[retAttr];
@@ -139,18 +138,18 @@
                     scope.handleDatatables(scope.datatables);
                     scope.disabled = false;
                     scope.savingdetails = angular.copy(scope.formData);
-                    scope.savingdetails.productName = scope.formValue(scope.products,scope.formData.productId,'id','name');
+                    scope.savingdetails.productName = scope.formValue(scope.products, scope.formData.productId, 'id', 'name');
                 });
             };
 
-            scope.$watch('formData',function(newVal){
-               scope.savingdetails = angular.extend(scope.savingdetails,newVal);
+            scope.$watch('formData', function (newVal) {
+                scope.savingdetails = angular.extend(scope.savingdetails, newVal);
             });
 
             scope.addCharge = function (chargeId) {
                 scope.errorchargeevent = false;
                 if (chargeId) {
-                    resourceFactory.chargeResource.get({chargeId: chargeId, template: 'true'}, function (data) {
+                    resourceFactory.chargeResource.get({ chargeId: chargeId, template: 'true' }, function (data) {
                         data.chargeId = data.id;
                         if (data.chargeTimeType.value == "Annual Fee") {
                             if (data.feeOnMonthDay) {
@@ -211,21 +210,27 @@
                 if (scope.charges.length > 0) {
 
                     for (var i in scope.charges) {
-                        
+
                         if (scope.charges[i].chargeTimeType.value == 'Annual Fee') {
-                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
-                                feeOnMonthDay: dateFilter(scope.charges[i].feeOnMonthDay, 'dd MMMM')});
+                            this.formData.charges.push({
+                                chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
+                                feeOnMonthDay: dateFilter(scope.charges[i].feeOnMonthDay, 'dd MMMM')
+                            });
                         } else if (scope.charges[i].chargeTimeType.value == 'Specified due date') {
-                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
-                                dueDate: dateFilter(scope.charges[i].dueDate, scope.df)});
+                            this.formData.charges.push({
+                                chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
+                                dueDate: dateFilter(scope.charges[i].dueDate, scope.df)
+                            });
                         } else if (scope.charges[i].chargeTimeType.value == 'Monthly Fee') {
-                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
-                                feeOnMonthDay: dateFilter(scope.charges[i].feeOnMonthDay, 'dd MMMM'), feeInterval: scope.charges[i].feeInterval});
+                            this.formData.charges.push({
+                                chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount,
+                                feeOnMonthDay: dateFilter(scope.charges[i].feeOnMonthDay, 'dd MMMM'), feeInterval: scope.charges[i].feeInterval
+                            });
                         } else if (scope.charges[i].chargeTimeType.value == 'Weekly Fee') {
-                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount, dueDate: dateFilter(scope.charges[i].dueDate, scope.df), feeInterval: scope.charges[i].feeInterval});                            
+                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount, dueDate: dateFilter(scope.charges[i].dueDate, scope.df), feeInterval: scope.charges[i].feeInterval });
                         }
                         else {
-                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount});
+                            this.formData.charges.push({ chargeId: scope.charges[i].chargeId, amount: scope.charges[i].amount });
                         }
                     }
                 }
@@ -270,7 +275,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('CreateSavingAccountController', ['$scope','$rootScope','ResourceFactory', '$location', '$routeParams', 'dateFilter', 'WizardHandler',mifosX.controllers.CreateSavingAccountController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateSavingAccountController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', 'WizardHandler', mifosX.controllers.CreateSavingAccountController]).run(function ($log) {
         $log.info("CreateSavingAccountController initialized");
     });
 }(mifosX.controllers || {}));

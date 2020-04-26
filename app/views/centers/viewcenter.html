@@ -15,7 +15,7 @@
             <api-validate></api-validate>
             <br>
             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <script type="text/ng-template" id="unassignstaff.html">
@@ -26,7 +26,7 @@
             <api-validate></api-validate>
             <br>
             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="unassign()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="unassign()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <div class="card">
@@ -39,34 +39,34 @@
                     <strong>{{center.name}} </strong>
                     <small>
                         <i class="fa fa-barcode"></i>
-                        {{ 'label.heading.accnum' | translate }}: {{center.accountNo}} |
+                        {{'label.heading.accnum' | translate }}: {{center.accountNo}} |
                         <i class="fa fa-building"></i>
-                        {{ 'label.heading.office' | translate }}: "{{center.officeName}}"
+                        {{'label.heading.office' | translate }}: "{{center.officeName}}"
                     </small>
                 </h4>
             </div>
             <br>
             <uib-tabset tabset-name="centerTabset scrollable" scrollable>
-                <uib-tab heading="{{ 'label.heading.general' | translate }}">
+                <uib-tab heading="{{'label.heading.general' | translate }}">
                     <div>
                         <div class="" style="margin-top: 25px; margin-bottom: 25px" data-ng-hide="center.status.value == 'Closed'">
                             <div class="btn-group pull-right">
-                                <a href="#!/editcenter/{{center.id}}?managecode=1" class="btn btn-primary" data-ng-hide="center.status.value=='Active'" has-permission='ACTIVATE_CENTER'><i class="fa fa-check-sign "></i>{{'label.button.activate' | translate }}
+                                <a href="#!/editcenter/{{center.id}}?managecode=1" class="btn btn-sm btn-primary" data-ng-hide="center.status.value=='Active'" has-permission='ACTIVATE_CENTER'><i class="fa fa-check-sign "></i>{{'label.button.activate' | translate }}
                                 </a>
-                                <a href="#!/editcenter/{{center.id}}?managecode=2" class="btn btn-primary" has-permission='UPDATE_CENTER'><i class="fa fa-edit "></i>{{ 'label.button.edit' | translate }}</a>
-                                <a href="#!/addgroup?centerId={{center.id}}&officeId={{center.officeId}}" class="btn btn-primary" has-permission='CREATE_GROUP'><i class="fa fa-plus"></i>{{ 'addgroup' | translate }}</a>
-                                <a href="#!/managegroupmembers/{{center.id}}" class="btn btn-primary" has-permission='ASSOCIATEGROUPS_CENTER'>
+                                <a href="#!/editcenter/{{center.id}}?managecode=2" class="btn btn-sm btn-primary" has-permission='UPDATE_CENTER'><i class="fa fa-edit "></i>{{'label.button.edit' | translate }}</a>
+                                <a href="#!/addgroup?centerId={{center.id}}&officeId={{center.officeId}}" class="btn btn-sm btn-primary" has-permission='CREATE_GROUP'><i class="fa fa-plus"></i>{{'addgroup' | translate }}</a>
+                                <a href="#!/managegroupmembers/{{center.id}}" class="btn btn-sm btn-primary" has-permission='ASSOCIATEGROUPS_CENTER'>
                                     <i class="fa fa-edit "></i>{{'label.button.managegroups' | translate }}</a>
-                                <a ng-show="center.active" href="#!/new_group_saving_application/{{center.id}}/center" has-permission='CREATE_SAVINGSACCOUNT' class="btn btn-primary"><i class="fa fa-file "></i>{{ 'label.button.centersavingapplication' | translate }}</a>
+                                <a ng-show="center.active" href="#!/new_group_saving_application/{{center.id}}/center" has-permission='CREATE_SAVINGSACCOUNT' class="btn btn-sm btn-primary"><i class="fa fa-file "></i>{{'label.button.centersavingapplication' | translate }}</a>
                                 <span class="btn-group" uib-dropdown on-toggle="toggled(open)">
-                                    <a class="btn btn-primary" uib-dropdown-toggle>
-                                        {{ 'label.button.more' | translate}}
+                                    <a class="btn btn-sm btn-primary" uib-dropdown-toggle>
+                                        {{'label.button.more' | translate}}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown  dropdown-menu-right" uib-dropdown-menu>
                                         <li>
                                             <a href="#!/centerattendance?centerId={{center.id}}&calendarId={{meeting.id}}" data-ng-show="center.collectionMeetingCalendar" has-permission='SAVEORUPDATEATTENDANCE_MEETING'>
-                                            {{ 'label.button.attendance' | translate }}</a>
+                                            {{'label.button.attendance' | translate }}</a>
                                         </li>
                                         <li>
                                             <a href="#!/assignstaff/{{center.id}}/centers" data-ng-hide="center.staffId" has-permission='ASSIGNSTAFF_GROUP'>{{'label.button.assignstaff' | translate }}</a>
@@ -78,13 +78,13 @@
                                             <a data-ng-click="deleteCenter()" data-ng-hide="center.status.value=='Active'" has-permission='DELETE_CENTER'>{{                'label.button.delete' | translate }}</a>
                                         </li>
                                         <li>
-                                            <a href="#!/closecenter/{{center.id}}" has-permission='CLOSE_CENTER'>{{ 'label.button.close' | translate }}</a>
+                                            <a href="#!/closecenter/{{center.id}}" has-permission='CLOSE_CENTER'>{{'label.button.close' | translate }}</a>
                                         </li>
                                         <li data-ng-show="center.status.value=='Active'">
-                                            <a href="#!/attachmeeting/{{center.id}}/centers" data-ng-hide="center.collectionMeetingCalendar" has-permission='CREATE_MEETING'>{{ 'label.button.attachmeeting' | translate }}</a>
+                                            <a href="#!/attachmeeting/{{center.id}}/centers" data-ng-hide="center.collectionMeetingCalendar" has-permission='CREATE_MEETING'>{{'label.button.attachmeeting' | translate }}</a>
                                         </li>
                                         <li>
-                                            <a ng-click="viewStaffAssignmentHistory()" has-permission='READ_Staff Assignment History'>{{ 'label.button.staffassignmenthistory' | translate }}</a>
+                                            <a ng-click="viewStaffAssignmentHistory()" has-permission='READ_Staff Assignment History'>{{'label.button.staffassignmenthistory' | translate }}</a>
                                         </li>
                                     </ul>
                                 </span>
@@ -99,7 +99,7 @@
                                         <div class="col-md-6">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title ng-binding">{{ 'label.heading.groups' | translate }}</h3>
+                                                    <h3 class="panel-title ng-binding">{{'label.heading.groups' | translate }}</h3>
                                                 </div>
                                                 <div class="panel-body">
                                                     <div class="list-group">
@@ -115,21 +115,21 @@
                                             <div class="alert alert-warning" role="alert">
                                                 <table>
                                                     <tr>
-                                                        <td><strong>{{ 'label.heading.nextmeetingon' | translate }}</strong>
+                                                        <td><strong>{{'label.heading.nextmeetingon' | translate }}</strong>
                                                         </td>
                                                         <td><span class="padded-td">{{center.collectionMeetingCalendar.nextTenRecurringDates[0] | DateFormat}}&nbsp;<a href="#!/editcalendar/centers/{{center.id}}/{{center.collectionMeetingCalendar.id}}"
                                                         ng-show="center.collectionMeetingCalendar" has-permission='UPDATE_MEETING'><i class="fa fa-edit "></i></a>
-                                                        <span class="marginleftn7px" data-ng-hide="center.collectionMeetingCalendar.nextTenRecurringDates[0]">{{ 'label.unassigned' | translate }}</span></span>
+                                                        <span class="marginleftn7px" data-ng-hide="center.collectionMeetingCalendar.nextTenRecurringDates[0]">{{'label.unassigned' | translate }}</span></span>
                                                         </td>
                                                     </tr>
                                                     <tr data-ng-show="center.collectionMeetingCalendar.humanReadable">
-                                                        <td><strong>{{ 'label.heading.meetingfrequency' | translate }}</strong>
+                                                        <td><strong>{{'label.heading.meetingfrequency' | translate }}</strong>
                                                         </td>
                                                         <td><span class="padded-td">{{center.collectionMeetingCalendar.humanReadable}}</span>
                                                         </td>
                                                     </tr>
                                                     <tr data-ng-show="center.status.value=='Closed'">
-                                                        <td><strong>{{ 'label.heading.closedate' | translate }}</strong>
+                                                        <td><strong>{{'label.heading.closedate' | translate }}</strong>
                                                         </td>
                                                         <td><span class="padded-td">{{center.timeline.closedOnDate | DateFormat}}</span>
                                                         </td>
@@ -147,10 +147,10 @@
                                         <table class="table table-condensed">
                                             <thead>
                                                 <tr class="graybg">
-                                                    <th>{{ 'label.heading.accnum' | translate }}</th>
-                                                    <th>{{ 'label.heading.products' | translate }}</th>
-                                                    <th>{{ 'label.heading.balance' | translate }}</th>
-                                                    <th>{{ 'label.heading.actions' | translate }}</th>
+                                                    <th>{{'label.heading.accnum' | translate }}</th>
+                                                    <th>{{'label.heading.products' | translate }}</th>
+                                                    <th>{{'label.heading.balance' | translate }}</th>
+                                                    <th>{{'label.heading.actions' | translate }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -195,58 +195,58 @@
                                 <div class="col-sm-3 col-md-3">
                                     <div class="thumbnail">
                                         <div class="">
-                                            <h4><strong>{{center.name}} {{ 'label.heading.details' | translate }}</strong></h4>
+                                            <h4><strong>{{center.name}} {{'label.heading.details' | translate }}</strong></h4>
                                             <table class="table-minified">
                                                 <tr data-ng-show="center.externalId">
-                                                    <th>{{ 'label.input.externalid' | translate }}</th>
+                                                    <th>{{'label.input.externalid' | translate }}</th>
                                                     <td><span class="padded-td">{{center.externalId}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr data-ng-show="center.activationDate">
-                                                    <th>{{ 'label.heading.activationdate' | translate }}</th>
+                                                    <th>{{'label.heading.activationdate' | translate }}</th>
                                                     <td><span class="padded-td">{{center.activationDate | DateFormat}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr data-ng-show="center.staffName">
-                                                    <th>{{ 'label.heading.staff' | translate }}</th>
+                                                    <th>{{'label.heading.staff' | translate }}</th>
                                                     <td><span class="padded-td">{{center.staffName}}</span>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <h4><strong>{{ 'label.heading.summary' | translate }}</strong></h4>
+                                            <h4><strong>{{'label.heading.summary' | translate }}</strong></h4>
                                             <table class="table-minified">
                                                 <tr>
-                                                    <th>{{ 'label.numofactiveclient' | translate }}</th>
+                                                    <th>{{'label.numofactiveclient' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.activeClients}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactivegrouploans' | translate }}</th>
+                                                    <th>{{'label.numofactivegrouploans' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.activeGroupLoans}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactiveclientloans' | translate }}</th>
+                                                    <th>{{'label.numofactiveclientloans' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.activeClientLoans}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactivegroupborrowers' | translate }}</th>
+                                                    <th>{{'label.numofactivegroupborrowers' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.activeGroupBorrowers}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactiveclientborrowers' | translate }}</th>
+                                                    <th>{{'label.numofactiveclientborrowers' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.activeClientBorrowers}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactiveoverduegrouploans' | translate }}</th>
+                                                    <th>{{'label.numofactiveoverduegrouploans' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.overdueGroupLoans}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{ 'label.numofactiveoverdueclientloans' | translate }}</th>
+                                                    <th>{{'label.numofactiveoverdueclientloans' | translate }}</th>
                                                     <td><span class="padded-td">{{summary.overdueClientLoans}}</span>
                                                     </td>
                                                 </tr>
@@ -258,16 +258,16 @@
                         <br/>
                     </div>
                 </uib-tab>
-                <uib-tab heading="{{ 'label.heading.notes' | translate }}"
+                <uib-tab heading="{{'label.heading.notes' | translate }}"
                 has-permission='READ_GROUPNOTE'>
                     <form>
                         <div class="form-group">
                             <div class="">
-                                <textarea rows="1" class="form-control marginbottom0px" id="textarea" placeholder="{{ 'label.input.enternote' | translate }}" ng-model="formData.note"></textarea>
+                                <textarea rows="1" class="form-control marginbottom0px" id="textarea" placeholder="{{'label.input.enternote' | translate }}" ng-model="formData.note"></textarea>
                                 <div class="notewrapper col-md-12">
                                     <span class="pull-right noteaddbuttonwrapper">
-                                        <button class="btn btn-primary" type="submit" ng-click="saveNote()" has-permission='CREATE_GROUPNOTE'>
-                                        {{ 'label.button.add' | translate }} </button>
+                                        <button class="btn btn-sm btn-primary" type="submit" ng-click="saveNote()" has-permission='CREATE_GROUPNOTE'>
+                                        {{'label.button.add' | translate }} </button>
                                     </span>
                                 </div>
                             </div>
@@ -288,9 +288,9 @@
                 <uib-tab heading="{{centerdatatable.registeredTableName}}" ng-repeat="centerdatatable in centerdatatables" has-permission='READ_{{centerdatatable.registeredTableName}}' select="dataTableChange(centerdatatable)">
                     <div data-ng-hide="isClosedCenter" class="btn-group pull-right">
                         <a ng-show="datatabledetails.isData" class="btn btn-danger pull-right" ng-click="deleteAll(centerdatatable.registeredTableName, center.id)" has-permission='DELETE_{{centerdatatable.registeredTableName}}'><i class="fa fa-trash "></i>{{'label.button.deleteall' | translate}}</a>
-                        <a data-ng-show="showDataTableAddButton" ng-href="#!/makedatatableentry/{{centerdatatable.registeredTableName}}/{{center.id}}?fromEntity=center" class="btn btn-primary" has-permission='CREATE_{{centerdatatable.registeredTableName}}'><i
+                        <a data-ng-show="showDataTableAddButton" ng-href="#!/makedatatableentry/{{centerdatatable.registeredTableName}}/{{center.id}}?fromEntity=center" class="btn btn-sm btn-primary" has-permission='CREATE_{{centerdatatable.registeredTableName}}'><i
                         class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
-                        <a data-ng-show="showDataTableEditButton" ng-href="#!/viewsingledatatableentry/{{centerdatatable.registeredTableName}}/{{center.id}}?mode=edit" class="btn btn-primary" has-permission='UPDATE_{{centerdatatable.registeredTableName}}'><i
+                        <a data-ng-show="showDataTableEditButton" ng-href="#!/viewsingledatatableentry/{{centerdatatable.registeredTableName}}/{{center.id}}?mode=edit" class="btn btn-sm btn-primary" has-permission='UPDATE_{{centerdatatable.registeredTableName}}'><i
                         class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
                     </div>
                     <br>

@@ -1,12 +1,12 @@
 <div id="login-form" data-ng-form="loginForm" data-ng-controller="LoginFormController">
     <div>
         <p class="has-dynamic-label">
-            <label for="uid">{{ 'label.input.username' | translate }}</label>
+            <label for="uid">{{'label.input.username' | translate }}</label>
             <input type="text" name="username" data-ng-model="loginCredentials.username" id="uid" required>
             <span class="help-text"></span>
         </p>
         <p class="has-dynamic-label">
-            <label for="pwd">{{ 'label.input.password' | translate }}</label>
+            <label for="pwd">{{'label.input.password' | translate }}</label>
             <input type="password" name="password" data-ng-model="loginCredentials.password"
             id="pwd"> 
             <span class="help-text"></span>

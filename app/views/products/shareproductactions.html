@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group" ng-show="createdividend">
-                <label class="control-label col-sm-2" for="unitprice">{{ 'label.input.dividendamount' |
+                <label class="control-label col-sm-2" for="unitprice">{{'label.input.dividendamount' |
                     translate}}<span class="required">*</span>({{shareproductDetails.currency.displaySymbol}})</label>
 
                 <div class="col-sm-3">
@@ -45,7 +45,7 @@
             </div>
 
             <div class="form-group" data-ng-show="withdrawBalance">
-                <label class="control-label col-sm-2" for="withdrawBalance">{{ 'label.input.withdrawBalance' |
+                <label class="control-label col-sm-2" for="withdrawBalance">{{'label.input.withdrawBalance' |
                     translate}}<span class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="form-group" data-ng-show="formData.withdrawBalance">
-                <label class="control-label col-sm-2">{{ 'label.input.transactionamount' |
+                <label class="control-label col-sm-2">{{'label.input.transactionamount' |
                     translate}}<span class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -63,7 +63,7 @@
             </div>
             <div ng-show="isTransaction">
                 <div class="form-group" data-ng-show="transactionAmountField">
-                    <label class="control-label col-sm-2" for="transactionAmount">{{ 'label.input.transactionamount' |
+                    <label class="control-label col-sm-2" for="transactionAmount">{{'label.input.transactionamount' |
                         translate}}<span class="required">*</span></label>
 
                     <div class="col-sm-3">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="paymentTypeId">{{ 'label.input.paymentypeid' |
+                    <label class="control-label col-sm-2" for="paymentTypeId">{{'label.input.paymentypeid' |
                         translate}}<span
                                 class="required">*</span></label>
 
@@ -89,10 +89,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{ 'label.input.showpaymentdetails' | translate}}</label>
+                    <label class="control-label col-sm-2">{{'label.input.showpaymentdetails' | translate}}</label>
 
                     <div class="col-sm-3">
-                        <a class="btn btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+                        <a class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
                             <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
                             <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
                         </a>
@@ -100,7 +100,7 @@
                 </div>
                 <div collapse="!showPaymentDetails">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="accountNumber">{{ 'label.input.accnum' |
+                        <label class="control-label col-sm-2" for="accountNumber">{{'label.input.accnum' |
                             translate}}</label>
 
                         <div class="col-sm-3">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="checkNumber">{{ 'label.input.checknumber' |
+                        <label class="control-label col-sm-2" for="checkNumber">{{'label.input.checknumber' |
                             translate}}</label>
 
                         <div class="col-sm-3">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="routingCode">{{ 'label.input.routingcode' |
+                        <label class="control-label col-sm-2" for="routingCode">{{'label.input.routingcode' |
                             translate}}</label>
 
                         <div class="col-sm-3">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="receiptNumber">{{ 'label.input.receiptnumber' |
+                        <label class="control-label col-sm-2" for="receiptNumber">{{'label.input.receiptnumber' |
                             translate}}</label>
 
                         <div class="col-sm-3">
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="bankNumber">{{ 'label.input.banknumber' |
+                        <label class="control-label col-sm-2" for="bankNumber">{{'label.input.banknumber' |
                             translate}}</label>
 
                         <div class="col-sm-3">
@@ -144,20 +144,20 @@
                 </div>
             </div>
             <div class="form-group" ng-show="showAnnualAmountField">
-                <label class="control-label col-sm-2">{{ 'label.input.amount' | translate}}<span
+                <label class="control-label col-sm-2">{{'label.input.amount' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <input id="amoun" type="text" name="amount" ng-model="formData.amount" required late-Validate/>
           <span ng-show="shareccountactionform.amoun.$invalid">
             <small class="error">
-                {{ 'label.requiredfield' | translate}}
+                {{'label.requiredfield' | translate}}
             </small>
           </span>
                 </div>
             </div>
             <div class="form-group" ng-show="showNoteField">
-                <label class="control-label col-sm-2" for="note">{{ 'label.input.note' | translate}}</label>
+                <label class="control-label col-sm-2" for="note">{{'label.input.note' | translate}}</label>
 
                 <div class="col-sm-3">
                     <textarea rows="2" id="note" ng-model="formData.note" class="form-control"></textarea>
@@ -183,22 +183,22 @@
             </div>
 
             <div class="form-group" ng-show="showDelete || waiveCharge || inactivateCharge">
-                <label class="control-label col-sm-2">{{ 'label.areyousure' | translate }}</label>
+                <label class="control-label col-sm-2">{{'label.areyousure' | translate }}</label>
             </div>
             <div class="col-md-offset-3" ng-show="showDelete">
                 <button type="reset" ng-click="submit()" has-permission='{{taskPermissionName}}'
-                        class="btn btn-default">{{ 'label.button.confirm' | translate }}
+                        class="btn btn-sm btn-default">{{'label.button.confirm' | translate }}
                 </button>
-                <button type="submit" ng-click="cancel()" class="btn btn-primary">{{ 'label.button.cancel' | translate
+                <button type="submit" ng-click="cancel()" class="btn btn-sm btn-primary">{{'label.button.cancel' | translate
                     }}
                 </button>
             </div>
 
             <div class="col-md-offset-3" ng-hide="showDelete">
-                <button id="cancel" ng-click="cancel()" class="btn btn-default">{{ 'label.button.cancel' | translate
+                <button id="cancel" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate
                     }}
                 </button>
-                <button id="save" type="submit" has-permission='{{taskPermissionName}}' class="btn btn-primary">{{
+                <button id="save" type="submit" has-permission='{{taskPermissionName}}' class="btn btn-sm btn-primary">{{
                     'label.button.save' | translate }}
                 </button>
             </div>

@@ -14,11 +14,13 @@
                     var editDate = dateFilter(data.openingDate, scope.df);
                     scope.first.date = new Date(editDate);
                 }
-                scope.formData =
-                {
+                scope.formData = {
                     name: data.name,
                     externalId: data.externalId,
-                    parentId: data.parentId
+                    parentId: data.parentId,
+                    city: data.city,
+                    branch: data.branch,
+                    costCenter: data.costCenter
                 }
             });
 
@@ -27,6 +29,9 @@
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
                 this.formData.openingDate = reqDate;
+                this.formData.name = this.formData.name.toUpperCase();
+                this.formData.city = this.formData.city.padStart(3, "0");
+                this.formData.branch = this.formData.branch.padStart(6, "0");
                 resourceFactory.officeResource.update({'officeId': routeParams.id}, this.formData, function (data) {
                     location.path('/viewoffice/' + data.resourceId);
                 });

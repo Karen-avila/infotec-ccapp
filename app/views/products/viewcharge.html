@@ -7,8 +7,8 @@
     <div class="card well">
         <h3 class="bolder">{{charge.name}}
         	<div class="form-group pull-right">
-             <a href="#!/editcharge/{{charge.id}}" class="btn btn-primary" has-permission='UPDATE_CHARGE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
-             <button type="button" data-ng-click="deleteCharge()" class="btn btn-danger" has-permission='DELETE_CHARGE'><i
+             <a href="#!/editcharge/{{charge.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_CHARGE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
+             <button type="button" data-ng-click="deleteCharge()" class="btn btn-sm btn-danger" has-permission='DELETE_CHARGE'><i
                      class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
              </button>
          </div>
@@ -21,8 +21,8 @@
             <div class="modal-body ">
                 <api-validate></api-validate>
                 <br>
-                <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
             </div>
         </script>
         <div class="row">
@@ -38,7 +38,7 @@
 	                    </td>
 	                <tr>
 	                    <td>{{'label.heading.currency' | translate}}</td>
-	                    <td>{{charge.currency.name}}</td>
+	                    <td>{{charge.currency.name | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.amount' | translate}}</td>
@@ -46,31 +46,31 @@
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargetimetype' | translate}}</td>
-	                    <td>{{charge.chargeTimeType.value}}</td>
+	                    <td>{{charge.chargeTimeType.value | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargeappliesto' | translate}}</td>
-	                    <td>{{charge.chargeAppliesTo.value}}</td>
+	                    <td>{{charge.chargeAppliesTo.value | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargecalculationtype' | translate}}</td>
-	                    <td>{{charge.chargeCalculationType.value}}</td>
+	                    <td>{{charge.chargeCalculationType.value | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.active' | translate}}</td>
-	                    <td>{{charge.active | YesOrNo}}</td>
+	                    <td>{{charge.active | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargepaymentmode' | translate}}</td>
-	                    <td>{{charge.chargePaymentMode.value}}</td>
+	                    <td>{{charge.chargePaymentMode.value | translate}}</td>
 	                </tr>
 	                <tr ng-show="charge.chargeTimeType.id == 9">
 	                    <td>{{'label.input.feefrequency' | translate}}:</td>
-	                    <td>{{charge.feeFrequency.value}}</td>
+	                    <td>{{charge.feeFrequency.value | translate}}</td>
 	                </tr>
 	                <tr ng-show="charge.chargeTimeType.id == 9">
 	                    <td>{{'label.input.frequencyInterval' | translate}}</td>
-	                    <td>{{charge.feeInterval}}</td>
+	                    <td>{{charge.feeInterval | translate}}</td>
 	                </tr>
 					<tr ng-show="charge.incomeOrLiabilityAccount">
 						<td>{{'label.input.incomefromcharges' | translate}}</td>

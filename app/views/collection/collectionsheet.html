@@ -14,7 +14,7 @@
 				<fieldset ng-hide="val || noData">
 				<div>
 				    <div class="form-group">
-				        <label class="control-label col-sm-2">{{ 'label.input.branchoffice' | translate }}<span
+				        <label class="control-label col-sm-2">{{'label.input.branchoffice' | translate }}<span
 				                class="required">*</span></label>
 
 				        <div class="col-sm-3">
@@ -30,7 +30,7 @@
 				    </div>
 
 				    <div class="form-group">
-				        <label class="control-label col-sm-2">{{ 'label.input.meetingcalendar' | translate }}<span
+				        <label class="control-label col-sm-2">{{'label.input.meetingcalendar' | translate }}<span
 				                class="required">*</span></label>
 
 				        <div class="col-sm-3">
@@ -40,7 +40,7 @@
 				    </div>
 
 				    <div class="form-group">
-				        <label class="control-label col-sm-2">{{ 'label.input.staff' | translate }}<span class="required">*</span></label>
+				        <label class="control-label col-sm-2">{{'label.input.staff' | translate }}<span class="required">*</span></label>
 
 				        <div class="col-sm-3">
 				            <select chosen="loanOfficers" id="loanOfficerId" ng-model="loanOfficerId"
@@ -57,7 +57,7 @@
 
 				    <div class="form-group">
 				    	<div class="col-sm-2">
-					        <button class="btn btn-primary" ng-click="productiveCollectionSheet()">
+					        <button class="btn btn-sm btn-primary" ng-click="productiveCollectionSheet()">
 					            {{'label.button.productivecollectionsheet' | translate}}
 					            <i class="fa fa-arrow-circle-right"></i></button>
 				        </div>
@@ -65,7 +65,7 @@
 
 
 				    <div class="form-group">
-				        <label class="control-label col-sm-2">{{ 'label.input.center' | translate }}</label>
+				        <label class="control-label col-sm-2">{{'label.input.center' | translate }}</label>
 
 				        <div class="col-sm-3">
 				            <select chosen="centers" id="centerId" name="center" ng-model="centerId"
@@ -77,7 +77,7 @@
 				    </div>
 
 				    <div class="form-group">
-				        <label class="control-label col-sm-2">{{ 'label.input.group' | translate }}</label>
+				        <label class="control-label col-sm-2">{{'label.input.group' | translate }}</label>
 
 				        <div class="col-sm-3">
 				            <select chosen="groups" id="groupId" ng-model="groupId" ng-options="group.id as group.name for group in groups"
@@ -89,7 +89,7 @@
 
 				    <div class="form-group">
 				    	<div class="col-sm-2">
-					        <button class="btn btn-primary" ng-click="previewCollectionSheet()">{{'label.button.collectionsheet' |
+					        <button class="btn btn-sm btn-primary" ng-click="previewCollectionSheet()">{{'label.button.collectionsheet' |
 					            translate}}
 					            <i class="fa fa-arrow-circle-right"></i></button>
 						</div>
@@ -236,12 +236,12 @@
 			        <table class="table table-bordered">
 			            <thead>
 			            <tr>
-			                <td>{{ 'label.input.paymenttype' | translate}}</td>
-			                <td>{{ 'label.input.accnum' | translate}}</td>
-			                <td>{{ 'label.input.checknumber' | translate}}</td>
-			                <td>{{ 'label.input.routingcode' | translate}}</td>
-			                <td>{{ 'label.input.receiptnumber' | translate}}</td>
-			                <td>{{ 'label.input.banknumber' | translate}}</td>
+			                <td>{{'label.input.paymenttype' | translate}}</td>
+			                <td>{{'label.input.accnum' | translate}}</td>
+			                <td>{{'label.input.checknumber' | translate}}</td>
+			                <td>{{'label.input.routingcode' | translate}}</td>
+			                <td>{{'label.input.receiptnumber' | translate}}</td>
+			                <td>{{'label.input.banknumber' | translate}}</td>
 			            </tr>
 			            </thead>
 			            <tbody>
@@ -266,13 +266,13 @@
 			    </div>
 				<div class="col-sm-12 col-md-12 paddedtop10">
 				    <div class="col-md-offset-3 paddedtop">
-				        <a  ng-href="#!/home" id="cancel" type="reset" class="btn btn-default" >{{'label.button.cancel' |
+				        <a  ng-href="#!/home" id="cancel" type="reset" class="btn btn-sm btn-default" >{{'label.button.cancel' |
 				            translate}}
 				        </a>
-			            <button class="btn btn-default"
+			            <button class="btn btn-sm btn-default"
 			            ng-show="collectionsheetdata && !showPaymentDetails" data-ng-click="showPaymentDetailsFn()">{{'label.button.addpaymentdetail'| translate}}
 			            </button>
-				        <button id="save" type="submit" class="btn btn-primary" ng-show="collectionsheetdata"
+				        <button id="save" type="submit" class="btn btn-sm btn-primary" ng-show="collectionsheetdata"
 				                ng-click="submit()">{{'label.button.save' | translate}}
 				        </button>
 				    </div>

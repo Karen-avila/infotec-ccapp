@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, $idle, tmhDynamicLocale,
+        MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, Idle, tmhDynamicLocale,
             uiConfigService, $http) {
             $http.get('release.json').then(function (data) {
                 scope.version = data.data.version;
@@ -99,6 +99,7 @@
                 //FYI: getting all permissions from localstorage, because if scope changes permissions array will become undefined
                 $rootScope.permissionList = localStorageService.getFromLocalStorage('userPermissions');
                 //If user is a Super user return true
+                var _ = require('underscore');
                 if ($rootScope.permissionList && _.contains($rootScope.permissionList, "ALL_FUNCTIONS")) {
                     return true;
                 } else if ($rootScope.permissionList && permission && permission != "") {
@@ -131,20 +132,20 @@
             scope.started = false;
             scope.$on('$idleTimeout', function () {
                 scope.logout();
-                $idle.unwatch();
+                Idle.unwatch();
                 scope.started = false;
             });
 
             // Log out the user when the window/tab is closed.
             window.onunload = function () {
                 scope.logout();
-                $idle.unwatch();
+                Idle.unwatch();
                 scope.started = false;
             };
 
             scope.start = function (session) {
                 if (session) {
-                    $idle.watch();
+                    Idle.watch();
                     scope.started = true;
                 }
             };
@@ -434,7 +435,7 @@
         '$translate',
         '$rootScope',
         'localStorageService',
-        'keyboardManager', '$idle',
+        'keyboardManager', 'Idle',
         'tmhDynamicLocale',
         'UIConfigService',
         '$http',

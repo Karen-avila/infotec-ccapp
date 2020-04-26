@@ -154,6 +154,8 @@ angular.module('notificationWidget', [])
                         $rootScope.errorStatus = 'No connection. Verify application is running.';
                     } else if (rejection.status == 401) {
                         $rootScope.errorStatus = 'Unauthorized';
+                        rejection.headers['www-authenticate'] = '';
+                        delete rejection.headers['www-authenticate'];
                     } else if (rejection.status == 405) {
                         $rootScope.errorStatus = 'HTTP verb not supported [405]';
                     } else if (rejection.status == 500) {

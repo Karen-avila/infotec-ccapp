@@ -14,7 +14,7 @@
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-sm-3">
-                            {{ 'label.input.assignmentdate' | translate }}<span class="required">*</span></label>
+                            {{'label.input.assignmentdate' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
                             <input id="assignmentDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="transactionDate"
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3">{{ 'label.input.fromoffice' | translate }}<span
+                        <label class="control-label col-sm-3">{{'label.input.fromoffice' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
                             <select id="fromOfficeId" chosen="offices" name="fromOffice" id="fromOffice" ng-model="fromOfficeId"
@@ -35,7 +35,7 @@
                         </div>
 
                         <div data-ng-show="formData.fromLoanOfficerId">
-                            <label class="control-label col-sm-3">{{ 'label.input.tooffice' | translate }}<span
+                            <label class="control-label col-sm-3">{{'label.input.tooffice' | translate }}<span
                                 class="required">*</span></label>
                             <div class="col-sm-3">
                                 <select id="toOfficeId" chosen="offices" name="toOffice" id="toOffice" ng-model="toOfficeId"
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group" data-ng-show="fromOfficeId">
-                        <label class="control-label col-sm-3">{{ 'label.input.fromloanofficer' | translate }}<span
+                        <label class="control-label col-sm-3">{{'label.input.fromloanofficer' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -60,7 +60,7 @@
                         </div>
 
                         <div data-ng-show="formData.fromLoanOfficerId">
-                            <label class="control-label col-sm-3">{{ 'label.input.toloanofficer' | translate }}<span
+                            <label class="control-label col-sm-3">{{'label.input.toloanofficer' | translate }}<span
                                     class="required">*</span></label>
 
                             <div class="col-sm-3">
@@ -75,7 +75,7 @@
                     
                     <div class="form-group">
                         <label class="control-label col-sm-3">
-                            {{ 'label.input.transfertype' | translate }}<span class="required">*</span></label>
+                            {{'label.input.transfertype' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
                             <select chosen="transferTypes" id="transferTypeId" ng-model="transferTypeId"

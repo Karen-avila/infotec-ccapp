@@ -16,9 +16,9 @@
                     <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="pull-right">
-                            <button type="button" data-ng-hide="code.systemDefined" data-ng-click="showEditCode()" class="btn btn-primary" has-permission='UPDATE_CODE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.editcode' | translate}}
+                            <button type="button" data-ng-hide="code.systemDefined" data-ng-click="showEditCode()" class="btn btn-sm btn-primary" has-permission='UPDATE_CODE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.editcode' | translate}}
                             </button>
-                            <a href="#!/editcode/{{code.id}}" class="btn btn-primary"  has-permission='CREATE_CODEVALUE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcodevalues' | translate}}</a>
+                            <a href="#!/editcode/{{code.id}}" class="btn btn-sm btn-primary"  has-permission='CREATE_CODEVALUE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcodevalues' | translate}}</a>
                             <a data-ng-click="delCode()" class="btn btn-danger" has-permission='DELETE_CODE' ng-show="code.systemDefined == false"><i
                             class="fa fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</a>
                         </div>
@@ -31,9 +31,9 @@
                     <div class="col-sm-3">
                         <input type="text" data-ng-model="codename.name" class="form-control"/>
                     </div>
-                    <button type="button" class="btn btn-default" data-ng-click="showEditCode(1)">{{'label.button.cancel' | translate}}
+                    <button type="button" class="btn btn-sm btn-default" data-ng-click="showEditCode(1)">{{'label.button.cancel' | translate}}
                     </button>
-                    <button type="button" class="btn btn-primary" data-ng-click="updateCode()" has-permission='UPDATE_CODE'>{{'label.button.save' |
+                    <button type="button" class="btn btn-sm btn-primary" data-ng-click="updateCode()" has-permission='UPDATE_CODE'>{{'label.button.save' |
                         translate}}
                     </button>
                     <hr/>
@@ -42,10 +42,10 @@
                     <table class="table" ui:sortable>
                         <thead>
                         <tr>
-                            <th>{{ 'label.heading.name' | translate }}</th>
-                            <th>{{ 'label.heading.description' | translate }}</th>
-                            <th>{{ 'label.heading.score' | translate }}</th>
-                            <th>{{ 'label.heading.position' | translate }}</th>
+                            <th>{{'label.heading.name' | translate }}</th>
+                            <th>{{'label.heading.description' | translate }}</th>
+                            <th>{{'label.heading.score' | translate }}</th>
+                            <th>{{'label.heading.position' | translate }}</th>
                             <th>{{'label.heading.active' | translate}}</th>
                             <th></th>
                         </tr>
@@ -78,10 +78,10 @@
                                         type="checkbox" data-ng-change="setChoice()" class="form-control"/>
                             </td>
                             <td>
-                                <button data-ng-hide="codevalue.edit" class="btn btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
+                                <button data-ng-hide="codevalue.edit" class="btn btn-sm btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
                                         data-ng-click="showEdit(codevalue.id,codevalue.name,codevalue.description,codevalue.position,codevalue,codevalue.active,codevalue.score)"><i
                                         class="fa fa-edit "></i></button>
-                                <button data-ng-show="codevalue.edit" class="btn btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
+                                <button data-ng-show="codevalue.edit" class="btn btn-sm btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
                                         data-ng-click="editCodeValue(codevalue.id,codevalue)">{{'label.button.save' |
                                     translate}}
                                 </button>
@@ -104,8 +104,8 @@
         <div class="modal-body ">
 
             <br>
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <script type="text/ng-template" id="deletecodevalue.html">
@@ -115,8 +115,8 @@
         <div class="modal-body ">
 
             <br>
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
 

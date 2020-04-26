@@ -13,7 +13,7 @@
                 <api-validate></api-validate>
                 <br>
                 <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
             </div>
     </script>
     <api-validate></api-validate>
@@ -28,7 +28,7 @@
                      <div class="row">
                          <div class="col-md-7">
                              <div class="form-group">
-                                 <label class="control-label col-sm-4">{{ 'label.input.searchformember' | translate }}</label>
+                                 <label class="control-label col-sm-4">{{'label.input.searchformember' | translate }}</label>
                                  <div class="col-sm-4 col-md-4">
                                      <input id="members" type="text" ng-model="available" class="col-md-4 form-control"
                                             typeahead-min-length="3"
@@ -38,7 +38,7 @@
                                  </div>
                                  <div class="col-sm-1 col-md-1">
                                      <button ng-show="available" type="button" class="btn angled-btn btn-primary" data-ng-click="add()">
-                                         {{ 'label.button.add' | translate }} 
+                                         {{'label.button.add' | translate }} 
                                          <i class="fa fa-double-angle-right"></i></button>
                                  </div>
                              </div>
@@ -51,11 +51,11 @@
                                              <td>{{client.displayName}}</td>
                                          </tr>
                                          <tr>
-                                             <td>{{ 'label.heading.id' | translate }}</td>
+                                             <td>{{'label.heading.id' | translate }}</td>
                                              <td valign="top">{{client.id}}</td>
                                          </tr>
                                          <tr>
-                                             <td>{{ 'label.heading.office' | translate }}</td>
+                                             <td>{{'label.heading.office' | translate }}</td>
                                              <td>{{client.officeName}}</td>
                                          </tr>
                                      </table>
@@ -79,7 +79,7 @@
                      </div>
                      <div class="col-sm-3 col-md-offset-5">
                          <br>
-                         <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-default"><i class="fa fa-double-angle-left"></i> {{ 'label.button.back' | translate }}</a>
+                         <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-sm btn-default"><i class="fa fa-double-angle-left"></i> {{'label.button.back' | translate }}</a>
                      </div>
                  </fieldset>
             </form> 
