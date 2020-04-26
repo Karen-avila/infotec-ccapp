@@ -4,7 +4,6 @@
             var baseUrl = "", apiVer = "/fineract-provider/api/v1", tenantIdentifier = "";
             this.setBaseUrl = function (url) {
                 baseUrl = url;
-                console.log(baseUrl);
             };
 
             this.setTenantIdenetifier = function (tenant) {
@@ -625,6 +624,14 @@
                         post: { method: 'POST', params: {} },
                         put: { method: 'PUT', params: {} }
                     }),
+
+                    exchangerates: defineResource(apiVer + "/exchangerates/:exchangeRateId", { exchangeRateId: '@exchangeRateId' }, {
+                        get: { method: 'GET', params: {} },
+                        getAll: { method: 'GET', params: {}, isArray: true },
+                        post: { method: 'POST', params: {} },
+                        put: { method: 'PUT', params: {} }
+                    }),
+
                     variableinstallments: defineResource(apiVer + "/loans/:loanId/schedule", { loanId: '@loanId' }, {
                         validate: { method: 'POST', params: { command: 'calculateLoanSchedule' } },
                         addVariations: { method: 'POST', params: { command: 'addVariations' } },

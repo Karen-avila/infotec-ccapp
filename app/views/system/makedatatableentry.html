@@ -6,13 +6,13 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.makedatatableentry' | translate }}</h4>
+                <h4>{{'label.heading.makedatatableentry' | translate }}</h4>
             </div>
             <br />
             <api-validate></api-validate>
             <form class="form-horizontal" ng-controller="MakeDataTableEntryController" ng-submit="submit()">
                 <fieldset>
-                    <h3>{{ 'label.heading.datatablename' | translate }} - <strong>{{tableName}}</strong></h3>
+                    <h3>{{'label.heading.datatablename' | translate }} - <strong>{{tableName}}</strong></h3>
                     <hr />
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
                         <label class="control-label col-md-5">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
@@ -64,9 +64,9 @@
                     </div>
                     <div class="col-md-12 center">
                         <a id="cancel" class="btn btn-sm btn-default"
-                            ng-click="cancel()">{{ 'label.button.cancel' | translate }}</a>
+                            ng-click="cancel()">{{'label.button.cancel' | translate }}</a>
                         <button id="save" type="submit" class="btn btn-sm btn-primary"
-                            has-permission='CREATE_{{tableName}}'>{{ 'label.button.save' | translate }}</button>
+                            has-permission='CREATE_{{tableName}}'>{{'label.button.save' | translate }}</button>
                     </div>
                 </fieldset>
             </form>

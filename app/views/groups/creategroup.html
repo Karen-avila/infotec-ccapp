@@ -101,11 +101,11 @@
 												<td width="65%">{{client.displayName}}</td>
 											</tr>
 											<tr>
-												<td>{{ 'label.heading.id' | translate }}</td>
+												<td>{{'label.heading.id' | translate }}</td>
 												<td valign="top">{{client.id}}</td>
 											</tr>
 											<tr>
-												<td>{{ 'label.heading.office' | translate }}</td>
+												<td>{{'label.heading.office' | translate }}</td>
 												<td>{{client.officeName}}</td>
 											</tr>
 										</table>
@@ -114,7 +114,7 @@
 								<div class="col-sm-1 col-md-1">
 									<button ng-show="available" type="button" class="btn angled-btn btn-sm btn-primary"
 										data-ng-click="add()" uib-tooltip="{{'label.button.add' | translate}}">
-										{{ 'label.button.add' | translate }}
+										{{'label.button.add' | translate }}
 										<i class="fa fa-angle-double-right"></i></button>
 								</div>
 								<div class="col-sm-5 col-md-5">
@@ -213,10 +213,10 @@
 						</div>
 					</div>
 					<!--<div class="col-md-offset-5" ng-if="$last">-->
-					<!--<button id="cancel3" type="reset" class="btn btn-default" ng-click="cancel()">-->
+					<!--<button id="cancel3" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">-->
 					<!--{{'label.button.cancel' | translate}}-->
 					<!--</button>-->
-					<!--<button id="save3" type="submit" has-permission='CREATE_LOAN' class="btn btn-primary"-->
+					<!--<button id="save3" type="submit" has-permission='CREATE_LOAN' class="btn btn-sm btn-primary"-->
 					<!--ng-show="loanaccountinfo">{{'label.button.save' |-->
 					<!--translate}}-->
 					<!--</button>-->

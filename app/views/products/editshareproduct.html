@@ -7,10 +7,10 @@
 <form name="createshareproductform" novalidate="" class="card form-horizontal well" ng-controller="EditShareProductController" rc-submit="submit()">
 <api-validate></api-validate>
 <fieldset>
-<h3>{{ 'label.heading.details' | translate }}</h3>
+<h3>{{'label.heading.details' | translate }}</h3>
 <hr>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.productname' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.productname' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductname' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.product.shortname' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.product.shortname' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductshortname' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -36,7 +36,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.description' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.description' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductdescription' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -48,10 +48,10 @@
         <form-validate valattributeform="createshareproductform" valattribute="description"/>
     </div>
 </div>
-<h3>{{ 'label.heading.currency' | translate }}</h3>
+<h3>{{'label.heading.currency' | translate }}</h3>
 <hr>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.currency' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.currency' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.currency' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -60,7 +60,7 @@
                 ng-options="currency.code as currency.name for currency in product.currencyOptions"
                 value="{{currency.code}}"/>
     </div>
-    <label class="control-label col-sm-2 col-sm-offset-2">{{ 'label.input.decimalplaces' | translate }}
+    <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductdecimalplaces' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.multiplesof' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.multiplesof' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.multiplesof' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -86,10 +86,10 @@
     </div>
 </div>
 
-<h3>{{ 'label.heading.terms' | translate }}</h3>
+<h3>{{'label.heading.terms' | translate }}</h3>
 <hr>
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.totalnumberofshares' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.totalnumberofshares' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.totalshares' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -101,7 +101,7 @@
         <form-validate valattributeform="createshareproductform" valattribute="totalnumberofshares"/>
     </div>
 
-    <label class="control-label col-sm-2">{{ 'label.input.totalsharestobeissue' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.totalsharestobeissue' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.totalsharestobeissued' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
@@ -111,7 +111,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label col-sm-2">{{ 'label.input.nominalprice' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.nominalprice' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.nominalprice' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -123,7 +123,7 @@
         <form-validate valattributeform="createshareproductform" valattribute="nominalprice"/>
     </div>
 
-    <label class="control-label col-sm-2">{{ 'label.input.capitalvalue' | translate }}
+    <label class="control-label col-sm-2">{{'label.input.capitalvalue' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.capitalvalue' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
@@ -132,12 +132,12 @@
     </div>
 </div>
 
-<h3>{{ 'label.heading.settings' | translate }}</h3>
+<h3>{{'label.heading.settings' | translate }}</h3>
 
 <hr>
 
 <div class="form-group">
-    <label class="control-label col-sm-3">{{ 'label.input.sharesperclient' | translate }}
+    <label class="control-label col-sm-3">{{'label.input.sharesperclient' | translate }}
         <span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.sharesperclient' | translate}}" tooltip-append-to-body="true"></i>
     </label>
@@ -159,7 +159,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label col-sm-3">{{ 'label.input.minimumactiveperiod' | translate }}
+    <label class="control-label col-sm-3">{{'label.input.minimumactiveperiod' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.minimumactiveperiod' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
@@ -178,7 +178,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label col-sm-3">{{ 'label.input.lockinPeriodFrequency' | translate }}
+    <label class="control-label col-sm-3">{{'label.input.lockinPeriodFrequency' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductlockinPeriodFrequency' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
@@ -196,7 +196,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label col-sm-3">{{ 'label.input.allowdividendsforinactiveclients' | translate }}
+    <label class="control-label col-sm-3">{{'label.input.allowdividendsforinactiveclients' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductallowdividends' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
@@ -204,7 +204,7 @@
     </div>
 </div>
 
-<h3>{{ 'label.heading.marketprice' | translate }}</h3>
+<h3>{{'label.heading.marketprice' | translate }}</h3>
 <hr>
 
 <div class="form-group">
@@ -214,7 +214,7 @@
         </label>
     </div>
     <div class="col-sm-1">
-        <button id="add" data-ng-click="addMarketPricePeriod()" class="btn btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
+        <button id="add" data-ng-click="addMarketPricePeriod()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
     </div>
 </div>
 
@@ -233,14 +233,14 @@
                 <input type="text" id="fromDate1" name="fromDate1" datepicker-pop="dd MMMM yyyy"
                        ng-model="marketpriceperiod.fromDate" is-open="opened" min="'2000-01-01'" max="restrictDate"
                        class="form-control" required/>
-                <span class="error" ng-show="visitValidation&&fromDate{{$index}}.fromDate1.$error.required">{{ 'label.requirefield' | translate }}</span>
+                <span class="error" ng-show="visitValidation&&fromDate{{$index}}.fromDate1.$error.required">{{'label.requirefield' | translate }}</span>
             </ng-form>
         </td>
         <td>
             <ng-form name="shareValue{{$index}}">
                 <input id="shareValue" name="shareValue" class="form-control" type="text"
                        ng-model="marketpriceperiod.shareValue" number-format required/>
-                <span class="error" ng-show="visitValidation&&shareValue{{$index}}.shareValue.$error.required">{{ 'label.requirefield' | translate }}</span>
+                <span class="error" ng-show="visitValidation&&shareValue{{$index}}.shareValue.$error.required">{{'label.requirefield' | translate }}</span>
             </ng-form>
         </td>
         <td>
@@ -249,7 +249,7 @@
     </tr>
 </table>
 
-<h3>{{ 'label.heading.charges' | translate }}</h3>
+<h3>{{'label.heading.charges' | translate }}</h3>
 <hr>
 <div class="form-group">
     <div class="col-sm-3">
@@ -260,7 +260,7 @@
         </select>
     </div>
     <div class="col-sm-1">
-        <a class="btn btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'label.button.add' | translate }}</a>
+        <a class="btn btn-sm btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</a>
     </div>
 </div>
 <div class="form-group col-md-12">
@@ -288,7 +288,7 @@
     </table>
 </div>
 
-    <h3>{{ 'label.heading.accounting' | translate }}</h3>
+    <h3>{{'label.heading.accounting' | translate }}</h3>
     <hr>
     <div class="radio-inline">
         <label>
@@ -305,7 +305,7 @@
     <div class="col-md-12" ng-show="formData.accountingRule==2">
         <div class="form-group">
             <h4>{{"label.heading.assets" | translate}}</h4>
-            <label class="control-label col-sm-2">{{ 'label.input.sharereference' | translate }}
+            <label class="control-label col-sm-2">{{'label.input.sharereference' | translate }}
                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.sharereference' | translate}}" tooltip-append-to-body="true"></i>
             </label>
             <div class="col-sm-3">
@@ -319,7 +319,7 @@
         <hr>
         <div class="form-group">
             <h4>{{"label.heading.liabilities" | translate}}</h4>
-            <label class="control-label col-sm-2">{{ 'label.input.sharecontrol' | translate }}
+            <label class="control-label col-sm-2">{{'label.input.sharecontrol' | translate }}
                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.sharecontrol' | translate}}" tooltip-append-to-body="true"></i>
             </label>
             <div class="col-sm-3">
@@ -333,7 +333,7 @@
         <hr>
         <div class="form-group">
             <h4>{{"label.heading.shareequity" | translate}}</h4>
-            <label class="control-label col-sm-2">{{ 'label.input.equity' | translate }}
+            <label class="control-label col-sm-2">{{'label.input.equity' | translate }}
                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.equityaccount' | translate}}" tooltip-append-to-body="true"></i>
             </label>
             <div class="col-sm-3">
@@ -347,7 +347,7 @@
         <hr>
         <div class="form-group">
             <h4>{{"label.heading.income" | translate}}</h4>
-            <label class="control-label col-sm-2">{{ 'label.input.incomefromfees' | translate }}
+            <label class="control-label col-sm-2">{{'label.input.incomefromfees' | translate }}
                 <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.incomefromfees' | translate}}" tooltip-append-to-body="true"></i>
             </label>
             <div class="col-sm-3">
@@ -361,8 +361,8 @@
     </div>
 
 <div class="col-md-offset-5 paddedtop">
-    <button id="cancel" type="reset" class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-    <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_SHAREPRODUCT'>{{'label.button.save'
+    <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_SHAREPRODUCT'>{{'label.button.save'
         | translate}}
     </button>
 </div>

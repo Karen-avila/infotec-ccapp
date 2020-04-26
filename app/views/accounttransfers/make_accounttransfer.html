@@ -8,12 +8,12 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.accounttransfers' | translate }}</h4>
+                <h4>{{'label.heading.accounttransfers' | translate }}</h4>
             </div>
             <form class="form-horizontal" name="accounttransferform" novalidate="" rc-submit="submit()">
                 <fieldset>
                     <div class="table-responsive">
-                        <label><strong>{{ 'label.heading.transferringfrom' | translate}}</strong></label>
+                        <label><strong>{{'label.heading.transferringfrom' | translate}}</strong></label>
                         <table class="table table-striped">
                             <tr>
                                 <td class="width20">{{'label.heading.applicant' | translate}}</td>
@@ -34,9 +34,9 @@
                         </table>
                     </div>
                     <hr>
-                    <label><strong>{{ 'label.heading.transferringto' | translate}}</strong><span class="required">*</span></label>
+                    <label><strong>{{'label.heading.transferringto' | translate}}</strong><span class="required">*</span></label>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="toOfficeId">{{ 'label.input.office' | translate }}<span
+                        <label class="control-label col-sm-2" for="toOfficeId">{{'label.input.office' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="toClientId">{{ 'label.input.client' | translate }}<span
+                        <label class="control-label col-sm-2" for="toClientId">{{'label.input.client' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="toAccountType">{{ 'label.input.accounttype' | translate }}<span
+                        <label class="control-label col-sm-2" for="toAccountType">{{'label.input.accounttype' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="toAccountId">{{ 'label.input.account' | translate }}<span
+                        <label class="control-label col-sm-2" for="toAccountId">{{'label.input.account' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="transferAmount">{{ 'label.input.amount' | translate }}<span
+                        <label class="control-label col-sm-2" for="transferAmount">{{'label.input.amount' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="transferDate">{{ 'label.input.transactiondate' | translate }}<span
+                        <label class="control-label col-sm-2" for="transferDate">{{'label.input.transactiondate' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="transferDescription">
-                        {{ 'label.input.description' | translate }}<span
+                        {{'label.input.description' | translate }}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -120,8 +120,8 @@
                         </div>
                     </div>
                     <div class="col-md-offset-3">
-                        <a id="cancel" class="btn btn-default" data-ng-click="back()">{{ 'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_ACCOUNTTRANSFER'>{{ 'label.button.save' | translate }}</button>
+                        <a id="cancel" class="btn btn-sm btn-default" data-ng-click="back()">{{'label.button.cancel' | translate }}</a>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_ACCOUNTTRANSFER'>{{'label.button.save' | translate }}</button>
                     </div>
                 </fieldset>
             </form>

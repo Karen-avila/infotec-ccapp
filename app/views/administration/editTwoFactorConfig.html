@@ -7,7 +7,7 @@
     class="card form-horizontal well" ng-submit="submit()" ng-hide="disabledTwoFactor">
         <api-validate></api-validate>
         <fieldset>
-            <legend>{{ 'label.anchor.editExternalServicesConfiguration' | translate }}</legend>
+            <legend>{{'label.anchor.editExternalServicesConfiguration' | translate }}</legend>
             <div class="form-group" ng-repeat="config in configs">
                 <label class="control-label col-sm-3" for="{{config.name}}">{{config.name}}</label>
                 <div ng-show="config.type == 'TEXT'" class="col-sm-9">
@@ -30,10 +30,10 @@
                 </div>
             </div>
             <div class="col-md-offset-3">
-                <button id="cancel" type="reset" class="btn btn-default" ng-click="cancel()">{{ 'label.button.cancel' | translate
+                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate
                     }}
                 </button>
-                <button id="save" type="submit" ng-disabled="!editTwoFactorConfigForm.$valid" has-permission='UPDATE_TWOFACTOR_CONFIGURATION' class="btn btn-primary">{{
+                <button id="save" type="submit" ng-disabled="!editTwoFactorConfigForm.$valid" has-permission='UPDATE_TWOFACTOR_CONFIGURATION' class="btn btn-sm btn-primary">{{
                     'label.button.save' | translate }}
                 </button>
             </div>

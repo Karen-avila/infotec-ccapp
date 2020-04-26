@@ -16,21 +16,21 @@
             <form>
                 <div class="row">
                     <div class="col-sm-6">
-                        <input name="codevalue" ng-model="newEle.name" placeholder="{{ 'label.input.codevalue' | translate }}"
+                        <input name="codevalue" ng-model="newEle.name" placeholder="{{'label.input.codevalue' | translate }}"
                                type="text" class="form-control"/>
                     </div>
                     <div class="col-sm-6">
-                        <textarea name="description" ng-model="newEle.description" placeholder="{{ 'label.input.description' | translate }}"
+                        <textarea name="description" ng-model="newEle.description" placeholder="{{'label.input.description' | translate }}"
                                type="text" class="form-control"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
-                        <input name="position" ng-model="newEle.position" placeholder="{{ 'label.input.position' | translate }}"
+                        <input name="position" ng-model="newEle.position" placeholder="{{'label.input.position' | translate }}"
                                type="number" class="form-control"/>
                     </div>
                     <div class="col-sm-3">
-                        <input name="score" ng-model="newEle.score" placeholder="{{ 'label.input.score' | translate }}"
+                        <input name="score" ng-model="newEle.score" placeholder="{{'label.input.score' | translate }}"
                                type="number" class="form-control"/>
                     </div>
                     <div class="col-sm-3">
@@ -40,8 +40,8 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <a data-ng-click="addCv()" class="btn btn-primary" has-permission='CREATE_CODEVALUE'><i
-                                class="fa fa-plus "></i>&nbsp;&nbsp;{{ 'label.button.add' |
+                        <a data-ng-click="addCv()" class="btn btn-sm btn-primary" has-permission='CREATE_CODEVALUE'><i
+                                class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' |
                             translate }}</a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <a ng-click='deleteCv(codevalue.id)' has-permission='DELETE_CODEVALUE'><i class="fa fa-times-circle fa-2x"></i></a>
             </div>
             <div class="pull-right" data-ng-show="stat">
-                <p>{{ 'label.systemdefinedcodedeletefailed' | translate }}</p>
+                <p>{{'label.systemdefinedcodedeletefailed' | translate }}</p>
             </div>
         </div>
     </div>

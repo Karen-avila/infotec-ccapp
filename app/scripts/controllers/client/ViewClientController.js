@@ -56,6 +56,12 @@
             }
             // end of address
 
+            scope.isLegalEntity = function () {
+                if (typeof scope.client == "undefined" || typeof scope.client.legalForm == "undefined") {
+                    return true;
+                }
+                return (scope.client.legalForm.value == 'MORAL');
+            }
 
             // family members
             scope.families = [];
@@ -114,7 +120,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }               
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
 
             scope.getDatatableValue = function (data) {
@@ -180,9 +187,7 @@
                     }
                 }
 
-
                 var clientStatus = new mifosX.models.ClientStatus();
-
                 if (clientStatus.statusKnown(data.status.value)) {
                     scope.buttons = clientStatus.getStatus(data.status.value);
                     scope.savingsActionbuttons = [

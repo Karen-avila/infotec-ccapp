@@ -6,7 +6,7 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.standinginstructionhistory' | translate }}</h4>
+                <h4>{{'label.heading.standinginstructionhistory' | translate }}</h4>
             </div>  
             <api-validate></api-validate>
             <form class="form-horizontal" name="standinginstructionform" 
@@ -14,20 +14,20 @@
                     <fieldset>
                     <div class="form-group">
                         <label  class="col-sm-2" for="fromAccountId">
-                        {{ 'label.heading.fromaccount' | translate }}</label>
+                        {{'label.heading.fromaccount' | translate }}</label>
                         <div class="col-sm-3">
                             {{details.fromAccount.accountNo}}({{details.fromAccountType.value}})
                         </div>
                         <div class="form-group">
                              <label class="col-sm-1" for="fromAccountId">
-                             {{ 'label.heading.toaccount' | translate }}</label>
+                             {{'label.heading.toaccount' | translate }}</label>
                              <div class="col-sm-3">
                                  {{details.toAccount.accountNo}}({{details.toAccountType.value}})
                              </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2" for="fromAccountId">{{ 'label.heading.destination' | translate }}</label>
+                        <label class="col-sm-2" for="fromAccountId">{{'label.heading.destination' | translate }}</label>
                         <div class="col-sm-3">
                             {{details.toClient.displayName}}
                         </div>

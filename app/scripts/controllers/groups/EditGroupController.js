@@ -11,6 +11,7 @@
 
             scope.RequestEntities = function(entity,status){
                 resourceFactory.entityDatatableChecksResource.getAll({limit:-1},function (response) {
+                    var _ = require('underscore');
                     scope.entityDatatableChecks = _.filter(response.pageItems , function(datatable){
                         var AllTables = (datatable.entity == entity && datatable.status.value == status);
                         return AllTables;

@@ -195,9 +195,9 @@ module.exports = function(grunt) {
           cwd: '<%= mifosx.app %>/bower_components',
           dest: '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components',
           src: [
-            '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js',
+            '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js', 'pdfmake/build/*.js',
             '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**',
-            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
+            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 'angular-loading-bar/build/*.js', 'fontawesome/css/*.min.css',
             'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js'
           ]
         }

@@ -220,7 +220,18 @@
             .when('/editfloatingrate/:floatingRateId', {
                 templateUrl: 'views/products/floatingrates/EditFloatingRate.html'
             })
-
+            .when('/exchangerates', {
+                templateUrl: 'views/products/exchangerates/exchangerates.html'
+            })
+            .when('/createexchangerate', {
+                templateUrl: 'views/products/exchangerates/createexchangerate.html'
+            })
+            .when('/viewexchangerate/:exchangeRateId', {
+                templateUrl: 'views/products/exchangerates/viewexchangerate.html'
+            })
+            .when('/editexchangerate/:exchangeRateId', {
+                templateUrl: 'views/products/exchangerates/editexchangerate.html'
+            })
             .when('/savingproducts', {
                 templateUrl: 'views/products/savingproducts.html'
             })

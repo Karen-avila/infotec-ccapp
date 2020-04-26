@@ -46,7 +46,7 @@
                             <br>
                             <span
                                 data-ng-show="result.entityType  == 'CLIENT' ||result.entityType  == 'GROUP' || result.entityType  == 'CENTER' "><strong>{{'label.heading.entity'
-                        | translate}}</strong>:{{result.entityType}} | <strong>{{ 'label.heading.office' | translate
+                        | translate}}</strong>:{{result.entityType}} | <strong>{{'label.heading.office' | translate
                         }}</strong>:{{result.parentName}}</span>
                             <span data-ng-show="result.entityType  == 'CLIENTIDENTIFIER'"><strong>{{'label.heading.entity' |
                         translate}}</strong>:{{'label.heading.clientid' | translate}} | <strong>{{
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 data-ng-show="flag" style="top: 10%;" class="center"><strong>{{ 'label.nodatafound' | translate
+                <h3 data-ng-show="flag" style="top: 10%;" class="center"><strong>{{'label.nodatafound' | translate
             }}</strong></h3>
 
                 <div class="span7">
@@ -194,7 +194,7 @@
                                 <td>{{shareaccount.totalApprovedShares|number}}</td>
                                 <td>{{shareaccount.status.value}}</td>
                                 <td>
-                                    <i class="icon-stop {{shareaccount.status.code | StatusLookup}}"></i>
+                                    <i class="fa fa-stop {{shareaccount.status.code | StatusLookup}}"></i>
                                 </td>
                             </tr>
                         </table>

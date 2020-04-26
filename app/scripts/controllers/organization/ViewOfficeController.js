@@ -19,9 +19,6 @@
                     }
                     scope.datatableLoaded = true;
                 }
-                console.log("=============================");
-                console.log(JSON.stringify(scope.datatabledetails));
-
             });
             scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({
@@ -68,7 +65,6 @@
                             }
                         }
                     }
-                    console.log(JSON.stringify(datatabledetail));
                     scope.datatabledetails.push(datatabledetail);
                 });
             };
@@ -92,7 +88,8 @@
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
                 }               
-                return tableName + '.' + columnName;
+                // return tableName + '.' + columnName;
+                return columnName;
             }
 
             scope.getDatatableValue = function (data) {

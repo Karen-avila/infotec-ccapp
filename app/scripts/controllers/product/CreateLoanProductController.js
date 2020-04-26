@@ -31,6 +31,7 @@
             scope.repaymentFrequency = true;
             scope.transactionProcessingStrategy = true;
             scope.allowAttributeConfiguration = true;
+            scope.includeOrderAccounts = false;
             scope.interestRecalculationOnDayTypeOptions = [];
             for (var i = 1; i <= 28; i++) {
                 scope.interestRecalculationOnDayTypeOptions.push(i);
@@ -41,6 +42,9 @@
                 scope.incomeAccountOptions = scope.product.accountingMappingOptions.incomeAccountOptions || [];
                 scope.expenseAccountOptions = scope.product.accountingMappingOptions.expenseAccountOptions || [];
                 scope.liabilityAccountOptions = scope.product.accountingMappingOptions.liabilityAccountOptions || [];
+                scope.debitOrderAccountOptions = scope.product.accountingMappingOptions.debitOrderAccountOptions || [];
+                scope.creditOrderAccountOptions = scope.product.accountingMappingOptions.creditOrderAccountOptions || [];
+
                 scope.incomeAndLiabilityAccountOptions = scope.incomeAccountOptions.concat(scope.liabilityAccountOptions);
                 scope.penaltyOptions = scope.product.penaltyOptions || [];
                 scope.chargeOptions = scope.product.chargeOptions || [];
@@ -413,6 +417,18 @@
                     delete this.formData.recalculationRestFrequencyOnDayType;
                     delete this.formData.recalculationRestFrequencyNthDayType;
                 }
+
+                // Order Accounts
+                this.formData.includeOrderAccounts = scope.includeOrderAccounts;
+                if (! this.formData.includeOrderAccounts) {
+                    delete this.formData.orderNotPerfomedAccountId;
+                    delete this.formData.orderPerformedAccountId;
+                    delete this.formData.orderInterestAccountId;
+                    delete this.formData.creditCommitmentsAccountId;
+                    delete this.formData.creditOrderInterestAccountId;
+                    delete this.formData.creditOrderNotPerformedAccountId;
+                }
+
                 resourceFactory.loanProductResource.save(this.formData, function (data) {
                     location.path('/viewloanproduct/' + data.resourceId);
                 });

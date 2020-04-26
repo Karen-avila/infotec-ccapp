@@ -4,7 +4,7 @@
         <fieldset>
             <div class="form-group" ng-show="postalCode">
                 <label class="control-label col-sm-3"
-                    for="postal_code">{{ 'label.input.postal_code' | translate }}</label>
+                    for="postal_code">{{'label.input.postal_code' | translate }}</label>
                 <div class="col-sm-3">
                     <input type="text" id="postal_code" name="postal_code" ng-model="formData.postalCode"
                         class="form-control">
@@ -13,7 +13,7 @@
 
             <div class="form-group" >
                 <div class="control-label col-sm-3">
-                   <label>{{ 'label.input.addressType' | translate }}<span class="required">*</span></label>
+                   <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
                    <select chosen="addressTypes" name="addressType" ng-model="formData.addressTypeId"  class="form-control"
@@ -26,7 +26,7 @@
              </div>
 
             <div class="form-group" ng-show="street">
-                <label class="control-label col-sm-3" for="street">{{ 'label.input.street' | translate }}<span class="required">*</span></label>
+                <label class="control-label col-sm-3" for="street">{{'label.input.street' | translate }}<span class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <input type="text" id="street" name="street" ng-model="formData.street" class="form-control" required late-validate>
@@ -35,7 +35,7 @@
 
             <div class="form-group" ng-show="addressLine1">
                 <label class="control-label col-sm-3"
-                    for="addressline1">{{ 'label.input.addressline1' | translate }}</label>
+                    for="addressline1">{{'label.input.addressline1' | translate }}</label>
                 <div class="col-sm-3">
                     <input type="text" id="addressline1" name="addressline1" ng-model="formData.addressLine1"
                         class="form-control">
@@ -44,7 +44,7 @@
 
             <div class="form-group" ng-show="addressLine2">
                 <label class="control-label col-sm-3"
-                    for="addressline2">{{ 'label.input.addressline2' | translate }}</label>
+                    for="addressline2">{{'label.input.addressline2' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="addressline2" name="addressline2" ng-model="formData.addressLine2"
@@ -54,7 +54,7 @@
 
             <div class="form-group" ng-show="addressLine3">
                 <label class="control-label col-sm-3"
-                    for="addressline3">{{ 'label.input.addressline3' | translate }}</label>
+                    for="addressline3">{{'label.input.addressline3' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="addressline3" name="addressline3" ng-model="formData.addressLine3"
@@ -64,7 +64,7 @@
 
             <div class="form-group" ng-show="addressLine4">
                 <label class="control-label col-sm-3"
-                    for="addressline3">{{ 'label.input.addressline4' | translate }}</label>
+                    for="addressline3">{{'label.input.addressline4' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="addressline4" name="addressline4" ng-model="formData.addressLine4"
@@ -74,7 +74,7 @@
 
             <div class="form-group" ng-show="addressLine5">
                 <label class="control-label col-sm-3"
-                    for="addressline3">{{ 'label.input.addressline5' | translate }}</label>
+                    for="addressline3">{{'label.input.addressline5' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="addressline5" name="addressline5" ng-model="formData.addressLine5"
@@ -84,7 +84,7 @@
 
             <div class="form-group" ng-show="addressLine6">
                 <label class="control-label col-sm-3"
-                    for="addressline3">{{ 'label.input.addressline6' | translate }}</label>
+                    for="addressline3">{{'label.input.addressline6' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="addressline6" name="addressline6" ng-model="formData.addressLine6"
@@ -93,7 +93,7 @@
             </div>
 
             <div class="form-group" ng-show="city">
-                <label class="control-label col-sm-3" for="city">{{ 'label.input.city' | translate }}</label>
+                <label class="control-label col-sm-3" for="city">{{'label.input.city' | translate }}</label>
 
                 <div class="col-sm-3">
                     <input type="text" id="city" name="city" ng-model="formData.city" class="form-control">
@@ -102,7 +102,7 @@
 
             <div class="form-group" ng-show="townVillage">
                 <label class="control-label col-sm-3"
-                    for="town_village">{{ 'label.input.town_village' | translate }}</label>
+                    for="town_village">{{'label.input.town_village' | translate }}</label>
                 <div class="col-sm-3">
                     <input type="text" id="town_village" name="town_village" ng-model="formData.townVillage"
                         class="form-control">
@@ -111,7 +111,7 @@
 
             <div class="form-group" ng-show="countyDistrict">
                 <label class="control-label col-sm-3"
-                    for="county_district">{{ 'label.input.county_district' | translate }}</label>
+                    for="county_district">{{'label.input.county_district' | translate }}</label>
                 <div class="col-sm-3">
                     <input type="text" id="county_district" name="county_district" ng-model="formData.countyDistrict"
                         class="form-control">
@@ -120,7 +120,7 @@
 
             <div class="form-group" ng-show="countryId">
                 <div class="control-label col-sm-3">
-                    <label>{{ 'label.input.country' | translate }}</label>
+                    <label>{{'label.input.country' | translate }}</label>
                 </div>
                 <div class="col-sm-3">
                     <select chosen="countryOptions" id="countryOption" ng-model="formData.countryId"
@@ -132,7 +132,7 @@
 
             <div class="form-group" ng-show="stateProvinceId">
                 <div class="control-label col-sm-3">
-                   <label>{{ 'label.input.state_province' | translate }}</label>
+                   <label>{{'label.input.state_province' | translate }}</label>
                 </div>
                 <div class="col-sm-3" >
                    <select chosen="stateOptions"  ng-model="formData.stateProvinceId"  class="form-control"
@@ -143,7 +143,7 @@
 
              <div class="form-group" ng-show="municipality">
                 <div class="control-label col-sm-3">
-                   <label>{{ 'label.input.municipality' | translate }}</label>
+                   <label>{{'label.input.municipality' | translate }}</label>
                 </div>
                 <div class="col-sm-3" >
                    <select chosen="municipalityOptions" ng-model="formData.municipality"  class="form-control"
@@ -153,21 +153,21 @@
              </div>
 
              <div class="form-group" ng-show="antiquity">
-                <label class="control-label col-sm-3" >{{ 'label.input.antiquity' | translate }}</label>
+                <label class="control-label col-sm-3" >{{'label.input.antiquity' | translate }}</label>
                 <div class="col-sm-3">
                    <input type="text" name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="formData.antiquity"  class="form-control">
                 </div>
              </div>
 
              <div class="form-group" ng-show="latitude">
-                <label class="control-label col-sm-3" >{{ 'label.input.latitude' | translate }}</label>
+                <label class="control-label col-sm-3" >{{'label.input.latitude' | translate }}</label>
                 <div class="col-sm-3">
                    <input type="text"  name="latitude" ng-model="formData.latitude"  class="form-control">
                 </div>
              </div>
 
              <div class="form-group" ng-show="longitude">
-                <label class="control-label col-sm-3" >{{ 'label.input.longitude' | translate }}</label>
+                <label class="control-label col-sm-3" >{{'label.input.longitude' | translate }}</label>
                 <div class="col-sm-3">
                    <input type="text"  name="longitude" ng-model="formData.longitude"  class="form-control">
                 </div>

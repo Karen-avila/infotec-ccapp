@@ -2,8 +2,8 @@
     mifosX.controllers = _.extend(module, {
         ExpertSearchController: function (scope, resourceFactory, location) {
         	scope.dashModel = 'dashboard';
-            scope.switch = function() {
-	        	location.path('/richdashboard');
+            scope.switch = function(path) {
+	        	location.path(path);
 			}
 
 			scope.searchLabels = {

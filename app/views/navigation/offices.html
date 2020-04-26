@@ -113,19 +113,19 @@
                 </div>
                 <table class="table table-font-nav">
                     <tr data-ng-show="office.parentName">
-                        <td width="20%">{{ 'label.heading.parentoffice' | translate }}</td>
+                        <td width="20%">{{'label.heading.parentoffice' | translate }}</td>
                         <td width="70%">{{office.parentName}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.openedon' | translate }}</td>
+                        <td>{{'label.heading.openedon' | translate }}</td>
                         <td>{{office.openingDate | DateFormat}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.externalid' | translate }}</td>
+                        <td>{{'label.heading.externalid' | translate }}</td>
                         <td>{{office.externalId}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.staff' | translate }}</td>
+                        <td>{{'label.heading.staff' | translate }}</td>
                         <td>{{staffs.length}}</td>
                     </tr>
                 </table>
@@ -146,15 +146,15 @@
                 </div>
                 <table class="table table-font-nav">
                     <tr data-ng-show="office.parentName">
-                        <td width="20%">{{ 'label.office.parentoffice' | translate }}</td>
+                        <td width="20%">{{'label.office.parentoffice' | translate }}</td>
                         <td width="70%">{{office.parentName}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.office' | translate }}</td>
+                        <td>{{'label.heading.office' | translate }}</td>
                         <td>{{staff.officeName}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.center' | translate }}</td>
+                        <td>{{'label.heading.center' | translate }}</td>
                         <td>{{centers.length}}</td>
                     </tr>
                 </table>
@@ -177,43 +177,43 @@
                 <br/>
                 <table class="table table-font-nav">
                     <tr data-ng-show="center.activationDate">
-                        <td>{{ 'label.heading.activationdate' | translate }}</td>
+                        <td>{{'label.heading.activationdate' | translate }}</td>
                         <td valign="top">{{center.activationDate | DateFormat}}</td>
                     </tr>
                     <tr data-ng-show="center.staffName">
-                        <td>{{ 'label.heading.staff' | translate }}</td>
+                        <td>{{'label.heading.staff' | translate }}</td>
                         <td>{{center.staffName}}</td>
                     </tr>
                     <tr data-ng-show="groups.length">
-                        <td>{{ 'label.heading.group' | translate }}</td>
+                        <td>{{'label.heading.group' | translate }}</td>
                         <td>{{groups.length}}</td>
                     </tr>
                     <tr data-ng-show="summary.activeClients">
-                        <td>{{ 'label.numofactiveclient' | translate }}</td>
+                        <td>{{'label.numofactiveclient' | translate }}</td>
                         <td>{{summary.activeClients}}</td>
                     </tr>
                     <tr data-ng-show="summary.activeClientLoans">
-                        <td>{{ 'label.numofactiveclientloans' | translate }}</td>
+                        <td>{{'label.numofactiveclientloans' | translate }}</td>
                         <td>{{summary.activeClientLoans}}</td>
                     </tr>
                     <tr data-ng-show="summary.activeClientBorrowers">
-                        <td>{{ 'label.numofactiveclientborrowers' | translate }}</td>
+                        <td>{{'label.numofactiveclientborrowers' | translate }}</td>
                         <td>{{summary.activeClientBorrowers}}</td>
                     </tr>
                     <tr data-ng-show="summary.overdueGroupLoans">
-                        <td>{{ 'label.numofactiveoverduegrouploans' | translate }}</td>
+                        <td>{{'label.numofactiveoverduegrouploans' | translate }}</td>
                         <td>{{summary.overdueGroupLoans}}</td>
                     </tr>
                     <tr data-ng-show="summary.overdueClientLoans">
-                        <td>{{ 'label.numofactiveoverdueclientloans' | translate }}</td>
+                        <td>{{'label.numofactiveoverdueclientloans' | translate }}</td>
                         <td>{{summary.overdueClientLoans}}</td>
                     </tr>
                     <tr data-ng-show="center.collectionMeetingCalendar.nextTenRecurringDates[0]">
-                        <td>{{ 'label.heading.nextmeetingon' | translate }}</td>
+                        <td>{{'label.heading.nextmeetingon' | translate }}</td>
                         <td>{{center.collectionMeetingCalendar.nextTenRecurringDates[0] | DateFormat}}</td>
                     </tr>
                     <tr data-ng-show="center.collectionMeetingCalendar.humanReadable">
-                        <td>{{ 'label.heading.meetingfrequency' | translate }}</td>
+                        <td>{{'label.heading.meetingfrequency' | translate }}</td>
                         <td>{{center.collectionMeetingCalendar.humanReadable}}</td>
                     </tr>
                 </table>
@@ -285,26 +285,26 @@
                         <td>{{client.lastname}}</td>
                     </tr>
                     <tr data-ng-show="client.accountNo">
-                        <td>{{ 'label.heading.accnum' | translate }}</td>
+                        <td>{{'label.heading.accnum' | translate }}</td>
                         <td>{{client.accountNo}}</td>
                     </tr>
                     <tr data-ng-show="client.activationDate">
-                        <td>{{ 'label.heading.activationdate' | translate }}</td>
+                        <td>{{'label.heading.activationdate' | translate }}</td>
                         <td valign="top">{{client.activationDate | DateFormat}}</td>
                     </tr>
                     <tr data-ng-show="client.officeName">
-                        <td>{{ 'label.heading.office' | translate }}</td>
+                        <td>{{'label.heading.office' | translate }}</td>
                         <td>{{client.officeName}}</td>
                     </tr>
                     <tr data-ng-show="client.staffName">
-                        <td>{{ 'label.heading.staff' | translate }}</td>
+                        <td>{{'label.heading.staff' | translate }}</td>
                         <td>{{client.staffName}}</td>
                     </tr>
                 </table>
                 <hr/>
                 <table>
                     <tr>
-                        <td class="table-font-nav">{{ 'label.heading.memberof' | translate }}</td>
+                        <td class="table-font-nav">{{'label.heading.memberof' | translate }}</td>
                         <td>
                             <span ng-repeat="group in client.groups">
                             {{group.name}}&nbsp;<span ng-show="!$last">|</span></span>
@@ -371,19 +371,19 @@
                 <br/>
                 <table class="table table-font-nav">
                     <tr data-ng-show="group.activationDate">
-                        <td>{{ 'label.heading.activationdate' | translate }}</td>
+                        <td>{{'label.heading.activationdate' | translate }}</td>
                         <td valign="top">{{group.activationDate | DateFormat}}</td>
                     </tr>
                     <tr data-ng-show="group.staffName">
-                        <td>{{ 'label.heading.staff' | translate }}</td>
+                        <td>{{'label.heading.staff' | translate }}</td>
                         <td>{{group.staffName}}</td>
                     </tr>
                     <tr data-ng-show="group.collectionMeetingCalendar.nextTenRecurringDates[0]">
-                        <td>{{ 'label.heading.nextmeetingon' | translate }}</td>
+                        <td>{{'label.heading.nextmeetingon' | translate }}</td>
                         <td>{{group.collectionMeetingCalendar.nextTenRecurringDates[0] | DateFormat}}</td>
                     </tr>
                     <tr data-ng-show="group.collectionMeetingCalendar.humanReadable">
-                        <td>{{ 'label.heading.meetingfrequency' | translate }}</td>
+                        <td>{{'label.heading.meetingfrequency' | translate }}</td>
                         <td>{{group.collectionMeetingCalendar.humanReadable}}</td>
                     </tr>
                 </table>

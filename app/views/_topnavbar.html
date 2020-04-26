@@ -3,9 +3,9 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" ng-click="isNavCollapsed = !isNavCollapsed">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="fa fa-bar"></span>
+                <span class="fa fa-bar"></span>
+                <span class="fa fa-bar"></span>
             </button>
             <a href id="leftnav-toggle">
                 <span class="fa fa-bars"></span>
@@ -23,11 +23,11 @@
                        <i class="fa fa-users"></i> {{
                         'label.anchor.clients' | translate }}<b class="caret"></b></a>
                     <ul class="" uib-dropdown-menu id="swatch-menu">
-                        <li><a href="#!/clients" has-permission='READ_CLIENT'>{{ 'label.anchor.clients' | translate
+                        <li><a href="#!/clients" has-permission='READ_CLIENT'>{{'label.anchor.clients' | translate
                             }}</a></li>
-                        <li><a href="#!/groups" has-permission='READ_GROUP'>{{ 'label.anchor.groups' | translate
+                        <li><a href="#!/groups" has-permission='READ_GROUP'>{{'label.anchor.groups' | translate
                             }}</a></li>
-                        <li><a href="#!/processes" >{{ 'label.anchor.processes' | translate
+                        <li><a href="#!/processes" >{{'label.anchor.processes' | translate
                             }}</a></li>
                     </ul>
                 </li>
@@ -35,7 +35,7 @@
                 <li uib-dropdown is-open="li.accounting.status.isopen"
                 ng-mouseenter="li.accounting.status.isopen = true" ng-mouseleave="li.accounting.status.isopen = false">
                     <a ng-class="{ activate: isActive('acc') }" href="#!/accounting">
-                        <i class="fa fa-money"></i> {{ 'label.anchor.accounting' | translate }}
+                        <i class="fa fa-money"></i> {{'label.anchor.accounting' | translate }}
                     </a>
                 </li>
                 
@@ -46,17 +46,17 @@
                        <i class="fa fa-bar-chart-o"></i> {{
                         'label.anchor.reports' | translate }}<b class="caret"></b></a>
                     <ul class="" uib-dropdown-menu>
-                        <li><a href="#!/reports/all" has-permission='READ_REPORT'>{{ 'label.reports.type.all' | translate
+                        <li><a href="#!/reports/all" has-permission='READ_REPORT'>{{'label.reports.type.all' | translate
                             }}</a></li>
-                        <li><a href="#!/reports/clients" has-permission='READ_REPORT'>{{ 'label.anchor.clients' |
+                        <li><a href="#!/reports/clients" has-permission='READ_REPORT'>{{'label.anchor.clients' |
                             translate }}</a></li>
-                        <li><a href="#!/reports/loans" has-permission='READ_REPORT'>{{ 'label.anchor.loans' |
+                        <li><a href="#!/reports/loans" has-permission='READ_REPORT'>{{'label.anchor.loans' |
                             translate }}</a></li>
-                        <li><a href="#!/reports/savings" has-permission='READ_REPORT'>{{ 'label.anchor.savings' |
+                        <li><a href="#!/reports/savings" has-permission='READ_REPORT'>{{'label.anchor.savings' |
                             translate }}</a></li>
-                        <li><a href="#!/reports/funds" has-permission='READ_REPORT'>{{ 'label.anchor.funds' |
+                        <li><a href="#!/reports/funds" has-permission='READ_REPORT'>{{'label.anchor.funds' |
                             translate }}</a></li>
-                        <li><a href="#!/reports/accounting" has-permission='READ_REPORT'>{{ 'label.anchor.accounting'
+                        <li><a href="#!/reports/accounting" has-permission='READ_REPORT'>{{'label.anchor.accounting'
                             | translate }}</a></li>
                         </li>
                     </ul>
@@ -68,12 +68,12 @@
                        <i class="fa fa-wrench"></i> {{
                         'label.anchor.admin' | translate }}<b class="caret"></b></a>
                     <ul class="" uib-dropdown-menu>
-                        <li><a href="#!/users" has-permission='READ_USER'>{{ 'label.anchor.users' | translate }}</a>
+                        <li><a href="#!/users" has-permission='READ_USER'>{{'label.anchor.users' | translate }}</a>
                         </li>
-                        <li><a href="#!/organization">{{ 'label.anchor.organization' | translate }}</a></li>
-                        <li><a href="#!/system">{{ 'label.anchor.system' | translate }}</a></li>
-                        <li><a href="#!/products">{{ 'label.anchor.products' | translate }}</a></li>
-                        <li><a href="#!/templates" has-permission='READ_TEMPLATE'>{{ 'label.anchor.templates' |
+                        <li><a href="#!/organization">{{'label.anchor.organization' | translate }}</a></li>
+                        <li><a href="#!/system">{{'label.anchor.system' | translate }}</a></li>
+                        <li><a href="#!/products">{{'label.anchor.products' | translate }}</a></li>
+                        <li><a href="#!/templates" has-permission='READ_TEMPLATE'>{{'label.anchor.templates' |
                             translate }}</a></li>
                     </ul>
                 </li>
@@ -105,9 +105,9 @@
                     <ul class="" uib-dropdown-menu>
                         <li><a id="help" ng-click="helpf()"><i class="fa fa-question-circle"></i> {{
                             'label.anchor.help' | translate }}</a></li>
-                        <li><a href="#!/profile"><i class="fa fa-user"></i> {{ 'label.anchor.profile' | translate
+                        <li><a href="#!/profile"><i class="fa fa-user"></i> {{'label.anchor.profile' | translate
                             }}</a></li>
-                        <li><a href="#!/usersetting"><i class="fa fa-cog"></i> {{ 'label.anchor.settings' | translate
+                        <li><a href="#!/usersetting"><i class="fa fa-cog"></i> {{'label.anchor.settings' | translate
                             }}</a></li>
                         <li><a id="logout" data-ng-click="logout()"><i class="fa fa-power-off"></i> {{
                             'label.anchor.logout' | translate }}</a></li>

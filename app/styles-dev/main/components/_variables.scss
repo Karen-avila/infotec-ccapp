@@ -28,10 +28,10 @@ $brand-danger-darker:   darken($brand-danger, 8.5%) !default;
 $brand-loader:          #fff;
 
 //Progress bar
-$incomplete: #333 !default;
-$complete: #65d074 !default;
-$active: #36BAF0 !default;
-$hover: #365DF0 !default;
+$incomplete: $gray-base !default;
+$complete: $gray-light !default;
+$active: $brand-primary-light !default;
+$hover: $brand-primary !default;
 $step-danger: #d8736f !default;
 $step-warning: #E8F036 !default;
 $step-pending: darken($step-warning, 8.5%) !default;
@@ -655,7 +655,7 @@ $alert-border-radius:         $border-radius-base !default;
 $alert-link-font-weight:      bold !default;
 
 $alert-success-bg:            $state-success-bg !default;
-$alert-success-text:          $state-success-text !default;
+$alert-success-text:          $state-success-text !important;
 $alert-success-border:        $state-success-border !default;
 
 $alert-info-bg:               $state-info-bg !default;

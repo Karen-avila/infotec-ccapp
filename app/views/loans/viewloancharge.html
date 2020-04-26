@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewLoanChargeController">
         <ul class="breadcrumb">
             <li><a href="#!/viewloanaccount/{{loanId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
-            <li class="active">{{ 'label.anchor.viewcharge' | translate}}({{charge.name}})</li>
+            <li class="active">{{'label.anchor.viewcharge' | translate}}({{charge.name}})</li>
         </ul>
     <script type="text/ng-template" id="deletecharge.html">
         <div class="modal-header silver">
@@ -11,7 +11,7 @@
             <api-validate></api-validate>
             <br>
             <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
     <div class="card">

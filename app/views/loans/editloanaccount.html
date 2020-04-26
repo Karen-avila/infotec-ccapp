@@ -13,21 +13,21 @@
         <table class="width100">
             <tr>
                 <td class="width14">
-                    <label>{{ 'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
+                    <label>{{'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="width36 paddedbottom10">
-                    <select id="productId" ng-model="formData.productId" class="form-control width170px"
+                    <select id="productId" ng-model="formData.productId" class="form-control "
                         ng-options="product.id as product.name for product in loanaccountinfo.productOptions"
                         value="{{product.id}}" ng-change="loanProductChange(formData.productId)" />
                     <option style="display:none" value="">{{'label.selectloanproduct' | translate}}</option>
                     </select>
                 </td>
                 <td class="width14">
-                    <label ng-show="formData.productId">{{ 'label.input.loanofficer' | translate }}:&nbsp;</label>
+                    <label ng-show="formData.productId">{{'label.input.loanofficer' | translate }}:&nbsp;</label>
                 </td>
                 <td class="width36 paddedbottom10">
                     <select ng-show="formData.productId" id="loanOfficerId" ng-model="formData.loanOfficerId"
-                        class="form-control width170px"
+                        class="form-control "
                         ng-options="loanOfficer.id as loanOfficer.displayName for loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse"
                         value="{{loanOfficer.id}}">
                         <option value="">{{'label.selectloanofficer' | translate}}</option>
@@ -36,21 +36,21 @@
             </tr>
             <tr ng-show="formData.productId">
                 <td>
-                    <label>{{ 'label.input.loanpurpose' | translate }}:&nbsp;</label>
+                    <label>{{'label.input.loanpurpose' | translate }}:&nbsp;</label>
                 </td>
                 <td class="paddedbottom10">
                     <select chosen="loanaccountinfo.loanPurposeOptions" id="loanPurposeId"
-                        ng-model="formData.loanPurposeId" class="form-control width170px"
+                        ng-model="formData.loanPurposeId" class="form-control "
                         ng-options="loanPurpose.id as loanPurpose.name for loanPurpose in loanaccountinfo.loanPurposeOptions | orderBy:'name':reverse"
                         value="{{loanPurpose.id}}">
                         <option value="">{{'label.selectpurpose' | translate}}</option>
                     </select>
                 </td>
                 <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.fundId == true">
-                    <label>{{ 'label.input.fund' | translate }}:&nbsp;</label></td>
+                    <label>{{'label.input.fund' | translate }}:&nbsp;</label></td>
                 <td class="paddedbottom10"
                     ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.fundId == true">
-                    <select id="fundId" ng-model="formData.fundId" class="form-control width170px"
+                    <select id="fundId" ng-model="formData.fundId" class="form-control "
                         ng-options="fund.id as fund.name for fund in loanaccountinfo.fundOptions" value="{{fund.id}}">
                         <option value="">{{'label.selectfund' | translate}}</option>
                     </select>
@@ -58,14 +58,14 @@
             </tr>
             <tr ng-show="formData.productId">
                 <td>
-                    <label>{{ 'label.input.submittedon' | translate }}<span class="required">*</span>:&nbsp;</label>
+                    <label>{{'label.input.submittedon' | translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="paddedbottom10">
                     <input id="submittedOnDate" sort type="text" datepicker-pop="dd MMMM yyyy" class="form-control"
                         ng-model="formData.submittedOnDate" is-open="opened" min="'2000-01-01'" max="restrictDate" />
                 </td>
                 <td>
-                    <label title="{{ 'label.input.expecteddisbursementon' | translate }}">{{ 'label.input.disbursementon' |
+                    <label title="{{'label.input.expecteddisbursementon' | translate }}">{{'label.input.disbursementon' |
                 translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="paddedbottom10">
@@ -75,7 +75,7 @@
                 </td>
             </tr>
             <tr ng-show="formData.productId">
-                <td><label>{{ 'label.input.externalid' | translate }}</label></td>
+                <td><label>{{'label.input.externalid' | translate }}</label></td>
                 <td class="paddedbottom10">
                     <input type="text" id="externalId" name="externalId" ng-model="formData.externalId"
                         class="form-control" />
@@ -93,18 +93,18 @@
             'label.heading.meetingdetails' | translate }}</strong></label>
                 <table ng-show="loanaccountinfo.calendarOptions" class="width100">
                     <tr ng-repeat="calendar in loanaccountinfo.calendarOptions">
-                        <td class="width14"><label>{{ 'label.heading.startdate' | translate }}:</label></td>
+                        <td class="width14"><label>{{'label.heading.startdate' | translate }}:</label></td>
                         <td class="width36">{{calendar.startDate | DateFormat}}</td>
-                        <td class="width14"><label>{{ 'label.heading.repeatson' | translate }}:</label></td>
+                        <td class="width14"><label>{{'label.heading.repeatson' | translate }}:</label></td>
                         <td class="width36">{{calendar.humanReadable}}</td>
                     </tr>
                     <tr ng-repeat="calendar in loanaccountinfo.calendarOptions">
                         <td align="center"><input type="checkbox" ng-model="formData.syncRepaymentsWithMeeting"
                                 ng-change="syncRepaymentsWithMeetingchange()"></td>
-                        <td><label>{{ 'label.input.syncrepaymentswithmeeting' | translate }}</label></td>
+                        <td><label>{{'label.input.syncrepaymentswithmeeting' | translate }}</label></td>
                         <td align="center"><input type="checkbox" ng-model="formData.syncDisbursementWithMeeting"
                                 ng-change="syncDisbursementWithMeetingchange()"></td>
-                        <td><label>{{ 'label.input.syncdisbursementdatewithmeeting' | translate }}</label></td>
+                        <td><label>{{'label.input.syncdisbursementdatewithmeeting' | translate }}</label></td>
                     </tr>
                 </table>
                 <div ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true">
@@ -113,46 +113,51 @@
                 <div
                     ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true && response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true">
                     <label
-                        ng-show="loanaccountinfo"><strong>{{ 'label.heading.savingsLinkage' | translate }}</strong></label>
+                        ng-show="loanaccountinfo"><strong>{{'label.heading.savingsLinkage' | translate }}</strong></label>
                 </div>
                 <table ng-show="loanaccountinfo" ng-hide="previewRepayment" class="width100">
                     <tr>
                         <td class="width19"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true">
-                            <label>{{ 'label.input.linksavings' | translate }}:</label>
+                            <label>{{'label.input.linksavings' | translate }}:</label>
                         </td>
                         <td class="width31 paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true">
                             <select id="linkAccountId" ng-model="formData.linkAccountId"
                                 ng-options="savingaccount.id as savingaccount.productName for savingaccount in loanaccountinfo.accountLinkingOptions"
-                                class="form-control width170px" value="{{savingaccount.id}}">
+                                class="form-control " value="{{savingaccount.id}}">
                                 <option value="">{{'label.menu.selectone' | translate}}</option>
                             </select>
                         </td>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true">
-                            <label>{{ 'label.input.createStandingInstruction' | translate }}:</label>
+                            <label>{{'label.input.createStandingInstruction' | translate }}:</label>
                         </td>
                         <td class="width31"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true">
-                            <input id="createStandingInstruction" class="input-mini-small" type="checkbox"
+                            <input id="createStandingInstruction"  type="checkbox"
                                 ng-model="formData.createStandingInstructionAtDisbursement"></label>
                         </td>
                     </tr>
                 </table>
                 <hr ng-show="loanaccountinfo" />
-                <label><strong>{{ 'label.heading.terms' | translate }}</strong></label>
+                <label><strong>{{'label.heading.terms' | translate }}</strong></label>
                 <table class="width100">
+                    <tr ng-show="errors!=''">
+                        <td colspan="4">
+                            <div class="alert alert-danger" >{{errors}}</div>
+                        </td>
+                    </tr>
                     <tr>
-                        <td class="width19"><label>{{ 'label.input.principal' | translate }}&nbsp;<span
-                                    class="required">*</span>:</label></td>
+                        <td class="width19"><label>{{'label.input.principal' | translate }}&nbsp;<span
+                                    class="required">*</span>:&nbsp;{{loanaccountinfo.currency.displaySymbol}}</label></td>
                         <td class="width31 paddedbottom10">
                             <input type="text" class="form-control" id="principal" name="principal"
                                 ng-model="formData.principal" number-format required
-                                late-Validate />&nbsp;{{loanaccountinfo.currency.displaySymbol}}
+                                late-Validate />
                             <form-validate valattributeform="editloanaccountform" valattribute="principal" />
                         </td>
-                        <td class="width14"><label>{{ 'label.input.loanterm' | translate }}&nbsp;<span
+                        <td class="width14"><label>{{'label.input.loanterm' | translate }}&nbsp;<span
                                     class="required">*</span>:</label>
                         </td>
                         <td class="width36 paddedbottom10">
@@ -162,7 +167,7 @@
                                 ng-disabled="response.uiDisplayConfigurations.loanAccount.isReadOnlyField.loanTermFrequencyType == true"
                                 id="loanTermFrequencyType" class="form-control"
                                 ng-model="formData.loanTermFrequencyType"
-                                ng-options="termFrequencyType.id as termFrequencyType.value for termFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
+                                ng-options="termFrequencyType.id as termFrequencyType.value | translate for termFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
                                 value="{{termFrequencyType.id}}" />
                             <form-validate valattributeform="editloanaccountform" valattribute="loanterm" />
                         </td>
@@ -170,7 +175,7 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.numberOfRepayments == true">
-                            <label>{{ 'label.input.numofrepayments' | translate }}&nbsp;<span
+                            <label>{{'label.input.numofrepayments' | translate }}&nbsp;<span
                                     class="required">*</span></label>
                         </td>
                         <td class="paddedbottom10"
@@ -180,7 +185,7 @@
                             <form-validate valattributeform="editloanaccountform" valattribute="numofrepayments" />
                         </td>
                         <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentEvery == true">
-                            <label>{{ 'label.input.repaidevery' | translate }}&nbsp;<span
+                            <label>{{'label.input.repaidevery' | translate }}&nbsp;<span
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentEvery == true">
@@ -191,18 +196,18 @@
                             <select id="repaymentFrequencyType" class="form-control"
                                 ng-model="formData.repaymentFrequencyType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.repaymentEvery"
-                                ng-options="repaymentFrequencyType.id as repaymentFrequencyType.value for repaymentFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
+                                ng-options="repaymentFrequencyType.id as repaymentFrequencyType.value | translate for repaymentFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
                                 value="{{repaymentFrequencyType.id}}" />&nbsp;
                             <select id="repaymentFrequencyNthDayType" class="form-control"
                                 ng-model="formData.repaymentFrequencyNthDayType"
-                                ng-options="repaymentFrequencyNthDayType.id as repaymentFrequencyNthDayType.value for repaymentFrequencyNthDayType in loanaccountinfo.repaymentFrequencyNthDayTypeOptions"
+                                ng-options="repaymentFrequencyNthDayType.id as repaymentFrequencyNthDayType.value | translate for repaymentFrequencyNthDayType in loanaccountinfo.repaymentFrequencyNthDayTypeOptions"
                                 ng-show="formData.repaymentFrequencyType == 2"
                                 value="{{repaymentFrequencyNthDayType.id}}">
                                 <option value="">{{'label.selecton' | translate}}</option>
                             </select>&nbsp;
                             <select id="repaymentFrequencyDayOfWeekType" class="form-control"
                                 ng-model="formData.repaymentFrequencyDayOfWeekType"
-                                ng-options="repaymentFrequencyDayOfWeekType.id as repaymentFrequencyDayOfWeekType.value for  repaymentFrequencyDayOfWeekType in loanaccountinfo.repaymentFrequencyDaysOfWeekTypeOptions"
+                                ng-options="repaymentFrequencyDayOfWeekType.id as repaymentFrequencyDayOfWeekType.value | translate for  repaymentFrequencyDayOfWeekType in loanaccountinfo.repaymentFrequencyDaysOfWeekTypeOptions"
                                 ng-show="formData.repaymentFrequencyType == 2"
                                 value="{{repaymentFrequencyDayOfWeekType.id}}">
                                 <option value="">{{'label.selectday' | translate}}</option>
@@ -213,7 +218,7 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentsStartingFromDate == true">
-                            <label>{{ 'label.input.firstrepaymenton' | translate }}</label></td>
+                            <label>{{'label.input.firstrepaymenton' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                             <input id="repaymentsStartingFromDate" type="text" datepicker-pop="dd MMMM yyyy"
@@ -222,7 +227,7 @@
                         </td>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestChargedFromDate == true">
-                            <label class="control-label">{{ 'label.input.interestchargedfrom' | translate }}:</label>
+                            <label class="control-label">{{'label.input.interestchargedfrom' | translate }}:</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestChargedFromDate == true">
@@ -233,7 +238,7 @@
                     </tr>
 
                     <tr ng-show="!loanaccountinfo.isLoanProductLinkedToFloatingRate">
-                        <td><label>{{ 'label.input.nominalinterestrate' | translate }}&nbsp;<span
+                        <td><label>{{'label.input.nominalinterestrate' | translate }}&nbsp;<span
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10">
                             <input id="interestRatePerPeriod" class="form-control" type="text"
@@ -241,32 +246,32 @@
                                 ng-model="formData.interestRatePerPeriod" />&nbsp;&nbsp;{{loanaccountinfo.interestRateFrequencyType.value}}
                         </td>
                         <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
-                            <label>{{ 'label.input.interestmethod' | translate }}</label></td>
+                            <label>{{'label.input.interestmethod' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
-                            <select id="interestType" ng-model="formData.interestType" class="form-control width170px"
-                                ng-options="interestType.id as interestType.value for interestType in loanaccountinfo.interestTypeOptions"
+                            <select id="interestType" ng-model="formData.interestType" class="form-control "
+                                ng-options="interestType.id as interestType.value | translate for interestType in loanaccountinfo.interestTypeOptions"
                                 value="{{interestType.id}}"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestType" />
                         </td>
                     </tr>
                     <tr ng-show="loanaccountinfo.isLoanProductLinkedToFloatingRate">
-                        <td><label>{{ 'label.heading.floatinginterestratedifferential' | translate }}&nbsp;<span
+                        <td><label>{{'label.heading.floatinginterestratedifferential' | translate }}&nbsp;<span
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10">
                             <input id="interestratedifferential" class="form-control" type="text"
                                 name="interestratedifferential" ng-model="formData.interestRateDifferential" />
                         </td>
                         <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
-                            <label>{{ 'label.input.interestmethod' | translate }}</label></td>
+                            <label>{{'label.input.interestmethod' | translate }}</label></td>
                         <td class="width36 paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
                             <select id="interestType" ng-model="formData.interestType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestType"
-                                ng-options="interestType.id as interestType.value for interestType in loanaccountinfo.interestTypeOptions"
-                                class="form-control width170px" value="{{interestType.id}}" />
-                            <label>{{ 'label.input.isfloatingrate' | translate}}</label>
-                            <input id="isfloatingrate" class="input-mini-small" type="checkbox"
+                                ng-options="interestType.id as interestType.value | translate for interestType in loanaccountinfo.interestTypeOptions"
+                                class="form-control " value="{{interestType.id}}" />
+                            <label>{{'label.input.isfloatingrate' | translate}}</label>
+                            <input id="isfloatingrate"  type="checkbox"
                                 ng-model="formData.isFloatingInterestRate" />
                         </td>
                     </tr>
@@ -274,19 +279,19 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.amortizationType == true">
-                            <label>{{ 'label.input.amortization' | translate }}&nbsp;<span
+                            <label>{{'label.input.amortization' | translate }}&nbsp;<span
                                     class="required">*</span>:</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.amortizationType == true">
                             <select id="amortizationType" ng-model="formData.amortizationType"
-                                class="form-control width170px"
-                                ng-options="amortizationType.id as amortizationType.value for amortizationType in loanaccountinfo.amortizationTypeOptions"
+                                class="form-control "
+                                ng-options="amortizationType.id as amortizationType.value | translate for amortizationType in loanaccountinfo.amortizationTypeOptions"
                                 value="{{amortizationType.id}}"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.amortizationType" />
                         </td>
                         <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
-                            <label>{{ 'label.input.isequalamortization' | translate }}</label></td>
+                            <label>{{'label.input.isequalamortization' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
                             <input type="checkbox" ng-model="formData.isEqualAmortization" ng-true-value="true"
@@ -296,18 +301,18 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestCalculationPeriodType == true">
-                            <label>{{ 'label.input.interestcalculationperiod' | translate }}&nbsp;<span
+                            <label>{{'label.input.interestcalculationperiod' | translate }}&nbsp;<span
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestCalculationPeriodType == true">
                             <select id="interestCalculationPeriodType" ng-model="formData.interestCalculationPeriodType"
-                                ng-options="interestCalculationPeriodType.id as interestCalculationPeriodType.value for interestCalculationPeriodType in loanaccountinfo.interestCalculationPeriodTypeOptions"
-                                class="form-control width170px" value="{{interestCalculationPeriodType.id}}"
+                                ng-options="interestCalculationPeriodType.id as interestCalculationPeriodType.value | translate for interestCalculationPeriodType in loanaccountinfo.interestCalculationPeriodTypeOptions"
+                                class="form-control " value="{{interestCalculationPeriodType.id}}"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestCalculationPeriodType" />
                         </td>
                         <td colspan="2"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestCalculationPeriodType == true || formData.interestCalculationPeriodType == 0">
-                            <label>{{ 'label.input.allowpartialperiodinterestcalcualtion' | translate }}&nbsp;</label>
+                            <label>{{'label.input.allowpartialperiodinterestcalcualtion' | translate }}&nbsp;</label>
                             <label class="checkbox control-label">
                                 <input id="allowPartialPeriodInterestCalcualtion" type="checkbox"
                                     ng-model="formData.allowPartialPeriodInterestCalcualtion"
@@ -318,17 +323,17 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.inArrearsTolerance == true">
-                            <label>{{ 'label.input.arearstolerance' | translate }}</label></td>
+                            <label>{{'label.input.arearstolerance' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.inArrearsTolerance == true">
                             <input id="inArrearsTolerance" type="text" class="form-control"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.inArrearsTolerance"
                                 ng-model="formData.inArrearsTolerance"
-                                number-format>&nbsp;{{loanaccountinfo.currency.displaySymbol}}
+                                number-format>
                         </td>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestCharged == true">
-                            <label>{{ 'label.input.interestfreeperiod' | translate }}</label></td>
+                            <label>{{'label.input.interestfreeperiod' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestCharged == true">
                             <input id="graceOnInterestCharged" type="text" class="form-control"
@@ -338,56 +343,67 @@
                     <tr>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.transactionProcessingStrategyId == true">
-                            <label>{{ 'label.input.repaymentstrategy' | translate }}&nbsp;<span
+                            <label>{{'label.input.repaymentstrategy' | translate }}&nbsp;<span
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.transactionProcessingStrategyId == true">
                             <select id="transactionProcessingStrategyId"
-                                ng-model="formData.transactionProcessingStrategyId" class="form-control width170px"
-                                ng-options="transactionProcessingStrategy.id as transactionProcessingStrategy.name for transactionProcessingStrategy in loanaccountinfo.transactionProcessingStrategyOptions"
+                                ng-model="formData.transactionProcessingStrategyId" class="form-control"
+                                ng-options="transactionProcessingStrategy.id as transactionProcessingStrategy.name | translate for transactionProcessingStrategy in loanaccountinfo.transactionProcessingStrategyOptions"
                                 value="{{transactionProcessingStrategy.id}}"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.transactionProcessingStrategyId" />
                         </td>
-                        <td colspan=2 class="paddedbottom10">
-                            <label>{{ 'label.input.grace' | translate }}&nbsp;{{'label.input.onprincipalpayment' | translate}}</label>&nbsp;<input
-                                id="graceOnPrincipalPayment" class="input-mini-small" type="text"
-                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
-                                ng-model="formData.graceOnPrincipalPayment">&nbsp;<label
-                                ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true">{{'label.input.oninterestpayment' |
-                        translate}}</label>&nbsp;<input
-                                ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true"
-                                id="graceOnInterestPayment" type="text" class="input-mini-small"
-                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
-                                ng-model="formData.graceOnInterestPayment"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2 class="paddedbottom10"
+                        <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnArrearsAgeing == true">
-                            <label>{{ 'label.input.grace' | translate }}&nbsp;{{'label.input.onduedate' | translate}}&nbsp;
-                                <input id="graceOnArrearsAgeing" class="input-mini-small" type="text"
+                            <label>{{'label.input.grace' | translate }}&nbsp;{{'label.input.onduedate' | translate}}&nbsp;
+                        </td>
+                        <td class="paddedbottom10">
+                            <input id="graceOnArrearsAgeing" type="text" class="form-control"
                                     ng-model="formData.graceOnArrearsAgeing"
                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnArrearsAgeing"></label>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="paddedbottom10">
+                            <label>{{'label.input.graceonprincipalpayment' | translate}}</label>
+                        </td>
+                        <td class="paddedbottom10">
+                            <input
+                                id="graceOnPrincipalPayment"  type="text" class="form-control"
+                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
+                                ng-model="formData.graceOnPrincipalPayment">
+                        </td>
+                        <td class="paddedbottom10">
+                            <label
+                                ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true">{{'label.input.graceoninterestpayment' |
+                        translate}}</label>
+                        </td>
+                        <td class="paddedbottom10">
+                            <input
+                                    ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true"
+                                    id="graceOnInterestPayment" type="text" class="form-control"
+                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
+                                    ng-model="formData.graceOnInterestPayment">
+                        </td>
+                    </tr>
                     <tr data-ng-show="loanaccountinfo.canDefineInstallmentAmount">
                         <td colspan=2>
-                            <label>{{ 'label.input.fixedemiamount' | translate }}:</label>&nbsp;
+                            <label>{{'label.input.fixedemiamount' | translate }}:</label>&nbsp;
                             <input id="fixedEmiAmount" type="text" ng-model="formData.fixedEmiAmount"
                                 class="form-control" number-format />&nbsp;
                         </td>
                     </tr>
                     <tr ng-show="loanaccountinfo.canUseForTopup">
-                        <td><label>{{ 'label.heading.isTopup' | translate }}</label></td>
+                        <td><label>{{'label.heading.isTopup' | translate }}</label></td>
                         <td class="paddedbottom10">
                             <input type="checkbox" name="isTopup" ng-model="formData.isTopup" />
                         </td>
                         <td ng-show="formData.isTopup == true">
-                            <label>{{ 'label.input.loanIdToClose' | translate }}</label></td>
+                            <label>{{'label.input.loanIdToClose' | translate }}</label></td>
                         <td class="width36 paddedbottom10" ng-show="formData.isTopup == true">
                             <select id="loanIdToClose" ng-model="formData.loanIdToClose"
                                 ng-options="loanSummary.id as loanSummary.accountNo for loanSummary in loanaccountinfo.clientActiveLoanOptions"
-                                class="form-control width170px" value="{{loanSummary.id}}" />
+                                class="form-control " value="{{loanSummary.id}}" />
                         </td>
                     </tr>
                     <tr>
@@ -399,42 +415,42 @@
                     <tr
                         ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                         <td>
-                            <label class="control-label">{{ 'label.input.recalculateinterest' | translate }}</label>
+                            <label class="control-label">{{'label.input.recalculateinterest' | translate }}</label>
                         </td>
                         <td class="paddedbottom10">
                             <label
                                 class="control-label">{{ loanaccountinfo.isInterestRecalculationEnabled | YesOrNo }}</label>
                         </td>
-                        <td data-ng-show="loanaccountinfo.isInterestRecalculationEnabled">
-                            <label>{{ 'label.input.daysinyears' | translate }}</label>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>{{'label.input.daysinyears' | translate }}</label>
                         </td>
                         <td class="paddedbottom10">
-                            <label>{{ loanaccountinfo.daysInYearType.value}}</label>
+                            <label>{{ loanaccountinfo.daysInYearType.value | translate}}</label>
+                        </td>
+                        <td>
+                            <label>{{'label.input.daysinmonth' | translate }}</label>
+                        </td>
+                        <td class="paddedbottom10">
+                            <label>{{ loanaccountinfo.daysInMonthType.value | translate }}</label>
                         </td>
                     </tr>
                     <tr data-ng-show="loanaccountinfo.isInterestRecalculationEnabled">
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label>{{ 'label.input.interest.recalculation.reschdule.strategy' | translate }}</label>
+                            <label>{{'label.input.interest.recalculation.reschdule.strategy' | translate }}</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <label>{{ loanaccountinfo.interestRecalculationData.rescheduleStrategyType.value}}</label>
-                        </td>
-                        <td
-                            ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label>{{ 'label.input.daysinmonth' | translate }}</label>
-                        </td>
-                        <td class="paddedbottom10"
-                            ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label>{{ loanaccountinfo.daysInMonthType.value }}</label>
                         </td>
                     </tr>
                     <tr data-ng-show="loanaccountinfo.isInterestRecalculationEnabled">
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <label
-                                class="control-label">{{ 'label.input.interest.recalculation.compounding.method' | translate }}</label>
+                                class="control-label">{{'label.input.interest.recalculation.compounding.method' | translate }}</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
@@ -443,7 +459,7 @@
 
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label class="control-label">{{ 'label.input.frequency.for.recalculte.outstanding.principal' |
+                            <label class="control-label">{{'label.input.frequency.for.recalculte.outstanding.principal' |
                         translate }}<span class="required">*</span></label>
                         </td>
                         <td class="paddedbottom10"
@@ -456,7 +472,7 @@
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <label
-                                class="control-label">{{ 'label.input.frequenc.interval.for.recalculte.outstanding.principal' | translate }}</label>
+                                class="control-label">{{'label.input.frequenc.interval.for.recalculte.outstanding.principal' | translate }}</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
@@ -465,7 +481,7 @@
 
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label class="control-label">{{ 'label.input.frequenc.date.for.recalculte.outstanding.principal' |
+                            <label class="control-label">{{'label.input.frequenc.date.for.recalculte.outstanding.principal' |
                         translate }}<span class="required">*</span></label>
                         </td>
                         <td class="paddedbottom10"
@@ -479,7 +495,7 @@
                         data-ng-show="loanaccountinfo.isInterestRecalculationEnabled  && loanaccountinfo.interestRecalculationData.interestRecalculationCompoundingType.id != 0">
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label class="control-label">{{ 'label.input.frequency.for.compounding' |
+                            <label class="control-label">{{'label.input.frequency.for.compounding' |
                         translate }}<span class="required">*</span></label>
                         </td>
                         <td class="paddedbottom10"
@@ -492,7 +508,7 @@
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <label
-                                class="control-label">{{ 'label.input.frequenc.interval.for.compounding' | translate }}</label>
+                                class="control-label">{{'label.input.frequenc.interval.for.compounding' | translate }}</label>
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
@@ -501,7 +517,7 @@
 
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <label class="control-label">{{ 'label.input.frequenc.date.for.compounding' |
+                            <label class="control-label">{{'label.input.frequenc.date.for.compounding' |
                         translate }}<span class="required">*</span></label>
                         </td>
                         <td class="paddedbottom10"
@@ -515,7 +531,7 @@
                 </table>
                 <div ng-show="multiDisburseLoan">
                     <hr />
-                    <label><strong>{{ 'label.heading.tranchedetails' | translate }}</strong></label>
+                    <label><strong>{{'label.heading.tranchedetails' | translate }}</strong></label>
                     <table class="width100">
                         <tr>
                             <td class="width14"><label>{{'label.input.outstandingloanbalance' | translate}}:</label>
@@ -523,7 +539,7 @@
                             <td class="width36 paddedbottom10">
                                 <input id="maxOutstandingLoanBalance" type="text" class="form-control"
                                     ng-model="formData.maxOutstandingLoanBalance" number-format>&nbsp;
-                                <a title="{{ 'label.button.addtranch' | translate }}" ng-click="addTranches()"><i
+                                <a title="{{'label.button.addtranch' | translate }}" ng-click="addTranches()"><i
                                         class="fa fa-plus "></i></a>
                             </td>
                         </tr>
@@ -558,8 +574,8 @@
                 </div>
                 <hr />
                 <div class="col-md-12">
-                    <label><strong>{{ 'label.heading.charges' | translate }}</strong></label>
-                    <select ng-model="chargeFormData.chargeId" class="form-control width170px"
+                    <label><strong>{{'label.heading.charges' | translate }}</strong></label>
+                    <select ng-model="chargeFormData.chargeId" class="form-control "
                         ng-options="charge.id as (charge.name + ',' + charge.currency.displaySymbol) for charge in loanaccountinfo.chargeOptions|filter:loanaccountinfo.currency.code:strict"
                         value="{{charge.id}}">
                         <option value="">{{'label.selectcharge' | translate}}</option>
@@ -592,7 +608,7 @@
                     </tr>
                 </table>
                 <div ng-show="loanaccountinfo.overdueCharges.length>0">
-                    <label><strong>{{ 'label.heading.overduepenalitycharge' | translate }}</strong></label>
+                    <label><strong>{{'label.heading.overduepenalitycharge' | translate }}</strong></label>
                     <table class="table" class="width100">
                         <tr class="graybg">
                             <th>{{'label.heading.name' | translate}}</th>
@@ -610,9 +626,9 @@
                 </div>
                 <div class="col-md-12 paddedtop"
                     ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.collateralSection == true">
-                    <label><strong>{{ 'label.heading.collaterals' | translate }}</strong></label>
-                    <select ng-model="collateralFormData.collateralIdTemplate" class="form-control width170px"
-                        ng-options="collateralTemplate.name for collateralTemplate in collateralOptions"
+                    <label><strong>{{'label.heading.collaterals' | translate }}</strong></label>
+                    <select ng-model="collateralFormData.collateralIdTemplate" class="form-control "
+                        ng-options="collateralTemplate.name | translate for collateralTemplate in collateralOptions"
                         value="{{collateralTemplate.id}}">
                     </select>&nbsp;&nbsp;
                     <input class="form-control" type="text" ng-model="collateralFormData.collateralValueTemplate"

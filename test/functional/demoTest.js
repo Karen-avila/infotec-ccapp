@@ -11,6 +11,7 @@ define(['mifosX', 'services/HttpServiceProvider', 'services/ResourceFactoryProvi
                  });*/
 
                 httpProvider.defaults.headers.common['Fineract-Platform-TenantId'] = 'default';
+                $httpProvider.defaults.headers.common['Content-Encoding'] = 'gzip';
             }]).run(function ($log) {
                 $log.warn("Using live demo server api -> " + baseUrl);
             });

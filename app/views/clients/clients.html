@@ -24,7 +24,7 @@
                                         placeholder="{{'label.input.searchByNameAccNo' | translate}}"
                                         class="form-control unstyled" />
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary form-control">
+                                        <button class="btn btn-sm btn-primary form-control">
                                             <span class="fa fa-search"></span>
                                         </button>
                                     </span>
@@ -40,10 +40,11 @@
                     </form>
                 </div>
                 <div class="col-sm-4">
-                    <a href="#!/createclient" class="btn btn-primary pull-right" has-permission='CREATE_CLIENT'><i
-                            class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</a> &nbsp;&nbsp;
-                    <a href="#!/bulkimportclients" class="btn btn-primary pull-right" has-permission='CREATE_CLIENT'><i +
-                            class="fa fa-upload"></i>&nbsp;{{'label.button.importclients' | translate}}</a>
+                    <a href="#!/createclient" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_CLIENT'><i
+                            class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</a>
+                    <!--
+                    <a href="#!/bulkimportclients" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_CLIENT'><i +
+                            class="fa fa-upload"></i>&nbsp;{{'label.button.importclients' | translate}}</a> -->
                 </div>
             </div>
             <hr />
@@ -51,10 +52,11 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{'label.heading.name' | translate}}</th>
                         <th>{{'label.heading.clientno' | translate}}</th>
                         <th>{{'label.heading.uniqueId' | translate}}</th>
-                        <th>{{'label.heading.externalid' | translate}}</th>
+                        <th>{{'label.heading.externalid2' | translate}}</th>
                         <th>{{'label.heading.status' | translate}}</th>
                         <th>{{'label.heading.office' | translate}}</th>
                         <th>{{'label.heading.staff' | translate}}</th>
@@ -65,6 +67,8 @@
                     <tr dir-paginate="client in clients | orderBy:'displayName':reverse  | filter:filterText | itemsPerPage: clientsPerPage"
                         class="pointer-main" total-items="totalClients" pagination-id="clients"
                         ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
+                        <td ng-show="client.legalForm.value == 'MORAL'" class="pointer" data-ng-click="routeTo(client.id)"><i class="fa fa-building"></i></td>
+                        <td ng-show="client.legalForm.value == 'FISICA'" class="pointer" data-ng-click="routeTo(client.id)"><i class="fa fa-user"></i></td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.displayName}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.accountNo}}</td>
                         <td class="pointer" data-ng-click="routeTo(client.id)">{{client.uniqueId}}</td>

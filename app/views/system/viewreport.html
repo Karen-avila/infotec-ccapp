@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#!/editreport/{{report.id}}" class="btn btn-primary" has-permission='UPDATE_REPORT'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit'
+                        <a href="#!/editreport/{{report.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_REPORT'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit'
                             | translate}}</a>
                         <button type="button" class="btn btn-danger" ng-show="noncoreReport" ng-click="deletereport()" has-permission='DELETE_REPORT'><i
                                 class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
@@ -27,23 +27,23 @@
                 <h3>{{report.reportName}}</h3>
                 <table width="100%">
                     <tr>
-                        <td width="20%">{{ 'label.heading.reporttype' | translate }}</td>
+                        <td width="20%">{{'label.heading.reporttype' | translate }}</td>
                         <td width="80%">{{report.reportType}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.reportsubtype' | translate }}</td>
+                        <td>{{'label.heading.reportsubtype' | translate }}</td>
                         <td>{{report.reportSubType}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.reportcategory' | translate }}</td>
+                        <td>{{'label.heading.reportcategory' | translate }}</td>
                         <td>{{report.reportCategory}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.corereport' | translate }}</td>
+                        <td>{{'label.heading.corereport' | translate }}</td>
                         <td>{{report.coreReport}}</td>
                     </tr>
                     <tr>
-                        <td>{{ 'label.heading.usereport' | translate }}</td>
+                        <td>{{'label.heading.usereport' | translate }}</td>
                         <td>{{report.useReport}}</td>
                     </tr>
                 </table>
@@ -58,8 +58,8 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
         </div>
     </script>
 </div>
