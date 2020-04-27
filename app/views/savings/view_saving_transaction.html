@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.amount' | translate}}</td>
-                    <td>{{transaction.amount | number}}</td>
+                    <td>{{transaction.amount | FormatNumber}}</td>
                 </tr>
                 <tr ng-if="transaction.note">
                     <td>{{'label.heading.notes' | translate}}</td>

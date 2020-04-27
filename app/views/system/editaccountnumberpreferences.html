@@ -9,30 +9,35 @@
                 <h4>{{'label.heading.editAccountNumberPreferences' | translate}}</h4>
             </div>
             <br/>
-            <form name="editprefform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="editprefform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.accountType' | translate}}<span class="required">*</span></label>
+                        <label class="control-label col-sm-3">{{'label.input.accountType' | translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            {{accountType}}
+                            {{accountType | translate}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.addPrefix' | translate}}</label>
-
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 right">
                             <input id="activeCheckbox" type="checkbox" ng-model="addPrefix">
                         </div>
+                        <label class="control-label col-sm-3 left">{{'label.input.addPrefix' | translate}}</label>
                     </div>
                     <div class="form-group" ng-show="addPrefix">
-                        <label class="control-label col-sm-2">{{'label.input.prefixField' | translate}}</label>
+                        <label class="control-label col-sm-3">{{'label.input.prefixField' | translate}}</label>
                         <div class="col-sm-3">
                             <select chosen="prefixTypeOptions"  id="prefixType" ng-model="formData.prefixType"  class="form-control"
-                                    ng-options="accountNumberPrefixType.id as accountNumberPrefixType.value for accountNumberPrefixType in prefixTypeOptions"
-                                    value="{{accountNumberPrefixType.id}}">
+                                    ng-options="accountNumberPrefixType.id as accountNumberPrefixType.value | translate for accountNumberPrefixType in prefixTypeOptions"
+                                    value="{{accountNumberPrefixType.id}}" ng-change="setPrefixType(formData.prefixType)">
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="isCustomFormat">
+                        <label class="control-label col-sm-3">{{'label.input.accountnumber.custom' | translate}}</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="customFormat" name="customFormat" ng-model="formData.customFormat" class="form-control" required late-Validate/>
                         </div>
                     </div>
                     <div class="col-md-offset-5">

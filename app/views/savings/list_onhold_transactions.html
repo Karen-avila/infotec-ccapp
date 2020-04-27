@@ -6,7 +6,7 @@
     <api-validate></api-validate>
     <div class="card">
         <div class="toolbar"></div>
-        <form name="onholdtransactionform" novalidate="" class="form-horizontal" ng-repeat="transaction in transactions.currentPageItems|limitTo:1">
+        <form name="onholdtransactionform" novalidate="" class="form-horizontal form-extra" ng-repeat="transaction in transactions.currentPageItems|limitTo:1">
             <fieldset>
                 <label class="col-sm-2" ng-show="fromPath === 'viewsavingaccount'">{{'label.heading.clientname' | translate}}:</label>
                 <div class="col-sm-3" ng-show="fromPath === 'viewsavingaccount'">{{transaction.savingsClientName}}</div>

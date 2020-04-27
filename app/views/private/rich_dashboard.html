@@ -22,7 +22,7 @@
 								<select class="form-control input-small-tooltip" name="office1" ng-change="getDailyData()"
 									id="office1" ng-model="officeId"
 									data-ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-									<option disabled value="">--{{'label.menu.office' | translate}}--</option>
+									<option disabled value="">{{'label.menu.office' | translate}}</option>
 								</select>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 								<select class="form-control input-small-tooltip pull-right" name="office1" ng-change="getCollectionOffice()"
 									id="office1" ng-model="officeIdCollection"
 									data-ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-									<option disabled value="">--{{'label.menu.office' | translate}}--</option>
+									<option disabled value="">{{'label.menu.office' | translate}}</option>
 								</select>
 							</div>
 						</div>
@@ -139,7 +139,7 @@
 									data-ng-options="office.id as office.name for office in offices" name="office2"
 									data-ng-change="getDisbursementOffice()" value="{{office.id}}" id="office2"
 									ng-model="officeIdDisbursed">
-									<option disabled value="">--{{'label.menu.office' | translate}}--</option>
+									<option disabled value="">{{'label.menu.office' | translate}}</option>
 								</select>
 							</div>
 						</div>

@@ -45,7 +45,7 @@
                         <br/>
                         <div class="row">
                             <div class="col-sm-12 well" ng-repeat="question in formData.questionDatas" ng-show="formData.questionDatas.length>0">
-                                <div name="addquestion" class="form-horizontal">
+                                <div name="addquestion" class="form-horizontal form-extra">
                                   <div class="col-sm-12">
                                       <label class="col-sm-2">{{'label.heading.question' | translate}} :&nbsp;{{($index+1)}}<label>
                                   </div>
@@ -78,8 +78,8 @@
                                                         </thead>  
                                                         <tbody>
                                                             <tr ng-repeat="option in question.responseDatas">
-                                                              <td style="width60">{{option.text}}</td>
-                                                              <td style="width40">{{option.value}}</td>
+                                                              <td class="width60">{{option.text}}</td>
+                                                              <td class="width40">{{option.value}}</td>
                                                             </tr>
                                                         </tbody>    
                                                       </table>

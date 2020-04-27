@@ -8,7 +8,7 @@
 
    <div class="card-content">
       <legend>{{'label.heading.createclient' | translate}}</legend>
-      <form name="createclientform" class="form-horizontal" ng-submit="submit()">
+      <form name="createclientform" class="form-horizontal form-extra" ng-submit="submit()">
          <api-validate></api-validate>
          <fieldset>
             <div class="form-group">
@@ -19,14 +19,14 @@
                   <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
                      ng-options="office.id as office.name for office in offices" value="{{office.id}}"
                      ng-change="changeOffice(formData.officeId)">
-                     <option value="">--{{'label.menu.selectloanoffice' | translate}}--</option>
+                     <option value="">{{'label.menu.selectloanoffice' | translate}}</option>
                   </select>
                </div>
                <label class="control-label col-sm-3">{{'label.input.staff' | translate}}</label>
                <div class="col-sm-3">
                   <select chosen="staffs" id="staffId" ng-model="formData.staffId" class="form-control"
                      ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}">
-                     <option value="">--{{'label.menu.selectloanofficer' | translate}}--</option>
+                     <option value="">{{'label.menu.selectloanofficer' | translate}}</option>
                   </select>
                </div>
             </div>
@@ -37,7 +37,7 @@
                   <select id="legalFormId" ng-model="formData.legalFormId" class="form-control"
                      ng-options="legalForm.id as legalForm.value for legalForm in clientLegalFormOptions"
                      value="{{legalForm.id}}" ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)">
-                     <option value="">--{{'label.menu.legalForm' | translate}}--</option>
+                     <option value="">{{'label.menu.legalForm' | translate}}</option>
                   </select>
                </div>
                <div class="col-sm-3"></div>
@@ -142,7 +142,7 @@
                            ng-blur="createCurpRfc()"
                            ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions"
                            value="{{birthplace.id}}" required>
-                           <option value="">--{{'label.menu.birthplace' | translate}}--</option>
+                           <option value="">{{'label.menu.birthplace' | translate}}</option>
                         </select>
                      </div>
                   </div>
@@ -182,7 +182,7 @@
                         <select id="genderId" ng-model="formData.genderId" class="form-control"
                            ng-blur="createCurpRfc()" ng-options="gender.id as gender.name for gender in genderOptions"
                            value="{{gender.id}}" required>
-                           <option value="">--{{'label.menu.gender' | translate}}--</option>
+                           <option value="">{{'label.menu.gender' | translate}}</option>
                         </select>
                      </div>
                   </div>
@@ -247,7 +247,7 @@
                   <select id="clienttypeId" ng-model="formData.clientTypeId" class="form-control"
                      ng-options="clienttype.id as clienttype.name for clienttype in clienttypeOptions"
                      value="{{clienttype.id}}">
-                     <option value="">--{{'label.menu.clienttype' | translate}}--</option>
+                     <option value="">{{'label.menu.clienttype' | translate}}</option>
                   </select>
                </div>
                <label class="control-label col-sm-3">{{'label.input.clientclassification' | translate}}</label>
@@ -255,7 +255,7 @@
                   <select id="clientClassificationId" ng-model="formData.clientClassificationId" class="form-control"
                      ng-options="clientClassification.id as clientClassification.name for clientClassification in clientClassificationOptions"
                      value="{{clientClassification.id}}">
-                     <option value="">--{{'label.menu.clientclassification' | translate}}--</option>
+                     <option value="">{{'label.menu.clientclassification' | translate}}</option>
                   </select>
                </div>
             </div>
@@ -275,7 +275,7 @@
                            class="form-control"
                            ng-options="mainBusinessLine.id as mainBusinessLine.name for mainBusinessLine in clientNonPersonMainBusinessLineOptions"
                            value="{{mainBusinessLine.id}}">
-                           <option value="">--{{'label.menu.mainBusinessLine' | translate}}--</option>
+                           <option value="">{{'label.menu.mainBusinessLine' | translate}}</option>
                         </select>
                      </div>
                   </div>
@@ -292,7 +292,7 @@
                            ng-model="formData.clientNonPersonDetails.constitutionId" class="form-control"
                            ng-options="constitution.id as constitution.name for constitution in clientNonPersonConstitutionOptions"
                            value="{{constitution.id}}">
-                           <option value="">--{{'label.menu.constitution' | translate}}--</option>
+                           <option value="">{{'label.menu.constitution' | translate}}</option>
                         </select>
                      </div>
                      <div class="col-sm-2">
@@ -354,7 +354,7 @@
                            <select id="savingsProductId" ng-model="formData.savingsProductId"
                               ng-options="savingProduct.id as savingProduct.name for savingProduct in savingproducts"
                               value="{{savingProduct.id}}"  class="form-control">
-                              <option value="">--{{'label.menu.selectsavingproduct' | translate}}--</option>
+                              <option value="">{{'label.menu.selectsavingproduct' | translate}}</option>
                            </select>
                         </div>
                      </div>

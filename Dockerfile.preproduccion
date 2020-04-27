@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS builder
+FROM ubuntu:18.04 AS builder 
 
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
