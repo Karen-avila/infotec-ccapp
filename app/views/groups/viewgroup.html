@@ -263,11 +263,11 @@
 															class="fa fa-user fa fa-large"></i>
 													</td>
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-														{{loanaccount.originalLoan|number}}</td>
+														{{loanaccount.originalLoan| FormatNumber}}</td>
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-														{{loanaccount.loanBalance|number}}</td>
+														{{loanaccount.loanBalance| FormatNumber}}</td>
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
-														{{loanaccount.amountPaid|number}}</td>
+														{{loanaccount.amountPaid| FormatNumber}}</td>
 													<td class="pointer center"
 														data-ng-click="routeToLoan(loanaccount.id)"
 														ng-if="loanaccount.loanType.value != 'Individual'">
@@ -382,7 +382,7 @@
 													<td class="pointer" data-ng-click="routeToSaving(savingaccount.id)">
 														{{savingaccount.productName}}</td>
 													<td class="pointer" data-ng-click="routeToSaving(savingaccount.id)">
-														{{savingaccount.accountBalance | number}}</td>
+														{{savingaccount.accountBalance | FormatNumber}}</td>
 													<td class="pointer" ng-if="savingaccount.status.active">
 														<a uib-tooltip="{{'label.button.deposit' | translate}}"
 															ng-href="#!/savingaccount/{{savingaccount.id}}/deposit"
@@ -638,7 +638,7 @@
 													class="fa fa-stop {{loan.status.code | StatusLookup}}"></i>{{loan.accountNo}}</td>
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.externalId}}</td>
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.loanProductName}}</td>
-												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.principal | number}}</td>
+												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.principal | FormatNumber}}</td>
 											</tr>
 										</tbody>
 									</table>

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="content">
                 <api-validate></api-validate>
-                <form class="form-horizontal" name="standinginstructionform" novalidate="" rc-submit="submit()">
+                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" rc-submit="submit()">
                     <fieldset>
                         <legend>{{'label.heading.liststandinginstruction' | translate }}</legend>
                          <div ng-hide="isCollapsed" width="100%" >
@@ -72,7 +72,7 @@
 
                                 </td>
                                 <td>{{instruction.toAccount.accountNo}}({{instruction.toAccountType.value}})</td>
-                                <td>{{instruction.instructionType.value}}/{{instruction.amount | number}}</td>
+                                <td>{{instruction.instructionType.value}}/{{instruction.amount | FormatNumber}}</td>
                                 <td>{{instruction.validFrom | DateFormat}} to {{instruction.validTill | DateFormat}}</td>
                                 <td class="select-row:selection">
                                     <a type="button"  class="btn btn-sm btn-primary" has-permission='UPDATE_STANDINGINSTRUCTION' data-ng-show="instruction.status.value!='Deleted'"  href="#!/editstandinginstruction/{{instruction.id}}/list">

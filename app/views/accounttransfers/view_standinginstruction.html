@@ -9,7 +9,7 @@
             <div class="toolbar">
                 <h4>{{'label.heading.viewstandinginstruction' | translate }}</h4>
             </div>
-            <form class="form-horizontal" name="standinginstructionform" 
+            <form class="form-horizontal form-extra" name="standinginstructionform" 
             novalidate="" rc-submit="submit()">
                 <fieldset>
                     <div class="">
@@ -101,7 +101,7 @@
                  </tr>
                  <tr>
                     <td>{{'label.input.amount' | translate }}</td>
-                    <td>{{standinginstruction.amount| number}}</td>
+                    <td>{{standinginstruction.amount| FormatNumber}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.validfrom' | translate }}</td> 

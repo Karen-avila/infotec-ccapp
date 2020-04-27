@@ -9,7 +9,7 @@
                 <h4>{{'label.heading.standinginstructionhistory' | translate }}</h4>
             </div>  
             <api-validate></api-validate>
-            <form class="form-horizontal" name="standinginstructionform" 
+            <form class="form-horizontal form-extra" name="standinginstructionform" 
                   novalidate="" rc-submit="submit()">
                     <fieldset>
                     <div class="form-group">
@@ -46,7 +46,7 @@
                             <tbody>
                                 <tr class="pointer-main" ng-repeat="transaction in      transactions.currentPageItems">
                                     <td>{{transaction.transferDate | DateFormat}}</td>
-                                    <td>{{transaction.transferAmount|number}}</td>
+                                    <td>{{transaction.transferAmount| FormatNumber}}</td>
                                     <td>{{transaction.transferDescription}}</td>
                                     <td ng-show="transaction.reversed">{{'label.heading.yes' |      translate}}</td>
                                     <td ng-hide="transaction.reversed">{{'label.heading.no' |       translate}}</td>

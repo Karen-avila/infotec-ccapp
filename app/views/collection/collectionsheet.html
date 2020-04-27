@@ -4,7 +4,7 @@
 	</ul>
 	<div class="card">
 		<div class="content">
-				<form name="collectionsheetform" novalidate class="form-horizontal">
+				<form name="collectionsheetform" novalidate class="form-horizontal form-extra">
 				<api-validate></api-validate>
 				<h2><strong ng-show="noData" style="padding-top: 400px !important;">{{'label.norepaymentsanddisbursalareavailable' |
 				    translate}}</strong></h2>
@@ -227,7 +227,7 @@
 
 				    <div class="templatekeys" style="background-color:#8585FF!important"
 				         ng-repeat="loanDueTotalCollection in totalDueCollection">
-				        {{loanDueTotalCollection.dueAmount | number}}&nbsp;&nbsp;
+				        {{loanDueTotalCollection.dueAmount | FormatNumber}}&nbsp;&nbsp;
 				        {{loanDueTotalCollection.currencySymbol}}
 				    </div>
 				</div>

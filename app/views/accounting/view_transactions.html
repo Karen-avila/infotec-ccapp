@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td>{{transaction.entryType.code | translate}}</td>
-                <td>{{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | number}}</td>
+                <td>{{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}</td>
             </tr>
             <tr ng-show="transaction.referenceNumber">
                 <td>{{'label.input.referencenumber' | translate}}</td>
@@ -229,7 +229,7 @@
                 >
                   <div ng-show="transaction.entryType.value == 'DEBIT'">
                     {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount
-                    | number}}
+                    | FormatNumber}}
                   </div>
                 </td>
                 <td
@@ -238,7 +238,7 @@
                 >
                   <div ng-show="transaction.entryType.value == 'CREDIT'">
                     {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount
-                    | number}}
+                    | FormatNumber}}
                   </div>
                 </td>
               </tr>

@@ -7,7 +7,7 @@
     </div>
     <wizard on-finish="submitDatatable()" current-step="step" class="card well">
         <wz-step wz-title="{{ title | translate}}">
-            <form class="form-horizontal" name="loanactionform" novalidate="">
+            <form class="form-horizontal form-extra" name="loanactionform" novalidate="">
                 <fielset>
                     <div ng-show="submittedDatatables.length > 0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
@@ -204,6 +204,26 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
+                            <div class="col-sm-3">
+                                <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
+                                    ng-options="currency.id as currency.name | translate for currency in currencyOptions"
+                                    value="{{currency.id}}"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.idRecord' | translate}}</label>
+                            <div class="col-sm-3">
+                                <input id="idRecord" type="text" class="form-control" ng-model="formData.idRecord">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
+                            <div class="col-sm-3">
+                                <input id="bankRecord" type="text" class="form-control" ng-model="formData.bankRecord">
+                             </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
                                 for="channelId">{{'label.input.channel' | translate}}</label>
@@ -213,32 +233,6 @@
                                     value="{{channel.id}}">
                                     <option value="">{{'label.selectachannel' | translate}}</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
-                            <div class="col-sm-3">
-                                <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                                    ng-options="currency.id as currency.name for currency in currencyOptions"
-                                    value="{{currency.id}}"></select>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
-                            <div class="col-sm-3">
-                                <input id="bankRecord" type="text" class="form-control" ng-model="formData.bankRecord">
-                             </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.idRecord' | translate}}</label>
-                            <div class="col-sm-3">
-                                <input id="idRecord" type="text" class="form-control" ng-model="formData.idRecord">
-                            </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.solidarity' | translate}}</label>
-                            <div class="col-sm-3">
-                                <input id="activeCheckbox" type="checkbox" ng-model="formData.isSolidarity">
                             </div>
                         </div>
                     </div>
@@ -402,7 +396,7 @@
         <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables"
             wz-title="{{datatable.registeredTableName}}">
             <div class="card-content">
-                <form class="form-horizontal">
+                <form class="form-horizontal form-extra">
                     <div ng-show="submittedDatatables.length>0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
                             has been made successfully. If the inputs are changed, the datatable entries will be

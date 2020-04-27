@@ -183,9 +183,6 @@
                         </tr>
                     </table>
                     <hr>
-                    <button class="btn btn-sm btn-default pull-left" wz-previous disabled ng-hide="disabled"><i
-                            class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
-                    </button>
                     <button class="btn btn-sm btn-default pull-right" type="submit"
                         ng-hide="disabled">{{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
                     </button>
@@ -680,7 +677,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="{{'label.heading.charges' | translate }}" wz-disabled="{{disabled}}">
-            <form name="Charges" ng-submit="goNext(Charges)" class="form-horizontal">
+            <form name="Charges" ng-submit="goNext(Charges)" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>{{'label.heading.charges' | translate}}</h3>-->
@@ -744,7 +741,7 @@
                                 <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                     <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                     <td>{{charge.chargeCalculationType.value}}</td>
-                                    <td>{{charge.amount | number}}</td>
+                                    <td>{{charge.amount | FormatNumber}}</td>
                                     <td>{{charge.chargeTimeType.value}}</td>
                                 </tr>
                             </table>
@@ -856,25 +853,25 @@
                                     <td>{{period.period}}</td>
                                     <td>{{period.dueDate | DateFormat}}</td>
                                     <td>{{period.daysInPeriod}}</td>
-                                    <td>{{period.principalDisbursed | number}}</td>
-                                    <td>{{period.principalDue| number}}</td>
-                                    <td>{{period.principalLoanBalanceOutstanding| number}}</td>
-                                    <td>{{period.interestDue| number}}</td>
-                                    <td>{{period.feeChargesDue| number}}</td>
-                                    <td>{{period.penaltyChargesDue| number}}</td>
-                                    <td>{{period.totalDueForPeriod| number}}</td>
+                                    <td>{{period.principalDisbursed | FormatNumber}}</td>
+                                    <td>{{period.principalDue| FormatNumber}}</td>
+                                    <td>{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                                    <td>{{period.interestDue| FormatNumber}}</td>
+                                    <td>{{period.feeChargesDue| FormatNumber}}</td>
+                                    <td>{{period.penaltyChargesDue| FormatNumber}}</td>
+                                    <td>{{period.totalDueForPeriod| FormatNumber}}</td>
                                 </tr>
                             <tfoot class="ui-widget-header">
                                 <tr>
                                     <td colspan="2">{{'label.heading.total' | translate}}</td>
                                     <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                                    <td>{{repaymentscheduleinfo.totalPrincipalDisbursed| number}}</td>
-                                    <td>{{repaymentscheduleinfo.totalPrincipalExpected| number}}</td>
+                                    <td>{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                                    <td>{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
                                     <td></td>
-                                    <td>{{repaymentscheduleinfo.totalInterestCharged| number}}</td>
-                                    <td>{{repaymentscheduleinfo.totalFeeChargesCharged| number}}</td>
-                                    <td>{{repaymentscheduleinfo.totalPenaltyChargesCharged| number}}</td>
-                                    <td>{{repaymentscheduleinfo.totalRepaymentExpected| number}}</td>
+                                    <td>{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                                    <td>{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                                    <td>{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                                    <td>{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                                 </tr>
                             </tfoot>
                             </tbody>
@@ -893,7 +890,7 @@
         </wz-step>
         <wz-step icon="fa fa-circle-o" ng-repeat="datatable in datatables" wz-title="{{datatable.registeredTableName}}"
             id="dynamicSteps" wz-disabled="{{disabled}}">
-            <form name="Datatables" class="form-horizontal" ng-submit="submit()">
+            <form name="Datatables" class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3><strong>{{datatable.registeredTableName}}</strong></h3>-->
@@ -955,11 +952,11 @@
                     </div>
                     <!--<div class="col-md-offset-5" ng-if="$last">-->
                     <!--<button id="cancel3" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">-->
-                    <!--{{'label.button.cancel' | translate}}-->
+                    <!{{'label.button.cancel' | translate>
                     <!--</button>-->
                     <!--<button id="save3" type="submit" has-permission='CREATE_LOAN' class="btn btn-sm btn-primary"-->
                     <!--ng-show="loanaccountinfo">{{'label.button.save' |-->
-                    <!--translate}}-->
+                    <!--translate>
                     <!--</button>-->
                     <!--</div>-->
                     <hr>
@@ -973,7 +970,7 @@
             </form>
         </wz-step>
         <wz-step wz-title="Review" ng-if="!disabled">
-            <form name="review" class="form-horizontal">
+            <form name="review" class="form-horizontal form-extra">
                 <fieldset>
                     <api-validate></api-validate>
                     <!--<h3>Review</h3>-->
@@ -1265,7 +1262,7 @@
                         <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                             <td colspan="2">{{charge.name}},{{charge.currency.displaySymbol}}</td>
                             <td>{{charge.chargeCalculationType.value | translate }}</td>
-                            <td colspan="2">{{charge.amount | number}}</td>
+                            <td colspan="2">{{charge.amount | FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value | translate }}</td>
                         </tr>
                     </table>
@@ -1304,9 +1301,6 @@
                     <hr>
                     <button class="btn btn-sm btn-default pull-left" wz-previous>
                         <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
-                    </button>
-                    <button class="btn btn-sm btn-default pull-right" disabled ng-hide="disabled">{{'label.button.next' | translate}}
-                        <i class="fa fa-arrow-right"></i>
                     </button>
                 </fieldset>
             </form>

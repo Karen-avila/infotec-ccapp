@@ -1,4 +1,4 @@
-FROM nginx AS runner
+FROM nginx AS runner 
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends wget telnet unzip tzdata telnet vim dos2unix curl software-properties-common gnupg apt-transport-https \

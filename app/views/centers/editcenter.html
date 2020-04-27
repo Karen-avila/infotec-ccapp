@@ -11,7 +11,7 @@
                 <h4>{{'label.heading.editcenter' | translate}}</h4>
             </div>
                 <div data-ng-switch on="managecode">
-                    <form name="editcenterform" novalidate="" class="form-horizontal" data-ng-switch-when="2">
+                    <form name="editcenterform" novalidate="" class="form-horizontal form-extra" data-ng-switch-when="2">
                         <fieldset>
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="name">{{'label.input.name' | translate}}<span
@@ -60,7 +60,7 @@
                             </div>
                         </fieldset>
                     </form>
-                    <form ng-switch-when="1" class="form-horizontal">
+                    <form ng-switch-when="1" class="form-horizontal form-extra">
                         <div class="form-group">
                             <label class="control-label col-sm-2">{{'label.input.enteractivationdate' | translate }}<span
                                     class="required">*</span></label>

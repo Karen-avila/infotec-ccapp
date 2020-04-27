@@ -48,7 +48,7 @@
 					<select id="legalFormId" ng-model="formData.legalFormId"  class="form-control"
 							ng-options="legalForm.id as legalForm.value for legalForm in clientLegalFormOptions" value="{{legalForm.id}}"
 							ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)">
-						<option value="">--{{'label.menu.legalForm' | translate}}--</option>
+						<option value="">{{'label.menu.legalForm' | translate}}</option>
 					</select>
 				</div>
 				<div class="col-sm-3 pull-right">
@@ -123,7 +123,7 @@
 						<div class="col-sm-3">
 							<select id="genderId" ng-model="formData.genderId"  class="form-control"
 									ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}">
-								<option value="">--{{'label.menu.gender' | translate}}--</option>
+								<option value="">{{'label.menu.gender' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -157,7 +157,7 @@
 						<div class="col-sm-3">
 							<select id="birthPlaceId" ng-model="formData.birthPlaceId"  class="form-control"
 									ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions" value="{{birthplace.id}}">
-								<option value="">--{{'label.menu.birthplace' | translate}}--</option>
+								<option value="">{{'label.menu.birthplace' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -206,7 +206,7 @@
 				<div class="col-sm-3">
 					<select id="clientTypeId" ng-model="formData.clientTypeId"  class="form-control"
 							ng-options="clienttype.id as clienttype.name for clienttype in clienttypeOptions" value="{{clienttype.id}}">
-						<option value="">--{{'label.menu.clienttype' | translate}}--</option>
+						<option value="">{{'label.menu.clienttype' | translate}}</option>
 					</select>
 				</div>
 				<label class="control-label col-sm-3">{{'label.input.clientclassification' | translate}}</label>
@@ -214,7 +214,7 @@
 				<div class="col-sm-3">
 					<select id="clientClassificationId" ng-model="formData.clientClassificationId"  class="form-control"
 							ng-options="clientClassification.id as clientClassification.name for clientClassification in clientClassificationOptions" value="{{clientClassification.id}}">
-						<option value="">--{{'label.menu.clientclassification' | translate}}--</option>
+						<option value="">{{'label.menu.clientclassification' | translate}}</option>
 					</select>
 				</div>
 			</div>
@@ -233,7 +233,7 @@
 						<div class="col-sm-3">
 							<select id="mainBusinessLineId" ng-model="formData.clientNonPersonDetails.mainBusinessLineId"  class="form-control"
 									ng-options="mainBusinessLine.id as mainBusinessLine.name for mainBusinessLine in clientNonPersonMainBusinessLineOptions" value="{{mainBusinessLine.id}}">
-								<option value="">--{{'label.menu.mainBusinessLine' | translate}}--</option>
+								<option value="">{{'label.menu.mainBusinessLine' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -250,7 +250,7 @@
 							<select id="constitutionId" name="constitution" ng-model="formData.clientNonPersonDetails.constitutionId"  class="form-control"
 									ng-options="constitution.id as constitution.name for constitution in clientNonPersonConstitutionOptions"
 									value="{{constitution.id}}">
-								<option value="">--{{'label.menu.constitution' | translate}}--</option>
+								<option value="">{{'label.menu.constitution' | translate}}</option>
 							</select>
 						</div>
 						<div class="col-sm-2">

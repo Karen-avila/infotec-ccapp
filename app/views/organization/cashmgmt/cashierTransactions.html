@@ -29,7 +29,7 @@
                         </td>
 
                         <td><span class="h4">{{'label.heading.cashmgmt.cashier.netAmount' | translate}}:
-                                {{cashierSummaryAndTxns.netCash | number}}</span></td>
+                                {{cashierSummaryAndTxns.netCash | FormatNumber}}</span></td>
                         <td><button id="allocate" type="submit" class="btn btn-sm btn-primary pull-right"
                                 has-permission='ALLOCATECASHIER_TELLER' data-ng-click="routeToAllocate()">
                                 <i class="fa fa-level-down "></i>{{'label.button.cashier.allocatefunds' | translate}}
@@ -53,13 +53,13 @@
                             <th align="center">{{'label.date' | translate}}</th>
                             <th align="center">{{'label.heading.transactions' | translate}}</th>
                             <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountAlloc' | translate}}:
-                                {{cashierSummaryAndTxns.sumCashAllocation | number}}</th>
+                                {{cashierSummaryAndTxns.sumCashAllocation | FormatNumber}}</th>
                             <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountCashIn' | translate}}:
-                                {{cashierSummaryAndTxns.sumInwardCash | number}}</th>
+                                {{cashierSummaryAndTxns.sumInwardCash | FormatNumber}}</th>
                             <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountCashOut' | translate}}:
-                                {{cashierSummaryAndTxns.sumOutwardCash | number}}</th>
+                                {{cashierSummaryAndTxns.sumOutwardCash | FormatNumber}}</th>
                             <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountSettle' | translate}}:
-                                {{cashierSummaryAndTxns.sumCashSettlement | number}}</th>
+                                {{cashierSummaryAndTxns.sumCashSettlement | FormatNumber}}</th>
                             <th></th>
 
                         </tr>
@@ -73,19 +73,19 @@
                             <td>{{txn.txnType.value}}</td>
 
                             <td>
-                                <span ng-if="txn.txnType.value == 'Allocate Cash'">{{txn.txnAmount | number}}</span>
+                                <span ng-if="txn.txnType.value == 'Allocate Cash'">{{txn.txnAmount | FormatNumber}}</span>
                             </td>
 
                             <td>
-                                <span ng-if="txn.txnType.value == 'Cash In'">{{txn.txnAmount | number}}</span>
+                                <span ng-if="txn.txnType.value == 'Cash In'">{{txn.txnAmount | FormatNumber}}</span>
                             </td>
 
                             <td>
-                                <span ng-if="txn.txnType.value == 'Cash Out'">{{txn.txnAmount | number}}</span>
+                                <span ng-if="txn.txnType.value == 'Cash Out'">{{txn.txnAmount | FormatNumber}}</span>
                             </td>
 
                             <td>
-                                <span ng-if="txn.txnType.value == 'Settle Cash'">{{txn.txnAmount | number}}</span>
+                                <span ng-if="txn.txnType.value == 'Settle Cash'">{{txn.txnAmount | FormatNumber}}</span>
                             </td>
                         </tr>
                     </tbody>

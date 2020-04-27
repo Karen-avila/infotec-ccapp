@@ -14,7 +14,7 @@
 			</div>
 			<api-validate></api-validate>
 			<div class="row-fluid">
-				    <div class="form-horizontal" ng-hide="showResults || showClientResults">
+				    <div class="form-horizontal form-extra" ng-hide="showResults || showClientResults">
 				        <div class="form-group">
 				            <label  class="col-sm-2 control-label">{{'label.input.adhoc.search.loanstatus' | translate}}</label>
 				            <div class="col-sm-4">
@@ -46,7 +46,7 @@
 				            <label  class="col-sm-2 control-label">{{'label.input.date.filter' | translate}}</label>
 				            <div class="col-sm-3">
 				                <select class="form-control" id="loandatetype" ng-model="formData.loandatetype" ng-change="updateLoanDateType()">
-									<option value=""> --{{'label.selectone' | translate }}--</option>
+									<option value=""> {{'label.selectone' | translate </option>
 									<option value="approvalDate">{{'label.input.loan.approvaldate' | translate }}</option>
 									<option value="createdDate">{{'label.input.loan.createdondate' | translate }}</option>
 									<option value="disbursalDate">{{'label.input.loan.disbursaldate' | translate }}</option>
@@ -185,25 +185,25 @@
 								<td class="pointer">{{result.clientAccountNo}} - {{result.clientName}}</td>
 								<td class="pointer">{{result.loanProductId}} - {{result.loanProductName}}</td>
 								<td class="pointer " >{{formatteddisbursedDate}}</td>
-								<td class="pointer justifyright">{{result.disbursementAmount | number}}</td>
+								<td class="pointer justifyright">{{result.disbursementAmount | FormatNumber}}</td>
 								<td class="pointer">{{formattedmaturedDate}}</td>
-								<td class="pointer justifyright">{{result.principalOutstanding | number}}</td>
-								<td class="pointer justifyright">{{result.principalRepaid | number}}</td>
-								<td class="pointer justifyright">{{result.arrearsAmount | number}}</td>
-								<td class="pointer justifyright">{{result.interestOutstanding | number}}</td>
-								<td class="pointer justifyright">{{result.interestRepaid | number}}</td>
+								<td class="pointer justifyright">{{result.principalOutstanding | FormatNumber}}</td>
+								<td class="pointer justifyright">{{result.principalRepaid | FormatNumber}}</td>
+								<td class="pointer justifyright">{{result.arrearsAmount | FormatNumber}}</td>
+								<td class="pointer justifyright">{{result.interestOutstanding | FormatNumber}}</td>
+								<td class="pointer justifyright">{{result.interestRepaid | FormatNumber}}</td>
 							</tr>
 							<tr class="pointer-main">
 								<td class="pointer"><strong>{{'label.heading.total' | translate}} : </strong></td>
 								<td class="pointer"></td>
 								<td class="pointer"></td>
-								<td class="pointer justifyright">{{totaldisburementAmount | number}}</td>
+								<td class="pointer justifyright">{{totaldisburementAmount | FormatNumber}}</td>
 								<td class="pointer"></td>
-								<td class="pointer justifyright">{{totalPrincipalOutstanding | number}}</td>
-								<td class="pointer justifyright">{{totalPrincipalRepaid | number}}</td>
-								<td class="pointer">{{totalArrearsAmount | number}}</td>
-								<td class="pointer justifyright">{{totalInterestOutstanding | number}}</td>
-								<td class="pointer justifyright">{{totalInterestRepaid | number}}</td>
+								<td class="pointer justifyright">{{totalPrincipalOutstanding | FormatNumber}}</td>
+								<td class="pointer justifyright">{{totalPrincipalRepaid | FormatNumber}}</td>
+								<td class="pointer">{{totalArrearsAmount | FormatNumber}}</td>
+								<td class="pointer justifyright">{{totalInterestOutstanding | FormatNumber}}</td>
+								<td class="pointer justifyright">{{totalInterestRepaid | FormatNumber}}</td>
 							</tr>
 							</tbody>
 						</table>
