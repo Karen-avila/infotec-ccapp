@@ -11,14 +11,12 @@
             <api-validate></api-validate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="criteriaName">{{'label.input.provisioningcriteria' | translate}}<span
+                    <label class="control-label col-sm-3" for="criteriaName">{{'label.input.provisioningcriteria' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <input name="criteriaName" type="text" id="criteriaName" ng-model="criteriaName" class="form-control"
-                               required late-Validate/>
-                    </div>
-                    <div class="col-sm-3">
+                               required late-Validate/>">
                         <form-validate valattributeform="editeprovisioningcriteriaform" valattribute="criteriaName"/>
                     </div>
                 </div>
@@ -90,7 +88,7 @@
                             <ng-form name="liabilityaccount{{$index}}">
                                 <select id="liabilitaccont" name="liabilitaccont"
                                         ng-model="provisioningcategory.liabilityAccount"
-                                        ng-options="liabilitaccont.id as liabilitaccont.name for liabilitaccont in liabilityaccounts"
+                                        ng-options='liabilitaccont.id as (liabilitaccont.glCode + " " + liabilitaccont.name) for liabilitaccont in liabilityaccounts'
                                         value="{{liabilitaccont.id}}" class="form-control" required>
                                     <option value="">{{'label.selectliabilitiaccount' | translate}}</option>
                                 </select>
@@ -103,7 +101,7 @@
                             <ng-form name="expenseaccount{{$index}}">
                                 <select id="expenseaccount" name="expenseaccount"
                                         ng-model="provisioningcategory.expenseAccount"
-                                        ng-options="liabilitaccont.id as liabilitaccont.name for liabilitaccont in expenseaccounts"
+                                        ng-options='expenseaccount.id as (expenseaccount.glCode + " " + expenseaccount.name) for expenseaccount in expenseaccounts'
                                         value="{{liabilitaccont.id}}" class="form-control" required>
                                     <option value="">{{'label.selectexpenseaccount' | translate}}</option>
                                 </select>
@@ -114,7 +112,7 @@
                     </tr>
                 </table>
 
-                <div class="col-md-offset-3">
+                <div class="col-md-12 center">
                     <a id="cancel" href="#!/viewallprovisionings">
                         <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
                     </a>

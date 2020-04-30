@@ -29,7 +29,7 @@
                 <table class="table table-bordered table-striped">
                     <tr>
                         <td>{{'label.heading.currency' | translate}}</td>
-                        <td>{{charge.currency.name}}</td>
+                        <td>{{charge.currency.name | translate}}</td>
                     </tr>
                     <tr>
                         <td>{{'label.heading.chargetimetype' | translate}}</td>
@@ -92,7 +92,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-md-offset-5">
+        <div class="col-md-12 center">
             <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-sm btn-default">{{'label.button.back' |
                 translate}}</a>
         </div>

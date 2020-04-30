@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        LoginFormController: function (scope, authenticationService, resourceFactory, httpService, $timeout) {
+        LoginFormController: function (scope, authenticationService, resourceFactory, httpService, $timeout, MULTILANGUAGE) {
             scope.loginCredentials = {};
             scope.passwordDetails = {};
             scope.authenticationFailed = false;
@@ -18,7 +18,6 @@
                 scope.authenticationFailed = false;
                 scope.load = true;
                 authenticationService.authenticateWithUsernamePassword(scope.loginCredentials);
-               // delete scope.loginCredentials.password;
             };
 
             scope.$on("UserAuthenticationFailureEvent", function (event, data, status) {
@@ -32,6 +31,10 @@
                    scope.load = false;
                 }
             });
+
+            scope.showLanguage = function () {
+                return MULTILANGUAGE;
+            }
 
             scope.$on("UserAuthenticationSuccessEvent", function (event, data) {
                 scope.load = false;
@@ -115,7 +118,7 @@
 
         }
     });
-    mifosX.ng.application.controller('LoginFormController', ['$scope', 'AuthenticationService', 'ResourceFactory', 'HttpService','$timeout', mifosX.controllers.LoginFormController]).run(function ($log) {
+    mifosX.ng.application.controller('LoginFormController', ['$scope', 'AuthenticationService', 'ResourceFactory', 'HttpService','$timeout', 'MULTILANGUAGE', mifosX.controllers.LoginFormController]).run(function ($log) {
         $log.info("LoginFormController initialized");
     });
 }(mifosX.controllers || {}));
