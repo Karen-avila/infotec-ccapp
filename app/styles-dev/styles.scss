@@ -34,6 +34,14 @@ $state-success-text: #fff;
 @import "./main/components/report";
 @import "./main/components/nv.d3";
 @import "./main/components/loader";
-
+@import "./main/mifos";
 
 @import "https://framework-gb.cdn.gob.mx/assets/styles/main.css";
+
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+.search-bar { background-color: $brand-secondary; }
+.search-bar * { color: black !important; }
+.search-bar input { border-bottom-color: white; }
+.md-errors-spacer { display:none; }

@@ -15,6 +15,9 @@
             scope.pvFlag = false;
             scope.rvFlag = false;
             scope.includeOrderAccounts = false;
+            scope.frFlag = false;
+            scope.fiFlag = false;
+            scope.piFlag = false;
 
             scope.interestRecalculationOnDayTypeOptions = [];
             for (var i = 1; i <= 28; i++) {
@@ -320,6 +323,7 @@
             };
 
             scope.addConfigureFundSource = function () {
+                scope.frFlag = true;
                 if (scope.product.paymentTypeOptions && scope.product.paymentTypeOptions.length > 0 &&
                     scope.assetAccountOptions && scope.assetAccountOptions.length > 0) {
                     scope.configureFundOptions.push({
@@ -332,6 +336,7 @@
             };
 
             scope.mapFees = function () {
+                scope.fiFlag = true;
                 if (scope.product.chargeOptions && scope.product.chargeOptions.length > 0 && scope.incomeAccountOptions && scope.incomeAccountOptions.length > 0) {
                     scope.specificIncomeAccountMapping.push({
                         chargeId: scope.chargeOptions.length > 0 ? scope.chargeOptions[0].id : '',
@@ -341,6 +346,7 @@
             };
 
             scope.mapPenalty = function () {
+                scope.piFlag = true;
                 if (scope.product.penaltyOptions && scope.product.penaltyOptions.length > 0 && scope.incomeAccountOptions && scope.incomeAccountOptions.length > 0) {
                     scope.penaltySpecificIncomeaccounts.push({
                         chargeId: scope.penaltyOptions.length > 0 ? scope.penaltyOptions[0].id : '',

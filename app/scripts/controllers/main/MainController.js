@@ -209,8 +209,6 @@
             scope.changeScope = function (searchScope) {
                 scope.currentScope = searchScope;
             }
-            //hides loader
-            scope.domReady = true;
 
             scope.search = function () {
                 var resource;
@@ -368,6 +366,19 @@
                 }
             };
 
+            scope.search = null;
+            scope.initiateSearch = function () {
+                scope.search = '';
+            };
+
+            scope.showSearchBar = function() {
+                return scope.search != null
+            };
+
+            scope.endSearch = function () {
+                return scope.search = null;
+            };
+
             scope.helpf = function () {
                 // first, create addresses array
                 var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup", "https://mifosforge.jira.com/wiki/display/docs/Organization",
@@ -433,6 +444,9 @@
                 if (addrfound == false) window.open(addresses[10]); // substring not matching to any model -> open start user manual page
 
             };//helpf
+
+            //hides loader
+            scope.domReady = true;
 
             sessionManager.restore(function (session) {
                 scope.currentSession = session;
