@@ -18,7 +18,7 @@
                     <!-- ACCOUNTING -->
                     <md-menu>
                         <md-button ng-href="#!/accounting" has-permission='READ_ACCOUNTING'>
-                        <i class="fa fa-money"></i> {{'label.anchor.accounting' | translate }}
+                        <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
                     </md-button>
                     </md-menu>
                     <md-menu>
@@ -48,6 +48,12 @@
                                 <md-button ng-href="#!/reports/savings">
                                     <i class="fa fa-money"></i> 
                                     <span md-menu-align-target>{{'label.reports.type.savings' | translate }}</span>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-href="#!/reports/accounting">
+                                    <i class="fa fa-calculator"></i> 
+                                    <span md-menu-align-target>{{'label.reports.type.accounting' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
@@ -113,7 +119,7 @@
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/usersetting">
-                                    <i class="fa fa-user-cog"></i> {{'label.anchor.settings' | translate }}
+                                    <i class="fas fa-user-cog"></i> {{'label.anchor.settings' | translate }}
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
