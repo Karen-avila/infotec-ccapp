@@ -1,6 +1,6 @@
 
 (function (mifosX) {
-    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider) {
+    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider, $mdThemingProvider) {
         var mainLink = getLocation(window.location.href);
         var baseApiUrl = "https://mifos.infotec.mx";
         var host = "";
@@ -71,6 +71,81 @@
         IdleProvider.idle(30*60); //Idle time (seconds)
         IdleProvider.timeout(10); // in seconds
         KeepaliveProvider.interval(15*60); //keep-alive ping
+
+        // Theme
+        $mdThemingProvider.definePalette('mcgpalette0', {
+            '50': 'e5ebea',
+            '100': 'bfceca',
+            '200': '94aea6',
+            '300': '698d82',
+            '400': '487468',
+            '500': '285c4d',
+            '600': '245446',
+            '700': '1e4a3d',
+            '800': '184134',
+            '900': '0f3025',
+            'A100': '6effc9',
+            'A200': '3bffb6',
+            'A400': '08ffa3',
+            'A700': '00ed95',
+            'contrastDefaultColor': 'light',
+            'contrastDarkColors': [
+            '50',
+            '100',
+            '200',
+            '300',
+            'A100',
+            'A200',
+            'A400',
+            'A700'
+            ],
+            'contrastLightColors': [
+            '400',
+            '500',
+            '600',
+            '700',
+            '800',
+            '900'
+            ]
+        });
+        $mdThemingProvider.definePalette('mcgpalette1', {
+            '50': 'fdfdfc',
+            '100': 'fbfaf7',
+            '200': 'f9f6f2',
+            '300': 'f6f2ec',
+            '400': 'f4f0e8',
+            '500': 'f2ede4',
+            '600': 'f0ebe1',
+            '700': 'eee8dd',
+            '800': 'ece5d9',
+            '900': 'e8e0d1',
+            'A100': 'ffffff',
+            'A200': 'ffffff',
+            'A400': 'ffffff',
+            'A700': 'ffffff',
+            'contrastDefaultColor': 'light',
+            'contrastDarkColors': [
+            '50',
+            '100',
+            '200',
+            '300',
+            '400',
+            '500',
+            '600',
+            '700',
+            '800',
+            '900',
+            'A100',
+            'A200',
+            'A400',
+            'A700'
+            ],
+            'contrastLightColors': []
+        });
+        $mdThemingProvider.theme('mcgtheme')
+            .primaryPalette('mcgpalette1')
+            .accentPalette('mcgpalette0');
+        
     };
     mifosX.ng.application.config(defineHeaders).run(function ($log, Idle) {
         $log.info("Initial tasks are done!");
