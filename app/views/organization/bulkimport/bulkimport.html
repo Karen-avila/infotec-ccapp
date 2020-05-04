@@ -6,93 +6,146 @@
 
     <div class="card">
         <div class="content">
-            <div class="row">
+            <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                 <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" href="#!/bulkimportoffices" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-building fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importoffices'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportusers" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importusers'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportgroup" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-group fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importgroups'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportloanaccounts" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importloanaccounts'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportsavingsaccounts" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importsavingsaccounts'
-                    | translate}}</h4>
-                        </a>
-                    <!--
-                        <a class="list-group-item" href="#!/bulkimportfixeddepositaccounts" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importfdaccounts'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportrecurringdeposits" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importrdaccounts'
-                    | translate}}</h4>
-                        </a>
-                    -->
-                        <a class="list-group-item" href="#!/bulkimportcoa" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importcoa'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportshareaccounts" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importshareaccounts'
-                    | translate}}</h4>
-                        </a>
-                    </div>
+                    <a class="list-group-item no-border" href="#!/bulkimportoffices" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-building fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importoffices'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportusers" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importusers'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportgroup" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-group fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importgroups'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportloanaccounts" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importloanaccounts'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportsavingsaccounts" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importsavingsaccounts'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                <!--
+                    <a class="list-group-item no-border" href="#!/bulkimportfixeddepositaccounts" has-permission='READ_OFFICE'>
+                        <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importfdaccounts'
+                | translate}}</h5>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportrecurringdeposits" has-permission='READ_OFFICE'>
+                        <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importrdaccounts'
+                | translate}}</h5>
+                    </a>
+                -->
+                    <a class="list-group-item no-border" href="#!/bulkimportcoa" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importcoa'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportshareaccounts" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importshareaccounts'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
                 </div>
+
                 <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" href="#!/bulkimportemployees" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-android fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.employees '
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportclients" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importclients'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportcenters" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importcenters'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportloanrepayments" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importloanrepayments'
-                    | translate}}</h4>
-                        </a>
-                    <!--
-                        <a class="list-group-item" href="#!/bulkimportsavingsaccountstransactions"
-                            has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importsavingstransactions'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportfixeddeposittransactions"
-                            has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importfdtransactions'
-                    | translate}}</h4>
-                        </a>
-                    -->
-                        <a class="list-group-item" href="#!/bulkimportrecurringdepositstransactions"
-                            has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importrdtransactions'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportjournalentries" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importjournalentries'
-                    | translate}}</h4>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimportguarantor" has-permission='READ_OFFICE'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importguarantor'
-                    | translate}}</h4>
-                        </a>
-                    </div>
+                    <a class="list-group-item no-border" href="#!/bulkimportemployees" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-android fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.employees '
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportclients" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importclients'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportcenters" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importcenters'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportloanrepayments" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importloanrepayments'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                <!--
+                    <a class="list-group-item no-border" href="#!/bulkimportsavingsaccountstransactions"
+                        has-permission='READ_OFFICE'>
+                        <h5 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importsavingstransactions'
+                | translate}}</h5>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportfixeddeposittransactions"
+                        has-permission='READ_OFFICE'>
+                        <h5 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importfdtransactions'
+                | translate}}</h5>
+                    </a>
+                -->
+                    <a class="list-group-item no-border" href="#!/bulkimportrecurringdepositstransactions"
+                        has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importrdtransactions'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportjournalentries" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-arrow-right fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importjournalentries'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimportguarantor" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.importguarantor'
+                        | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
                 </div>
             </div>
         </div>

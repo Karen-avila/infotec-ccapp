@@ -52,7 +52,7 @@ $mobile-size: 400px !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               rgba(255,255,255,0.95) !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 
