@@ -31,16 +31,16 @@ md-button.md-mifos-theme.md-warn {
 md-button.md-mifos-theme.md-raised, md-button.md-mifos-theme.md-fab {
     background-color: rgba(158, 158, 158, 0.185); }
 md-button.md-mifos-theme.md-raised:not([disabled]):hover, md-button.md-mifos-theme.md-raised:not([disabled]).focus, md-button.md-mifos-theme.md-fab:not([disabled]):hover, md-button.md-mifos-theme.md-fab:not([disabled]).focus {
-    color: white;
+    color: $body-bg;
     background-color: rgba(158, 158, 158, 0.3); }
 md-button.md-mifos-theme.md-raised.md-primary, md-button.md-mifos-theme.md-fab.md-primary {
-    color: white;
+    color: $body-bg;
     background-color: $brand-primary-light; }
 md-button.md-mifos-theme.md-raised.md-primary:not([disabled]):hover, md-button.md-mifos-theme.md-raised.md-primary:not([disabled]).focus, md-button.md-mifos-theme.md-fab.md-primary:not([disabled]):hover, md-button.md-mifos-theme.md-fab.md-primary:not([disabled]).focus {
-    color: white !important;
+    color: $body-bg !important;
     background-color: $link-hover-color !important; }
 md-button.md-mifos-theme.md-raised.md-warn, md-button.md-mifos-theme.md-fab.md-warn {
-    color: white;
+    color: $body-bg;
     background-color: #e51c23; }
 md-button.md-mifos-theme.md-raised.md-warn:not([disabled]):hover, md-button.md-mifos-theme.md-raised.md-warn:not([disabled]).focus, md-button.md-mifos-theme.md-fab.md-warn:not([disabled]):hover, md-button.md-mifos-theme.md-fab.md-warn:not([disabled]).focus {
     background-color: #d01716; }
@@ -119,7 +119,7 @@ md-slider.md-mifos-theme .md-sign {
   md-slider.md-mifos-theme .md-sign:after {
     border-top-color: $brand-primary-light; }
 md-slider.md-mifos-theme .md-thumb-text {
-  color: white; }
+  color: $body-bg; }
 md-slider.md-mifos-theme .md-focus-thumb {
   background-color: $gray-base; }
 md-slider.md-mifos-theme .md-focus-ring {
@@ -151,7 +151,7 @@ md-tabs.md-mifos-theme md-tabs-ink-bar {
 md-tabs.md-mifos-theme md-tab {
   color: #d0d9ff; }
   md-tabs.md-mifos-theme md-tab.active {
-    color: white; }
+    color: $body-bg; }
   md-tabs.md-mifos-theme md-tab[disabled] {
     color: rgba(0, 0, 0, 0.12); }
   md-tabs.md-mifos-theme md-tab:focus {
@@ -184,15 +184,15 @@ md-input-group.md-mifos-theme[disabled] input, md-input-group.md-mifos-theme[dis
 
 md-toast.md-mifos-theme {
   background-color: #323232;
-  color: white; }
+  color: $body-bg; }
   md-toast.md-mifos-theme md-button {
-    color: white; }
+    color: $body-bg; }
   md-toast.md-mifos-theme .md-action {
     color: $brand-primary-dark; }
 
 md-toolbar.md-mifos-theme {
   background-color: $brand-primary-light;
-  color: white; }
+  color: $body-bg; }
 
 md-tooltip.md-mifos-theme {
   color: #ffffff; }

@@ -45,7 +45,8 @@
     "webcam": "webcam-directive#^3.2.1",
     "angularUtils-pagination": "angular-utils-pagination#^0.11.1",
     "lodash": "^4.17.15",
-    "angular-loading-bar": "^0.9.0"
+    "angular-loading-bar": "^0.9.0",
+    "pdfjs": "^2.4.456"
   },
   "devDependencies": {
     "jasmine": "2.4.1",
