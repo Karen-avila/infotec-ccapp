@@ -171,12 +171,13 @@
         $mdThemingProvider.theme('mifos')
             .primaryPalette('mcgpalette0')
             .accentPalette('mcgpalette1');
+
+        cfpLoadingBarProvider.includeSpinner = false;
+        cfpLoadingBarProvider.latencyThreshold = 500;
     };
-    mifosX.ng.application.config(defineHeaders).run(function ($log, Idle, cfpLoadingBar) {
+    mifosX.ng.application.config(defineHeaders).run(function ($log, Idle) {
         $log.info("Initial tasks are done!");
         Idle.watch();
-        cfpLoadingBar.includeSpinner = false;
-        cfpLoadingBar.latencyThreshold = 500;
     });
 }(mifosX || {}));
 
