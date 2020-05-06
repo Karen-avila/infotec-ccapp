@@ -30,7 +30,6 @@
                 scope.formData.clientId = scope.clientId;
             }
 
-
             if (scope.groupId) {
                 scope.inparams.groupId = scope.groupId;
                 scope.formData.groupId = scope.groupId;

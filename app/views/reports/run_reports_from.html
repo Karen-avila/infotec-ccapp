@@ -1,19 +1,19 @@
 	<div class="card well" ng-controller="RunReportsController">
     <api-validate></api-validate>
 	    <div class="span gray-head" style="margin-left:0%;height:30px;">
-	          <span style="margin-left: 10px;font-size:20px;">
-	                <strong>{{''+reportName+'' | translate}}</strong>
-	                <button type="button" class="btn btn-primary pull-right" ng-show="checkStatus()"
-	                        ng-click="isCollapsed=!isCollapsed"><i class="fa fa-chevron-down "></i>{{
-	                    'label.button.parameters' | translate }}
-	                </button>
-	                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypePie()">
-	                    {{'label.input.piechart' | translate }}
-	                </button>
-	                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypeBar()">
-	                    <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;{{'label.input.barchart' | translate }}
-	                </button>
-	          </span>
+            <h1 class="md-title">{{'label.reports.name.' + reportName | translate}}</h1>
+            <span style="margin-left: 10px;font-size:20px;">
+                <button type="button" class="btn btn-primary pull-right" ng-show="checkStatus()"
+                        ng-click="isCollapsed=!isCollapsed"><i class="fa fa-chevron-down "></i>{{
+                    'label.button.parameters' | translate }}
+                </button>
+                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypePie()">
+                    {{'label.input.piechart' | translate }}
+                </button>
+                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypeBar()">
+                    <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;{{'label.input.barchart' | translate }}
+                </button>
+            </span>
 	    </div>
 	    <div ng-hide="isCollapsed" class="alert-block form-horizontal">
 	        <br>
@@ -74,9 +74,12 @@
 			        </select>
 				</div>
 	        </div>
-
-	        <span class="col-md-offset-3 paddedleft120"><a id="run" ng-click="runReport()" class="btn btn-sm btn-primary">
-	        <i class="fa fa-play"></i>&nbsp;&nbsp;{{'label.button.runreport' | translate }}</a></span>
+            <md-divider></md-divider>
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <md-button class="md-raised md-primary" ng-click="runReport()">
+                    <i class="fa fa-play"></i> {{'label.button.runreport' | translate }}
+                </md-button>
+            </section>
 	    </div>
 	    <div style="visibility: hidden">
 	        <table>
