@@ -10,8 +10,8 @@
         </div>
         <div class="content">
             <div class="row">
-                <div class="col-sm-8">
-                    <form ng-submit="search()" class="form-horizontal form-extra">
+                <div class="col-sm-10">
+                    <form ng-submit="search()" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-4">
                                 <input ng-autofocus="true" ng-model="filterText" ng-keyup="onFilter()" type="text"
@@ -19,29 +19,28 @@
                                     placeholder="{{'label.input.filterbynameaccno' | translate}}">
                             </div>
                             <div class="col-md-8">
-                                <div class="input-group">
+                                <div class="col-md-6">
                                     <input data-ng-model="searchText" type="text"
-                                        placeholder="{{'label.input.searchByNameAccNo' | translate}}"
-                                        class="form-control unstyled" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary form-control">
-                                            <span class="fa fa-search"></span>
-                                        </button>
-                                    </span>
-                                    <div class="checkbox form-control">
-                                        <label for="showAll">
-                                            <input type="checkbox" id="showAll" name="showAll" ng-model="showClosed">
-                                            {{'label.button.showall' | translate }}
-                                        </label>
-                                    </div>
+                                    placeholder="{{'label.input.searchByNameAccNo' | translate}}"
+                                    class="form-control unstyled col-sm-3" />
+                                </div>
+                                <div class="col-md-3">
+                                    <md-button class="md-raised md-primary md-icon-button search">
+                                        <i class="fa fa-search "></i>
+                                    </md-button>
+                                </div>
+                                <div class="col-md-3">
+                                    <md-checkbox ng-model="showClosed">
+                                        {{'label.button.showall' | translate }}
+                                    </md-checkbox>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-4">
-                    <a href="#!/createclient" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_CLIENT'><i
-                            class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</a>
+                <div class="col-sm-2">
+                    <md-button md-no-ink class="md-primary" has-permission='CREATE_CLIENT' href="#!/createclient"><i
+                        class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</md-button>
                     <!--
                     <a href="#!/bulkimportclients" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_CLIENT'><i +
                             class="fa fa-upload"></i>&nbsp;{{'label.button.importclients' | translate}}</a> -->

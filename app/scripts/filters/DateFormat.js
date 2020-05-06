@@ -5,11 +5,14 @@
                 if (input) {
                     const dateFormat = localStorageService.getFromLocalStorage('dateformat');
                     var tDate = new Date(input);
+                    return dateFilter(tDate, dateFormat);
+                    /*
                     var localDate = new Date(tDate.getTime()+tDate.getTimezoneOffset()*60*1000);
                     var offset = tDate.getTimezoneOffset() / 60;
                     var hours = tDate.getHours();
                     localDate.setHours(hours - offset);
                     return dateFilter(localDate, dateFormat);
+                    */
                 }
                 return '';
             }

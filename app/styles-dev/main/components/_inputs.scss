@@ -143,13 +143,13 @@ select option {
   font-weight:normal;
 }
 
-.form-control{
+.form-control {
+  width: 98% !important;
   border-radius:0;
   border:1px solid rgba(0,0,0,0.4);
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-
 
   &:focus{
     border-color:rgba(0,0,0,0.9);
