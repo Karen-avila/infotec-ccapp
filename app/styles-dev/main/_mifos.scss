@@ -198,3 +198,42 @@ md-tooltip.md-mifos-theme {
   color: #ffffff; }
   md-tooltip.md-mifos-theme .md-background {
     background-color: rgba(0, 0, 0, 0.52); }
+
+md-select {
+    display: flex;
+    margin: 12px 0 12px 0;
+}
+
+#loading-bar .bar {
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+
+  background: $brand-secondary;
+  position: absolute;
+  z-index: 10002;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+
+/* Fancy blur effect */
+#loading-bar .peg {
+  position: absolute;
+  width: 70px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  opacity: 0.45;
+  -moz-box-shadow: $brand-secondary 1px 0 6px 1px;
+  -ms-box-shadow: $brand-secondary 1px 0 6px 1px;
+  -webkit-box-shadow: $brand-secondary 1px 0 6px 1px;
+  box-shadow: $brand-secondary 1px 0 6px 1px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}

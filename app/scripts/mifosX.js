@@ -27,7 +27,8 @@ var mifosX = (function (module) {
       "ngMaterial",
       "ngAnimate",
       "httpErrorHandler",
-      "angular-loading-bar"
+      "angular-loading-bar",
+      "md.data.table"
     ]),
   };
   return module;
