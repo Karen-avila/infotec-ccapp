@@ -165,7 +165,7 @@
                             <td class="paddedbottom20"
                                 ng-hide="loanAccount.isHiddenField.linkAccountId == true">
                                 <select id="linkAccountId" ng-model="formData.linkAccountId"
-                                    ng-options="savingaccount.id as savingaccount.productName for savingaccount in loanaccountinfo.accountLinkingOptions"
+                                    ng-options='savingaccount.id as (savingaccount..accountNo + " " + savingaccount.productName) for savingaccount in loanaccountinfo.accountLinkingOptions'
                                     ng-change="loandetails.linkAccountName = formValue(loanaccountinfo.accountLinkingOptions,formData.linkAccountId,'id','productName')"
                                     class="form-control" value="{{savingaccount.id}}">
                                     <option value="">{{'label.menu.selectone' | translate}}</option>

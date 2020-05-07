@@ -14,30 +14,33 @@
                 <input ng-model="filterText" type="text" class="form-control" ng-keyup="onFilter()" placeholder="{{'label.input.filterbyname' | translate}}">
             </div>
             <div class="col-md-2 col-sm-3 paddedbottom20">
-                <a href="#!/createcharge" class="btn btn-primary pull-right" has-permission='CREATE_CHARGE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createcharge' | translate}}</a>
+                <md-button md-no-ink class="md-primary" href="#!/createcharge" has-permission='CREATE_CHARGE'>
+                    <i class="fa fa-plus "></i> {{'label.button.createcharge' | translate}}</md-button>
             </div>
         </div>
-        <table class="table">
-            <thead>
-            <tr class="graybg">
-                <th>{{'label.heading.name' | translate}}</th>
-                <th>{{'label.heading.chargeappliesto' | translate}}</th>
-                <th>{{'label.heading.ispenalty' | translate}}</th>
-                <th>{{'label.heading.status' | translate}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="pointer-main" dir-paginate="charge in charges | orderBy:'name':reverse  | filter:filterText |  itemsPerPage: ChargesPerPage">
-                <td class="pointer" data-ng-click="routeTo(charge.id)">{{charge.name}}</td>
-                <td class="pointer" data-ng-click="routeTo(charge.id)">{{charge.chargeAppliesTo.code | translate }}</td>
-                <td class="pointer" data-ng-click="routeTo(charge.id)">{{charge.penalty}}</td>
-                <td class="pointer" data-ng-click="routeTo(charge.id)">
-                    <i class="fa fa-stop {{'charges.StatusType.active.' + charge.active | StatusLookup}}" uib-tooltip="{{'label.tooltip.charges.active.' + charge.active | translate}}" tooltip-placement="right"></i>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        <md-divider></md-divider>
+        <md-table-container>
+            <table md-table ng-model="charges" md-progress="promise">
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column>{{'label.heading.name' | translate}}</th>
+                        <th md-column>{{'label.heading.chargeappliesto' | translate}}</th>
+                        <th md-column>{{'label.heading.ispenalty' | translate}}</th>
+                        <th md-column>{{'label.heading.status' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="charge in charges | orderBy:'name':reverse" 
+                        data-ng-click="routeTo(charge.id)" md-select="charge" md-select-id="name">
+                        <td md-cell>{{charge.name}}</td>
+                        <td md-cell>{{charge.chargeAppliesTo.code | translate }}</td>
+                        <td md-cell>{{charge.penalty}}</td>
+                        <td md-cell>
+                            <i class="fa fa-stop {{'charges.StatusType.active.' + charge.active | StatusLookup}}" uib-tooltip="{{'label.tooltip.charges.active.' + charge.active | translate}}" tooltip-placement="right"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
     </div>
-    
 </div>

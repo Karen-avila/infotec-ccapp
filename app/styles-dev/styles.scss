@@ -24,6 +24,9 @@ $state-success-text: #fff;
 /* Angular Material */
 @import "../bower_components/angular-material/modules/scss/angular-material";
 
+/* Angular Material Table */ 
+@import "../bower_components/angular-material-data-table/dist/md-data-table.css";
+
 /* Load style components */
 @import "./main/components/alerts";
 @import "./main/components/variables";
@@ -44,37 +47,3 @@ $state-success-text: #fff;
 @import "https://framework-gb.cdn.gob.mx/assets/styles/main.css";
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
-#loading-bar .bar {
-  -webkit-transition: width 350ms;
-  -moz-transition: width 350ms;
-  -o-transition: width 350ms;
-  transition: width 350ms;
-
-  background: $brand-secondary;
-  position: absolute;
-  z-index: 10002;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  border-bottom-right-radius: 1px;
-  border-top-right-radius: 1px;
-}
-
-/* Fancy blur effect */
-#loading-bar .peg {
-  position: absolute;
-  width: 70px;
-  right: 0;
-  top: 0;
-  height: 2px;
-  opacity: 0.45;
-  -moz-box-shadow: $brand-secondary 1px 0 6px 1px;
-  -ms-box-shadow: $brand-secondary 1px 0 6px 1px;
-  -webkit-box-shadow: $brand-secondary 1px 0 6px 1px;
-  box-shadow: $brand-secondary 1px 0 6px 1px;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
-}
