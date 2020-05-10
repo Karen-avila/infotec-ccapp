@@ -199,7 +199,8 @@ module.exports = function(grunt) {
                 '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js', 'pdfmake/build/*.js',
                 '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**', 'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
                 'angular-loading-bar/build/*.min.*', 'fontawesome/css/*.min.css', 'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js',
-                'pdfjs/src/pdf*.js', 'pdfjs/src/shared/*.js', 'pdfjs/src/display/*.js', 'angular-material-data-table/dist/*.js', 'angular-material-data-table/dist/*.css'
+                'pdfjs/src/pdf*.js', 'pdfjs/src/shared/*.js', 'pdfjs/src/display/*.js', 'angular-material-data-table/dist/*.js', 'angular-material-data-table/dist/*.css',
+                "md-steppers/dist/*.min.*"
             ]
             }
             ]

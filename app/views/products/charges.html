@@ -25,6 +25,9 @@
                     <tr md-row>
                         <th md-column>{{'label.heading.name' | translate}}</th>
                         <th md-column>{{'label.heading.chargeappliesto' | translate}}</th>
+                        <th md-column>{{'label.heading.currency' | translate}}</th>
+                        <th md-column>{{'label.heading.chargetimetype' | translate}}</th>
+                        <th md-column>{{'label.heading.chargecalculationtype' | translate}}</th>
                         <th md-column>{{'label.heading.ispenalty' | translate}}</th>
                         <th md-column>{{'label.heading.status' | translate}}</th>
                     </tr>
@@ -34,7 +37,10 @@
                         data-ng-click="routeTo(charge.id)" md-select="charge" md-select-id="name">
                         <td md-cell>{{charge.name}}</td>
                         <td md-cell>{{charge.chargeAppliesTo.code | translate }}</td>
-                        <td md-cell>{{charge.penalty}}</td>
+                        <td md-cell>{{charge.currency.code}} {{charge.currency.name | translate}}</td>
+                        <td md-cell>{{charge.chargeTimeType.value | translate}}</td>
+                        <td md-cell>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
+                        <td md-cell>{{charge.penalty | translate}}</td>
                         <td md-cell>
                             <i class="fa fa-stop {{'charges.StatusType.active.' + charge.active | StatusLookup}}" uib-tooltip="{{'label.tooltip.charges.active.' + charge.active | translate}}" tooltip-placement="right"></i>
                         </td>

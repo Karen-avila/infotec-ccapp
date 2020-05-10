@@ -57,12 +57,12 @@
         <br>
         <div ng-hide="report">
             <div class="span gray-head" style="margin-left:0%;">
-                      <span style="margin-left: 10px;font-size:24px">
-                            <strong> <i ng-hide="loandetails.inArrears"
-                                        class="fa fa-stop {{loandetails.status.code | StatusLookup}}"></i>
-                                <i ng-show="loandetails.inArrears"
-                                   class="fa fa-stop {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
-                      </span>
+                <span style="margin-left: 10px;font-size:24px">
+                    <strong> <i ng-hide="loandetails.inArrears"
+                                class="fa fa-stop {{loandetails.status.code | StatusLookup}}"></i>
+                        <i ng-show="loandetails.inArrears"
+                            class="fa fa-stop {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
+                </span>
             </div>
             <br>
             <div class="col-sm-12 col-md-12 primarydiv">
@@ -120,9 +120,9 @@
                     <div ng-show="loandetails.summary">
                         <h3>{{'label.heading.currentBalance' | translate}}: {{loandetails.currency.displaySymbol}} {{loandetails.summary.totalOutstanding | FormatNumber}}</h3>
                         <br>
-                    <b>{{'label.heading.arrearsby' | translate}}: <span class="padded-td">{{loandetails.summary.totalOverdue | FormatNumber}}<span
-                                    data-ng-hide="loandetails.summary.totalOverdue>=0">{{'label.heading.notprovided' | translate}}</span></span></b>
-                    <br>
+                        <b>{{'label.heading.arrearsby' | translate}}: <span class="padded-td">{{loandetails.summary.totalOverdue | FormatNumber}}<span
+                                        data-ng-hide="loandetails.summary.totalOverdue>=0">{{'label.heading.notprovided' | translate}}</span></span></b>
+                        <br>
                         <br>
                     </div>
                     <br>
@@ -528,7 +528,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.originalSchedule">
+                        <md-tab ng-if="loandetails.originalSchedule">
                             <md-tab-label>{{'label.heading.originalschedule' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table table-striped .width100">
@@ -665,7 +665,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.repaymentSchedule.futurePeriods">
+                        <md-tab ng-if="loandetails.repaymentSchedule.futurePeriods">
                             <md-tab-label>{{'label.heading.futureschedule' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table table-striped .width100">
@@ -707,7 +707,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.transactions" select="convertDateArrayToObject('date')">
+                        <md-tab ng-if="loandetails.transactions" select="convertDateArrayToObject('date')">
                             <md-tab-label>{{'label.heading.transactions' | translate}}</md-tab-label>
                             <md-tab-body>
                             <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export.statement' | translate}}</button>
@@ -800,7 +800,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.collateral">
+                        <md-tab ng-if="loandetails.collateral">
                             <md-tab-label>{{'label.heading.loancollaterals' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table">
@@ -820,7 +820,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.multiDisburseLoan">
+                        <md-tab ng-if="loandetails.multiDisburseLoan">
                             <md-tab-label>{{'label.heading.tranchedetails' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="width100">
@@ -886,7 +886,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.overdueCharges.length>0">
+                        <md-tab ng-if="loandetails.overdueCharges.length>0">
                             <md-tab-label>{{'label.heading.overduepenalitycharge' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table width100">
@@ -898,15 +898,15 @@
                                 </tr>
                                 <tr ng-repeat="charge in loandetails.overdueCharges">
                                     <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                    <td>{{charge.chargeCalculationType.value}}</td>
+                                    <td>{{charge.chargeCalculationType.value | translate}}</td>
                                     <td>{{charge.amount | FormatNumber}}</td>
-                                    <td>{{charge.chargeTimeType.value}}</td>
+                                    <td>{{charge.chargeTimeType.value | translate}}</td>
                                 </tr>
                             </table>
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="loandetails.isLoanProductLinkedToFloatingRate">
+                        <md-tab ng-if="loandetails.isLoanProductLinkedToFloatingRate">
                             <md-tab-label>{{'label.heading.floatinginterestrates' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table width100">
@@ -922,7 +922,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="chargeTableShow">
+                        <md-tab ng-if="chargeTableShow">
                             <md-tab-label>{{'label.heading.charges' | translate}}</md-tab-label>
                             <md-tab-body>
                             <table class="table width100">
@@ -1037,7 +1037,7 @@
                             </md-tab-body>
                         </md-tab>
 
-                        <md-tab ng-show="instructions.currentPageItems.length > 0">
+                        <md-tab ng-if="instructions.currentPageItems.length > 0">
                             <md-tab-label>{{'label.heading.standinginstruction' | translate}}</md-tab-label>
                             <md-tab-body>
                             <br>

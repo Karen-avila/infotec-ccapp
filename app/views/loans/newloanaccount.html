@@ -28,13 +28,14 @@
                                     uib-tooltip="{{'label.tooltip.product' | translate}}"></i>
                             </td>
                             <td class="paddedbottom20">
-                                <select id="productId" ng-model="formData.productId" class="form-control"
-                                    ng-options="product.id as product.name for product in products"
-                                    value="{{product.id}}" ng-change="loanProductChange(formData.productId)"
-                                    class="form-control" required="required">
-                                    <option style="display:none" value="">{{'label.selectloanproduct' | translate}}
-                                    </option>
-                                </select>
+                                <md-select id="productId" ng-model="formData.productId" 
+                                    ng-change="loanProductChange(formData.productId)" required>
+                                    <md-option><em>{{'label.selectloanproduct' | translate}}</em></md-option>
+                                    <md-option ng-repeat="product in products" ng-value="product.id"
+                                            ng-disabled="$index === 1">
+                                            {{product.shortName}} {{product.name}}
+                                    </md-option>
+                                </md-select>
                             </td>
                             <td class="">
                                 <label ng-show="formData.productId">{{'label.input.loanofficer' | translate }}:&nbsp;
@@ -43,13 +44,14 @@
                                     uib-tooltip="{{'label.tooltip.loanofficer' | translate}}"></i>
                             </td>
                             <td class="paddedbottom20">
-                                <select ng-show="formData.productId" id="loanOfficerId"
-                                    ng-model="formData.loanOfficerId"
-                                    ng-change="loandetails.loanOfficerName = formValue(loanaccountinfo.loanOfficerOptions,formData.loanOfficerId,'id','displayName')"
-                                    ng-options="loanOfficer.id as loanOfficer.displayName for loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse"
-                                    class="form-control" value="{{loanOfficer.id}}">
-                                    <option value="">{{'label.selectloanofficer' | translate}}</option>
-                                </select>
+                                <md-select ng-show="formData.productId" id="loanOfficerId" ng-model="formData.loanOfficerId"
+                                    ng-change="loandetails.loanOfficerName = formValue(loanaccountinfo.loanOfficerOptions,formData.loanOfficerId,'id','displayName')">
+                                    <md-option><em>{{'label.selectloanofficer' | translate}}</em></md-option>
+                                    <md-option ng-repeat="loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse" ng-value="loanOfficer.id"
+                                            ng-disabled="$index === 1">
+                                            {{loanOfficer.displayName}}
+                                    </md-option>
+                                </md-select>
                             </td>
                         </tr>
                         <tr ng-show="formData.productId">
@@ -165,7 +167,7 @@
                             <td class="paddedbottom20"
                                 ng-hide="loanAccount.isHiddenField.linkAccountId == true">
                                 <select id="linkAccountId" ng-model="formData.linkAccountId"
-                                    ng-options='savingaccount.id as (savingaccount..accountNo + " " + savingaccount.productName) for savingaccount in loanaccountinfo.accountLinkingOptions'
+                                    ng-options='savingaccount.id as (savingaccount.accountNo + " " + savingaccount.productName) for savingaccount in loanaccountinfo.accountLinkingOptions'
                                     ng-change="loandetails.linkAccountName = formValue(loanaccountinfo.accountLinkingOptions,formData.linkAccountId,'id','productName')"
                                     class="form-control" value="{{savingaccount.id}}">
                                     <option value="">{{'label.menu.selectone' | translate}}</option>

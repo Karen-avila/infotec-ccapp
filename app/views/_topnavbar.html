@@ -22,7 +22,7 @@
                     </md-button>
                     </md-menu>
                     <md-menu>
-                        <md-button aria-label="Reports menu" ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button aria-label="Reports menu" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bar-chart-o"></i> {{'label.anchor.reports' | translate }}
                         </md-button>
                         <md-menu-content width="6" ng-mouseleave="$mdCloseMenu()">
@@ -65,7 +65,7 @@
                         </md-menu-content>
                     </md-menu>
                     <md-menu>
-                        <md-button ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-user-shield"></i> {{'label.anchor.admin' | translate }}
                         </md-button>
                         <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
@@ -108,7 +108,7 @@
                         </md-button>
                     </md-menu>
                     <md-menu>
-                        <md-button aria-label="Settings menu" class="md-icon-button" ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button aria-label="Settings menu" class="md-icon-button" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-ellipsis-v"></i>
                         </md-button>
                         <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
