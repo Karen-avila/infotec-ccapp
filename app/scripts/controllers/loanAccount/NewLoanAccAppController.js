@@ -23,6 +23,7 @@
             scope.disabled = true;
 
             scope.date.first = new Date();
+            scope.date.second = new Date();
 
             scope.maxStep = 3;
             scope.selectedStep = 0;
