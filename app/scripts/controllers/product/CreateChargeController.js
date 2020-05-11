@@ -138,8 +138,8 @@
         if (scope.showChargePaymentByField === false) {
           if (scope.showdatefield === true) {
             var reqDate = dateFilter(scope.first.date, "dd MMMM");
-            this.formData.monthDayFormat = "dd MMM";
-            this.formData.feeOnMonthDay = reqDate;
+            scope.formData.monthDayFormat = "dd MMM";
+            scope.formData.feeOnMonthDay = reqDate;
           }
         }
 
@@ -153,13 +153,13 @@
         }
 
         if (!scope.showChargePaymentByField) {
-          delete this.formData.chargePaymentMode;
+          delete scope.formData.chargePaymentMode;
         }
-        this.formData.name = this.formData.name.toUpperCase();
-        this.formData.active = this.formData.active || false;
-        this.formData.locale = scope.optlang.code;
-        this.formData.monthDayFormat = "dd MMM";
-        resourceFactory.chargeResource.save(this.formData, function (data) {
+        scope.formData.name = scope.formData.name.toUpperCase();
+        scope.formData.active = scope.formData.active || false;
+        scope.formData.locale = scope.optlang.code;
+        scope.formData.monthDayFormat = "dd MMM";
+        resourceFactory.chargeResource.save(scope.formData, function (data) {
           location.path("/viewcharge/" + data.resourceId);
         });
       };
