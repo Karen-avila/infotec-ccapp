@@ -6,7 +6,7 @@
     </ul>
 <div class="card well">
     <div class="pull-right">
-        <a href="#!/createtaxcomponent" class="btn btn-primary" has-permission='CREATE_TAXCOMPONENT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createtaxcomponent' | translate}}</a>
+        <a href="#!/createtaxcomponent" class="btn btn-sm btn-primary" has-permission='CREATE_TAXCOMPONENT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createtaxcomponent' | translate}}</a>
     </div>
     <div class="clear"></div>
     <div >
@@ -20,7 +20,7 @@
             <tbody>
             <tr class="pointer-main" ng-repeat="taxcomponent in taxcomponents| orderBy:'name':reverse  | filter:filterText">
                 <td class="pointer" data-ng-click="routeTo(taxcomponent.id)">{{taxcomponent.name}}</td>
-                <td class="pointer" data-ng-click="routeTo(taxcomponent.id)">{{taxcomponent.percentage | number}}</td>
+                <td class="pointer" data-ng-click="routeTo(taxcomponent.id)">{{taxcomponent.percentage | FormatNumber}}</td>
             </tr>
             </tbody>
         </table>

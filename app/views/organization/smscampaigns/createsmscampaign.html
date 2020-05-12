@@ -176,7 +176,7 @@
                                                         data-placeholder="{{'label.menu.businessRule' | translate}}" required="">
                                                     <option value=""></option>
                                                 </select>&nbsp;
-                                                <i class="icon-question-sign" tooltip="{{campaignData.report.reportDescription}}"
+                                                <i class="fa fa-question-sign" tooltip="{{campaignData.report.reportDescription}}"
                                                    tooltip-append-to-body="true"></i>
                                             </div>
                                             <div class="col-sm-3">
@@ -198,7 +198,7 @@
                                                                 ng-options="selectOption.id as selectOption.name for selectOption in reportParam.selectOptions"
                                                                 value="{{selectOption.id}}"
                                                                 class="form-control input-xlarge" ng-change="getDependencies(reportParam)" required late-validate>
-                                                            <option value="">--{{"label.menu.selectone" | translate}}--</option>
+                                                            <option value="">{{"label.menu.selectone" | translate}}</option>
                                                         </select>
                                                 </div>
                                                 <form-validate valattributeform="createsmsform"
@@ -228,7 +228,7 @@
                                         </div>
                                             <hr>
                                             <div class="pull-right">
-                                                <button id="save1" type="submit" class="btn btn-primary" ng-click="getColumnHeaders()">
+                                                <button id="save1" type="submit" class="btn btn-sm btn-primary" ng-click="getColumnHeaders()">
                                                     {{'label.button.proceed' | translate}}
                                                 </button>
                                             </div>
@@ -273,7 +273,7 @@
                                         <br/>
                                         <hr>
                                         <div class="pull-right">
-                                            <button id="save2" type="submit" class="btn btn-primary" ng-click="previewMessage()">{{'label.button.proceed' |
+                                            <button id="save2" type="submit" class="btn btn-sm btn-primary" ng-click="previewMessage()">{{'label.button.proceed' |
                                                 translate}}
                                             </button>
                                         </div>
@@ -305,7 +305,7 @@
                                                     <td>{{campaignData.campaignName}}</td>
                                                 </tr>
                                                <!-- <tr>
-                                                    <td>{{ 'label.heading.campaigntype' | translate }}</td>
+                                                    <td>{{'label.heading.campaigntype' | translate }}</td>
                                                     <td>{{campaignData.campaignType.value | translate}}</td>
                                                 </tr>-->
                                                 <tr>
@@ -326,7 +326,7 @@
                                         <div class="form-group">
                                             <div class="pull-right">
                                                 <button id="save3" type="submit" name="createCampaign"
-                                                        class="btn btn-primary">
+                                                        class="btn btn-sm btn-primary">
                                                     {{'label.button.proceed' | translate}}
                                                 </button>
                                             </div>

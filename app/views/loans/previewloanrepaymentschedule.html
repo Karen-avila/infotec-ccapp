@@ -11,11 +11,11 @@
                     <button type="button" ng-click="reject()" class="btn btn-md btn-warning" has-permission="REJECTRESCHEDULE_LOAN"><i class="fa fa-times"></i>
                         {{'label.button.reject' | translate}}</button>
                     <button type="button" ng-click="approve()" class="btn btn-md btn-success" has-permission="APPROVERESCHEDULE_LOAN"><i class="fa fa-ok"></i>
-                        {{ 'label.button.approve' | translate }}</button>
+                        {{'label.button.approve' | translate }}</button>
                 </div>
             </div>
             <br/>
-            <form name="previewloanrescheduleform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="previewloanrescheduleform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <table class="table table-striped .width100">
@@ -43,28 +43,28 @@
                         <tbody>
                             <tr ng-repeat="period in data.periods">
                                 <td>{{period.dueDate | DateFormat}}</td>
-                                <td>{{period.principalDue | number}}</td>
-                                <td>{{period.principalLoanBalanceOutstanding | number}}</td>
-                                <td>{{period.interestOriginalDue | number}}</td>
-                                <td>{{period.feeChargesDue | number}}</td>
-                                <td>{{period.penaltyChargesDue | number}}</td>
-                                <td>{{period.totalOutstandingForPeriod | number}}</td>
+                                <td>{{period.principalDue | FormatNumber}}</td>
+                                <td>{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                <td>{{period.interestOriginalDue | FormatNumber}}</td>
+                                <td>{{period.feeChargesDue | FormatNumber}}</td>
+                                <td>{{period.penaltyChargesDue | FormatNumber}}</td>
+                                <td>{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                             </tr>
                         </tbody>
                         <tfoot class="ui-widget-header">
                             <tr>
                                 <th >{{'label.heading.total' | translate}}</th>
-                                <th>{{data.totalPrincipalExpected | number}}</th>
+                                <th>{{data.totalPrincipalExpected | FormatNumber}}</th>
                                 <th>&nbsp;</th>
-                                <th>{{data.totalInterestCharged | number}}</th>
-                                <th>{{data.totalFeeChargesCharged | number}}</th>
-                                <th>{{data.totalPenaltyChargesCharged | number}}</th>
-                                <th>{{data.totalRepaymentExpected | number}}</th>
+                                <th>{{data.totalInterestCharged | FormatNumber}}</th>
+                                <th>{{data.totalFeeChargesCharged | FormatNumber}}</th>
+                                <th>{{data.totalPenaltyChargesCharged | FormatNumber}}</th>
+                                <th>{{data.totalRepaymentExpected | FormatNumber}}</th>
                             </tr>
                         </tfoot>
                     </table>
                     <div align="center">
-                        <button type="button" ng-click="back()" class="btn btn-default">
+                        <button type="button" ng-click="back()" class="btn btn-sm btn-default">
                             {{'label.button.back' | translate}}</button>
                     </div>
                 </fieldset>

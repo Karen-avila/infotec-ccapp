@@ -9,7 +9,7 @@
          <wz-step wz-title="{{'label.heading.details' | translate}}">
                 <div ng-show="managecode == 1">
                
-                    <form name="editgroupform" novalidate="" class="form-horizontal" ng-submit="updateGroup()">
+                    <form name="editgroupform" novalidate="" class="form-horizontal form-extra" ng-submit="updateGroup()">
                         <fieldset>
                             <api-validate></api-validate>
                             <legend>{{'label.heading.editgroup' | translate}}</legend>
@@ -61,9 +61,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-offset-3">
-                                <a href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                <button type="submit" class="btn btn-primary" has-permission='UPDATE_GROUP'>{{'label.button.save' | translate}}</button>
+                            <div class="col-md-12 center">
+                                <a href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                <button type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_GROUP'>{{'label.button.save' | translate}}</button>
                             </div>
                         </fieldset>
                     </form>
@@ -72,7 +72,7 @@
                     <legend>{{'label.heading.activate.group' | translate}}</legend>
                     <form class="form-horizontal card well">
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{ 'label.input.enteractivationdate' | translate }}<span
+                            <label class="control-label col-sm-2">{{'label.input.enteractivationdate' | translate }}<span
                                         class="required">*</span></label>
                             <div class="col-sm-3">
                                 <input id="activationDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
@@ -85,9 +85,9 @@
                             </button>
 
                             <div class="col-sm-3 col-md-offset-2" ng-hide="isEntityDatatables">
-                                <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                <button id="save" type="button" class="btn btn-primary" wz-next ><i
-                                        class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
+                                <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                <button id="save" type="button" class="btn btn-sm btn-primary" wz-next ><i
+                                        class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{'label.button.activate' | translate }}
                                 </button>
                             </div>
 
@@ -97,7 +97,7 @@
             </wz-step>
             <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables" wz-title="{{datatable.registeredTableName}}">
                 <div class="card-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal form-extra">
                         <div ng-show="submittedDatatables.length>0" uib-alert type="success">
                             <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} ` has been made successfully. If the inputs are changed, the datatable entries will be updated.<br></span>
                         </div>
@@ -156,14 +156,14 @@
                                 </div>
                             </div>
                             <div class="pull-right" ng-if="!$last">
-                                <button id="save4" type="submit" class="btn btn-primary" wz-next>
+                                <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
                                     {{'label.button.proceed' | translate}}
                                 </button>
                             </div>
                             <div class="col-md-offset-5" ng-if="$last">
-                                    <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                                    <button id="save" type="button" class="btn btn-primary" wz-next><i
-                                            class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{ 'label.button.activate' | translate }}
+                                    <a id="cancel" href="#!/viewgroup/{{editGroup.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                                    <button id="save" type="button" class="btn btn-sm btn-primary" wz-next><i
+                                            class="fa fa-check-sign " has-permission='ACTIVATE_GROUP'></i>{{'label.button.activate' | translate }}
                                     </button>
                             </div>
                         </fieldset>

@@ -10,12 +10,12 @@
     			<h4>{{'label.heading.createfund' | translate}}</h4>
     		</div>
     		<br/>
-    		<form name="createfundform" novalidate="" class="form-horizontal" ng-controller="CreateFundController"
+    		<form name="createfundform" novalidate="" class="form-horizontal form-extra" ng-controller="CreateFundController"
     		      rc-submit="submit()">
     		    <api-validate></api-validate>
     		    <fieldset>
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{ 'label.input.fundsource' | translate }}<span
+						<label class="control-label col-sm-3">{{'label.input.fundsource' | translate }}<span
 								class="required">*</span></label>
 		
 						<div class="col-sm-3">
@@ -26,7 +26,7 @@
 					</div>
 				
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}</label>
+						<label class="control-label col-sm-3">{{'label.input.externalid' | translate }}</label>
 		
 						<div class="col-sm-3">
 								<input id="externalId" type="text" name="externalId" ng-model="formData.externalId" class="form-control"/>
@@ -34,7 +34,7 @@
 					</div>
 				
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{ 'label.input.amount' | translate }}<span class="required">*</span></label>
+						<label class="control-label col-sm-3">{{'label.input.amount' | translate }}<span class="required">*</span></label>
 		
 						<div class="col-sm-3">
 								<input id="amount" type="number" name="amount" ng-model="formData.amount" class="form-control"
@@ -50,7 +50,7 @@
 							</label>
 						</div>
 
-						<label class="control-label col-sm-3 left">{{ 'label.input.active' | translate }}</label>
+						<label class="control-label col-sm-3 left">{{'label.input.active' | translate }}</label>
 					</div>
     		        <div class="col-md-12 center">
     		            <a id="cancel" href="#!/funds">

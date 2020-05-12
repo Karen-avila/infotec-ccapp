@@ -10,7 +10,7 @@
                 <h4>{{'label.anchor.createpaymenttype' | translate}}</h4>
             </div>
             <br>
-            <form name="createpaymenttype" novalidate="" class="form-horizontal"
+            <form name="createpaymenttype" novalidate="" class="form-horizontal form-extra"
                 rc-submit="submit()">
                         <api-validate></api-validate>
                     <fieldset>
@@ -50,8 +50,8 @@
                             </div>
                         </div>
                         <div class="col-md-offset-2 paddedleft">
-                            <a id="cancel" href="#!/viewpaymenttype" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_PAYMENTTYPE'>{{'label.button.save' | translate}}</button>
+                            <a id="cancel" href="#!/viewpaymenttype" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_PAYMENTTYPE'>{{'label.button.save' | translate}}</button>
                         </div>
                     </fieldset>
                 </form>

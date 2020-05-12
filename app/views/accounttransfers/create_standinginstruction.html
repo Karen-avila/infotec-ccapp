@@ -6,9 +6,9 @@
     <api-validate></api-validate>
     <div class="card">
         <div class="content">
-                <form class="form-horizontal" name="standinginstructionform" novalidate="" rc-submit="submit()">
+                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" rc-submit="submit()">
                     <fieldset>
-                        <legend>{{ 'label.heading.createstandinginstruction' | translate }}</legend>
+                        <legend>{{'label.heading.createstandinginstruction' | translate }}</legend>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="name" >{{'label.heading.name' | translate}}<span
                                     class="required">*</span>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="fromAccountType" >{{ 'label.heading.fromaccounttype' | translate }}<span
+                            <label class="control-label col-sm-2" for="fromAccountType" >{{'label.heading.fromaccounttype' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.fromAccountType' | translate}}"></i> 
                             </label>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="fromAccountId" >{{ 'label.heading.fromaccount' | translate }}<span
+                            <label class="control-label col-sm-2" for="fromAccountId" >{{'label.heading.fromaccount' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.fromAccount' | translate}}"></i> 
                             </label>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="destination" >{{ 'label.heading.destination' | translate }}<span
+                            <label class="control-label col-sm-2" for="destination" >{{'label.heading.destination' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.destination' | translate}}"></i> 
                             </label>
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="toOfficeId" >{{ 'label.input.tooffice' | translate }}<span
+                            <label class="control-label col-sm-2" for="toOfficeId" >{{'label.input.tooffice' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.toOffice' | translate}}"></i>    
                             </label>
@@ -155,7 +155,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="toClientId" >{{ 'label.input.toclient' | translate }}<span
+                            <label class="control-label col-sm-2" for="toClientId" >{{'label.input.toclient' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.toClient' | translate}}"></i>    
                             </label>
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="toAccountType" >{{ 'label.input.toaccounttype' | translate }}<span
+                            <label class="control-label col-sm-2" for="toAccountType" >{{'label.input.toaccounttype' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.toaccountType' | translate}}"></i>   
                             </label>
@@ -195,7 +195,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="toAccountId" >{{ 'label.input.toaccount' | translate }}<span
+                            <label class="control-label col-sm-2" for="toAccountId" >{{'label.input.toaccount' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.toAccount' | translate}}"></i>   
                             </label>
@@ -213,7 +213,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="instructionType" >{{ 'label.input.instructiontype' | translate }}
+                            <label class="control-label col-sm-2" for="instructionType" >{{'label.input.instructiontype' | translate }}
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.standinginstructiontype' | translate}}"></i> 
                             </label>
 
@@ -230,7 +230,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="transferAmount" >{{ 'label.input.amount' | translate }}
+                            <label class="control-label col-sm-2" for="transferAmount" >{{'label.input.amount' | translate }}
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.amount' | translate}}"></i>  
                             </label>
                             <div class="col-sm-3">
@@ -238,7 +238,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="validFrom" >{{ 'label.heading.validfrom' | translate }}<span
+                            <label class="control-label col-sm-2" for="validFrom" >{{'label.heading.validfrom' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.validity-from-to' | translate}}"></i>    
                             </label>
@@ -247,7 +247,7 @@
                                 <input type="text" id="validFrom" datepicker-pop="dd MMMM yyyy" ng-model="formData.validFrom"
                                        is-open="opened" min="restrictDate" name="validFrom" class="form-control"/>
                             </div>
-                             <label class="control-label col-sm-1" for="validTill">{{ 'label.heading.to' | translate }}</label>
+                             <label class="control-label col-sm-1" for="validTill">{{'label.heading.to' | translate }}</label>
 
                             <div class="col-sm-3">
                                 <input type="text" id="validTill" datepicker-pop="dd MMMM yyyy" ng-model="formData.validTill"
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="recurrenceType" >{{ 'label.heading.recurrencetype' | translate }}<span
+                            <label class="control-label col-sm-2" for="recurrenceType" >{{'label.heading.recurrencetype' | translate }}<span
                                     class="required">*</span>
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.recurrence-type' | translate}}"></i> 
                             </label>
@@ -271,7 +271,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="recurrenceInterval"  >{{ 'label.heading.recurrenceinterval' | translate }}
+                            <label class="control-label col-sm-2" for="recurrenceInterval"  >{{'label.heading.recurrenceinterval' | translate }}
                                 <i class="fa fa-question-circle" tooltip-placement="right" uib-tooltip="{{'label.tooltip.csi.interval' | translate}}"></i>    
                             </label>
                             <div class="col-sm-3">
@@ -280,7 +280,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="recurrenceFrequency" >{{ 'label.heading.recurrencefrequency' | translate }}
+                            <label class="control-label col-sm-2" for="recurrenceFrequency" >{{'label.heading.recurrencefrequency' | translate }}
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.recurrence-frequency' | translate}}" ></i>   
                             </label>
                             <div class="col-sm-3">
@@ -292,7 +292,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="recurrenceOnMonthDay" >{{ 'label.heading.recurrenceonmonthday' | translate }}
+                            <label class="control-label col-sm-2" for="recurrenceOnMonthDay" >{{'label.heading.recurrenceonmonthday' | translate }}
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.on-month-day' | translate}}"></i>    
                             </label>
                             <div class="col-sm-3">
@@ -302,9 +302,9 @@
 
                             </div>
                         </div>
-                        <div class="col-md-offset-3">
-                            <a id="cancel" href="#!/viewclient/{{standinginstruction.fromClient.id}}" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
-                            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_STANDINGINSTRUCTION'>{{ 'label.button.save' | translate }}</button>
+                        <div class="col-md-12 center">
+                            <a id="cancel" href="#!/viewclient/{{standinginstruction.fromClient.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
+                            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_STANDINGINSTRUCTION'>{{'label.button.save' | translate }}</button>
                         </div>
                     </fieldset>
                 </form>

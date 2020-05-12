@@ -1,9 +1,10 @@
 <div class="content-container">
-	<div class="card well" id="expertsearch" data-ng-controller="ExpertSearchController">
+	<div class="well" id="expertsearch" data-ng-controller="ExpertSearchController">
 		<h3 class="paddedleft"><strong>{{'label.heading.welcome' | translate}}</strong>
 			<div class="btn-group pull-right">
-				<label class="btn btn-primary" ng-model="dashModel" btn-radio="'dashboard'"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
-				<label class="btn btn-primary" ng-click="switch()" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-click="switch('/')"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-click="switch('/tasks')"><i class="fa fa-tasks"></i>&nbsp;&nbsp;{{'label.heading.tasks' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-click="switch('/richdashboard')"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
 			</div>
 		</h3>
 		<hr/>
@@ -15,7 +16,7 @@
 
 			</div>
 			<div class="col-md-12 image-container">
-				<img src="./images/mifos_lg-logo.png" alt="{{ 'label.heading.company' | translate }}" class="img-responsive" ng-if="!isLargeLogoPath">
+				<img src="./images/mifos_lg-logo.png" alt="{{'label.heading.company' | translate }}" class="img-responsive" ng-if="!isLargeLogoPath">
 			</div>
 		</div>
 	</div>

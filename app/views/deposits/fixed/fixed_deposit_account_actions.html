@@ -8,7 +8,7 @@
             <div class="toolbar">
                 <h3>{{ title | translate}}</h3>
             </div>
-            <form name="savingccountactionform" novalidate="" class="form-horizontal" ng-submit="submit()">
+            <form name="savingccountactionform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <api-validate></api-validate>
                     <div class="form-group" ng-show="showDateField">
@@ -25,15 +25,15 @@
                       <label class="col-sm-3">{{depositAmount}}</label>
                     </div>
                     <div class="form-group" ng-show="action=='activate' && activationChargeAmount>0">
-                      <label class="control-label col-sm-2">{{ 'label.input.activationcharge' | translate}}</label>
+                      <label class="control-label col-sm-2">{{'label.input.activationcharge' | translate}}</label>
                       <label class="col-sm-3">{{activationChargeAmount}}</label>
                     </div>
                     <div class="form-group" ng-show="action=='activate' && activationChargeAmount>0">
-                      <label class="control-label col-sm-2">{{ 'label.heading.transactionamount' | translate}}</label>
+                      <label class="control-label col-sm-2">{{'label.heading.transactionamount' | translate}}</label>
                       <label class="col-sm-2">{{totalAmountIncludingActivationCharge}}</label>
                     </div>
                     <div class="form-group" ng-show="showAmount">
-                        <label class="control-label col-sm-2">{{ 'label.input.amount' | translate}}<span
+                        <label class="control-label col-sm-2">{{'label.input.amount' | translate}}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
@@ -43,16 +43,16 @@
                     </div>
                     <div ng-show="isAccountClose">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="maturityAmount">{{ 'label.account.maturity.amount' |
+                            <label class="control-label col-sm-2" for="maturityAmount">{{'label.account.maturity.amount' |
                                 translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <span class="padded-td">{{currency.displaySymbol}}&nbsp;{{maturityAmount | number}}</span>
+                                <span class="padded-td">{{currency.displaySymbol}}&nbsp;{{maturityAmount | FormatNumber}}</span>
                             </div>
                             </tr>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="onAccountClosureId">{{ 'label.input.onAccountClosure' |
+                            <label class="control-label col-sm-2" for="onAccountClosureId">{{'label.input.onAccountClosure' |
                                 translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-show="formData.onAccountClosureId == '200'">
-                            <label class="control-label col-sm-2" for="toSavingsAccountId">{{ 'label.input.transfer.to.savings' |
+                            <label class="control-label col-sm-2" for="toSavingsAccountId">{{'label.input.transfer.to.savings' |
                                 translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-show="formData.onAccountClosureId == '200'">
-                            <label class="control-label col-sm-2" for="transferDescription">{{ 'label.input.transfer.description' |
+                            <label class="control-label col-sm-2" for="transferDescription">{{'label.input.transfer.description' |
                                 translate}}</label>
 
                             <div class="col-sm-3">
@@ -86,7 +86,7 @@
                     </div>
                     <div ng-show="showPaymentType">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="paymentTypeId">{{ 'label.input.paymentypeid' | translate}}<span
+                            <label class="control-label col-sm-2" for="paymentTypeId">{{'label.input.paymentypeid' | translate}}<span
                                     class="required">*</span></label>
 
                             <div class="col-sm-3">
@@ -99,10 +99,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2">{{ 'label.input.showpaymentdetails' | translate}}</label>
+                            <label class="control-label col-sm-2">{{'label.input.showpaymentdetails' | translate}}</label>
 
                             <div class="col-sm-3">
-                                <a class="btn btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+                                <a class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
                                     <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
                                     <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
                                 </a>
@@ -110,14 +110,14 @@
                         </div>
                         <div collapse="!showPaymentDetails">
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="accountNumber">{{ 'label.input.accnum' | translate}}</label>
+                                <label class="control-label col-sm-2" for="accountNumber">{{'label.input.accnum' | translate}}</label>
 
                                 <div class="col-sm-3">
                                     <input id="accountNumber" type="text" class="form-control" ng-model="formData.accountNumber">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="checkNumber">{{ 'label.input.checknumber' |
+                                <label class="control-label col-sm-2" for="checkNumber">{{'label.input.checknumber' |
                                     translate}}</label>
 
                                 <div class="col-sm-3">
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="routingCode">{{ 'label.input.routingcode' |
+                                <label class="control-label col-sm-2" for="routingCode">{{'label.input.routingcode' |
                                     translate}}</label>
 
                                 <div class="col-sm-3">
@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="receiptNumber">{{ 'label.input.receiptnumber' |
+                                <label class="control-label col-sm-2" for="receiptNumber">{{'label.input.receiptnumber' |
                                     translate}}</label>
 
                                 <div class="col-sm-3">
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="bankNumber">{{ 'label.input.banknumber' | translate}}</label>
+                                <label class="control-label col-sm-2" for="bankNumber">{{'label.input.banknumber' | translate}}</label>
 
                                 <div class="col-sm-3">
                                     <input id="bankNumber" type="text" class="form-control" ng-model="formData.bankNumber">
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="showNoteField">
-                        <label class="control-label col-sm-2" for="note">{{ 'label.input.note' | translate}}</label>
+                        <label class="control-label col-sm-2" for="note">{{'label.input.note' | translate}}</label>
 
                         <div class="col-sm-3">
                             <textarea rows="2" id="note" class="form-control" ng-model="formData.note"></textarea>
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="form-group" ng-show="showAmountField">
-                        <label class="control-label col-sm-2">{{ 'label.input.amount' | translate}}<span class="required">*</span></label>
+                        <label class="control-label col-sm-2">{{'label.input.amount' | translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
                             <input type="text" id="amount" number-format class="form-control" ng-model="formData.amount">
@@ -176,18 +176,18 @@
                     </div>
 
                     <div class="form-group" ng-show="showDelete || waiveCharge">
-                        <label class="control-label col-sm-2">{{ 'label.areyousure' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.areyousure' | translate }}</label>
                     </div>
                     <div class="col-md-offset-2" ng-show="showDelete">
-                        <button type="reset" ng-click="submit()" class="btn">{{ 'label.button.confirm' | translate }}</button>
-                        <button type="submit" ng-click="cancel()" class="btn btn-primary">{{ 'label.button.cancel' | translate
+                        <button type="reset" ng-click="submit()" class="btn">{{'label.button.confirm' | translate }}</button>
+                        <button type="submit" ng-click="cancel()" class="btn btn-sm btn-primary">{{'label.button.cancel' | translate
                             }}
                         </button>
                     </div>
 
                     <div class="col-md-offset-2" ng-hide="showDelete">
-                        <button id="cancel" ng-click="cancel()" class="btn">{{ 'label.button.cancel' | translate }}</button>
-                        <button id="save" type="submit" class="btn btn-primary">{{ 'label.button.save' | translate }}</button>
+                        <button id="cancel" ng-click="cancel()" class="btn">{{'label.button.cancel' | translate }}</button>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary">{{'label.button.save' | translate }}</button>
                     </div>
 
                 </fieldset>

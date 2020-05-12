@@ -10,10 +10,10 @@
         <div class="content">
             <div class="toolbar"></div>
             <br/>
-            <form class="form-horizontal" ng-submit="submit()">
+            <form class="form-horizontal form-extra" ng-submit="submit()">
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.jobname' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.jobname' | translate }}</label>
 
                         <div class="col-sm-3">
                             <input id="displayName" type="text" ng-model="formData.displayName" class="form-control"/>
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.cornexpression' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.cornexpression' | translate }}</label>
 
                         <div class="col-sm-3">
                             <input id="cronExpression" type="text" ng-model="formData.cronExpression" class="form-control"/>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.isactivejob' | translate }}</label>
+                        <label class="control-label col-sm-2">{{'label.input.isactivejob' | translate }}</label>
 
                         <div class="col-sm-3">
                             <label class="checkbox">
@@ -38,11 +38,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-offset-3">
-                        <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-default">{{'label.button.cancel' | translate}}
+                    <div class="col-md-12 center">
+                        <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
                         </button>
                         </a>
-                        <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_SCHEDULER'>{{'label.button.save' | translate}}</button>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_SCHEDULER'>{{'label.button.save' | translate}}</button>
                     </div>
                 </fieldset>
             </form>

@@ -9,7 +9,7 @@
                 <h4>{{'label.heading.attendance' | translate}}</h4>
             </div>
             <br/>
-            <form class="form-horizontal">
+            <form class="form-horizontal form-extra">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -25,8 +25,8 @@
                             <table class="table table-striped" width="100%">
                                 <thead>
                                 <tr class="graybg">
-                                    <th>{{ 'label.heading.name' | translate }}</th>
-                                    <th>{{ 'label.heading.attendance' | translate }}</th>
+                                    <th>{{'label.heading.name' | translate }}</th>
+                                    <th>{{'label.heading.attendance' | translate }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -45,9 +45,9 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-offset-5">
-                        <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                        <button id="save" type="button" class="btn btn-primary" data-ng-click="attendanceUpdate(meeting.id)" has-permission='SAVEORUPDATEATTENDANCE_MEETING'> {{'label.button.save' | translate}} </button>
+                    <div class="col-md-12 center">
+                        <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                        <button id="save" type="button" class="btn btn-sm btn-primary" data-ng-click="attendanceUpdate(meeting.id)" has-permission='SAVEORUPDATEATTENDANCE_MEETING'> {{'label.button.save' | translate}} </button>
                     </div>
                 </fieldset>
             </form>    

@@ -13,7 +13,6 @@ body {
 #wrapper {
   min-height: 620px;
   height: 100%;
-  padding-top:10px;
   padding-bottom:30px;
 }
 
@@ -45,7 +44,7 @@ footer {
   background-color: $brand-secondary;
   width: 100%;
   position: relative;
-  height: 100px;
+  height: 110px;
   clear:both;
   z-index: 100;
 }
@@ -325,11 +324,29 @@ li a i .fa {
   padding: 70px 15px 120px 50px;
   .content-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1350px;
     margin: 0 auto;
     min-height: 360px;
   }
   // background-color: $body-bg;
+}
+
+a.list-group-item {
+    padding: 8px 8px;    
+}
+
+.list-group-item-text {
+    padding-top: 4px;
+}
+
+.no-border {
+    border: none !important;
+}
+
+md-whiteframe > span {
+    width: 100%;
+    padding-left: 10px;
+    min-height: 60px;
 }
 
 .centerloader {

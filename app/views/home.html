@@ -1,8 +1,8 @@
-<div class="" data-ng-switch="currentSession.user != null">
-    <div class="" data-ng-switch-when="true">
+<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 22px;" ng-cloak data-ng-switch="currentSession.user != null">
+    <md-whiteframe data-ng-switch-when="true" class="md-whiteframe-8dp" layout layout-align="center center">
         <div data-ng-include="'views/private/home_' + currentSession.user.getHomePageIdentifier() + '.html'"></div>
-    </div>
-    <div class="card well" data-ng-switch-default>
+    </md-whiteframe>
+    <md-whiteframe data-ng-switch-default class="md-whiteframe-4dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
         <p>{{'label.youneedtologintoaccessthisarea' | translate}}</p>
-    </div>
+    </md-whiteframe>
 </div>

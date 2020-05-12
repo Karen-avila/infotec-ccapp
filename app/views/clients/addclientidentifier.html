@@ -9,31 +9,31 @@
         <fieldset>
             <legend>{{'label.heading.addclientidentifier' | translate}}</legend>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="documentTypeId">{{'label.input.documenttype' | translate}}<span
+                <label class="control-label col-sm-3" for="documentTypeId">{{'label.input.documenttype' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="documentTypeId" ng-model="formData.documentTypeId"
-                            ng-options="documenttype.id as documenttype.name for documenttype in documenttypes"
+                            ng-options="documenttype.id as documenttype.name | translate for documenttype in documenttypes"
                             value="{{documenttype.id}}" required="required" class="form-control">
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="status">{{'label.input.status' | translate}}<span
+                <label class="control-label col-sm-3" for="status">{{'label.input.status' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <select id="status" ng-model="formData.status"
-                            ng-options="status.label as status.label for status in statusTypes"
+                            ng-options="status.label as status.label | translatefor status in statusTypes"
                             value="{{status.label}}" required="required" class="form-control">
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="documentKey">{{'label.input.uniqueidentification' | translate}}<span
+                <label class="control-label col-sm-3" for="documentKey">{{'label.input.uniqueidentification' | translate}}<span
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
@@ -46,18 +46,18 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="description">{{'label.input.description' | translate}}</label>
+                <label class="control-label col-sm-3" for="description">{{'label.input.description' | translate}}</label>
 
                 <div class="col-sm-3">
                     <textarea id="description" rows="2" ng-model="formData.description" class="form-control"></textarea>
                 </div>
             </div>
 
-            <div class="col-md-offset-3">
+            <div class="col-md-12 center">
                 <a id="cancel" href="#!/viewclient/{{clientId}}">
-                    <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
                 </a>
-                <button id="save" type="submit" has-permission='CREATE_CLIENTIDENTIFIER' class="btn btn-primary">{{'label.button.save' | translate}}</button>
+                <button id="save" type="submit" has-permission='CREATE_CLIENTIDENTIFIER' class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
             </div>
         </fieldset>
     </form>

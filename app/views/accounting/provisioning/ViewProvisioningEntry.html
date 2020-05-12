@@ -9,12 +9,12 @@
             <div class="toolbar">
                 <h4></h4>
             </div>
-            <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <h3 class="bolder">{{'label.heading.createdby' | translate}} {{':  '}} {{createdby}} &nbsp;&nbsp;&nbsp;&nbsp;
                         {{'label.heading.createdon' | translate}} {{':  '}} {{createdDate | DateFormat}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        {{'label.heading.amounttobereserved' | translate}} {{':  '}} {{totalReservedAmount | number}}
+                        {{'label.heading.amounttobereserved' | translate}} {{':  '}} {{totalReservedAmount | FormatNumber}}
 
                     </h3>
                     <hr>
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-sm-1 center">
-                            <a ng-click="searchTransaction()" class="btn btn-primary" has-permission='READ_JOURNALENTRY'><i
+                            <a ng-click="searchTransaction()" class="btn btn-sm btn-primary" has-permission='READ_JOURNALENTRY'><i
                                     class="fa fa-search "></i></a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <td>{{provisioningentry.productName}}</td>
                             <td>{{provisioningentry.currencyCode}}</td>
                             <td>{{provisioningentry.categoryName}}</td>
-                            <td>{{provisioningentry.amountreserved | number}}</td>
+                            <td>{{provisioningentry.amountreserved | FormatNumber}}</td>
                             <td>{{provisioningentry.liabilityAccountName}}</td>
                             <td>{{provisioningentry.expenseAccountName}}</td>
                         </tr>
@@ -67,8 +67,8 @@
                         <li class="next"><a id="next" ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">{{'label.button.next' | translate}} </a></li>
                     </ul>
 
-                    <div class="col-md-offset-3">
-                        <button ng-show="isjournalEntriesCreated" id="save" type="submit" class="btn btn-primary" has-permission='CREATE_JOURNAL_ENTRY'>{{'label.button.addjournalentry' | translate}}</button>
+                    <div class="col-md-12 center">
+                        <button ng-show="isjournalEntriesCreated" id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_JOURNAL_ENTRY'>{{'label.button.addjournalentry' | translate}}</button>
                     </div>
                 </fieldset>
             </form>

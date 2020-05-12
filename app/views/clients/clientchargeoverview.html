@@ -21,18 +21,18 @@
                         class="fa fa-stop  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;{{charge.name}}
                 </td>
                 <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.dueDate|DateFormat}}</td>
-                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amount | number}}</td>
-                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountPaid | number}}</td>
-                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountWaived | number}}</td>
-                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountOutstanding | number}}</td>
+                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amount | FormatNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountPaid | FormatNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountWaived | FormatNumber}}</td>
+                <td class="pointer" data-ng-click="routeToCharge(charge.id)">{{charge.amountOutstanding | FormatNumber}}</td>
             </tr>
         </table>
         <dir-pagination-controls boundary-links="true"
                                  template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"
                                  on-page-change="getClientChargeResultsPage(newPageNumber)"
                                  pagination-id="chargesPage"></dir-pagination-controls>
-        <div class="col-md-offset-5">
-            <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-default">{{'label.button.back' |
+        <div class="col-md-12 center">
+            <a id="cancel" href="#!/viewclient/{{clientId}}" class="btn btn-sm btn-default">{{'label.button.back' |
                 translate}}</a>
         </div>
 

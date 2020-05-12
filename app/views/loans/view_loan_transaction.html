@@ -2,7 +2,7 @@
     <ul class="breadcrumb">
         <li><a href="#!/viewloanaccount/{{transaction.accountId}}">{{'label.anchor.viewloanaccount' | translate}}</a>
         </li>
-        <li class="active">{{ 'label.anchor.viewtransaction' | translate}}</li>
+        <li class="active">{{'label.anchor.viewtransaction' | translate}}</li>
     </ul>
     <script type="text/ng-template" id="undotransaction.html">
         <div class="modal-header silver">
@@ -18,83 +18,83 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{ 'label.heading.details' | translate}}</h4>
+                <h4>{{'label.heading.details' | translate}}</h4>
                 <div ng-hide="transaction.type.contra" class="btn-group pull-right">
                     <a href="#!/loanaccount/{{transaction.accountId}}/modifytransaction?transactionId={{transaction.id}}"
-                        class="btn btn-primary" has-permission='ADJUST_LOAN'><i
-                            class="fa fa-pencil "></i>{{ 'label.button.edit' | translate}}</a>
+                        class="btn btn-sm btn-primary" has-permission='ADJUST_LOAN'><i
+                            class="fa fa-pencil "></i>{{'label.button.edit' | translate}}</a>
                     <a ng-click="undo(transaction.accountId, transaction.id)" class="btn btn-danger"
                         has-permission='ADJUST_LOAN'><i
-                            class="fa fa-trash "></i>{{ 'label.button.undo' | translate}}</a>
+                            class="fa fa-trash "></i>{{'label.button.undo' | translate}}</a>
                 </div>
             </div>
             <div class="table-responsive">
                 <table class="table" width="100%">
                     <tr>
-                        <th width="30%">{{ 'label.heading.id' | translate}}</th>
+                        <th width="30%">{{'label.heading.id' | translate}}</th>
                         <td width="70%">{{transaction.id}}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'label.heading.type' | translate}}</th>
+                        <th>{{'label.heading.type' | translate}}</th>
                         <td>{{transaction.type.value}}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'label.heading.date' | translate}}</th>
+                        <th>{{'label.heading.date' | translate}}</th>
                         <td>{{transaction.date | DateFormat}}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'label.heading.currency' | translate}}</th>
-                        <td>{{transaction.currency.name}}</td>
+                        <th>{{'label.heading.currency' | translate}}</th>
+                        <td>{{transaction.currency.name | translate}}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'label.heading.amount' | translate}}</th>
-                        <td>{{transaction.amount | number}}</td>
+                        <th>{{'label.heading.amount' | translate}}</th>
+                        <td>{{transaction.amount | FormatNumber}}</td>
                     </tr>
                     <tr class="span2"></tr>
                 </table>
                 <table class="table" width="100%" ng-show="transaction.paymentDetailData">
                     <tr>
-                        <td width="30%"><strong>{{ 'label.heading.paymentdetails' | translate}}</strong></td>
+                        <td width="30%"><strong>{{'label.heading.paymentdetails' | translate}}</strong></td>
                         <td width="70%"></td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.paymentType">
-                        <th>{{ 'label.heading.paymenttype' | translate}}</th>
+                        <th>{{'label.heading.paymenttype' | translate}}</th>
                         <td>{{transaction.paymentDetailData.paymentType.name}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.accountNumber">
-                        <th>{{ 'label.heading.accnum' | translate}}</th>
+                        <th>{{'label.heading.accnum' | translate}}</th>
                         <td>{{transaction.paymentDetailData.accountNumber}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.checkNumber">
-                        <th>{{ 'label.heading.checknumber' | translate}}</th>
+                        <th>{{'label.heading.checknumber' | translate}}</th>
                         <td>{{transaction.paymentDetailData.checkNumber}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.routingCode">
-                        <th>{{ 'label.heading.routingcode' | translate}}</th>
+                        <th>{{'label.heading.routingcode' | translate}}</th>
                         <td>{{transaction.paymentDetailData.routingCode}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.receiptNumber">
-                        <th>{{ 'label.heading.receiptnumber' | translate}}</th>
+                        <th>{{'label.heading.receiptnumber' | translate}}</th>
                         <td>{{transaction.paymentDetailData.receiptNumber}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.bankNumber">
-                        <th>{{ 'label.heading.banknumber' | translate}}</th>
+                        <th>{{'label.heading.banknumber' | translate}}</th>
                         <td>{{transaction.paymentDetailData.bankNumber}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.bankRecord">
-                        <th>{{ 'label.heading.bankRecord' | translate}}</th>
+                        <th>{{'label.heading.bankRecord' | translate}}</th>
                         <td>{{transaction.paymentDetailData.bankRecord}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.idRecord">
-                        <th>{{ 'label.heading.idRecord' | translate}}</th>
+                        <th>{{'label.heading.idRecord' | translate}}</th>
                         <td>{{transaction.paymentDetailData.idRecord}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.channel">
-                        <th>{{ 'label.heading.channel' | translate}}</th>
+                        <th>{{'label.heading.channel' | translate}}</th>
                         <td>{{transaction.paymentDetailData.channel.name}}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'label.heading.isSolidarity' | translate}}</th>
+                        <th>{{'label.heading.isSolidarity' | translate}}</th>
                         <td>{{transaction.paymentDetailData.isSolidarity | translate}}</td>
                     </tr>
                 </table>

@@ -6,13 +6,13 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>opening balances</h4>
+                <h4>{{'label.heading.openingbalances' | translate}}</h4>
             </div>
             <br/>
             <api-validate></api-validate>
-            <form name="openingbalancesform" novalidate="" class="form-horizontal" ng-submit="submit()">
+            <form name="openingbalancesform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{ 'label.input.office' | translate }}<span class="required">*</span></label>
+                    <label class="control-label col-sm-2">{{'label.input.office' | translate }}<span class="required">*</span></label>
 
                     <div class="col-sm-3">
                         <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
@@ -20,9 +20,9 @@
                                 required="required" late-validate>
                             <option class="displaynone" value="">{{'label.selectoffice' | translate}}</option>
                         </select>
+                        <form-validate valattributeform="openingbalancesform" valattribute="officeId"/>
                     </div>
-                    <form-validate valattributeform="openingbalancesform" valattribute="officeId"/>
-                    <label class="control-label col-sm-2">{{ 'label.input.currency' | translate }}&nbsp;<span
+                    <label class="control-label col-sm-2">{{'label.input.currency' | translate }}&nbsp;<span
                             class="required">*</span></label>
                     <div class="col-sm-3">
                         <select id="currencyCode" name="currency" ng-model="formData.currencyCode" class="form-control"
@@ -30,13 +30,13 @@
                                 value="{{currency.code}}" required>
                         </select>
                     </div>
-                    <div class="col-md-offset-3 center">
-                        <a ng-click="retrieveOpeningBalances(formData.officeId, formData.currencyCode )" class="btn btn-primary"> {{'label.button.searchdata' | translate}} </a>
+                    <div class="col-md-2 center">
+                        <a ng-click="retrieveOpeningBalances(formData.officeId, formData.currencyCode )" class="btn btn-sm btn-primary"> {{'label.button.searchdata' | translate}} </a>
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="data.contraAccount.name">
-                    <label class="control-label col-sm-2">{{ 'label.input.opening.balances.contra.account' | translate }}</label>
+                    <label class="control-label col-sm-3">{{'label.input.opening.balances.contra.account' | translate }}</label>
 
                     <div class="col-sm-3">
                         <label class="control-label">{{ data.contraAccount.name }}({{data.contraAccount.glCode}})</label>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group" ng-show="data.contraAccount.name">
-                    <label class="control-label col-sm-2">{{ 'label.input.date.of.opening.balances' | translate }}<span class="required">*</span></label>
+                    <label class="control-label col-sm-3">{{'label.input.date.of.opening.balances' | translate }}<span class="required">*</span></label>
 
                     <div class="col-sm-3">
                         <input class="date-disable form-control" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
@@ -58,17 +58,17 @@
                         <th>{{'label.heading.type' | translate}}</th>
                         <th>{{'label.heading.glcode' | translate}}</th>
                         <th>{{'label.heading.account' | translate}}</th>
-                        <th ng-if="totalDebitAmount > 0">{{'label.heading.debit' | translate}} : {{totalDebitAmount | number}}</th>
-                        <th ng-if="totalDebitAmount == 0">{{'label.heading.debit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'DEBIT'  | number}} </th>
-                        <th ng-if="totalCreditAmount > 0">{{'label.heading.credit' | translate}} : {{totalCreditAmount | number}}</th>
-                        <th ng-if="totalCreditAmount == 0">{{'label.heading.credit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'CREDIT'  | number}} </th>
+                        <th ng-if="totalDebitAmount > 0">{{'label.heading.debit' | translate}} : {{totalDebitAmount | FormatNumber}}</th>
+                        <th ng-if="totalDebitAmount == 0">{{'label.heading.debit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'DEBIT'  | FormatNumber}} </th>
+                        <th ng-if="totalCreditAmount > 0">{{'label.heading.credit' | translate}} : {{totalCreditAmount | FormatNumber}}</th>
+                        <th ng-if="totalCreditAmount == 0">{{'label.heading.credit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'CREDIT'  | FormatNumber}} </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="gl in allGls">
                         <td>
                             <span ng-show="allGls[$index].glAccountType.value != allGls[$index-1].glAccountType.value">
-                            {{gl.glAccountType.value}}
+                            {{gl.glAccountType.value | translate}}
                             </span>
                         </td>
                         <td>{{gl.glAccountCode}}</td>
@@ -79,8 +79,8 @@
                     </tbody>
                 </table>
                 <div class="col-md-offset-3" ng-show="data.contraAccount.name" >
-                    <a id="cancel" href="#!/accounting" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
-                    <button id="save" type="submit" class="btn btn-primary" has-permission='DEFINEOPENINGBALANCE_JOURNALENTRY'>{{ 'label.button.save' | translate }}</button>
+                    <a id="cancel" href="#!/accounting" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
+                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='DEFINEOPENINGBALANCE_JOURNALENTRY'>{{'label.button.save' | translate }}</button>
                 </div>
             </form>
         </div>

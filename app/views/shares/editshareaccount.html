@@ -1,13 +1,13 @@
 <div class="content-container" ng-controller="EditShareAccountController">
     <ul class="breadcrumb">
-        <li ng-show="clientName"><a href="#!/viewclient/{{clientId}}"><strong>'{{clientName}}'</strong></a></li>
+        <li ng-show="clientName"><a href="#!/viewclient/{{clientId}}"><strong>{{clientName}}</strong></a></li>
         <li class="active">{{'label.anchor.sharesapplication' | translate}}</li>
     </ul>
 <api-validate></api-validate>
 <div class="card">
     <div class="content">
         <div class="toolbar">
-            <h4>{{ 'label.heading.sharesapplication' | translate }}</h4>
+            <h4>{{'label.heading.sharesapplication' | translate }}</h4>
         </div>
         <br>
         <form name="newsavingccountform" novalidate="" class="form-inline"                      rc-submit="submit()">
@@ -15,7 +15,7 @@
         <table class="width100">
             <tr>
                 <td class="width14">
-                    <label>{{ 'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
+                    <label>{{'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="width36 paddedbottom10">
                     <select id="productId" ng-model="formData.productId"
@@ -25,7 +25,7 @@
                     </select>
                 </td>
                 <td class="width14">
-                    <label ng-show="formData.productId" class="control-label">{{ 'label.input.submittedon' | translate
+                    <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate
                         }}&nbsp;<span class="required">*</span></label>
                 </td>
                 <td class="width36 paddedbottom10">
@@ -36,7 +36,7 @@
             </tr>
             <tr ng-show="formData.productId">
                 <td class="width14">
-                    <label ng-show="formData.productId" class="control-label">{{ 'label.input.externalid' | translate
+                    <label ng-show="formData.productId" class="control-label">{{'label.input.externalid' | translate
                         }}</label>
                 </td>
                 <td class="width36 paddedbottom10">
@@ -45,17 +45,17 @@
             </tr>
         </table>
         <hr data-ng-show="formData.productId"/>
-        <label><strong>{{ 'label.heading.terms' | translate }}</strong></label>
+        <label><strong>{{'label.heading.terms' | translate }}</strong></label>
 
         <div>
         <table class="width100">
             <tr>
-                <td class="width14"><label class="control-label">{{ 'label.heading.currency' | translate }}</label>
+                <td class="width14"><label class="control-label">{{'label.heading.currency' | translate }}</label>
                 </td>
                 <td class="width36">
                     <label><b>{{data.currency.name}}({{data.currency.displaySymbol}})</b></label>
                 </td>
-                <td class="width14"><label class="control-label">{{ 'label.heading.decimalplaces' | translate}}</label>
+                <td class="width14"><label class="control-label">{{'label.heading.decimalplaces' | translate}}</label>
                 </td>
                 <td class="width36">
                     <label><b>{{data.currency.decimalPlaces}}</b></label>
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.totalnumberofshares' | translate
+                    <label class="control-label">{{'label.input.totalnumberofshares' | translate
                         }}&nbsp;<span class="required">*</span></label>
                 </td>
 
@@ -76,7 +76,7 @@
                                    valattribute="totalnumberofshares"/>
                 </td>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.todaysprice' | translate
+                    <label class="control-label">{{'label.input.todaysprice' | translate
                         }}&nbsp;<span class="required">*</span></label>
                 </td>
                 <td class="width36 paddedbottom10">
@@ -89,14 +89,14 @@
             </tr>
             <tr>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.currencyinmultiplesof' | translate }}&nbsp;</label></td>
+                    <label class="control-label">{{'label.input.currencyinmultiplesof' | translate }}&nbsp;</label></td>
                 </td>
                 <td class="width36 paddedbottom10">
                     <input type="text" value="{{data.currency.inMultiplesOf}}"
                            class="form-control" readonly/>
                 </td>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.savingsaccount' | translate }}&nbsp;<span
+                    <label class="control-label">{{'label.input.savingsaccount' | translate }}&nbsp;<span
                             class="required">*</span></label></td>
                 <td class="width36 paddedbottom10">
                     <select id="savingsAccountId" ng-model="formData.savingsAccountId"
@@ -108,7 +108,7 @@
             </tr>
             <tr>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.minimumactiveperiod' | translate }}&nbsp;</label>
+                    <label class="control-label">{{'label.input.minimumactiveperiod' | translate }}&nbsp;</label>
                 </td>
                 <td class="width36 paddedbottom10">
                     <div class="form-inline">
@@ -123,7 +123,7 @@
                     </div>
                 </td>
                 <td class="width14">
-                    <label class="control-label">{{ 'label.input.lockinPeriodFrequency' | translate }}</label>
+                    <label class="control-label">{{'label.input.lockinPeriodFrequency' | translate }}</label>
                 </td>
                 <td class="width36 paddedbottom10">
                     <div class="form-inline">
@@ -142,7 +142,7 @@
             <tr>
 
                 <td class="width14">
-                    <label ng-show="formData.productId" class="control-label">{{ 'label.input.applicationdate' | translate
+                    <label ng-show="formData.productId" class="control-label">{{'label.input.applicationdate' | translate
                         }}&nbsp;<span class="required">*</span></label>
                 </td>
                 <td class="width36 paddedbottom10">
@@ -153,7 +153,7 @@
 
                 <td colspan="2" class="paddedbottom10 paddedtop">
                     <input type="checkbox" ng-model="formData.allowDividendCalculationForInactiveClients">&nbsp;
-                    <label class="control-label">{{ 'label.input.allowdividendsforinactiveclients' | translate }}&nbsp;</label>
+                    <label class="control-label">{{'label.input.allowdividendsforinactiveclients' | translate }}&nbsp;</label>
                 </td>
 
                 <td class="width14"></td>
@@ -169,7 +169,7 @@
 
         </table>
         <hr/>
-        <label class="control-label"><h4>{{ 'label.heading.charges' | translate }}</h4></label>
+        <label class="control-label"><h4>{{'label.heading.charges' | translate }}</h4></label>
         <select ng-model="chargeId"
                 ng-options="charge.id as charge.name for charge in chargeOptions|filter:data.currency.code:strict"
                 value="{{charge.id}}" class="form-control">
@@ -202,8 +202,8 @@
         </table>
         </div>
         <div class="col-md-offset-6">
-            <button id="cancel" ng-click="cancel()" class="btn btn-default">{{ 'label.button.cancel' | translate }}</button>
-            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_SHAREACCOUNT'>{{
+            <button id="cancel" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
+            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_SHAREACCOUNT'>{{
                 'label.button.save' | translate
                 }}
             </button>

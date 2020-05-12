@@ -39,6 +39,7 @@ module.exports = function(grunt) {
                 '<%= mifosx.app %>/{,*/}*.json',
                 '<%= mifosx.app %>/**/*.js',
                 '<%= mifosx.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                '<%= mifosx.app %>/images/icons/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                 // ignore directories to reduce CPU usage by watch/node process
                 '!<%= mifosx.app %>/bower_components/**',
                 // also ignore all css file changes
@@ -139,100 +140,101 @@ module.exports = function(grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      prod: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= mifosx.app %>',
-          dest: '<%= mifosx.dist %>/<%=mifosx.target%>',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '.nojekyll',
-            'images/{,*/}*.{webp}',
-            'fonts/**',
-            'images/*',
-            'scripts/*.js',
-            'scripts/config/*.json',
-            'scripts/services/*.js',
-            'scripts/modules/*.js',
-            'scripts/js/*.js',
-            '!scripts/routes.js',
-            '!scripts/initialTasks.js',
-            '!scripts/webstorage-configuration.js',
-            '!scripts/mifosXComponents.js',
-            '!scripts/mifosXComponents-build.js',
-            '!scripts/loader.js',
-            '!scripts/loader-build.js',
-            'styles/**.css',
-            '!scripts/mifosXStyles.js',
-            '!scripts/mifosXStyles-build.js',
-            'global-translations/**',
-            '*.html',
-            'release.json',
-            'views/**',
-            'angular/**'
-          ]
+        prod: {
+            files: [{
+            expand: true,
+            dot: true,
+            cwd: '<%= mifosx.app %>',
+            dest: '<%= mifosx.dist %>/<%=mifosx.target%>',
+            src: [
+                '*.{ico,png,txt}',
+                '.htaccess',
+                '.nojekyll',
+                'images/{,*/}*.{webp}',
+                'fonts/**',
+                'images/**',
+                'scripts/*.js',
+                'scripts/config/*.json',
+                'scripts/services/*.js',
+                'scripts/modules/*.js',
+                'scripts/js/*.js',
+                '!scripts/routes.js',
+                '!scripts/initialTasks.js',
+                '!scripts/webstorage-configuration.js',
+                '!scripts/mifosXComponents.js',
+                '!scripts/mifosXComponents-build.js',
+                '!scripts/loader.js',
+                '!scripts/loader-build.js',
+                'styles/**.css',
+                '!scripts/mifosXStyles.js',
+                '!scripts/mifosXStyles-build.js',
+                'global-translations/**',
+                '*.html',
+                'release.json',
+                'views/**',
+                'angular/**'
+            ]
+            },
+            {
+            expand: true,
+            dot: true,
+            cwd: '<%= mifosx.test %>',
+            dest: '<%= mifosx.dist %>/<%=mifosx.target%>/test',
+            src: [
+                '**/**'
+            ]
+            },
+            {
+            '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXComponents.js':['<%= mifosx.app %>/scripts/mifosXComponents-build.js'],
+            '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/loader.js':['<%= mifosx.app %>/scripts/loader-build.js'],
+            '<%=mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXStyles.js':['<%=mifosx.app%>/scripts/mifosXStyles-build.js']
+            //'<%= mifosx.dist %>/<%=mifosx.target%>':['<%= mifosx.test %>/**']
+            },
+            {
+            expand: true,
+            dot: true,
+            cwd: '<%= mifosx.app %>/bower_components',
+            dest: '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components',
+            src: [
+                '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js', 'pdfmake/build/*.js',
+                '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**', 'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
+                'angular-loading-bar/build/*.min.*', 'fontawesome/css/*.min.css', 'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js',
+                'pdfjs/src/pdf*.js', 'pdfjs/src/shared/*.js', 'pdfjs/src/display/*.js', 'angular-material-data-table/dist/*.js', 'angular-material-data-table/dist/*.css',
+                "md-steppers/dist/*.min.*"
+            ]
+            }
+            ]
         },
-        {
-          expand: true,
-          dot: true,
-          cwd: '<%= mifosx.test %>',
-          dest: '<%= mifosx.dist %>/<%=mifosx.target%>/test',
-          src: [
-            '**/**'
-          ]
+        dev: {
+            files: [{
+            expand: true,
+            dot: true,
+            cwd: '<%= mifosx.app %>',
+            dest: '<%= mifosx.dist %>/<%=mifosx.target%>',
+            src: [
+                '*.{ico,png,txt}',
+                '.htaccess',
+                'images/{,*/}*.{webp}',
+                'fonts/*',
+                'scripts/**/*.js',
+                'global-translations/**',
+                'styles/**',
+                '*.html',
+                'views/**',
+                'images/**',
+                'bower_components/**'
+            ]
+            },
+            {
+            expand: true,
+            dot: true,
+            cwd: '<%= mifosx.test %>',
+            dest: '<%= mifosx.dist %>/<%=mifosx.target%>/test',
+            src: [
+                '**/**'
+            ]
+            }]
         },
-        {
-          '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXComponents.js':['<%= mifosx.app %>/scripts/mifosXComponents-build.js'],
-          '<%= mifosx.dist %>/<%=mifosx.target%>/scripts/loader.js':['<%= mifosx.app %>/scripts/loader-build.js'],
-          '<%=mifosx.dist %>/<%=mifosx.target%>/scripts/mifosXStyles.js':['<%=mifosx.app%>/scripts/mifosXStyles-build.js']
-          //'<%= mifosx.dist %>/<%=mifosx.target%>':['<%= mifosx.test %>/**']
-        },
-        {
-          expand: true,
-          dot: true,
-          cwd: '<%= mifosx.app %>/bower_components',
-          dest: '<%= mifosx.dist %>/<%=mifosx.target%>/bower_components',
-          src: [
-            '**/*min.js', 'ckeditor/**', 'chosen/**', 'microplugin/src/*.js', 'require-css/*.js', 'require-less/*.js',
-            '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**',
-            'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css', 
-            'angular-utils-pagination/dirPagination.tpl.html','moment/min/*.min.js'
-          ]
-        }
-        ]
-      },
-      dev: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= mifosx.app %>',
-          dest: '<%= mifosx.dist %>/<%=mifosx.target%>',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            'images/{,*/}*.{webp}',
-            'fonts/*',
-            'scripts/**/*.js',
-            'global-translations/**',
-            'styles/**',
-            '*.html',
-            'views/**',
-            'images/**',
-            'bower_components/**'
-          ]
-        },
-        {
-          expand: true,
-          dot: true,
-          cwd: '<%= mifosx.test %>',
-          dest: '<%= mifosx.dist %>/<%=mifosx.target%>/test',
-          src: [
-            '**/**'
-          ]
-        }]
-      },
         // this won't be necessary after fixing dependencies
         server: {
             expand: true,
@@ -425,7 +427,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jshint', 'copy:dev']);
-  grunt.registerTask('prod', ['clean:dist', 'clean:server', 'compass:dist', 'copy:prod', 'copy:tests', 'concat', 'uglify:prod', 'devcode:dist', 'hashres','replace']);
+  grunt.registerTask('prod', ['clean:dist', 'clean:server', 'compass:dist', 'copy:prod', 'copy:tests', 'concat', 'uglify:prod', 'devcode:dist', 'hashres', 'replace']);
   grunt.registerTask('dev', ['clean', 'compass:dev', 'copy:dev']);
   grunt.registerTask('test', ['karma']);
   grunt.registerTask('deploy', ['prod', 'gh-pages']);

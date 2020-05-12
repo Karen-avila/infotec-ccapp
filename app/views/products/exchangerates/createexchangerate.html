@@ -1,0 +1,98 @@
+<div class="content-container" ng-controller="CreateFloatingRateController">
+    <ul class="breadcrumb">
+        <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
+        <li><a href="#!/exchangerates">{{'label.anchor.exchangerates' | translate}}</a></li>
+        <li class="active">{{'label.anchor.createexchangerate' | translate}}</li>
+    </ul>
+
+    <form name="newexchangerateform" novalidate="" rc-submit="submit()" class="card form-horizontal well">
+        <api-validate></api-validate>
+        <fieldset>
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label class="control-label" for="name">{{'label.input.exchangeratename' | translate}}<span
+                            class="required">*</span> &nbsp;
+                        <i class="fa fa-question-circle"
+                        uib-tooltip="{{'label.tooltip.exchangeratename' | translate}}"
+                        tooltip-append-to-body="true"></i>
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input name="name" type="text" id="name" ng-model="formData.name" class="form-control"
+                           required late-Validate/>
+                    <form-validate valattributeform="newexchangerateform" valattribute="name"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 right">
+                    <input type="checkbox" name="name1" ng-model="formData.isActive"/>
+                </div>
+                <div class="col-sm-2 left">
+                    <label class="control-label" >{{'label.input.active' | translate}}
+                    &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.isActive' | translate}}"></i>
+                    </label>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label class="bolder" >{{'label.heading.ratevalues' | translate}}
+                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.ratevalues' | translate}}"
+                         tooltip-append-to-body="true"></i>
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <button id="add" data-ng-click="addRateValue()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
+                </div>
+            </div>
+            <BR>
+            <table class="table width80" ng-show="formData.rateValues.length>0" >
+                <tr class="graybg" class="width50">
+                    <th>{{'label.heading.fromdate' | translate}}
+                        <span class="required">*</span>
+                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.exchangefromdate' | translate}}"></i></th>
+                    <th>{{'label.heading.exchangetrate' | translate}}
+                        <span class="required">*</span>
+                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatigannualinterest' | translate}}"></i></th>
+                    <th> {{'label.heading.actions' | translate}}</th>
+                </tr>
+                <tr ng-repeat="ratevalue in formData.rateValues">
+                    <td>
+                        <ng-form name="fromDate{{$index}}">
+                        <input type="text" id="fromDate{{$index}}" name="fromDate" datepicker-pop="dd MMMM yyyy"
+                               ng-model="ratevalue.fromDate" is-open="opened" min="'2000-01-01'" max="restrictDate"
+                               class="form-control" required/>
+                            <span class="error" ng-show="visitValidation&&fromDate{{$index}}.fromDate.$error.required">{{'label.requirefield' | translate }}</span>
+                        </ng-form>
+                    </td>
+                    <td>
+                        <ng-form name="interestRate{{$index}}">
+                           <input id="interestRate{{$index}}" name="interestRate" class="form-control" type="text"
+                                   ng-model="ratevalue.interestRate" number-format required/>
+                            <span class="error" ng-show="visitValidation&&interestRate{{$index}}.interestRate.$error.required">{{'label.requirefield' | translate }}</span>
+                        </ng-form>
+                    </td>
+                    <td>
+                       <input id="isDifferentialToBaseLendingRate" name="isDifferentialToBaseLendingRate"  type="checkbox"
+                                      ng-model="ratevalue.isDifferentialToBaseLendingRate"/>
+                    </td>
+                    <td>
+                        <a ng-click="deleteRateValue($index)"><i class="fa fa-times-circle fa-2x"></i></a>
+                    </td>
+                   </tr>
+            </table>
+            <div class="col-md-offset-4">
+                <a id="cancel" href="#!/exchangerates">
+                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+                </a>
+                <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-sm btn-primary"
+                        has-permission='CREATE_FLOATINGRATE'>{{'label.button.save' | translate}}
+                </button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>

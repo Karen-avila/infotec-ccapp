@@ -9,7 +9,7 @@
             <form name="newjlgloanform" novalidate="" class="form-inline">
                 <api-validate></api-validate>
                 <div class="col-sm-12 col-md-12">
-                    <label class="control-label col-sm-3">{{ 'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
+                    <label class="control-label col-sm-3">{{'label.input.product' | translate }}<span class="required">*</span>:&nbsp;</label>
                     <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.product' | translate}}"></i>
                     <div class="col-sm-3">
                         <select id="productId" ng-model="selectedProduct.id"
@@ -27,11 +27,11 @@
                                             'label.heading.meetingdetails' | translate }}</strong></label>
                                 </td>
                                 <td class="width14">
-                                    <label>{{ 'label.heading.repeatson' | translate }}:</label>{{calendar.humanReadable}}
+                                    <label>{{'label.heading.repeatson' | translate }}:</label>{{calendar.humanReadable}}
                                 </td>
                                 <td><input type="checkbox"
                                         ng-model="loanApplicationCommonData.syncDisbursementWithMeeting"></td>
-                                <td><label>{{ 'label.input.syncdisbursementdatewithmeeting' | translate }}</label></td>
+                                <td><label>{{'label.input.syncdisbursementdatewithmeeting' | translate }}</label></td>
                             </tr>
                         </table>
                     </div>
@@ -42,7 +42,7 @@
                         <table class="table">
                             <tr>
                                 <td class="width14">
-                                    <label>{{ 'label.input.paymentFor1000' | translate }}<span
+                                    <label>{{'label.input.paymentFor1000' | translate }}<span
                                         class="required">*</span>:&nbsp;</label>
                                 </td>
                                 <td class="width36 paddedbottom10">
@@ -53,7 +53,7 @@
                                     </select>
                                 </td>
                                 <td class="width14">
-                                    <label>{{ 'label.input.loanofficer' | translate }}:&nbsp;</label>
+                                    <label>{{'label.input.loanofficer' | translate }}:&nbsp;</label>
                                 </td>
                                 <td class="width36 paddedbottom10">
                                     <select id="loanOfficerId" ng-model="loanApplicationCommonData.loanOfficerId"
@@ -64,7 +64,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>{{ 'label.input.submittedon' | translate }}<span
+                                <td><label>{{'label.input.submittedon' | translate }}<span
                                             class="required">*</span>:&nbsp;</label></td>
                                 <td class="paddedbottom10">
                                     <input type="text" id="submittedOnDate" name="submittedon"
@@ -73,7 +73,7 @@
                                         class="form-control" />
                                 </td>
                                 <td>
-                                    <label title="{{ 'label.input.expecteddisbursementon' | translate }}">{{ 'label.input.disbursementon' |
+                                    <label title="{{'label.input.expecteddisbursementon' | translate }}">{{'label.input.disbursementon' |
                                             translate }}<span class="required">*</span>:&nbsp;</label>
                                 </td>
                                 <td class="paddedbottom10">
@@ -84,7 +84,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>{{ 'label.input.firstrepaymenton' | translate }}</label></td>
+                                <td><label>{{'label.input.firstrepaymenton' | translate }}</label></td>
                                 <td class="paddedbottom10">
                                     <input type="text" id="firstrepaymentOnDate" name="firstrepaymenton"
                                         datepicker-pop="dd MMMM yyyy"
@@ -92,7 +92,7 @@
                                         class="form-control" />
                                 </td>
                                 <td>
-                                    <label title="{{ 'label.input.channel' | translate }}">{{ 'label.input.channel' |
+                                    <label title="{{'label.input.channel' | translate }}">{{'label.input.channel' |
                                             translate }}</label>
                                 </td>
                                 <td class="paddedbottom10">

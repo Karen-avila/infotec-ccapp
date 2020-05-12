@@ -10,18 +10,18 @@
 	    <fieldset>
 	        <legend>{{'label.heading.editclient' | translate}}</legend>
 	        <div class="form-group">
-	            <label class="control-label col-sm-3">{{ 'label.input.accno' | translate }}:</label>
+	            <label class="control-label col-sm-3">{{'label.input.accno' | translate }}:</label>
 	            <div class="col-sm-3">
 	                <input id="accountNo" type="text" ng-model="formData.accountNo" class="form-control" disabled="disabled">
 	            </div>
-	            <label class="control-label col-sm-3">{{ 'label.input.externalid' | translate }}:</label>
+	            <label class="control-label col-sm-3">{{'label.input.externalid' | translate }}:</label>
 			    <div class="col-sm-3">
 			        <input id="externalId" type="text" ng-model="formData.externalId" class="form-control uppercase">
 				</div>
 			</div>
 			
 	        <div class="form-group">
-	            <label class="control-label col-sm-3">{{ 'label.heading.office' | translate }}:<span
+	            <label class="control-label col-sm-3">{{'label.heading.office' | translate }}:<span
 	                    class="required">*</span></label>
 	
 	            <div class="col-sm-3">
@@ -31,7 +31,7 @@
 	                </select>
 	            </div>
 
-				<label class="control-label col-sm-3">{{ 'label.heading.staff' | translate }}:</label>
+				<label class="control-label col-sm-3">{{'label.heading.staff' | translate }}:</label>
 
 				<div class="col-sm-3">
 					<select chosen="staffs" id="staffId" ng-model="formData.staffId"  class="form-control"
@@ -48,7 +48,7 @@
 					<select id="legalFormId" ng-model="formData.legalFormId"  class="form-control"
 							ng-options="legalForm.id as legalForm.value for legalForm in clientLegalFormOptions" value="{{legalForm.id}}"
 							ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)">
-						<option value="">--{{'label.menu.legalForm' | translate}}--</option>
+						<option value="">{{'label.menu.legalForm' | translate}}</option>
 					</select>
 				</div>
 				<div class="col-sm-3 pull-right">
@@ -56,13 +56,13 @@
 						<input type="checkbox" id="isStaff" ng-model="formData.isStaff">
 					</label>
 				</div>
-				<label class="control-label col-sm-3" for="isStaff">{{ 'label.input.isStaff' | translate }}</label>
+				<label class="control-label col-sm-3" for="isStaff">{{'label.input.isStaff' | translate }}</label>
 			</div>
 
 			<div data-ng-switch on="showNonPersonOptions">
 				<div data-ng-switch-when="false">
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{ 'label.input.firstname' | translate }}:<span
+						<label class="control-label col-sm-3">{{'label.input.firstname' | translate }}:<span
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
@@ -70,7 +70,7 @@
 								   late-Validate/>
 							<form-validate valattributeform="editclientform" valattribute="firstname"/>
 						</div>
-						<label class="control-label col-sm-3">{{ 'label.input.middlename' | translate }}:</label>
+						<label class="control-label col-sm-3">{{'label.input.middlename' | translate }}:</label>
 
 						<div class="col-sm-3">
 							<input id="middlename" type="text" ng-model="formData.middlename" class="form-control uppercase">
@@ -82,7 +82,7 @@
 			<div data-ng-switch on="showNonPersonOptions">
 				<div data-ng-switch-when="false">
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{ 'label.input.lastname' | translate }}:<span
+						<label class="control-label col-sm-3">{{'label.input.lastname' | translate }}:<span
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
@@ -90,7 +90,7 @@
 								   late-Validate/>
 							<form-validate valattributeform="editclientform" valattribute="lastname"/>
 						</div>
-						<label class="control-label col-sm-3">{{ 'label.input.surname' | translate }}:<span
+						<label class="control-label col-sm-3">{{'label.input.surname' | translate }}:<span
 							class="required">*</span></label>
 
 						<div class="col-sm-3">
@@ -123,7 +123,7 @@
 						<div class="col-sm-3">
 							<select id="genderId" ng-model="formData.genderId"  class="form-control"
 									ng-options="gender.id as gender.name for gender in genderOptions" value="{{gender.id}}">
-								<option value="">--{{'label.menu.gender' | translate}}--</option>
+								<option value="">{{'label.menu.gender' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -157,7 +157,7 @@
 						<div class="col-sm-3">
 							<select id="birthPlaceId" ng-model="formData.birthPlaceId"  class="form-control"
 									ng-options="birthplace.id as birthplace.name for birthplace in birthPlaceOptions" value="{{birthplace.id}}">
-								<option value="">--{{'label.menu.birthplace' | translate}}--</option>
+								<option value="">{{'label.menu.birthplace' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -176,23 +176,23 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3">{{ 'label.input.rfc' | translate }}:</label>
+				<label class="control-label col-sm-3">{{'label.input.rfc' | translate }}:</label>
 			    <div class="col-sm-3">
 			    	<div class="input-group">
 			        	<input id="rfc" type="text" ng-model="formData.rfc" class="form-control uppercase">
 			        	<span class="input-group-btn">
-							<button class="btn btn-default" type="button" ng-click="createCurpRfc()">
+							<button class="btn btn-sm btn-default" type="button" ng-click="createCurpRfc()">
 								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 							</button>
 						</span>
 			        </div>
 			    </div>
-			    <label class="control-label col-sm-3">{{ 'label.input.uniqueId' | translate }}:</label>
+			    <label class="control-label col-sm-3">{{'label.input.uniqueId' | translate }}:</label>
 			    <div class="col-sm-3">
 			    	<div class="input-group">
 				        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
 				        <span class="input-group-btn">
-					        <button class="btn btn-default" type="button" ng-click="createCurpRfc()">
+					        <button class="btn btn-sm btn-default" type="button" ng-click="createCurpRfc()">
 								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 							</button>
 						</span>
@@ -206,7 +206,7 @@
 				<div class="col-sm-3">
 					<select id="clientTypeId" ng-model="formData.clientTypeId"  class="form-control"
 							ng-options="clienttype.id as clienttype.name for clienttype in clienttypeOptions" value="{{clienttype.id}}">
-						<option value="">--{{'label.menu.clienttype' | translate}}--</option>
+						<option value="">{{'label.menu.clienttype' | translate}}</option>
 					</select>
 				</div>
 				<label class="control-label col-sm-3">{{'label.input.clientclassification' | translate}}</label>
@@ -214,7 +214,7 @@
 				<div class="col-sm-3">
 					<select id="clientClassificationId" ng-model="formData.clientClassificationId"  class="form-control"
 							ng-options="clientClassification.id as clientClassification.name for clientClassification in clientClassificationOptions" value="{{clientClassification.id}}">
-						<option value="">--{{'label.menu.clientclassification' | translate}}--</option>
+						<option value="">{{'label.menu.clientclassification' | translate}}</option>
 					</select>
 				</div>
 			</div>
@@ -233,7 +233,7 @@
 						<div class="col-sm-3">
 							<select id="mainBusinessLineId" ng-model="formData.clientNonPersonDetails.mainBusinessLineId"  class="form-control"
 									ng-options="mainBusinessLine.id as mainBusinessLine.name for mainBusinessLine in clientNonPersonMainBusinessLineOptions" value="{{mainBusinessLine.id}}">
-								<option value="">--{{'label.menu.mainBusinessLine' | translate}}--</option>
+								<option value="">{{'label.menu.mainBusinessLine' | translate}}</option>
 							</select>
 						</div>
 					</div>
@@ -250,7 +250,7 @@
 							<select id="constitutionId" name="constitution" ng-model="formData.clientNonPersonDetails.constitutionId"  class="form-control"
 									ng-options="constitution.id as constitution.name for constitution in clientNonPersonConstitutionOptions"
 									value="{{constitution.id}}">
-								<option value="">--{{'label.menu.constitution' | translate}}--</option>
+								<option value="">{{'label.menu.constitution' | translate}}</option>
 							</select>
 						</div>
 						<div class="col-sm-2">

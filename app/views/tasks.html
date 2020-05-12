@@ -33,7 +33,7 @@
                                                                     class="fa fa-chevron-down"></i></button>
                                                             <button type="button" ng-click="search()"
                                                                 class="btn btn-sm btn-primary btn-sm control"><i
-                                                                    class="fa fa-search icon-white"></i></button>
+                                                                    class="fa fa-search"></i></button>
                                                         </span>
                                                     </div>
                                                     <div class="form-group">
@@ -74,7 +74,7 @@
                                     <div>
                                         <select ng-model="formData.action" class="form-control">
                                             <option value="">{{'label.all' | translate}}</option>
-                                            <option value="">--{{'label.selectaction' | translate}}--</option>
+                                            <option value="">{{'label.selectaction' | translate}}</option>
                                             <option ng-repeat="action in checkerTemplate.actionNames"
                                                 value="{{action}}">{{action}}
                                             </option>
@@ -85,7 +85,7 @@
                                     <div>
                                         <select ng-model="formData.entity" class="form-control">
                                             <option value="">{{'label.all' | translate}}</option>
-                                            <option value="">--{{'label.selectaction' | translate}}--</option>
+                                            <option value="">{{'label.selectaction' | translate}}</option>
                                             <option ng-repeat="entity in checkerTemplate.entityNames"
                                                 value="{{entity}}">{{entity}}
                                             </option>
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <span><a ng-click="search()" class="btn btn-sm btn-primary"><i
-                                            class="icon-search icon-white"></i>{{'label.button.advancesearch'
+                                            class="fa fa-search"></i>{{'label.button.advancesearch'
 				            | translate}}</a>
                                     <br /><br />
                                 </span>
@@ -336,8 +336,8 @@
                                             </td>
                                             <td ng-if="!record.individual"
                                                 data-ng-click="showGroupDetail(record.client.id, 'a')">
-                                                {{record.loan.amount | number}} ({{record.loans.length}})</td>
-                                            <td ng-if="record.individual">{{record.loan.amount | number}}</td>
+                                                {{record.loan.amount | FormatNumber}} ({{record.loans.length}})</td>
+                                            <td ng-if="record.individual">{{record.loan.amount | FormatNumber}}</td>
                                             <td class="pointer">{{record.client.staffName}}</td>
                                         </tr>
                                         <tr ng-repeat-end ng-if="!record.individual">
@@ -364,7 +364,7 @@
                                                             <td class="pointer"><a
                                                                     href='#!/viewloanaccount/{{loan.id}}'>{{loan.accountNo}}</a>
                                                             </td>
-                                                            <td class="pointer">{{loan.amount | number}}</td>
+                                                            <td class="pointer">{{loan.amount | FormatNumber}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -412,14 +412,14 @@
                                         <div class="col-md-12">
                                             <table class="table">
                                                 <tr>                            
-                                                    <td><label>{{ 'label.input.disbursedondate' | translate }}: </label></td>
+                                                    <td><label>{{'label.input.disbursedondate' | translate }}: </label></td>
                                                     <td>
                                                         <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="disbursedondate"
                                                         is-open="opened" min="restrictDate" max="restrictDate" class="form-control width170px"/>        
                                                     </td>
                                                 </tr>
                                                 <tr>                            
-                                                    <td><label>{{ 'label.input.fundsource' | translate }}: </label></td>
+                                                    <td><label>{{'label.input.fundsource' | translate }}: </label></td>
                                                     <td>
                                                         <select id="fundId" ng-model="fundId"
                                                             class="form-control width170px"
@@ -429,7 +429,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>                            
-                                                    <td><label>{{ 'label.input.channel' | translate }}: </label></td>
+                                                    <td><label>{{'label.input.channel' | translate }}: </label></td>
                                                     <td>
                                                         <select id="channelId" ng-model="channelId"
                                                             class="form-control width170px"
@@ -493,8 +493,8 @@
                                             </td>
                                             <td ng-if="!record.individual"
                                                 data-ng-click="showGroupDetail(record.client.id, 'd')">
-                                                {{record.loan.amount | number}} ({{record.loans.length}})</td>
-                                            <td ng-if="record.individual">{{record.loan.amount | number}}</td>
+                                                {{record.loan.amount | FormatNumber}} ({{record.loans.length}})</td>
+                                            <td ng-if="record.individual">{{record.loan.amount | FormatNumber}}</td>
                                             <td class="pointer">{{record.client.staffName}}</td>
                                         </tr>
                                         <tr ng-repeat-end ng-if="!record.individual">
@@ -522,7 +522,7 @@
                                                             <td class="pointer"><a
                                                                     href='#!/viewloanaccount/{{loan.id}}'>{{loan.accountNo}}</a>
                                                             </td>
-                                                            <td class="pointer">{{loan.amount | number}}</td>
+                                                            <td class="pointer">{{loan.amount | FormatNumber}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

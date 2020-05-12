@@ -9,7 +9,7 @@
     <api-validate></api-validate>
     <div class="card">
         <div class="content">
-            <form ng-submit="submit()" class="form-horizontal">
+            <form ng-submit="submit()" class="form-horizontal form-extra">
                 <div class="form-group">
                     <label class="control-label col-sm-2">{{'label.input.existingmeetingdates' | translate}}</label>
                     <div class="col-sm-3">
@@ -27,11 +27,11 @@
                 </div>
 
                 <div class="col-md-offset-2">
-                    <a id="cancel" ng-show="entityType=='groups'" class="btn btn-default" href="#!/viewgroup/{{groupOrCenterId}}">{{'label.button.cancel'
+                    <a id="cancel" ng-show="entityType=='groups'" class="btn btn-sm btn-default" href="#!/viewgroup/{{groupOrCenterId}}">{{'label.button.cancel'
                         | translate}}</a>
-                    <a ng-hide="entityType=='groups'" class="btn btn-default" href="#!/viewcenter/{{groupOrCenterId}}">{{'label.button.cancel'
+                    <a ng-hide="entityType=='groups'" class="btn btn-sm btn-default" href="#!/viewcenter/{{groupOrCenterId}}">{{'label.button.cancel'
                         | translate}}</a>
-                    <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_MEETING'>{{'label.button.save' | translate}}</button>
+                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_MEETING'>{{'label.button.save' | translate}}</button>
                 </div>
             </form>
         </div>

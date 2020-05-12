@@ -21,10 +21,10 @@
 				<table class="table">
 					<thead>
 						<tr class="graybg">
-							<th>{{ 'label.heading.fundname' | translate }}</th>
-							<th>{{ 'label.heading.externalid' | translate }}</th>
-							<th>{{ 'label.heading.amount' | translate }}</th>
-							<th>{{ 'label.heading.active' | translate}}</th>
+							<th>{{'label.heading.fundname' | translate }}</th>
+							<th>{{'label.heading.externalid' | translate }}</th>
+							<th>{{'label.heading.amount' | translate }}</th>
+							<th>{{'label.heading.active' | translate}}</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -32,7 +32,7 @@
 						<tr data-ng-repeat="fund in funds">
 							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.name}}</td>
 							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.externalId}}</td>
-							<td class="pointer" data-ng-click="routeTo(fund.id)">$ {{fund.amount | number}}</td>
+							<td class="pointer" data-ng-click="routeTo(fund.id)">$ {{fund.amount | FormatNumber}}</td>
 							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.active}}</td>
 						</tr>
 					</tbody>

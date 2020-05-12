@@ -9,7 +9,7 @@
                 <div class="toolbar">
                     <h4>{{'label.heading.attendance' | translate}}</h4>
                 </div>
-                <form name="centerattendanceform" novalidate="" class="form-horizontal">
+                <form name="centerattendanceform" novalidate="" class="form-horizontal form-extra">
                     <api-validate></api-validate>
                     <div class="error" ng-show="errorStatus">{{errorStatus}}</div>
                     <fieldset>
@@ -31,8 +31,8 @@
                                 <table class="table table-striped" width="100%">
                                     <thead>
                                     <tr class="graybg">
-                                        <th>{{ 'label.heading.name' | translate }}</th>
-                                        <th>{{ 'label.heading.attendance' | translate }}</th>
+                                        <th>{{'label.heading.name' | translate }}</th>
+                                        <th>{{'label.heading.attendance' | translate }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -50,8 +50,8 @@
                             </div>
                         </div>
                         <div class="col-md-offset-2 paddedleft120">
-                            <a id="cancel" href="#!/viewcenter/{{center.id}}" class="btn btn-default">{{'label.button.cancel' | translate}}</a>
-                            <button id="save" type="button" class="btn btn-primary" data-ng-click="attendanceUpdate(meeting.id)" has-permission='CREATE_MEETING'>
+                            <a id="cancel" href="#!/viewcenter/{{center.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
+                            <button id="save" type="button" class="btn btn-sm btn-primary" data-ng-click="attendanceUpdate(meeting.id)" has-permission='CREATE_MEETING'>
                                 {{'label.button.save' | translate}}
                             </button>
                         </div>

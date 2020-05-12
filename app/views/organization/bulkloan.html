@@ -9,11 +9,11 @@
 				<h4>{{'label.heading.bulkloanreassignment' | translate}}</h4>
 			</div>
 			<br>
-			<form class="form-horizontal" ng-controller="BulkLoanReassignmentController" ng-submit="submit()">
+			<form class="form-horizontal form-extra" ng-controller="BulkLoanReassignmentController" ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
 					<div class="form-group">
-						<label class="control-label col-sm-2">{{ 'label.input.office' | translate }}<span
+						<label class="control-label col-sm-2">{{'label.input.office' | translate }}<span
 								class="required">*</span></label>
 						<div class="col-sm-3">
 							<select chosen="offices" name="office" id="office" ng-model="officeIdTemp"
@@ -25,7 +25,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">
-							{{ 'label.input.assignmentdate' | translate }}<span class="required">*</span></label>
+							{{'label.input.assignmentdate' | translate }}<span class="required">*</span></label>
 
 						<div class="col-sm-3">
 							<input id="assignmentDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="form-group" data-ng-show="officerChoice">
-						<label class="control-label col-sm-2">{{ 'label.input.fromloanofficer' | translate }}<span
+						<label class="control-label col-sm-2">{{'label.input.fromloanofficer' | translate }}<span
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2">{{ 'label.input.toloanofficer' | translate }}<span
+						<label class="control-label col-sm-2">{{'label.input.toloanofficer' | translate }}<span
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
@@ -108,11 +108,11 @@
 							</table>
 						</div>
 					</div>
-					<div class="col-md-offset-3">
+					<div class="col-md-12 center">
 						<a href="#!/organization">
-							<button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+							<button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
 						</a>
-						<button type="submit" class="btn btn-primary"
+						<button type="submit" class="btn btn-sm btn-primary"
 							has-permission='BULKREASSIGN_LOAN'>{{'label.button.save' | translate}}</button>
 					</div>
 				</fieldset>

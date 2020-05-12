@@ -6,7 +6,7 @@
     </ul>
     <div class="card">
         <div class="content">
-        <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal" rc-submit="submit()">
+        <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
             <fieldset>
                 <!-- Start -->
                 <div class="row">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="pull-right">
-                            <a href="#!/editprovisioningcriteria/{{criteriaId}}" class="btn btn-primary" has-permission='UPDATE_CRITERIA'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
+                            <a href="#!/editprovisioningcriteria/{{criteriaId}}" class="btn btn-sm btn-primary" has-permission='UPDATE_CRITERIA'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
                             <button type="button" data-ng-click="deleteProvisionigCriteria()" class="btn btn-danger" has-permission='DELETE_CRITERIA'><i
                                     class="fa fa-trash-o "></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
                             </button>
@@ -30,8 +30,8 @@
                     <div class="modal-body ">
                         <api-validate></api-validate>
                         <br>
-                        <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </script>
                 <!-- end -->

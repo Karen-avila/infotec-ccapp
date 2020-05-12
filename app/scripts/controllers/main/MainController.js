@@ -1,7 +1,7 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, $idle, tmhDynamicLocale,
-            uiConfigService, $http) {
+        MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, Idle, tmhDynamicLocale,
+            uiConfigService, $http, mdDateLocale) {
             $http.get('release.json').then(function (data) {
                 scope.version = data.data.version;
                 scope.releasedate = data.data.releasedate;
@@ -81,13 +81,28 @@
                 scope.df = scope.dateformat;
                 scope.dft = scope.dateformat + ' ' + 'HH:mm:ss'
             };
+            scope.setDecimals = function () {
+                if (localStorageService.getFromLocalStorage('numDecimals')) {
+                    scope.nd = localStorageService.getFromLocalStorage('numDecimals');
+                } else {
+                    scope.nd = 2;
+                    localStorageService.addToLocalStorage('numDecimals', scope.nd);
+                }
+            };
 
             scope.updateDf = function (dateFormat) {
                 localStorageService.addToLocalStorage('dateformat', dateFormat);
                 scope.dateformat = dateFormat;
                 scope.setDf();
             };
+
+            scope.updateDecimals = function (decimals) {
+                localStorageService.addToLocalStorage('numDecimals', decimals);
+                scope.setDecimals();
+            };
+            
             scope.setDf();
+            scope.setDecimals();
             $rootScope.setPermissions = function (permissions) {
                 $rootScope.permissionList = permissions;
                 localStorageService.addToLocalStorage('userPermissions', permissions);
@@ -99,6 +114,7 @@
                 //FYI: getting all permissions from localstorage, because if scope changes permissions array will become undefined
                 $rootScope.permissionList = localStorageService.getFromLocalStorage('userPermissions');
                 //If user is a Super user return true
+                var _ = require('underscore');
                 if ($rootScope.permissionList && _.contains($rootScope.permissionList, "ALL_FUNCTIONS")) {
                     return true;
                 } else if ($rootScope.permissionList && permission && permission != "") {
@@ -131,20 +147,20 @@
             scope.started = false;
             scope.$on('$idleTimeout', function () {
                 scope.logout();
-                $idle.unwatch();
+                Idle.unwatch();
                 scope.started = false;
             });
 
             // Log out the user when the window/tab is closed.
             window.onunload = function () {
                 scope.logout();
-                $idle.unwatch();
+                Idle.unwatch();
                 scope.started = false;
             };
 
             scope.start = function (session) {
                 if (session) {
-                    $idle.watch();
+                    Idle.watch();
                     scope.started = true;
                 }
             };
@@ -193,8 +209,6 @@
             scope.changeScope = function (searchScope) {
                 scope.currentScope = searchScope;
             }
-            //hides loader
-            scope.domReady = true;
 
             scope.search = function () {
                 var resource;
@@ -220,6 +234,7 @@
             };
 
             scope.langs = mifosX.models.Langs;
+            scope.decimals = [0,1,2,4,6,8];
 
             if (localStorageService.getFromLocalStorage('Language')) {
                 var temp = localStorageService.getFromLocalStorage('Language');
@@ -351,6 +366,19 @@
                 }
             };
 
+            scope.search = null;
+            scope.initiateSearch = function () {
+                scope.search = '';
+            };
+
+            scope.showSearchBar = function() {
+                return scope.search != null
+            };
+
+            scope.endSearch = function () {
+                return scope.search = null;
+            };
+
             scope.helpf = function () {
                 // first, create addresses array
                 var addresses = ["https://mifosforge.jira.com/wiki/display/docs/User+Setup", "https://mifosforge.jira.com/wiki/display/docs/Organization",
@@ -417,6 +445,9 @@
 
             };//helpf
 
+            //hides loader
+            scope.domReady = true;
+
             sessionManager.restore(function (session) {
                 scope.currentSession = session;
                 scope.start(scope.currentSession);
@@ -434,10 +465,11 @@
         '$translate',
         '$rootScope',
         'localStorageService',
-        'keyboardManager', '$idle',
+        'keyboardManager', 'Idle',
         'tmhDynamicLocale',
         'UIConfigService',
         '$http',
+        '$mdDateLocale',
         mifosX.controllers.MainController
     ]).run(function ($log) {
         $log.info("MainController initialized");

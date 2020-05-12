@@ -10,7 +10,7 @@
     <legend>
         <div class="pull-right">
             <div class="btn-group">
-                <a href="#!/editrecurringdepositproduct/{{depositproduct.id}}" class="btn btn-primary"><i
+                <a href="#!/editrecurringdepositproduct/{{depositproduct.id}}" class="btn btn-sm btn-primary"><i
                         class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
             </div>
         </div>
@@ -46,19 +46,19 @@
     </tr>
     <tr>
         <td>{{'label.heading.currencyinmultiplesof' | translate}}</td>
-        <td colspan="3">{{depositproduct.currency.inMultiplesOf | number}}</td>
+        <td colspan="3">{{depositproduct.currency.inMultiplesOf | FormatNumber}}</td>
     </tr>
     <tr>
         <td>{{'label.input.minDepositAmount' | translate}}</td>
-        <td colspan="3">{{depositproduct.minDepositAmount | number}}</td>
+        <td colspan="3">{{depositproduct.minDepositAmount | FormatNumber}}</td>
     </tr>
     <tr>
         <td>{{'label.input.default.deposit.amount' | translate}}</td>
-        <td colspan="3">{{depositproduct.depositAmount | number}}</td>
+        <td colspan="3">{{depositproduct.depositAmount | FormatNumber}}</td>
     </tr>
     <tr>
         <td>{{'label.input.maxDepositAmount' | translate}}</td>
-        <td colspan="3">{{depositproduct.maxDepositAmount | number}}</td>
+        <td colspan="3">{{depositproduct.maxDepositAmount | FormatNumber}}</td>
     </tr>
     <!--<tr>
         <td>{{'label.heading.nominalannualinterestrate' | translate}}</td>
@@ -134,7 +134,7 @@
     </tr>
     <tr ng-show="depositproduct.minBalanceForInterestCalculation">
         <td>{{'label.heading.minbalanceforinterestcalculation' | translate}}</td>
-        <td>{{depositproduct.minBalanceForInterestCalculation | number}}</td>
+        <td>{{depositproduct.minBalanceForInterestCalculation | FormatNumber}}</td>
     </tr>
     <tr>
         <td>{{'label.heading.withholdtax' | translate}}</td>
@@ -202,7 +202,7 @@
     <tr ng-repeat="charge in depositproduct.charges">
         <td>{{charge.name}}</td>
         <td>{{charge.chargeCalculationType.value}}</td>
-        <td>{{charge.amount | number}}</td>
+        <td>{{charge.amount | FormatNumber}}</td>
         <td>{{charge.chargeTimeType.value}}</td>
     </tr>
     <tr>
@@ -319,7 +319,7 @@
                     <td>{{incentiveData.conditionType.code | translate}} </td>
                     <td>{{incentiveData.attributeValueDesc}} </td>
                     <td>{{incentiveData.incentiveType.code | translate}} </td>
-                    <td>{{incentiveData.amount | number}}</td>
+                    <td>{{incentiveData.amount | FormatNumber}}</td>
                 </tr>
             </table>
         </div>

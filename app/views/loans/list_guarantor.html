@@ -49,15 +49,15 @@
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.approvedamount' | translate}}</th>
-                            <td><span class="padded-td">{{loandetails.approvedPrincipal | number}}</span></td>
+                            <td><span class="padded-td">{{loandetails.approvedPrincipal | FormatNumber}}</span></td>
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.disburseamount' | translate}}</th>
-                            <td><span class="padded-td">{{loandetails.principal | number}}</span></td>
+                            <td><span class="padded-td">{{loandetails.principal | FormatNumber}}</span></td>
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.arrearsby' | translate}}</th>
-                            <td><span class="padded-td">{{loandetails.summary.totalOverdue | number}}<span
+                            <td><span class="padded-td">{{loandetails.summary.totalOverdue | FormatNumber}}<span
                                     data-ng-hide="loandetails.summary.totalOverdue>=0">{{'label.heading.notprovided' | translate}}</span></span>
                             </td>
                         </tr>
@@ -99,15 +99,15 @@
                         </td>
                         <td>{{guarantor.guarantorType.code | translate}}</td>
                         <td>{{guarantorfund.savingsAccount.accountNo}}</td>
-                        <td>{{guarantorfund.amount | number}}</td>
-                        <td>{{guarantorfund.amountRemaining | number}}</td>
+                        <td>{{guarantorfund.amount | FormatNumber}}</td>
+                        <td>{{guarantorfund.amountRemaining | FormatNumber}}</td>
                         <td>{{guarantorfund.status.code | translate}}</td>
                         <td>
                             <button class="btn btn-info" data-ng-click="showDetails($parent.$index,$index)"
                                     ><i class="fa fa-eye "></i></button>
                             <a has-permission='READ_SAVINGSACCOUNT' id="viewtransactions"
                                href="#!/viewguarantortransactions/{{guarantorfund.savingsAccount.id}}/{{guarantorfund.id}}/listguarantors/{{guarantor.loanId}}"
-                               class="btn btn-default">{{ 'label.button.viewtransactions' |
+                               class="btn btn-sm btn-default">{{'label.button.viewtransactions' |
                                 translate }}</a>
                             <button class="btn btn-warning"
                                     data-ng-show="guarantorfund.status.code == 'guarantorFundStatusType.active'"
@@ -129,7 +129,7 @@
                             <button class="btn btn-info" data-ng-click="showDetails($index,null)"
                                     ><i class="fa fa-eye "></i></button>
                             <a data-ng-show="guarantor.status && guarantor.guarantorType.id == 3 && guarantor.id"
-                               href="#!/editguarantor/{{guarantor.id}}/{{guarantor.loanId}}" class="btn btn-primary"><i
+                               href="#!/editguarantor/{{guarantor.id}}/{{guarantor.loanId}}" class="btn btn-sm btn-primary"><i
                                     class="fa fa-edit"></i></a>
                             <button class="btn btn-warning" data-ng-click="deleteGuarantor(guarantor.id,null)"
                                     has-permission='DELETE_GUARANTOR'
@@ -191,7 +191,7 @@
                             </tr>
                             <tr data-ng-show="guarantorFundDetail && guarantorFundDetail.amount">
                                 <td>{{'label.heading.guarantee.amount' | translate}}</td>
-                                <td>{{guarantorFundDetail.amount | number}}</td>
+                                <td>{{guarantorFundDetail.amount | FormatNumber}}</td>
                             </tr>
                             <tr data-ng-show="guarantorFundDetail && guarantorFundDetail.amountReleased">
                                 <td>{{'label.heading.guarantee.amount.released' | translate}}</td>
@@ -199,7 +199,7 @@
                             </tr>
                             <tr data-ng-show="guarantorFundDetail && guarantorFundDetail.amountRemaining">
                                 <td>{{'label.heading.guarantee.amount.remaining' | translate}}</td>
-                                <td>{{guarantorFundDetail.amountRemaining | number}}</td>
+                                <td>{{guarantorFundDetail.amountRemaining | FormatNumber}}</td>
                             </tr>
                             <tr data-ng-show="guarantorFundDetail && guarantorFundDetail.status">
                                 <td>{{'label.heading.guarantee.status' | translate}}</td>
@@ -224,7 +224,7 @@
                         <api-validate></api-validate>
                         <br>
                         <button class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </script>
             </div>
@@ -232,7 +232,7 @@
 
             <div ng-show="guarantorDetails" class="col-md-offset-10"
                 style="margin-bottom: 40px">
-                <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}" class="btn btn-default">{{ 'label.button.cancel' |
+                <a id="cancel" href="#!/viewloanaccount/{{loandetails.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' |
                     translate }}</a>
             </div>
         </div>

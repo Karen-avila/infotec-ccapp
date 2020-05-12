@@ -35,7 +35,7 @@
 									<select chosen="programs" id="programId" ng-model="formData.programId"
 										class="form-control" ng-options="program.id as program.name for program in programs"
 										value="{{program.id}}">
-										<option value="">--{{'label.menu.selectprogram' | translate}}--</option>
+										<option value="">{{'label.menu.selectprogram' | translate}}</option>
 									</select>
 								</div>
 							</div>
@@ -49,7 +49,7 @@
 									<select chosen="channels" id="channelId" ng-model="formData.channelId"
 										class="form-control" ng-options="channel.id as channel.name for channel in channels"
 										value="{{channel.id}}">
-										<option value="">--{{'label.menu.selectchannel' | translate}}--</option>
+										<option value="">{{'label.menu.selectchannel' | translate}}</option>
 									</select>
 								</div>
 							</div>
@@ -89,14 +89,14 @@
 			<table class="table">
 				<thead>
 					<tr class="graybg">
-						<th>{{ 'label.heading.name' | translate }}</th>
-						<th>{{ 'label.heading.importtime' | translate }}</th>
-						<th>{{ 'label.heading.endtime' | translate }}</th>
-						<th>{{ 'label.heading.completed' | translate }}</th>
-						<th>{{ 'label.heading.totalrecords' | translate }}</th>
-						<th>{{ 'label.heading.successcount' | translate }}</th>
-						<th>{{ 'label.heading.failurecount' | translate }}</th>
-						<th>{{ 'label.button.download' | translate }}</th>
+						<th>{{'label.heading.name' | translate }}</th>
+						<th>{{'label.heading.importtime' | translate }}</th>
+						<th>{{'label.heading.endtime' | translate }}</th>
+						<th>{{'label.heading.completed' | translate }}</th>
+						<th>{{'label.heading.totalrecords' | translate }}</th>
+						<th>{{'label.heading.successcount' | translate }}</th>
+						<th>{{'label.heading.failurecount' | translate }}</th>
+						<th>{{'label.button.download' | translate }}</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -9,7 +9,7 @@
         <div class="toolbar">
             <h4>{{'label.heading.uploaddocument' | translate}}</h4>
         </div>
-        <form class="form-horizontal" name="loandocumentform" novalidate="" ng-submit="submit()">
+        <form class="form-horizontal form-extra" name="loandocumentform" novalidate="" ng-submit="submit()">
             <fieldset>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="name">{{'label.input.name' | translate}}<span
@@ -40,11 +40,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-offset-3">
+                <div class="col-md-12 center">
                     <a id="cancel" href="#!/viewloanaccount/{{loanId}}">
-                        <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+                        <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
                     </a>
-                    <button id="save" type="submit" ng-disabled="!loandocumentform.$valid" has-permission='CREATE_DOCUMENT' class="btn btn-primary">
+                    <button id="save" type="submit" ng-disabled="!loandocumentform.$valid" has-permission='CREATE_DOCUMENT' class="btn btn-sm btn-primary">
                         {{'label.button.save' | translate}}
                     </button>
                 </div>

@@ -11,7 +11,7 @@
                             <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user" class="form-control" uib-uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue |  limitTo:8"/>
                         </div>
                         <div class="col-md-1 col-sm-1">
-                            <button ng-click="isCollapsed = !isCollapsed" class="btn btn-default"><i class="fa fa-chevron-down"></i></button>
+                            <button ng-click="isCollapsed = !isCollapsed" class="btn btn-sm btn-default"><i class="fa fa-chevron-down"></i></button>
                         </div>
                         <div class="col-md-1 col-sm-1">
                             <button ng-click="searchAudit()" class="btn btn-primary control" has-permission='READ_AUDIT'><i class="fa fa-search "></i></button>
@@ -25,10 +25,10 @@
                         <input type="text" sort placeholder="{{'label.input.fromdate' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.first" is-open="opened" min="minDate" max="'2030-06-22'" class="form-control"/>
                         <input type="text" sort placeholder="{{'label.input.checkedfrom' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.third" is-open="opened2" min="minDate" max="'2030-06-22'" class="form-control"/>
                         <select value="{{status.id}}" ng-model="formData.status" class="form-control width170px" data-ng-options="status.id as status.processingResult | translate for status in template.processingResults">
-                            <option value="">--{{'label.selectstatus' | translate}}--</option>
+                            <option value="">{{'label.selectstatus' | translate}}</option>
                         </select>
                         <select ng-model="formData.action" class="form-control width170px">
-                            <option value="">--{{'label.selectaction' | translate}}--</option>
+                            <option value="">{{'label.selectaction' | translate}}</option>
                             <option selected="selected" value="">{{'label.all' | translate}}</option>
                             <option ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</option>
                         </select>
@@ -40,12 +40,12 @@
                         <input type="text" sort placeholder="{{'label.input.todate' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.second" is-open="opened1" min="minDate" max="'2030-06-22'" class="form-control"/>
                         <input type="text" sort placeholder="{{'label.input.checkedto' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.fourth" is-open="opened3" min="minDate" max="'2030-06-22'" class="form-control"/>
                         <select ng-model="formData.entity" class="form-control width170px">
-                            <option value="">--{{'label.selectentity' | translate}}--</option>
+                            <option value="">{{'label.selectentity' | translate}}</option>
                             <option selected="selected" value="">{{'label.all' | translate}}</option>
                             <option ng-repeat="entity in template.entityNames" value="{{entity}}">{{entity}}</option>
                         </select>
                         <select ng-model="formData.checkedBy" class="form-control width170px">
-                            <option value="">--{{'label.selectchecker' | translate}}--</option>
+                            <option value="">{{'label.selectchecker' | translate}}</option>
                             <option selected="selected" value="">{{'label.all' | translate}}</option>
                             <option ng-repeat="user in template.appUsers" value="{{user.id}}">{{user.username}}</option>
                         </select>
@@ -56,7 +56,7 @@
                 <div ng-show="displayResults">
                 <br>
                     <div data-ng-show="flag" class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>&nbsp;&nbsp;{{'label.button.exportcsv' | translate }}</button>
+                        <button type="button" class="btn btn-sm btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>&nbsp;&nbsp;{{'label.button.exportcsv' | translate }}</button>
                     </div>
                     <br> 
                     <div data-ng-show="flag">
@@ -101,7 +101,7 @@
                         </li>
                     </ul>
 
-                    <h3 data-ng-show="!flag" class="auditnodata"><strong>{{ 'label.nodata' | translate }}</strong></h3>
+                    <h3 data-ng-show="!flag" class="auditnodata"><strong>{{'label.nodata' | translate }}</strong></h3>
                 </div>
         </div>
     </div>

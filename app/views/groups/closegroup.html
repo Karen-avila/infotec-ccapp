@@ -5,11 +5,11 @@
                 <h4>{{'closegroup' | translate}}</h4>
             </div>
             <br/>
-            <form data-ng-controller="CloseGroupController" class="form-horizontal">
+            <form data-ng-controller="CloseGroupController" class="form-horizontal form-extra">
                 <api-validate></api-validate>
                 <div class="paddedleft">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.closuredate' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.closuredate' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
                         <input id="closureDate" class="date-disable form-control col-sm-3" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{ 'label.input.closurereasons' | translate }}<span
+                        <label class="control-label col-sm-2">{{'label.input.closurereasons' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
                         <select id="closureReasonId" ng-model="formData.closureReasonId"
@@ -27,8 +27,8 @@
                     </div>
                     <br/>
                     <div class="col-md-offset-2 paddedleft">
-                        <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-default">{{ 'label.button.cancel' | translate }}</a>
-                        <button id="save" type="button" class="btn btn-primary" data-ng-click="closeGroup()" has-permission='CLOSE_GROUP'>{{
+                        <a id="cancel" href="#!/viewgroup/{{group.id}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
+                        <button id="save" type="button" class="btn btn-sm btn-primary" data-ng-click="closeGroup()" has-permission='CLOSE_GROUP'>{{
                             'label.button.confirm' | translate }}
                         </button>
                     </div>

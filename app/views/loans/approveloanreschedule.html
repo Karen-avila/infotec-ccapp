@@ -6,7 +6,7 @@
     </ul>
     <div class="card">
         <div class="content">
-            <form name="approveloanrescheduleform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="approveloanrescheduleform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <legend>{{'label.heading.approveloanreschedule' | translate}}</legend>
@@ -20,9 +20,9 @@
                     <br>
                     <br>
                     <div style="padding-left: 100px;">
-                        <button id="cancel" ng-click="cancel()" class="btn btn-default ">{{ 'label.button.cancel' | translate }}</button>
+                        <button id="cancel" ng-click="cancel()" class="btn btn-default ">{{'label.button.cancel' | translate }}</button>
 
-                        <button id="save" ng-click="approve()" type="submit" class="btn btn-primary"  has-permission="APPROVERESCHEDULE_LOAN">
+                        <button id="save" ng-click="approve()" type="submit" class="btn btn-sm btn-primary"  has-permission="APPROVERESCHEDULE_LOAN">
                             {{'label.button.save' | translate}}
 
                         </button>

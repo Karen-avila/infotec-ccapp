@@ -11,7 +11,7 @@
                 <h4>{{'label.heading.edit.financial.activity.mapping' | translate}}</h4>
             </div>
             <br/>
-            <form name="editfinancialmappingform" novalidate="" class="form-horizontal" rc-submit="submit()">
+            <form name="editfinancialmappingform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -40,9 +40,9 @@
                     </div>
 
                     <div class="col-md-offset-2">
-                        <a id="cancel" href="#!/viewfinancialactivitymapping/{{mapping.id}}" class="btn btn-default">{{'label.button.cancel'
+                        <a id="cancel" href="#!/viewfinancialactivitymapping/{{mapping.id}}" class="btn btn-sm btn-default">{{'label.button.cancel'
                             | translate}}</a>
-                        <button id="save" type="submit" class="btn btn-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
+                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
                             {{'label.button.save' | translate}}
                         </button>
                     </div>

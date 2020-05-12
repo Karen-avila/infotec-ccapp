@@ -6,7 +6,7 @@
     <div class="card">
         <div class="content">
             <div class="pull-right">
-                <a ng-click="hideview = !hideview" ng-hide="hideview" class="btn btn-primary" has-permission='UPDATE_CURRENCY' id="edit-currency"><i
+                <a ng-click="hideview = !hideview" ng-hide="hideview" class="btn btn-sm btn-primary" has-permission='UPDATE_CURRENCY' id="edit-currency"><i
                         class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addedit' | translate}}</a>
             </div>
             <br>
@@ -39,7 +39,7 @@
                                uib-typeahead="item as item.displayLabel for item in allCurrOptions | filter:$viewValue | limitTo:8" required late-validate>&nbsp;&nbsp;
                     </div>
                        <div class="col-sm-2 col-md-2">
-                        <button id="add-currency" ng-click="addCur()" has-permission="UPDATE_CURRENCY" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                        <button id="add-currency" ng-click="addCur()" has-permission="UPDATE_CURRENCY" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
                     </div>
                     <form-validate valattributeform="clientchargeform" valattribute="amount"/>
                     <div class="clear"></div>
@@ -53,10 +53,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-offset-5">
-                    <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-default">{{'label.button.cancel' | translate}}
+                <div class="col-md-12 center">
+                    <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
                     </button>
-                    <button id="save" type="submit" ng-click="submit()" has-permission='UPDATE_CURRENCY' class="btn btn-primary">{{'label.button.save' | translate}}
+                    <button id="save" type="submit" ng-click="submit()" has-permission='UPDATE_CURRENCY' class="btn btn-sm btn-primary">{{'label.button.save' | translate}}
                     </button>
                 </div>
             </div>

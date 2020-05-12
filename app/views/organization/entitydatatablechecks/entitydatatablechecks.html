@@ -45,7 +45,7 @@
             on-page-change="getResultsPage(newPageNumber)"></dir-pagination-controls>
 
         <script type="text/ng-template" id="createentitydatatablecheck.html">
-            <form name="createdatatablecheckform" novalidate="" class="form-horizontal">
+            <form name="createdatatablecheckform" novalidate="" class="form-horizontal form-extra">
                 <api-validate></api-validate>
                 <div class="modal-dialog">
                     <div class="modal-header silver">
@@ -140,8 +140,8 @@
                             </div>
                         </div>-->
                         <div class="col-md-offset-4">
-                            <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                            <button class="btn btn-primary" ng-click="create()">{{'label.button.create' | translate}}</button>
+                            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                            <button class="btn btn-sm btn-primary" ng-click="create()">{{'label.button.create' | translate}}</button>
                         </div>
                     </div>
                 </div>
@@ -157,8 +157,8 @@
                     </div>
                     <br/>
                     <div class="col-md-offset-4">
-                        <button class="btn btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                        <button class="btn btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                        <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                        <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
                     </div>
                 </div>
             </form>

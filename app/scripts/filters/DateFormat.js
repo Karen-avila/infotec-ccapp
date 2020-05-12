@@ -3,8 +3,9 @@
         DateFormat: function (dateFilter, localStorageService) {
             return function (input) {
                 if (input) {
+                    const dateFormat = localStorageService.getFromLocalStorage('dateformat');
                     var tDate = new Date(input);
-                    return dateFilter(tDate, localStorageService.getFromLocalStorage('dateformat'));
+                    return dateFilter(tDate, dateFormat);
                 }
                 return '';
             }

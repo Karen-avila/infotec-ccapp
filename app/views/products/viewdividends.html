@@ -8,7 +8,7 @@
     <div class="card well">
         <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control" placeholder="{{'label.input.filterbynameshortname' | translate}}">
         <div class="btn-group pull-right" ng-show="!isdividendPosted">
-            <button type="button" data-ng-click="postDividends()" class="btn btn-primary" has-permission='POST_DIVIDENDS'><i
+            <button type="button" data-ng-click="postDividends()" class="btn btn-sm btn-primary" has-permission='POST_DIVIDENDS'><i
                     class="fa fa-briefcase "></i>&nbsp;&nbsp;{{'label.button.postdividends' | translate}}
             </button>
         </div>
@@ -26,7 +26,7 @@
             <tr class="pointer-main" ng-repeat="dividend in dividendTransactions.currentPageItems | orderBy:'name':reverse | filter:filterText">
                 <td class="pointer">{{dividend.accountData.clientName}}</td>
                 <td class="pointer">{{dividend.accountData.accountNo}}</td>
-                <td class="pointer">{{dividend.amount | number}}</td>
+                <td class="pointer">{{dividend.amount | FormatNumber}}</td>
                 <td class="pointer">{{dividend.status.value}}</td>
             </tr>
             </tbody>

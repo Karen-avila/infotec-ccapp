@@ -7,7 +7,7 @@
     </div>
     <wizard on-finish="submitDatatable()" current-step="step" class="card well">
         <wz-step wz-title="{{ title | translate}}">
-            <form class="form-horizontal" name="loanactionform" novalidate="">
+            <form class="form-horizontal form-extra" name="loanactionform" novalidate="">
                 <fielset>
                     <div ng-show="submittedDatatables.length > 0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
@@ -22,9 +22,9 @@
                             </td>
                             <td ng-show="addDisburseDetails" align="right">
                                 <legend>
-                                    <button type="button" class="btn btn-sm btn-primary" align="right"
-                                        ng-click="addTranches()">{{ 'label.button.add' | translate }}
-                                    </button>
+                                    <md-button type="button" class="btn btn-sm md-raised md-primary" align="right"
+                                        ng-click="addTranches()">{{'label.button.add' | translate }}
+                                    </md-button>
                                 </legend>
                             </td>
                         </tr>
@@ -35,9 +35,10 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <input id="{{modelName}}" sort type="text" datepicker-pop="dd MMMM yyyy"
-                                class="form-control" ng-model="formData[modelName]" min="'2000-01-01'"
-                                max="restrictDate" />
+                            <md-datepicker id="{{modelName}}" ng-model="formData[modelName]" 
+                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                            </md-datepicker>
                         </div>
                     </div>
                     <div class="form-group" ng-show="showApprovalAmount">
@@ -45,13 +46,14 @@
                             class="control-label col-sm-3">{{'label.input.expecteddisbursementon' | translate}}</label>
 
                         <div class="col-sm-6">
-                            <input id="expectedDisbursementDate" sort type="text" class="form-control"
-                                datepicker-pop="dd MMMM yyyy" ng-model="form.expectedDisbursementDate"
-                                min="'2000-01-01'" max="restrictDate" />
+                            <md-datepicker id="expectedDisbursementDate" ng-model="form.expectedDisbursementDate" 
+                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                            </md-datepicker>
                         </div>
                     </div>
                     <div class="form-group" ng-show="showApprovalAmount">
-                        <label class="control-label col-sm-3">{{ 'label.heading.approvedamount' |
+                        <label class="control-label col-sm-3">{{'label.heading.approvedamount' |
                     translate}}</label>
 
                         <div class="col-sm-6">
@@ -60,15 +62,15 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-3" ng-show="approveTranches" style="width: 100%;padding-left: 26px">
-                        <label class="control-label col-sm-3">{{ 'label.heading.tranchedetails' | translate }}</label>
+                        <label class="control-label col-sm-3">{{'label.heading.tranchedetails' | translate }}</label>
 
                         <div>
                             <table style="width:80%" class="table table-bordered">
                                 <tr>
                                     <td colspan="5" align="right">
-                                        <button type="button" class="btn btn-sm btn-primary"
-                                            ng-click="addTranches()">{{ 'label.button.addTranche' | translate }}
-                                        </button>
+                                        <md-button type="button" class="btn btn-sm md-raised md-primary"
+                                            ng-click="addTranches()">{{'label.button.addTranche' | translate }}
+                                        </md-button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,10 +82,10 @@
                                 <tr ng-repeat="details in disbursementDetails">
                                     <td>{{'label.heading.tranche' | translate}}{{$index + 1}}</td>
                                     <td>
-                                        <input id="details[{{$index}}].expectedDisbursementDate" type="text"
-                                            datepicker-pop="dd MMMM yyyy" class="form-control"
-                                            ng-model="details.expectedDisbursementDate" is-open="'openedtranche'+$index"
-                                            min="minDate" max="'2030-06-22'" />
+                                        <md-datepicker id="details[{{$index}}].expectedDisbursementDate" ng-model="details.expectedDisbursementDate" 
+                                            md-placeholder="{{'label.selecttodate' | translate}}"
+                                            md-min-date="minDate" md-max-date="'2030-06-22'">
+                                        </md-datepicker>
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="details[{{$index}}].principal"
@@ -104,7 +106,7 @@
                     </div>
                     <div ng-show="disbursementDetails">
                         <div class="form-group" ng-show="showApprovalAmount">
-                            <label class="control-label col-sm-3" for="approvedAmount">{{ 'label.input.transactionamount' |
+                            <label class="control-label col-sm-3" for="approvedAmount">{{'label.input.transactionamount' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -115,7 +117,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-show="showAmountField">
-                            <label class="control-label col-sm-3" for="transactionAmount">{{ 'label.input.transactionamount' |
+                            <label class="control-label col-sm-3" for="transactionAmount">{{'label.input.transactionamount' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -127,7 +129,7 @@
                         </div>
 
                         <div class="form-group" ng-show="principalPortion">
-                            <label class="control-label col-sm-3" for="principalPortion">{{ 'label.input.principal' |
+                            <label class="control-label col-sm-3" for="principalPortion">{{'label.input.principal' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -137,7 +139,7 @@
                         </div>
 
                         <div class="form-group" ng-show="interestPortion">
-                            <label class="control-label col-sm-3" for="interestPortion">{{ 'label.input.interest' |
+                            <label class="control-label col-sm-3" for="interestPortion">{{'label.input.interest' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -147,7 +149,7 @@
                         </div>
 
                         <div class="form-group" ng-show="feeChargesPortion">
-                            <label class="control-label col-sm-3" for="feeChargesPortion">{{ 'label.input.fees' |
+                            <label class="control-label col-sm-3" for="feeChargesPortion">{{'label.input.fees' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -157,7 +159,7 @@
                         </div>
 
                         <div class="form-group" ng-show="isLoanWriteOff">
-                            <label class="control-label col-sm-3" for="writeOffAmount">{{ 'label.input.amount' |
+                            <label class="control-label col-sm-3" for="writeOffAmount">{{'label.input.amount' |
                         translate}}</label>
 
                             <div class="col-sm-6">
@@ -167,23 +169,23 @@
                         </div>
 
                         <div class="form-group" ng-show="showPenaltyPortionDisplay">
-                            <label class="col-sm-3" for="transactionAmount">{{ 'label.input.payspenaltyportion' |
+                            <label class="col-sm-6 col-md-offset-3" for="transactionAmount">{{'label.input.payspenaltyportion' |
                         translate}}</label>
                         </div>
 
                         <div class="form-group" ng-show="showEMIAmountField">
-                            <label class="control-label col-sm-3" for="fixedEmiAmount">{{ 'label.input.fixedemiamount' |
+                            <label class="control-label col-sm-3" for="fixedEmiAmount">{{'label.input.fixedemiamount' |
                         translate}}</label>
 
                             <div class="col-sm-6">
-                                <input id="transactionAmount" type="text" class="form-control" name="amount"
+                                <input id="fixedEmiAmount" type="text" class="form-control" name="amount"
                                     ng-model="formData.fixedEmiAmount">
                             </div>
                         </div>
                     </div>
                     <div ng-show="isTransaction">
                         <div class="form-group" ng-show="action == 'disburse'">
-                            <label class="control-label col-sm-3" for="fundId">{{ 'label.input.fundsource' |
+                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -195,7 +197,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
-                                for="paymentTypeId">{{ 'label.input.paymenttype' | translate}}</label>
+                                for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
                                 <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
                                     ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
@@ -204,30 +206,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-3"
-                                for="channelId">{{ 'label.input.channel' | translate}}</label>
-                            <div class="col-sm-6">
-                                <select id="channelId" ng-model="formData.channelId" class="form-control"
-                                    ng-options="channel.id as channel.name for channel in channelOptions"
-                                    value="{{channel.id}}">
-                                    <option value="">{{'label.selectachannel' | translate}}</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="form-group" ng-show="action == 'repayment'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
                             <div class="col-sm-3">
                                 <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                                    ng-options="currency.id as currency.name for currency in currencyOptions"
+                                    ng-options="currency.id as currency.name | translate for currency in currencyOptions"
                                     value="{{currency.id}}"></select>
                             </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
-                            <div class="col-sm-3">
-                                <input id="bankRecord" type="text" class="form-control" ng-model="formData.bankRecord">
-                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.idRecord' | translate}}</label>
@@ -236,15 +221,26 @@
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.solidarity' | translate}}</label>
+                            <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
                             <div class="col-sm-3">
-                                <input id="activeCheckbox" type="checkbox" ng-model="formData.isSolidarity">
+                                <input id="bankRecord" type="text" class="form-control" ng-model="formData.bankRecord">
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3"
+                                for="channelId">{{'label.input.channel' | translate}}</label>
+                            <div class="col-sm-6">
+                                <select id="channelId" ng-model="formData.channelId" class="form-control"
+                                    ng-options="channel.id as channel.name for channel in channelOptions"
+                                    value="{{channel.id}}">
+                                    <option value="">{{'label.selectachannel' | translate}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group" ng-show="showNoteField">
-                        <label class="control-label col-sm-3" for="note">{{ 'label.input.note' | translate}}</label>
+                        <label class="control-label col-sm-3" for="note">{{'label.input.note' | translate}}</label>
 
                         <div class="col-sm-6">
                             <textarea id="note" rows="2" class="form-control" ng-model="formData.note"></textarea>
@@ -252,7 +248,7 @@
                     </div>
                     <div class="form-group" ng-show="installmentchargeField">
                         <label class="control-label col-sm-3"
-                            for="note">{{ 'label.input.installment' | translate}}</label>
+                            for="note">{{'label.input.installment' | translate}}</label>
 
                         <div class="col-sm-6">
                             <select id="installmentNumber" ng-model="formData.installmentNumber" class="form-control"
@@ -266,12 +262,13 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <input id="{{modelName}}" class="form-control" type="text" sort
-                                datepicker-pop="dd MMMM yyyy" ng-model="formData.transactionDate" is-open="opened" />
+                            <md-datepicker ng-model="formData.transactionDate" 
+                                md-placeholder="{{'label.selecttodate' | translate}}">
+                            </md-datepicker>
                         </div>
                     </div>
                     <div class="form-group" ng-show="showEditChargeAmount">
-                        <label class="control-label col-sm-3">{{ 'label.input.amount' | translate}}<span
+                        <label class="control-label col-sm-3">{{'label.input.amount' | translate}}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
@@ -283,8 +280,9 @@
                     translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <input id="{{modelName}}" type="text" sort datepicker-pop="dd MMMM yyyy"
-                                class="form-control" ng-model="formData.dueDate" is-open="opened" />
+                            <md-datepicker id="{{modelName}}" ng-model="formData.dueDate" 
+                                md-placeholder="{{'label.selecttodate' | translate}}">
+                            </md-datepicker>
                         </div>
                     </div>
                     <div class="form-group" ng-show="showEditDisburseDate">
@@ -292,12 +290,12 @@
                     translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <input id="{{modelName}}" type="text" sort datepicker-pop="dd MMMM yyyy"
-                                class="form-control" ng-model="formData.updatedExpectedDisbursementDate"
-                                is-open="opened" />
+                            <md-datepicker id="{{modelName}}" ng-model="formData.updatedExpectedDisbursementDate" 
+                                md-placeholder="{{'label.selecttodate' | translate}}">
+                            </md-datepicker>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3">{{ 'label.heading.principal' |
+                            <label class="control-label col-sm-3">{{'label.heading.principal' |
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
@@ -318,11 +316,12 @@
                         <tbody>
                             <tr ng-repeat="disbursementDetail in disbursementDetails">
                                 <td ng-hide="disbursementDetail.id">
-                                    <input id="disbursementDetail[{{$index}}].expectedDisbursementDate" type="text"
-                                        datepicker-pop="dd MMMM yyyy" class="form-control"
-                                        placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        ng-model="disbursementDetail.expectedDisbursementDate"
-                                        is-open="'openedtranche'+$index" min="minDate" max="'2030-06-22'" />
+                                    <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
+                                        ng-model="disbursementDetail.expectedDisbursementDate" 
+                                        md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
+                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        >
+                                    </md-datepicker>
                                 </td>
                                 <td ng-hide="disbursementDetail.id">
                                     <input id="{{disbursementDetail[$index].principal}}" class="form-control"
@@ -345,13 +344,13 @@
                         <tbody>
                             <tr ng-repeat="disbursementDetail in disbursementDetails">
                                 <td>
-                                    <input id="disbursementDetail[{{$index}}].expectedDisbursementDate" type="text"
-                                        datepicker-pop="dd MMMM yyyy" class="form-control"
-                                        placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        ng-model="disbursementDetail.expectedDisbursementDate" ng-disabled="true"
-                                        is-open="'openedtranche'+$index"
-                                        ng-show="disbursementDetail.actualDisbursementDate == null" min="minDate"
-                                        max="'2030-06-22'" />
+                                    <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
+                                        ng-model="disbursementDetail.expectedDisbursementDate" 
+                                        md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
+                                        ng-show="disbursementDetail.actualDisbursementDate == null"
+                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        >
+                                    </md-datepicker>
                                 </td>
                                 <td>
                                     <input id="{{disbursementDetail[$index].principal}}" class="form-control"
@@ -366,33 +365,33 @@
                         </tbody>
                     </table>
                     <div class="">
-                        <button id="save1" wz-next class="btn btn-sm btn-primary pull-right"
+                        <md-button id="save1" wz-next class="btn btn-sm md-raised md-primary pull-right"
                             ng-show="isEntityDatatables">
                             {{'label.button.proceed' | translate}}
-                        </button>
+                        </md-button>
                         <div ng-hide="isEntityDatatables">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
                                 <label
-                                    class="control-label col-sm-2 col-md-offset-10">{{ 'label.areyousure' | translate}}</label>
+                                    class="control-label col-sm-2 col-md-offset-10">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-8 pull-right" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
+                                <md-button type="reset" ng-click="cancel()" class="btn md-raised btn-default">{{'label.button.cancel' |
                             translate}}
-                                </button>
-                                <button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
+                                </md-button>
+                                <md-button type="submit" has-permission='{{taskPermissionName}}' wz-next
+                                    class="btn btn-sm md-raised md-primary">{{
                             'label.button.confirm' |
                             translate}}
-                                </button>
+                                </md-button>
                             </div>
                             <div class="col-md-8 pull-right" ng-hide="showDelete || showwaiveforspecicficduedate">
-                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{ 'label.button.cancel' |
+                                <md-button id="cancel" type="reset" class="btn md-raised btn-default" ng-click="cancel()">{{'label.button.cancel' |
                             translate}}
-                                </button>
-                                <button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
+                                </md-button>
+                                <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
+                                    class="btn btn-sm md-raised md-primary">{{
                             'label.button.save' | translate}}
-                                </button>
+                                </md-button>
                             </div>
                         </div>
                     </div>
@@ -402,7 +401,7 @@
         <wz-step ng-if="isEntityDatatables" ng-repeat="datatable in datatables"
             wz-title="{{datatable.registeredTableName}}">
             <div class="card-content">
-                <form class="form-horizontal">
+                <form class="form-horizontal form-extra">
                     <div ng-show="submittedDatatables.length>0" uib-alert type="success">
                         <span ng-repeat="table in submittedDatatables"><i class="fa fa-check"></i>Entry in ` {{table}} `
                             has been made successfully. If the inputs are changed, the datatable entries will be
@@ -420,16 +419,18 @@
                                 <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
                                     ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
                                     class="form-control" />
-                                <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"
-                                    datepicker-pop="dd MMMM yyyy"
-                                    ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateType.date"
-                                    is-open="opened{{$index}}" class="form-control" />
+                                <md-datepicker ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateType.date" 
+                                    md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
+                                    ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
+                                    >
+                                </md-datepicker>
                                 <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'"
                                     class="form-inline">
                                     <div class="form-group">
-                                        <input type="text" datepicker-pop="dd MMMM yyyy"
-                                            ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateTimeType.date"
-                                            is-open="opened{{$index}}" class="form-control" />
+                                        <md-datepicker ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateTimeType.date" 
+                                            md-placeholder="{{'label.selecttodate' | translate}}"
+                                        >
+                                        </md-datepicker>
                                     </div>
                                     <div class="form-group">
                                         <input type="time" placeholder="HH:MM:SS"
@@ -470,32 +471,32 @@
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
+                            <md-button id="save4" type="submit" class="btn btn-sm md-raised md-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
-                            </button>
+                            </md-button>
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <label class="control-label col-sm-3">{{ 'label.areyousure' | translate}}</label>
+                                <label class="control-label col-sm-3">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-offset-2" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{ 'label.button.cancel' |
+                                <md-button type="reset" ng-click="cancel()" class="btn md-raised btn-default">{{'label.button.cancel' |
                                     translate}}
-                                </button>
-                                <button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
+                                </md-button>
+                                <md-button type="submit" has-permission='{{taskPermissionName}}' wz-next
+                                    class="btn btn-sm md-raised md-primary">{{
                                     'label.button.confirm' |
                                     translate}}
-                                </button>
+                                </md-button>
                             </div>
                             <div class="col-md-offset-2" ng-hide="showDelete || showwaiveforspecicficduedate">
-                                <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{ 'label.button.cancel' |
+                                <md-button id="cancel" type="reset" class="btn md-raised btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                     translate}}
-                                </button>
-                                <button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
+                                </md-button>
+                                <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
+                                    class="btn btn-sm md-raised md-primary">{{
                                     'label.button.save' | translate}}
-                                </button>
+                                </md-button>
                             </div>
                         </div>
                     </fieldset>

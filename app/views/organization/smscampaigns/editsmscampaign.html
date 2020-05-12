@@ -147,7 +147,7 @@
                                         ng-options="selectOption.id as selectOption.name for selectOption in reportParam.selectOptions"
                                         value="{{selectOption.id}}"
                                         class="form-control input-xlarge" ng-init="getDependencies(reportParam)" disabled>
-                                    <option value="">--{{"label.menu.selectone" | translate}}--</option>
+                                    <option value="">{{"label.menu.selectone" | translate}}</option>
                                 </select>
                             </div>
                             <form-validate valattributeform="editsmsform"
@@ -201,7 +201,7 @@
                     <br/>
                     <hr>
                     <div class="">
-                        <button id="save2" type="submit" class="btn btn-primary">{{'label.button.proceed' |
+                        <button id="save2" type="submit" class="btn btn-sm btn-primary">{{'label.button.proceed' |
                             translate}}
                         </button>
                     </div>

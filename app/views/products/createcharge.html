@@ -8,212 +8,206 @@
         <api-validate></api-validate>
         <fieldset>
             <div class="form-group">
-                <label class="control-label col-sm-2">{{'label.input.chargesappliesto' | translate}}<span
+                <label class="control-label col-sm-4">{{'label.input.chargesappliesto' | translate}}<span
                         class="required">*</span></label>
 
-                <div class="col-sm-3">
-                    <select id="chargeAppliesTo" name="chargeappliesto" ng-model="formData.chargeAppliesTo"
-                            ng-options="chargesapply.id as chargesapply.code | translate for chargesapply in template.chargeAppliesToOptions"
-                            value="{{chargesapply.id}}" ng-change="chargeAppliesToSelected(formData.chargeAppliesTo)" class="form-control"
-                            required>
-                        <option value="">{{'label.selectone' | translate}}</option>
-                    </select>
+                <div class="col-sm-4">
+                     <md-select id="chargeAppliesTo" ng-model="formData.chargeAppliesTo" placeholder="{{'label.selectone' | translate}}"
+                            ng-change="chargeAppliesToSelected(formData.chargeAppliesTo)" required>
+                        <md-option ng-repeat="chargesapply in template.chargeAppliesToOptions" 
+                            ng-value="chargesapply.id">
+                            {{chargesapply.code | translate}}
+                        </md-option>
+                     </md-select>
                 </div>
                 <div class="col-sm-2">
                 	<form-validate valattributeform="createchargeform" valattribute="chargeappliesto"/>
                 </div>
             </div>
-            <hr/>
+            <md-divider></md-divider>
             <div ng-show="formData.chargeAppliesTo">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="name">{{'label.input.name' | translate}}<span
+                    <label class="control-label col-sm-4" for="name">{{'label.input.name' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <input name="name" type="text" id="name" ng-model="formData.name" class="form-control" required late-Validate/>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                        <input name="name" type="text" id="name" ng-model="formData.name" class="form-control uppercase" required late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="name"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{'label.input.currency' | translate}}<span
+                    <label class="control-label col-sm-4">{{'label.input.currency' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <select id="currencyCode" name="currency" ng-model="formData.currencyCode"
-                                ng-options="currency.code as currency.name for currency in template.currencyOptions"
-                                value="{{currency.code}}" class="form-control" required>
-                            <option value="">{{'label.selectcurrency' | translate}}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <form-validate valattributeform="createchargeform" valattribute="currency"/>
+                    <div class="col-sm-4">
+                         <md-select id="currencyCode" ng-model="formData.currencyCode" placeholder="{{'label.selectcurrency' | translate}}" required>
+                            <md-option ng-repeat="currency in template.currencyOptions" 
+                                ng-value="currency.code">
+                                {{currency.code}} {{currency.name | translate}}
+                            </md-option>
+                         </md-select>
+                         <form-validate valattributeform="createchargeform" valattribute="currency"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{'label.input.chargetimetype' | translate}}<span
+                    <label class="control-label col-sm-4">{{'label.input.chargetimetype' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <select id="chargeTimeType" name="chargetimetype" ng-model="formData.chargeTimeType"
-                                ng-options="timetype.id as timetype.code | translate for timetype in chargeTimeTypeOptions"
-                                value="{{timetype.id}}" ng-change="chargeTimeChange(formData.chargeTimeType)" class="form-control" required>
-                            <option value="">{{'label.selectone' | translate}}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                         <md-select id="chargeTimeType" ng-model="formData.chargeTimeType" placeholder="{{'label.selectone' | translate}}"
+                            ng-change="chargeTimeChange(formData.chargeTimeType)" required>
+                            <md-option ng-repeat="timetype in chargeTimeTypeOptions"
+                                ng-value="timetype.id">
+                                {{timetype.code | translate}}
+                            </md-option>
+                         </md-select>
                         <form-validate valattributeform="createchargeform" valattribute="chargetimetype"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{'label.input.chargecalculation' | translate}}<span
+                    <label class="control-label col-sm-4">{{'label.input.chargecalculation' | translate}}<span
                             class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <select id="chargeCalculationType" name="chargecalculation"
-                                ng-model="formData.chargeCalculationType"
-                                ng-options="chargecalculation.id as chargecalculation.code | translate for chargecalculation in chargeCalculationTypeOptions | filter:filterChargeCalculations(formData.chargeTimeType)"
-                                value="{{chargecalculation.id}}" class="form-control" required>
-                            <option value="">{{'label.selectone' | translate}}</option>
-                        </select>
-                    </div>
-                     <div class="col-sm-3">
+                    <div class="col-sm-4">
+                         <md-select id="chargeCalculationType" ng-model="formData.chargeCalculationType"
+                         placeholder="{{'label.selectone' | translate}}" required ng-change="chargeCalculationTypeSelected(formData.chargeCalculationType)" >
+                            <md-option ng-repeat="chargecalculation in chargeCalculationTypeOptions | filter:filterChargeCalculations(formData.chargeTimeType)"
+                                ng-value="chargecalculation.id">
+                                {{chargecalculation.code | translate}}
+                            </md-option>
+                         </md-select>
                         <form-validate valattributeform="createchargeform" valattribute="chargecalculation"/>
                     </div>
                 </div>
+                <div class="form-group" ng-show="showAnnual">
+					<div class="col-md-offset-4">
+                        <md-checkbox id="isannual" ng-model="formData.annual">
+                            {{'label.input.isannual' | translate }}
+                        </md-checkbox>
+                    </div>
+                </div>
                 <div class="form-group" ng-show="showChargePaymentByField">
-                    <label class="control-label col-sm-2">{{'label.input.chargepaymentby' | translate}}<span
+                    <label class="control-label col-sm-4">{{'label.input.chargepaymentby' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <select id="chargePaymentMode" name="showchargepaymentbyfield"
-                                ng-model="formData.chargePaymentMode"
-                                ng-options="chargepayment.id as chargepayment.code | translate for chargepayment in template.chargePaymetModeOptions"
-                                value="{{chargepayment.id}}" ng-required="showChargePaymentByField" class="form-control">
-                            <option value="">{{'label.selectone' | translate}}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                         <md-select id="chargePaymentMode" placeholder="{{'label.selectone' | translate}}"
+                                ng-model="formData.chargePaymentMode" ng-required="showChargePaymentByField">
+                            <md-option ng-repeat="chargepayment in template.chargePaymetModeOptions"
+                                ng-value="chargepayment.id">
+                                {{chargepayment.code | translate}}
+                            </md-option>
+                         </md-select>
                         <form-validate valattributeform="createchargeform" valattribute="showchargepaymentbyfield"/>
                     </div>
                 </div>
                 <div class="form-group" ng-show="showdatefield">
-                    <label class="control-label col-sm-2">{{'label.input.duedate' | translate}}<span
+                    <label class="control-label col-sm-4">{{'label.input.duedate' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <input id="duedate" type="text" datepicker-pop="dd MMMM" ng-model="first.date" is-open="opened"
-                               min="minDate" max="'2030-06-22'" class="form-control"/>
+                    <div class="col-sm-4">
+                        <md-datepicker id="duedate" ng-model="first.date"" 
+                            md-placeholder="{{'label.selecttodate' | translate}}"
+                            md-min-date="minDate" md-max-date="'2030-06-22'">
+                        </md-datepicker>
                     </div>
                 </div>
                 <div class="form-group" ng-show="showFrequencyOptions">
-                	<label class="control-label col-sm-2">{{ 'label.input.addfeefrequency' | translate }}&nbsp;</label>
-					<div class="col-sm-3">
-                        <label class="checkbox">
-							<input id="addfeefrequency" type="checkbox" ng-model="addfeefrequency" ng-true-value="true"
-                                   ng-false-value="false">
-						</label>
-					</div>
+					<div class="col-md-offset-4">
+                        <md-checkbox id="addfeefrequency" ng-model="addfeefrequency">
+                            {{'label.input.addfeefrequency' | translate }}
+                        </md-checkbox>
+                    </div>
                 </div>
-
                 <div class="form-group" ng-show="addfeefrequency ">
-                    <label class="control-label col-sm-2" for="feeFrequency">{{'label.input.feefrequency' | translate}}<span
+                    <label class="control-label col-sm-4" for="feeFrequency">{{'label.input.feefrequency' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <select id="feeFrequency" name="feeFrequency" ng-model="formData.feeFrequency"
-	                            ng-options="frequency.id as frequency.value | translate for frequency in template.feeFrequencyOptions"
-	                            value="{{frequency.id}}" class="form-control">
-	                        <option value="">{{'label.selectone' | translate}}</option>
-	                    </select>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                         <md-select id="feeFrequency" ng-model="formData.feeFrequency" placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="frequency in template.feeFrequencyOptions"
+                                ng-value="frequency.id">
+                                {{frequency.value | translate}}
+                            </md-option>
+	                     </md-select>
                     	<form-validate valattributeform="createchargeform" valattribute="chargeappliesto"/>
                     </div>
                 </div>
                 <div class="form-group" ng-show="addfeefrequency">
-                    <label class="control-label col-sm-2" for="feeInterval">{{'label.input.frequencyInterval' | translate}}<span
+                    <label class="control-label col-sm-4" for="feeInterval">{{'label.input.frequencyInterval' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="text"
+                    <div class="col-sm-4">
+                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="number"
                                ng-model="formData.feeInterval" late-Validate/>
-                    </div>
-                    <div class="col-sm-3">
                         <form-validate valattributeform="createchargeform" valattribute="feeIntervalLoan"/>
                     </div>
                 </div>
                 <div class="form-group" ng-show="repeatEvery">
-                    <label class="control-label col-sm-2" for="feeInterval">{{'label.input.repeatsevery' | translate}}<span
+                    <label class="control-label col-sm-4" for="feeInterval">{{'label.input.repeatsevery' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="text"
+                    <div class="col-sm-4">
+                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="number"
                                ng-model="formData.feeInterval" ng-required="repeatEvery" late-Validate/>
                     </div>
-                    <div class="col-sm-3 paddingleft0px">
+                    <div class="col-sm-4 paddingleft0px">
                         {{repeatsEveryLabel | translate}}
                         <form-validate valattributeform="createchargeform" valattribute="feeInterval"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="amount">{{'label.input.amount' | translate}}<span
+                    <label class="control-label col-sm-4" for="amount">{{'label.input.amount' | translate}}<span
                             class="required">*</span></label>
 
-                    <div class="col-sm-3">
-                        <input id="amount" name="amount" type="text" ng-model="formData.amount" class="form-control" number-format required late-Validate/>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                        <input id="amount" name="amount" type="number" ng-model="formData.amount" class="form-control" required late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="amount"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="active">{{'label.input.active' | translate}}</label>
-
-                    <div class="col-sm-3">
-                        <label class="checkbox">
-                            <input id="active" type="checkbox" ng-model="formData.active" data-ng-change="setChoice()">
-                        </label>
+					<div class="col-md-offset-4">
+                        <md-checkbox id="active" ng-model="formData.active">
+                            {{'label.input.active' | translate }}
+                        </md-checkbox>
                     </div>
                 </div>
                 <div class="form-group" ng-show="showPenalty">
-                    <label class="control-label col-sm-2" for="ispenalty">{{'label.input.ispenalty' | translate}}</label>
-
-                    <div class="col-sm-3">
-                        <label class="checkbox">
-                            <input id="ispenalty" type="checkbox" ng-model="formData.penalty" ng-true-value="true"
-                                   ng-false-value="false">
-                        </label>
+					<div class="col-md-offset-4">
+                        <md-checkbox id="ispenalty" ng-model="formData.penalty" ng-change="setChoice()">
+                            {{'label.input.ispenalty' | translate }}
+                        </md-checkbox>
                     </div>
                 </div>
                 <div class="form-group" ng-show="showGLAccount">
-                    <label class="control-label col-sm-2">{{ 'label.input.incomefromcharges' | translate }}</label>
-                    <div class="col-sm-3">
-                        <select id="incomeOrLiabilityAccountId" ng-model="formData.incomeAccountId"
-                                chosen="incomeAndLiabilityAccountOptions"
-                                ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAndLiabilityAccountOptions"
-                                value="{{incomeAccount.id}}">
-                        </select>
+                    <label class="control-label col-sm-4">{{'label.input.incomefromcharges' | translate }}</label>
+                    <div class="col-sm-4">
+                         <md-select id="incomeOrLiabilityAccountId" ng-model="formData.incomeAccountId"
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat='incomeAccount in incomeAndLiabilityAccountOptions'
+                                ng-value="incomeAccount.id">
+                                {{incomeAccount.glCode}} {{incomeAccount.name}}
+                            </md-option>
+                         </md-select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{ 'label.input.taxgroup' | translate }}</label>
-                    <div class="col-sm-3">
-                        <select id="taxGroupId" ng-model="formData.taxGroupId"
-                                chosen="template.taxGroupOptions"
-                                ng-options="taxGroup.id as taxGroup.name for taxGroup in template.taxGroupOptions"
-                                value="{{taxGroup.id}}">
-                        </select>
+                    <label class="control-label col-sm-4">{{'label.input.taxgroup' | translate }}</label>
+                    <div class="col-sm-4">
+                         <md-select id="taxGroupId" ng-model="formData.taxGroupId" placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="taxGroup in template.taxGroupOptions"
+                                ng-value="taxGroup.id">
+                                {{taxGroup.name}}
+                            </md-option>
+                         </md-select>
                     </div>
                 </div>
-                <div class="col-md-offset-3">
-                    <a id="cancel" href="#!/charges">
-                        <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
-                    </a>
-                    <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_CHARGE'>
-                        {{'label.button.save' | translate}}
-                    </button>
+                <md-divider></md-divider>
+                <div class="col-md-12 center">
+                    <md-button id="cancel" type="reset" class="md-raised"
+                        ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+                    <md-button id="save" class="md-raised md-primary" ng-click="submit()" has-permission='CREATE_CHARGE'>
+                        {{'label.button.save' | translate }}
+                    </md-button>
                 </div>
             </div>
         </fieldset>

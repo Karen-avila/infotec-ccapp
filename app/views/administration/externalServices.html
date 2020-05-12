@@ -1,58 +1,83 @@
 <div class="content-container" ng-controller="ExternalServicesController">
-    <ul class="breadcrumb">
-        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
-        <li class="active">{{'label.anchor.externalServices' | translate}}</li>
-    </ul>
+  <ul class="breadcrumb">
+    <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+    <li class="active">{{'label.anchor.externalServices' | translate}}</li>
+  </ul>
 
-    <div class="card">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" has-permission="READ_CONFIGURATION" href="#!/externalservices/S3">
-                            <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-cloud"></i>&nbsp;&nbsp;{{'label.anchor.externalServices'
-                                | translate}}</h4>
-                                <p class="list-group-item-text">{{'label.S3.description' | translate}}</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <div class="list-group">
-                            <a class="list-group-item" has-permission="READ_CONFIGURATION" href="#!/externalservices/SMTP">
-                                <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-envelope"></i>&nbsp;&nbsp;{{'label.anchor.externalServices'
-                                    | translate}}</h4>
-                                    <p class="list-group-item-text">{{'label.SMTP.description' | translate}}</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="card">
+    <div class="content">
+        <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+            <div class="col-sm-6 col-md-6">
+                <a class="list-group-item no-border"
+                has-permission="READ_CONFIGURATION"
+                href="#!/externalservices/S3">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <span>
+                            <h5 class="list-group-item-heading">
+                                <i class="fa fa-large fa fa-cloud"></i
+                                >&nbsp;&nbsp;{{'label.anchor.externalServices' | translate}}
+                            </h5>
+                            <p class="list-group-item-text">{{'label.S3.description' | translate}}</p>
+                        </span> 
+                    </md-whiteframe>
+                </a>
+                <a class="list-group-item no-border"
+                has-permission="READ_CONFIGURATION"
+                href="#!/externalservices/nextcloud">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <span>
+                            <h5 class="list-group-item-heading">
+                                <i class="fa fa-large fa fa-cloud"></i
+                                >&nbsp;&nbsp;{{'label.anchor.externalServices' | translate}}
+                            </h5>
+                            <p class="list-group-item-text">{{'label.nextcloud.description' | translate}}</p>
+                        </span> 
+                    </md-whiteframe>
+                </a>
+                <a class="list-group-item no-border"
+                has-permission="READ_CONFIGURATION"
+                href="#!/externalservices/SMTP">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <span>
+                            <h5 class="list-group-item-heading">
+                                <i class="fa fa-large fa fa-envelope"></i
+                                >&nbsp;&nbsp;{{'label.anchor.externalServices' | translate}}
+                            </h5>
+                            <p class="list-group-item-text">{{'label.SMTP.description' | translate}}</p>
+                         </span> 
+                    </md-whiteframe>
+               </a>
             </div>
 
-    <div class="card">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" has-permission="READ_CONFIGURATION" href="#!/externalservices/SMS">
-                            <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-envelope"></i>&nbsp;&nbsp;{{'label.anchor.externalServices'
-                                | translate}}</h4>
+            <div class="col-sm-6 col-md-6">
+                <a class="list-group-item no-border"
+                has-permission="READ_CONFIGURATION"
+                href="#!/externalservices/SMS">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <span>
+                            <h5 class="list-group-item-heading">
+                                <i class="fa fa-large fa fa-envelope"></i
+                                >&nbsp;&nbsp;{{'label.anchor.externalServices' | translate}}
+                            </h5>
                             <p class="list-group-item-text">{{'label.SMS.description' | translate}}</p>
-                        </a>
-                    </div>
-                </div>                
-                <div class="col-sm-6 col-md-6">
-                        <div class="list-group">
-                            <a class="list-group-item" has-permission="READ_CONFIGURATION" href="#!/externalservices/NOTIFICATION">
-                                <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-envelope"></i>&nbsp;&nbsp;{{'label.anchor.externalServices'
-                                    | translate}}</h4>
-                                    <p class="list-group-item-text">{{'label.NOTIFICATION.description' | translate}}</p>
-                                </a>
-                            </div>
-                        </div>
-                </div>
+                        </span> 
+                    </md-whiteframe>
+                </a>
+                <a class="list-group-item no-border"
+                has-permission="READ_CONFIGURATION"
+                href="#!/externalservices/NOTIFICATION">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <span>
+                            <h5 class="list-group-item-heading">
+                                <i class="fa fa-large fa fa-envelope"></i
+                                >&nbsp;&nbsp;{{'label.anchor.externalServices' | translate}}
+                            </h5>
+                            <p class="list-group-item-text">{{'label.NOTIFICATION.description' | translate}}</p>
+                        </span> 
+                    </md-whiteframe>
+                </a>
             </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
-

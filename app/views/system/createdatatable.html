@@ -7,14 +7,14 @@
     <div class="card">
     	<div class="content">
     		<div class="toolbar">
-    			<h4>{{ 'label.heading.createdatatable' | translate }}</h4>
+    			<h4>{{'label.heading.createdatatable' | translate }}</h4>
     		</div>
-    		<form name="createdatatableform" novalidate="" class="form-horizontal" ng-controller="CreateDataTableController" rc-submit="submit()">
+    		<form name="createdatatableform" novalidate="" class="form-horizontal form-extra" ng-controller="CreateDataTableController" rc-submit="submit()">
     		    <api-validate></api-validate>
     		    <fieldset>
     		        <div class="form-group">
 						<div class="col-sm-2">
-							<label class="control-label" for="datatableName">{{ 'label.input.datatablename' | translate }}<span
+							<label class="control-label" for="datatableName">{{'label.input.datatablename' | translate }}<span
 									class="required">*</span></label>
 						</div>
     		            <div class="col-sm-4">
@@ -25,7 +25,7 @@
     		        </div>
     		        <div class="form-group">
 						<div class="col-sm-2">
-							<label class="control-label" for="apptableName">{{ 'label.input.apptablename' | translate }}<span
+							<label class="control-label" for="apptableName">{{'label.input.apptablename' | translate }}<span
 									class="required">*</span></label>
 						</div>
 						<div class="col-sm-4">
@@ -45,18 +45,18 @@
 						<div class="col-sm-2" />
 						<div class="col-sm-4">
     		            	 <input type="checkbox" ng-model="formData.multiRow"/>
-							 <label class="control-label">{{ 'label.input.multirow' | translate }}</label>
+							 <label class="control-label">{{'label.input.multirow' | translate }}</label>
 						</div>
 					</div>
     		        <div class="form-group">
 						<div class="col-sm-2" />
 						<div class="col-sm-4">
 							<input type="checkbox" ng-model="formData.scoring"/>
-							<label class="control-label">{{ 'label.input.scoring' | translate }}</label>
+							<label class="control-label">{{'label.input.scoring' | translate }}</label>
 						</div>
     		        </div>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2">{{ 'label.input.addcolumns' | translate }}<span
+    		            <label class="control-label col-sm-2">{{'label.input.addcolumns' | translate }}<span
     		                    class="required">*</span></label>
 
     		            <div class="row">
@@ -78,11 +78,11 @@
     				            </select>
     						</div>
     		                <div class="col-sm-3">
-    		                    <a class="btn btn-primary" ng-click="addColumn()"><i class="fa fa-plus "></i></a>
+    		                    <a class="btn btn-sm btn-primary" ng-click="addColumn()"><i class="fa fa-plus "></i></a>
     		                    <span ng-show="createdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
     		                    <small class="error"
     		                           ng-show="createdatatableform.columnname.$error.req || columnnameerror || columntypeerror || rc.createdatatableform.attempted">
-    		                        {{ 'label.'+labelerror | translate }}
+    		                        {{'label.'+labelerror | translate }}
     		                    </small>
     		                    </span>
     		                </div>
@@ -92,7 +92,7 @@
     		        <table ng-show="columns.length > 0" class="width100">
     		            <tr class="form-group">
     		                <td class="width11">
-    		                    <label class="control-label col-sm-2"><h4>{{ 'label.heading.columns' | translate }}</h4></label>
+    		                    <label class="control-label col-sm-2"><h4>{{'label.heading.columns' | translate }}</h4></label>
     		                </td>
     		                <td class="blockquoteresult width86">
     		                    <table ng-show="columns.length > 0" class="table width100">
@@ -145,11 +145,11 @@
     		                </td>
     		            </tr>
     		        </table>
-    		        <div class="col-md-offset-3">
+    		        <div class="col-md-12 center">
     		            <a id="cancel" href="#!/datatables">
-    		                <button type="reset" class="btn btn-default">{{ 'label.button.cancel' | translate }}</button>
+    		                <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
     		            </a>
-    		            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_DATATABLE'>{{ 'label.button.save' | translate }}</button>
+    		            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_DATATABLE'>{{'label.button.save' | translate }}</button>
     		        </div>
     		    </fieldset>
     		</form>

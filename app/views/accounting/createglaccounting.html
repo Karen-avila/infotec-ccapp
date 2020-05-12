@@ -19,12 +19,12 @@
 						value="{{accountType.id}}" ng-change="changeType()" required="required">
 					</select>
 				</div>
-				<label class="control-label col-sm-3" for="parentId">{{'label.input.parent' | translate}}</label>
-				<div class="col-sm-3">
+				<label class="control-label col-sm-2" for="parentId">{{'label.input.accounting.parent' | translate}}</label>
+				<div class="col-sm-4">
 					<select id="parentId" ng-model="formData.parentId" class="form-control"
-						ng-options="headerType.id as headerType.name for headerType in headerTypes"
+						ng-options='headerType.id as (headerType.glCode + " " + headerType.name) for headerType in headerTypes'
 						value="{{headerType.id}}">
-						<option value="">{{'label.selectparent' | translate}}</option>
+						<option value="">{{'label.accounting.selectparent' | translate}}</option>
 					</select>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 				<label class="control-label col-sm-3">{{'label.input.accountname' | translate}}<span
 						class="required">*</span></label>
 				<div class="col-sm-3">
-					<input id="name" type="text" name="name" ng-model="formData.name" class="form-control" required
+					<input id="name" type="text" name="name" ng-model="formData.name" class="form-control uppercase" required
 						late-Validate />
 					<form-validate valattributeform="createglaccountingform" valattribute="name" />
 				</div>
@@ -48,27 +48,26 @@
 				<label class="control-label col-sm-3 " for="usage">{{'label.input.accountusage' | translate}}</label>
 
 				<div class="col-sm-3">
-					<select id="usage" ng-model="formData.usage" class="form-control">
-						<option ng-repeat="usageType in usageTypes" value="{{usageType.id}}">
-							{{''+usageType.code+'' | translate}}</option>
+					<select id="usage" ng-model="formData.usage" class="form-control"
+                    ng-options="usageType.id as usageType.value | translate for usageType in usageTypes" value="{{usageType.id}}">
+                    <option value="">{{'label.selectuse' | translate}}</option>
 					</select>
 				</div>
 				<label class="control-label col-sm-3" for="tagId">{{'label.input.tag' | translate}}</label>
 				<div class="col-sm-3">
 					<select id="tagId" ng-model="formData.tagId" class="form-control"
 						ng-options="type.id as type.name for type in types" value="{{type.id}}">
-						<option value="">{{'label.selecttag' | translate}}</option>
 					</select> </div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="manualEntriesAllowed">{{'label.input.manualentriesallowed' |
-	                translate}}</label>
-
-				<div class="col-sm-3">
-					<label class="checkbox">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-1">
+					<label class="checkbox right">
 						<input id="manualEntriesAllowed" type="checkbox" ng-model="formData.manualEntriesAllowed">
 					</label>
 				</div>
+				<label class="control-label col-sm-3 left" for="manualEntriesAllowed">{{'label.input.manualentriesallowed' |
+	                translate}}</label>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3"
@@ -76,10 +75,10 @@
 
 				<div class="col-sm-8">
 					<textarea id="description" name="description" ng-model="formData.description" rows="8" cols=""
-						class="form-control"></textarea>
+						class="form-control uppercase"></textarea>
 				</div>
 			</div>
-			<div class="col-md-offset-5">
+			<div class="col-md-12 center">
 				<a id="cancel" ng-href="{{cancel}}" class="btn btn-default btn-sm">{{'label.button.cancel' | translate}}</a>
 				<button id="save" type="submit" class="btn btn-primary btn-sm"
 					has-permission='CREATE_GLACCOUNT'>{{'label.button.save' | translate}}</button>

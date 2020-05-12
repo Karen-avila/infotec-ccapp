@@ -21,7 +21,7 @@
                                 <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
                                     ng-options="office.id as office.name for office in offices" value="{{office.id}}"
                                     ng-change="changeOffice()">
-                                    <option value="">--{{'label.menu.selectoffice' | translate}}--</option>
+                                    <option value="">{{'label.menu.selectoffice' | translate}}</option>
                                 </select>
                             </div>
                         </div> &nbsp; &nbsp; &nbsp;
@@ -30,7 +30,7 @@
                             <select chosen="staffs" id="staffId" ng-model="formData.staffId" class="form-control"
                                 ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}"
                                 ng-change="changeStaff()">
-                                <option value="">--{{'label.menu.selectloanofficer' | translate}}--</option>
+                                <option value="">{{'label.menu.selectloanofficer' | translate}}</option>
                             </select>
                         </div>
                         <a  class='btn btn-sm btn-primary'
@@ -67,7 +67,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'label.heading.documents' | translate}}</h3>
-            <button style="margin-left:1050px;" type="button" class="btn btn-primary" ng-click="refreshImportTable()">
+            <button style="margin-left:1050px;" type="button" class="btn btn-sm btn-primary" ng-click="refreshImportTable()">
                 <i class="fa fa-repeat "></i> {{'label.button.refresh' | translate}}
             </button>
         </div>
@@ -75,14 +75,14 @@
             <table class="table">
                 <thead>
                     <tr class="graybg">
-                        <th>{{ 'label.heading.name' | translate }}</th>
-                        <th>{{ 'label.heading.importtime' | translate }}</th>
-                        <th>{{ 'label.heading.endtime' | translate }}</th>
-                        <th>{{ 'label.heading.completed' | translate }}</th>
-                        <th>{{ 'label.heading.totalrecords' | translate }}</th>
-                        <th>{{ 'label.heading.successcount' | translate }}</th>
-                        <th>{{ 'label.heading.failurecount' | translate }}</th>
-                        <th>{{ 'label.button.download' | translate }}</th>
+                        <th>{{'label.heading.name' | translate }}</th>
+                        <th>{{'label.heading.importtime' | translate }}</th>
+                        <th>{{'label.heading.endtime' | translate }}</th>
+                        <th>{{'label.heading.completed' | translate }}</th>
+                        <th>{{'label.heading.totalrecords' | translate }}</th>
+                        <th>{{'label.heading.successcount' | translate }}</th>
+                        <th>{{'label.heading.failurecount' | translate }}</th>
+                        <th>{{'label.button.download' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
