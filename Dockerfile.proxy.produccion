@@ -6,7 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& dpkg-reconfigure --frontend noninteractive tzdata dos2unix \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ./nginx.preproduccion.conf /etc/nginx/nginx.conf
+COPY ./nginx.produccion.conf /etc/nginx/nginx.conf
 
 COPY ./options-ssl-nginx.conf /etc/nginx/options-ssl-nginx.conf
 
