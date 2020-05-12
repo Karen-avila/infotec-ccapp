@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, uiConfigService, WizardHandler) {
+        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, uiConfigService) {
             scope.previewRepayment = false;
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
@@ -14,7 +14,6 @@
             scope.formDat = {};
             scope.datatables = [];
             scope.noOfTabs = 1;
-            scope.step = '-';
             scope.formData.datatables = [];
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
@@ -24,12 +23,35 @@
             scope.disabled = true;
 
             scope.date.first = new Date();
+            scope.date.second = new Date();
+
+            scope.maxStep = 3;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+            }
+        
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
+            }
 
             if (scope.clientId) {
                 scope.inparams.clientId = scope.clientId;
                 scope.formData.clientId = scope.clientId;
             }
-
 
             if (scope.groupId) {
                 scope.inparams.groupId = scope.groupId;
@@ -61,10 +83,7 @@
             });
 
             scope.loanProductChange = function (loanProductId) {
-                // _.isUndefined(scope.datatables) ? scope.tempDataTables = [] : scope.tempDataTables = scope.datatables;
-                // WizardHandler.wizard().removeSteps(1, scope.tempDataTables.length);
                 scope.inparams.productId = loanProductId;
-                // scope.datatables = [];
                 resourceFactory.loanResource.get(scope.inparams, function (data) {
                     scope.loanaccountinfo = data;
                     scope.previewClientLoanAccInfo();
@@ -76,10 +95,6 @@
                 resourceFactory.loanResource.get({resourceType: 'template', templateType: 'collateral', productId: loanProductId, fields: 'id,loanCollateralOptions'}, function (data) {
                     scope.collateralOptions = data.loanCollateralOptions || [];
                 });
-            }
-
-            scope.goNext = function(form){
-                WizardHandler.wizard().checkValid(form);
             }
 
             scope.handleDatatables = function (datatables) {
@@ -319,10 +334,6 @@
             };
 
             scope.submit = function () {
-                // if (WizardHandler.wizard().getCurrentStep() != scope.noOfTabs) {
-                //     WizardHandler.wizard().next();
-                //     return;
-                // }
                 // Make sure charges and collaterals are empty before initializing.
                 delete scope.formData.charges;
                 delete scope.formData.collateral;
@@ -412,7 +423,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'UIConfigService', 'WizardHandler', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
+    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'UIConfigService', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
         $log.info("NewLoanAccAppController initialized");
     });
 }(mifosX.controllers || {}));

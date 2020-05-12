@@ -230,8 +230,10 @@
 					</small>
 				</h3>
 			</div>
-			<uib-tabset class="scrollable" tabset-name="clientTabset" scrollable persistent-tab>
-				<uib-tab heading="{{'label.heading.general' | translate}}">
+			<md-tabs md-dynamic-height md-border-bottompersistent-tab>
+				<md-tab>
+                    <md-tab-label>{{'label.heading.general' | translate}}</md-tab-label>
+                    <md-tab-body>
 					<div class="col-md-12 col-sm-12 btn-group row">
 						<a href="{{button.href}}/{{client.id}}/{{button.subhref}}" class="btn btn-sm btn-primary btn-offset"
 							has-permission='{{button.taskPermissionName}}'
@@ -537,7 +539,7 @@
 											<th>{{'label.heading.savingaccount' | translate}}</th>
 											<th>{{'label.heading.lastActive' | translate}}</th>
 											<th class="center">{{'label.heading.balance' | translate}}</th>
-											<th>Actions</th>
+											<th>{{'label.heading.actions' | translate}}</th>
 										</tr>
 										<tr class="pointer-main"
 											ng-repeat="savingaccount in clientAccounts.savingsAccounts | orderBy:'id':true | filter:isSavingNotClosed">
@@ -647,7 +649,7 @@
 											<th>{{'label.heading.shareaccount' | translate}}</th>
 											<th class="center">{{'label.heading.approvedshares' | translate}}</th>
 											<th class="center">{{'label.heading.pendingforapproval' | translate}}</th>
-											<th>Actions</th>
+											<th>{{'label.heading.actions' | translate}}</th>
 										</tr>
 										<tr class="pointer-main"
 											ng-repeat="shareaccount in clientAccounts.shareAccounts | orderBy:'id':true | filter:isShareNotClosed">
@@ -708,7 +710,7 @@
 											<th>{{'label.heading.shareaccount' | translate}}</th>
 											<th class="center">{{'label.heading.approvedshares' | translate}}</th>
 											<th class="center">{{'label.heading.pendingforapproval' | translate}}</th>
-											<th>Actions</th>
+											<th>{{'label.heading.actions' | translate}}</th>
 										</tr>
 										<tr class="pointer-main"
 											ng-repeat="shareaccount in clientAccounts.shareAccounts | orderBy:'id':true | filter:isShareClosed">
@@ -1203,11 +1205,13 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
-				</uib-tab>
+                    </div>
+                    </md-tab-body>
+				</md-tab>
 
-				<uib-tab heading="{{'label.heading.identities' | translate}}" select="getClientIdentityDocuments()"
-					has-permission='READ_CLIENTIDENTIFIER'>
+				<md-tab select="getClientIdentityDocuments()" has-permission='READ_CLIENTIDENTIFIER'>
+                    <md-tab-label>{{'label.heading.identities' | translate}}</md-tab-label>
+                    <md-tab-body>
 					<div class="pull-right btn-group">
 						<a href="#!/addclientidentifier/{{client.id}}" class="btn btn-sm btn-primary"
 							has-permission='CREATE_CLIENTIDENTIFIER'><i class="fa fa-plus "></i>{{
@@ -1249,15 +1253,17 @@
 								</td>
 							</tr>
 						</tbody>
-					</table>
-				</uib-tab>
+                    </table>
+                    </md-tab-body>
+				</md-tab>
 
-				<uib-tab heading="{{'label.heading.documents' | translate}}" select="getClientDocuments()"
-					has-permission='READ_DOCUMENT'>
+				<md-tab select="getClientDocuments()" has-permission='READ_DOCUMENT'>
+                    <md-tab-label>{{'label.heading.documents' | translate}}</md-tab-label>
+                    <md-tab-body>
 					<div class="pull-right">
 						<a href="#!/addclientdocument/{{client.id}}" class="btn btn-sm btn-primary"
 							has-permission='CREATE_DOCUMENT'><i class="fa fa-plus "></i>
-							{{'label.button.upload' | translate}}</a>
+							{{'label.button.add' | translate}}</a>
 					</div>
 					<br>
 					<table class="table" ng-show="clientdocuments.length > 0">
@@ -1289,12 +1295,15 @@
 					<div style="padding-left: 25%;">
 						<object height="60%" width="70%" ng-show="preview" data="{{fileUrl}}"
 							type="{{fileType}}"></object>
-					</div>
-				</uib-tab>
+                    </div>
+                    </md-tab-body>
+				</md-tab>
 
-				<uib-tab heading="{{'label.heading.notes' | translate }}" has-permission='READ_CLIENTNOTE'>
-					<br />
-					<form class="form">
+				<md-tab has-permission='READ_CLIENTNOTE'>
+                    <md-tab-label>{{'label.heading.notes' | translate}}</md-tab-label>
+                    <md-tab-body>
+                    <br />
+					<form class="form form-extra">
 						<div class="form-group">
 							<textarea rows="1" class="form-control marginbottom0px" id="textarea"
 								placeholder="{{'label.input.enternote' | translate}}" ng-model="formData.note">
@@ -1302,7 +1311,8 @@
 							<div class="notewrapper col-sm-12 col-md-12">
 								<span class="pull-right noteaddbuttonwrapper">
 									<button class="btn btn-sm btn-primary" type="submit" ng-click="saveNote()"
-										has-permission='CREATE_CLIENTNOTE'>{{'label.button.add' |translate}}
+                                        has-permission='CREATE_CLIENTNOTE'><i class="fa fa-plus "></i>
+                                        {{'label.button.add' |translate}}
 									</button>
 								</span>
 							</div>
@@ -1325,9 +1335,10 @@
 							<small>{{'label.createdon' | translate}}
 								:&nbsp;{{clientNote.createdOn | DateFormat}}</small>
 						</blockquote>
-					</div>
-				</uib-tab>
-			</uib-tabset>
+                    </div>
+                    </md-tab-body>
+				</md-tab>
+			</md-tabs>
 		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, Idle, tmhDynamicLocale,
-            uiConfigService, $http) {
+            uiConfigService, $http, mdDateLocale) {
             $http.get('release.json').then(function (data) {
                 scope.version = data.data.version;
                 scope.releasedate = data.data.releasedate;
@@ -469,6 +469,7 @@
         'tmhDynamicLocale',
         'UIConfigService',
         '$http',
+        '$mdDateLocale',
         mifosX.controllers.MainController
     ]).run(function ($log) {
         $log.info("MainController initialized");

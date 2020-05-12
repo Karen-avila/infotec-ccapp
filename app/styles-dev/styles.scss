@@ -1,5 +1,5 @@
 /* Variables */
-$brand-primary:#285c4d;
+$brand-primary: #285c4d;
 $brand-secondary: #f2ede4;
 $brand-success: $brand-secondary;
 $state-success-text: #fff;
@@ -11,14 +11,24 @@ $state-success-text: #fff;
 
 /* Fonts */
 @import "../fonts/montserrat/montserrat.css";
-@import '../fonts/fontawesome/font-awesome.css';
+@import "../fonts/fontawesome/font-awesome.css";
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../bower_components/angular-bootstrap/ui-bootstrap-csp.css";
 @import "../bower_components/chosen/chosen.css";
 @import "../bower_components/ng-scrollbar/dist/ng-scrollbar.css";
+
+/* Loading Bar */
+@import "../bower_components/angular-loading-bar/build/loading-bar.min.css";
+
 /* Angular Material */
 @import "../bower_components/angular-material/modules/scss/angular-material";
+
+/* Angular Material Table */ 
+@import "../bower_components/angular-material-data-table/dist/md-data-table.css";
+
+/* Angular Stepper */
+@import "../bower_components/md-steppers/dist/md-steppers.min.css";
 
 /* Load style components */
 @import "./main/components/alerts";
@@ -34,14 +44,9 @@ $state-success-text: #fff;
 @import "./main/components/report";
 @import "./main/components/nv.d3";
 @import "./main/components/loader";
+@import "./main/components/pdf";
 @import "./main/mifos";
 
 @import "https://framework-gb.cdn.gob.mx/assets/styles/main.css";
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
-
-.search-bar { background-color: $brand-secondary; }
-.search-bar * { color: black !important; }
-.search-bar input { border-bottom-color: white; }
-.md-errors-spacer { display:none; }

@@ -1,7 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         EditLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, uiConfigService, translate) {
-
             scope.previewRepayment = false;
             scope.formData = {};
             scope.chargeFormData = {}; //For charges
@@ -9,6 +8,7 @@
             scope.collaterals = [];
             scope.restrictDate = new Date();
             scope.date = {};
+            scope.errors = "";
 
             resourceFactory.loanResource.get({loanId: routeParams.id, template: true, associations: 'charges,collateral,meeting,multiDisburseDetails',staffInSelectedOfficeOnly:true}, function (data) {
                 scope.loanaccountinfo = data;
@@ -49,7 +49,6 @@
                         scope.collaterals.push({type: scope.loanaccountinfo.collateral[i].type.id, name: scope.loanaccountinfo.collateral[i].type.name, value: scope.loanaccountinfo.collateral[i].value, description: scope.loanaccountinfo.collateral[i].description});
                     }
                 }
-
                 scope.previewClientLoanAccInfo();
 
             });
@@ -87,10 +86,8 @@
                         }else{
                             scope.loanaccountinfo.charges[i].dueDate = new Date(scope.loanaccountinfo.charges[i].dueDate);
                         }
-
                     }
                 }
-
 
                 scope.charges = scope.loanaccountinfo.charges || [];
                 scope.formData.disbursementData = scope.loanaccountinfo.disbursementDetails || [];

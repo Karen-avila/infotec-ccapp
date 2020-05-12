@@ -331,6 +331,24 @@ li a i .fa {
   // background-color: $body-bg;
 }
 
+a.list-group-item {
+    padding: 8px 8px;    
+}
+
+.list-group-item-text {
+    padding-top: 4px;
+}
+
+.no-border {
+    border: none !important;
+}
+
+md-whiteframe > span {
+    width: 100%;
+    padding-left: 10px;
+    min-height: 60px;
+}
+
 .centerloader {
     position: fixed;
     left: 50%;

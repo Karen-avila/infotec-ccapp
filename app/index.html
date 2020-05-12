@@ -1,279 +1,374 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="./images/favicon.ico" />
     <title>{{ 'label.heading.company' | translate }}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        [data-ng-cloak] {
-            display: none !important;
-        }
+      [data-ng-cloak] {
+        display: none !important;
+      }
     </style>
-</head>
+    <link href="styles/styles.css" rel="stylesheet"/>
+  </head>
 
-<body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80"
-    data-ng-controller="MainController">
-
-    <!--Loader -->
+  <body
+    class="preview whitebg"
+    id="top"
+    data-spy="scroll"
+    data-target=".subnav"
+    data-offset="80"
+    data-ng-controller="MainController"
+  >
+    <!-- HTTP Bar Loader -->
+    <div id="loading-bar"></div>
+    <!-- Initial Loader -->
     <div id="loaderWrapper" data-ng-hide="domReady">
-        <div id="loader" class="col-md-12 image-loader">
-            <img src="images/loader.gif" class="img-responsive">
-        </div>
+      <div id="loader" class="col-md-12 image-loader">
+        <img src="images/loader.gif" class="img-responsive" />
+      </div>
     </div>
 
     <div id="wrapper" data-ng-hide="!domReady" data-ng-cloak>
-        <!-- Login Form  -->
-        <div id="content" class="container" style="margin-top:10px;" data-ng-hide="currentSession.user != null"
-            data-ng-controller="LoginFormController">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row" ng-show="showLanguage()">
-                        <div class="col-sm-10 right">{{'label.input.changelanguage' | translate}} :</div>
-                        <div class="col-sm-2 pull-right">
-                            <select id="language" ng-model="optlang.code" class="form-control"
-                                ng-options="lang.code as lang.name for lang in langs" ng-change="changeLang(optlang.code)"
-                                value="{{lang.code}}">
-                            </select>
-                        </div>
-                    </div>
-                    <div ng-show="resetPassword">
-                        <form class="form-inline pull-right" role="form">
-                            <label><strong>{{ 'label.message.password.expired' | translate }}</strong></label>
-
-                            <div class="form-group">
-                                <input type="password" data-ng-model="passwordDetails.password"
-                                    placeholder="{{ 'label.input.password' | translate }}" class="input-sm form-control"
-                                    required id="password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" data-ng-model="passwordDetails.repeatPassword"
-                                    placeholder="{{ 'label.input.repeatpassword' | translate }}"
-                                    class="input-sm form-control" required id="repeatPassword">
-                            </div>
-                            <button class="btn btn-success" type="submit" data-ng-click="updatePassword()"
-                                id="updatepassword-button">{{ 'label.button.resetPassword' | translate }}
-                            </button>
-                        </form>
-                    </div>
-                </div>
+      <!-- Login Form  -->
+      <div
+        id="content"
+        class="container"
+        style="margin-top: 10px;"
+        data-ng-hide="currentSession.user != null"
+        data-ng-controller="LoginFormController"
+      >
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row" ng-show="showLanguage()">
+              <div class="col-sm-10 right">
+                {{'label.input.changelanguage' | translate}} :
+              </div>
+              <div class="col-sm-2 pull-right">
+                <select
+                  id="language"
+                  ng-model="optlang.code"
+                  class="form-control"
+                  ng-options="lang.code as lang.name for lang in langs"
+                  ng-change="changeLang(optlang.code)"
+                  value="{{lang.code}}"
+                >
+                </select>
+              </div>
             </div>
+            <div ng-show="resetPassword">
+              <form class="form-inline pull-right" role="form">
+                <label
+                  ><strong
+                    >{{ 'label.message.password.expired' | translate }}</strong
+                  ></label
+                >
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-4 text-center">
-                            <img src="images/mifos-logo-flat.png" alt="{{ 'label.heading.company' | translate }}"
-                                style="width:90%;height:90%; margin:auto;" class="text-center img-responsive" />
-                        </div>
-                    </div>
-                    <br>
-                    <div data-ng-form="loginForm">
-                        <div class="row" ng-hide="resetPassword || twoFactorRequired">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <div class="alert alert-danger" ng-show="authenticationFailed">
-                                    {{ authenticationErrorMessage | translate }}
-                                </div>
-                                <div ng-include src="'views/login.html'"></div>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="twoFactorRequired && !otpRequested">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <h4>{{'label.heading.twofactor' | translate}}</h4>
-                                <hr>
-
-                                <p>{{'label.otp.delivery.info' | translate}}</p>
-                                <form class="form">
-                                    <div class="form-group">
-                                        <div ng-repeat="deliveryMethod in twoFactorDeliveryMethods"
-                                            class="radio form-group">
-                                            <label for="{{deliveryMethod.name}}">
-                                                <input type="radio" id="{{deliveryMethod.name}}"
-                                                    name="otpDeliveryMethods"
-                                                    ng-model="$parent.selectedDeliveryMethodName"
-                                                    value="{{deliveryMethod.name}}">
-                                                {{'label.otp.delivery.select.' + deliveryMethod.name | translate:deliveryMethod}}</label>
-                                        </div>
-                                        <div class="checkbox form-group">
-                                            <label for="twofactorRememberMe">
-                                                <input type="checkbox" id="twofactorRememberMe"
-                                                    name="twofactorRememberMe" ng-model="twofactorRememberMe">
-                                                {{'label.button.tfa.remember_me' | translate }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-block btn-primary" type="submit" data-ng-show="!load"
-                                            data-ng-click="requestOTP()" id="otp-request-button">
-                                            {{'label.button.otp.request' | translate}}
-                                        </button>
-                                        <button class="btn btn-block btn-primary" type="submit" data-ng-show="load">
-                                            <img data-ng-src="images/ring.svg" alt="">
-                                            <b>{{ 'label.input.loading' | translate }}...</b>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="otpRequested">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <hr>
-                                <h4>{{'label.heading.twofactor' | translate}}</h4>
-                                <p>
-                                    {{'label.otp.verify.info' | translate}}
-                                </p>
-
-                                <div class="alert alert-danger" ng-show="otpTokenError">
-                                    {{otpErrorMessage | translate}}
-                                </div>
-
-                                <form class="form">
-                                    <div class="form-group">
-                                        <label for="otpToken">{{'label.otp.token' | translate}}</label>
-                                        <input type="text" id="otpToken" name="otpDeliveryMethods" class="form-control"
-                                            ng-model="otpToken">
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-block btn-primary" type="submit" data-ng-show="!load"
-                                            data-ng-click="validateOTP()" id="otp-verify-button">
-                                            {{'label.button.signin' | translate }}
-                                        </button>
-                                        <button class="btn btn-block btn-primary" type="submit" data-ng-show="load">
-                                            <img data-ng-src="images/ring.svg" alt="">
-                                            <b>{{ 'label.input.loading' | translate }}...</b>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    data-ng-model="passwordDetails.password"
+                    placeholder="{{ 'label.input.password' | translate }}"
+                    class="input-sm form-control"
+                    required
+                    id="password"
+                  />
                 </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    data-ng-model="passwordDetails.repeatPassword"
+                    placeholder="{{ 'label.input.repeatpassword' | translate }}"
+                    class="input-sm form-control"
+                    required
+                    id="repeatPassword"
+                  />
+                </div>
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  data-ng-click="updatePassword()"
+                  id="updatepassword-button"
+                >
+                  {{ 'label.button.resetPassword' | translate }}
+                </button>
+              </form>
             </div>
+          </div>
         </div>
 
-        <!-- Navbar -->
-        <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" data-ng-hide="currentSession.user == null">
-            <div class="loading-widget-div" data-ng-show="blockUI">
-                <!-- TODO : insert loader here-->
-                <span class="centerloader">
-                    <img src="images/833.svg" class="img-responsive">
-                </span>
-                <!--<div style="margin: 175px auto">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-sm-offset-4 text-center">
+                <img
+                  src="images/mifos-logo-flat.png"
+                  alt="{{ 'label.heading.company' | translate }}"
+                  style="width: 90%; height: 90%; margin: auto;"
+                  class="text-center img-responsive"
+                />
+              </div>
+            </div>
+            <br />
+            <div data-ng-form="loginForm">
+              <div class="row" ng-hide="resetPassword || twoFactorRequired">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <div
+                    class="alert alert-danger"
+                    ng-show="authenticationFailed"
+                  >
+                    {{ authenticationErrorMessage | translate }}
+                  </div>
+                  <div ng-include src="'views/login.html'"></div>
+                </div>
+              </div>
+
+              <div class="row" ng-show="twoFactorRequired && !otpRequested">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <h4>{{'label.heading.twofactor' | translate}}</h4>
+                  <hr />
+
+                  <p>{{'label.otp.delivery.info' | translate}}</p>
+                  <form class="form">
+                    <div class="form-group">
+                      <div
+                        ng-repeat="deliveryMethod in twoFactorDeliveryMethods"
+                        class="radio form-group"
+                      >
+                        <label for="{{deliveryMethod.name}}">
+                          <input
+                            type="radio"
+                            id="{{deliveryMethod.name}}"
+                            name="otpDeliveryMethods"
+                            ng-model="$parent.selectedDeliveryMethodName"
+                            value="{{deliveryMethod.name}}"
+                          />
+                          {{'label.otp.delivery.select.' + deliveryMethod.name |
+                          translate:deliveryMethod}}</label
+                        >
+                      </div>
+                      <div class="checkbox form-group">
+                        <label for="twofactorRememberMe">
+                          <input
+                            type="checkbox"
+                            id="twofactorRememberMe"
+                            name="twofactorRememberMe"
+                            ng-model="twofactorRememberMe"
+                          />
+                          {{'label.button.tfa.remember_me' | translate }}
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button
+                        class="btn btn-block btn-primary"
+                        type="submit"
+                        data-ng-show="!load"
+                        data-ng-click="requestOTP()"
+                        id="otp-request-button"
+                      >
+                        {{'label.button.otp.request' | translate}}
+                      </button>
+                      <button
+                        class="btn btn-block btn-primary"
+                        type="submit"
+                        data-ng-show="load"
+                      >
+                        <img data-ng-src="images/ring.svg" alt="" />
+                        <b>{{ 'label.input.loading' | translate }}...</b>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="row" ng-show="otpRequested">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <hr />
+                  <h4>{{'label.heading.twofactor' | translate}}</h4>
+                  <p>
+                    {{'label.otp.verify.info' | translate}}
+                  </p>
+
+                  <div class="alert alert-danger" ng-show="otpTokenError">
+                    {{otpErrorMessage | translate}}
+                  </div>
+
+                  <form class="form">
+                    <div class="form-group">
+                      <label for="otpToken"
+                        >{{'label.otp.token' | translate}}</label
+                      >
+                      <input
+                        type="text"
+                        id="otpToken"
+                        name="otpDeliveryMethods"
+                        class="form-control"
+                        ng-model="otpToken"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <button
+                        class="btn btn-block btn-primary"
+                        type="submit"
+                        data-ng-show="!load"
+                        data-ng-click="validateOTP()"
+                        id="otp-verify-button"
+                      >
+                        {{'label.button.signin' | translate }}
+                      </button>
+                      <button
+                        class="btn btn-block btn-primary"
+                        type="submit"
+                        data-ng-show="load"
+                      >
+                        <img data-ng-src="images/ring.svg" alt="" />
+                        <b>{{ 'label.input.loading' | translate }}...</b>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navbar -->
+      <div
+        ng-class="{fullscreen:true ,blockui:blockUI==true}"
+        id="main"
+        data-ng-hide="currentSession.user == null"
+      >
+        <div class="loading-widget-div" data-ng-show="blockUI">
+          <!-- TODO : insert loader here-->
+          <span class="centerloader">
+            <img src="images/833.svg" class="img-responsive" />
+          </span>
+          <!--<div style="margin: 175px auto">
                 </div>-->
-            </div>
-
-            <div id="mifos-reskin-ui-container">
-                <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>
-
-                <div id="mifos-reskin-body-container">
-                    <nav id="mifos-reskin-side-nav" ng-scrollbar>
-                        <div class="left-nav">
-                            <ul>
-
-                                <li>
-                                    <a class="black" href="/#!/notifications">
-                                        <i class="fa fa-bell"></i>
-                                        <span>{{'label.heading.notification' | translate }}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/createclient">
-                                        <i class="fa fa-user "></i><span> + {{'label.anchor.client' |translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/creategroup">
-                                        <i class="fa fa-group "></i><span> + {{'label.anchor.group' |translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/createcenter">
-                                        <i class="fa fa-map-marker "></i><span> +
-                                            {{'label.anchor.center' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/nav/offices">
-                                        <i class="fa fa-compass "></i>
-                                        <span>{{'label.anchor.navigation' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/tasks">
-                                        <i class="fa fa-check "></i>
-                                        <span>{{ 'label.anchor.tasks'| translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/transfers">
-                                        <i class="fa fa-repeat "></i>
-                                        <span>{{'label.anchor.transfers' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/journalentry">
-                                        <i class="fa fa-plus "></i>
-                                        <span>{{'label.anchor.addjournalentries' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/accounts_closure">
-                                        <i class="fa fa-folder "></i>
-                                        <span>{{'label.anchor.closingentries' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" href="/#!/accounting_coa">
-                                        <i class="fa fa-sitemap "></i>
-                                        <span>{{'label.heading.chartofaccounts' | translate}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="black" ng-click="helpf()">
-                                        <i class="fa fa-question-circle"></i>
-                                        <span>{{'label.anchor.help' | translate }}</span> &nbsp; <i
-                                            class="fa fa-external-link"></i>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div id="mifos-reskin-body-view">
-                    <div class="" ng-view></div>
-                </div>
-            </div>
-            <!-- Footer -->
-            <footer data-ng-hide="!domReady">
-                <div ng-include="'views/footer.html'"></div>
-            </footer>
         </div>
+
+        <div id="mifos-reskin-ui-container">
+          <div
+            id="mifos-reskin-header-nav"
+            ng-include="'views/_topnavbar.html'"
+          ></div>
+
+          <div id="mifos-reskin-body-container">
+            <nav id="mifos-reskin-side-nav" ng-scrollbar>
+              <div class="left-nav">
+                <ul>
+                  <li>
+                    <a class="black" href="/#!/notifications">
+                      <i class="fa fa-bell"></i>
+                      <span>{{'label.heading.notification' | translate }}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/createclient">
+                      <i class="fa fa-user"></i
+                      ><span> + {{'label.anchor.client' |translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/creategroup">
+                      <i class="fa fa-group"></i
+                      ><span> + {{'label.anchor.group' |translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/createcenter">
+                      <i class="fa fa-map-marker"></i
+                      ><span> + {{'label.anchor.center' | translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/nav/offices">
+                      <i class="fa fa-compass"></i>
+                      <span>{{'label.anchor.navigation' | translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/tasks">
+                      <i class="fa fa-check"></i>
+                      <span>{{ 'label.anchor.tasks'| translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/transfers">
+                      <i class="fa fa-repeat"></i>
+                      <span>{{'label.anchor.transfers' | translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/journalentry">
+                      <i class="fa fa-plus"></i>
+                      <span
+                        >{{'label.anchor.addjournalentries' | translate}}</span
+                      >
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/accounts_closure">
+                      <i class="fa fa-folder"></i>
+                      <span>{{'label.anchor.closingentries' | translate}}</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" href="/#!/accounting_coa">
+                      <i class="fa fa-sitemap"></i>
+                      <span
+                        >{{'label.heading.chartofaccounts' | translate}}</span
+                      >
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="black" ng-click="helpf()">
+                      <i class="fa fa-question-circle"></i>
+                      <span>{{'label.anchor.help' | translate }}</span> &nbsp;
+                      <i class="fa fa-external-link"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div id="mifos-reskin-body-view">
+            <div class="" ng-view></div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer data-ng-hide="!domReady">
+          <div ng-include="'views/footer.html'"></div>
+        </footer>
+      </div>
     </div>
 
-    <!-- Le javascript -->
+    <!-- Javascript -->
     <script>
-        // define waitSeconds above require script tag
-        // to override the default, until main.js loads
-        window.require = {
-            waitSeconds: 120
-        };
+      // define waitSeconds above require script tag
+      // to override the default, until main.js loads
+      window.require = {
+        waitSeconds: 120,
+      };
     </script>
-    <script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
-</body>
-
+    <script
+      type="text/javascript"
+      data-main="scripts/loader.js"
+      src="bower_components/requirejs/require.js"
+    ></script>
+  </body>
 </html>
