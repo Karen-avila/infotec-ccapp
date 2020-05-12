@@ -15,7 +15,7 @@
       $scope.addressTypeId = {};
       entityname = "ADDRESS";
       $scope.editable = false;
-      clientId = routeParams.id;
+      $scope.clientId = routeParams.id;
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
         $scope.countryOptions = data.countryIdOptions;
@@ -35,7 +35,7 @@
       );
 
       $scope.routeTo = function () {
-        location.path("/viewclient/" + clientId);
+        location.path("/viewclient/" + $scope.clientId);
       };
 
       $scope.isEditRequired = function (addType) {
@@ -82,7 +82,7 @@
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
           function (data) {
-            location.path("/viewclient/" + clientId);
+            location.path("/viewclient/" + $scope.clientId);
           }
         );
       };
