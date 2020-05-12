@@ -1,6 +1,6 @@
 
 (function (mifosX) {
-    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider, $mdThemingProvider) {
+    var defineHeaders = function ($httpProvider, $translateProvider, ResourceFactoryProvider, HttpServiceProvider, IdleProvider, KeepaliveProvider, $mdThemingProvider, $mdDateLocaleProvider, cfpLoadingBarProvider) {
         var mainLink = getLocation(window.location.href);
         var baseApiUrl = "https://mifos.infotec.mx";
         var host = "";
@@ -51,10 +51,10 @@
         // Enable CORS! (see e.g. http://enable-cors.org/)
         $httpProvider.defaults.useXDomain = true;
         // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
 
         //Set headers
         $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $httpProvider.defaults.headers.common['Content-Encoding'] = 'gzip';
 
         // Configure i18n and preffer language
@@ -71,6 +71,29 @@
         IdleProvider.idle(30*60); //Idle time (seconds)
         IdleProvider.timeout(10); // in seconds
         KeepaliveProvider.interval(15*60); //keep-alive ping
+
+        var moment = require("moment");
+        moment.locale('es');
+
+        // Set month and week names for the general $mdDateLocale service
+        var localeData = moment.localeData();
+        $mdDateLocaleProvider.months      = localeData._months;
+        $mdDateLocaleProvider.shortMonths = moment.monthsShort();
+        $mdDateLocaleProvider.days        = localeData._weekdays;
+        $mdDateLocaleProvider.shortDays   = localeData._weekdaysMin;
+        // Optionaly let the week start on the day as defined by moment's locale data
+        $mdDateLocaleProvider.firstDayOfWeek = localeData._week.dow;
+      
+        // Format and parse dates based on moment's 'L'-format
+        // 'L'-format may later be changed
+        $mdDateLocaleProvider.parseDate = function(dateString) {
+          var m = moment(dateString, 'L', true);
+          return m.isValid() ? m.toDate() : new Date(NaN);
+        };
+      
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return date ? moment(date).format('DD - MMM - YYYY') : null;
+        };
 
         // Theme
         $mdThemingProvider.definePalette('mcgpalette0', {
@@ -142,10 +165,15 @@
             ],
             'contrastLightColors': []
         });
-        $mdThemingProvider.theme('mcgtheme')
-            .primaryPalette('mcgpalette1')
-            .accentPalette('mcgpalette0');
-        
+        $mdThemingProvider.theme('default')
+            .primaryPalette('mcgpalette0')
+            .accentPalette('mcgpalette1');
+        $mdThemingProvider.theme('mifos')
+            .primaryPalette('mcgpalette0')
+            .accentPalette('mcgpalette1');
+
+        cfpLoadingBarProvider.includeSpinner = false;
+        cfpLoadingBarProvider.latencyThreshold = 500;
     };
     mifosX.ng.application.config(defineHeaders).run(function ($log, Idle) {
         $log.info("Initial tasks are done!");

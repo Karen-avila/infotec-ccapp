@@ -2,71 +2,101 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{'label.anchor.accounting' | translate}}</h4>
+                <h5>{{'label.anchor.accounting' | translate}}</h5>
             </div>
             <br>
-            <div class="row">
+            <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                 <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" href="#!/freqposting" has-permission='CREATE_JOURNALENTRY'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-repeat fa fa-large"></i>&nbsp;&nbsp;{{'label.heading.frequentpostings' | translate}}</h4>
-                            <p class="list-group-item-text">{{'label.thesearepredefinedpostings' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/journalentry" has-permission='CREATE_JOURNALENTRY'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-plus fa fa-large"></i>&nbsp;&nbsp;{{'label.heading.addjournalentries' | translate}}</h4>
-                            <p class="list-group-item-text">{{'label.manualjournalentrytransactionsrecordedinajournal' |  translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/searchtransaction" has-permission='READ_JOURNALENTRY'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-search fa fa-large"></i>&nbsp;&nbsp;{{
-                                'label.heading.searchjournalentries' | translate}}</h4>
-
-                            <p class="list-group-item-text">{{'label.advancesearchoptionforjournalentries' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/financialactivityaccountmappings" has-permission='READ_FINANCIALACTIVITYACCOUNT'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-random fa fa-large"></i>&nbsp;&nbsp;{{
-                                'label.heading.financialactivity.accountmappings' | translate}}</h4>
-
-                            <p class="list-group-item-text">{{'label.listof.financialactivity.accountmappings' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/openingbalances" has-permission='READ_JOURNALENTRY'>
-                            <h4 class="list-group-item-heading"><i class="fa fa-dollar fa fa-large"></i>&nbsp;&nbsp;{{
-                                'label.heading.define.openingbalances' | translate}}</h4>
-
-                            <p class="list-group-item-text">{{'label.define.openingbalances' | translate}}</p>
-                        </a>
-                    </div>
+                    <a class="list-group-item no-border" href="#!/freqposting" has-permission='CREATE_JOURNALENTRY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-repeat fa fa-large"></i>&nbsp;&nbsp;{{'label.heading.frequentpostings' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.thesearepredefinedpostings' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/journalentry" has-permission='CREATE_JOURNALENTRY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-plus fa fa-large"></i>&nbsp;&nbsp;{{'label.heading.addjournalentries' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.manualjournalentrytransactionsrecordedinajournal' |  translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/searchtransaction" has-permission='READ_JOURNALENTRY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-search fa fa-large"></i>&nbsp;&nbsp;{{
+                                    'label.heading.searchjournalentries' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.advancesearchoptionforjournalentries' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/financialactivityaccountmappings" has-permission='READ_FINANCIALACTIVITYACCOUNT'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-random fa fa-large"></i>&nbsp;&nbsp;{{
+                                    'label.heading.financialactivity.accountmappings' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.listof.financialactivity.accountmappings' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/openingbalances" has-permission='READ_JOURNALENTRY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-dollar fa fa-large"></i>&nbsp;&nbsp;{{
+                                    'label.heading.define.openingbalances' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.define.openingbalances' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
                 </div>
                 <div class="col-sm-6 col-md-6">        
-                    <div class="list-group">
-                    <a class="list-group-item" href="#!/accounting_coa" has-permission='READ_GLACCOUNT'>
-                        <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-sitemap"></i>&nbsp;&nbsp;{{
-                            'label.heading.chartofaccounts' | translate}}</h4>
-
-                        <p class="list-group-item-text">{{'label.listoftheaccountsusedbytheorganization' | translate}}</p>
+                    <a class="list-group-item no-border" href="#!/accounting_coa" has-permission='READ_GLACCOUNT'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-sitemap"></i>&nbsp;&nbsp;{{
+                                    'label.heading.chartofaccounts' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.listoftheaccountsusedbytheorganization' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
                     </a>
-                    <a class="list-group-item" href="#!/accounts_closure" has-permission='READ_GLCLOSURE'>
-                        <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-folder"></i>&nbsp;&nbsp;{{
-                            'label.heading.closingentries' | translate}}</h4>
-
-                        <p class="list-group-item-text">{{'label.journalentriesmadeattheendofanaccountingperiod' | translate}}</p>
+                    <a class="list-group-item no-border" href="#!/accounts_closure" has-permission='READ_GLCLOSURE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-folder"></i>&nbsp;&nbsp;{{
+                                    'label.heading.closingentries' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.journalentriesmadeattheendofanaccountingperiod' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
                     </a>
-                    <a class="list-group-item" href="#!/accounting_rules" has-permission='READ_ACCOUNTINGRULE'>
-                        <h4 class="list-group-item-heading"><i class="fa fa-large fa fa-lock"></i>&nbsp;&nbsp;{{
-                            'label.heading.accountingrules' | translate}}</h4>
-
-                        <p class="list-group-item-text">{{'label.listsallaccountingrules' | translate}}</p>
+                    <a class="list-group-item no-border" href="#!/accounting_rules" has-permission='READ_ACCOUNTINGRULE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-lock"></i>&nbsp;&nbsp;{{
+                                    'label.heading.accountingrules' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.listsallaccountingrules' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
                     </a>
-                    <a class="list-group-item" href="#!/run_periodic_accrual" has-permission='EXECUTE_PERIODICACCRUALACCOUNTING'>
-                        <h4 class="list-group-item-heading"><i class="fa fa-cog fa fa-large"></i>&nbsp;&nbsp;{{
-                            'label.heading.execute.periodic.accounting' | translate}}</h4>
-
-                        <p class="list-group-item-text">{{'label.execute.periodic.accounting' | translate}}</p>
+                    <a class="list-group-item no-border" href="#!/run_periodic_accrual" has-permission='EXECUTE_PERIODICACCRUALACCOUNTING'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-cog fa fa-large"></i>&nbsp;&nbsp;{{
+                                    'label.heading.execute.periodic.accounting' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.execute.periodic.accounting' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
                     </a>
-                    <a class="list-group-item" href="#!/viewprovisioningentries" has-permission='VIEW_PROVISIONING_ENTRIES'>
-                        <h4 class="list-group-item-heading"><i class="fa fa-cog fa fa-large"></i>&nbsp;&nbsp;{{
-                            'label.heading.create.provisioning.entries' | translate}}</h4>
+                    <a class="list-group-item no-border" href="#!/viewprovisioningentries" has-permission='VIEW_PROVISIONING_ENTRIES'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-cog fa fa-large"></i>&nbsp;&nbsp;{{
+                                    'label.heading.create.provisioning.entries' | translate}}</h5>
 
-                        <p class="list-group-item-text">{{'label.create.provisioning.entries' | translate}}</p>
+                                <p class="list-group-item-text">{{'label.create.provisioning.entries' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
                     </a>
                 </div>
             </div>

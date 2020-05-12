@@ -5,121 +5,177 @@
                 <h4>{{'label.anchor.organization' | translate}}</h4>
             </div>
             <br>
-            <div class="row">
+            <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                 <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" href="#!/offices" has-permission='READ_OFFICE'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-building fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageoffices'
+                    <a class="list-group-item no-border" href="#!/offices" has-permission='READ_OFFICE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-building fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageoffices'
                                 | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.addnewofficeormodifyordeactivateofficeormodifyofficeheirarchy'
-                                | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/holidays" has-permission='READ_HOLIDAY'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-calendar fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageholidays'
-                                | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.addnewofficeormodifyordeactivateofficeormodifyofficeheirarchy'
+                                    | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/holidays" has-permission='READ_HOLIDAY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-calendar fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageholidays'
+                            | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.defineholidaysforoffices' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/employees" has-permission='READ_STAFF'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageemployees'
-                                | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.defineholidaysforoffices' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/employees" has-permission='READ_STAFF'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-user fa fa-large"></i>&nbsp;&nbsp;{{'label.anchor.manageemployees'
+                            | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.aemployeerepresentsloanofficerswithnoaccesstosystem' |
-                                translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/standinginstructions/history" has-permission='READ_STANDINGINSTRUCTION'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-book fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.standinginstruction.history' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.aemployeerepresentsloanofficerswithnoaccesstosystem' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/standinginstructions/history" has-permission='READ_STANDINGINSTRUCTION'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-book fa fa-large"></i>&nbsp;&nbsp;
+                            {{'label.anchor.standinginstruction.history' | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.view.standinginstructions.history.logging' |
-                                translate}}</p>
-                        </a>
-                     <!--   <a class="list-group-item" href="#!/advsearch">
-                            <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-money"></i>&nbsp;&nbsp;
+                                <p class="list-group-item-text">{{'label.view.standinginstructions.history.logging' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/advsearch">
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-money"></i>&nbsp;&nbsp;
                                 {{'label.anchor.fund.mapping' | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.view.advance.search.fund.mapping' |
-                                translate}}</p>
-                        </a>-->
-                        <a class="list-group-item" href="#!/passwordpreferences" has-permission='READ_PASSWORD_VALIDATION_POLICY'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-lock fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.passwordPreferences' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.advance.search.fund.mapping' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/passwordpreferences" has-permission='READ_PASSWORD_VALIDATION_POLICY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-lock fa fa-large"></i>&nbsp;&nbsp;
+                            {{'label.anchor.passwordPreferences' | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.view.passwordPreferences' |
-                                translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/viewallprovisionings" has-permission='VIEW_PROVISIONS'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-pencil fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.createprovisioningcriteria' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.createprovisioningcriteria' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/entitydatatablechecks" has-permission='READ_ENTITY_DATATABLE_CHECK'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-check fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.entitydatatablechecks' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.entitydatatablechecks' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/adhocquery" has-permission='VIEW_ADHOC'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-large icon-double-angle-right"></i>&nbsp;&nbsp;
-                                {{'label.anchor.adhoc' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.adhocs' | translate}}</p>
-                       </a>
-                    </div>
+                                <p class="list-group-item-text">{{'label.view.passwordPreferences' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/viewallprovisionings" has-permission='VIEW_PROVISIONS'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-pencil fa fa-large"></i>&nbsp;&nbsp;
+                            {{'label.anchor.createprovisioningcriteria' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.createprovisioningcriteria' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/entitydatatablechecks" has-permission='READ_ENTITY_DATATABLE_CHECK'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-check fa fa-large"></i>&nbsp;&nbsp;
+                            {{'label.anchor.entitydatatablechecks' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.entitydatatablechecks' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
                 </div>
                 <div class="col-sm-6 col-md-6">
-                    <div class="list-group">
-                        <a class="list-group-item" href="#!/currconfig" has-permission='READ_CURRENCY'>
+                    <a class="list-group-item no-border" href="#!/currconfig" has-permission='READ_CURRENCY'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
                             <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-cogs"></i>&nbsp;&nbsp;{{'label.anchor.currencyconfig'
-                                | translate}}</h5>
-
+                            | translate}}</h5>
                             <p class="list-group-item-text">{{'label.currenciesavailableacrossorganizationfordifferentproducts' |
                                 translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/funds" has-permission='READ_FUND'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-money"></i>&nbsp;&nbsp;{{'label.anchor.managefunds'
-                                | translate}}</h5>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/funds" has-permission='READ_FUND'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-large fa fa-money"></i>&nbsp;&nbsp;{{'label.anchor.managefunds'
+                                    | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.fundsareassociatedwithloans' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <!--
+                    <a class="list-group-item no-border" href="#!/bulkloan" has-permission='BULKREASSIGN_LOAN'>
+                        <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{
+                            'label.anchor.bulkloanreassignment' | translate}}</h5>
 
-                            <p class="list-group-item-text">{{'label.fundsareassociatedwithloans' | translate}}</p>
-                        </a>
-                        <!--
-                        <a class="list-group-item" href="#!/bulkloan" has-permission='BULKREASSIGN_LOAN'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;{{
-                                'label.anchor.bulkloanreassignment' | translate}}</h5>
-
-                            <p class="list-group-item-text">{{'label.easywaytoreassignalltheloanfromonelotoanotherlo' |
-                                translate}}</p>
-                        </a> -->
-                        <a class="list-group-item" href="#!/tellers" has-permission='READ_TELLER'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.tellercashmanagement' | translate}}</h5>
-
-                            <p class="list-group-item-text">{{'label.view.tellercashmanagement' |
-                                translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/workingdays" has-permission='READ_WORKINGDAYS'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-calendar fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.workingDays' | translate}}</h5>
-
-                            <p class="list-group-item-text">{{'label.view.workingDays' |
-                                translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/viewpaymenttype" has-permission='READ_PAYMENTTYPE'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-dollar fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.paymentTypes' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.paymentTypes' |
-                                translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/smscampaigns" has-permission='VIEW_SMSCAMPAIGNS'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-envelope fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.smscampaings' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.smscampaigns' | translate}}</p>
-                        </a>
-                        <a class="list-group-item" href="#!/bulkimport" has-permission='VIEW_BULKIMPORT'>
-                            <h5 class="list-group-item-heading"><i class="fa fa-upload fa fa-large"></i>&nbsp;&nbsp;
-                                {{'label.anchor.bulkimport' | translate}}</h5>
-                            <p class="list-group-item-text">{{'label.view.bulkimport' | translate}}</p>
-                        </a>
-                    </div>
+                        <p class="list-group-item-text">{{'label.easywaytoreassignalltheloanfromonelotoanotherlo' |
+                            translate}}</p>
+                    </a> -->
+                    <a class="list-group-item no-border" href="#!/tellers" has-permission='READ_TELLER'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-money fa fa-large"></i>&nbsp;&nbsp;
+                                    {{'label.anchor.tellercashmanagement' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.tellercashmanagement' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/workingdays" has-permission='READ_WORKINGDAYS'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-calendar fa fa-large"></i>&nbsp;&nbsp;
+                                    {{'label.anchor.workingDays' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.workingDays' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/viewpaymenttype" has-permission='READ_PAYMENTTYPE'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-dollar fa fa-large"></i>&nbsp;&nbsp;
+                                    {{'label.anchor.paymentTypes' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.paymentTypes' |
+                                    translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/smscampaigns" has-permission='VIEW_SMSCAMPAIGNS'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-envelope fa fa-large"></i>&nbsp;&nbsp;
+                                    {{'label.anchor.smscampaings' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.smscampaigns' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/bulkimport" has-permission='VIEW_BULKIMPORT'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-upload fa fa-large"></i>&nbsp;&nbsp;
+                                    {{'label.anchor.bulkimport' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.bulkimport' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
+                    <a class="list-group-item no-border" href="#!/adhocquery" has-permission='VIEW_ADHOC'>
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">  
+                            <span>
+                                <h5 class="list-group-item-heading"><i class="fa fa-atom fa fa-large"></i>&nbsp;&nbsp;
+                            {{'label.anchor.adhoc' | translate}}</h5>
+                                <p class="list-group-item-text">{{'label.view.adhocs' | translate}}</p>
+                            </span> 
+                        </md-whiteframe>
+                    </a>
                 </div>
             </div>
         </div>

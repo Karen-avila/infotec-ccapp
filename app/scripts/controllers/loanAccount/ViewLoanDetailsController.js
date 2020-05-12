@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, http, $uibModal, dateFilter, API_VERSION, $sce, $rootScope) {
+        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, http, $uibModal, dateFilter, API_VERSION, $sce, $rootScope, $mdDialog) {
             scope.loandocuments = [];
             scope.report = false;
             scope.hidePentahoReport = true;
@@ -144,6 +144,48 @@
                     }
                 });
             };
+
+            scope.showTransactionReceipt = function(ev, transactionId) {
+                scope.transactionId = transactionId;
+                scope.reportName = "Receipt " + transactionId;
+                scope.formData.outputType = 'PDF';
+                scope.baseURL = $rootScope.hostUrl + API_VERSION + "/runreports/" + encodeURIComponent("Loan Transaction Receipt");
+                scope.baseURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier+"&locale="+scope.optlang.code;
+
+                var reportParams = "";
+                var paramName = "R_transactionId";
+                reportParams += encodeURIComponent(paramName) + "=" + encodeURIComponent(transactionId);
+                if (reportParams > "") {
+                    scope.baseURL += "&" + reportParams;
+                }
+                // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
+                scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
+
+                $mdDialog.show({
+                  controller: DialogReceiptController,
+                  templateUrl: 'views/loans/viewloantransactionreceipt.tmpl.html',
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose:true,
+                  fullscreen: true, // Only for -xs, -sm breakpoints.
+                  locals: {
+                      pdfUrl: scope.baseURL,
+                      pdfName: scope.reportName,
+                      data: {
+                        transactionId: scope.transactionId,
+                        reportName: scope.reportName,
+                        baseURL: scope.baseURL
+                      }
+                  },
+                });
+            };
+        
+            function DialogReceiptController(scope, $mdDialog, data) {
+                scope.data = data;
+                scope.closeDialog = function() {
+                  $mdDialog.hide();
+                }
+            }
 
             var DelChargeCtrl = function ($scope, $uibModalInstance, ids) {
                 $scope.delete = function () {
@@ -664,6 +706,8 @@
 
             scope.viewloantransactionreceipts = function (transactionId) {
                 //scope.printbtn = true;
+                scope.transactionId = transactionId;
+                scope.reportName = "receipt_" + transactionId;
                 scope.report = true;
                 scope.viewTransactionReport = true;
                 scope.viewLoanReport = false;
@@ -681,8 +725,8 @@
                 }
                 // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
                 scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
-
             };
+
             scope.viewloantransactionjournalentries = function(transactionId){
                 var transactionId = "L" + transactionId;
                 if(scope.loandetails.clientId != null && scope.loandetails.clientId != ""){
@@ -797,7 +841,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$http', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$http', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', '$mdDialog', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
         $log.info("ViewLoanDetailsController initialized");
     });
 }(mifosX.controllers || {}));

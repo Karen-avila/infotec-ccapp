@@ -452,9 +452,10 @@
             </div>
             <div class="paddedleft" style="margin-left:-1px;margin-top: -20px; margin-right: 1px; padding: 10px;">
                 <hr class="marginbottom" />
-                <uib-tabset class="scrollable" tabset-name="savingsAccountDetails" scrollable>
-                    <uib-tab heading="{{'label.heading.transactions' | translate}}"
-                        ng-show="savingaccountdetails.transactions" select="convertDateArrayToObject('date')">
+                <md-tabs class="scrollable" tabset-name="savingsAccountDetails" scrollable>
+                    <md-tab ng-show="savingaccountdetails.transactions" select="convertDateArrayToObject('date')">
+                        <md-tab-label>{{'label.heading.transactions' | translate}}</md-tab-label>
+                        <md-tab-body>
                         <br>
                         <button class="btn btn-sm btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">
                             {{'label.button.export' | translate}}
@@ -546,9 +547,11 @@
                                     frameborder="0" width="100%" height="800px"></iframe>
                             </div>
                         </div>
-                    </uib-tab>
-                    <uib-tab heading="{{'label.anchor.standinginstruction' | translate}}"
-                        ng-show="instructions.currentPageItems.length > 0">
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab  ng-show="instructions.currentPageItems.length > 0">
+                        <md-tab-label>{{'label.heading.standinginstruction' | translate}}</md-tab-label>
+                        <md-tab-body>
                         <br>
                         <table class="table">
                             <thead>
@@ -603,11 +606,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </uib-tab>
-                    <uib-tab heading="{{savingdatatable.registeredTableName}}"
-                        ng-repeat="savingdatatable in savingdatatables"
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab ng-repeat="savingdatatable in savingdatatables"
                         has-permission='READ_{{savingdatatable.registeredTableName}}'
                         select="dataTableChange(savingdatatable)">
+                        <md-tab-label>{{'label.heading.registeredTableName' | translate}}</md-tab-label>
+                        <md-tab-body>
                         <br>
                         <api-validate></api-validate>
                         <div data-ng-show="choice" class="btn-group pull-right">
@@ -650,9 +655,11 @@
                                 </tr>
                             </table>
                         </div>
-                    </uib-tab>
-                    <uib-tab ng-show="chargeTableShow" has-permission="READ_SAVINGSACCOUNTCHARGE"
-                        heading="{{'label.heading.charges' | translate}}">
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab ng-show="chargeTableShow" has-permission="READ_SAVINGSACCOUNTCHARGE">
+                        <md-tab-label>{{'label.heading.charges' | translate}}</md-tab-label>
+                        <md-tab-body>
                         <br>
                         <a class="btn btn-sm btn-primary pull-right" ng-show="showActiveCharges"
                             ng-click="showActiveCharges=!showActiveCharges">{{'label.button.showInactiveCharges' |
@@ -749,8 +756,9 @@
                                 <td></td>
                             </tr>
                         </table>
-                    </uib-tab>
-                </uib-tabset>
+                        </md-tab-body>
+                    </md-tab>
+                </md-tabs>
             </div>
         </div>
     </div>

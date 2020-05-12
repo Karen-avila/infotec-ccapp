@@ -2,6 +2,7 @@
     mifosX.controllers = _.extend(module, {
         ClientController: function (scope, resourceFactory, location) {
             scope.clients = [];
+            scope.client = null;
             scope.actualClients = [];
             scope.searchText = "";
             scope.searchResults = [];
@@ -11,6 +12,11 @@
             };
 
             scope.clientsPerPage = 15;
+            scope.query = {
+                order: 'displayName',
+                limit: 25,
+                page: 1
+            }
 
             scope.getResultsPage = function (pageNumber) {
                 if (scope.searchText) {
@@ -25,8 +31,9 @@
                     scope.clients = data.pageItems;
                 });
             }
+
             scope.initPage = function () {
-                var items = resourceFactory.clientResource.getAllClients({
+                resourceFactory.clientResource.getAllClients({
                     offset: 0,
                     limit: scope.clientsPerPage
                 }, function (data) {

@@ -4,13 +4,15 @@
         <li><a href="#!/charges">{{'label.anchor.charges' | translate}}</a></li>
         <li class="active">{{charge.name}}</li>
     </ul>
-    <div class="card well">
+    <div class="md-padding">
         <h3 class="bolder">{{charge.name}}
         	<div class="form-group pull-right">
-             <a href="#!/editcharge/{{charge.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_CHARGE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
-             <button type="button" data-ng-click="deleteCharge()" class="btn btn-sm btn-danger" has-permission='DELETE_CHARGE'><i
-                     class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
-             </button>
+                <md-button md-no-ink class="md-primary" href="#!/editcharge/{{charge.id}}" has-permission='UPDATE_CHARGE'>
+                    <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
+                </md-button>
+                <md-button type="button" data-ng-click="deleteCharge()"class="md-warn" has-permission='DELETE_CHARGE'>
+                        <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
+                </md-button>
          </div>
         </h3>
         <hr>
@@ -38,7 +40,7 @@
 	                    </td>
 	                <tr>
 	                    <td>{{'label.heading.currency' | translate}}</td>
-	                    <td>{{charge.currency.name | translate}}</td>
+	                    <td>{{charge.currency.code}} {{charge.currency.name | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.amount' | translate}}</td>
@@ -48,13 +50,17 @@
 	                    <td>{{'label.heading.chargetimetype' | translate}}</td>
 	                    <td>{{charge.chargeTimeType.value | translate}}</td>
 	                </tr>
+	                <tr ng-show="charge.chargeCalculationType.value > 1">
+	                    <td>{{'label.heading.annual' | translate}}</td>
+	                    <td>{{charge.annual | translate}}</td>
+	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargeappliesto' | translate}}</td>
-	                    <td>{{charge.chargeAppliesTo.value | translate}}</td>
+	                    <td>{{charge.chargeAppliesTo.code | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargecalculationtype' | translate}}</td>
-	                    <td>{{charge.chargeCalculationType.value | translate}}</td>
+	                    <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.active' | translate}}</td>

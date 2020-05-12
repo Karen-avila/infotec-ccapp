@@ -9,9 +9,9 @@
             <div class="toolbar">
                 <h4>{{'label.heading.chartofaccounts' | translate}}</h4>
                 <div class="pull-right">
-                    <a ng-show="isTreeView" ng-click="showTreeView()" class="btn btn-sm btn-primary"><i class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</a>
-                    <a ng-hide="isTreeView" ng-click="showTreeView()" class="btn btn-sm btn-primary"><i class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</a>
-                    <a href="#!/createglaccount" class="btn btn-sm btn-primary" has-permission='CREATE_GLACCOUNT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addaccount' | translate}}</a>
+                    <md-button md-no-ink class="md-primary" ng-show="isTreeView" ng-click="showTreeView()"><i class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</md-button>
+                    <md-button md-no-ink class="md-primary" ng-hide="isTreeView" ng-click="showTreeView()"><i class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</md-button>
+                    <md-button md-no-ink class="md-primary" href="#!/createglaccount" has-permission='CREATE_GLACCOUNT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addaccount' | translate}}</md-button>
                 </div>
             </div>
             <div ng-hide="isTreeView">
