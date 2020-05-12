@@ -37,7 +37,7 @@
             var updateAccessDetails = function(data){
                 var sessionData = webStorage.get('sessionData');
                 sessionData.authenticationKey = data.access_token;
-                webStorage.add("sessionData",sessionData);
+                webStorage.set("sessionData",sessionData);
                 localStorageService.addToLocalStorage('tokendetails', data);
                 var userDate = localStorageService.getFromLocalStorage("userData");
                 userDate.accessToken =  data.access_token;
