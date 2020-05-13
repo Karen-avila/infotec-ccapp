@@ -781,6 +781,7 @@
 	"label.input.searchByNameAccNo": "Buscar por nombre/móvil/cliente/id. externo/identificador",
 	"label.input.selectclientimage": "Seleccionar imagen del cliente",
 	"label.input.selectfile": "Seleccionar archivo",
+	"label.input.file.document.supported": "Se aceptan archivos con extensión: PDF,PNG,GIF,JPG,JPEG",
 	"label.input.selectexcelfile": "Seleccionar un archivo de Excel",
 	"label.input.selectcsvfile": "Seleccionar un archivo CSV",
 	"label.input.documenttype": "Tipo de documento",

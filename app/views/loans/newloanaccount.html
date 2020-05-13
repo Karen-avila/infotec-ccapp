@@ -210,7 +210,7 @@
                                         </td>
                                         <td class="width25 paddedbottom20">
                                             <div class="col-md-6">
-                                                <md-slider flex="95" class="md-primary" md-discrete ng-model="formData.principal" 
+                                                <md-slider flex="95" class="md-primary" aria-label="inMultiplesOf" md-discrete ng-model="formData.principal" 
                                                     step="{{loanaccountinfo.currency.inMultiplesOf}}" 
                                                     min="{{loanaccountinfo.product.minPrincipal}}" 
                                                     max="{{loanaccountinfo.product.maxPrincipal}}" id="principal-slider">
@@ -370,8 +370,10 @@
                                             </label>
                                         </td>
                                         <td class="width25 paddedbottom20">
-                                            <input id="interestratedifferential" class="form-control" type="number"
-                                                name="interestratedifferential" ng-model="formData.interestRateDifferential" />
+                                            <div class="col-md-6">
+                                                <input id="interestratedifferential" class="form-control" type="number"
+                                                    name="interestratedifferential" ng-model="formData.interestRateDifferential" />
+                                            </div>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenField.interestType == true" class="width25">
                                             <label>{{'label.input.interestmethod' | translate }}</label>
@@ -435,19 +437,17 @@
                                                 {{'label.input.allowpartialperiodinterestcalcualtion' | translate }}
                                             </md-checkbox>
                                         </td>
-                                        <td ng-hide="loanAccount.isHiddenField.interestCalculationPeriodType == true || formData.interestCalculationPeriodType == 0" class="width25">
-                                            <label>{{'label.input.allowpartialperiodinterestcalcualtion' | translate }}&nbsp;</label>
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td ng-hide="loanAccount.isHiddenField.inArrearsTolerance == true" class="width25">
                                             <label>{{'label.input.arearstolerance' | translate }}</label>
                                         </td>
                                         <td class="width25 paddedbottom20" ng-hide="loanAccount.isHiddenField.inArrearsTolerance == true">
-                                            <input id="inArrearsTolerance" type="number"
-                                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.inArrearsTolerance"
-                                                ng-model="formData.inArrearsTolerance" class="form-control"
-                                                 />
+                                            <div class="col-md-6">
+                                                <input id="inArrearsTolerance" type="number"
+                                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.inArrearsTolerance"
+                                                    ng-model="formData.inArrearsTolerance" class="form-control"/>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -474,19 +474,24 @@
                                                 ng-hide="loanAccount.isHiddenField.graceOnPrincipalPayment == true">{{'label.input.onprincipalpayment' | translate}}</label>
                                         </td>
                                         <td class="width25">
-                                            <input ng-hide="loanAccount.isHiddenField.graceOnPrincipalPayment == true"
-                                                id="graceOnPrincipalPayment" type="number" class="form-control"
-                                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
-                                                ng-model="formData.graceOnPrincipalPayment">
+                                            <div class="col-md-6">
+                                                <input ng-hide="loanAccount.isHiddenField.graceOnPrincipalPayment == true"
+                                                    id="graceOnPrincipalPayment" type="number" class="form-control"
+                                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
+                                                    ng-model="formData.graceOnPrincipalPayment" />
+                                            </div>
                                         </td>
                                         <td class="width25">
                                             <label
                                                 ng-hide="loanAccount.isHiddenField.graceOnInterestPayment == true">{{'label.input.oninterestpayment' | translate}}</label>
                                         </td>
                                         <td class="width25">
-                                            <input ng-hide="loanAccount.isHiddenField.graceOnInterestPayment == true"
-                                                id="graceOnInterestPayment" type="number" class="form-control"
-                                                ng-model="formData.graceOnInterestPayment">
+                                            <div class="col-md-6">
+                                                <input ng-hide="loanAccount.isHiddenField.graceOnInterestPayment == true"
+                                                    id="graceOnInterestPayment" type="number" class="form-control"
+                                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnInterestPayment"
+                                                    ng-model="formData.graceOnInterestPayment" />
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr data-ng-show="loanaccountinfo.canDefineInstallmentAmount">
@@ -523,6 +528,22 @@
                                     </tr>
                                     <tr ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
                                         <td>
+                                            <label>{{'label.input.daysinyears' | translate }}</label>
+                                            <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.days' | translate}}"></i>
+                                        </td>
+                                        <td class="width25 paddedbottom20">
+                                            <label>{{ loanaccountinfo.daysInYearType.value | translate }}</label>
+                                        </td>
+                                        <td>
+                                            <label>{{'label.input.daysinmonth' | translate }}</label>
+                                            <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.days' | translate}}"></i>
+                                        </td>
+                                        <td class="width25 paddedbottom20">
+                                            <label>{{ loanaccountinfo.daysInMonthType.value | translate }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
+                                        <td>
                                             <label class="control-label">{{'label.input.recalculateinterest' | translate }}</label>
                                         </td>
                                         <td class="width25 paddedbottom20">
@@ -530,15 +551,6 @@
                                                 class="control-label">{{ loanaccountinfo.isInterestRecalculationEnabled | translate }}
                                             </label>
                                         </td>
-                                        <td>
-                                            <label>{{'label.input.daysinyears' | translate }}</label>
-                                            <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.days' | translate}}"></i>
-                                        </td>
-                                        <td class="width25 paddedbottom20">
-                                            <label>{{ loanaccountinfo.daysInYearType.value | translate }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="loanaccountinfo.isInterestRecalculationEnabled">
                                         <td ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
                                             <label>{{'label.input.interest.recalculation.reschdule.strategy' | translate }}</label>
                                         </td>
@@ -866,11 +878,11 @@
                                             class="fa fa-arrow-right"></i></md-button>
                                     <md-button md-no-ink class="md-primary" ng-show="previewRepayment"
                                         ng-click="previewRepayment=!previewRepayment"><i
-                                        class="fa fa-arrow-left">   {{'label.anchor.backtoloaninfo' | translate}}</i></md-button>
+                                        class="fa fa-arrow-left"></i>  {{'label.anchor.backtoloaninfo' | translate}}</md-button>
                                 </div>
 
                                 <div>
-                                    <table class="width100" ng-show="previewRepayment">
+                                    <table class="table width100" ng-show="previewRepayment">
                                         <thead>
                                             <th colspan="3" scope="col"></th>
                                             <th colspan="3" scope="col">{{'label.heading.loanamountandbalance' | translate}}</th>
@@ -880,8 +892,8 @@
                                         <tbody>
                                             <tr>
                                                 <td>#</td>
-                                                <td>{{'label.heading.date' | translate}}</td>
                                                 <td>{{'label.heading.days' | translate}}</td>
+                                                <td>{{'label.heading.date' | translate}}</td>
                                                 <td>{{'label.heading.disbursement' | translate}}</td>
                                                 <td>{{'label.heading.principaldue' | translate}}</td>
                                                 <td>{{'label.heading.principalbalance' | translate}}</td>
@@ -892,8 +904,8 @@
                                             </tr>
                                             <tr ng-repeat="period in repaymentscheduleinfo.periods">
                                                 <td>{{period.period}}</td>
-                                                <td>{{period.dueDate | DateFormat}}</td>
                                                 <td>{{period.daysInPeriod}}</td>
+                                                <td>{{period.dueDate | DateFormat}}</td>
                                                 <td>{{period.principalDisbursed | FormatNumber}}</td>
                                                 <td>{{period.principalDue| FormatNumber}}</td>
                                                 <td>{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>

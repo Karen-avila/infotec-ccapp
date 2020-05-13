@@ -63,7 +63,7 @@
                     username: credentials.username,
                     password: credentials.password
                 }
-        		if(SECURITY === 'oauth'){
+        		if (SECURITY === 'oauth') {
 	                httpService.post( "/fineract-provider/api/oauth/token?client_id=community-app&grant_type=password&client_secret=123", payload)
 	                    .then(getUserDetails, onLoginFailure);
         		} else {
@@ -138,12 +138,13 @@
 
             scope.$on("OnUserPreLogout", function (event) {
                 var userDate = localStorageService.getFromLocalStorage("userData");
-
                 // Remove user data and two-factor access token if present
                 localStorageService.removeFromLocalStorage("userData");
-                removeTwoFactorTokenFromStorage(userDate.username);
 
-                httpService.post(apiVer + "/twofactor/invalidate", '{"token": "' + twoFactorAccessToken + '"}');
+        		if (SECURITY === 'oauth') {
+                    removeTwoFactorTokenFromStorage(userDate.username);
+                    httpService.post(apiVer + "/twofactor/invalidate", '{"token": "' + twoFactorAccessToken + '"}');
+                }
             });
         }
     });
