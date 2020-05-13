@@ -13,10 +13,12 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <select id="documentTypeId" ng-model="formData.documentTypeId"
-                            ng-options="documenttype.id as documenttype.name | translate for documenttype in documenttypes"
-                            value="{{documenttype.id}}" required="required" class="form-control">
-                    </select>
+                    <md-select id="documentTypeId" ng-model="formData.documentTypeId" required="required" 
+                        placeholder="{{'label.menu.selectone' | translate}}">
+                        <md-option ng-repeat="documenttype in documenttypes" ng-value="documenttype.id">
+                            {{'label.client.document.' + documenttype.name | translate}}
+                        </md-option> 
+                    </md-select>
                 </div>
             </div>
 
@@ -25,20 +27,22 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <select id="status" ng-model="formData.status"
-                            ng-options="status.label as status.label | translatefor status in statusTypes"
-                            value="{{status.label}}" required="required" class="form-control">
-                    </select>
+                    <md-select id="status" ng-model="formData.status" required="required"
+                        placeholder="{{'label.menu.selectone' | translate}}">
+                        <md-option ng-repeat="status in statusTypes" ng-value="status.label">
+                            {{'label.heading.' + status.label | translate}}
+                        </md-option> 
+                    </md-select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3" for="documentKey">{{'label.input.uniqueidentification' | translate}}<span
-                        class="required">*</span></label>
+                        class="required uppercase">*</span></label>
 
                 <div class="col-sm-3">
                     <input id="documentKey" type="text" name="identification" ng-model="formData.documentKey"
-                           required="required" class="form-control" required late-Validate/>
+                           required="required" class="form-control uppercase" required late-Validate/>
                 </div>
                 <div class="col-sm-3">
                     <form-validate valattributeform="clientidentifierform" valattribute="identification"/>
@@ -54,10 +58,8 @@
             </div>
 
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/viewclient/{{clientId}}">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-                </a>
-                <button id="save" type="submit" has-permission='CREATE_CLIENTIDENTIFIER' class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
+                <md-button id="cancel" href="#!/viewclient/{{clientId}}" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+                <md-button id="save" type="submit" has-permission='CREATE_CLIENTIDENTIFIER' class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
             </div>
         </fieldset>
     </form>
