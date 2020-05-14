@@ -1,11 +1,11 @@
 <div id="menubarContainer" layout="row" ng-cloak>
-    <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left" aria-label="toolbar">
+    <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left" >
         <div class="md-toolbar-tools" style="width:100%;">
-            <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
+            <div ng-show="!showSearchBar()" class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
                 <div layout="row" layout-align="left left" style="width:100%;">
-                    <!--The left side is hidden when the screen size is larger than small -->
+                    <!--The left side is hidden when the screen size is larger than small --->
                     <md-button class="menu" hide-gt-sm><i class="fa fa-bars"></i></md-button>
-
+                    
                     <a class="navbar-brand" href="#!/home">
                         <img src="./images/logo_header.png" alt="">
                     </a>
@@ -98,17 +98,9 @@
                             </md-menu-item>
                         </md-menu-content>  
                     </md-menu>
-                    <!--  Blank -->
-                    <span flex ng-show="!toggleSearch"></span>
-                    
-                    <!--  Search bar -->
-                    <md-input-container ng-show="toggleSearch" style="padding-left:88px" flex> 
-                        <input type="text" ng-model="filterValue" aria-label="filter"> 
-                    </md-input-container>
-
+                    <span flex></span>
                     <md-menu>
-                        <md-button md-offset="0 -7" aria-label="search menu" class="md-icon-button" 
-                            ng-click="toggleSearch = !toggleSearch">
+                        <md-button md-offset="0 -7" aria-label="search menu" class="md-icon-button" ng-click="showSearchBar()">
                             <i class="fa fa-search"></i>
                         </md-button>
                         <md-menu-content></md-menu-content>
@@ -142,6 +134,20 @@
                         </md-menu-content> 
                     </md-menu>
                 </div>
+            </div>
+            <!-- Search bar -->
+            <div ng-show="showSearchBar()" class="md-toolbar-tools search-bar">
+                <md-button class="md-icon-button" ng-click="search()">
+                    <md-icon>search</md-icon>
+                </md-button>
+
+                <md-input-container flex>
+                    <input id="search" type="text" ng-model="search.query" placeholder="{{'label.search.text'|translate}}"/>
+                </md-input-container>
+
+                <md-button class="md-icon-button" ng-click="endSearch()">
+                    <md-icon>close</md-icon>
+                </md-button>
             </div>
         </div>
     </md-toolbar>
