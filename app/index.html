@@ -21,6 +21,10 @@
     data-offset="80"
     data-ng-controller="MainController"
   >
+  <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left" >
+  
+</md-toolbar>
+
     <!-- HTTP Bar Loader -->
     <div id="loading-bar"></div>
     <!-- Initial Loader -->
@@ -62,8 +66,7 @@
                 <label
                   ><strong
                     >{{ 'label.message.password.expired' | translate }}</strong
-                  ></label
-                >
+                  ></label>
 
                 <div class="form-group">
                   <input
@@ -349,13 +352,22 @@
             <div class="" ng-view></div>
           </div>
         </div>
-        <!-- Footer -->
-        <footer data-ng-hide="!domReady">
-          <div ng-include="'views/footer.html'"></div>
-        </footer>
+        
+      
       </div>
     </div>
-
+    <!-- Footer -->
+    <footer class="page-footer teal darken-4">
+      <div class="row2">
+  <div class="col m2 offset-m1 s6 offsert-s3">
+      <img  src="images/logofooter.svg" href="/" alt="logo gobierno de méxico" style="max-width:15%;">
+  </div>
+      </div>
+  <div class="footer-copyright teal darken-3">
+      <img class="responsive-img" src="https://framework-gb.cdn.gob.mx/landing/img/pleca.svg">
+  </div>
+  
+  </footer>
     <!-- Javascript -->
     <script>
       // define waitSeconds above require script tag
@@ -369,5 +381,6 @@
       data-main="scripts/loader.js"
       src="bower_components/requirejs/require.js"
     ></script>
+    
   </body>
 </html>
