@@ -38,16 +38,7 @@ body {
   background-color: transparent;
 }
 
-footer {
-  text-align: center;
-  // color: $gray-light;
-  background-color: $brand-secondary;
-  width: 100%;
-  position: relative;
-  height: 110px;
-  clear:both;
-  z-index: 100;
-}
+
 
 .footStyle {
   width: 100%;
@@ -729,4 +720,70 @@ md-whiteframe > span {
 
 .pre-wrap {
   white-space: pre-wrap;
+}
+
+
+.teal.darken-4 {
+
+  background-color: #10312b !important;
+
+}
+
+.page-footer {
+
+    padding-top: 20px;
+    color: #fff;
+   
+}
+
+
+.row2 {
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+
+}
+
+.teal.darken-3{
+  background-color: #235B4E;
+}
+
+.responsive-img{
+  width: 100%;
+  height: auto;
+}
+img.responsive-img{
+max-width: 100%;
+}
+.page-footer .footer-copyright{
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: rgba(255,255,255,.8);
+}
+
+.row2.col.offset-m1 {
+
+  margin-left: 8.3333333333%;
+
+}
+
+
+.row2.col.m3 {
+
+  width: 25%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+
+}
+
+
+md-toolbar.md-mifos-theme:not(.md-menu-toolbar) {
+  background-color:#10312b;
+  color: rgba(255,255,255,0.87);
 }
