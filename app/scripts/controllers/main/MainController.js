@@ -7,6 +7,7 @@
                 scope.releasedate = data.data.releasedate;
             });
 
+            scope.toggleSearch = false;
             scope.islogofoldernamefetched = false;
             scope.islogofoldernameconfig = false;
             scope.isFaviconPath = false;

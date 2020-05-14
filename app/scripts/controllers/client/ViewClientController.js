@@ -40,7 +40,7 @@
             });
 
             scope.routeTo = function () {
-                location.path('/address/' + routeParams.id);
+                location.path('/address/' + routeParams.id); // + '?clientId=' + routeParams.id + '&clientName=' + scope.client.displayName);
             }
 
             scope.ChangeAddressStatus = function (id, status, addressId) {
@@ -52,7 +52,7 @@
             }
 
             scope.routeToEdit = function (clientId, addressId) {
-                location.path('/editAddress/' + clientId + '/' + addressId + '/' + routeParams.id);
+                location.path('/editAddress/' + clientId + '/' + addressId + '/' + routeParams.id); // + '?clientId=' + routeParams.id + '&clientName=' + scope.client.displayName);
             }
             // end of address
 
@@ -235,10 +235,12 @@
                     ]
                 };
                 scope.buttonsArray.singlebuttons = scope.buttons;
-                
+               
+                /*
                 resourceFactory.runReportsResource.get({ reportSource: 'ClientSummary', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
                     scope.client.ClientSummary = data[0];
                 });
+                */
                 
                 resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: routeParams.id }, function (data) {
                     scope.clientReports = data;
