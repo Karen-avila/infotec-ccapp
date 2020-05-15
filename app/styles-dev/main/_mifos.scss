@@ -242,6 +242,10 @@ md-select {
     background: $brand-primary;
 }
 
+md-slider .md-track-ticks canvas {
+    height: 8px;
+}
+
 tr.md-row:hover {
     background-color: $gray-lighter;
 }
