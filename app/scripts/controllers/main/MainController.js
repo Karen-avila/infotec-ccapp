@@ -14,6 +14,8 @@
             scope.isHeaderLogoPath = false;
             scope.isBigLogoPath = false;
             scope.isLargeLogoPath = false;
+            scope.divheader=document.getElementById("divheader");
+            scope.divfooter=document.getElementById("divfooter");
 
             if (!scope.islogofoldernamefetched && $rootScope.tenantIdentifier && $rootScope.tenantIdentifier != "default") {
                 scope.islogofoldernamefetched = true;
@@ -183,6 +185,8 @@
                         $rootScope.setPermissions(scope.currentSession.user.userPermissions);
                     }
                     location.path('/home').replace();
+                    scope.divheader.classList.add("hide");
+                    scope.divfooter.classList.add("hide");
                 } else {
                     scope.loggedInUserId = data.userId;
                 }
