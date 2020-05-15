@@ -145,6 +145,26 @@
                 });
             };
 
+            scope.showTransactionCalculation = function(ev, transactionId) {
+                resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
+                function (data) {
+                    $mdDialog.show({
+                        controller: DialogCalcsController,
+                        templateUrl: 'views/loans/viewloantransactioncalcs.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        fullscreen: true, // Only for -xs, -sm breakpoints.
+                        locals: {
+                            data: {
+                              transactionId: scope.transactionId,
+                              loanTransaction: data
+                            }
+                        },
+                    });                    
+                });
+            };
+
             scope.showTransactionReceipt = function(ev, transactionId) {
                 scope.transactionId = transactionId;
                 scope.reportName = "Receipt " + transactionId;
@@ -182,6 +202,13 @@
         
             function DialogReceiptController(scope, $mdDialog, data) {
                 scope.data = data;
+                scope.closeDialog = function() {
+                  $mdDialog.hide();
+                }
+            }
+        
+            function DialogCalcsController(scope, $mdDialog, data) {
+                scope.loanTransaction = data.loanTransaction;
                 scope.closeDialog = function() {
                   $mdDialog.hide();
                 }

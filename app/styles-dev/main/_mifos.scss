@@ -249,3 +249,8 @@ md-slider .md-track-ticks canvas {
 tr.md-row:hover {
     background-color: $gray-lighter;
 }
+
+td.amount {
+    text-align: right;
+    padding-right: 5px;  
+}
