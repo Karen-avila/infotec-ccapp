@@ -3,26 +3,28 @@
         <div class="md-toolbar-tools" style="width:100%;">
             <div ng-show="!showSearchBar()" class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
                 <div layout="row" layout-align="left left" style="width:100%;">
-                    <!--The left side is hidden when the screen size is larger than small -->
+                    <!--The left side is hidden when the screen size is larger than small --->
                     <md-button class="menu" hide-gt-sm><i class="fa fa-bars"></i></md-button>
-
+                    
                     <a class="navbar-brand" href="#!/home">
                         <img src="./images/logo_header.png" alt="">
                     </a>
                     <!-- CLIENTS -->
                     <md-menu>
                         <md-button ng-href="#!/clients" has-permission='READ_CLIENT'>
-                        <i class="fa fa-users"></i> {{'label.anchor.clients' | translate }}
-                    </md-button>
+                            <i class="fa fa-users"></i> {{'label.anchor.clients' | translate }}
+                        </md-button>
+                        <md-menu-content></md-menu-content>
                     </md-menu>
                     <!-- ACCOUNTING -->
                     <md-menu>
                         <md-button ng-href="#!/accounting" has-permission='READ_ACCOUNTING'>
-                        <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
-                    </md-button>
+                            <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
+                        </md-button>
+                        <md-menu-content></md-menu-content>
                     </md-menu>
                     <md-menu>
-                        <md-button aria-label="Reports menu" ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button aria-label="Reports menu" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bar-chart-o"></i> {{'label.anchor.reports' | translate }}
                         </md-button>
                         <md-menu-content width="6" ng-mouseleave="$mdCloseMenu()">
@@ -65,7 +67,7 @@
                         </md-menu-content>
                     </md-menu>
                     <md-menu>
-                        <md-button ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-user-shield"></i> {{'label.anchor.admin' | translate }}
                         </md-button>
                         <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
@@ -101,14 +103,16 @@
                         <md-button md-offset="0 -7" aria-label="search menu" class="md-icon-button" ng-click="showSearchBar()">
                             <i class="fa fa-search"></i>
                         </md-button>
+                        <md-menu-content></md-menu-content>
                     </md-menu>
                     <md-menu>
                         <md-button aria-label="notifications menu" class="md-icon-button" ng-href="#!/notifications">
                             <i class="fa fa-bell"></i>
                         </md-button>
+                        <md-menu-content></md-menu-content>
                     </md-menu>
                     <md-menu>
-                        <md-button aria-label="Settings menu" class="md-icon-button" ng-mouseenter="$mdOpenMenu()" ng-click="$mdOpenMenu()">
+                        <md-button aria-label="Settings menu" class="md-icon-button" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-ellipsis-v"></i>
                         </md-button>
                         <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
@@ -129,7 +133,6 @@
                             </md-menu-item>
                         </md-menu-content> 
                     </md-menu>
-
                 </div>
             </div>
             <!-- Search bar -->

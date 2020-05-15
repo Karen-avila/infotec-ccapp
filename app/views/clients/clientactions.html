@@ -18,8 +18,10 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" datepicker-pop="dd MMMM yyyy" id="{{modelName}}" name="modelName"
-                            ng-model="formData[modelName]" min="'2000-01-01'" max="restrictDate" class="form-control" />
+                        <md-datepicker id="{{modelName}}" name="modelName" ng-model="formData[modelName]"
+                            md-placeholder="{{'label.selecttodate' | translate}}" ng-model="formData[modelName]"
+                            md-min-date="'2000-01-01'" md-max-date="restrictDate" required>
+                        </md-datepicker>
                     </div>
                 </div>
                 <div class="form-group" ng-show="showActivationDateField">
@@ -27,8 +29,10 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" datepicker-pop="dd MMMM yyyy" id="{{modelName}}" name="modelName"
-                            ng-model="formData[modelName]" min="mindate" max="restrictDate" class="form-control" />
+                        <md-datepicker id="{{modelName}}" name="modelName" ng-model="formData[modelName]"
+                            md-placeholder="{{'label.selecttodate' | translate}}" ng-model="formData[modelName]"
+                            md-min-date="mindate" md-max-date="restrictDate" required>
+                        </md-datepicker>
                     </div>
                 </div>
                 <div class="form-group" ng-show="reasonField">
@@ -36,10 +40,12 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select id="{{reasonmodelName}}" ng-model="formData[reasonmodelName]"
-                            ng-options="reason.id as reason.name for reason in reasons" value="{{reason.id}}"
-                            class="form-control">
-                        </select>
+                        <md-select id="{{reasonmodelName}}" ng-model="formData[reasonmodelName]"
+                            placeholder="{{'label.menu.selectone' | translate}}">
+                            <md-option ng-repeat="reason in reasons" ng-value="reason.id">
+                                {{reason.name | translate}}
+                            </md-option>  
+                        </md-select>
                     </div>
                 </div>
 
@@ -48,9 +54,12 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select chosen="staffOptions" id="staffId" ng-model="formData.staffId" class="form-control"
-                            ng-options="staff.id as staff.displayName for staff in staffOptions" value="{{staff.id}}">
-                        </select>
+                        <md-select id="staffId" ng-model="formData.staffId"
+                            placeholder="{{'label.menu.selectone' | translate}}">
+                            <md-option ng-repeat="staff in staffOptions" ng-value="staff.id">
+                                {{staff.displayName | translate}}
+                            </md-option>  
+                        </md-select>
                     </div>
                 </div>
 
@@ -59,10 +68,12 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select id="savingsAccountId" ng-model="formData.savingsAccountId" class="form-control"
-                            ng-options="savingsAccount.id as (savingsAccount.accountNo +'-'+savingsAccount.savingsProductName) for savingsAccount in savingAccountOptions"
-                            value="{{savingsAccount.id}}">
-                        </select>
+                        <md-select id="savingsAccountId" ng-model="formData.savingsAccountId" 
+                            placeholder="{{'label.menu.selectone' | translate}}">
+                            <md-option ng-repeat="savingsAccount in savingAccountOptions" ng-value="savingsAccount.id">
+                                {{savingsAccount.accountNo}} {{savingsAccount.savingsProductName}}
+                            </md-option>  
+                        </md-select>
                     </div>
                 </div>
 
@@ -83,16 +94,16 @@
                 </div>
 
                 <div>
-                    <button id="save1" wz-next class="btn btn-primary pull-right" ng-show="isEntityDatatables">
+                    <md-button id="save1" wz-next class="btn btn-primary pull-right" ng-show="isEntityDatatables">
                         {{'label.button.proceed' | translate}}
-                    </button>
+                    </md-button>
                 </div>
-                <div class="col-md-offset-3" ng-show="!showDeleteClient && !isEntityDatatables">
-                    <button id="cancel" type="reset" ng-click="cancel()"
-                        class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
-                    </button>
-                    <button id="save" type="submit" has-permission='{{taskPermissionName}}' class="btn btn-sm btn-primary"
-                        wz-next>{{'label.button.save' | translate}}</button>
+                <div class="col-md-12 center" ng-show="!showDeleteClient && !isEntityDatatables">
+                    <md-button id="cancel" type="reset" ng-click="cancel()"
+                        class="md-raised">{{'label.button.cancel' | translate}}
+                    </md-button>
+                    <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' class="md-raised md-primary"
+                        wz-next>{{'label.button.save' | translate}}</md-button>
                 </div>
             </form>
         </wz-step>
@@ -117,16 +128,17 @@
                                 <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
                                     ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
                                     class="form-control" />
-                                <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"
-                                    datepicker-pop="dd MMMM yyyy"
+                                <md-datepicker ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
                                     ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateType.date"
-                                    is-open="opened{{$index}}" class="form-control" />
+                                    md-placeholder="{{'label.selecttodate' | translate}}">
+                                </md-datepicker>
                                 <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'"
                                     class="form-inline">
                                     <div class="form-group">
-                                        <input type="text" datepicker-pop="dd MMMM yyyy"
+                                        <md-datepicker 
                                             ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].dateTimeType.date"
-                                            is-open="opened{{$index}}" class="form-control" />
+                                            md-placeholder="{{'label.selecttodate' | translate}}">
+                                        </md-datepicker>
                                     </div>
                                     <div class="form-group">
                                         <input type="time" placeholder="HH:MM:SS"
@@ -149,34 +161,36 @@
                                     </label>
                                 </div>
                                 <span data-ng-switch on="columnHeader.columnDisplayType">
-                                    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+                                    <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                         data-ng-switch-when="CODELOOKUP"
                                         ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                        ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues"
-                                        value="{{columnValue.id}}" class="form-control">
-                                        <option value="">{{'label.selectone' | translate}}</option>
-                                    </select>
-                                    <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+                                        placeholder="{{'label.menu.selectone' | translate}}">
+                                        <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
+                                            {{columnValue.value}}
+                                        </md-option>  
+                                    </md-select>
+                                    <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                         data-ng-switch-when="CODEVALUE"
                                         ng-model="entityformData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                        ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues"
-                                        value="{{columnValue.id}}" class="form-control">
-                                        <option value="">{{'label.selectone' | translate}}</option>
-                                    </select>
+                                        placeholder="{{'label.menu.selectone' | translate}}">
+                                        <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
+                                            {{columnValue.value}}
+                                        </md-option>  
+                                    </md-select>
                                 </span>
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
+                            <md-button id="save4" type="submit" class="md-raised md-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
-                            </button>
+                            </md-button>
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
-                            <button id="cancel" type="reset" ng-click="cancel()"
-                                class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
-                            </button>
-                            <button id="save" type="submit" has-permission='{{taskPermissionName}}'
-                                class="btn btn-sm btn-primary" wz-next>{{'label.button.save' | translate}}</button>
+                            <md-button id="cancel" type="reset" ng-click="cancel()"
+                                class="md-raised">{{'label.button.cancel' | translate}}
+                            </md-button>
+                            <md-button id="save" type="submit" has-permission='{{taskPermissionName}}'
+                                class="md-raised md-primary" wz-next>{{'label.button.save' | translate}}</md-button>
                         </div>
                     </fieldset>
                 </form>

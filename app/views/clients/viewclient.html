@@ -1209,7 +1209,7 @@
                     </md-tab-body>
 				</md-tab>
 
-				<md-tab select="getClientIdentityDocuments()" has-permission='READ_CLIENTIDENTIFIER'>
+				<md-tab md-on-select="getClientIdentityDocuments()" has-permission='READ_CLIENTIDENTIFIER'>
                     <md-tab-label>{{'label.heading.identities' | translate}}</md-tab-label>
                     <md-tab-body>
 					<div class="pull-right btn-group">
@@ -1257,7 +1257,7 @@
                     </md-tab-body>
 				</md-tab>
 
-				<md-tab select="getClientDocuments()" has-permission='READ_DOCUMENT'>
+				<md-tab md-on-select="getClientDocuments()" has-permission='READ_DOCUMENT'>
                     <md-tab-label>{{'label.heading.documents' | translate}}</md-tab-label>
                     <md-tab-body>
 					<div class="pull-right">

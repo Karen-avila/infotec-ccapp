@@ -64,7 +64,7 @@
             active: data.active,
             penalty: data.penalty,
             annual: data.annual,
-            currencyCode: data.currency.id,
+            currencyCode: data.currency.code,
             chargeAppliesTo: data.chargeAppliesTo.id,
             chargeTimeType: data.chargeTimeType.id,
             chargeCalculationType: data.chargeCalculationType.id,
@@ -158,15 +158,17 @@
       };
 
       scope.filterChargeCalculations = function (chargeTimeType) {
-          return scope.template.chargeCalculationTypeOptions.filter(function (item) {
-            if (chargeTimeType == 12 && (item.id == 3 || item.id == 4)) {
-                return false;
-            }
-            if (chargeTimeType != 12 && item.id == 5) {
-                return false;
-            }
-            return true;
-        });
+        if (typeof scope.template.chargeCalculationTypeOptions != "undefined") {
+            return scope.template.chargeCalculationTypeOptions.filter(function (item) {
+                if (chargeTimeType == 12 && (item.id == 3 || item.id == 4)) {
+                    return false;
+                }
+                if (chargeTimeType != 12 && item.id == 5) {
+                    return false;
+                }
+                return true;
+            });
+        }
       };
 
       scope.submit = function () {

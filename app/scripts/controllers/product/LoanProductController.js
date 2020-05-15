@@ -2,10 +2,17 @@
     mifosX.controllers = _.extend(module, {
         LoanProductController: function (scope, resourceFactory, location) {
             scope.products = [];
+            scope.totalLoanProducts = 0;
 
             scope.routeTo = function (id) {
                 location.path('/viewloanproduct/' + id);
             };
+
+            scope.query = {
+                order: 'shortName',
+                limit: 25,
+                page: 1
+            }
 
             if (!scope.searchCriteria.loanP) {
                 scope.searchCriteria.loanP = null;
@@ -22,6 +29,7 @@
             scope.$broadcast('LoanProductDataLoadingStartEvent');
             resourceFactory.loanProductResource.getAllLoanProducts(function (data) {
                 scope.loanproducts = data;
+                scope.totalLoanProducts = data.length;
                 scope.$broadcast('LoanProductDataLoadingCompleteEvent');
             });
         }
