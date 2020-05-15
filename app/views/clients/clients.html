@@ -14,7 +14,7 @@
                     <form ng-submit="search()" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <input ng-autofocus="true" ng-model="filterText" ng-keyup="onFilter()" type="text"
+                                <input ng-autofocus="true" ng-model="filter.search" type="text"
                                     class="form-control unstyled"
                                     placeholder="{{'label.input.filterbynameaccno' | translate}}">
                             </div>
@@ -25,11 +25,12 @@
                                     class="form-control unstyled col-sm-3" />
                                 </div>
                                 <div class="col-md-3">
-                                    <md-button class="md-raised md-primary md-icon-button search">
+                                    <button mat-button class="md-icon-button search">
                                         <i class="fa fa-search "></i>
-                                    </md-button>
+                                    </button>
                                 </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-4">
                                     <md-checkbox ng-model="showClosed">
                                         {{'label.button.showall' | translate }}
                                     </md-checkbox>
@@ -48,22 +49,22 @@
             </div>
             <md-divider></md-divider>
             <md-table-container>
-                <table md-table ng-model="clients" md-progress="promise">
+                <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
                             <th md-column></th>
-                            <th md-column>{{'label.heading.name' | translate}}</th>
-                            <th md-column>{{'label.heading.clientno' | translate}}</th>
-                            <th md-column>{{'label.heading.uniqueId' | translate}}</th>
-                            <th md-column>{{'label.heading.externalid2' | translate}}</th>
+                            <th md-column md-order-by="displayName">{{'label.heading.name' | translate}}</th>
+                            <th md-column md-order-by="accountNo">{{'label.heading.clientno' | translate}}</th>
+                            <th md-column md-order-by="uniqueId">{{'label.heading.uniqueId' | translate}}</th>
+                            <th md-column md-order-by="externalId">{{'label.heading.externalid2' | translate}}</th>
                             <th md-column>{{'label.heading.status' | translate}}</th>
-                            <th md-column>{{'label.heading.office' | translate}}</th>
-                            <th md-column>{{'label.heading.staff' | translate}}</th>
+                            <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
+                            <th md-column md-order-by="staffName">{{'label.heading.staff' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="client in clients" data-ng-click="routeTo(client.id)"
-                        md-select="client" md-select-id="name" 
+                        <tr md-row ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+                        data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name" 
                         ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
                             <td md-cell >
                                 <i ng-show="client.legalForm.value == 'MORAL'" class="fa fa-building"></i>
@@ -86,7 +87,7 @@
                 </table>
             </md-table-container>
 
-            <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" 
+            <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
                 md-page="query.page" md-total="{{totalClients}}" md-on-paginate="getResultsPage" md-page-select>
             </md-table-pagination>
         </div>

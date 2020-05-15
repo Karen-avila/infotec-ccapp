@@ -14,7 +14,7 @@
             entityname = "ADDRESS";
             $scope.addStatus = "";
             $scope.editable = false;
-            clientId = routeParams.clientId;
+            $scope.clientId = routeParams.clientId;
             addresstypid = routeParams.addrType;
 
             isActive = {};
@@ -36,10 +36,10 @@
             })
 
             $scope.routeTo = function () {
-                location.path('/viewclient/' + clientId);
+                location.path('/viewclient/' + $scope.clientId);
             }
 
-            resourceFactory.clientAddress.get({ type: addresstypid, clientId: clientId }, function (data) {
+            resourceFactory.clientAddress.get({ type: addresstypid, clientId: $scope.clientId }, function (data) {
                 $scope.editable = true;
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].addressId == addressId) {
@@ -119,8 +119,8 @@
             $scope.updateaddress = function () {
                 $scope.formData.locale = "en";
                 $scope.formData.addressId = addressId;
-                resourceFactory.clientAddress.put({ 'clientId': clientId }, $scope.formData, function (data) {
-                    location.path('/viewclient/' + clientId);
+                resourceFactory.clientAddress.put({ 'clientId': $scope.clientId }, $scope.formData, function (data) {
+                    location.path('/viewclient/' + $scope.clientId);
                 });
             }
         }

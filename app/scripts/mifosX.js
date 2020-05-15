@@ -28,7 +28,8 @@ var mifosX = (function (module) {
       "ngAnimate",
       "httpErrorHandler",
       "angular-loading-bar",
-      "md.data.table"
+      "md.data.table",
+      "md-steppers"
     ]),
   };
   return module;

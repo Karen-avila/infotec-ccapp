@@ -12,11 +12,11 @@
             <div class="content">
                 <div class="pull-right">
                     <div class="btn-group">
-                        <a href="#" class="btn btn-sm btn-primary" ng-click="downloadPDF()"
-                            download><i class="fa fa-print "></i>&nbsp;{{'label.button.print' | translate}}</a>
-                        <a href="#!/editloanproduct/{{loanproduct.id}}" class="btn btn-sm btn-primary"
-                            has-permission='UPDATE_LOANPRODUCT'><i
-                                class="fa fa-edit "></i>&nbsp;{{'label.button.edit' | translate}}</a>
+                        <md-button md-no-ink class="md-primary" ng-click="downloadPDF()">
+                            <i class="fa fa-print "></i> {{'label.button.print' | translate}}</md-button>
+                        <md-button md-no-ink class="md-primary" href="#!/editloanproduct/{{loanproduct.id}}"
+                            has-permission='UPDATE_LOANPRODUCT'>
+                            <i class="fa fa-edit "></i>&nbsp;{{'label.button.edit' | translate}}</md-button>
                     </div>
                 </div>
                 <legend>{{loanproduct.name}}</legend>
@@ -63,7 +63,7 @@
                     </tr>
                     <tr class="toppadding">
                         <td>{{'label.heading.currency' | translate}}:</td>
-                        <td colspan="3">{{loanproduct.currency.name | translate}}</td>
+                        <td colspan="3">{{loanproduct.currency.code}} {{loanproduct.currency.name | translate}}</td>
                     </tr>
                     <tr>
                         <td>{{'label.heading.decimalplaces' | translate}} :</td>
@@ -445,7 +445,7 @@
                     </tr>
                     <tr ng-repeat="charge in loanproduct.charges" ng-hide="charge.penalty">
                         <td>{{charge.name}}</td>
-                        <td>{{charge.chargeCalculationType.value | translate}}</td>
+                        <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
                         <td>{{charge.amount| FormatNumber}}</td>
                         <td>{{charge.chargeTimeType.value | translate}}</td>
                     </tr>
@@ -470,16 +470,16 @@
                     <tr>
                         <td colspan="4"><br /></td>
                     </tr>
-                    <tr class="bottomborder">
+                    <tr class="bottomborder" ng-show="loanproduct.taxComponents.length > 0">
                         <td colspan="4"><strong>{{'label.heading.taxesoninterest' | translate}}</strong></td>
                     </tr>
-                    <tr class="bottomborder graybg">
+                    <tr class="bottomborder graybg" ng-show="loanproduct.taxComponents.length > 0">
                         <td>{{'label.heading.name' | translate}}</td>
                         <td>{{'label.heading.percentage' | translate}}</td>
                         <td>{{'label.heading.startdate' | translate}}</td>
                         <td>&nbsp;</td>
                     </tr>
-                    <tr ng-repeat="component in loanproduct.taxComponents">
+                    <tr ng-repeat="component in loanproduct.taxComponents" ng-show="loanproduct.taxComponents.length > 0">
                         <td>{{component.taxComponent.name}}</td>
                         <td>{{component.percentage}} %</td>
                         <td>{{component.taxComponent.startDate | DateFormat}}</td>
@@ -490,7 +490,7 @@
                     </tr>
                     <tr class="bottomborder">
                         <td><strong>{{'label.heading.accounting' | translate}}</strong></td>
-                        <td colspan="3">{{loanproduct.accountingRule.value}}</td>
+                        <td colspan="3">{{loanproduct.accountingRule.value | translate}}</td>
                     </tr>
                     <tr>
                         <td colspan="5">

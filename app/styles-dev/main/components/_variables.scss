@@ -20,6 +20,7 @@ $brand-color:           #285c4d; // #36BAF0;
 $brand-primary:         darken($brand-color, 6.5%) !default; // #337ab7
 $brand-primary-light:   darken($brand-color, 8.5%) !default; // #337ab7
 $brand-primary-dark:    darken($brand-color, 12.5%) !default; // #337ab7
+$brand-primary-lighten: lighten($brand-color, 20%) !default; // #337ab7
 $brand-info:            #36BAF0 !default;
 $brand-warning:         #E8F036 !default;
 $brand-danger:          #d8736f !default;

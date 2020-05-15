@@ -40,7 +40,7 @@
 	                    </td>
 	                <tr>
 	                    <td>{{'label.heading.currency' | translate}}</td>
-	                    <td>{{charge.currency.name | translate}}</td>
+	                    <td>{{charge.currency.code}} {{charge.currency.name | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.amount' | translate}}</td>
@@ -50,13 +50,17 @@
 	                    <td>{{'label.heading.chargetimetype' | translate}}</td>
 	                    <td>{{charge.chargeTimeType.value | translate}}</td>
 	                </tr>
+	                <tr ng-show="charge.chargeCalculationType.value > 1">
+	                    <td>{{'label.heading.annual' | translate}}</td>
+	                    <td>{{charge.annual | translate}}</td>
+	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargeappliesto' | translate}}</td>
-	                    <td>{{charge.chargeAppliesTo.value | translate}}</td>
+	                    <td>{{charge.chargeAppliesTo.code | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.chargecalculationtype' | translate}}</td>
-	                    <td>{{charge.chargeCalculationType.value | translate}}</td>
+	                    <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
 	                </tr>
 	                <tr>
 	                    <td>{{'label.heading.active' | translate}}</td>

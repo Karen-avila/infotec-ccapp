@@ -17,10 +17,8 @@
                 </td>
                 <td class="width36 paddedbottom10">
                     <md-select id="productId" ng-model="formData.productId"
-                        ng-change="loanProductChange(formData.productId)">
-                        <md-option><em>{{'label.selectloanproduct' | translate}}</em></md-option>
-                        <md-option ng-repeat="product in loanaccountinfo.productOptions" ng-value="product.id"
-                                ng-disabled="$index === 1">
+                        ng-change="loanProductChange(formData.productId)" placeholder="{{'label.selectloanproduct' | translate}}">
+                        <md-option ng-repeat="product in loanaccountinfo.productOptions" ng-value="product.id">
                         {{product.name | translate}}
                         </md-option>
                     </md-select>
@@ -29,10 +27,10 @@
                     <label ng-show="formData.productId">{{'label.input.loanofficer' | translate }}:</label>
                 </td>
                 <td class="width36 paddedbottom10">
-                    <md-select ng-show="formData.productId" id="loanOfficerId" ng-model="formData.loanOfficerId">
-                        <md-option><em>{{'label.selectloanofficer' | translate}}</em></md-option>
-                        <md-option ng-repeat="loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse" ng-value="loanOfficer.id"
-                                ng-disabled="$index === 1">
+                    <md-select ng-show="formData.productId" id="loanOfficerId" 
+                        ng-model="formData.loanOfficerId" placeholder="{{'label.selectloanofficer' | translate}}">
+                        <md-option ng-repeat="loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse" 
+                            ng-value="loanOfficer.id">
                         {{loanOfficer.displayName | translate}}
                         </md-option>
                     </md-select>
@@ -791,7 +789,7 @@
         <div class="col-md-12 center">
             <md-button id="cancel" type="reset" class="md-raised"
                 ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-            <md-button id="save" ng-click="submit()" has-permission='UPDATE_LOAN'
+            <md-button id="save" ng-click="submit()" class="md-raised md-primary" has-permission='UPDATE_LOAN'
                 ng-show="loanaccountinfo">{{'label.button.save' |
         translate}}
             </md-button>
