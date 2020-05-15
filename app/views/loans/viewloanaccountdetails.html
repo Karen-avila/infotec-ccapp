@@ -721,13 +721,13 @@
                                 <colgroup span="4"></colgroup>
                                 <thead>
                                     <tr class="graybg">
-                                        <th class="pointer" ng-click="changeTransactionSort('id')">{{'label.heading.id' | translate}}</th>
                                         <th class="pointer" ng-click="changeTransactionSort('officeName')">{{'label.heading.office' | translate}}</th>
                                         <th class="pointer" ng-click="changeTransactionSort('date')">{{'label.heading.transactiondate' | translate}}</th>
                                         <th class="pointer" ng-click="changeTransactionSort('type.value')">{{'label.heading.transactiontype' | translate}}</th>
                                         <th class="pointer" ng-click="changeTransactionSort('amount')">{{'label.heading.amount' | translate}}</th>
                                         <th class="pointer" colspan="4" scope="colgroup">{{'label.heading.breakdown' | translate}}</th>
                                         <th class="pointer" scope="colgroup">{{'label.heading.loan.balance' | translate}}</th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -747,9 +747,6 @@
                                     <tr class="pointer-main" ng-class="{strikeoff : transaction.manuallyReversed==true}"
                                         ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && transaction.type.accrual">
                                         <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
-                                            {{transaction.id}}
-                                        </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.officeName}}
                                         </td>
                                         <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
@@ -758,33 +755,42 @@
                                         <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{'transaction.type.' + transaction.type.value | translate}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.amount | FormatNumber}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.principalPortion | FormatNumber}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.interestPortion | FormatNumber}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.feeChargesPortion | FormatNumber}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.penaltyChargesPortion | FormatNumber}}
                                         </td>
-                                        <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
+                                        <td class="pointer amount" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                             {{transaction.outstandingLoanBalance | FormatNumber}}
                                         </td>
 
-                                        <td> <span uib-tooltip="{{'label.heading.viewreceipts' | translate }}" ng-if="transaction.manuallyReversed!=true" 
-                                            ng-click="showTransactionReceipt($event, transaction.id)">
-                                            <i class="fa fa-file-text fa fa-large"></i>
-                                        </span>
+                                        <td> 
+                                            <span ng-if="transaction.manuallyReversed!=true && transaction.penaltyChargesPortion" ng-click="showTransactionCalculation($event, transaction.id)">
+                                                <md-tooltip md-direction="top">{{'label.anchor.viewdetails' | translate}}</md-tooltip>
+                                                <i class="fa fa-file-text fa fa-large"></i>
+                                            </span>
                                         </td>
-                                        <td> <span uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}" tooltip-placement="left" ng-click="viewloantransactionjournalentries(transaction.id)">
-                                            <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
-                                        </span>
+                                        <td> 
+                                            <span ng-if="transaction.manuallyReversed!=true" ng-click="showTransactionReceipt($event, transaction.id)">
+                                                <md-tooltip md-direction="top">{{'label.anchor.viewreceipts' | translate}}</md-tooltip>
+                                                <i class="fa fa-file-text fa fa-large"></i>
+                                            </span>
+                                        </td>
+                                        <td> 
+                                            <span ng-click="viewloantransactionjournalentries(transaction.id)">
+                                                <md-tooltip md-direction="top">{{'label.anchor.viewjournalentries' | translate}}</md-tooltip>
+                                                <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                 </tbody>
