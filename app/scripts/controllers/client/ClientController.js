@@ -55,7 +55,7 @@
           }
         );
       };
-      scope.initPage();
+      // scope.initPage();
 
       scope.getDatatableColumn = function (tableName, columnName) {
         var temp = columnName.split("_cd_");
