@@ -18,7 +18,6 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                <!--<legend>{{ title | translate}}</legend>-->
                             </td>
                             <td ng-show="addDisburseDetails" align="right">
                                 <legend>
@@ -37,7 +36,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="{{modelName}}" ng-model="formData[modelName]" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                md-min-date="minDate" md-max-date="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -48,7 +47,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="expectedDisbursementDate" ng-model="form.expectedDisbursementDate" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                md-min-date="minDate" md-max-date="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -240,7 +239,9 @@
                     </div>
 
                     <div class="form-group" ng-show="showNoteField">
-                        <label class="control-label col-sm-3" for="note">{{'label.input.note' | translate}}</label>
+                        <label class="control-label col-sm-3" for="note">{{'label.input.note' | translate}}
+                            <span class="required" ng-show="noteRequired"> * </span>
+                        </label>
 
                         <div class="col-sm-6">
                             <textarea id="note" rows="2" class="form-control" ng-model="formData.note"></textarea>

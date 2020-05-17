@@ -50,8 +50,8 @@
             limit: scope.query.limit,
           },
           function (data) {
-            scope.totalClients = data.totalFilteredRecords;
             scope.clients = data.pageItems;
+            scope.totalClients = scope.clients.length;
           }
         );
       };
@@ -83,7 +83,7 @@
         } else {
           resourceFactory.globalSearch.search(
             {
-              query: searchString,
+              query: searchString.toUpperCase(),
               resource: "clients,clientIdentifiers",
               exactMatch: exactMatch,
             },
@@ -103,16 +103,14 @@
                   client.externalId = result.entityExternalId;
                   client.officeName = result.parentName;
                 } else if (result.entityType == "CLIENTIDENTIFIER") {
-                  numberOfClients = numberOfClients + 1;
                   client.displayName = result.parentName;
                   client.id = result.parentId;
                   client.externalId = result.parentExternalId;
                 }
                 scope.actualClients.push(client);
               }
-              var numberOfClients = scope.actualClients.length;
-              scope.totalClients = numberOfClients;
               scope.clients = scope.actualClients.slice(0, scope.query.limit);
+              scope.totalClients = scope.clients.length;
             }
           );
         }

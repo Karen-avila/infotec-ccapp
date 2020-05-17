@@ -4,15 +4,16 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  position: absolute;
   min-height: 100%;
   color: $gray-dark;
   background-color: $body-bg;
   font-family: $brand-font-family !important;
+  padding-top: 0px;
 }
 
 #wrapper {
-  min-height: 620px;
-  height: 100%;
   padding-bottom:30px;
 }
 
@@ -38,7 +39,9 @@ body {
   background-color: transparent;
 }
 
-
+.full-width {
+    width: 100%;
+}
 
 .footStyle {
   width: 100%;
@@ -312,7 +315,8 @@ li a i .fa {
 }
 
 #mifos-reskin-body-view {
-  padding: 70px 15px 120px 50px;
+  margin: 0 auto;
+  width: 96%;
   .content-container {
     width: 100%;
     max-width: 1350px;
