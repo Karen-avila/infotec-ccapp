@@ -158,7 +158,9 @@
                         locals: {
                             data: {
                               transactionId: scope.transactionId,
-                              loanTransaction: data
+                              loanTransaction: data,
+                              overdueCharges: scope.loandetails.overdueCharges,
+                              daysInYear: scope.loandetails.daysInYearType.id
                             }
                         },
                     });                    
@@ -209,6 +211,17 @@
         
             function DialogCalcsController(scope, $mdDialog, data) {
                 scope.loanTransaction = data.loanTransaction;
+                const overdueCharges = data.overdueCharges;
+                var days = 0;
+                const loanCharge = scope.loanTransaction.loanCharge;
+                for (var i=0; i < overdueCharges.length; i++) {
+                    const item = overdueCharges[i];
+                    if (item.name == loanCharge.name) {
+                        days = loanCharge.amountOrPercentage / (item.amount / scope.daysInYear);
+                        break;
+                    }
+                }
+                scope.days = days;
                 scope.closeDialog = function() {
                   $mdDialog.hide();
                 }

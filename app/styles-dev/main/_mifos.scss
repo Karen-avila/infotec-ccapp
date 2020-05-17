@@ -242,6 +242,22 @@ md-select {
     background: $brand-primary;
 }
 
+md-input-container {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    margin-bottom: 0px;
+    margin-top: 40px;
+}
+
+table.md-table tbody.md-body > tr.md-row, table.md-table tfoot.md-foot > tr.md-row {
+    height: 38px;
+}
+
+.noscroll-x {
+    overflow-x: hidden;
+}
+
 md-slider .md-track-ticks canvas {
     height: 8px;
 }
@@ -250,7 +266,7 @@ tr.md-row:hover {
     background-color: $gray-lighter;
 }
 
-td.amount {
+td.amount, th.amount {
     text-align: right;
     padding-right: 5px;  
 }

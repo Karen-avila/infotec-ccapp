@@ -49,9 +49,12 @@
                 scope.penaltyOptions = scope.product.penaltyOptions || [];
                 scope.chargeOptions = scope.product.chargeOptions || [];
                 scope.overduecharges = [];
-                var funds = data.fundOptions.filter(function(fund) {
-                    return fund.active == true;
-                });
+                var funds = [];
+                if (typeof data.fundOptions !== 'undefined') {
+                    funds = data.fundOptions.filter(function(fund) {
+                        return fund.active == true;
+                    });
+                }
                 scope.product.fundOptions = funds;
                 for (var i in scope.penaltyOptions) {
                     if (scope.penaltyOptions[i].chargeTimeType.code == 'chargeTimeType.overdueInstallment') {
@@ -103,7 +106,6 @@
             $rootScope.formValue = function (array, model, findattr, retAttr) {
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
-                console.log(findattr, retAttr, model);
                 return _.find(array, function (obj) {
                     return obj[findattr] === model;
                 })[retAttr];

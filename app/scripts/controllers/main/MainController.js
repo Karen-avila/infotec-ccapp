@@ -185,8 +185,8 @@
                         $rootScope.setPermissions(scope.currentSession.user.userPermissions);
                     }
                     location.path('/home').replace();
-                    scope.divheader.classList.add("hide");
-                    scope.divfooter.classList.add("hide");
+                    // scope.divheader.classList.add("hide");
+                    // scope.divfooter.classList.add("hide");
                 } else {
                     scope.loggedInUserId = data.userId;
                 }
