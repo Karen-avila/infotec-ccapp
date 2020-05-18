@@ -1,3 +1,7 @@
+button,select,html,textarea,input{
+    font-family: $brand-font-family !important;
+}
+
 md-backdrop.md-opaque.md-mifos-theme {
   background-color: rgba(0, 0, 0, 0.3); }
 
@@ -66,8 +70,13 @@ md-checkbox.md-mifos-theme[disabled].md-checked .md-icon {
   background-color: rgba(0, 0, 0, 0.26); }
 
 md-content.md-mifos-theme {
-  background-color: #ffffff; }
+  background-color: transparent !important; 
+}
 
+md-content {
+    background-color: transparent !important; 
+}
+  
 md-dialog.md-mifos-theme {
     border-radius: 4px;
     background-color: #ffffff; }
@@ -248,6 +257,10 @@ md-input-container {
     padding: 2px;
     margin-bottom: 0px;
     margin-top: 40px;
+}
+
+.md-input-container-small {
+    margin-top: 10px;
 }
 
 table.md-table tbody.md-body > tr.md-row, table.md-table tfoot.md-foot > tr.md-row {

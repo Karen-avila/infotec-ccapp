@@ -87,9 +87,9 @@
             <div class="span gray-head" style="margin-left:0%;">
                 <span style="margin-left: 10px;font-size:24px">
                     <strong><i ng-show="savingaccountdetails.subStatus.id==0"
-                            class="fa fa-stop {{savingaccountdetails.status.code | StatusLookup}}"></i><i
+                            class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i><i
                             ng-hide="savingaccountdetails.subStatus.id==0"
-                            class="fa fa-stop {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}}(#{{savingaccountdetails.accountNo}})</strong>
+                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}}(#{{savingaccountdetails.accountNo}})</strong>
                 </span>
                 {{savingaccountdetails.status.code | translate}}
             </div>

@@ -24,10 +24,8 @@
                         <label class="control-label col-sm-2">{{'label.input.accountingrules' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb(formData.rule)">
-                                <md-select-header>
-                                    {{'label.selectaccountingrule' | translate}}
-                                </md-select-header>
+                            <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb(formData.rule)" 
+                                placeHolder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="rule in rules" ng-value="rule.id">
                                     {{rule.name}}
                                 </md-option>

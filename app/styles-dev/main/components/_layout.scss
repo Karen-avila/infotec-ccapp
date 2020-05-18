@@ -16,6 +16,7 @@
   right:0;
   left:0;
   overflow: auto;
+  background-color: #ffffff;
 
   @include flexbox();
   @include flexdiretion(column);

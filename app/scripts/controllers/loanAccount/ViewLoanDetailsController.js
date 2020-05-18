@@ -217,7 +217,7 @@
                 for (var i=0; i < overdueCharges.length; i++) {
                     const item = overdueCharges[i];
                     if (item.name == loanCharge.name) {
-                        days = loanCharge.amountOrPercentage / (item.amount / scope.daysInYear);
+                        days = (loanCharge.amountOrPercentage / (item.amount / data.daysInYear)).toFixed(0);
                         break;
                     }
                 }
@@ -466,13 +466,14 @@
                         });
                     }
 
-                    if(scope.recalculateInterest){
+                    if (scope.recalculateInterest) {
                         scope.buttons.singlebuttons.splice(1, 0, {
                             name: "button.prepayment",
                             icon: "fa fa-money",
                             taskPermissionName: 'REPAYMENT_LOAN'
                         });
                     }
+                    console.log(JSON.stringify(scope.buttons.singlebuttons));
                 }
                 if (data.status.value == "Overpaid") {
                     scope.buttons = { singlebuttons: [
