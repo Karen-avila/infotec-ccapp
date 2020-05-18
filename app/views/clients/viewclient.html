@@ -353,7 +353,7 @@
                                             <tr class="pointer-main" ng-repeat="charge in charges">
                                                 <td class="pointer" data-ng-click="routeToCharge(charge.id)">
                                                     <i
-                                                        class="fa fa-stop  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;{{charge.name}}
+                                                        class="fa fa-circle  {{ (!(charge.isWaived || charge.isPaid)) |StatusLookup}}"></i>&nbsp;{{charge.name}}
                                                 </td>
                                                 <td class="pointer" data-ng-click="routeToCharge(charge.id)">
                                                     {{charge.dueDate|DateFormat}}</td>
@@ -415,10 +415,10 @@
                                                 <td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
                                                     <i ng-hide="loanaccount.inArrears" uib-tooltip-placement="right"
                                                         uib-tooltip="{{loanaccount.status.value}}"
-                                                        class="fa fa-stop {{loanaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{loanaccount.status.code | StatusLookup}}"></i>
                                                     <i ng-show="loanaccount.inArrears" uib-tooltip-placement="right"
                                                         uib-tooltip="{{loanaccount.status.value}}"
-                                                        class="fa fa-stop {{loanaccount.status.code | StatusLookup}}overdue"></i>
+                                                        class="fa fa-circle {{loanaccount.status.code | StatusLookup}}overdue"></i>
                                                     {{loanaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
@@ -487,7 +487,7 @@
                                                 <td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
                                                     <i uib-tooltip-placement="right"
                                                         uib-tooltip="{{loanaccount.status.value}}"
-                                                        class="fa fa-stop {{loanaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{loanaccount.status.code | StatusLookup}}"></i>
                                                     {{loanaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
@@ -547,10 +547,10 @@
                                                     data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
                                                     <i uib-tooltip-placement="right" ng-show="savingaccount.subStatus.id==0"
                                                         uib-tooltip="{{savingaccount.status.value}}"
-                                                        class="fa fa-stop {{savingaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
                                                     <i uib-tooltip-placement="right" ng-hide="savingaccount.subStatus.id==0"
                                                         uib-tooltip="{{savingaccount.status.value+':'+savingaccount.subStatus.value}}"
-                                                        class="fa fa-stop {{savingaccount.status.code+savingaccount.subStatus.value | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{savingaccount.status.code+savingaccount.subStatus.value | StatusLookup}}"></i>
                                                     {{savingaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer"
@@ -611,7 +611,7 @@
                                                 <td class="pointer"
                                                     data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
                                                     <i uib-tooltip="{{savingaccount.status.value}}"
-                                                        class="fa fa-stop {{savingaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
                                                     {{savingaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer"
@@ -656,7 +656,7 @@
                                                 <td class="pointer" data-ng-click="routeToShareAccount(shareaccount.id)">
                                                     <i uib-tooltip-placement="right"
                                                         uib-tooltip="{{shareaccount.status.value}}"
-                                                        class="fa fa-stop {{shareaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{shareaccount.status.code | StatusLookup}}"></i>
                                                     {{shareaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer" data-ng-click="routeToShareAccount(shareaccount.id)">
@@ -716,7 +716,7 @@
                                                 ng-repeat="shareaccount in clientAccounts.shareAccounts | orderBy:'id':true | filter:isShareClosed">
                                                 <td class="pointer" data-ng-click="routeToShareAccount(shareaccount.id)">
                                                     <i uib-tooltip="{{shareaccount.status.value}}"
-                                                        class="fa fa-stop {{shareaccount.status.code | StatusLookup}}"></i>
+                                                        class="fa fa-circle {{shareaccount.status.code | StatusLookup}}"></i>
                                                     {{shareaccount.accountNo}}
                                                 </td>
                                                 <td class="pointer" data-ng-click="routeToShareAccount(shareaccount.id)">
