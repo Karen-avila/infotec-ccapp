@@ -6,8 +6,8 @@
 <div class="card" ng-controller="AccountingClosureController">
     <div class="toolbar">
         <h4>{{'label.heading.accountingclosures' | translate }}</h4>
-        <div class="pull-right">
-              <a href="#!/createclosure" class="pull-right btn btn-primary" has-permission='CREATE_GLCLOSURE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createclosure' | translate}}</a>
+        <div class="pull-right">   
+              <md-button href="#!/createclosure" class="md-raised md-primary" has-permission='CREATE_GLCLOSURE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createclosure' | translate}}</md-button>
         </div>
     </div>
     <div class="content">
@@ -21,7 +21,7 @@
                     </select>
                 </div>
             	<div class="col-md-6">
-                    <button class="btn btn-sm btn-primary" ng-click="closedAccountingDetails(formData.officeId)">{{'label.button.save' | translate }}</button>
+                    <md-button class="md-raised md-primary" ng-click="closedAccountingDetails(formData.officeId)">{{'label.button.save' | translate }}</md-button>
                 </div>
             </div>
         </div>

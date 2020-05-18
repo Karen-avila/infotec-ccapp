@@ -25,7 +25,7 @@
             }
         } else {
           if (SECURITY === "oauth") {
-            webStorage.add("sessionData", {
+            webStorage.set("sessionData", {
                 userId: data.userId,
                 authenticationKey: data.accessToken,
                 userPermissions: data.permissions,
@@ -33,7 +33,7 @@
             httpService.setAuthorization(data.accessToken, SECURITY);
 
           } else if (SECURITY === "basicauth")  {
-            webStorage.add("sessionData", {
+            webStorage.set("sessionData", {
                 userId: data.userId,
                 authenticationKey: data.base64EncodedAuthenticationKey,
                 userPermissions: data.permissions,
@@ -43,7 +43,7 @@
             );
 
           } else if (SECURITY === "jwtauth")  {
-            webStorage.add("sessionData", {
+            webStorage.set("sessionData", {
                 userId: data.userId,
                 authenticationKey: data.authenticationToken,
                 userPermissions: data.permissions,
