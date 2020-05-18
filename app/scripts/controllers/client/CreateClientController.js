@@ -51,8 +51,8 @@
                 scope.staffs = data.staffOptions;
                 scope.formData.officeId = scope.offices[0].id;
                 scope.savingproducts = data.savingProductOptions;
-                scope.genderOptions = data.genderOptions;
-                scope.birthPlaceOptions = data.birthPlaceOptions;
+                scope.genderOptions = data.genderOptions.sort(sortValues('name'));
+                scope.birthPlaceOptions = data.birthPlaceOptions.sort(sortValues('name'));
                 scope.clienttypeOptions = data.clientTypeOptions;
                 scope.clientClassificationOptions = data.clientClassificationOptions;
                 scope.clientNonPersonConstitutionOptions = data.clientNonPersonConstitutionOptions;
@@ -105,9 +105,9 @@
                 scope.enableAddress = data.isAddressEnabled;
 
                 if (scope.enableAddress === true) {
-                    scope.addressTypes = data.address[0].addressTypeIdOptions;
-                    scope.countryOptions = data.address[0].countryIdOptions;
-                    scope.stateOptions = data.address[0].stateProvinceIdOptions;
+                    scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortValues('name'));
+                    scope.countryOptions = data.address[0].countryIdOptions.sort(sortValues('name'));
+                    scope.stateOptions = data.address[0].stateProvinceIdOptions.sort(sortValues('name'));
                     scope.municipalityOptions = data.address[0].municipalityIdOptions;
                     scope.allMunicipalityOptions = data.address[0].municipalityIdOptions;
                     resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
@@ -493,6 +493,29 @@
                         });
                     }
                 });
+            }
+
+            scope.sortValues = function(key, order = 'asc') {
+                return function innerSort(a, b) {
+                  if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                    return 0;
+                  }
+              
+                  const varA = (typeof a[key] === 'string')
+                    ? a[key].toUpperCase() : a[key];
+                  const varB = (typeof b[key] === 'string')
+                    ? b[key].toUpperCase() : b[key];
+              
+                  let comparison = 0;
+                  if (varA > varB) {
+                    comparison = 1;
+                  } else if (varA < varB) {
+                    comparison = -1;
+                  }
+                  return (
+                    (order === 'desc') ? (comparison * -1) : comparison
+                  );
+                };
             }
         }
 

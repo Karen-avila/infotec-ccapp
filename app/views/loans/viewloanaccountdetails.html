@@ -948,6 +948,27 @@
                 </div>
 
                 <div class="col-sm-3 col-md-3">
+                    <table class="table table-striped" ng-show="loandetails.summary">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><center>{{'label.heading.balances' | translate}}</center></th>
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{'label.heading.currentBalance' | translate}}</th>
+                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{'label.heading.arrearsby' | translate}}</th>
+                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{'label.heading.prepay.balance' | translate}}</th>
+                                <td class="amount">{{prepay.total | FormatNumber}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-striped table-bordered" ng-hide="loandetails.summary">
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.loanpurpose' | translate}}</th>
@@ -1080,23 +1101,7 @@
                             <td>{{loandetails.isNPA | translate}}</td>
                         </tr>
                     </table>
-                    <table class="table table-striped" ng-show="loandetails.summary">
-                        <thead></thead>
-                        <tbody>
-                            <tr>
-                                <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>{{'label.heading.arrearsby' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
                 </div>
             </div>
         </div>

@@ -473,7 +473,7 @@
                             taskPermissionName: 'REPAYMENT_LOAN'
                         });
                     }
-                    console.log(JSON.stringify(scope.buttons.singlebuttons));
+                    // console.log(JSON.stringify(scope.buttons.singlebuttons));
                 }
                 if (data.status.value == "Overpaid") {
                     scope.buttons = { singlebuttons: [
@@ -516,6 +516,17 @@
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
+            });
+
+            resourceFactory.loanTrxnsTemplateResource.get({ loanId: routeParams.id, command: 'prepayLoan' }, function (data) {
+                scope.prepayloan = data;
+                scope.prepay = {
+                    principalPortion: data.principalPortion,
+                    interestPortion: data.interestPortion,
+                    feeChargesPortion: data.feeChargesPortion,
+                    penaltyChargesPortion: data.penaltyChargesPortion,
+                    total: (data.principalPortion + data.interestPortion + data.feeChargesPortion + data.penaltyChargesPortion);
+                }
             });
 
             var fetchFunction = function (offset, limit, callback) {
