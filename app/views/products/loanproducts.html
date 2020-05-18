@@ -39,7 +39,7 @@
                         <td md-cell >{{loanproduct.closeDate | DateFormat}}
                         </td>
                         <td md-cell >
-                            <i class="fa fa-stop {{loanproduct.status | StatusLookup}}"
+                            <i class="fa fa-circle {{loanproduct.status | StatusLookup}}"
                                 uib-tooltip="{{'label.tooltip.' + loanproduct.status | translate}}"
                                 tooltip-placement="right"></i>
                                 <small>[{{'label.tooltip.' + loanproduct.status | translate}}]</small>

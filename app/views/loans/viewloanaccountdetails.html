@@ -59,9 +59,9 @@
             <div class="span gray-head" style="margin-left:0%;">
                 <span style="margin-left: 10px;font-size:24px">
                     <strong> <i ng-hide="loandetails.inArrears"
-                                class="fa fa-stop {{loandetails.status.code | StatusLookup}}"></i>
+                                class="fa fa-circle {{loandetails.status.code | StatusLookup}}"></i>
                         <i ng-show="loandetails.inArrears"
-                            class="fa fa-stop {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
+                            class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
                 </span>
             </div>
             <br>
@@ -169,7 +169,7 @@
                     <div class="row">
                         <div class="paddedleft" style="margin-left:-1px;margin-top: -20px; margin-right: 1px; padding: 10px;">
                             <hr class="marginbottom"/>
-                            <md-content class="md-padding">
+                            <md-content class="no-padding">
                                 <md-tabs md-dynamic-height md-border-bottom class="full-width">
                                     <md-tab>
                                         <md-tab-label>{{'label.heading.accountdetail' | translate}}</md-tab-label>
@@ -382,7 +382,7 @@
             
                                     <md-tab ng-if="loandetails.originalSchedule">
                                         <md-tab-label>{{'label.heading.originalschedule' | translate}}</md-tab-label>
-                                        <md-tab-body>
+                                        <md-tab-body class="scroll-x">
                                         <table class="table table-striped width100 small-font">
                                             <colgroup span="4"></colgroup>
                                             <thead>
@@ -434,7 +434,7 @@
             
                                     <md-tab>
                                         <md-tab-label>{{'label.heading.repaymentschedule' | translate}}</md-tab-label>
-                                        <md-tab-body>
+                                        <md-tab-body class="scroll-x">
                                         <table class="table table-striped width100 repaymentschedule small-font>
                                             <colgroup span="4"></colgroup>
                                             <thead>
