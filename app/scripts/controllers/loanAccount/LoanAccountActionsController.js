@@ -271,6 +271,13 @@
                         scope.principalPortion = data.principalPortion;
                         scope.interestPortion = data.interestPortion;
                         scope.feeChargesPortion = data.feeChargesPortion;
+                        scope.penaltyChargesPortion = data.penaltyChargesPortion;
+                        for (var i=0; i < scope.currencyOptions.length; i++) {
+                            if (data.currency.code === scope.currencyOptions[i].code) {
+                                scope.currencyCode = scope.currencyOptions[i].id;
+                                break;
+                            }
+                        }
                         scope.processDate = true;
                     });
                     scope.title = 'label.heading.prepayloan';
@@ -278,7 +285,7 @@
                     scope.isTransaction = true;
                     scope.showAmountField = true;
                     scope.taskPermissionName = 'REPAYMENT_LOAN';
-                    scope.action = 'repayment';
+                    scope.action = 'prepayloan';
                     break;
                 case "waiveinterest":
                     scope.modelName = 'transactionDate';
