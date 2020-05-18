@@ -10,29 +10,33 @@
   </ul>
   <div class="card">
     <div class="content">
-      <a
-        href="#!/externalservices/{{externalServicesType}}/editconfig"
-        class="btn btn-primary pull-right"
-        has-permission="UPDATE_EXTERNALSERVICES"
-        ><i class="fa fa-edit"></i>&nbsp;&nbsp;{{'label.button.edit' |
-        translate}}</a
-      >
-      <table class="table">
-        <thead>
-          <tr class="graybg">
-            <th>{{'label.heading.name' | translate}}</th>
-            <th>{{'label.heading.value' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="config in Configs">
-            <td>
-              {{config.name}}
-            </td>
-            <td>{{config.value}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <md-table-container class="noscroll-x">
+            <div class="row">
+                <md-button md-no-ink class="md-primary" href="#!/externalservices/{{externalServicesType}}/editconfig"
+                    has-permission="UPDATE_EXTERNALSERVICES">
+                    <i class="fa fa-edit"></i>  {{'label.button.edit' | translate}}
+                </md-button>
+                <md-divider></md-divider>
+            </div>
+            <div class="row">
+                <div clas="col-sm-12">
+                    <table md-table ng-model="selected" md-progress="promise">
+                        <thead md-head md-order="query.order">
+                            <tr md-row>
+                                <th md-column>{{'label.heading.parameter' | translate}}</th>
+                                <th md-column>{{'label.heading.value' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="config in Configs">
+                                <td md-column>{{config.name}}</td>
+                                <td md-column>{{config.value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </md-table-container>
     </div>
   </div>
 </div>

@@ -1,28 +1,22 @@
 <div id="menubarContainer" layout="row" ng-cloak>
     <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left" >
         <div class="md-toolbar-tools" style="width:100%;">
-            <div ng-show="!showSearchBar()" class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
+            <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
                 <div layout="row" layout-align="left left" style="width:100%;">
-                    <!--The left side is hidden when the screen size is larger than small -->
+                    <!--The left side is hidden when the screen size is larger than small --->
                     <md-button class="menu" hide-gt-sm><i class="fa fa-bars"></i></md-button>
-
+                    
                     <a class="navbar-brand" href="#!/home">
                         <img src="./images/logo_header.png" alt="">
                     </a>
                     <!-- CLIENTS -->
-                    <md-menu>
-                        <md-button ng-href="#!/clients" has-permission='READ_CLIENT'>
-                            <i class="fa fa-users"></i> {{'label.anchor.clients' | translate }}
-                        </md-button>
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
+                    <md-button ng-href="#!/clients" has-permission='READ_CLIENT' class="automargin">
+                        <i class="fa fa-users"></i> {{'label.anchor.clients' | translate }}
+                    </md-button>
                     <!-- ACCOUNTING -->
-                    <md-menu>
-                        <md-button ng-href="#!/accounting" has-permission='READ_ACCOUNTING'>
-                            <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
-                        </md-button>
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
+                    <md-button ng-href="#!/accounting" has-permission='READ_ACCOUNTING' class="automargin">
+                        <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
+                    </md-button>
                     <md-menu>
                         <md-button aria-label="Reports menu" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bar-chart-o"></i> {{'label.anchor.reports' | translate }}
@@ -98,19 +92,19 @@
                             </md-menu-item>
                         </md-menu-content>  
                     </md-menu>
-                    <span flex></span>
-                    <md-menu>
-                        <md-button md-offset="0 -7" aria-label="search menu" class="md-icon-button" ng-click="showSearchBar()">
-                            <i class="fa fa-search"></i>
-                        </md-button>
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
-                    <md-menu>
-                        <md-button aria-label="notifications menu" class="md-icon-button" ng-href="#!/notifications">
-                            <i class="fa fa-bell"></i>
-                        </md-button>
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
+                    <!--  Blank -->
+                    <span flex ng-show="!toggleSearch"></span>
+                    <!--  Search bar -->
+                    <md-input-container ng-show="toggleSearch" class="md-input-container-small" style="padding-left:20%" flex> 
+                        <input type="text" ng-model="searchText" aria-label="filter" class="input-secondary small-font"
+                        ng-keyup="$event.keyCode == 13 && searchText.length > 4 && searchAll(searchText)"> 
+                    </md-input-container>
+                    <md-button aria-label="search menu" class="md-icon-button automargin" ng-click="showSearchBar(!toggleSearch)">
+                        <i class="fa fa-search"></i>
+                    </md-button>
+                    <md-button aria-label="notifications menu" class="md-icon-button automargin" ng-href="#!/notifications">
+                        <i class="fa fa-bell"></i>
+                    </md-button>
                     <md-menu>
                         <md-button aria-label="Settings menu" class="md-icon-button" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-ellipsis-v"></i>
@@ -134,20 +128,6 @@
                         </md-menu-content> 
                     </md-menu>
                 </div>
-            </div>
-            <!-- Search bar -->
-            <div ng-show="showSearchBar()" class="md-toolbar-tools search-bar">
-                <md-button class="md-icon-button" ng-click="search()">
-                    <md-icon>search</md-icon>
-                </md-button>
-
-                <md-input-container flex>
-                    <input id="search" type="text" ng-model="search.query" placeholder="{{'label.search.text'|translate}}"/>
-                </md-input-container>
-
-                <md-button class="md-icon-button" ng-click="endSearch()">
-                    <md-icon>close</md-icon>
-                </md-button>
             </div>
         </div>
     </md-toolbar>

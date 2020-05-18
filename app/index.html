@@ -11,7 +11,6 @@
         display: none !important;
       }
     </style>
-    <link href="styles/styles.css" rel="stylesheet"/>
   </head>
 
   <body
@@ -347,16 +346,13 @@
             </nav>
           </div>
           <div id="mifos-reskin-body-view">
-            <div class="" ng-view></div>
+            <div class="main-container" ng-view></div>
           </div>
         </div>
-        <!-- Footer -->
-        <footer data-ng-hide="!domReady">
-          <div ng-include="'views/footer.html'"></div>
-        </footer>
       </div>
     </div>
-
+    <!-- Footer -->
+    <div ng-include="'views/footer.html'"></div>
     <!-- Javascript -->
     <script>
       // define waitSeconds above require script tag
