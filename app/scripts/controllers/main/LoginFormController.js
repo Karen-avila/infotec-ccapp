@@ -5,6 +5,7 @@
             scope.passwordDetails = {};
             scope.authenticationFailed = false;
             scope.load = false;
+            scope.toggleSearch = false;
 
             scope.twoFactorRequired = false;
             scope.twoFactorDeliveryMethods = {};
