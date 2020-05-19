@@ -283,3 +283,15 @@ td.amount, th.amount {
     text-align: right;
     padding-right: 5px;  
 }
+
+._md-datepicker-has-triangle-icon {
+    margin-left: -16px;
+}
+
+.md-datepicker-input-container {
+    margin-left: 12px;
+    width: 170px;
+}
+.md-datepicker-input {
+    width:inherit;
+}
