@@ -29,7 +29,7 @@
     			            <div class="col-sm-3">
 								<md-select id="currencyCode" name="currency" ng-model="formData.currencyCode" 
 								    placeholder="{{'label.selectone' | translate}}">
-									<md-option ng-repeat="currency in currencyOptions" ng-value="currency.id">
+									<md-option ng-repeat="currency in currencyOptions" ng-value="currency.code">
 										{{currency.code}} {{currency.name | translate}}
 									</md-option>
     			                </md-select>
