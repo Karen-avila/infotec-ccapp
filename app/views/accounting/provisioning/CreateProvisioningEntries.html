@@ -16,18 +16,16 @@
                             translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="submittedOnDate" name="submittedon" datepicker-pop="dd MMMM yyyy"
-                                   ng-model="submitteddate" is-open="opened" min="'2000-01-01'" max="restrictDate"
-                                   class="form-control"/>
+                            <md-datepicker id="submittedOnDate" ng-model="submitteddate"  min="'2000-01-01'" max="restrictDate"></md-datepicker>
                         </div>
 
                         <div class="col-sm-3">
-                            <input type="checkbox" name="name1" ng-model="formData.createjournalentries"/> {{'Create Journal Entries'}}
+                            <md-checkbox ng-model="formData.createjournalentries"> {{'Create Journal Entries'}}</md-checkbox>
                         </div>
 
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_PROVISIONING_ENTRIES'>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_PROVISIONING_ENTRIES'>
                             {{'label.button.save' | translate}}
-                        </button>
+                        </md-button>
                     </div>
                 </fieldset>
             </form>
