@@ -15,19 +15,24 @@
     			    <fieldset>
     			        <div class="form-group">
     			            <label class="control-label col-sm-3">{{'label.input.office' | translate }}<span class="required">*</span></label>
-    			            <div class="col-sm-3">
-    			                <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-    			                        ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-    			                </select>
+							
+							<div class="col-sm-3">
+    			                <md-select id="officeId" ng-model="formData.officeId" placeholder="{{'label.selectone' | translate}}">
+							    <md-option ng-repeat="office in offices" ng-value="office.id">
+                                  {{office.name}}
+								</md-option>
+    			                </md-select>
     			            </div>
 
     			            <label class="control-label col-sm-3">{{'label.input.currency' | translate }}&nbsp;<span
     			                    class="required">*</span></label>
     			            <div class="col-sm-3">
-    			                <select id="currencyCode" name="currency" ng-model="formData.currencyCode" class="form-control"
-    			                        ng-options="currency.code as (currency.name+' ('+ currency.displaySymbol +')') for currency in currencyOptions"
-    			                        value="{{currency.code}}" required>
-    			                </select>
+								<md-select id="currencyCode" name="currency" ng-model="formData.currencyCode" 
+								    placeholder="{{'label.selectone' | translate}}">
+									<md-option ng-repeat="currency in currencyOptions" ng-value="currency.code">
+										{{currency.code}} {{currency.name | translate}}
+									</md-option>
+    			                </md-select>
     			                <form-validate valattributeform="journalpostingform" valattribute="currency"/>
     			            </div>
     			        </div>
@@ -36,21 +41,26 @@
     			                    class="required">*</span></label>
 
     			            <div class="col-sm-9">
-    			                <h4><strong>{{'label.input.debit' | translate }}</strong>&nbsp;&nbsp;<a class="btn btn-sm btn-primary" ng-click="addDebitAccount()"><i class="fa fa-plus "></i></a></h4>
+    			                <h4><strong>{{'label.input.debit' | translate }}</strong>&nbsp;&nbsp;<md-button  class="md-raised md-primary" ng-click="addDebitAccount()"><i class="fa fa-plus "></i></md-button></h4>
     			                <div ng-repeat="dbAccount in formData.dbAccounts" class="form-inline paddedbottom10">
-    			                    <select chosen="glAccounts" ng-model="dbAccount.select"
-    		                                ng-options="(debitAccount.name +'('+ debitAccount.glCode +')') for debitAccount in glAccounts | orderBy:'glCode'" class="form-control">
-    		                            <option class="displaynone" value="">{{'label.selectdebit' | translate}}</option>
-    		                        </select>&nbsp;&nbsp;
+								   <md-select ng-model="dbAccount.select"
+									 placeholder="{{'label.selectdebit' | translate}}">
+									 <md-option ng-repeat="debitAccount in glAccounts  | orderBy:'glCode'" ng-value="debitAccount.id" >
+										{{debitAccount.name}} {{debitAccount.glCode}} 
+									 </md-option>
+								   </md-select>
+
     			                    <input type="text" class="input-small form-control" number-format ng-model="dbAccount.debitAmount">
     			                    &nbsp;<a ng-click="removeDebitAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
     			                </div>
-    			            	<h4><strong>{{'label.input.credit' | translate }}</strong>&nbsp;&nbsp;<a class="btn btn-sm btn-primary" ng-click="addCrAccount()"><i class="fa fa-plus "></i></a></h4>
+    			            	<h4><strong>{{'label.input.credit' | translate }}</strong>&nbsp;&nbsp;<md-button class="md-raised md-primary" ng-click="addCrAccount()"><i class="fa fa-plus "></i></md-button></h4>
     			                <div ng-repeat="crAccount in formData.crAccounts " class="form-inline paddedbottom10">
-    								<select chosen="glAccounts" ng-model="crAccount.select"
-    								        ng-options="(creditAccount.name + '('+ creditAccount.glCode + ')') for creditAccount in glAccounts | orderBy:'glCode'" class="form-control">
-    								    <option class="displaynone" value="">{{'label.selectcredit' | translate}}</option>
-    								</select>&nbsp;&nbsp;
+									<md-select  ng-model="crAccount.select"
+									 placeholder="{{'label.selectcredit' | translate}}">
+									 <md-option ng-repeat="creditAccount in glAccounts  | orderBy:'glCode'" ng-value="creditAccount.id">
+									 {{creditAccount.name}} {{creditAccount.glAccounts}}
+									</md-option>
+    								</md-select>&nbsp;&nbsp;
     			                  	<input type="text" class="input-small form-control" number-format ng-model="crAccount.crAmount">&nbsp;
     			                	<a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
     			                </div>
@@ -64,31 +74,29 @@
 
     			            <label class="control-label col-sm-3">{{'label.input.transactiondate' | translate }}<span class="required">*</span></label>
     			            <div class="col-sm-3">
-    			                <input class="date-disable form-control" id="transactionDate" type="text" datepicker-pop="dd MMMM yyyy"
-    			                       ng-model="first.date" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+    			                <md-datepicker  id="transactionDate"  ng-model="first.date" min="'2000-01-01'" max="restrictDate"> </md-datepicker>
     			            </div>
     			        </div>
-
+						
     			        <div class="form-group">
     			            <label class="control-label col-sm-3">{{'label.anchor.showpaymentdetails' | translate}}</label>
-
     			            <div class="col-sm-3">
-    			                <a id="clickToShow" class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+    			                <md-button id="clickToShow" class="md-raised md-primary" ng-click="showPaymentDetails=!showPaymentDetails">
     			                    <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
     			                    <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
-    			                </a>
+								</md-button>
     			            </div>
     			        </div>
     			        <div uib-collapse="!showPaymentDetails">
     			            <div class="form-group">
     			            	<label class="control-label col-sm-3 ng-binding" for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
     				            <div class="col-sm-3">
-    				                <select id="paymentTypeId" class="form-control ng-pristine ng-valid" value=""
-    												 ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-    												 ng-model="formData.paymentTypeId">
-    									<option value="">{{'label.selectone' | translate}}</option>
-    							</select>
-    				            </div>
+									<md-select id="paymentTypeId"  ng-model="formData.paymentTypeId" placeholder="{{'label.selectone' | translate}}">
+										<md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+											{{paymentType.name}}
+										</md-option>
+									</md-select>
+								</div>
 
     			                <label class="control-label col-sm-3" for="accountNumber">{{'label.input.accnum' | translate}}</label>
     			                <div class="col-sm-3">
@@ -129,7 +137,6 @@
 							
     			            <md-button id="cancel" href="#!/accounting" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
     			            <md-button id="save" type="submit"  class="md-raised md-primary" has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</md-button>
-					   
                     
 						</div>
     			    </fieldset>
