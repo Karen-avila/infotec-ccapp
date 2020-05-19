@@ -211,19 +211,14 @@
                 scope.currentScope = searchScope;
             }
 
-            scope.search = function () {
-                var resource;
-                var searchString = scope.search.query;
+            scope.searchText = "";
+            scope.searchAll = function (searchString) {
                 var exactMatch = false;
                 if (searchString != null) {
                     searchString = searchString.replace(/(^"|"$)/g, '');
-                    var n = searchString.localeCompare(scope.search.query);
-                    if (n != 0) {
-                        exactMatch = true;
-                    }
+                    scope.showSearchBar(!scope.toggleSearch);
+                    location.path('/search/' + searchString).search({ exactMatch: exactMatch, resource: scope.currentScope.value });
                 }
-                location.path('/search/' + searchString).search({ exactMatch: exactMatch, resource: scope.currentScope.value });
-
             };
             scope.text = ' ';
 
@@ -367,17 +362,9 @@
                 }
             };
 
-            scope.search = null;
-            scope.initiateSearch = function () {
-                scope.search = '';
-            };
-
-            scope.showSearchBar = function() {
-                return scope.search != null
-            };
-
-            scope.endSearch = function () {
-                return scope.search = null;
+            scope.showSearchBar = function(toggleSearch) {
+                scope.toggleSearch = toggleSearch;
+                scope.searchText = ""; 
             };
 
             scope.helpf = function () {

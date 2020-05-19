@@ -17,11 +17,12 @@
     		        <label class="control-label col-sm-2">{{'label.input.office' | translate }}<span class="required">*</span></label>
     		
     		        <div class="col-sm-3">
-    		            <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-    		                    ng-options="office.id as office.name for office in offices" name="officeId" value="{{office.id}}"
-    		                    ng-change="updateLastClosed(formData.officeId)" required="required">
-    		                <option class="displaynone" value="">{{'label.selectoffice' | translate}}</option>
-    		            </select>
+						<md-select  id="officeId" ng-model="formData.officeId"  ng-change="updateLastClosed(formData.officeId)" 
+						placeholder="{{'label.selectoffice' | translate}}">
+						  <md-option ng-repeat="office in offices" ng-value="office.id">
+							  {{office.name}}
+						  </md-option>
+    		            </md-select>
                         <form-validate valattributeform="createclosureform" valattribute="officeId"/>
     		            <span ng-show="lastClosed">{{'label.input.previouslyclosedon' | translate }} - {{lastClosed | DateFormat}}</span>
     		        </div>
@@ -29,10 +30,8 @@
     		
     		    <div class="form-group">
     		        <label class="control-label col-sm-2">{{'label.input.closingdate' | translate }}<span class="required">*</span></label>
-    		
     		        <div class="col-sm-3">
-    		            <input class="form-control" id="closingDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-    		                   is-open="opened" min="'2000-01-01'" max="restrictDate" />
+						<md-datepicker id="closingDate" ng-model="first.date" min="'2000-01-01'" max="restrictDate"></md-datepicker>
     		        </div>
     		    </div>
     		
@@ -44,8 +43,8 @@
     		        </div>
     		    </div>
     		    <div class="col-md-12 center">
-    		        <a id="cancel" href="#!/accounts_closure" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
-    		        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_GLCLOSURE'>{{'label.button.save' | translate }}</button>
+    		        <md-button id="cancel" href="#!/accounts_closure" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
+    		        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_GLCLOSURE'>{{'label.button.save' | translate }}</md-button>
     		    </div>
     		</form>
     	</div>

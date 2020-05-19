@@ -279,9 +279,9 @@
                                                 </md-select>
                                             </div>
                                         </td>
-                                        <td class="width25 paddedbottom20"
+                                        <td class="width25 paddedbottom20">
                                             <div class="col-md-1">
-                                            <span ng-show="formData.repaymentFrequencyType == 2">{{'label.heading.on' | translate}}</span>
+                                                <span ng-show="formData.repaymentFrequencyType == 2">{{'label.heading.on' | translate}}</span>
                                             </div>
                                             <div class="col-md-6">
                                             <md-select id="repaymentFrequencyNthDayType" ng-model="formData.repaymentFrequencyNthDayType"
@@ -1030,7 +1030,7 @@
                         <form name="review" class="form-horizontal form-extra">
                             <fieldset>
                                 <api-validate></api-validate>
-                                <table width="100%">
+                                <table class="full-width small-font">
                                     <tr class="bottomborder">
                                         <td colspan="7">
                                             <strong>{{'label.heading.details' | translate}}</strong>
@@ -1074,7 +1074,7 @@
                                     </tr>
                                     <tr class="toppadding">
                                         <td colspan="6">{{'label.input.principal' | translate }}</td>
-                                        <td>{{loanaccountinfo.currency.DisplaySymbol}} {{loandetails.principal | FormatNumber}}</td>
+                                        <td>{{loanaccountinfo.currency.displaySymbol}} {{loandetails.principal | FormatNumber}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">{{'label.input.loanterm' | translate }}</td>
@@ -1103,12 +1103,12 @@
                                     </tr>
                                     <tr ng-show="!loanaccountinfo.isLoanProductLinkedToFloatingRate">
                                         <td colspan="6">{{'label.input.nominalinterestrate' | translate }}</td>
-                                        <td>{{loandetails.interestRatePerPeriod | translate }}&nbsp;&nbsp;{{loanaccountinfo.interestRateFrequencyType.value | translate }}
+                                        <td>{{loandetails.interestRatePerPeriod | translate }}% {{loanaccountinfo.interestRateFrequencyType.value | translate }}
                                         </td>
                                     </tr>
                                     <tr ng-show="loanaccountinfo.isLoanProductLinkedToFloatingRate">
                                         <td colspan="6">{{'label.heading.floatinginterestratedifferential' | translate }}</td>
-                                        <td>{{formData.interestRateDifferential | FormatNumber}}</td>
+                                        <td>{{formData.interestRateDifferential | FormatNumber}}%</td>
                                     </tr>
                                     <tr ng-hide="loanAccount.isHiddenField.interestType">
                                         <td colspan="6">{{'label.input.interestmethod' | translate }}</td>
@@ -1138,7 +1138,7 @@
                                     </tr>
                                     <tr ng-hide="loanAccount.isHiddenField.inArrearsTolerance">
                                         <td colspan="6">{{'label.input.arearstolerance' | translate }}</td>
-                                        <td>{{loandetails.inArrearsTolerance}}&nbsp;{{loanaccountinfo.currency.displaySymbol}}</td>
+                                        <td>{{loandetails.inArrearsTolerance}}</td>
                                     </tr>
                                     <tr ng-hide="loanAccount.isHiddenField.graceOnInterestCharged">
                                         <td colspan="6">{{'label.input.interestfreeperiod' | translate }}</td>
@@ -1233,14 +1233,13 @@
                                             {{'label.input.frequenc.interval.for.recalculte.outstanding.principal' | translate}}
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
-                                            {{ loanaccountinfo.interestRecalculationData.recalculationRestFrequencyInterval | translate }}
+                                            {{loanaccountinfo.interestRecalculationData.recalculationRestFrequencyInterval | translate}}
                                         </td>
                                     </tr>
                                     <tr
                                         data-ng-show="loanaccountinfo.isInterestRecalculationEnabled  && loanaccountinfo.interestRecalculationData.interestRecalculationCompoundingType.id != 0">
                                         <td colspan="6" ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
-                                            <label
-                                                class="control-label">{{'label.input.frequency.for.compounding' | translate }}</label>
+                                            <label>{{'label.input.frequency.for.compounding' | translate }}</label>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
                                             <label>{{ loanaccountinfo.interestRecalculationData.recalculationCompoundingFrequencyType.value | translate }}
@@ -1270,8 +1269,7 @@
                                     <tr
                                         data-ng-show="loanaccountinfo.isInterestRecalculationEnabled && loanaccountinfo.interestRecalculationData.interestRecalculationCompoundingType.id != 0 && loanaccountinfo.interestRecalculationData.recalculationCompoundingFrequencyType.id != 1">
                                         <td colspan="6" ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
-                                            <label
-                                                class="control-label">{{'label.input.frequenc.interval.for.compounding' | translate }}</label>
+                                            <label>{{'label.input.frequenc.interval.for.compounding' | translate }}</label>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenSection.interestRecalculationSection == true">
                                             <label>{{ loanaccountinfo.interestRecalculationData.recalculationCompoundingFrequencyInterval | translate }}</label>
@@ -1304,7 +1302,7 @@
                                     </tr>
                                     <tr ng-repeat="charge in charges" ng-show="charges.length>0">
                                         <td colspan="2">{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                        <td>{{charge.chargeCalculationType.value | translate }}</td>
+                                        <td>{{'charge.type.' + charge.chargeCalculationType.value | translate }}</td>
                                         <td colspan="2">{{charge.amount}}</td>
                                         <td>{{charge.chargeTimeType.value | translate }}</td>
                                         <td>{{charge.dueDate | DateFormat}}</td>

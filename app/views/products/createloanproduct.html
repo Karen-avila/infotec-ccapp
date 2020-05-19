@@ -86,7 +86,7 @@
                             </label>
                         </div>
                         <div class="col-sm-3">
-                            <md-select id="fundId" ng-model="formData.fundId" ng-change="loanproduct.fundName = formValue(product.fundOptions,formData.fundId,'id','name')">
+                            <md-select aria-label="fundId" id="fundId" ng-model="formData.fundId" ng-change="loanproduct.fundName = formValue(product.fundOptions,formData.fundId,'id','name')">
                                 <md-select-header>
                                     {{'label.selectfund' | translate}}
                                 </md-select-header>
@@ -133,7 +133,7 @@
 
                         <div class="col-sm-3">
 
-                            <md-select id="currencyCode" ng-model="formData.currencyCode" ng-change="loanproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')">
+                            <md-select aria-label="currencyCode" id="currencyCode" ng-model="formData.currencyCode" ng-change="loanproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')">
                                 <md-select-header>
                                     {{'label.selectcurrency' | translate}}
                                 </md-select-header>
@@ -151,7 +151,7 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+                            <input type="number" id="digitsAfterDecimal" name="decimalplace" class="form-control"
                                 ng-model="formData.digitsAfterDecimal" required late-validate number=true />
                             <form-validate valattributeform="Currency" valattribute="decimalplace" />
                         </div>
@@ -165,7 +165,7 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="inMultiplesOf" class="form-control" name="multiplesof"
+                            <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof"
                                 ng-model="formData.inMultiplesOf" required late-validate number=true />
                             <form-validate valattributeform="Currency" valattribute="multiplesof" />
                         </div>
@@ -176,7 +176,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="installmentAmountInMultiplesOf" class="form-control"
+                            <input type="number" id="installmentAmountInMultiplesOf" class="form-control"
                                 name="installmentAmountInMultiplesOf" ng-model="formData.installmentAmountInMultiplesOf"
                                 required late-validate number=true />
                             <form-validate valattributeform="Currency" valattribute="installmentAmountInMultiplesOf" />
@@ -215,17 +215,17 @@
                         </label>
 
                         <div class="col-sm-2">
-                            <input id="minPrincipal" placeholder="{{'label.input.minimum' | translate}}" type="text"
-                                class="form-control" number-format ng-model="formData.minPrincipal">
+                            <input id="minPrincipal" placeholder="{{'label.input.minimum' | translate}}" type="number"
+                                class="form-control" ng-model="formData.minPrincipal">
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" placeholder="{{'label.input.default' | translate}}" id="principal"
-                                name="principal" class="form-control" number-format ng-model="formData.principal"
+                            <input type="number" placeholder="{{'label.input.default' | translate}}" id="principal"
+                                name="principal" class="form-control" ng-model="formData.principal"
                                 required late-validate />
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" placeholder="{{'label.input.maximum' | translate}}" id="maxPrincipal"
-                                class="form-control" number-format ng-model="formData.maxPrincipal">
+                            <input type="number" placeholder="{{'label.input.maximum' | translate}}" id="maxPrincipal"
+                                class="form-control" ng-model="formData.maxPrincipal">
                             <form-validate valattributeform="Terms" valattribute="principal" />
                         </div>
                     </div>
@@ -253,29 +253,30 @@
                                 </tr>
                                 <tr ng-repeat="borrowerCycleVariation in formData.principalVariationsForBorrowerCycle">
                                     <td class="col-sm-3">
-                                        <md-select id="principalValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" ng-change="loanproduct.principalVariationsForBorrowerCycle[$index].code = formValue(product.valueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
+                                        <md-select aria-label="principalValueUsageCondition{{$index}}" id="principalValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" 
+                                            ng-change="loanproduct.principalVariationsForBorrowerCycle[$index].code = formValue(product.valueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
                                             <md-option ng-repeat="valueConditionType in product.valueConditionTypeOptions" ng-value="valueConditionType.id">
                                             {{valueConditionType.value}}
                                             </md-option>
                                         </md-select>
 
                                     </td>
-                                    <td><input id="principalCycleNumber{{$index}}" type="text" class="form-control"
+                                    <td><input id="principalCycleNumber{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                     </td>
                                     <td>
                                         <input type="hidden" id="principalborrowerCycleId{{$index}}"
                                             class="form-control" ng-model="borrowerCycleVariation.id" />
-                                        <input type="text" id="minPrincipalPerCycle{{$index}}" class="form-control"
+                                        <input type="number" id="minPrincipalPerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.minValue" />
                                     </td>
                                     <td>
-                                        <input id="principalPerCycle{{$index}}" type="text" class="form-control"
+                                        <input id="principalPerCycle{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.defaultValue"
                                             name="principalPerCycle{{$index}}" />
 
                                     </td>
-                                    <td><input type="text" id="maxPrincipalPerCycle{{$index}}" class="form-control"
+                                    <td><input type="number" id="maxPrincipalPerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.maxValue" /></td>
                                     <td><md-button ng-click="deletePrincipalVariation($index)"><i class="fa fa-remove "></i></md-button>
 
@@ -294,15 +295,15 @@
 
                         <div class="col-sm-2">
                             <input id="minNumberOfRepayments" placeholder="{{'label.input.minimum' | translate}}"
-                                type="text" class="form-control" ng-model="formData.minNumberOfRepayments">
+                                type="number" class="form-control" ng-model="formData.minNumberOfRepayments">
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" placeholder="{{'label.input.default' | translate}}"
+                            <input type="number" placeholder="{{'label.input.default' | translate}}"
                                 id="numberOfRepayments" name="numofrepayments" class="form-control"
                                 ng-model="formData.numberOfRepayments" required late-validate number=true />
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" placeholder="{{'label.input.maximum' | translate}}"
+                            <input type="number" placeholder="{{'label.input.maximum' | translate}}"
                                 id="maxNumberOfRepayments" class="form-control"
                                 ng-model="formData.maxNumberOfRepayments">
                             <form-validate valattributeform="Terms" valattribute="numofrepayments" />
@@ -336,28 +337,29 @@
                                 <tr
                                     ng-repeat="borrowerCycleVariation in formData.numberOfRepaymentVariationsForBorrowerCycle">
                                     <td class="col-sm-3">
-                                        <md-select id="repaymentValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" ng-change="loanproduct.numberOfRepaymentVariationsForBorrowerCycle[$index].code = formValue(product.valueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
+                                        <md-select aria-label="repaymentValueUsageCondition{{$index}}" id="repaymentValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" 
+                                            ng-change="loanproduct.numberOfRepaymentVariationsForBorrowerCycle[$index].code = formValue(product.valueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
                                             <md-option ng-repeat="valueConditionType in product.valueConditionTypeOptions" ng-value="valueConditionType.id">
                                             {{valueConditionType.value | translate}}
                                             </md-option>
                                         </md-select>
 
                                     </td>
-                                    <td><input id="repaymentCycleNumber{{$index}}" type="text" class="form-control"
+                                    <td><input id="repaymentCycleNumber{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                     </td>
                                     <td>
                                         <input type="hidden" id="repaymentborrowerCycleId{{$index}}"
                                             class="form-control" ng-model="borrowerCycleVariation.id" />
-                                        <input type="text" id="minrepaymentPerCycle{{$index}}" class="form-control"
+                                        <input type="number" id="minrepaymentPerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.minValue" />
                                     </td>
                                     <td>
-                                        <input id="repaymentPerCycle{{$index}}" type="text" class="form-control"
+                                        <input id="repaymentPerCycle{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.defaultValue" />
 
                                     </td>
-                                    <td><input type="text" id="maxrepaymentPerCycle{{$index}}" class="form-control"
+                                    <td><input type="number" id="maxrepaymentPerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.maxValue" /></td>
                                     <td><md-button ng-click="deleterepaymentVariation($index)"><i class="fa fa-remove "></i></md-button>
 
@@ -383,7 +385,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="floatingrateoptions" name="floatingrateoptions" ng-model="formData.floatingRatesId" ng-change="loanproduct.floatingRateName = formValue(floatingRateOptions,formData.floatingRatesId,'id','name')">
+                            <md-select aria-label="floatingrateoptions" id="floatingrateoptions" name="floatingrateoptions" ng-model="formData.floatingRatesId" 
+                                ng-change="loanproduct.floatingRateName = formValue(floatingRateOptions,formData.floatingRatesId,'id','name')">
                                 <md-select-header>
                                     {{'label.selectfloatingrateoption' | translate}}
                                 </md-select-header>
@@ -396,8 +399,8 @@
 
                         <div class="col-sm-3">
                             <input id="differentialinterest" name="differentialinterest" class="form-control"
-                                type="text" ng-model="formData.interestRateDifferential"
-                                placeholder="{{'label.input.differentialrate' | translate}}" number-format />
+                                type="number" ng-model="formData.interestRateDifferential"
+                                placeholder="{{'label.input.differentialrate' | translate}}" />
                         </div>
 
                         <div class="col-sm-3">
@@ -416,19 +419,19 @@
                         </label>
 
                         <div class="col-sm-2">
-                            <input id="minValue" name="minValue" class="form-control" type="text"
+                            <input id="minValue" name="minValue" class="form-control" type="number"
                                 ng-model="formData.minDifferentialLendingRate"
-                                placeholder="{{'label.input.minfloatinginterestrate' | translate}}" number-format />
+                                placeholder="{{'label.input.minfloatinginterestrate' | translate}}" />
                         </div>
                         <div class="col-sm-2">
-                            <input id="default" name="default" class="form-control" type="text"
+                            <input id="default" name="default" class="form-control" type="number"
                                 ng-model="formData.defaultDifferentialLendingRate"
-                                placeholder="{{'label.input.defaultfloatinginterestrate' | translate}}" number-format />
+                                placeholder="{{'label.input.defaultfloatinginterestrate' | translate}}" />
                         </div>
                         <div class="col-sm-2">
-                            <input id="maxValue" name="maxValue" class="form-control" type="text"
+                            <input id="maxValue" name="maxValue" class="form-control" type="number"
                                 ng-model="formData.maxDifferentialLendingRate"
-                                placeholder="{{'label.input.maxfloatinginterestrate' | translate}}" number-format />
+                                placeholder="{{'label.input.maxfloatinginterestrate' | translate}}" />
                         </div>
                     </div>
                     <div class="form-group" ng-show="!formData.isLinkedToFloatingInterestRates">
@@ -441,20 +444,21 @@
 
                         <div class="col-sm-2">
                             <input id="minInterestRatePerPeriod" placeholder="{{'label.input.minimum' | translate}}"
-                                type="text" class="form-control" ng-model="formData.minInterestRatePerPeriod">
+                                type="number" class="form-control" ng-model="formData.minInterestRatePerPeriod">
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" id="interestRatePerPeriod"
+                            <input type="number" id="interestRatePerPeriod"
                                 placeholder="{{'label.input.default' | translate}}" name="interestRatePerPeriod"
                                 class="form-control" ng-model="formData.interestRatePerPeriod" required late-validate
                                 decimals />
                         </div>
                         <div class="col-sm-2">
                             <input id="maxInterestRatePerPeriod" placeholder="{{'label.input.maximum' | translate}}"
-                                type="text" class="form-control" ng-model="formData.maxInterestRatePerPeriod">
+                                type="number" class="form-control" ng-model="formData.maxInterestRatePerPeriod">
                         </div>
                         <div class="col-sm-2">
-                            <md-select id="interestRateFrequencyType" ng-model="formData.interestRateFrequencyType" ng-change="loanproduct.interestRateFrequencyOption.value = formValue(product.interestRateFrequencyTypeOptions,formData.interestRateFrequencyType)">
+                            <md-select aria-label="interestRateFrequencyType" id="interestRateFrequencyType" ng-model="formData.interestRateFrequencyType" 
+                                ng-change="loanproduct.interestRateFrequencyOption.value = formValue(product.interestRateFrequencyTypeOptions,formData.interestRateFrequencyType)">
                                 <md-option ng-value="interestRateFrequencyType.id" ng-repeat="interestRateFrequencyType in product.interestRateFrequencyTypeOptions">
                                     {{interestRateFrequencyType.value | translate}}
                                 </md-option>
@@ -489,29 +493,30 @@
                                 <tr
                                     ng-repeat="borrowerCycleVariation in formData.interestRateVariationsForBorrowerCycle">
                                     <td class="col-sm-3">
-                                        <md-select id="interestRateValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" ng-change="loanproduct.interestRateVariationsForBorrowerCycle[$index].code = formValue(product.ValueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
+                                        <md-select aria-label="interestRateValueUsageCondition{{$index}}" id="interestRateValueUsageCondition{{$index}}" ng-model="borrowerCycleVariation.valueConditionType" 
+                                            ng-change="loanproduct.interestRateVariationsForBorrowerCycle[$index].code = formValue(product.ValueConditionTypeOptions,borrowerCycleVariation.valueConditionType,'id','code')">
                                             <md-option ng-value="valueConditionType.id" ng-repeat="valueConditionType in product.valueConditionTypeOptions">
                                                 {{valueConditionType.value | translate}}
                                             </md-option>
                                         </md-select>
                                        
                                     </td>
-                                    <td><input id="interestRateCycleNumber{{$index}}" type="text" class="form-control"
+                                    <td><input id="interestRateCycleNumber{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                     </td>
                                     <td>
                                         <input type="hidden" id="interestRateborrowerCycleId{{$index}}"
                                             class="input-small" ng-model="borrowerCycleVariation.id" />
-                                        <input type="text" id="mininterestRatePerCycle{{$index}}" class="form-control"
+                                        <input type="number" id="mininterestRatePerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.minValue" />
                                     </td>
                                     <td>
-                                        <input id="interestRatePerCycle{{$index}}" type="text" class="form-control"
+                                        <input id="interestRatePerCycle{{$index}}" type="number" class="form-control"
                                             ng-model="borrowerCycleVariation.defaultValue"
                                             name="principalPerCycle{{$index}}" />
 
                                     </td>
-                                    <td><input type="text" id="maxInterestRatePerCycle{{$index}}" class="form-control"
+                                    <td><input type="number" id="maxInterestRatePerCycle{{$index}}" class="form-control"
                                             ng-model="borrowerCycleVariation.maxValue" /></td>
                                     <td><md-button ng-click="deleteInterestRateVariation($index)"><i
                                                 class="fa fa-remove "></i></md-button>
@@ -529,11 +534,12 @@
                         </label>
 
                         <div class="col-sm-2">
-                            <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="text"
+                            <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="number"
                                 ng-model="formData.repaymentEvery" required late-validate number=true />
                         </div>
                         <div class="col-sm-2">
-                            <md-select id="repaymentFrequencyType" ng-model="formData.repaymentFrequencyType" ng-change="loanproduct.repaymentFrequencyOption.value = formValue(product.repaymentFrequencyTypeOptions,formData.repaymentFrequencyType)">
+                            <md-select aria-label="repaymentFrequencyType id="repaymentFrequencyType" ng-model="formData.repaymentFrequencyType" 
+                                ng-change="loanproduct.repaymentFrequencyOption.value = formValue(product.repaymentFrequencyTypeOptions,formData.repaymentFrequencyType)">
                                 <md-option ng-value="repaymentFrequencyType.id" ng-repeat="repaymentFrequencyType in product.repaymentFrequencyTypeOptions">
                                     {{repaymentFrequencyType.value | translate}}
                                 </md-option>
@@ -548,7 +554,7 @@
                     | translate }}</label>
 
                         <div class="col-sm-2">
-                            <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="text"
+                            <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="number"
                                 ng-model="formData.minimumDaysBetweenDisbursalAndFirstRepayment" late-validate
                                 number=true>
                         </div>
@@ -576,7 +582,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="amortizationType" ng-model="formData.amortizationType" ng-change="loanproduct.amortizationOption.value = formValue(product.amortizationTypeOptions,formData.amortizationType)">
+                            <md-select aria-label="amortizationType" id="amortizationType" ng-model="formData.amortizationType" 
+                                ng-change="loanproduct.amortizationOption.value = formValue(product.amortizationTypeOptions,formData.amortizationType)">
                                 <md-option ng-value="amortizationType.id" ng-repeat="amortizationType in product.amortizationTypeOptions">
                                     {{amortizationType.value | translate}}
                                 </md-option>
@@ -590,7 +597,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="interestType" ng-model="formData.interestType" ng-change="loanproduct.interestOption.value = formValue(product.interestTypeOptions,formData.interestType)">
+                            <md-select aria-label="interestType id="interestType" ng-model="formData.interestType" 
+                                ng-change="loanproduct.interestOption.value = formValue(product.interestTypeOptions,formData.interestType)">
                                 <md-option ng-value="interestType.id" ng-repeat="interestType in product.interestTypeOptions">
                                     {{interestType.value | translate}}
                                 </md-option>
@@ -608,7 +616,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="interestCalculationPeriodType" ng-model="formData.interestCalculationPeriodType" ng-change="loanproduct.interestCalculationPeriodOption.value = formValue(product.interestCalculationPeriodTypeOptions,formData.interestCalculationPeriodType)">
+                            <md-select aria-label="interestCalculationPeriodType" id="interestCalculationPeriodType" ng-model="formData.interestCalculationPeriodType" 
+                                ng-change="loanproduct.interestCalculationPeriodOption.value = formValue(product.interestCalculationPeriodTypeOptions,formData.interestCalculationPeriodType)">
                                 <md-option ng-value="interestCalculationPeriodType.id" ng-repeat=" interestCalculationPeriodType in product.interestCalculationPeriodTypeOptions">
                                     {{interestCalculationPeriodType.value | translate}}
                                 </md-option>
@@ -643,7 +652,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="transactionProcessingStrategyId" ng-model="formData.transactionProcessingStrategyId" ng-change="loanproduct.transactionProcessingStrategy.name = formValue(product.transactionProcessingStrategyOptions,formData.transactionProcessingStrategyId,'id','name')">
+                            <md-select aria-label="transactionProcessingStrategyId" id="transactionProcessingStrategyId" ng-model="formData.transactionProcessingStrategyId" 
+                                ng-change="loanproduct.transactionProcessingStrategy.name = formValue(product.transactionProcessingStrategyOptions,formData.transactionProcessingStrategyId,'id','name')">
                                 <md-option ng-value="transactionProcessingStrategy.id" ng-repeat="transactionProcessingStrategy in product.transactionProcessingStrategyOptions">
                                     {{transactionProcessingStrategy.name | translate}}
                                 </md-option>
@@ -659,13 +669,13 @@
 
                         <div class="col-sm-3">
                             <input id="graceOnPrincipalPayment" class="form-control" name="graceOnPrincipalPayment"
-                                placeholder="{{'label.input.onprincipalpayment' | translate}}" type="text"
+                                placeholder="{{'label.input.onprincipalpayment' | translate}}" type="number"
                                 ng-model="formData.graceOnPrincipalPayment" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="graceOnPrincipalPayment" />
                         </div>
                         <div class="col-sm-3">
                             <input id="graceOnInterestPayment"
-                                placeholder="{{'label.input.oninterestpayment' | translate}}" type="text"
+                                placeholder="{{'label.input.oninterestpayment' | translate}}" type="number"
                                 name="graceOnInterestPayment" class="form-control"
                                 ng-model="formData.graceOnInterestPayment" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="graceOnInterestPayment" />
@@ -680,7 +690,7 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input id="graceOnInterestCharged" type="text" name="graceOnInterestCharged"
+                            <input id="graceOnInterestCharged" type="number" name="graceOnInterestCharged"
                                 class="form-control" ng-model="formData.graceOnInterestCharged" late-validate
                                 number=true>
                             <form-validate valattributeform="Settings" valattribute="graceOnInterestCharged" />
@@ -693,8 +703,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input id="inArrearsTolerance" type="text" name="inArrearsTolerance" class="form-control"
-                                number-format ng-model="formData.inArrearsTolerance" late-validate number=true>
+                            <input id="inArrearsTolerance" type="number" name="inArrearsTolerance" class="form-control"
+                                ng-model="formData.inArrearsTolerance" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="inArrearsTolerance" />
                         </div>
                     </div>
@@ -706,7 +716,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="daysInYearType" ng-model="formData.daysInYearType" ng-change="loanproduct.daysInYearOption.value = formValue(product.daysInYearTypeOptions,formData.daysInYearType)">
+                            <md-select aria-label="daysInYearType" id="daysInYearType" ng-model="formData.daysInYearType" 
+                                ng-change="loanproduct.daysInYearOption.value = formValue(product.daysInYearTypeOptions,formData.daysInYearType)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.daysInYearTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -720,7 +731,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="daysInMonthType" ng-model="formData.daysInMonthType" ng-change="loanproduct.daysInMonthOption.value = formValue(product.daysInMonthTypeOptions,formData.daysInMonthType)">
+                            <md-select aria-label="daysInMonthType" id="daysInMonthType" ng-model="formData.daysInMonthType" 
+                                ng-change="loanproduct.daysInMonthOption.value = formValue(product.daysInMonthTypeOptions,formData.daysInMonthType)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.daysInMonthTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -746,7 +758,7 @@
 
                         <div class="col-sm-3">
                             <input id="graceOnArrearsAgeing" class="form-control" name="graceOnArrearsAgeing"
-                                placeholder="{{'label.input.onduedate' | translate}}" type="text"
+                                placeholder="{{'label.input.onduedate' | translate}}" type="numbe"
                                 ng-model="formData.graceOnArrearsAgeing" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="graceOnArrearsAgeing" />
                         </div>
@@ -761,7 +773,7 @@
 
                         <div class="col-sm-3">
                             <input id="overdueDaysForNPA" class="form-control" name="overdueDaysForNPA"
-                                placeholder="{{'label.input.overduedaysfornpa' | translate}}" type="text"
+                                placeholder="{{'label.input.overduedaysfornpa' | translate}}" type="numbe"
                                 ng-model="formData.overdueDaysForNPA" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="overdueDaysForNPA" />
                         </div>
@@ -780,7 +792,7 @@
                     }}</label>
 
                         <div class="col-sm-3">
-                            <input id="principalThresholdForLastInstallment" type="text"
+                            <input id="principalThresholdForLastInstallment" type="numbe"
                                 name="principalThresholdForLastInstallment" class="form-control"
                                 ng-model="formData.principalThresholdForLastInstallment" late-validate number=true>
                             <form-validate valattributeform="Settings"
@@ -804,15 +816,13 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input id="minimumgap" name="minimumgap" class="form-control" type="text"
-                                ng-model="formData.minimumGap" placeholder="{{'label.input.minimumgap' | translate}}"
-                                number-format />
+                            <input id="minimumgap" name="minimumgap" class="form-control" type="numbe"
+                                ng-model="formData.minimumGap" placeholder="{{'label.input.minimumgap' | translate}}"/>
                         </div>
 
                         <div class="col-sm-3">
-                            <input id="maximumgap" name="maximumgap" class="form-control" type="text"
-                                ng-model="formData.maximumGap" placeholder="{{'label.input.maximumgap' | translate}}"
-                                number-format />
+                            <input id="maximumgap" name="maximumgap" class="form-control" type="number"
+                                ng-model="formData.maximumGap" placeholder="{{'label.input.maximumgap' | translate}}"/>
                         </div>
                     </div>
 
@@ -846,7 +856,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="preClosureInterestCalculationStrategy" ng-model="formData.preClosureInterestCalculationStrategy" ng-change="loanproduct.interestRecalculationData.preClosureInterestCalculationStrategyCode.code = formValue(product.preClosureInterestCalculationStrategyOptions,formData.preClosureInterestCalculationStrategy,'id','code')">
+                            <md-select aria-label="preClosureInterestCalculationStrategy" id="preClosureInterestCalculationStrategy" ng-model="formData.preClosureInterestCalculationStrategy" 
+                                ng-change="loanproduct.interestRecalculationData.preClosureInterestCalculationStrategyCode.code = formValue(product.preClosureInterestCalculationStrategyOptions,formData.preClosureInterestCalculationStrategy,'id','code')">
                                 <md-option ng-value="type.id" ng-repeat="type in product.preClosureInterestCalculationStrategyOptions">
                                     {{type.code | translate}}
                                 </md-option>
@@ -861,7 +872,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="rescheduleStrategyMethod" ng-model="formData.rescheduleStrategyMethod" ng-change="loanproduct.interestRecalculationData.rescheduleStrategyType.value = formValue(product.rescheduleStrategyTypeOptions,formData.rescheduleStrategyMethod)">
+                            <md-select aria-label="rescheduleStrategyMethod" id="rescheduleStrategyMethod" ng-model="formData.rescheduleStrategyMethod" 
+                                ng-change="loanproduct.interestRecalculationData.rescheduleStrategyType.value = formValue(product.rescheduleStrategyTypeOptions,formData.rescheduleStrategyMethod)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.rescheduleStrategyTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -879,7 +891,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="interestRecalculationCompoundingMethod" ng-model="formData.interestRecalculationCompoundingMethod" ng-change="loanproduct.interestRecalculationData.interestRecalculationCompoundingType.value = formValue(product.interestRecalculationCompoundingTypeOptions,formData.interestRecalculationCompoundingMethod)">
+                            <md-select aria-label="interestRecalculationCompoundingMethod" id="interestRecalculationCompoundingMethod" ng-model="formData.interestRecalculationCompoundingMethod" 
+                                ng-change="loanproduct.interestRecalculationData.interestRecalculationCompoundingType.value = formValue(product.interestRecalculationCompoundingTypeOptions,formData.interestRecalculationCompoundingMethod)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.interestRecalculationCompoundingTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -898,7 +911,7 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="recalculationCompoundingFrequencyType" ng-model="formData.recalculationCompoundingFrequencyType" ng-change="loanproduct.interestRecalculationData.interestRecalculationFrequencyType.value = formValue(product.interestRecalculationFrequencyTypeOptions,formData.recalculationCompoundingFrequencyType)">
+                            <md-select aria-label="recalculationCompoundingFrequencyType" id="recalculationCompoundingFrequencyType" ng-model="formData.recalculationCompoundingFrequencyType" ng-change="loanproduct.interestRecalculationData.interestRecalculationFrequencyType.value = formValue(product.interestRecalculationFrequencyTypeOptions,formData.recalculationCompoundingFrequencyType)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.interestRecalculationFrequencyTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -908,8 +921,8 @@
 
                         <div>
                             <div class="col-sm-3" data-ng-show="formData.recalculationCompoundingFrequencyType == 4">
-                               <!--SELECT -->
-                               <md-select id="recalculationCompoundingFrequencyNthDayType" ng-model="formData.recalculationCompoundingFrequencyNthDayType" ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyNthDay.value = formValue(product.interestRecalculationNthDayTypeOptions,formData.recalculationCompoundingFrequencyNthDayType)">
+                               <md-select aria-label="recalculationCompoundingFrequencyNthDayType" id="recalculationCompoundingFrequencyNthDayType" ng-model="formData.recalculationCompoundingFrequencyNthDayType" 
+                                ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyNthDay.value = formValue(product.interestRecalculationNthDayTypeOptions,formData.recalculationCompoundingFrequencyNthDayType)">
                                 <md-option ng-value="recalculationCompoundingFrequencyNthDayType.id" ng-repeat="recalculationCompoundingFrequencyNthDayType in product.interestRecalculationNthDayTypeOptions">
                                     {{recalculationCompoundingFrequencyNthDayType.value | translate}}
                                 </md-option>
@@ -919,7 +932,8 @@
                             </div>
                             <div class="col-sm-3"
                                 data-ng-show="(formData.recalculationCompoundingFrequencyType == 4 && formData.recalculationCompoundingFrequencyNthDayType != -2) || formData.recalculationCompoundingFrequencyType == 3">
-                                <md-select id="recalculationCompoundingFrequencyDayOfWeekType" ng-model="formData.recalculationCompoundingFrequencyDayOfWeekType" ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyWeekday.value = formValue(product.interestRecalculationDayOfWeekTypeOptions,formData.recalculationCompoundingFrequencyDayOfWeekType)">
+                                <md-select aria-label="recalculationCompoundingFrequencyDayOfWeekType" id="recalculationCompoundingFrequencyDayOfWeekType" ng-model="formData.recalculationCompoundingFrequencyDayOfWeekType" 
+                                    ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyWeekday.value = formValue(product.interestRecalculationDayOfWeekTypeOptions,formData.recalculationCompoundingFrequencyDayOfWeekType)">
                                     <md-option ng-value="recalculationCompoundingFrequencyDayOfWeekType.id" ng-repeat="recalculationCompoundingFrequencyDayOfWeekType in product.interestRecalculationDayOfWeekTypeOptions">
                                         {{recalculationCompoundingFrequencyDayOfWeekType.value | translate}}
                                     </md-option>
@@ -929,7 +943,8 @@
                             </div>
                             <div class="col-sm-3"
                                 data-ng-show="formData.recalculationCompoundingFrequencyType == 4 && formData.recalculationCompoundingFrequencyNthDayType == -2">
-                                <md-select id="recalculationCompoundingFrequencyOnDayType" ng-model="formData.recalculationCompoundingFrequencyOnDayType" ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyOnDay.value = formValue(interestRecalculationOnDayTypeOptions,formData.recalculationCompoundingFrequencyOnDayType)">
+                                <md-select aria-label="recalculationCompoundingFrequencyOnDayType" id="recalculationCompoundingFrequencyOnDayType" ng-model="formData.recalculationCompoundingFrequencyOnDayType" 
+                                    ng-change="loanproduct.interestRecalculationData.recalculationCompoundingFrequencyOnDay.value = formValue(interestRecalculationOnDayTypeOptions,formData.recalculationCompoundingFrequencyOnDayType)">
                                     <md-option ng-value="recalculationCompoundingFrequencyOnDayType" ng-repeat="recalculationCompoundingFrequencyOnDayType in interestRecalculationOnDayTypeOptions">
                                         {{recalculationCompoundingFrequencyOnDayType}}
                                     </md-option>
@@ -948,7 +963,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="recalculationCompoundingFrequencyInterval" type="text" class="form-control"
+                            <input id="recalculationCompoundingFrequencyInterval" type="number" class="form-control"
                                 ng-model="formData.recalculationCompoundingFrequencyInterval">
                         </div>
                     </div>
@@ -961,7 +976,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <md-select id="recalculationRestFrequencyType" ng-model="formData.recalculationRestFrequencyType" ng-change="loanproduct.interestRecalculationData.recalculationRestFrequencyType.value = formValue(product.interestRecalculationFrequencyTypeOptions,formData.recalculationRestFrequencyType)">
+                            <md-select aria-label="recalculationRestFrequencyType" id="recalculationRestFrequencyType" ng-model="formData.recalculationRestFrequencyType" 
+                                ng-change="loanproduct.interestRecalculationData.recalculationRestFrequencyType.value = formValue(product.interestRecalculationFrequencyTypeOptions,formData.recalculationRestFrequencyType)">
                                 <md-option ng-value="type.id" ng-repeat="type in product.interestRecalculationFrequencyTypeOptions">
                                     {{type.value | translate}}
                                 </md-option>
@@ -969,7 +985,8 @@
                         </div>
                         <div>
                             <div class="col-sm-3" data-ng-show="formData.recalculationRestFrequencyType == 4">
-                                <md-select id="recalculationRestFrequencyNthDayType" ng-model="formData.recalculationRestFrequencyNthDayType" ng-change="loanproduct.interestRecalculationData.recalculationRestFrequencyNthDay.value = formValue(product.interestRecalculationNthDayTypeOptions,formData.recalculationRestFrequencyNthDayType)">
+                                <md-select aria-label="recalculationRestFrequencyNthDayType" id="recalculationRestFrequencyNthDayType" ng-model="formData.recalculationRestFrequencyNthDayType" 
+                                    ng-change="loanproduct.interestRecalculationData.recalculationRestFrequencyNthDay.value = formValue(product.interestRecalculationNthDayTypeOptions,formData.recalculationRestFrequencyNthDayType)">
                                     <md-option ng-value="recalculationRestFrequencyNthDayType.id" ng-repeat="recalculationRestFrequencyNthDayType in product.interestRecalculationNthDayTypeOptions">
                                         {{recalculationRestFrequencyNthDayType.value | translate}}
                                     </md-option>
@@ -1005,7 +1022,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="recalculationRestFrequencyInterval" type="text" class="form-control"
+                            <input id="recalculationRestFrequencyInterval" type="number" class="form-control"
                                 ng-model="formData.recalculationRestFrequencyInterval">
                         </div>
                     </div>
@@ -1031,7 +1048,7 @@
                             | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="mandatoryGuarantee" type="text" class="form-control"
+                            <input id="mandatoryGuarantee" type="number" class="form-control"
                                 ng-model="formData.mandatoryGuarantee" />
                         </div>
                     </div>
@@ -1040,13 +1057,13 @@
                             | translate }}</label>
 
                         <div class="col-sm-3">
-                            <input id="minimumGuaranteeFromOwnFunds" type="text" class="form-control"
+                            <input id="minimumGuaranteeFromOwnFunds" type="number" class="form-control"
                                 ng-model="formData.minimumGuaranteeFromOwnFunds" />
                         </div>
                         <label class="control-label col-sm-3">{{'label.input.minimum.guarantee.from.guarantor'
                             | translate }}</label>
 
-                        <div class="col-sm-3"><input id="minimumGuaranteeFromGuarantor" type="text" class="form-control"
+                        <div class="col-sm-3"><input id="minimumGuaranteeFromGuarantor" type="number" class="form-control"
                                 ng-model="formData.minimumGuaranteeFromGuarantor" />
                         </div>
                     </div>
@@ -1070,7 +1087,7 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="maxTrancheCount" name="maxTrancheCount"
+                            <input type="number" class="form-control" id="maxTrancheCount" name="maxTrancheCount"
                                 ng-model="formData.maxTrancheCount" />
                         </div>
                         <label class="control-label col-sm-3">{{'label.input.outstandingloanbalance' |
@@ -1081,9 +1098,8 @@
                         </label>
 
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="outstandingLoanBalance"
-                                name="outstandingLoanBalance" number-format
-                                ng-model="formData.outstandingLoanBalance" />
+                            <input type="number" class="form-control" id="outstandingLoanBalance"
+                                name="outstandingLoanBalance" ng-model="formData.outstandingLoanBalance" />
                         </div>
                     </div>
                     <h3>{{'label.heading.configurableAttributes' | translate }}</h3>
@@ -2366,7 +2382,7 @@
                         </md-button>
                     </div>
                     <hr>
-                    <md-button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left" wz-previous></i>
+                    <md-button  class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left" wz-previous></i>
                         {{'label.button.previous' | translate}}</md-button>
                 </fieldset>
             </form>

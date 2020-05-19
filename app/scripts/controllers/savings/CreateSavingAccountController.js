@@ -19,6 +19,10 @@
             scope.tf = "HH:mm";
             scope.tempDataTables = [];
             scope.disabled = true;
+            
+            scope.maxStep = 3;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
 
             if (routeParams.centerEntity) {
                 scope.centerEntity = true;
@@ -45,6 +49,26 @@
                 scope.clientName = data.clientName;
                 scope.groupName = data.groupName;
             });
+
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+            }
+        
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
+            }
 
             scope.handleDatatables = function (datatables) {
                 if (!_.isUndefined(datatables) && datatables.length > 0) {
@@ -73,10 +97,6 @@
                 }
             };
 
-            scope.goNext = function (form) {
-                WizardHandler.wizard().checkValid(form);
-            }
-
             scope.updateColumnHeaders = function (columnHeaderData) {
                 var colName = columnHeaderData[0].columnName;
                 if (colName == 'id') {
@@ -92,7 +112,6 @@
             scope.formValue = function (array, model, findattr, retAttr) {
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
-                console.log(findattr, retAttr, model);
                 return _.find(array, function (obj) {
                     return obj[findattr] === model;
                 })[retAttr];

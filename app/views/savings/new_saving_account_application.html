@@ -17,588 +17,623 @@
         </li>
         <li class="active">{{'label.anchor.savingapplication' | translate}}</li>
     </ul>
-    <wizard current-step="step" on-finish="submit()" class="card well">
-        <wz-step wz-title="{{'label.heading.details' | translate}}">
-            <form name="Details" novalidate="" ng-submit="goNext(Details)" class="form-horizontal form-extra">
-                <fieldset>
-                    <api-validate></api-validate>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3" ng-show="!formData.productId">{{'label.selectsavingproduct' | translate }}
-                            <span class="required">*</span>:&nbsp;
-                        </label>
-                        <label class="control-label col-sm-3" ng-show="formData.productId">{{'label.input.product' | translate }}
-                            <span class="required">*</span>:&nbsp;
-                        </label>
-                        <div class="col-sm-3">
-                            <select id="productId" ng-model="formData.productId" class="form-control"
-                                ng-options="product.id as product.name for product in products" value="{{product.id}}"
-                                ng-change="changeProduct()" class="form-control" required="required">
-                                <option style="display:none" value="">
-                                    {{'label.selectsavingproduct' | translate}}
-                                </option>
-                            </select>
-                        </div>
-                        <label ng-show="formData.productId"
-                            class="control-label col-sm-3">{{'label.input.submittedon' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-3" style="position: relative;">
-                            <md-datepicker id="submittedOnDate" ng-show="formData.productId" ng-model="date.submittedOnDate"" 
-                                md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
-                            </md-datepicker>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-show="formData.productId">
-                        <label class="control-label col-sm-3">{{'label.input.fieldofficer' | translate }}:&nbsp;
-                        </label>
-                        <div class="col-sm-3">
-                            <select id="fieldOfficerId" ng-model="formData.fieldOfficerId"
-                                class="form-control"
-                                ng-options="fieldOfficer.id as fieldOfficer.displayName for fieldOfficer in fieldOfficers"
-                                ng-change="savingdetails.fieldOfficerName = formValue(fieldOfficers,formData.fieldOfficerId,'id','displayName')"
-                                value="{{fieldOfficer.id}}" class="form-control">
-                                <option value="">{{'label.selectfieldofficer' | translate}}</option>
-                            </select>
-                        </div>
-                        <label class="control-label col-sm-3">{{'label.input.externalid' | translate }}
-                        </label>
-                        <div class="col-sm-3">
-                            <input ng-show="formData.productId" id="externalId" ng-model="formData.externalId"
-                                class="form-control" />
-                        </div>
-                    </div>
-                    <hr>
-                    <button class="btn btn-sm btn-default pull-right" type="submit"
-                        ng-hide="disabled">{{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
-                    </button>
-                    <div class="col-sm-offset-6">
-                        <button class="btn btn-warning" ng-hide="!disabled"
-                            ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                    </div>
-                </fieldset>
-            </form>
-        </wz-step>
-        <wz-step wz-title="{{'label.heading.terms' | translate}}" wz-disabled="{{disabled}}">
-            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal form-extra">
-                <fieldset>
-                    <api-validate></api-validate>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">{{'label.heading.currency' | translate }}</label>
-                        <label class="control-label col-sm-3 left">
-                            {{data.currency.name | translate}} ({{data.currency.displaySymbol}})
-                        </label>
-                        <label class="control-label col-sm-3">{{'label.heading.decimalplaces' | translate}}
-                        </label>
-                        <label class="control-label col-sm-3 left">
-                            {{data.currency.decimalPlaces}}
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">{{'label.input.nominalannualinterestrate' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-2">
-                            <input id="nominalAnnualInterestRate" type="number" name="nominalannualinterestrate"
-                                ng-model="formData.nominalAnnualInterestRate" class="form-control" number-format required
-                                late-Validate />
-                            <form-validate valattributeform="Terms" valattribute="nominalannualinterestrate" />
-                        </div>
-                        <label
-                            class="control-label col-sm-3">{{'label.input.currencyinmultiplesof' | translate }}</label>
-                        <div class="col-sm-2">
-                            <input type="number" value="{{data.currency.inMultiplesOf}}" class="form-control" readonly />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4">{{'label.input.interestcompoundingperiod' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-2">
-                            <select id="interestCompoundingPeriodType" ng-model="formData.interestCompoundingPeriodType"
-                                ng-options="type.id as type.value | translate for type in data.interestCompoundingPeriodTypeOptions"
-                                ng-change="savingdetails.interestCompoundingPeriodTypeValue = formValue(data.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)"
-                                value="{{type.id}}" class="form-control"></select>
-                        </div>
-
-                        <label class="control-label col-sm-4">{{'label.input.interestpostingperiod' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-2">
-                            <select id="interestPostingPeriodType" ng-model="formData.interestPostingPeriodType"
-                                ng-options="type.id as type.value | translate for type in data.interestPostingPeriodTypeOptions"
-                                ng-change="savingdetails.interestPostingPeriodTypeValue = formValue(data.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)"
-                                value="{{type.id}}" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">{{'label.input.interestcalculatedusing' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-2">
-                            <select id="interestCalculationType" ng-model="formData.interestCalculationType"
-                                ng-options="type.id as type.value | translate for type in data.interestCalculationTypeOptions"
-                                ng-change="savingdetails.interestCalculationTypeValue=formValue(data.interestCalculationTypeOptions,formData.interestCalculationType)"
-                                value="{{type.id}}" class="form-control">
-                            </select>
-                        </div>
-                        <label class="control-label col-sm-3">{{'label.input.daysinyears' | translate }}
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-sm-3">
-                            <select id="interestCalculationDaysInYearType"
-                                ng-model="formData.interestCalculationDaysInYearType"
-                                ng-options="type.id as type.value | translate for type in data.interestCalculationDaysInYearTypeOptions"
-                                ng-change="savingdetails.interestCalculationDaysInYearTypeValue = formValue(data.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)"
-                                value="{{type.id}}" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label
-                            class="control-label col-sm-3">{{'label.input.minimumopeningbalance' | translate }}</label>
-                        <div class="col-sm-2">
-                            <input id="minRequiredOpeningBalance" type="number"
-                                ng-model="formData.minRequiredOpeningBalance" class="form-control" number-format>
-                        </div>
-                        <label
-                            class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}</label>
-
-                        <div class="col-sm-2">
-                            <input id="lockinPeriodFrequency" type="number" class="form-control"
-                                ng-model="formData.lockinPeriodFrequency">
-                        </div>
-                        <div class="col-sm-2">
-                            <select id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType"
-                                class="form-control"
-                                ng-options="type.id as type.value | translate for type in data.lockinPeriodFrequencyTypeOptions"
-                                ng-change="savingdetails.lockinPeriodFrequencyTypeValue = formValue(data.lockinPeriodFrequencyTypeOptions,formData.lockinPeriodFrequencyType)"
-                                value="{{type.id}}">
-                                <option value="">{{'label.selectone' | translate}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <md-checkbox ng-model="formData.withdrawalFeeForTransfers">
-                            {{'label.input.applywithdrawalfeefortransfers' | translate }}
-                        </md-checkbox>
-                    </div>
-                    <div class="form-group">
-                        <md-checkbox ng-model="formData.allowOverdraft">
-                            {{'label.input.allowoverdraft' | translate }}
-                        </md-checkbox>
-                    </div>
-                    <div class="form-group" ng-show="formData.allowOverdraft">
-                        <label class="control-label col-sm-5">{{'label.input.overdraftlimit' | translate }}
-                        </label>
-                        <div class="col-sm-3" ng-show="formData.allowOverdraft">
-                            <input id="overdraftLimit" type="number" class="form-control" ng-model="formData.overdraftLimit"
-                                number-format>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-show="formData.allowOverdraft">
-                        <label
-                            class="control-label col-sm-5">{{'label.input.nominalannualinterestrateoverdraft' | translate }}
-                        </label>
-                        <div class="col-sm-3">
-                            <input id="nominalAnnualInterestRateOverdraft" type="number"
-                                ng-model="formData.nominalAnnualInterestRateOverdraft" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group" ng-show="formData.allowOverdraft">
-                        <label
-                            class="control-label col-sm-5">{{'label.input.minoverdraftforinterestcalculation' | translate }}
-                        </label>
-                        <div class="col-sm-3">
-                            <input id="minOverdraftForInterestCalculation" type="number"
-                                ng-model="formData.minOverdraftForInterestCalculation" class="form-control" number-format>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-show="!formData.allowOverdraft">
-                        <div class="col-sm-3">
-                            <md-checkbox ng-model="formData.enforceMinRequiredBalance">
-                                {{'label.input.enforceMinRequiredBalance' | translate }}
-                            </md-checkbox>
-                        </div>
-                        <label class="control-label col-sm-3" ng-show="formData.enforceMinRequiredBalance">{{'label.input.minRequiredBalance' | translate }}
-                        </label>
-                        <div class="col-sm-3" ng-show="formData.enforceMinRequiredBalance">
-                            <input id="minRequiredBalance" type="number" class="form-control"
-                                ng-model="formData.minRequiredBalance" number-format>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-show="data.minBalanceForInterestCalculation">
-                        <div class="col-sm-2">{{'label.heading.minbalanceforinterestcalculation' | translate}}</div>
-                        <div class="col-sm-2">{{data.minBalanceForInterestCalculation | FormatNumber}}</div>
-                    </div>
-                    <div class="form-group" ng-show="data.taxGroup">
-                        <div class="col-sm-3">
-                            <md-checkbox ng-model="formData.withholdtax">
-                                {{'label.input.withholdtax' | translate }}
-                            </md-checkbox>
-                        </div>
-                        <label class="control-label col-sm-3">
-                            {{'label.input.taxgroup' | translate }} : {{data.taxGroup.name}}
-                        </label>
-                    </div>
-                    <hr>
-                    <button class="btn btn-sm btn-default pull-left" wz-previous><i class="fa fa-arrow-left"></i>
-                        {{'label.button.previous' | translate}}
-                    </button>
-                    <button class="btn btn-sm btn-default pull-right" type="submit"
-                        ng-hide="disabled">{{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
-                    </button>
-                </fieldset>
-            </form>
-        </wz-step>
-        <wz-step wz-title="{{'label.heading.charges' | translate}}" wz-disabled="{{disabled}}">
-            <form name="Charges" novalidate="" ng-submit="goNext(Charges)" class="form-horizontal form-extra">
-                <fieldset>
-                    <api-validate></api-validate>
-                    <!--<h3>{{'label.heading.charges' | translate }}</h3>-->
-                    <hr>
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                            <select ng-model="chargeId"
-                                ng-options="charge.id as charge.name for charge in chargeOptions|filter:data.currency.code:strict"
-                                value="{{charge.id}}" class="form-control">
-                                <option value="">{{'label.selectcharge' | translate}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-1">
-                            <a class="btn btn-sm btn-primary" ng-click="addCharge(chargeId)">
-                                <i class="fa fa-plus "></i>
-                                {{'label.button.add' | translate}}</a>
-                        </div>
-                        <div class="col-sm-2">
-                            <span ng-show="errorchargeevent">
-                                <small class="error">{{'label.'+labelchargeerror | translate}}</small>
-                            </span>
-                        </div>
-                    </div>
-                    <table class="table" width="100%" ng-show="charges.length>0">
-                        <tr class="graybg">
-                            <th>{{'label.heading.name' | translate}}</th>
-                            <th>{{'label.heading.type' | translate}}</th>
-                            <th>{{'label.heading.amount' | translate}}</th>
-                            <th>{{'label.heading.collectedon' | translate}}</th>
-                            <th>{{'label.heading.date' | translate}}</th>
-                            <th>{{'label.heading.repaymentsevery' | translate}}</th>
-                            <th>{{'label.heading.actions' | translate}}</th>
-                        </tr>
-                        <tr ng-repeat="charge in charges">
-                            <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                            <td>{{charge.chargeCalculationType.value | translate}}</td>
-                            <td>
-                                <input id="charges[{{$index}}].amount" class="input-sm form-control" type="number"
-                                    ng-model="charge.amount" number-format
-                                    placeholder="{{'label.input.amount' | translate}}" />
-                            </td>
-                            <td>{{charge.chargeTimeType.value | translate}}</td>
-                            <td ng-switch on="charge.chargeTimeType.value">
-                                <md-datepicker id="charges[{{$index}}].feeOnMonthDay" 
-                                    ng-model="charge.feeOnMonthDay" 
-                                    md-placeholder="{{'label.selecttodate' | translate}}"
-                                    ng-switch-when='Annual Fee' disabled>
-                                </md-datepicker>
-                                <md-datepicker id="charges[{{$index}}].dueDate" 
-                                    ng-model="charge.dueDate" 
-                                    md-placeholder="{{'label.selecttodate' | translate}}"
-                                    ng-switch-when='Specified due date' disabled>
-                                </md-datepicker>
-                                <md-datepicker id="charges[{{$index}}].feeOnMonthDay" 
-                                    ng-model="charge.feeOnMonthDay" 
-                                    md-placeholder="{{'label.selecttodate' | translate}}"
-                                    ng-switch-when='Monthly Fee' disabled>
-                                </md-datepicker>
-                                <md-datepicker id="charges[{{$index}}].dueDate" 
-                                    ng-model="charge.dueDate" 
-                                    md-placeholder="{{'label.selecttodate' | translate}}"
-                                    ng-switch-when='Weekly Fee' disabled>
-                                </md-datepicker>
-                            </td>
-                            <td ng-switch on="charge.chargeTimeType.value">
-                                <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
-                                    ng-model="charge.feeInterval" ng-switch-when='Monthly Fee' />
-                                <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
-                                    ng-model="charge.feeInterval" ng-switch-when='Weekly Fee' />
-                            </td>
-                            <td>
-                                <a ng-click="deleteCharge($index)">
-                                    <i class="fa fa-times-circle fa-2x"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <button class="btn btn-sm btn-default pull-left" wz-previous><i class="fa fa-arrow-left"></i>
-                        {{'label.button.previous' | translate}}
-                    </button>
-                    <button class="btn btn-sm btn-default pull-right" type="submit"
-                        ng-hide="disabled">{{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
-                    </button>
-                </fieldset>
-            </form>
-        </wz-step>
-        <wz-step icon="fa fa-circle-o" wz-disabled="{{disabled}}" ng-repeat="datatable in datatables"
-            wz-title="{{datatable.registeredTableName}}" id="dynamicSteps">
-            <form name="Datatables" class="form-horizontal form-extra" ng-submit="submit()">
-                <fieldset>
-                    <api-validate></api-validate>
-                    <hr />
-                    <div class="form-group" ng-repeat="columnHeader in datatable.columnHeaderData">
-                        <label class="control-label col-sm-3">{{ columnHeader.columnName | prettifyDataTableColumn }}
-                            <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
-                        </label>
-
-                        <div class="col-sm-3">
-                            <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
-                                ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                class="form-control" />
-                            <md-datepicker id="charges[{{$index}}].feeOnMonthDay"
-                                ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
-                                ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                md-placeholder="{{'label.selecttodate' | translate}}">
-                            </md-datepicker>
-                            <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'" class="form-inline">
+    <md-content flex="nogrow" style="margin: 40px auto">
+        <md-card>
+            <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always" md-selected="selectedStep">
+                <md-step label="{{'label.heading.details' | translate}}">
+                    <md-step-body>
+                        <form name="Details" class="form-horizontal form-extra">
+                            <fieldset>
+                                <api-validate></api-validate>
+                                <hr>
                                 <div class="form-group">
-                                    <md-datepicker 
-                                    ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].date"
-                                    md-placeholder="{{'label.selecttodate' | translate}}">
-                                    </md-datepicker>
+                                    <label class="control-label col-sm-3">{{'label.input.product' | translate }}
+                                        <span class="required">*</span>:&nbsp;
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select aria-label="productId" id="productId" ng-model="formData.productId" ng-change="changeProduct()" required
+                                            placeholder="{{'label.selectsavingproduct' | translate}}">
+                                            <md-option ng-repeat="product in products" ng-value="product.id">
+                                                {{product.shortName}} {{product.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <label ng-show="formData.productId"
+                                        class="control-label col-sm-3">{{'label.input.submittedon' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-3" style="position: relative;">
+                                        <md-datepicker id="submittedOnDate" ng-show="formData.productId" ng-model="date.submittedOnDate"" 
+                                            md-placeholder="{{'label.selecttodate' | translate}}"
+                                            md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                        </md-datepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="formData.productId">
+                                    <label class="control-label col-sm-3">{{'label.input.fieldofficer' | translate }}:&nbsp;
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select aria-label="fieldOfficerId" id="fieldOfficerId" ng-model="formData.fieldOfficerId"
+                                            ng-change="savingdetails.fieldOfficerName = formValue(fieldOfficers,formData.fieldOfficerId,'id','displayName')"
+                                            placeholder="{{'label.selectfieldofficer' | translate}}">
+                                            <md-option ng-repeat="fieldOfficer in fieldOfficers" ng-value="fieldOfficer.id">
+                                                {{fieldOfficer.displayName}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <label class="control-label col-sm-3">{{'label.input.externalid' | translate }}
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <input ng-show="formData.productId" id="externalId" ng-model="formData.externalId"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <md-divider></md-divider>
+                        <md-step-actions layout="row">
+                            <div flex layout="row" layout-align="end top">
+                                <md-button ng-hide="disabled" type="submit" class="md-primary md-raised" ng-click="goNextStep()">
+                                    {{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
+                                </md-button>
+                            </div>
+                        </md-step-actions>  
+                    </md-step-body>
+                </md-step>
+                <md-step label="{{'label.heading.terms' | translate}}" ng-disabled="disabled">
+                    <md-step-body>
+                        <form name="Terms" class="form-horizontal form-extra">
+                            <fieldset>
+                                <api-validate></api-validate>
+                                <hr>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">{{'label.heading.currency' | translate }}</label>
+                                    <label class="control-label col-sm-3 left">
+                                        {{data.currency.code | translate}} {{data.currency.name | translate}} ({{data.currency.displaySymbol}})
+                                    </label>
+                                    <label class="control-label col-sm-2">{{'label.heading.decimalplaces' | translate}}
+                                    </label>
+                                    <label class="control-label col-sm-1 left">
+                                        {{data.currency.decimalPlaces}}
+                                    </label>
+                                    <label
+                                        class="control-label col-sm-2">{{'label.input.currencyinmultiplesof' | translate }}</label>
+                                    <label class="control-label col-sm-1 left">
+                                        {{data.currency.inMultiplesOf}}
+                                    </label>
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" placeholder="HH:MM:SS"
-                                        ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].time"
-                                        class="form-control" />
+                                    <label class="control-label col-sm-3">{{'label.input.nominalannualinterestrate' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input id="nominalAnnualInterestRate" type="number" name="nominalannualinterestrate"
+                                            ng-model="formData.nominalAnnualInterestRate" class="form-control" required />
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">{{'label.input.interestcompoundingperiod' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <md-select aria-label="interestCompoundingPeriodType" id="interestCompoundingPeriodType" ng-model="formData.interestCompoundingPeriodType"
+                                            ng-change="savingdetails.interestCompoundingPeriodTypeValue = formValue(data.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="type in data.interestCompoundingPeriodTypeOptions" ng-value="type.id">
+                                                {{type.value | translate}}
+                                            </md-option>                            
+                                        </md-select>
+                                    </div>
+
+                                    <label class="control-label col-sm-3">{{'label.input.interestpostingperiod' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <md-select aria-label="interestPostingPeriodType" id="interestPostingPeriodType" ng-model="formData.interestPostingPeriodType"
+                                            ng-change="savingdetails.interestPostingPeriodTypeValue = formValue(data.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="type in data.interestPostingPeriodTypeOptions" ng-value="type.id">
+                                                {{type.value | translate}}
+                                            </md-option>  
+                                        </md-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">{{'label.input.interestcalculatedusing' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <md-select aria-label="interestCalculationType" id="interestCalculationType" ng-model="formData.interestCalculationType"
+                                            ng-change="savingdetails.interestCalculationTypeValue=formValue(data.interestCalculationTypeOptions,formData.interestCalculationType)"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="type in data.interestCalculationTypeOptions" ng-value="type.id">
+                                                {{type.value | translate}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <label class="control-label col-sm-3">{{'label.input.daysinyears' | translate }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select aria-label="interestCalculationDaysInYearType" id="interestCalculationDaysInYearType"
+                                            ng-model="formData.interestCalculationDaysInYearType"
+                                            ng-change="savingdetails.interestCalculationDaysInYearTypeValue = formValue(data.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="type in data.interestCalculationDaysInYearTypeOptions" ng-value="type.id">
+                                                {{type.value | translate}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        class="control-label col-sm-3">{{'label.input.minimumopeningbalance' | translate }}</label>
+                                    <div class="col-sm-2">
+                                        <input id="minRequiredOpeningBalance" type="number"
+                                            ng-model="formData.minRequiredOpeningBalance" class="form-control" >
+                                    </div>
+                                    <label
+                                        class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}</label>
+
+                                    <div class="col-sm-2">
+                                        <input id="lockinPeriodFrequency" type="number" class="form-control"
+                                            ng-model="formData.lockinPeriodFrequency">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <md-select aria-label="lockinPeriodFrequencyType" id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType"
+                                            ng-change="savingdetails.lockinPeriodFrequencyTypeValue = formValue(data.lockinPeriodFrequencyTypeOptions,formData.lockinPeriodFrequencyType)"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="type in data.lockinPeriodFrequencyTypeOptions" ng-value="type.id">
+                                                {{type.value | translate}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-sm-offset-2">
+                                        <md-checkbox ng-model="formData.withdrawalFeeForTransfers">
+                                            {{'label.input.applywithdrawalfeefortransfers' | translate }}
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-sm-offset-2">
+                                        <md-checkbox ng-model="formData.allowOverdraft">
+                                            {{'label.input.allowoverdraft' | translate }}
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="formData.allowOverdraft">
+                                    <label class="control-label col-sm-2">{{'label.input.overdraftlimit' | translate }}
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input id="overdraftLimit" type="number" class="form-control" ng-model="formData.overdraftLimit">
+                                    </div>
+                                    <label
+                                        class="control-label col-sm-2">{{'label.input.nominalannualinterestrateoverdraft' | translate }}
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input id="nominalAnnualInterestRateOverdraft" type="number"
+                                            ng-model="formData.nominalAnnualInterestRateOverdraft" class="form-control">
+                                    </div>
+                                    <label
+                                        class="control-label col-sm-2">{{'label.input.minoverdraftforinterestcalculation' | translate }}
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input id="minOverdraftForInterestCalculation" type="number"
+                                            ng-model="formData.minOverdraftForInterestCalculation" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-sm-offset-2">
+                                        <md-checkbox ng-model="formData.enforceMinRequiredBalance">
+                                            {{'label.input.enforceMinRequiredBalance' | translate }}
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="formData.enforceMinRequiredBalance">
+                                    <label class="control-label col-sm-3" >{{'label.input.minRequiredBalance' | translate }}
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <input id="minRequiredBalance" type="number" class="form-control"
+                                            ng-model="formData.minRequiredBalance" >
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="data.minBalanceForInterestCalculation">
+                                    <div class="col-sm-2">{{'label.heading.minbalanceforinterestcalculation' | translate}}</div>
+                                    <div class="col-sm-2">{{data.minBalanceForInterestCalculation | FormatNumber}}</div>
+                                </div>
+                                <div class="form-group" ng-show="data.taxGroup">
+                                    <div class="col-sm-3">
+                                        <md-checkbox ng-model="formData.withholdtax">
+                                            {{'label.input.withholdtax' | translate }}
+                                        </md-checkbox>
+                                    </div>
+                                    <label class="control-label col-sm-3">
+                                        {{'label.input.taxgroup' | translate }} : {{data.taxGroup.name}}
+                                    </label>
+                                </div>
+                                <hr>
+                            </fieldset>
+                            <md-divider></md-divider>
+                            <md-step-actions layout="row">
+                                <div flex layout="row" layout-align="end top">
+                                    <md-button ng-hide="disabled" type="submit" class="md-raised" ng-click="moveToPreviousStep()">
+                                        <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
+                                    </md-button>
+                                    <md-button ng-hide="disabled" type="submit" class="md-primary md-raised" ng-click="goNextStep()">
+                                        {{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
+                                    </md-button>
+                                </div>
+                            </md-step-actions>  
+                        </form>
+                    </md-step-body>
+                </md-step>
+                <md-step label="{{'label.heading.charges' | translate}}" ng-disabled="disabled">
+                    <md-step-body>
+                        <form name="Charges" class="form-horizontal form-extra">
+                            <fieldset>
+                                <api-validate></api-validate>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <md-select aria-label="chargeId" id="chargeId" ng-model="chargeId"
+                                            placeholder="{{'label.menu.selectone' | translate}}">
+                                            <md-option ng-repeat="charge in chargeOptions|filter:data.currency.code:strict" ng-value="charge.id">
+                                                {{charge.name | translate}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-sm btn-primary" ng-click="addCharge(chargeId)">
+                                            <i class="fa fa-plus "></i>
+                                            {{'label.button.add' | translate}}</a>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span ng-show="errorchargeevent">
+                                            <small class="error">{{'label.'+labelchargeerror | translate}}</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <table class="table" width="100%" ng-show="charges.length>0">
+                                    <tr class="graybg">
+                                        <th>{{'label.heading.name' | translate}}</th>
+                                        <th>{{'label.heading.type' | translate}}</th>
+                                        <th>{{'label.heading.amount' | translate}}</th>
+                                        <th>{{'label.heading.collectedon' | translate}}</th>
+                                        <th>{{'label.heading.date' | translate}}</th>
+                                        <th>{{'label.heading.repaymentsevery' | translate}}</th>
+                                        <th>{{'label.heading.actions' | translate}}</th>
+                                    </tr>
+                                    <tr ng-repeat="charge in charges">
+                                        <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
+                                        <td>{{charge.chargeCalculationType.value | translate}}</td>
+                                        <td>
+                                            <input id="charges[{{$index}}].amount" class="input-sm form-control" type="number"
+                                                ng-model="charge.amount" placeholder="{{'label.input.amount' | translate}}" />
+                                        </td>
+                                        <td>{{charge.chargeTimeType.value | translate}}</td>
+                                        <td ng-switch on="charge.chargeTimeType.value">
+                                            <md-datepicker id="charges[{{$index}}].feeOnMonthDay" 
+                                                ng-model="charge.feeOnMonthDay" 
+                                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                                ng-switch-when='Annual Fee' disabled>
+                                            </md-datepicker>
+                                            <md-datepicker id="charges[{{$index}}].dueDate" 
+                                                ng-model="charge.dueDate" 
+                                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                                ng-switch-when='Specified due date' disabled>
+                                            </md-datepicker>
+                                            <md-datepicker id="charges[{{$index}}].feeOnMonthDay" 
+                                                ng-model="charge.feeOnMonthDay" 
+                                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                                ng-switch-when='Monthly Fee' disabled>
+                                            </md-datepicker>
+                                            <md-datepicker id="charges[{{$index}}].dueDate" 
+                                                ng-model="charge.dueDate" 
+                                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                                ng-switch-when='Weekly Fee' disabled>
+                                            </md-datepicker>
+                                        </td>
+                                        <td ng-switch on="charge.chargeTimeType.value">
+                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
+                                                ng-model="charge.feeInterval" ng-switch-when='Monthly Fee' />
+                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
+                                                ng-model="charge.feeInterval" ng-switch-when='Weekly Fee' />
+                                        </td>
+                                        <td>
+                                            <a ng-click="deleteCharge($index)">
+                                                <i class="fa fa-times-circle fa-2x"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                            <md-divider></md-divider>
+                            <md-step-actions layout="row">
+                                <div flex layout="row" layout-align="end top">
+                                    <md-button ng-hide="disabled" type="submit" class="md-raised" ng-click="moveToPreviousStep()">
+                                        <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
+                                    </md-button>
+                                    <md-button ng-hide="disabled" type="submit" class="md-primary md-raised" ng-click="goNextStep()">
+                                        {{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
+                                    </md-button>
+                                </div>
+                            </md-step-actions> 
+                        </form>
+                    </md-step-body>
+                </md-step>
+                <md-step label="{{datatable.registeredTableName}}" ng-disabled="disabled" ng-repeat="datatable in datatables">
+                    <md-step-body>
+                        <form name="{{datatable.registeredTableName}}" class="form-horizontal form-extra">
+                            <fieldset>
+                                <api-validate></api-validate>
+                                <hr />
+                                <div class="form-group" ng-repeat="columnHeader in datatable.columnHeaderData">
+                                    <label class="control-label col-sm-3">{{ columnHeader.columnName | prettifyDataTableColumn }}
+                                        <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
+                                    </label>
+
+                                    <div class="col-sm-3">
+                                        <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
+                                            ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                            class="form-control" />
+                                        <md-datepicker id="charges[{{$index}}].feeOnMonthDay"
+                                            ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'"
+                                            ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                            md-placeholder="{{'label.selecttodate' | translate}}">
+                                        </md-datepicker>
+                                        <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'" class="form-inline">
+                                            <div class="form-group">
+                                                <md-datepicker 
+                                                ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].date"
+                                                md-placeholder="{{'label.selecttodate' | translate}}">
+                                                </md-datepicker>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="time" placeholder="HH:MM:SS"
+                                                    ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].time"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div ng-show="fieldType(columnHeader.columnDisplayType) == 'BOOLEAN'">
+                                            <label class="radio-inline">
+                                                <input type="radio"
+                                                    ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                                    value="true" /> {{'label.input.true' | translate}}
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio"
+                                                    ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                                    value="false" /> {{'label.input.false' | translate}}
+                                            </label>
+                                        </div>
+                                        <span data-ng-switch on="columnHeader.columnDisplayType">
+                                            <md-select aria-label="columnHeader.columnName" ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+                                                data-ng-switch-when="CODELOOKUP"
+                                                ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                                placeholder="{{'label.menu.selectone' | translate}}">
+                                                <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
+                                                    {{columnValue.value}}
+                                                </md-option>
+                                            </md-select>
+                                            <md-select aria-label="columnHeader.columnName" ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
+                                                data-ng-switch-when="CODEVALUE"
+                                                ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
+                                                placeholder="{{'label.menu.selectone' | translate}}">
+                                                <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
+                                                    {{columnValue.value}}
+                                                </md-option>
+                                            </md-select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <md-divider></md-divider>
+                        <md-step-actions layout="row">
+                            <div flex layout="row" layout-align="end top">
+                                <md-button ng-hide="disabled" type="submit" class="md-raised" ng-click="moveToPreviousStep()">
+                                    <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
+                                </md-button>
+                                <md-button ng-hide="disabled" type="submit" class="md-primary md-raised" ng-click="goNextStep()">
+                                    {{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
+                                </md-button>
                             </div>
-                            <div ng-show="fieldType(columnHeader.columnDisplayType) == 'BOOLEAN'">
-                                <label class="radio-inline">
-                                    <input type="radio"
-                                        ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                        value="true" /> {{'label.input.true' | translate}}
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio"
-                                        ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                        value="false" /> {{'label.input.false' | translate}}
-                                </label>
+                        </md-step-actions>
+                    </md-step-body>
+                </md-step>
+                <md-step label="{{'label.heading.preview' | translate}}" ng-if="!disabled">
+                    <md-step-body>
+                        <form name="Preview" class="form-horizontal form-extra">
+                            <fieldset>
+                                <api-validate></api-validate>
+                                <!--<h3>Review</h3>-->
+                                <hr>
+                                <table width="100%">
+                                    <tr class="bottomborder">
+                                        <td colspan="7">
+                                            <strong>{{'label.heading.details' | translate}}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="toppadding">
+                                        <td>{{'label.input.product' | translate }}</td>
+                                        <td colspan="6">{{savingdetails.productName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.submittedon' | translate}}</td>
+                                        <td colspan="6">{{date.submittedOnDate | DateFormat}}</td>
+                                    </tr>
+                                    <tr ng-show="formData.fieldOfficerId">
+                                        <td>{{'label.input.fieldofficer' | translate }}</td>
+                                        <td colspan="6">{{savingdetails.fieldOfficerName}}</td>
+                                    </tr>
+                                    <tr ng-show="formData.externalId">
+                                        <td>{{'label.input.externalid' | translate}}</td>
+                                        <td colspan="6">{{formData.externalId}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7">
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tr class="bottomborder">
+                                        <td colspan="7">
+                                            <strong>{{'label.heading.terms' | translate}}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="toppadding">
+                                        <td>{{'label.heading.currency' | translate}}</td>
+                                        <td colspan="6">{{data.currency.code | translate}}  {{data.currency.name | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.heading.decimalplaces' | translate}}</td>
+                                        <td colspan="6">{{data.currency.decimalPlaces}}</td>
+                                    </tr>
+                                    <td>{{'label.input.nominalannualinterestrate' | translate}}</td>
+                                    <td colspan="6">{{formData.nominalAnnualInterestRate | FormatNumber}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.interestcompoundingperiod' | translate}}</td>
+                                        <td colspan="6">{{savingdetails.interestCompoundingPeriodTypeValue | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.currencyinmultiplesof' | translate }}</td>
+                                        <td colspan="6">{{data.currency.inMultiplesOf | FormatNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.interestpostingperiod' | translate}}</td>
+                                        <td colspan="6">{{savingdetails.interestPostingPeriodTypeValue | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.interestcalculatedusing' | translate}}</td>
+                                        <td colspan="6">{{savingdetails.interestCalculationTypeValue | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.daysinyears' | translate }}</td>
+                                        <td colspan="6">{{savingdetails.interestCalculationDaysInYearTypeValue | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.minimumopeningbalance' | translate }}</td>
+                                        <td colspan="6">{{formData.minRequiredOpeningBalance | FormatNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.lockinPeriodFrequency' | translate }}</td>
+                                        <td colspan="6">{{formData.lockinPeriodFrequency}}
+                                            {{savingdetails.lockinPeriodFrequencyTypeValue | translate}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.applywithdrawalfeefortransfers' | translate }}</td>
+                                        <td colspan="6">{{formData.withdrawalFeeForTransfers | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.allowoverdraft' | translate}}</td>
+                                        <td colspan="6">{{formData.allowOverdraft | translate}}</td>
+                                    </tr>
+                                    <tr ng-show="formData.allowOverdraft">
+                                        <td>{{'label.input.overdraftlimit' | translate}}</td>
+                                        <td colspan="6">{{formData.overdraftLimit | FormatNumber}}</td>
+                                    </tr>
+                                    <tr ng-show="formData.allowOverdraft">
+                                        <td>{{'label.input.nominalannualinterestrateoverdraft' | translate}}</td>
+                                        <td colspan="6">{{formData.nominalAnnualInterestRateOverdraft | FormatNumber}} %</td>
+                                    </tr>
+                                    <tr ng-show="formData.allowOverdraft">
+                                        <td>{{'label.input.minoverdraftforinterestcalculation' | translate}}</td>
+                                        <td colspan="6">{{formData.minOverdraftForInterestCalculation | FormatNumber}}</td>
+                                    </tr>
+                                    <tr ng-hide="formData.allowOverdraft">
+                                        <td>{{'label.input.enforceMinRequiredBalance' | translate }}</td>
+                                        <td colspan="6">{{formData.enforceMinRequiredBalance | translate}}</td>
+                                    </tr>
+                                    <tr ng-hide="formData.allowOverdraft">
+                                        <td>{{'label.input.minRequiredBalance' | translate}}</td>
+                                        <td colspan="6">{{formData.minRequiredBalance | FormatNumber}}</td>
+                                    </tr>
+                                    <tr ng-show="data.taxGroup">
+                                        <td>{{'label.input.withholdtax' | translate }}</td>
+                                        <td colspan="6">{{formData.withHoldTax | translate}}</td>
+                                    </tr>
+                                    <tr ng-show="formData.withHoldTax">
+                                        <td>{{'label.input.taxgroup' | translate}}</td>
+                                        <td colspan="6">{{data.taxGroup.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7">
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tr class="bottomborder">
+                                        <td colspan="7">
+                                            <strong>{{'label.heading.charges' | translate}}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="graybg bottomborder paddingtop">
+                                        <th>{{'label.heading.name' | translate}}</th>
+                                        <th>{{'label.heading.type' | translate}}</th>
+                                        <th>{{'label.heading.amount' | translate}}</th>
+                                        <th>{{'label.heading.collectedon' | translate}}</th>
+                                        <th>{{'label.heading.date' | translate}}</th>
+                                        <th colspan="2">{{'label.heading.repaymentsevery' | translate}}</th>
+                                    </tr>
+                                    <tr ng-repeat="charge in charges">
+                                        <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
+                                        <td>{{charge.chargeCalculationType.value | translate}}</td>
+                                        <td>{{charge.amount | FormatNumber}}</td>
+                                        <td>{{charge.chargeTimeType.value | translate}</td>
+                                        <td>
+                                            {{charge.feeOnMonthDay | DateFormat}} {{charge.dueDate | DateFormat}}
+                                        </td>
+                                        <td colspan="2">
+                                            {{charge.feeInterval}}
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <table width="100%" ng-repeat="datatable in datatables">
+                                    <tr class="bottomborder toppadding">
+                                        <td colspan="7">
+                                            <strong>{{datatable.registeredTableName}}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="columnHeader in datatable.columnHeaderData">
+                                        <td colspan="6">{{ columnHeader.columnName | prettifyDataTableColumn }}</td>
+                                        <td
+                                            ng-hide="fieldType(columnHeader.columnDisplayType) == 'DATETIME' || fieldType(columnHeader.columnDisplayType) == 'DATE'">
+                                            {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]}}
+                                        </td>
+                                        <td ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'">
+                                            {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].date | DateFormat}}
+                                            {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].time }}
+                                        </td>
+                                        <td ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'">
+                                            {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName] | DateFormat}}
+                                        </td>
+                                    </tr>
+                                </table>
+                                <md-step-actions layout="row">
+                                    <div flex layout="row" layout-align="center top">
+                                        <md-button id="cancel" type="reset" class="md-raised"
+                                            ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+                                        <md-button id="save" class="md-raised md-primary" ng-click="submit()" 
+                                            has-permission='CREATE_SAVINGSACCOUNT'>{{'label.button.save' | translate }}
+                                        </md-button>
+                                    </div>
+                                </md-step-actions>  
+                            </fieldset>
+                        </form>
+                        <md-divider></md-divider>
+                        <md-step-actions layout="row">
+                            <div flex layout="row" layout-align="begin top">
+                                <md-button ng-hide="disabled" type="submit" class="md-raised" ng-click="moveToPreviousStep()">
+                                    <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
+                                </md-button>
                             </div>
-                            <span data-ng-switch on="columnHeader.columnDisplayType">
-                                <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
-                                    data-ng-switch-when="CODELOOKUP"
-                                    ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                    ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues"
-                                    value="{{columnValue.id}}" class="form-control">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
-                                <select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
-                                    data-ng-switch-when="CODEVALUE"
-                                    ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]"
-                                    ng-options="columnValue.value as columnValue.value for columnValue in columnHeader.columnValues"
-                                    value="{{columnValue.id}}" class="form-control">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
-                            </span>
-                        </div>
-                    </div>
-                    <hr>
-                    <button class="btn btn-sm btn-default pull-left" wz-previous><i class="fa fa-arrow-left"></i>
-                        {{'label.button.previous' | translate}}
-                    </button>
-                    <button class="btn btn-sm btn-default pull-right" type="submit"
-                        ng-hide="disabled">{{'label.button.next' | translate}} <i class="fa fa-arrow-right"></i>
-                    </button>
-                </fieldset>
-            </form>
-        </wz-step>
-        <wz-step wz-title="Review" ng-if="!disabled">
-            <form name="Preview" class="form-horizontal form-extra">
-                <fieldset>
-                    <api-validate></api-validate>
-                    <!--<h3>Review</h3>-->
-                    <hr>
-                    <table width="100%">
-                        <tr class="bottomborder">
-                            <td colspan="7">
-                                <strong>{{'label.heading.details' | translate}}</strong>
-                            </td>
-                        </tr>
-                        <tr class="toppadding">
-                            <td>{{'label.input.product' | translate }}</td>
-                            <td colspan="6">{{savingdetails.productName}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.submittedon' | translate}}</td>
-                            <td colspan="6">{{date.submittedOnDate | DateFormat}}</td>
-                        </tr>
-                        <tr ng-show="formData.fieldOfficerId">
-                            <td>{{'label.input.fieldofficer' | translate }}</td>
-                            <td colspan="6">{{savingdetails.fieldOfficerName}}</td>
-                        </tr>
-                        <tr ng-show="formData.externalId">
-                            <td>{{'label.input.externalid' | translate}}</td>
-                            <td colspan="6">{{formData.externalId}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7">
-                                <br>
-                            </td>
-                        </tr>
-                        <tr class="bottomborder">
-                            <td colspan="7">
-                                <strong>{{'label.heading.terms' | translate}}</strong>
-                            </td>
-                        </tr>
-                        <tr class="toppadding">
-                            <td>{{'label.heading.currency' | translate}}</td>
-                            <td colspan="6">{{data.currency.name | translate}} ({{data.currency.displaySymbol}})</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.heading.decimalplaces' | translate}}</td>
-                            <td colspan="6">{{data.currency.decimalPlaces}}</td>
-                        </tr>
-                        <td>{{'label.input.nominalannualinterestrate' | translate}}</td>
-                        <td colspan="6">{{formData.nominalAnnualInterestRate | FormatNumber}} %</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.interestcompoundingperiod' | translate}}</td>
-                            <td colspan="6">{{savingdetails.interestCompoundingPeriodTypeValue | translate}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.currencyinmultiplesof' | translate }}</td>
-                            <td colspan="6">{{data.currency.inMultiplesOf}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.interestpostingperiod' | translate}}</td>
-                            <td colspan="6">{{savingdetails.interestPostingPeriodTypeValue | translate}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.interestcalculatedusing' | translate}}</td>
-                            <td colspan="6">{{savingdetails.interestCalculationTypeValue | translate}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.daysinyears' | translate }}</td>
-                            <td colspan="6">{{savingdetails.interestCalculationDaysInYearTypeValue | translate}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.minimumopeningbalance' | translate }}</td>
-                            <td colspan="6">{{formData.minRequiredOpeningBalance | FormatNumber}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.lockinPeriodFrequency' | translate }}</td>
-                            <td colspan="6">{{formData.lockinPeriodFrequency}}
-                                {{savingdetails.lockinPeriodFrequencyTypeValue | translate}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.applywithdrawalfeefortransfers' | translate }}</td>
-                            <td colspan="6">{{formData.withdrawalFeeForTransfers | translate}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{'label.input.allowoverdraft' | translate}}</td>
-                            <td colspan="6">{{formData.allowOverdraft | translate}}</td>
-                        </tr>
-                        <tr ng-show="formData.allowOverdraft">
-                            <td>{{'label.input.overdraftlimit' | translate}}</td>
-                            <td colspan="6">{{formData.overdraftLimit | FormatNumber}}</td>
-                        </tr>
-                        <tr ng-show="formData.allowOverdraft">
-                            <td>{{'label.input.nominalannualinterestrateoverdraft' | translate}}</td>
-                            <td colspan="6">{{formData.nominalAnnualInterestRateOverdraft}} %</td>
-                        </tr>
-                        <tr ng-show="formData.allowOverdraft">
-                            <td>{{'label.input.minoverdraftforinterestcalculation' | translate}}</td>
-                            <td colspan="6">{{formData.minOverdraftForInterestCalculation}}</td>
-                        </tr>
-                        <tr ng-hide="formData.allowOverdraft">
-                            <td>{{'label.input.enforceMinRequiredBalance' | translate }}</td>
-                            <td colspan="6">{{formData.enforceMinRequiredBalance | translate}}</td>
-                        </tr>
-                        <tr ng-hide="formData.allowOverdraft">
-                            <td>{{'label.input.minRequiredBalance' | translate}}</td>
-                            <td colspan="6">{{formData.minRequiredBalance | FormatNumber}}</td>
-                        </tr>
-                        <tr ng-show="data.taxGroup">
-                            <td>{{'label.input.withholdtax' | translate }}</td>
-                            <td colspan="6">{{formData.withHoldTax | translate}}</td>
-                        </tr>
-                        <tr ng-show="formData.withHoldTax">
-                            <td>{{'label.input.taxgroup' | translate}}</td>
-                            <td colspan="6">{{data.taxGroup.name}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7">
-                                <br>
-                            </td>
-                        </tr>
-                        <tr class="bottomborder">
-                            <td colspan="7">
-                                <strong>{{'label.heading.charges' | translate}}</strong>
-                            </td>
-                        </tr>
-                        <tr class="graybg bottomborder paddingtop">
-                            <th>{{'label.heading.name' | translate}}</th>
-                            <th>{{'label.heading.type' | translate}}</th>
-                            <th>{{'label.heading.amount' | translate}}</th>
-                            <th>{{'label.heading.collectedon' | translate}}</th>
-                            <th>{{'label.heading.date' | translate}}</th>
-                            <th colspan="2">{{'label.heading.repaymentsevery' | translate}}</th>
-                        </tr>
-                        <tr ng-repeat="charge in charges">
-                            <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                            <td>{{charge.chargeCalculationType.value}}</td>
-                            <td>{{charge.amount}}</td>
-                            <td>{{charge.chargeTimeType.value}}</td>
-                            <td>
-                                {{charge.feeOnMonthDay | DateFormat}} {{charge.dueDate | DateFormat}}
-                            </td>
-                            <td colspan="2">
-                                {{charge.feeInterval}}
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <table width="100%" ng-repeat="datatable in datatables">
-                        <tr class="bottomborder toppadding">
-                            <td colspan="7">
-                                <strong>{{datatable.registeredTableName}}</strong>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="columnHeader in datatable.columnHeaderData">
-                            <td colspan="6">{{ columnHeader.columnName | prettifyDataTableColumn }}</td>
-                            <td
-                                ng-hide="fieldType(columnHeader.columnDisplayType) == 'DATETIME' || fieldType(columnHeader.columnDisplayType) == 'DATE'">
-                                {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]}}
-                            </td>
-                            <td ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'">
-                                {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].date | DateFormat}}
-                                {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].time }}
-                            </td>
-                            <td ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'">
-                                {{formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName] | DateFormat}}
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <br>
-                    <div class="col-md-12 center">
-                        <md-button id="cancel" type="reset" class="md-raised"
-                            ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-                        <md-button id="save" class="md-raised md-primary" ng-show="data"
-                            has-permission='CREATE_SAVINGSACCOUNT' ng-click="submit()">{{'label.button.save' | translate }}
-                        </md-button>
-                    </div>
-                    <hr>
-                    <button class="btn btn-sm btn-default pull-left" wz-previous>
-                        <i class="fa fa-arrow-left"></i> {{'label.button.previous' | translate}}
-                    </button>
-                </fieldset>
-            </form>
-        </wz-step>
-    </wizard>
+                        </md-step-actions>  
+                    </md-step-body>
+                </md-step>
+            </md-steppers>
+        </md-card>
+    </md-content>
 </div>

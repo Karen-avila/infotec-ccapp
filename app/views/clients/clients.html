@@ -1,93 +1,95 @@
 <div class="content-container" ng-controller="ClientController">
-    <ul class="breadcrumb">
-        <li class="active">{{'label.anchor.clients' | translate}}</li>
-    </ul>
-    <api-validate></api-validate>
-
     <div class="card">
-        <div class="toolbar">
-            <h4>{{'label.anchor.clients' | translate}}</h4>
-        </div>
         <div class="content">
+            <div class="toolbar">
+                <h5>{{'label.anchor.clients' | translate}}</h5>
+            </div>
+            <br>
             <div class="row">
-                <div class="col-sm-10">
-                    <form ng-submit="search()" class="form-horizontal">
-                        <div class="form-group">
+                <div class="col-sm-12">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                        <div class="col-md-4" style="padding-right:0px;">
+                            <md-input-container class="full-width">
+                                <label>{{'label.input.searchByNameAccNo' | translate}}</label>
+                                <input data-ng-model="searchText" type="text"
+                                ng-keyup="searchText.length > 4 && $event.keyCode == 13 && search()" 
+                                class="uppercase" />
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6" style="padding-left:0px;">
                             <div class="col-md-4">
-                                <input ng-autofocus="true" ng-model="filter.search" type="text"
-                                    class="form-control unstyled"
-                                    placeholder="{{'label.input.filterbynameaccno' | translate}}">
+                                <md-button aria-label="btn-search" class="md-raised md-primary md-icon-button search" ng-click="search()">
+                                    <i class="fa fa-search "></i>
+                                </md-button>
                             </div>
                             <div class="col-md-8">
-                                <div class="col-md-6">
-                                    <input data-ng-model="searchText" type="text"
-                                    placeholder="{{'label.input.searchByNameAccNo' | translate}}"
-                                    class="form-control unstyled col-sm-3" />
-                                </div>
-                                <div class="col-md-3">
-                                    <button mat-button class="md-icon-button search">
-                                        <i class="fa fa-search "></i>
-                                    </button>
-                                </div>
-                                
-                                <div class="col-md-4">
-                                    <md-checkbox ng-model="showClosed">
-                                        {{'label.button.showall' | translate }}
-                                    </md-checkbox>
-                                </div>
+                                <md-checkbox ng-model="showClosed" ng-show="clients.length > 0">
+                                    {{'label.button.showall' | translate }}
+                                </md-checkbox>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-sm-2">
-                    <md-button md-no-ink class="md-primary" has-permission='CREATE_CLIENT' href="#!/createclient"><i
-                        class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</md-button>
-                    <!--
-                    <a href="#!/bulkimportclients" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_CLIENT'><i +
-                            class="fa fa-upload"></i>&nbsp;{{'label.button.importclients' | translate}}</a> -->
+                        <div class="col-sm-2">
+                            <md-button md-no-ink class="md-primary" has-permission='CREATE_CLIENT' href="#!/createclient"><i
+                                class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</md-button>
+                        </div>
+                    </md-whiteframe>
                 </div>
             </div>
             <md-divider></md-divider>
-            <md-table-container>
-                <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="query.order">
-                        <tr md-row>
-                            <th md-column></th>
-                            <th md-column md-order-by="displayName">{{'label.heading.name' | translate}}</th>
-                            <th md-column md-order-by="accountNo">{{'label.heading.clientno' | translate}}</th>
-                            <th md-column md-order-by="uniqueId">{{'label.heading.uniqueId' | translate}}</th>
-                            <th md-column md-order-by="externalId">{{'label.heading.externalid2' | translate}}</th>
-                            <th md-column>{{'label.heading.status' | translate}}</th>
-                            <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
-                            <th md-column md-order-by="staffName">{{'label.heading.staff' | translate}}</th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                        <tr md-row ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
-                        data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name" 
-                        ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
-                            <td md-cell >
-                                <i ng-show="client.legalForm.value == 'MORAL'" class="fa fa-building"></i>
-                                <i ng-show="client.legalForm.value == 'FISICA'" class="fa fa-user"></i>
-                            </td>
-                            <td md-cell >{{client.displayName}}</td>
-                            <td md-cell >{{client.accountNo}}</td>
-                            <td md-cell >{{client.uniqueId}}</td>
-                            <td md-cell >{{client.externalId}}</td>
-                            <td md-cell >
-                                <i class="fa fa-stop {{client.status.code | StatusLookup}}"
-                                    uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
-                                <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
-                                <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
-                            </td>
-                            <td md-cell >{{client.officeName}}</td>
-                            <td md-cell >{{client.staffName}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <br>
+            <md-table-container ng-show="clients.length > 0" class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                            <input ng-model="filter.search"> 
+                        </md-input-container>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column></th>
+                                    <th md-column md-order-by="displayName">{{'label.heading.name' | translate}}</th>
+                                    <th md-column md-order-by="accountNo">{{'label.heading.clientno' | translate}}</th>
+                                    <th md-column md-order-by="uniqueId">{{'label.heading.uniqueId' | translate}}</th>
+                                    <th md-column md-order-by="externalId">{{'label.heading.externalid' | translate}}</th>
+                                    <th md-column>{{'label.heading.status' | translate}}</th>
+                                    <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
+                                    <th md-column md-order-by="staffName">{{'label.heading.staff' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+                                data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name" 
+                                ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
+                                    <td md-cell >
+                                        <i ng-show="client.legalForm.value == 'MORAL'" class="fa fa-building"></i>
+                                        <i ng-show="client.legalForm.value == 'FISICA'" class="fa fa-user"></i>
+                                    </td>
+                                    <td md-cell >{{client.displayName}}</td>
+                                    <td md-cell >{{client.accountNo}}</td>
+                                    <td md-cell >{{client.uniqueId}}</td>
+                                    <td md-cell >{{client.externalId}}</td>
+                                    <td md-cell >
+                                        <i class="fa fa-circle {{client.status.code | StatusLookup}}"
+                                            uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
+                                        <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
+                                        <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
+                                    </td>
+                                    <td md-cell >{{client.officeName}}</td>
+                                    <td md-cell >{{client.staffName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </md-table-container>
 
-            <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+            <md-table-pagination ng-show="clients.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
                 md-page="query.page" md-total="{{totalClients}}" md-on-paginate="getResultsPage" md-page-select>
             </md-table-pagination>
         </div>

@@ -7,14 +7,14 @@
         <div class="content">
             <div class="toolbar">
                 <div class="pull-right">
-                    <a ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm btn-primary"><i
-                            class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</a>
-                    <a ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm btn-primary"><i
-                            class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</a>
-                    <a href="#!/createoffice" class="btn btn-sm btn-primary" has-permission='CREATE_OFFICE'><i
-                            class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</a>&nbsp;&nbsp;
-                    <a href="#!/bulkimportoffices" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_OFFICE'><i
-                            + class="fa fa-upload"></i>&nbsp;{{'label.button.importoffices' | translate}}</a>
+                    <md-button ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm md-primary"><i
+                            class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</md-button>
+                    <md-button ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm md-primary"><i
+                            class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</md-button>
+                    <md-button href="#!/createoffice" class="btn btn-sm btn-primary" has-permission='CREATE_OFFICE'><i
+                            class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</md-button>&nbsp;&nbsp;
+                    <md-button href="#!/bulkimportoffices" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_OFFICE'><i
+                            + class="fa fa-upload"></i>&nbsp;{{'label.button.importoffices' | translate}}</md-button>
                 </div>
             </div>
             <br>
