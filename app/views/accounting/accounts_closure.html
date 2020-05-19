@@ -15,10 +15,11 @@
             <b>{{'label.input.filterclosuresbyoffice' | translate }}</b>
             <div class="row">
             	<div class="col-md-6">
-                    <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-                        ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-                        <option class="displaynone" value="">{{'label.alloffice' | translate}}</option>
-                    </select>
+                    <md-select  id="officeId" ng-model="formData.officeId" placeholder="{{'label.alloffice' | translate}}">
+                     <md-option ng-repeat="office in offices" ng-value="office.id">
+                         {{office.name}}
+                     </md-option>   
+                    </md-select>
                 </div>
             	<div class="col-md-6">
                     <md-button class="md-raised md-primary" ng-click="closedAccountingDetails(formData.officeId)">{{'label.button.save' | translate }}</md-button>
