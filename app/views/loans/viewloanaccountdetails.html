@@ -565,8 +565,9 @@
                                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export.statement' | translate}}</button>
                                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="viewJournalEntries()" style="margin-right: 8px;">{{'label.button.viewjournalentries' | translate}}</button>
                                         <div class="pull-right">
-                                            <input type="checkbox" data-ng-model="hideAccrualTransactions" ng-init = "hideAccuralTransactions = true">&nbsp;
-                                            <label class="control-label">{{'label.input.hide.accrual.transactions' | translate }}</label>&nbsp;&nbsp;
+                                            <md-checkbox ng-model="hideAccrualTransactions" ng-init="hideAccuralTransactions = true">
+                                                {{'label.input.hide.accrual.transactions' | translate }}
+                                            </md-checkbox>
                                         </div>
                                         <br>
                                         <table class="table">
@@ -957,11 +958,11 @@
                         <tbody>
                             <tr>
                                 <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
+                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
                             </tr>
                             <tr>
                                 <th>{{'label.heading.arrearsby' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
+                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
                             </tr>
                             <tr>
                                 <th>{{'label.heading.prepay.balance' | translate}}</th>
@@ -1101,7 +1102,6 @@
                             <td>{{loandetails.isNPA | translate}}</td>
                         </tr>
                     </table>
-
                 </div>
             </div>
         </div>

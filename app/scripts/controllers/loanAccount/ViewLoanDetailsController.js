@@ -525,7 +525,7 @@
                     interestPortion: data.interestPortion,
                     feeChargesPortion: data.feeChargesPortion,
                     penaltyChargesPortion: data.penaltyChargesPortion,
-                    total: (data.principalPortion + data.interestPortion + data.feeChargesPortion + data.penaltyChargesPortion);
+                    total: (data.principalPortion + data.interestPortion + data.feeChargesPortion + data.penaltyChargesPortion)
                 }
             });
 
