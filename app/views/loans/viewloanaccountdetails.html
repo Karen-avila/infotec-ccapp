@@ -966,7 +966,25 @@
                             </tr>
                             <tr>
                                 <th>{{'label.heading.prepay.balance' | translate}}</th>
-                                <td class="amount">{{prepay.total | FormatNumber}}</td>
+                                <td class="amount">
+                                    {{prepay.total | FormatNumber}}
+                                    <md-tooltip md-direction="bottom" class="md-tooltip">
+                                        <table>
+                                            <tbody>
+                                                <tr><th>{{'label.heading.principal' | translate}}</th><td class="amount">{{prepay.principalPortion | FormatNumber}}</td></tr>
+                                                <tr><th>{{'label.heading.interest | translate}}</th><td class="amount">{{prepay.interestPortion | FormatNumber}}</td></tr>
+                                                <tr ng-show="prepay.feeChargesPortion >= 0">
+                                                    <th>{{'label.heading.fees' | translate}}</th>
+                                                    <td class="amount">{{prepay.feeChargesPortion | FormatNumber}}</td>
+                                                </tr>
+                                                <tr ng-show="prepay.penaltyChargesPortion >= 0">
+                                                    <th>{{'label.heading.penalties' | translate}}</th>
+                                                    <td class="amount">{{prepay.penaltyChargesPortion | FormatNumber}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-tooltip>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
