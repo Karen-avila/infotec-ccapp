@@ -41,23 +41,23 @@
       </div>
 
       <div class="col-md-12 center">
-        <button
+        <md-button
           id="cancel"
           type="reset"
-          class="btn btn-sm btn-default"
+          class="md-raised"
           ng-click="cancel()"
         >
           {{'label.button.cancel' | translate }}
-        </button>
-        <button
+        </md-button>
+        <md-button
           id="save"
           type="submit"
           ng-disabled="!editExternalServicesConfigurationForm.$valid"
           has-permission="UPDATE_EXTERNALSERVICES"
-          class="btn btn-sm btn-primary"
+          class="md-raised md-primary"
         >
           {{ 'label.button.save' | translate }}
-        </button>
+        </md-button>
       </div>
     </fieldset>
   </form>

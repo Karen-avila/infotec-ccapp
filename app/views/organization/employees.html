@@ -42,7 +42,7 @@
                         <td class="pointer" data-ng-click="routeTo(employee.id)">{{employee.mobileNo}}</td>
                         <td class="pointer" data-ng-click="routeTo(employee.id)">{{employee.isLoanOfficer}}</td>
                         <td class="pointer" data-ng-click="routeTo(employee.id)">
-                            <i class="fa fa-stop {{'employees.StatusType.active.' + employee.isActive | StatusLookup}}"
+                            <i class="fa fa-circle {{'employees.StatusType.active.' + employee.isActive | StatusLookup}}"
                                 uib-tooltip="{{'label.tooltip.employees.active.' + employee.isActive | translate}}"
                                 tooltip-placement="right"></i>
                             <small>[{{'label.tooltip.employees.active.' + employee.isActive | translate}}]</small>

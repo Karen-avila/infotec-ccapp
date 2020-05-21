@@ -74,6 +74,7 @@
 
         var moment = require("moment");
         moment.locale('es');
+        // moment.tz.setDefault("America/Mexico_City");
 
         // Set month and week names for the general $mdDateLocale service
         var localeData = moment.localeData();

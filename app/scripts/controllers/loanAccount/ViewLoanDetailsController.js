@@ -145,6 +145,28 @@
                 });
             };
 
+            scope.showTransactionCalculation = function(ev, transactionId) {
+                resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
+                function (data) {
+                    $mdDialog.show({
+                        controller: DialogCalcsController,
+                        templateUrl: 'views/loans/viewloantransactioncalcs.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        fullscreen: true, // Only for -xs, -sm breakpoints.
+                        locals: {
+                            data: {
+                              transactionId: scope.transactionId,
+                              loanTransaction: data,
+                              overdueCharges: scope.loandetails.overdueCharges,
+                              daysInYear: scope.loandetails.daysInYearType.id
+                            }
+                        },
+                    });                    
+                });
+            };
+
             scope.showTransactionReceipt = function(ev, transactionId) {
                 scope.transactionId = transactionId;
                 scope.reportName = "Receipt " + transactionId;
@@ -182,6 +204,24 @@
         
             function DialogReceiptController(scope, $mdDialog, data) {
                 scope.data = data;
+                scope.closeDialog = function() {
+                  $mdDialog.hide();
+                }
+            }
+        
+            function DialogCalcsController(scope, $mdDialog, data) {
+                scope.loanTransaction = data.loanTransaction;
+                const overdueCharges = data.overdueCharges;
+                var days = 0;
+                const loanCharge = scope.loanTransaction.loanCharge;
+                for (var i=0; i < overdueCharges.length; i++) {
+                    const item = overdueCharges[i];
+                    if (item.name == loanCharge.name) {
+                        days = (loanCharge.amountOrPercentage / (item.amount / data.daysInYear)).toFixed(0);
+                        break;
+                    }
+                }
+                scope.days = days;
                 scope.closeDialog = function() {
                   $mdDialog.hide();
                 }
@@ -426,13 +466,14 @@
                         });
                     }
 
-                    if(scope.recalculateInterest){
+                    if (scope.recalculateInterest) {
                         scope.buttons.singlebuttons.splice(1, 0, {
                             name: "button.prepayment",
                             icon: "fa fa-money",
                             taskPermissionName: 'REPAYMENT_LOAN'
                         });
                     }
+                    // console.log(JSON.stringify(scope.buttons.singlebuttons));
                 }
                 if (data.status.value == "Overpaid") {
                     scope.buttons = { singlebuttons: [
@@ -475,6 +516,17 @@
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
+            });
+
+            resourceFactory.loanTrxnsTemplateResource.get({ loanId: routeParams.id, command: 'prepayLoan' }, function (data) {
+                scope.prepayloan = data;
+                scope.prepay = {
+                    principalPortion: data.principalPortion,
+                    interestPortion: data.interestPortion,
+                    feeChargesPortion: data.feeChargesPortion,
+                    penaltyChargesPortion: data.penaltyChargesPortion,
+                    total: (data.principalPortion + data.interestPortion + data.feeChargesPortion + data.penaltyChargesPortion)
+                }
             });
 
             var fetchFunction = function (offset, limit, callback) {
