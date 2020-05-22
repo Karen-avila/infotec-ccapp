@@ -122,7 +122,7 @@
         var currId;
         var reports = [];
         for (var i = 0; i < data.length; i++) {
-          currId = data[i].id;
+          currId = data[i].report_id;
           if (currId != prevId) {
               reports.push(data[i]);
           }
