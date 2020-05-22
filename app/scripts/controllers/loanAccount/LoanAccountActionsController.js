@@ -136,7 +136,6 @@
                         scope.formData.approvedLoanAmount = data.approvalAmount;
                     });
                     resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
-                        console.log(JSON.stringify(data));
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
                         scope.minDate = new Date(data.timeline.submittedOnDate);
                         scope.formData[scope.modelName] = new Date(data.timeline.submittedOnDate);
@@ -151,7 +150,6 @@
                             scope.disbursementDetails[i].principal = data.disbursementDetails[i].principal;
                             scope.showTrancheAmountTotal += Number(data.disbursementDetails[i].principal);
                         }
-                        console.log(JSON.stringify(scope.form));
                         scope.fetchEntities('m_loan', 'APPROVE', scope.productId);
                     });
                     break;

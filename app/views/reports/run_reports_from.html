@@ -1,18 +1,18 @@
 	<div class="card well" ng-controller="RunReportsController">
-    <api-validate></api-validate>
+        <api-validate></api-validate>
 	    <div class="span gray-head" style="margin-left:0%;height:30px;">
             <h1 class="md-title">{{'label.reports.name.' + reportName | translate}}</h1>
             <span style="margin-left: 10px;font-size:20px;">
-                <button type="button" class="btn btn-primary pull-right" ng-show="checkStatus()"
+                <md-button type="button" class="md-raised md-primary pull-right" ng-show="checkStatus()"
                         ng-click="isCollapsed=!isCollapsed"><i class="fa fa-chevron-down "></i>{{
                     'label.button.parameters' | translate }}
-                </button>
-                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypePie()">
+                </md-button>
+                <md-button type="button" data-ng-hide="hideChart" class="md-raised md-primary pull-right" ng-click="setTypePie()">
                     {{'label.input.piechart' | translate }}
-                </button>
-                <button type="button" data-ng-hide="hideChart" class="btn btn-primary pull-right" ng-click="setTypeBar()">
+                </md-button>
+                <md-button type="button" data-ng-hide="hideChart" class="md-raised md-primary pull-right" ng-click="setTypeBar()">
                     <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;{{'label.input.barchart' | translate }}
-                </button>
+                </md-button>
             </span>
 	    </div>
 	    <div ng-hide="isCollapsed" class="alert-block form-horizontal">
@@ -22,12 +22,14 @@
 	            <label class="control-label col-sm-2" for="{{reportParam.variable}}">{{ reportParam.label | translate}}</label>
 
                 <div class="col-sm-3">
-                    <select chosen="reportParam.selectOptions" id="{{reportParam.inputName}}" ng-model="formData[reportParam.inputName]"
-							ng-options="selectOption.id as selectOption.name for selectOption in reportParam.selectOptions"
-							value="{{selectOption.id}}"
-							class="form-control input-xlarge" ng-change="getDependencies(reportParam)" required>
-	                    <option value="">{{"label.menu.selectone" | translate}}</option>
-	                </select>
+                    <md-select id="{{reportParam.inputName}}" ng-model="formData[reportParam.inputName]"
+							ng-change="getDependencies(reportParam)" required
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="selectOption in reportParam.selectOptions"
+                                ng-value="selectOption.id">
+                                {{selectOption.name | translate}}
+                            </md-option>
+	                </md-select>
 	            </div>
 	        </div>
 	        <div class="form-group info" ng-repeat="reportTextParam in reportTextParams">
@@ -35,7 +37,8 @@
 	                translate}}</label>
 
 	            <div class="col-sm-3">
-	                <input style="width: 257px" id="{{reportTextParam.inputName}}" type="text" ng-model="formData[reportTextParam.inputName]"  class="form-control" required late-Validate/>
+                    <input style="width: 257px" id="{{reportTextParam.inputName}}" type="text" ng-model="formData[reportTextParam.inputName]"
+                        class="form-control" required late-Validate/>
 	            </div>
 	        </div>
 	        <div class="form-group info" ng-repeat="reportDateParam in reportDateParams">
@@ -43,9 +46,10 @@
 	                translate}}</label>
 
 	            <div class="col-sm-3">
-	                <input style="width: 257px" id="{{reportDateParam.inputName}}" type="text" datepicker-pop="yyyy-MM-dd"
-	                       ng-model="formData[reportDateParam.inputName]" is-open="'opened'+$index" min="minDate"
-	                       max="'2030-06-22'" date-disabled="disabled(date, mode)"  class="form-control" required late-Validate/>
+                    <md-datepicker id="{{reportDateParam.inputName}}" ng-model="formData[reportDateParam.inputName]"
+                        md-placeholder="{{'label.selecttodate' | translate}}" required
+                        md-min-date="minDate" md-max-date="'2030-06-22'" md-date-filter="disabled(date, mode)">
+                    </md-datepicker>
 	            </div>
 	        </div>
 	        <div class="form-group info" ng-show="reportType == 'Pentaho' || reportType == 'Jasper' ">
@@ -86,12 +90,19 @@
 	            <tr>
 	                <td width="30%"></td>
 	                <td>
-	                    <input type="radio" ng-model="type" value="pie">{{'label.input.pie' |
-	                    translate}}<br/>
-	                <td>
-	                <td>
-	                    <input type="radio" ng-model="type" value="bar">{{'label.input.bar' |
-	                    translate}}<br/>
+                        <md-radio-group
+                        ng-model="type"
+                        class="md-primary"
+                        >
+                            <div flex>
+                            <md-radio-button flex value="pie">{{'label.input.pie' | translate}}
+                            </md-radio-button>
+                            </div>
+                            <div flex>
+                                <md-radio-button flex value="bar">{{'label.input.bar' | translate}}
+                                </md-radio-button>
+                            </div>
+                        </md-radio-group>
 	                </td>
 	            </tr>
 	        </table>
@@ -130,9 +141,9 @@
 
 	    <div data-ng-hide="hideTable">
 	        <div class="pull-right" ng-show="reportType == 'Table'">
-	            <button type="button" class="btn btn-sm btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>&nbsp;&nbsp;{{'label.button.exportcsv'
+	            <md-button type="button" class="md-raised md-primary" ng-csv="csvData"><i class="fa fa-file "></i> {{'label.button.exportcsv'
 	                | translate }}
-	            </button>
+	            </md-button>
 	        </div>
 	        <div scroll>
 	            <table style="width: 1200px;white-space:nowrap" class="table table-bordered" data-anchor>

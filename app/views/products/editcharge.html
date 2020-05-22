@@ -51,10 +51,13 @@
                 <label class="control-label col-sm-4">{{'label.input.chargetimetype' | translate}}<span class="required">*</span></label>
 
                 <div class="col-sm-4">
-                    <select id="chargeTimeType" ng-model="formData.chargeTimeType"
-                            data-ng-options="timetype.id as timetype.value | translate for timetype in chargeTimeTypeOptions"
-                            value="{{timetype.id}}" ng-change="chargeTimeChange(formData.chargeTimeType)" class="form-control">
-                    </select>
+                    <md-select id="chargeTimeType" ng-model="formData.chargeTimeType"
+                            placeholder="{{'label.selectone' | translate}}" ng-change="chargeTimeChange(formData.chargeTimeType)">
+                        <md-option ng-repeat="timetype in chargeTimeTypeOptions"
+                            ng-value="timetype.id">
+                            {{timetype.value | translate}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
             <div class="form-group">
@@ -77,14 +80,13 @@
                         class="required">*</span></label>
                 <div class="col-sm-4">
                     <md-select id="chargeCalculationType" ng-model="formData.chargeCalculationType"
-                    placeholder="{{'label.selectone' | translate}}" required 
-                    ng-change="chargeCalculationTypeSelected(formData.chargeCalculationType)" >
-                    <md-option ng-repeat="chargecalculation in filterChargeCalculations(formData.chargeTimeType)"
-                        ng-value="chargecalculation.id">
-                        {{chargecalculation.code | translate}}
-                    </md-option>
+                        placeholder="{{'label.selectone' | translate}}" required 
+                        ng-change="chargeCalculationTypeSelected(formData.chargeCalculationType)" >
+                        <md-option ng-repeat="chargecalculation in filterChargeCalculations(formData.chargeTimeType)"
+                            ng-value="chargecalculation.id">
+                            {{chargecalculation.code | translate}}
+                        </md-option>
                     </md-select>
-                    <form-validate valattributeform="createchargeform" valattribute="chargecalculation"/>
                 </div>
             </div>
             <div class="form-group" ng-show="showAnnual">
@@ -98,7 +100,7 @@
                 <label class="control-label col-sm-4">{{'label.input.duedate' | translate}}<span
                         class="required">*</span></label>
                 <div class="col-sm-4">
-                    <md-datepicker id="duedate" ng-model="first.date"" 
+                    <md-datepicker id="duedate" ng-model="first.date" 
                         md-placeholder="{{'label.selecttodate' | translate}}"
                         md-min-date="minDate" md-max-date="'2030-06-22'">
                     </md-datepicker>

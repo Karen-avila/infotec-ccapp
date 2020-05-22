@@ -16,30 +16,50 @@
                 </div>
             </div>
             <hr/>
-            <br/>
-            <table class="table">
-                <thead>
-                <tr class="graybg">
-                    <th>{{'label.heading.reportname' | translate}}</th>
-                    <th>{{'label.heading.reporttype' | translate}}</th>
-                    <th>{{'label.heading.reportsubtype' | translate}}</th>
-                    <th>{{'label.heading.reportcategory' | translate}}</th>
-                    <th>{{'label.heading.corereport' | translate}}</th>
-                    <th>{{'label.heading.userreport' | translate}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="pointer-main" dir-paginate="report in reports | orderBy:'reportName':reverse  | filter:filterText |  itemsPerPage: ReportsPerPage">
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.reportName}}</td>
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.reportType}}</td>
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.reportSubType}}</td>
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.reportCategory}}</td>
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.coreReport}}</td>
-                    <td class="pointer" data-ng-click="routeTo(report.id)">{{report.useReport}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html">
+            <md-divider></md-divider>
+            <br>
+            <md-table-container ng-show="reports.length > 0" class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                            <input ng-model="filter.search"> 
+                        </md-input-container>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="reportName">{{'label.heading.reportname' | translate}}</th>
+                                    <th md-column md-order-by="reportType">{{'label.heading.reporttype' | translate}}</th>
+                                    <th md-column>{{'label.heading.reportsubtype' | translate}}</th>
+                                    <th md-column>{{'label.heading.reportcategory' | translate}}</th>
+                                    <th md-column>{{'label.heading.corereport' | translate}}</th>
+                                    <th md-column>{{'label.heading.userreport' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr md-row ng-repeat="report in reports  | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+                                    md-select="client" md-select-id="name">
+                                    <td md-cell>{{report.reportName | translate}}</td>
+                                    <td md-cell>{{report.reportType | translate}}</td>
+                                    <td md-cell>{{report.reportSubType | translate}}</td>
+                                    <td md-cell>{{report.reportCategory | translate}}</td>
+                                    <td md-cell>{{report.coreReport | translate}}</td>
+                                    <td md-cell>{{report.useReport | translate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </md-table-container>
+
+            <md-table-pagination ng-show="reports.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                md-page="query.page" md-total="{{totalReports}}" md-on-paginate="getResultsPage" md-page-select>
+            </md-table-pagination>
         </div>
     </div>
 </div>
