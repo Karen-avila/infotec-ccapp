@@ -5,24 +5,17 @@
     </ul>
     <div class="card">
         <div class="content">
-            <div class="toolbar"></div>
-            <br/>
             <div class="row">
-                <div class="col-md-6">
-                    <input ng-autofocus="true" ng-model="filterText" ng-keyup="onFilter()" type="text" class="form-control" placeholder="{{'label.input.filterbyname' | translate}}">
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <a href="#!/createreport" class="btn btn-primary pull-right" has-permission='CREATE_REPORT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createreport' | translate}}</a>
                 </div>
             </div>
-            <hr/>
-            <md-divider></md-divider>
             <br>
             <md-table-container ng-show="reports.length > 0" class="noscroll-x">
                 <div class="row">
                     <div class="col-md-7">
                         <md-input-container class="full-width">
-                            <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                            <label>{{'label.input.filterbyname' | translate}}</label>
                             <input ng-model="filter.search"> 
                         </md-input-container>
                     </div>
@@ -41,9 +34,9 @@
                                     <th md-column>{{'label.heading.userreport' | translate}}</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody md-body>
                                 <tr md-row ng-repeat="report in reports  | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
-                                    md-select="client" md-select-id="name">
+                                    md-select="report1" md-select-id="name" ng-click="routeTo(report.id)" >
                                     <td md-cell>{{report.reportName | translate}}</td>
                                     <td md-cell>{{report.reportType | translate}}</td>
                                     <td md-cell>{{report.reportSubType | translate}}</td>
