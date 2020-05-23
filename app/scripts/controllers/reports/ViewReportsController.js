@@ -118,16 +118,19 @@
 
       // Remove the duplicate entries from the array. The reports api returns same report multiple times if it have more than one parameter.
       scope.getReports = function (data) {
-        var prevId = -1;
-        var currId;
-        var reports = [];
-        for (var i = 0; i < data.length; i++) {
-          currId = data[i].report_id;
-          if (currId != prevId) {
-              reports.push(data[i]);
-          }
-          prevId = currId;
+        var obj = {};
+        for ( var i=0, len=data.length; i < len; i++ ) {
+            const item = data[i];
+            if (item.id) {
+                obj[item.id] = item;
+            } else if (item.report_id) {
+                obj[item.report_id] = item;
+            }
         }
+        var reports = [];
+        for ( var key in obj )
+            reports.push(obj[key]);
+
         return reports;
       };
 
