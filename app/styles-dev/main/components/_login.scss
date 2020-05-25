@@ -1,5 +1,5 @@
 .cover {
-  background: url("../../../images/cover_image.jpg") no-repeat center center;
+  background: url("../../../images/cover_image.webp") no-repeat center center;
   background-size: cover;
   position: relative;
   z-index: 0;
@@ -28,8 +28,13 @@
 
     .cover-title {
       border-bottom: 2px solid #fff;
+      font-weight: 900;
       margin: 0 0 20px;
       padding-bottom: 10px;
+      color: $brand-secondary;
+      span {
+          color: $brand-primary;
+      }
     }
 
     .cover-description {

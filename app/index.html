@@ -13,7 +13,7 @@
     <!-- Initial Loader -->
     <div id="loaderWrapper" ng-hide="domReady">
       <div id="loader" class="col-md-12 image-loader">
-        <img src="images/loader.gif" class="img-responsive" />
+        <img src="images/trans.png" class="img-responsive" />
       </div>
     </div>
 
@@ -34,44 +34,6 @@
                     </md-option>
                 </md-select>
               </div>
-            </div>
-            <div ng-show="resetPassword">
-              <form class="form-inline pull-right" role="form">
-                <label
-                  ><strong
-                    >{{ 'label.message.password.expired' | translate }}</strong
-                  ></label
-                >
-
-                <div class="form-group">
-                  <input
-                    type="password"
-                    ng-model="passwordDetails.password"
-                    placeholder="{{ 'label.input.password' | translate }}"
-                    class="input-sm form-control"
-                    required
-                    id="password"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    ng-model="passwordDetails.repeatPassword"
-                    placeholder="{{ 'label.input.repeatpassword' | translate }}"
-                    class="input-sm form-control"
-                    required
-                    id="repeatPassword"
-                  />
-                </div>
-                <button
-                  class="btn btn-success"
-                  type="submit"
-                  ng-click="updatePassword()"
-                  id="updatepassword-button"
-                >
-                  {{ 'label.button.resetPassword' | translate }}
-                </button>
-              </form>
             </div>
           </div>
         </div>
