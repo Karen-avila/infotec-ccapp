@@ -2,8 +2,8 @@
 	<ul class="breadcrumb">
 		<li ng-if="!groupid"><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
 		<li ng-if="groupid"><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
-		<li>{{client.officeName}}</li>
-		<li>{{client.staffName}}</li>
+        <li ng-if="!groupid" class="active"><a ng-click="refresh()">{{client.displayName}}</a></li>
+        <li ng-if="groupid" class="active"><a ng-click="refresh()">{{group.name}}</a></li>
 	</ul>
 	<script type="text/ng-template" id="deleteClient.html">
 		<div class="modal-header silver">
