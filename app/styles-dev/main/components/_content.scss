@@ -5,8 +5,12 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   width: 100%;
+  height:100%;
   position: absolute;
   min-height: 100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
   color: $gray-dark;
   background-color: $body-bg;
   font-family: $brand-font-family !important;
@@ -25,8 +29,12 @@ body {
     overflow-x:auto;
 }
 
-#wrapper {
-  padding-bottom:30px;
+.noscroll-x {
+    overflow-x: hidden;
+}
+
+.noscroll-y {
+    overflow-y: hidden;
 }
 
 #content {
@@ -53,6 +61,15 @@ body {
 
 .full-width {
     width: 100%;
+}
+
+.full-height {
+    height:100%;
+}
+
+.full-screen {
+    width:100%;
+    height:100%;
 }
 
 .footStyle {

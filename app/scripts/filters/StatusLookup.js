@@ -7,6 +7,8 @@
                     "true": "statusactive",
                     "false": "statusdeleted",
                     "Active": "statusactive",
+                    "Standby": "statuspending",
+                    "success": "statusactive",
                     "loanStatusType.submitted.and.pending.approval": "statuspending",
                     "loanStatusType.approved": "statusApproved",
                     "loanStatusType.active": "statusactive",

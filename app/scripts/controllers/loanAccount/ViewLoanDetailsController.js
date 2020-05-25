@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, http, $uibModal, dateFilter, API_VERSION, $sce, $rootScope, $mdDialog) {
+        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, $uibModal, dateFilter, API_VERSION, $sce, $rootScope, $mdDialog) {
             scope.loandocuments = [];
             scope.report = false;
             scope.hidePentahoReport = true;
@@ -549,6 +549,10 @@
                 scope.isCollapsed = false;
             };
 
+            scope.refresh = function () {
+                route.reload();
+            };
+            
             scope.deletestandinginstruction = function (id) {
                 $uibModal.open({
                     templateUrl: 'delInstruction.html',
@@ -893,7 +897,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$http', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', '$mdDialog', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', '$mdDialog', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
         $log.info("ViewLoanDetailsController initialized");
     });
 }(mifosX.controllers || {}));

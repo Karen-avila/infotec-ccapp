@@ -1,9 +1,12 @@
 (function (module) {
     mifosX.filters = _.extend(module, {
         DateFormat: function (dateFilter, localStorageService) {
-            return function (input) {
+            return function (input, format) {
                 if (input) {
-                    const dateFormat = localStorageService.getFromLocalStorage('dateformat');
+                    var dateFormat = localStorageService.getFromLocalStorage('dateformat');
+                    if (typeof format !== 'undefined') {
+                        dateFormat = format;
+                    }
                     var tDate = new Date(input);
                     return dateFilter(tDate, dateFormat);
                 }

@@ -2,7 +2,7 @@
         <ul class="breadcrumb">
             <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
             <li><a href="#!/jobs">{{'label.anchor.manageschedulerjobs' | translate}}</a></li>
-            <li class="active">{{job.displayName}}</li>
+            <li class="active">{{job.displayName | translate}}</li>
         </ul>
     <div class="card">
         <div class="content">
@@ -12,29 +12,33 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#!/editschedulerjob/{{job.jobId}}" class="btn btn-sm btn-primary"><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
-                        <a href="#!/viewhistory/{{job.jobId}}" class="btn btn-sm btn-primary"><i class=""></i>{{'label.button.viewhistory' | translate}}</a>
+                        <md-button md-no-ink href="#!/editschedulerjob/{{job.jobId}}" class="md-primary"><i class="fa fa-edit"></i> {{'label.button.edit' | translate}}</md-button>
+                        <md-button md-no-ink href="#!/viewhistory/{{job.jobId}}" class="md-primary"><i class="fa fa-calendar"></i> {{'label.button.viewhistory' | translate}}</md-button>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="horizontal-form">
-                <table width="100%">
+                <table class="table" width="100%">
                     <tr>
-                        <td width="20%">{{'label.heading.jobname' | translate }}</td>
-                        <td width="80%">{{job.displayName}}</td>
+                        <th width="30%">{{'label.heading.jobname' | translate }}</th>
+                        <td width="70%">{{job.displayName}}</td>
                     </tr>
                     <tr>
-                        <td>{{'label.heading.cronexpression' | translate }}</td>
+                        <th width="30%">{{'label.heading.description' | translate }}</th>
+                        <td width="70%">{{job.displayName | translate}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.cronexpression' | translate }}</th>
                         <td>{{job.cronExpression}}</td>
                     </tr>
                     <tr>
-                        <td>{{'label.heading.isactivejob' | translate }}</td>
-                        <td>{{job.active}}</td>
+                        <th>{{'label.heading.isactivejob' | translate }}</th>
+                        <td>{{job.active | translate}}</td>
                     </tr>
                     <tr>
-                        <td>{{'label.heading.follow' | translate }}</td>
-                        <td><a href="http://www.cronmaker.com" target="">{{'label.anchor.clickheretogeneratecron' |
+                        <th>{{'label.heading.follow' | translate }}</th>
+                        <td><a href="http://www.cronmaker.com" target="_blank">{{'label.anchor.clickheretogeneratecron' |
                             translate}}</a></td>
                     </tr>
                 </table>
