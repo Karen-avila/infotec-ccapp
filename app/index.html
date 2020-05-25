@@ -92,10 +92,7 @@
         </div>
 
         <div id="mifos-reskin-ui-container">
-          <div
-            id="mifos-reskin-header-nav"
-            ng-include="'views/_topnavbar.html'"
-          ></div>
+          <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>
 
           <div id="mifos-reskin-body-container">
             <nav id="mifos-reskin-side-nav" ng-scrollbar>
@@ -186,14 +183,16 @@
               </div>
             </nav>
           </div>
+
           <div id="mifos-reskin-body-view">
             <div class="main-container" ng-view></div>
           </div>
+
+          <!-- Footer -->
+          <div ng-show="currentSession.user != null" ng-include="'views/footer.html'"></div>
         </div>
       </div>
     </div>
-    <!-- Footer -->
-    <div ng-show="currentSession.user != null" ng-include="'views/footer.html'"></div>
     <!-- Javascript -->
     <script>
       // define waitSeconds above require script tag
