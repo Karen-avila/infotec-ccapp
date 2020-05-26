@@ -17,26 +17,9 @@
       </div>
     </div>
 
-    <div id="wrapper" ng-hide="!domReady" class="full-screen" ng-class="{'noscroll-y': (currentSession.user == null)}" ng-cloak>
+    <div id="wrapper" ng-show="domReady" class="full-screen" ng-class="{'noscroll-y': (currentSession.user == null)}" ng-cloak>
       <!-- Login Form  -->
       <div id="login-content" class="container full-screen" ng-hide="currentSession.user != null" ng-controller="LoginFormController">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="row" ng-show="showLanguage()">
-              <div class="col-sm-10 right">
-                {{'label.input.changelanguage' | translate}} :
-              </div>
-              <div class="col-sm-2 pull-right">
-                <md-select id="language" ng-model="optlang.code"
-                  ng-change="changeLang(optlang.code)">
-                    <md-option ng-repeat="lang in langs" ng-value="lang.code">
-                    {{lang.name | translate}}
-                    </md-option>
-                </md-select>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="row full-screen">
           <div class="col-md-12">
@@ -47,17 +30,17 @@
 
       <!-- Navbar -->
       <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" ng-show="currentSession.user != null">
-        <div class="loading-widget-div" ng-show="blockUI">
+        <div class="loading-widget-div" ng-show="blockUI && domReady">
           <span class="centerloader">
             <img src="images/833.svg" class="img-responsive" />
           </span>
         </div>
 
-        <div id="mifos-reskin-ui-container">
+        <div id="mifos-reskin-ui-container" ng-show="domReady">
           <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>
 
           <div id="mifos-reskin-body-container">
-            <nav id="mifos-reskin-side-nav" ng-scrollbar>
+            <nav id="mifos-reskin-side-nav" ng-show="domReady" ng-scrollbar>
               <div class="left-nav">
                 <ul>
                   <li>
