@@ -386,13 +386,6 @@
                             icon: "fa fa-plus",
                             taskPermissionName: 'CREATE_LOANCHARGE'
                         },
-                        /*
-                        {
-                            name: "button.foreclosure",
-                            icon: "icon-dollar",
-                            taskPermissionName: 'FORECLOSURE_LOAN'
-                        },
-                        */
                         {
                             name: "button.makerepayment",
                             icon: "fa fa-dollar",
@@ -456,8 +449,6 @@
                             taskPermissionName: 'DISBURSETOSAVINGS_LOAN'
                         });
                     }
-                    //loan officer not assigned to loan, below logic
-                    //helps to display otherwise not
                     if (!data.loanOfficerName) {
                         scope.buttons.singlebuttons.splice(1, 0, {
                             name: "button.assignloanofficer",
@@ -473,7 +464,6 @@
                             taskPermissionName: 'REPAYMENT_LOAN'
                         });
                     }
-                    // console.log(JSON.stringify(scope.buttons.singlebuttons));
                 }
                 if (data.status.value == "Overpaid") {
                     scope.buttons = { singlebuttons: [
@@ -577,9 +567,11 @@
                 };
             };
 
-            resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
-                scope.loanNotes = data;
-            });
+            scope.getNotes = function () {
+                resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
+                    scope.loanNotes = data;
+                });
+            }
 
             scope.saveNote = function () {
                 resourceFactory.loanResource.save({loanId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {
@@ -609,18 +601,19 @@
 
             };
 
-            resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_loan'}, function (data) {
-                scope.loandatatables = data;
-                if(scope.datatableLoaded == false) {
-                	for(var i in data){
-                		if(data[i].registeredTableName){
-                			scope.dataTableChange(data[i].registeredTableName);
-                		}
-                	}
-                	scope.datatableLoaded = true;
-                }
-                
-            });
+            scope.getDataTables = function () {
+                resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_loan'}, function (data) {
+                    scope.loandatatables = data;
+                    if(scope.datatableLoaded == false) {
+                        for(var i in data) {
+                            if(data[i].registeredTableName) {
+                                scope.dataTableChange(data[i].registeredTableName);
+                            }
+                        }
+                        scope.datatableLoaded = true;
+                    }
+                });
+            }
 
             scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({
@@ -853,6 +846,7 @@
                 }
                 return true;
             };
+
             scope.showDisbursedAmountBasedOnStatus = function(){
                 if(scope.status == 'Submitted and pending approval' ||scope.status == 'Withdrawn by applicant' || scope.status == 'Rejected' ||
                     scope.status == 'Approved'){
