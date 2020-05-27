@@ -50,6 +50,7 @@
                     };
 
                     this.cancelAuthorization = function () {
+                        delete http.defaults.headers.common.authorization;
                         delete http.defaults.headers.common.Authorization;
                         delete http.defaults.headers.common['Fineract-Platform-TFA-Token'];
                     };

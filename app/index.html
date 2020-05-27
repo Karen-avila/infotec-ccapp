@@ -30,10 +30,7 @@
 
       <!-- Navbar -->
       <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" ng-show="currentSession.user != null">
-        <div class="loading-widget-div" ng-show="blockUI" ng-hide="!domReady">
-          <span class="centerloader">
-            <img src="images/833.svg" class="img-responsive" />
-          </span>
+        <div class="loader" ng-show="blockUI" ng-hide="!domReady">
         </div>
 
         <div id="mifos-reskin-ui-container" ng-hide="!domReady">

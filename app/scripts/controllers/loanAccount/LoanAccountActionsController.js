@@ -230,6 +230,7 @@
                     break;
                 case "repayment":
                     scope.modelName = 'transactionDate';
+                    scope.formData[scope.modelName] = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'repayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         // scope.channelOptions = data.channelOptions;
@@ -241,10 +242,19 @@
                         if (data.penaltyChargesPortion > 0) {
                             scope.showPenaltyPortionDisplay = true;
                         }
+                        if (scope.currencyOptions.length == 0) {
+                            resourceFactory.currencyConfigResource.get({}, function (currencyData) {
+                                scope.currencyOptions = currencyData.selectedCurrencyOptions;
+                                for (var i=0; i < scope.currencyOptions.length; i++) {
+                                    if (data.currency.code === scope.currencyOptions[i].code) {
+                                        scope.formData.currencyCode = scope.currencyOptions[i].id;
+                                        break;
+                                    }
+                                }
+                            });
+                        }
                     });
-                    resourceFactory.currencyConfigResource.get({}, function (data) {
-                        scope.currencyOptions = data.selectedCurrencyOptions;
-                    });
+
                     scope.title = 'label.heading.loanrepayments';
                     scope.labelName = 'label.input.transactiondate';
                     scope.isTransaction = true;
@@ -270,11 +280,16 @@
                         scope.interestPortion = data.interestPortion;
                         scope.feeChargesPortion = data.feeChargesPortion;
                         scope.penaltyChargesPortion = data.penaltyChargesPortion;
-                        for (var i=0; i < scope.currencyOptions.length; i++) {
-                            if (data.currency.code === scope.currencyOptions[i].code) {
-                                scope.currencyCode = scope.currencyOptions[i].id;
-                                break;
-                            }
+                        if (scope.currencyOptions.length == 0) {
+                            resourceFactory.currencyConfigResource.get({}, function (currencyData) {
+                                scope.currencyOptions = currencyData.selectedCurrencyOptions;
+                                for (var i=0; i < scope.currencyOptions.length; i++) {
+                                    if (data.currency.code === scope.currencyOptions[i].code) {
+                                        scope.formData.currencyCode = scope.currencyOptions[i].id;
+                                        break;
+                                    }
+                                }
+                            });
                         }
                         scope.processDate = true;
                     });
@@ -536,6 +551,10 @@
                 if (scope.action == "recoverguarantee") {
                     params.command = "recoverGuarantees";
                 }
+                if (scope.action == "prepayloan") {
+                    params.command = "repayment";
+                }
+                
                 if (scope.action == "approve") {
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
                     if (scope.disbursementDetails != null) {
