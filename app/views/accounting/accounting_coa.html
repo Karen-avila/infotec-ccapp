@@ -15,29 +15,34 @@
                 </div>
             </div>
             <div ng-hide="isTreeView">
-                <div class="">
-                    <input ng-model="filterText" type="text" ng-keyup="onFilter()"
-                    class="form-control " placeholder="{{'label.input.filterbyAccountGlcodeAccounttype' | translate}}">
+                <div>
+                    <md-input-container class="full-width">
+                        <label >{{'label.input.filterbyAccountGlcodeAccounttype' | translate}}</label>
+                         <input ng-model="filterText" type="text"
+                         ng-keyup="filterText.length > 4 && $event.keyCode ==13 && onFilter()">
+                         </md-input-container>
                 </div>
                 <br>
-                <table class="table">
-                    <thead>
-                        <tr class="graybg">
-                        <th>{{'label.heading.acctype' | translate}}</th>
-                        <th>{{'label.heading.glcode' | translate}}</th>
-                        <th>{{'label.heading.account' | translate}}</th>
-                        <th>{{'label.heading.disabled' | translate}}?</th>
+                <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                        <th md-column>{{'label.heading.acctype' | translate}}</th>
+                        <th md-column>{{'label.heading.glcode' | translate}}</th>
+                        <th md-column>{{'label.heading.account' | translate}}</th>
+                        <th md-column>{{'label.heading.disabled' | translate}}?</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <tr class="pointer-main" dir-paginate="coadata in coadatas | orderBy:['type.value','glCode']| SearchFilter:filterText |  itemsPerPage: ChartsPerPage">
-                        <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.type.value | translate}}</td>
-                        <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.glCode}}</td>
-                        <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.name}}</td>
-                        <td class="pointer" data-ng-click="routeTo(coadata.id)">{{coadata.disabled | translate}}</td>
+                    <tbody md-body>
+                        
+                    <tr  md-row dir-paginate="coadata in coadatas | orderBy:['type.value','glCode']| SearchFilter:filterText |  itemsPerPage: ChartsPerPage"></tr>
+                        <td md-cell data-ng-click="routeTo(coadata.id)">{{coadata.type.value | translate}}</td>
+                        <td md-cell data-ng-click="routeTo(coadata.id)">{{coadata.glCode}}</td>
+                        <td md-cell  data-ng-click="routeTo(coadata.id)">{{coadata.name}}</td>
+                        <td md-cell  data-ng-click="routeTo(coadata.id)">{{coadata.disabled | translate}}</td>
                         </tr>
                     </tbody>
                 </table>
+
                 <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
             </div>
             <div ng-show="isTreeView"  >

@@ -4,12 +4,14 @@
             $rootScope.tempNodeID = -100; // variable used to store nodeID (from directive), so it(nodeID) is available for detail-table
 
             scope.coadata = [];
+            scope.coadata=null;
             scope.isTreeView = false;
             scope.dataProcessed = false;
             scope.idToNodeMap = {};
             scope.rootArray = [];
+            scope.selected;
 
-            scope.ChartsPerPage = 20;
+           
             scope.ASSET = translate.instant('ASSET');
             scope.LIABILITY = translate.instant('LIABILITY');
             scope.EQUITY = translate.instant('EQUITY');
@@ -18,15 +20,30 @@
             scope.CREDITORDER = translate.instant('CREDITORDER');
             scope.DEBITORDER = translate.instant('DEBITORDER');
             scope.Accounting = translate.instant('Accounting');
+          //  scope.ChartsPerPage = 20;
+          scope.routeTo = function (id) {
+            location.path('/viewglaccount/' + id);
+        };
+            scope.query = {
+                order: "displayName",
+                limit: 25,
+                page: 1,
+              };
 
-            scope.routeTo = function (id) {
-                location.path('/viewglaccount/' + id);
-            };
+              scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+              };
+
+        
 
             if (!scope.searchCriteria.acoa) {
                 scope.searchCriteria.acoa = null;
                 scope.saveSC();
             }
+
+        
+
             scope.filterText = scope.searchCriteria.acoa;
 
             scope.onFilter = function () {
@@ -51,6 +68,10 @@
                 }
                 return obj;
             }
+            
+            scope.refresh = function () {
+                route.reload();
+              };
 
             scope.showTreeView = function() {
                 scope.isTreeView = !scope.isTreeView;
@@ -70,8 +91,8 @@
                     for (var i in rootArray) {
                         idToNodeMap[rootArray[i].id] = rootArray[i];
                     }
-    
-                    for (i = 0; i < data.length; i++) {
+                    
+                    for (i = 0; i < 10; i++) {
                         if (data[i].type.value == "ASSET") {
                             if (data[i].parentId == null) data[i].parentId = -1;
                         } else if (data[i].type.value == "LIABILITY") {
@@ -120,8 +141,44 @@
                 scope.coadatas = scope.deepCopy(data);
                 scope.dataProcessed = false;
             });
+
+
+            scope.filters = [];
+            scope.$watch("filter.search", function (newValue, oldValue) {
+              if (newValue != undefined) {
+                scope.filters = newValue.split(" ");
+              }
+            });
+      
+            scope.searachData = {};
+      
+            scope.customSearch = function (item) {
+              scope.searachData.status = true;
+      
+              angular.forEach(scope.filters, function (value1, key) {
+                scope.searachData.tempStatus = false;
+                angular.forEach(item, function (value2, key) {
+                  var dataType = typeof value2;
+      
+                  if (dataType == "string" && !value2.includes("object")) {
+                    if (value2.toLowerCase().includes(value1)) {
+                      scope.searachData.tempStatus = true;
+                    }
+                  }
+                });
+                scope.searachData.status =
+                  scope.searachData.status & scope.searachData.tempStatus;
+              });
+      
+              return scope.searachData.status;
+            };
+            
         }
+        
     });
+
+
+    
     mifosX.ng.application.controller('AccCoaController', ['$scope', '$rootScope', '$translate', 'ResourceFactory', '$location', mifosX.controllers.AccCoaController]).run(function ($log) {
         $log.info("AccCoaController initialized");
     });
