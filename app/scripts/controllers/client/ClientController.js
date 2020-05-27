@@ -43,20 +43,6 @@
         );
       };
 
-      scope.initPage = function () {
-        resourceFactory.clientResource.getAllClients(
-          {
-            offset: 0,
-            limit: scope.query.limit,
-          },
-          function (data) {
-            scope.clients = data.pageItems;
-            scope.totalClients = scope.clients.length;
-          }
-        );
-      };
-      // scope.initPage();
-
       scope.getDatatableColumn = function (tableName, columnName) {
         var temp = columnName.split("_cd_");
         if (temp[1] && temp[1] != "") {
@@ -64,6 +50,10 @@
         }
         // return tableName + '.' + columnName;
         return columnName;
+      };
+
+      scope.refresh = function () {
+        route.reload();
       };
 
       scope.search = function () {

@@ -25,7 +25,7 @@
 
                         <div class="col-sm-3">
                             <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb(formData.rule)" 
-                                placeHolder="{{'label.selectone' | translate}}">
+                                placeholder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="rule in rules" ng-value="rule.id">
                                     {{rule.name}}
                                 </md-option>
@@ -38,7 +38,7 @@
 
                         <div class="col-sm-3">
                             <md-select id="currencyCode" name="currency" ng-model="formData.currencyCode" 
-                                placeHolder="{{'label.selectone' | translate}}">
+                                placeholder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="currency in currencyOptions" ng-value="currency.code">
                                     {{currency.code}} {{currency.name | translate}}
                                 </md-option>
@@ -108,7 +108,7 @@
 
                             <div class="col-sm-3">
                                 <md-select id="paymentTypeId" ng-model="formData.paymentTypeId"
-                                    placeHolder="{{'label.selectone' | translate}}">
+                                    placeholder="{{'label.selectone' | translate}}">
                                     <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
                                         {{paymentType.name}}
                                     </md-option>

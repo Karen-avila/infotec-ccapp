@@ -51,10 +51,10 @@
                 scope.staffs = data.staffOptions;
                 scope.formData.officeId = scope.offices[0].id;
                 scope.savingproducts = data.savingProductOptions;
-                scope.genderOptions = data.genderOptions;
-                scope.birthPlaceOptions = data.birthPlaceOptions;
-                scope.clienttypeOptions = data.clientTypeOptions;
-                scope.clientClassificationOptions = data.clientClassificationOptions;
+                scope.genderOptions = data.genderOptions.sort(sortBy("name"));
+                scope.birthPlaceOptions = data.birthPlaceOptions.sort(sortBy("name"));
+                scope.clienttypeOptions = data.clientTypeOptions.sort(sortBy("name"));
+                scope.clientClassificationOptions = data.clientClassificationOptions.sort(sortBy("name"));
                 scope.clientNonPersonConstitutionOptions = data.clientNonPersonConstitutionOptions;
                 scope.clientNonPersonMainBusinessLineOptions = data.clientNonPersonMainBusinessLineOptions;
                 scope.clientLegalFormOptions = data.clientLegalFormOptions;
@@ -105,10 +105,10 @@
                 scope.enableAddress = data.isAddressEnabled;
 
                 if (scope.enableAddress === true) {
-                    scope.addressTypes = data.address[0].addressTypeIdOptions;
-                    scope.countryOptions = data.address[0].countryIdOptions;
-                    scope.stateOptions = data.address[0].stateProvinceIdOptions;
-                    scope.municipalityOptions = data.address[0].municipalityIdOptions;
+                    scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
+                    scope.countryOptions = data.address[0].countryIdOptions.sort(sortBy("name"));
+                    scope.stateOptions = data.address[0].stateProvinceIdOptions.sort(sortBy("name"));
+                    scope.municipalityOptions = data.address[0].municipalityIdOptions.sort(sortBy("name"));
                     scope.allMunicipalityOptions = data.address[0].municipalityIdOptions;
                     resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
                         for (var i = 0; i < data.length; i++) {
@@ -493,6 +493,28 @@
                         });
                     }
                 });
+            }
+
+            /**
+             * Function to sort alphabetically an array of objects by some specific key.
+             * 
+             * @param {String} property Key of the object to sort.
+             */
+            function sortBy(property) {
+                var sortOrder = 1;
+
+                if(property[0] === "-") {
+                    sortOrder = -1;
+                    property = property.substr(1);
+                }
+
+                return function (a,b) {
+                    if(sortOrder == -1){
+                        return b[property].localeCompare(a[property]);
+                    }else{
+                        return a[property].localeCompare(b[property]);
+                    }        
+                }
             }
         }
 
