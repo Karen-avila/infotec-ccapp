@@ -10,6 +10,10 @@
             scope.idToNodeMap = {};
             scope.rootArray = [];
             scope.selected;
+            
+            scope.searchText="";
+            scope.searchResult= [];
+            scope.showClosed=false;
 
            
             scope.ASSET = translate.instant('ASSET');
@@ -26,7 +30,7 @@
         };
             scope.query = {
                 order: "displayName",
-                limit: 25,
+                limit: 5,
                 page: 1,
               };
 
@@ -51,6 +55,13 @@
                 scope.saveSC();
             };
 
+            scope.search = function () {
+                resourceFactory.accountCoaResource.getAllAccountCoas( function (data) {
+                    scope.coadatas = scope.deepCopy(data);
+                    scope.dataProcessed = false;
+                });
+    
+
             scope.deepCopy = function (obj) {
                 if (Object.prototype.toString.call(obj) === '[object Array]') {
                     var out = [], i = 0, len = obj.length;
@@ -68,10 +79,8 @@
                 }
                 return obj;
             }
+        }
             
-            scope.refresh = function () {
-                route.reload();
-              };
 
             scope.showTreeView = function() {
                 scope.isTreeView = !scope.isTreeView;
@@ -137,11 +146,12 @@
             const params = {
                 detailed: false
             }
-            resourceFactory.accountCoaResource.getAllAccountCoas(params, function (data) {
-                scope.coadatas = scope.deepCopy(data);
-                scope.dataProcessed = false;
-            });
+          
+          
 
+            scope.refresh = function () {
+                route.reload();
+              };
 
             scope.filters = [];
             scope.$watch("filter.search", function (newValue, oldValue) {
