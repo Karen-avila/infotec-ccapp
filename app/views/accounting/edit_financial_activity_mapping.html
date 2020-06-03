@@ -19,11 +19,11 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="financialActivityId" ng-model="formData.financialActivityId" class="form-control"
-                                    ng-options="activityOption.id as activityOption.name  | translate for activityOption in financialActivityOptions"
-                                    value="{{activityOption.id}}"
-                                    ng-change="updateActivityOptions(formData.financialActivityId)">
-                            </select>
+                            <md-select id="financialActivityId" ng-model="formData.financialActivityId" ng-change="updateActivityOptions(formData.financialActivityId)">
+                              <md-option ng-repeat="activityOption in financialActivityOptions" ng-value="activityOption.id">
+                                       {{activityOption.name  | translate}}
+                              </md-option>     
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -31,20 +31,20 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select chosen="accountOptions" id="glAccountId" ng-model="formData.glAccountId"
-                                    class="form-control"
-                                    ng-options="account.id as (account.name +'('+ account.glCode +')') for account in accountOptions"
-                                    value="{{account.id}}">
-                            </select>
+                            <md-select  id="glAccountId" ng-model="formData.glAccountId">
+                                <md-option ng-repeat="account in accountOptions" ng-value="account.id">
+                                    {{account.name}} {{account.glCode }}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
 
                     <div class="col-md-offset-2">
-                        <a id="cancel" href="#!/viewfinancialactivitymapping/{{mapping.id}}" class="btn btn-sm btn-default">{{'label.button.cancel'
-                            | translate}}</a>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
+                        <md-button id="cancel" href="#!/viewfinancialactivitymapping/{{mapping.id}}" class="md-raised">{{'label.button.cancel'
+                            | translate}}</md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>
                             {{'label.button.save' | translate}}
-                        </button>
+                        </md-button>
                     </div>
                 </fieldset>
             </form>

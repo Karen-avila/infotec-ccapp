@@ -267,10 +267,6 @@ table.md-table tbody.md-body > tr.md-row, table.md-table tfoot.md-foot > tr.md-r
     height: 38px;
 }
 
-.noscroll-x {
-    overflow-x: hidden;
-}
-
 md-slider .md-track-ticks canvas {
     height: 8px;
 }
@@ -282,4 +278,16 @@ tr.md-row:hover {
 td.amount, th.amount {
     text-align: right;
     padding-right: 5px;  
+}
+
+._md-datepicker-has-triangle-icon {
+    margin-left: -16px;
+}
+
+.md-datepicker-input-container {
+    margin-left: 12px;
+    width: 170px;
+}
+.md-datepicker-input {
+    width:inherit;
 }
