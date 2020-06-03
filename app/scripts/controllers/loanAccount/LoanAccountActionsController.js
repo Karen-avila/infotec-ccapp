@@ -24,6 +24,12 @@
             scope.submittedDatatables = [];
             var submitStatus = [];
 
+            scope.noteRequired = false;
+            scope.minDate = null;
+            scope.maxDate = null;
+            scope._minDate = new Date("2000-01-01T00:00:00.000+06:00");
+            scope._maxDate = new Date("2040-12-31T00:00:00.000+06:00");
+
             rootScope.RequestEntities = function (entity, status, productId) {
                 resourceFactory.entityDatatableChecksResource.getAll({ limit: -1 }, function (response) {
                     var _ = require('underscore');
@@ -121,17 +127,19 @@
             switch (scope.action) {
                 case "approve":
                     scope.taskPermissionName = 'APPROVE_LOAN';
+                    scope.modelName = 'approvedOnDate';
                     resourceFactory.loanTemplateResource.get({ loanId: scope.accountId, templateType: 'approval' }, function (data) {
-
                         scope.title = 'label.heading.approveloanaccount';
                         scope.labelName = 'label.input.approvedondate';
-                        scope.modelName = 'approvedOnDate';
                         scope.formData[scope.modelName] = new Date();
                         scope.showApprovalAmount = true;
                         scope.formData.approvedLoanAmount = data.approvalAmount;
                     });
                     resourceFactory.LoanAccountResource.getLoanAccountDetails({ loanId: routeParams.id, associations: 'multiDisburseDetails' }, function (data) {
                         scope.form.expectedDisbursementDate = new Date(data.timeline.expectedDisbursementDate);
+                        scope.minDate = new Date(data.timeline.submittedOnDate);
+                        scope.formData[scope.modelName] = new Date(data.timeline.submittedOnDate);
+                        scope.maxDate = scope._maxDate;
                         scope.productId = data.loanProductId;
                         if (data.disbursementDetails != "") {
                             scope.disbursementDetails = data.disbursementDetails;
@@ -152,6 +160,8 @@
                     scope.formData[scope.modelName] = new Date();
                     scope.taskPermissionName = 'REJECT_LOAN';
                     scope.fetchEntities('m_loan', 'REJECTED');
+                    scope.maxDate = scope._maxDate;
+                    scope.noteRequired = true;
                     break;
                 case "withdrawnByApplicant":
                     scope.title = 'label.heading.withdrawloanaccount';
@@ -159,17 +169,24 @@
                     scope.modelName = 'withdrawnOnDate';
                     scope.formData[scope.modelName] = new Date();
                     scope.taskPermissionName = 'WITHDRAW_LOAN';
+                    scope.maxDate = scope._maxDate;
                     scope.fetchEntities('m_loan', 'WITHDRAWN');
                     break;
                 case "undoapproval":
                     scope.title = 'label.heading.undoapproveloanaccount';
                     scope.showDateField = false;
                     scope.taskPermissionName = 'APPROVALUNDO_LOAN';
+                    scope.minDate = new Date();
+                    scope.maxDate = scope._maxDate;
+                    scope.noteRequired = true;
                     break;
                 case "undodisbursal":
                     scope.title = 'label.heading.undodisburseloanaccount';
                     scope.showDateField = false;
                     scope.taskPermissionName = 'DISBURSALUNDO_LOAN';
+                    scope.minDate = new Date();
+                    scope.maxDate = scope._maxDate;
+                    scope.noteRequired = true;
                     break;
                 case "disburse":
                     scope.modelName = 'actualDisbursementDate';
@@ -185,6 +202,8 @@
                             scope.formData.fixedEmiAmount = data.fixedEmiAmount;
                             scope.showEMIAmountField = true;
                         }
+                        scope.form.actualDisbursementDate = new Date(data.date);
+                        scope.minDate = new Date(data.date);
                     });
                     scope.title = 'label.heading.disburseloanaccount';
                     scope.labelName = 'label.input.disbursedondate';
@@ -211,6 +230,7 @@
                     break;
                 case "repayment":
                     scope.modelName = 'transactionDate';
+                    scope.formData[scope.modelName] = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'repayment' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         // scope.channelOptions = data.channelOptions;
@@ -222,10 +242,19 @@
                         if (data.penaltyChargesPortion > 0) {
                             scope.showPenaltyPortionDisplay = true;
                         }
+                        if (scope.currencyOptions.length == 0) {
+                            resourceFactory.currencyConfigResource.get({}, function (currencyData) {
+                                scope.currencyOptions = currencyData.selectedCurrencyOptions;
+                                for (var i=0; i < scope.currencyOptions.length; i++) {
+                                    if (data.currency.code === scope.currencyOptions[i].code) {
+                                        scope.formData.currencyCode = scope.currencyOptions[i].id;
+                                        break;
+                                    }
+                                }
+                            });
+                        }
                     });
-                    resourceFactory.currencyConfigResource.get({}, function (data) {
-                        scope.currencyOptions = data.selectedCurrencyOptions;
-                    });
+
                     scope.title = 'label.heading.loanrepayments';
                     scope.labelName = 'label.input.transactiondate';
                     scope.isTransaction = true;
@@ -235,6 +264,8 @@
                 case "prepayloan":
                     scope.modelName = 'transactionDate';
                     scope.formData.transactionDate = new Date();
+                    scope.minDate = new Date();
+                    scope.maxDate = scope._maxDate;
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'prepayLoan' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         // scope.channelOptions = data.channelOptions;
@@ -248,6 +279,18 @@
                         scope.principalPortion = data.principalPortion;
                         scope.interestPortion = data.interestPortion;
                         scope.feeChargesPortion = data.feeChargesPortion;
+                        scope.penaltyChargesPortion = data.penaltyChargesPortion;
+                        if (scope.currencyOptions.length == 0) {
+                            resourceFactory.currencyConfigResource.get({}, function (currencyData) {
+                                scope.currencyOptions = currencyData.selectedCurrencyOptions;
+                                for (var i=0; i < scope.currencyOptions.length; i++) {
+                                    if (data.currency.code === scope.currencyOptions[i].code) {
+                                        scope.formData.currencyCode = scope.currencyOptions[i].id;
+                                        break;
+                                    }
+                                }
+                            });
+                        }
                         scope.processDate = true;
                     });
                     scope.title = 'label.heading.prepayloan';
@@ -255,7 +298,7 @@
                     scope.isTransaction = true;
                     scope.showAmountField = true;
                     scope.taskPermissionName = 'REPAYMENT_LOAN';
-                    scope.action = 'repayment';
+                    scope.action = 'prepayloan';
                     break;
                 case "waiveinterest":
                     scope.modelName = 'transactionDate';
@@ -268,6 +311,7 @@
                     scope.labelName = 'label.input.interestwaivedon';
                     scope.showAmountField = true;
                     scope.taskPermissionName = 'WAIVEINTERESTPORTION_LOAN';
+                    scope.noteRequired = true;
                     break;
                 case "writeoff":
                     scope.modelName = 'transactionDate';
@@ -280,6 +324,7 @@
                     scope.labelName = 'label.input.writeoffondate';
                     scope.taskPermissionName = 'WRITEOFF_LOAN';
                     scope.fetchEntities('m_loan', 'WRITE_OFF');
+                    scope.noteRequired = true;
                     break;
                 case "close-rescheduled":
                     scope.modelName = 'transactionDate';
@@ -506,6 +551,10 @@
                 if (scope.action == "recoverguarantee") {
                     params.command = "recoverGuarantees";
                 }
+                if (scope.action == "prepayloan") {
+                    params.command = "repayment";
+                }
+                
                 if (scope.action == "approve") {
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
                     if (scope.disbursementDetails != null) {

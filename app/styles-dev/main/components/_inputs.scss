@@ -26,6 +26,11 @@ input {
   background-size: 0.75rem;
 }
 
+.input-secondary {
+    color: white !important;
+    border-bottom-color: white !important;
+}
+
 .help-text {
   display: block;
   margin-top: 0.5rem;
@@ -35,6 +40,10 @@ input {
 input:placeholder-shown + label {
   opacity: 0;
   transform: translateY(1rem);
+}
+
+.automargin {
+    margin:auto !important;
 }
 
 .has-dynamic-label {
@@ -217,4 +226,12 @@ select option {
 .input-group-lg > .input-group-btn > .btn
 {
   border-radius:0;
+}
+
+.file-input {
+    display: none;
+}
+
+.transparent {
+    background-color: transparent !important;
 }

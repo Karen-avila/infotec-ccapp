@@ -156,7 +156,7 @@
 															ng-repeat="group in center.groupMembers"
 															class="list-group-item">
 															<i uib-tooltip="{{group.status.value}}"
-																class="fa fa-stop {{group.status.code | StatusLookup}}"
+																class="fa fa-circle {{group.status.code | StatusLookup}}"
 																uib-tooltip=""></i> {{group.name}}
 														</a>
 														<div class="col-md-12 primarydiv"
@@ -191,7 +191,7 @@
 																	ng-repeat="member in group.clientMembers">
 																	<td class="pointer"
 																		data-ng-click="routeToMem(member.id)">
-																		<i class="fa fa-stop {{member.status.code | StatusLookup}}"
+																		<i class="fa fa-circle {{member.status.code | StatusLookup}}"
 																			uib-tooltip="{{member.status.value}}"></i>
 																		{{member.accountNo}}
 																	</td>
@@ -248,10 +248,10 @@
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
 														<i ng-hide="loanaccount.inArrears" tooltip-placement="right"
 															uib-tooltip="{{loanaccount.status.value}}"
-															class="fa fa-stop {{loanaccount.status.code | StatusLookup}}"></i>
+															class="fa fa-circle {{loanaccount.status.code | StatusLookup}}"></i>
 														<i ng-show="loanaccount.inArrears" tooltip-placement="right"
 															uib-tooltip="{{loanaccount.status.value}}"
-															class="fa fa-stop {{loanaccount.status.code | StatusLookup}}overdue"></i>
+															class="fa fa-circle {{loanaccount.status.code | StatusLookup}}overdue"></i>
 														{{loanaccount.accountNo}}
 													</td>
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
@@ -315,7 +315,7 @@
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
 														<i tooltip-placement="right"
 															uib-tooltip="{{loanaccount.status.value}}"
-															class="fa fa-stop {{loanaccount.status.code | StatusLookup}}"></i>
+															class="fa fa-circle {{loanaccount.status.code | StatusLookup}}"></i>
 														{{loanaccount.accountNo}}
 													</td>
 													<td class="pointer" data-ng-click="routeToLoan(loanaccount.id)">
@@ -376,7 +376,7 @@
 														data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
 														<i tooltip-placement="right"
 															uib-tooltip="{{savingaccount.status.value}}"
-															class="fa fa-stop {{savingaccount.status.code | StatusLookup}}"></i>
+															class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
 														{{savingaccount.accountNo}}
 													</td>
 													<td class="pointer" data-ng-click="routeToSaving(savingaccount.id)">
@@ -448,7 +448,7 @@
 													<td class="pointer"
 														data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
 														<i uib-tooltip="{{savingaccount.status.value}}"
-															class="fa fa-stop {{savingaccount.status.code | StatusLookup}}"></i>
+															class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
 														{{savingaccount.accountNo}}
 													</td>
 													<td class="pointer" data-ng-click="routeToSaving(savingaccount.id)">
@@ -635,7 +635,7 @@
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">
 													<i tooltip-placement="right"
 													uib-tooltip="{{loan.status.value}}"
-													class="fa fa-stop {{loan.status.code | StatusLookup}}"></i>{{loan.accountNo}}</td>
+													class="fa fa-circle {{loan.status.code | StatusLookup}}"></i>{{loan.accountNo}}</td>
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.externalId}}</td>
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.loanProductName}}</td>
 												<td class="pointer" data-ng-click="routeToLoan(loan.id)">{{loan.principal | FormatNumber}}</td>

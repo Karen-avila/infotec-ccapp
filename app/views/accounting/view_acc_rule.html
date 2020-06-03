@@ -11,8 +11,8 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-warn" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
         </div>
     </script>
     <div class="card">
@@ -25,10 +25,10 @@
     		    	<div class="col-md-6"></div>
     		        <div class="col-md-6">
     		            <div class="pull-right">
-    		               <a href="#!/editaccrule/{{rule.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_ACCOUNTINGRULE'><i
-    		                       class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' |translate}}</a>
-    		               <a class="btn btn-danger" ng-click="deleteRule()"has-permission='DELETE_ACCOUNTINGRULE'><i
-    		                       class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete'| translate}}</a>
+    		               <md-button href="#!/editaccrule/{{rule.id}}" class="md-raised md-primary" has-permission='UPDATE_ACCOUNTINGRULE'><i
+    		                       class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' |translate}}</md-button>
+    		               <md-button class="md-raised md-warn" ng-click="deleteRule()"has-permission='DELETE_ACCOUNTINGRULE'><i
+    		                       class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete'| translate}}</md-button>
     		            </div>
     		        </div>
     		    </div>

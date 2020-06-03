@@ -1,3 +1,7 @@
+button,select,html,textarea,input{
+    font-family: $brand-font-family !important;
+}
+
 md-backdrop.md-opaque.md-mifos-theme {
   background-color: rgba(0, 0, 0, 0.3); }
 
@@ -66,8 +70,13 @@ md-checkbox.md-mifos-theme[disabled].md-checked .md-icon {
   background-color: rgba(0, 0, 0, 0.26); }
 
 md-content.md-mifos-theme {
-  background-color: #ffffff; }
+  background-color: transparent !important; 
+}
 
+md-content {
+    background-color: transparent !important; 
+}
+  
 md-dialog.md-mifos-theme {
     border-radius: 4px;
     background-color: #ffffff; }
@@ -210,7 +219,7 @@ md-select {
   -o-transition: width 350ms;
   transition: width 350ms;
 
-  background: $brand-secondary;
+  background: $brand-primary-lighten;
   position: absolute;
   z-index: 10002;
   top: 0;
@@ -229,15 +238,56 @@ md-select {
   top: 0;
   height: 2px;
   opacity: 0.45;
-  -moz-box-shadow: $brand-secondary 1px 0 6px 1px;
-  -ms-box-shadow: $brand-secondary 1px 0 6px 1px;
-  -webkit-box-shadow: $brand-secondary 1px 0 6px 1px;
-  box-shadow: $brand-secondary 1px 0 6px 1px;
+  -moz-box-shadow: $brand-primary-lighten 1px 0 6px 1px;
+  -ms-box-shadow: $brand-primary-lighten 1px 0 6px 1px;
+  -webkit-box-shadow: $brand-primary-lighten 1px 0 6px 1px;
+  box-shadow: $brand-primary-lighten 1px 0 6px 1px;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   border-radius: 100%;
 }
 
 .md-step.md-active md-step-label-wrapper:before, .md-step.md-success md-step-label-wrapper:before {
-    background: $brand-primary-light;
+    background: $brand-primary;
+}
+
+md-input-container {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    margin-bottom: 0px;
+    margin-top: 40px;
+}
+
+.md-input-container-small {
+    margin-top: 10px;
+}
+
+table.md-table tbody.md-body > tr.md-row, table.md-table tfoot.md-foot > tr.md-row {
+    height: 38px;
+}
+
+md-slider .md-track-ticks canvas {
+    height: 8px;
+}
+
+tr.md-row:hover {
+    background-color: $gray-lighter;
+}
+
+td.amount, th.amount {
+    text-align: right;
+    padding-right: 5px;  
+}
+
+._md-datepicker-has-triangle-icon {
+    margin-left: -16px;
+}
+
+.md-datepicker-input-container {
+    margin-left: 12px;
+    width: 170px;
+}
+.md-datepicker-input {
+    width:inherit;
 }

@@ -112,12 +112,10 @@
                     permissionData.permissions = this.formData;
                     resourceFactory.rolePermissionResource.update({roleId: routeParams.id}, permissionData, function (data) {
                         route.reload();
-                        backupCheckValues();// reload current data in array (backup)
+                        // backupCheckValues();// reload current data in array (backup)
                         checkboxesChanged = false; // user finished editing - set flag to false
                         scope.isDisabled = true;
-
                     });
-
                 };
 
                 scope.showPermissions = function (grouping) {

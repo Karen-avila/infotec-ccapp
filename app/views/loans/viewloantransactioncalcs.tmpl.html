@@ -1,0 +1,43 @@
+<md-dialog arial-label="{{data.transactionId}}" style="width:400px; height:350px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>{{'label.heading.penalties' | translate}}</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+            <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>{{'label.heading.charge' | translate}}</th>
+                        <td>{{loanTransaction.loanCharge.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.date' | translate}}</th>
+                        <td>{{loanTransaction.loanCharge.dueDate | DateFormat}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.days' | translate}}</th>
+                        <td class="amount">{{days | FormatNumber : 0}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.amount' | translate}}</th>
+                        <td class="amount">{{loanTransaction.loanCharge.amountPercentageAppliedTo | FormatNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.percentage' | translate}}</th>
+                        <td class="amount">{{loanTransaction.loanCharge.amountOrPercentage | FormatNumber}} %</td>
+                    </tr>
+                    <tr>
+                        <th>{{'label.heading.total' | translate}}</th>
+                        <td class="amount">{{loanTransaction.loanCharge.amount | FormatNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-dialog-content>
+</md-dialog> 

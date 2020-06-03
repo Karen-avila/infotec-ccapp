@@ -9,38 +9,49 @@
         <fieldset>
             <legend>{{'label.heading.uploadclientdocument' | translate}}</legend>
             <div class="form-group">
-                <label class="control-label col-sm-3" for="name">{{'label.input.name' | translate}}<span
+                <label class="control-label col-md-4" for="name">{{'label.input.name' | translate}}<span
                         class="required">*</span></label>
 
-                <div class="col-sm-3">
+                <div class="col-md-4">
                     <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name" class="form-control" required
                            late-Validate/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-md-4">
 					<span ng-show="clientidentifierform.name.$invalid">
 	                    <small class="error" ng-show="clientidentifierform.name.$error.req">
-                            Required Field
+                            {{'label.requiredfield' | translate}}
                         </small>
 	                </span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-3" for="file">{{'label.input.selectfile' | translate}}<span
-                        class="required">*</span></label>
-
-                <div class="col-sm-3">
-                    <input type="file" ng-model="picFile" id="file" ngf-select>
+                <div class="col-md-offset-4 col-md-6">
+                    <md-content layout-padding class="transparent">
+                        <div flow-file-success="$file.msg = $message"
+                          flow-files-submitted="$flow.upload()" flow-init="{target: '/upload'}">
+                          <md-button class="md-raised">
+                            <label for="file-input">{{'label.input.selectfile' | translate}}</label>
+                          </md-button>
+                          <input id="file-input" class="file-input" ng-model="picFile" flow-btn>
+                          <table>
+                            <tr ng-repeat="file in $flow.files">
+                              <td>{{$index+1}}</td>
+                              <td>{{file.name}}</td>
+                              <td>{{file.msg}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div>
+                            <p>{{'label.input.file.document.supported' | translate}}</p>
+                        </div>
+                    </md-content>
                 </div>
             </div>
 
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/viewclient/{{clientId}}">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-                </a>
-                <button id="save" type="submit" ng-click="uploadPic(picFile)" ng-disabled="!clientidentifierform.$valid" class="btn btn-sm btn-primary" has-permission='CREATE_CLIENTIDENTIFIER'>
-                    {{'label.button.save' | translate}}
-                </button>
+                <md-button id="cancel" href="#!/viewclient/{{clientId}}" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+                <md-button id="save" type="submit" has-permission='CREATE_CLIENTIDENTIFIER' class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
             </div>
         </fieldset>
     </form>

@@ -7,6 +7,7 @@
                 scope.releasedate = data.data.releasedate;
             });
 
+            scope.toggleSearch = false;
             scope.islogofoldernamefetched = false;
             scope.islogofoldernameconfig = false;
             scope.isFaviconPath = false;
@@ -153,7 +154,7 @@
 
             // Log out the user when the window/tab is closed.
             window.onunload = function () {
-                scope.logout();
+                // scope.logout();
                 Idle.unwatch();
                 scope.started = false;
             };
@@ -210,19 +211,14 @@
                 scope.currentScope = searchScope;
             }
 
-            scope.search = function () {
-                var resource;
-                var searchString = scope.search.query;
+            scope.searchText = "";
+            scope.searchAll = function (searchString) {
                 var exactMatch = false;
                 if (searchString != null) {
                     searchString = searchString.replace(/(^"|"$)/g, '');
-                    var n = searchString.localeCompare(scope.search.query);
-                    if (n != 0) {
-                        exactMatch = true;
-                    }
+                    scope.showSearchBar(!scope.toggleSearch);
+                    location.path('/search/' + searchString).search({ exactMatch: exactMatch, resource: scope.currentScope.value });
                 }
-                location.path('/search/' + searchString).search({ exactMatch: exactMatch, resource: scope.currentScope.value });
-
             };
             scope.text = ' ';
 
@@ -366,17 +362,9 @@
                 }
             };
 
-            scope.search = null;
-            scope.initiateSearch = function () {
-                scope.search = '';
-            };
-
-            scope.showSearchBar = function() {
-                return scope.search != null
-            };
-
-            scope.endSearch = function () {
-                return scope.search = null;
+            scope.showSearchBar = function(toggleSearch) {
+                scope.toggleSearch = toggleSearch;
+                scope.searchText = ""; 
             };
 
             scope.helpf = function () {
@@ -428,15 +416,13 @@
                 if (whereweare == '/reports/all' || whereweare == '/reports/clients' || whereweare == '/reports/loans' || whereweare == '/reports/savings' || whereweare == '/reports/funds' || whereweare == '/reports/accounting' || whereweare == '/xbrl') {
                     window.open(addresses[5]);
                     addrfound = true;
-                }// '/reports/...' are exception -> link to Search in Documentation word 'report'
-                else {
+                } else {
                     for (var i = 0; i < addrmodels.length; i++) {
                         if (i != 5 && i != 10) {
                             if (whereweare == addrmodels[i]) {
                                 addrfound = true;
                                 window.open(addresses[i]);
                                 break;
-                                // model found -> open address and break
                             }
                         }
                     }//for

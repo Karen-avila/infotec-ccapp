@@ -7,7 +7,10 @@
                 } else {
                     //TODO- Add number formatting also
                     if (input != "" && input != undefined) {
-                        const numDecimals = localStorageService.getFromLocalStorage('numDecimals');
+                        var numDecimals = localStorageService.getFromLocalStorage('numDecimals');
+                        if (typeof fractionSize !== 'undefined') {
+                            numDecimals = fractionSize;
+                        }
                         return $filter('number')(input, numDecimals);
                     };
                 };

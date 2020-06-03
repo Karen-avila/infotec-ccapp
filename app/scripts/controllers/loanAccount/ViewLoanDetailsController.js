@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, http, $uibModal, dateFilter, API_VERSION, $sce, $rootScope, $mdDialog) {
+        ViewLoanDetailsController: function (scope, routeParams, resourceFactory,paginatorService, location, route, $uibModal, dateFilter, API_VERSION, $sce, $rootScope, $mdDialog) {
             scope.loandocuments = [];
             scope.report = false;
             scope.hidePentahoReport = true;
@@ -145,6 +145,28 @@
                 });
             };
 
+            scope.showTransactionCalculation = function(ev, transactionId) {
+                resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
+                function (data) {
+                    $mdDialog.show({
+                        controller: DialogCalcsController,
+                        templateUrl: 'views/loans/viewloantransactioncalcs.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        fullscreen: true, // Only for -xs, -sm breakpoints.
+                        locals: {
+                            data: {
+                              transactionId: scope.transactionId,
+                              loanTransaction: data,
+                              overdueCharges: scope.loandetails.overdueCharges,
+                              daysInYear: scope.loandetails.daysInYearType.id
+                            }
+                        },
+                    });                    
+                });
+            };
+
             scope.showTransactionReceipt = function(ev, transactionId) {
                 scope.transactionId = transactionId;
                 scope.reportName = "Receipt " + transactionId;
@@ -182,6 +204,24 @@
         
             function DialogReceiptController(scope, $mdDialog, data) {
                 scope.data = data;
+                scope.closeDialog = function() {
+                  $mdDialog.hide();
+                }
+            }
+        
+            function DialogCalcsController(scope, $mdDialog, data) {
+                scope.loanTransaction = data.loanTransaction;
+                const overdueCharges = data.overdueCharges;
+                var days = 0;
+                const loanCharge = scope.loanTransaction.loanCharge;
+                for (var i=0; i < overdueCharges.length; i++) {
+                    const item = overdueCharges[i];
+                    if (item.name == loanCharge.name) {
+                        days = (loanCharge.amountOrPercentage / (item.amount / data.daysInYear)).toFixed(0);
+                        break;
+                    }
+                }
+                scope.days = days;
                 scope.closeDialog = function() {
                   $mdDialog.hide();
                 }
@@ -346,13 +386,6 @@
                             icon: "fa fa-plus",
                             taskPermissionName: 'CREATE_LOANCHARGE'
                         },
-                        /*
-                        {
-                            name: "button.foreclosure",
-                            icon: "icon-dollar",
-                            taskPermissionName: 'FORECLOSURE_LOAN'
-                        },
-                        */
                         {
                             name: "button.makerepayment",
                             icon: "fa fa-dollar",
@@ -416,8 +449,6 @@
                             taskPermissionName: 'DISBURSETOSAVINGS_LOAN'
                         });
                     }
-                    //loan officer not assigned to loan, below logic
-                    //helps to display otherwise not
                     if (!data.loanOfficerName) {
                         scope.buttons.singlebuttons.splice(1, 0, {
                             name: "button.assignloanofficer",
@@ -426,7 +457,7 @@
                         });
                     }
 
-                    if(scope.recalculateInterest){
+                    if (scope.recalculateInterest) {
                         scope.buttons.singlebuttons.splice(1, 0, {
                             name: "button.prepayment",
                             icon: "fa fa-money",
@@ -477,6 +508,17 @@
                 });
             });
 
+            resourceFactory.loanTrxnsTemplateResource.get({ loanId: routeParams.id, command: 'prepayLoan' }, function (data) {
+                scope.prepayloan = data;
+                scope.prepay = {
+                    principalPortion: data.principalPortion,
+                    interestPortion: data.interestPortion,
+                    feeChargesPortion: data.feeChargesPortion,
+                    penaltyChargesPortion: data.penaltyChargesPortion,
+                    total: (data.principalPortion + data.interestPortion + data.feeChargesPortion + data.penaltyChargesPortion)
+                }
+            });
+
             var fetchFunction = function (offset, limit, callback) {
                 var params = {};
                 params.offset = offset;
@@ -497,6 +539,10 @@
                 scope.isCollapsed = false;
             };
 
+            scope.refresh = function () {
+                route.reload();
+            };
+            
             scope.deletestandinginstruction = function (id) {
                 $uibModal.open({
                     templateUrl: 'delInstruction.html',
@@ -521,9 +567,11 @@
                 };
             };
 
-            resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
-                scope.loanNotes = data;
-            });
+            scope.getNotes = function () {
+                resourceFactory.loanResource.getAllNotes({loanId: routeParams.id,resourceType:'notes'}, function (data) {
+                    scope.loanNotes = data;
+                });
+            }
 
             scope.saveNote = function () {
                 resourceFactory.loanResource.save({loanId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {
@@ -553,18 +601,19 @@
 
             };
 
-            resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_loan'}, function (data) {
-                scope.loandatatables = data;
-                if(scope.datatableLoaded == false) {
-                	for(var i in data){
-                		if(data[i].registeredTableName){
-                			scope.dataTableChange(data[i].registeredTableName);
-                		}
-                	}
-                	scope.datatableLoaded = true;
-                }
-                
-            });
+            scope.getDataTables = function () {
+                resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_loan'}, function (data) {
+                    scope.loandatatables = data;
+                    if(scope.datatableLoaded == false) {
+                        for(var i in data) {
+                            if(data[i].registeredTableName) {
+                                scope.dataTableChange(data[i].registeredTableName);
+                            }
+                        }
+                        scope.datatableLoaded = true;
+                    }
+                });
+            }
 
             scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({
@@ -797,6 +846,7 @@
                 }
                 return true;
             };
+
             scope.showDisbursedAmountBasedOnStatus = function(){
                 if(scope.status == 'Submitted and pending approval' ||scope.status == 'Withdrawn by applicant' || scope.status == 'Rejected' ||
                     scope.status == 'Approved'){
@@ -841,7 +891,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$http', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', '$mdDialog', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewLoanDetailsController', ['$scope', '$routeParams', 'ResourceFactory','PaginatorService', '$location', '$route', '$uibModal', 'dateFilter', 'API_VERSION', '$sce', '$rootScope', '$mdDialog', mifosX.controllers.ViewLoanDetailsController]).run(function ($log) {
         $log.info("ViewLoanDetailsController initialized");
     });
 }(mifosX.controllers || {}));

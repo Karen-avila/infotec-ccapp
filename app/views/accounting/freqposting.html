@@ -9,28 +9,27 @@
                 <h4>{{'label.heading.frequentpostings' | translate }}</h4>
             </div>
             <br/>
-            <form name="freqpostingform" novalidate="" class="form-horizontal form-extra" ng-controller="AccFreqPostingController"
-                  rc-submit="submit()">
+            <form name="freqpostingform" novalidate="" class="form-horizontal form-extra" ng-controller="AccFreqPostingController" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.office' | translate }}<span class="required">*</span></label>
-
                         <div class="col-sm-3">
-                            <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-                                    ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-                            </select>
+                            <md-select id="officeId" ng-model="formData.officeId" placeHolder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="office in offices" ng-value="office.id">
+                                    {{office.name}}
+                                </md-option>
+                            </md-select>
                         </div>
                         <label class="control-label col-sm-2">{{'label.input.accountingrules' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select chosen="rules" id="rule" name="rule" ng-model="formData.rule" ng-options="rule.name for rule in rules"
-                                    ng-change="resetCrAndDb(formData.rule)" class="form-control" required>
-                                <option class="displaynone" value="">{{'label.selectaccountingrule' | translate}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <form-validate valattributeform="freqpostingform" valattribute="rule"/>
+                            <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb(formData.rule)" 
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="rule in rules" ng-value="rule.id">
+                                    {{rule.name}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,13 +37,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="currencyCode" name="currency" ng-model="formData.currencyCode"
-                                    ng-options="currency.code as (currency.name+' ('+ currency.displaySymbol +')') for currency in currencyOptions"
-                                    value="{{currency.code}}" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <form-validate valattributeform="freqpostingform" valattribute="currency"/>
+                            <md-select id="currencyCode" name="currency" ng-model="formData.currencyCode" 
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="currency in currencyOptions" ng-value="currency.code">
+                                    {{currency.code}} {{currency.name | translate}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group" data-ng-show="formData.rule">
@@ -55,31 +53,30 @@
                                 <a ng-click="addDebitAccount()" ng-show="allowDebitEntries">&nbsp;<i class="fa fa-plus "></i></a>
                             </h4>
                             <div ng-repeat="dbAccount in formData.dbAccounts" class="form-inline paddedbottom10">
-                                <select ng-init="dbAccount.select = rule.debitAccounts[0]" class="input-sm form-control" ng-model="dbAccount.select"
-                                      ng-options="debitAccount.name for debitAccount in rule.debitAccounts">
-                                </select>
+                                <md-select ng-init="dbAccount.select = rule.debitAccounts[0]" ng-model="dbAccount.select" 
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="debitAccount in rule.debitAccounts" ng-value="debitAccount.id">
+                                        {{debitAccount.glCode}} {{debitAccount.name}}
+                                    </md-option>
+                                </md-select>
 
-                                <input id="debits[{{$index}}]" type="text" name="debits" class="input-sm form-control" number-format
-                                       ng-model="dbAccount.debitAmount" required late-validate>
-                                <a ng-click="removeDebitAccount($index)">&nbsp;<i
-
-                                        class="fa fa-times-circle fa-2x"></i></a>
-                                &nbsp;&nbsp;&nbsp;<form-validate valattributeform="freqpostingform" valattribute="debits"/>
-
+                                <input id="debits[{{$index}}]" type="number" name="debits" class="input-sm form-control" ng-model="dbAccount.debitAmount" required late-validate>
+                                <a ng-click="removeDebitAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
                             </div>
                             <h4><strong>{{'label.input.credit' | translate }}</strong>&nbsp;
                                 <a ng-click="addCrAccount()" ng-show="allowCreditEntries">&nbsp;<i class="fa fa-plus "></i></a>
                             </h4>
-                          <div ng-repeat="crAccount in formData.crAccounts" class="form-inline paddedbottom10">
-                              <select ng-init="crAccount.select = rule.creditAccounts[0]" class="input-sm form-control" ng-model="crAccount.select"
-                                        ng-options="creditAccount.name for creditAccount in formData.rule.creditAccounts">
-                              </select>
+                            <div ng-repeat="crAccount in formData.crAccounts" class="form-inline paddedbottom10">
+                                <md-select ng-init="crAccount.select = rule.creditAccounts[0]"  ng-model="crAccount.select" 
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="creditAccount in formData.rule.creditAccounts" ng-value="creditAccount.id">
+                                        {{creditAccount.glCode}} {{creditAccount.name}}
+                                    </md-option>
+                                </md-select>
 
-                              <input id="credits[{{$index}}]" type="text" name="credits" class="input-sm form-control" number-format
-                                     ng-model="crAccount.crAmount" required late-validate>
-                              <a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times "></i></a>
-                              &nbsp;&nbsp;&nbsp;<form-validate valattributeform="freqpostingform" valattribute="credits"/>
-                          </div>
+                                <input id="credits[{{$index}}]" type="number" name="credits" class="input-sm form-control" ng-model="crAccount.crAmount" required late-validate>
+                                <a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times "></i></a> &nbsp;&nbsp;&nbsp;
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -89,10 +86,8 @@
                             <input type="text" id="referenceNumber" ng-model="formData.referenceNumber" class="form-control">
                         </div>
                         <label class="control-label col-sm-2">{{'label.input.transactiondate' | translate }}<span class="required">*</span></label>
-
                         <div class="col-sm-3">
-                            <input class="date-disable form-control" id="transactionDate" type="text" datepicker-pop="dd MMMM yyyy"
-                                   ng-model="first.date" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+                            <md-datepicker id="transactionDate" ng-model="first.date" min="'2000-01-01'" max="restrictDate"></md-datepicker>
                         </div>
                     </div>
                     <div class="form-group">
@@ -112,10 +107,12 @@
                             </label>
 
                             <div class="col-sm-3">
-                                <select id="paymentTypeId" class="form-control ng-pristine ng-valid" value=""
-                                        ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-                                        ng-model="formData.paymentTypeId">
-                                </select>
+                                <md-select id="paymentTypeId" ng-model="formData.paymentTypeId"
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+                                        {{paymentType.name}}
+                                    </md-option>
+                                </md-select>
                             </div>
                             <label class="control-label col-sm-2" for="accountNumber">{{'label.input.accnum' | translate}}</label>
 
@@ -155,8 +152,8 @@
                         </div>
                     </div>
                     <div class="col-md-12 center">
-                        <a id="cancel" href="#!/accounting" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</button>
+                        <md-button id="cancel" href="#!/accounting" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</md-button>
                     </div>
                 </fieldset>
             </form>

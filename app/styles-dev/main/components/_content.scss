@@ -4,16 +4,37 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height:100%;
+  position: absolute;
   min-height: 100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
   color: $gray-dark;
   background-color: $body-bg;
   font-family: $brand-font-family !important;
+  padding-top: 0px;
 }
 
-#wrapper {
-  min-height: 620px;
-  height: 100%;
-  padding-bottom:30px;
+.main-container {
+    margin-top:20px;
+}
+
+.no-padding {
+    padding:0px;
+}
+
+.scroll-x {
+    overflow-x:auto;
+}
+
+.noscroll-x {
+    overflow-x: hidden;
+}
+
+.noscroll-y {
+    overflow-y: hidden;
 }
 
 #content {
@@ -38,15 +59,17 @@ body {
   background-color: transparent;
 }
 
-footer {
-  text-align: center;
-  // color: $gray-light;
-  background-color: $brand-secondary;
-  width: 100%;
-  position: relative;
-  height: 110px;
-  clear:both;
-  z-index: 100;
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height:100%;
+}
+
+.full-screen {
+    width:100%;
+    height:100%;
 }
 
 .footStyle {
@@ -321,7 +344,8 @@ li a i .fa {
 }
 
 #mifos-reskin-body-view {
-  padding: 70px 15px 120px 50px;
+  margin: 0 auto;
+  width: 96%;
   .content-container {
     width: 100%;
     max-width: 1350px;
@@ -729,4 +753,70 @@ md-whiteframe > span {
 
 .pre-wrap {
   white-space: pre-wrap;
+}
+
+.teal.darken-4 {
+  background-color: $brand-primary !important;
+}
+
+.page-footer {
+    padding-top: 20px;
+    color: #fff;   
+}
+
+.row2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.teal.darken-3{
+  background-color: $brand-primary-lighten;
+}
+
+.responsive-img{
+  width: 100%;
+  height: auto;
+}
+
+img.responsive-img{
+    max-width: 100%;
+}
+
+.page-footer .footer-copyright{
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: rgba(255,255,255,.8);
+}
+
+.row2.col.offset-m1 {
+  margin-left: 8.3333333333%;
+}
+
+.row2.col.m3 {
+  width: 25%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+md-toolbar.md-mifos-theme:not(.md-menu-toolbar) {
+  background-color: $brand-primary;
+  color: rgba(255,255,255,0.87);
+}
+
+md-select-menu md-content {
+    background-color: rgba(255,255,255,0.87) !important;
+}
+
+.md-tooltip {
+  height: auto !important;
+}
+
+.small-font {
+    font-size:12px !important;
 }
