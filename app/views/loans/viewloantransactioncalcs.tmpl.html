@@ -1,4 +1,4 @@
-<md-dialog arial-label="{{data.transactionId}}" style="width:400px; height:400px;">
+<md-dialog arial-label="{{data.transactionId}}" style="width:400px; height:350px;">
     <md-toolbar>
         <div class="md-toolbar-tools">
           <h2>{{'label.heading.penalties' | translate}}</h2>
@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <th>{{'label.heading.days' | translate}}</th>
-                        <td class="amount">{{days | FormatNumber}}</td>
+                        <td class="amount">{{days | FormatNumber : 0}}</td>
                     </tr>
                     <tr>
                         <th>{{'label.heading.amount' | translate}}</th>

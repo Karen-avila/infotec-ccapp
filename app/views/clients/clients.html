@@ -66,22 +66,22 @@
                                 <tr md-row ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
                                 data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name" 
                                 ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
-                                    <td md-cell >
+                                    <td md-cell>
                                         <i ng-show="client.legalForm.value == 'MORAL'" class="fa fa-building"></i>
                                         <i ng-show="client.legalForm.value == 'FISICA'" class="fa fa-user"></i>
                                     </td>
-                                    <td md-cell >{{client.displayName}}</td>
-                                    <td md-cell >{{client.accountNo}}</td>
-                                    <td md-cell >{{client.uniqueId}}</td>
-                                    <td md-cell >{{client.externalId}}</td>
-                                    <td md-cell >
+                                    <td md-cell>{{client.displayName}}</td>
+                                    <td md-cell>{{client.accountNo}}</td>
+                                    <td md-cell>{{client.uniqueId}}</td>
+                                    <td md-cell>{{client.externalId}}</td>
+                                    <td md-cell>
                                         <i class="fa fa-circle {{client.status.code | StatusLookup}}"
                                             uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
                                         <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
                                         <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
                                     </td>
-                                    <td md-cell >{{client.officeName}}</td>
-                                    <td md-cell >{{client.staffName}}</td>
+                                    <td md-cell>{{client.officeName}}</td>
+                                    <td md-cell>{{client.staffName}}</td>
                                 </tr>
                             </tbody>
                         </table>

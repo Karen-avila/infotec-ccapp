@@ -3,7 +3,7 @@
         <li ng-show="loandetails.clientName"><a
                 ng-href="#!/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
         <li ng-show="loandetails.group"><a ng-href="#!/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
-        <li class="active"><a ng-href="#!/viewloanaccount/{{loandetails.id}}">{{loandetails.loanProductName}} - {{loandetails.accountNo}}</a></li>
+        <li class="active"><a ng-click="refresh()" class="pointer">{{loandetails.loanProductName}} - {{loandetails.accountNo}}</a></li>
     </ul>
 
     <script type="text/ng-template" id="delcharge.html">
@@ -95,12 +95,16 @@
                         <table class="table table-striped" ng-show="loandetails.summary">
                             <thead>
                                 <tr>
+                                    <th colspan=5 class="empty"></th>
+                                    <th colspan=2 class="center">{{'label.heading.outstanding' | translate}}</th>
+                                </tr>
+                                <tr>
                                     <th class="empty"></th>
                                     <th class="center">{{'label.heading.original' | translate}}</th>
                                     <th class="center">{{'label.heading.paid' | translate}}</th>
                                     <th class="center">{{'label.heading.waived' | translate}}</th>
                                     <th class="center">{{'label.heading.writtenoff' | translate}}</th>
-                                    <th class="center">{{'label.heading.outstanding' | translate}}</th>
+                                    <th class="center">{{'label.heading.total' | translate}}</th>
                                     <th class="center">{{'label.heading.overdue' | translate}}</th>
                                 </tr>
                             </thead>
@@ -326,60 +330,9 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
-                                                <table class="table-minified" style="width: 100%;">
-                                                    <tbody>
-                                                        <tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
-                                                            has-permission='READ_{{datatabledetail.registeredTableName}}'>
-                                                            <td style="display: block;">
-                                                                <div>
-                                                                    <table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
-                                                                        <tbody>
-                                                                            <tr class="graybg">
-                                                                                <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
-                                                                                <td style="width: 50%;">
-                                                                                    <div data-ng-hide="isClosedGroup" class="btn-group">
-                                                                                        <a ng-show="datatabledetail.isData" class="btn btn-sm btn-danger pull-right"
-                                                                                            ng-click="deleteAll(datatabledetail.registeredTableName, loandetails.id)"
-                                                                                            has-permission='DELETE_{{datatabledetail.registeredTableName}}'><i
-                                                                                                class="fa fa-trash-o "></i>{{'label.button.deleteall' | translate}}</a>
-                                                                                        <a data-ng-show="datatabledetail.showDataTableAddButton"
-                                                                                            ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{loandetails.id}}?fromEntity=loan"
-                                                                                            class="btn btn-sm btn-primary"
-                                                                                            has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
-                                                                                                class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
-                                                                                        <a data-ng-show="datatabledetail.showDataTableEditButton"
-                                                                                            ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{loandetails.id}}?mode=edit"
-                                                                                            class="btn btn-sm btn-primary"
-                                                                                            has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
-                                                                                                class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr ng-repeat="value in datatabledetail.singleRow" data-ng-hide="datatabledetail.isMultirow">
-                                                                                <th style="width: 50%;" class="table-font-nav">
-                                                                                    <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
-                                                                                </th>
-                                                                                <td style="width: 50%; padding-left: 10px;"><span class="padded-td">{{getDatatableValue(value)}}</span></td>
-                                                                            </tr>
-                                                                            <tr class="graybg" data-ng-show="datatabledetail.isData">
-                                                                                <th class="graybg table-font-nav">{{'label.heading.score' | translate}}</th>
-                                                                                <td><span class="padded-td">{{datatabledetail.dataTableScoring}}</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
                                         </md-tab-body>
                                     </md-tab>
-            
+
                                     <md-tab ng-if="loandetails.originalSchedule">
                                         <md-tab-label>{{'label.heading.originalschedule' | translate}}</md-tab-label>
                                         <md-tab-body class="scroll-x">
@@ -439,20 +392,24 @@
                                             <colgroup span="4"></colgroup>
                                             <thead>
                                             <tr>
-                                                <th colspan="5" scope="colgroup"></th>
-                                                <th colspan="2" scope="colgroup">{{'label.heading.loanamountandbalance' | translate}}</th>
-                                                <th colspan="3" scope="colgroup">{{'label.heading.totalcostofloan' | translate}}</th>
-                                                <th colspan="6" scope="colgroup">{{'label.heading.installmenttotals' | translate}}</th>
+                                                <th colspan="2" scope="colgroup empty"></th>
+                                                <th colspan="3" scope="colgroup center">{{'label.heading.dates' | translate}}</th>
+                                                <th colspan="2" scope="colgroup center">{{'label.heading.principal' | translate}}</th>
+                                                <th colspan="4" scope="colgroup center">{{'label.heading.totalcostofloan' | translate}}</th>
+                                                <th scope="colgroup center"></th>
+                                                <th colspan="3" scope="colgroup center">{{'label.heading.installmenttotals' | translate}}</th>
+                                                <th colspan="2" scope="colgroup center">{{'label.heading.payments' | translate}}</th>
+                                                <th colspan="2" scope="colgroup center">{{'label.heading.totals' | translate}}</th>
                                             </tr>
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">{{'label.heading.days' | translate}}</th>
-                                                <th scope="col">{{'label.heading.date' | translate}}</th>
-                                                <th scope="col">{{'label.heading.paiddate' | translate}}</th>
+                                                <th scope="col">{{'label.heading.date.repayment' | translate}}</th>
+                                                <th scope="col">{{'label.heading.date.completed' | translate}}</th>
                                                 <th scope="col">&nbsp;</th>
             
-                                                <th scope="col">{{'label.heading.principaldue' | translate}}</th>
-                                                <th scope="col">{{'label.heading.balanceofloan' | translate}}</th>
+                                                <th scope="col">{{'label.heading.due' | translate}}</th>
+                                                <th scope="col">{{'label.heading.balance' | translate}}</th>
             
                                                 <th scope="col">{{'label.heading.interest' | translate}}</th>
                                                 <th scope="col">{{'label.heading.taxes' | translate}}</th>
@@ -565,8 +522,9 @@
                                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export.statement' | translate}}</button>
                                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="viewJournalEntries()" style="margin-right: 8px;">{{'label.button.viewjournalentries' | translate}}</button>
                                         <div class="pull-right">
-                                            <input type="checkbox" data-ng-model="hideAccrualTransactions" ng-init = "hideAccuralTransactions = true">&nbsp;
-                                            <label class="control-label">{{'label.input.hide.accrual.transactions' | translate }}</label>&nbsp;&nbsp;
+                                            <md-checkbox ng-model="hideAccrualTransactions" ng-init="hideAccuralTransactions = true">
+                                                {{'label.input.hide.accrual.transactions' | translate }}
+                                            </md-checkbox>
                                         </div>
                                         <br>
                                         <table class="table">
@@ -860,11 +818,10 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab has-permission='READ_LOANNOTE'>
+                                    <md-tab  md-on-select="getNotes()" has-permission='READ_LOANNOTE'>
                                         <md-tab-label>{{'label.heading.notes' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <br/>
-            
                                         <form>
                                             <div class="form-group">
                                                 <div class="col-sm-12 col-md-12">
@@ -892,6 +849,62 @@
                                                 </blockquote>
                                             </div>
                                         </div>
+                                        </md-tab-body>
+                                    </md-tab>
+
+                                    <md-tab md-on-select="getDataTables()">
+                                        <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
+                                        <md-tab-body>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
+                                                    <table class="table-minified" style="width: 100%;">
+                                                        <tbody>
+                                                            <tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
+                                                                has-permission='READ_{{datatabledetail.registeredTableName}}'>
+                                                                <td style="display: block;">
+                                                                    <div>
+                                                                        <table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
+                                                                            <tbody>
+                                                                                <tr class="graybg">
+                                                                                    <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
+                                                                                    <td style="width: 50%;">
+                                                                                        <div data-ng-hide="isClosedGroup" class="btn-group">
+                                                                                            <a ng-show="datatabledetail.isData" class="btn btn-sm btn-danger pull-right"
+                                                                                                ng-click="deleteAll(datatabledetail.registeredTableName, loandetails.id)"
+                                                                                                has-permission='DELETE_{{datatabledetail.registeredTableName}}'><i
+                                                                                                    class="fa fa-trash-o "></i>{{'label.button.deleteall' | translate}}</a>
+                                                                                            <a data-ng-show="datatabledetail.showDataTableAddButton"
+                                                                                                ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{loandetails.id}}?fromEntity=loan"
+                                                                                                class="btn btn-sm btn-primary"
+                                                                                                has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
+                                                                                                    class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
+                                                                                            <a data-ng-show="datatabledetail.showDataTableEditButton"
+                                                                                                ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{loandetails.id}}?mode=edit"
+                                                                                                class="btn btn-sm btn-primary"
+                                                                                                has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
+                                                                                                    class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr ng-repeat="value in datatabledetail.singleRow" data-ng-hide="datatabledetail.isMultirow">
+                                                                                    <th style="width: 50%;" class="table-font-nav">
+                                                                                        <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
+                                                                                    </th>
+                                                                                    <td style="width: 50%; padding-left: 10px;"><span class="padded-td">{{getDatatableValue(value)}}</span></td>
+                                                                                </tr>
+                                                                                <tr class="graybg" data-ng-show="datatabledetail.isData">
+                                                                                    <th class="graybg table-font-nav">{{'label.heading.score' | translate}}</th>
+                                                                                    <td><span class="padded-td">{{datatabledetail.dataTableScoring}}</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </md-tab-body>
                                     </md-tab>
             
@@ -948,6 +961,45 @@
                 </div>
 
                 <div class="col-sm-3 col-md-3">
+                    <table class="table table-striped" ng-show="loandetails.status.id==300">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><center>{{'label.heading.balances' | translate}}</center></th>
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{'label.heading.currentBalance' | translate}}</th>
+                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{'label.heading.arrearsby' | translate}}</th>
+                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{'label.heading.prepay.balance' | translate}}</th>
+                                <td class="amount">
+                                    {{prepay.total | FormatNumber}}
+                                    <md-tooltip md-direction="bottom" class="md-tooltip">
+                                        <table>
+                                            <tbody>
+                                                <tr><th>{{'label.heading.principal' | translate}}</th><td class="amount">{{prepay.principalPortion | FormatNumber}}</td></tr>
+                                                <tr><th>{{'label.heading.interest' | translate}}</th><td class="amount">{{prepay.interestPortion | FormatNumber}}</td></tr>
+                                                <tr ng-show="prepay.feeChargesPortion >= 0">
+                                                    <th>{{'label.heading.fees' | translate}}</th>
+                                                    <td class="amount">{{prepay.feeChargesPortion | FormatNumber}}</td>
+                                                </tr>
+                                                <tr ng-show="prepay.penaltyChargesPortion >= 0">
+                                                    <th>{{'label.heading.penalties' | translate}}</th>
+                                                    <td class="amount">{{prepay.penaltyChargesPortion | FormatNumber}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-tooltip>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-striped table-bordered" ng-hide="loandetails.summary">
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.loanpurpose' | translate}}</th>
@@ -1079,23 +1131,6 @@
                             <th>{{'label.account.is.npa' | translate}}</th>
                             <td>{{loandetails.isNPA | translate}}</td>
                         </tr>
-                    </table>
-                    <table class="table table-striped" ng-show="loandetails.summary">
-                        <thead></thead>
-                        <tbody>
-                            <tr>
-                                <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>{{'label.heading.arrearsby' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>

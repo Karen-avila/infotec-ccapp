@@ -15,18 +15,19 @@
 				<label class="control-label col-sm-3" for="type">{{'label.input.accounttype' | translate}}
 				</label>
 				<div class="col-sm-3">
-					<select id="type" ng-model="formData.type" class="form-control"
-							ng-options="accountType.id as accountType.code | translate for accountType in accountTypes" value="{{accountType.id}}"
-							ng-change="changeType()" required="required">
-					</select>
+					<md-select id="type" ng-model="formData.type" 	ng-change="changeType()"  placeholder="{{'label.selectone' | translate}}">
+						<md-option ng-repeat="accountType in accountTypes"  ng-value="{{accountType.id}}">
+							{{accountType.code | translate}}
+						</md-option>
+					</md-select>
 				</div>
 				<label class="control-label col-sm-2" for="parentId">{{'label.input.accounting.parent' | translate}}</label>
 				<div class="col-sm-4">
-                    <select id="parentId" ng-model="formData.parentId" class="form-control"
-                        ng-options='headerType.id as (headerType.glCode + " " + headerType.name) for headerType in headerTypes'
-							value="{{headerType.id}}">
-						<option value="">{{'label.accounting.selectparent' | translate}}</option>
-					</select>
+                    <md-select id="parentId" ng-model="formData.parentId" placeholder="{{'label.accounting.selectparent' | translate}}">
+                        <md-option ng-repeat="headerType in headerTypes" ng-value="{{headerType.id}}">
+						   {{headerType.glCode }} {{headerType.name}}
+						</md-option> 
+					</md-select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -48,27 +49,28 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="usage">{{'label.input.accountusage' | translate}}</label>
 				<div class="col-sm-3">
-					<select id="usage" ng-model="formData.usage" class="form-control"
-						ng-options="usageType.id as usageType.value | translate for usageType in usageTypes" value="{{usageType.id}}">
-                    </select>
+					<md-select id="usage" ng-model="formData.usage" placeholder="{{'label.selectone' | translate}}">
+						<md-option ng-repeat="usageType in usageTypes" ng-value="usageType.id">
+                          {{usageType.value | translate}}
+						</md-option>
+                    </md-select>
 				</div>
 				<label class="control-label col-sm-3" for="tagId">{{'label.input.tag' | translate}}</label>
 				<div class="col-sm-3">
-					<select id="tagId" ng-model="formData.tagId" class="form-control"
-							ng-options="type.id as type.name for type in types" value="{{type.id}}">
-						<option value="">{{'label.selecttag' | translate}}</option>
-                    </select>
+					<md-select id="tagId" ng-model="formData.tagId" placeholder="{{'label.selecttag' | translate}}">
+						<md-option ng-repeat="type in types" ng-value="type.id">
+							{{type.name}}
+						</md-option>
+                    </md-select>
                 </div>
 			</div>
 			<div class="form-group">
                 <div class="col-sm-2"></div>
 				<div class="col-sm-1 right">
-					<label class="checkbox">
-						<input id="manualEntriesAllowed" type="checkbox" ng-model="formData.manualEntriesAllowed">
-					</label>
+						<md-checkbox id="manualEntriesAllowed" ng-model="formData.manualEntriesAllowed">
+							{{'label.input.manualentriesallowed' | translate}}
+						</md-checkbox>
 				</div>
-                <label class="control-label col-sm-3 left" for="manualEntriesAllowed">{{'label.input.manualentriesallowed' |
-					translate}}</label>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="description">{{'label.input.description' |
@@ -79,8 +81,8 @@
 			    </div>
 			</div>
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/viewglaccount/{{glAccountId}}" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_GLACCOUNT'>{{'label.button.save' | translate}}</button>
+                <md-button id="cancel" href="#!/viewglaccount/{{glAccountId}}" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+                <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_GLACCOUNT'>{{'label.button.save' | translate}}</md-button>
             </div>
         </fieldset>
     </form>

@@ -1,28 +1,52 @@
-<form class="form">
-    <div class="form-group">
-        <label for="uid">{{ 'label.input.username' | translate }}</label>
-        <input type="text" name="username" id="uid" class="form-control"
-            ng-model="loginCredentials.username"
-            placeholder="{{ 'label.input.username' | translate |lowercase }}"
-            required />
+<div layout="row" class="full-screen">
+  <div flex="70" layout="column" layout-align="center center" hide-xs show-gt-xs class="cover">
+    <div class="cover-content">
+      <h1 class="cover-title">Banco del Bienestar</h1>
+      <p class="cover-description">
+        El Banco del Bienestar, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo, es el principal dispersor de recursos de programas sociales del gobierno federal.
+      </p>
+      <p class="cover-description">
+        En su carácter de banca social, promueve y facilita el ahorro entre los mexicanos, dentro y fuera del país, así como el acceso al financiamiento de primer y segundo piso de forma equitativa para personas físicas y morales, impulsando así la inclusión financiera, misma que realiza con perspectiva de género y tomando en cuenta a comunidades indígenas.
+      </p>
+      <p class="cover-description">
+        Además, promueve el uso, diseño y fomento de la innovación tecnológica a fin de procurar mejores condiciones financieras y ecosistemas de pago para los mexicanos cuyo acceso a los servicios bancarios es inexistente o se da en condiciones desfavorables.
+      </p>
+    </div>
+  </div>
+
+  <div layout="column" flex-gt-xs="30" flex-xs="100" class="login-container">
+    <!-- Logo with Organization Name -->
+    <div layout="row" layout-align="center center" class="login-m-form-wrapper">
+      <img src="images/mifos-logo-flat.png" alt="{{ 'label.heading.company' | translate }}" class="img-container"/>
     </div>
 
-    <div class="form-group">
-        <label for="pwd">{{ 'label.input.password' | translate }}</label>
-        <input type="password" name="password" id="pwd" class="form-control"
-            ng-model="loginCredentials.password" autocomplete="new-password"
-            placeholder="{{ 'label.input.password' | translate | lowercase }}"
-            required />
-    </div>
+    <div layout="row" flex="3 0 auto" layout-align="center start" style="margin-top:50px;">
+      <md-content>
+        <form layout="column" id="login-form">
+          <md-input-container layout-align="center center " class="login-input">
+            <md-icon md-svg-src="images/icons/person.svg" aria-label="uid"></md-icon>
+            <input type="text" name="username" id="uid" ng-model="loginCredentials.username" 
+              placeholder="{{ 'label.input.username' | translate }}" required />
+          </md-input-container>
 
-    <div class="form-group">
-        <button class="btn btn-block btn-primary" type="submit" data-ng-show="!load"
-            data-ng-click="login()" id="login-button">
+          <md-input-container layout-align="center center " class="login-input">
+            <md-icon md-svg-src="images/icons/vpn_key.svg" aria-label="pass"></md-icon>
+            <input type="password" name="password" id="pwd" ng-model="loginCredentials.password"
+              autocomplete="new-password" placeholder="{{ 'label.input.password' | translate }}" required/>
+          </md-input-container>
+
+          <md-button class="md-raised md-primary login-button" layout-align="center center"
+            type="submit" ng-show="!load" ng-click="login()" id="login-button">
             {{'label.button.signin' | translate }}
-        </button>
-        <button class="btn btn-block btn-primary" type="submit" data-ng-show="load">
-            <img data-ng-src="images/ring.svg" alt="">
+          </md-button>
+
+          <md-button
+            class="md-raised md-primary login-button" layout-align="center center" type="submit" ng-show="load">
+            <img data-ng-src="images/ring.svg" alt="" />
             <b>{{ 'label.input.loading' | translate }}...</b>
-        </button>
+          </md-button>
+        </form>
+      </md-content>
     </div>
-</form>
+  </div>
+</div>

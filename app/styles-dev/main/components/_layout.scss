@@ -1,4 +1,6 @@
-/* @import this file */
+#divfooter {
+    margin-top: 30px;
+}
 
 #bs-example-navbar-collapse-1 {
   @media screen and (max-width: 767px){
@@ -23,9 +25,7 @@
 }
 
 #mifos-reskin-header-nav {
-  // @include flex(1 100%);
   @include order(0);
-  // max-height:52px;
 }
 
 $sidebar-width : 51px;
