@@ -9,8 +9,6 @@
             scope.addressTypes = [];
             scope.countryOptions = [];
             scope.stateOptions = [];
-            scope.allMunicipalityOptions = [];
-            scope.municipalityOptions = [];
             scope.addressTypeId = {};
             entityname = "ADDRESS";
             //--------
@@ -27,8 +25,8 @@
                 scope.addressTypes = data.address[0].addressTypeIdOptions;
                 scope.countryOptions = data.address[0].countryIdOptions;
                 scope.stateOptions = data.address[0].stateProvinceIdOptions;
-                scope.municipalityOptions = data.address[0].municipalityIdOptions;
-                scope.allMunicipalityOptions = data.address[0].municipalityIdOptions;
+                /*               scope.municipalityOptions = data.address[0].municipalityIdOptions;
+                              scope.allMunicipalityOptions = data.address[0].municipalityIdOptions; */
                 resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function(data) {
                     for (var i = 0; i < data.length; i++) {
                         data[i].field = 'scope.' + data[i].field;

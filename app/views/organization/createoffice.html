@@ -17,13 +17,6 @@
                         <label class="control-label col-sm-2">{{'label.input.office' | translate }}<span
     		                        class="required">*</span></label>
 
-                        <!-- 
-                        <div class="col-sm-3">
-                            <md-input-container>
-                                <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name" class="form-control uppercase" required late-Validate/>
-                            </md-input-container>
-                        </div> -->
-
                         <div class="col-sm-3">
                             <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name" class="form-control uppercase" required late-Validate/>
                         </div>
@@ -35,11 +28,6 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}<span class="required">*</span></label>
 
-                        <!-- <div class="col-sm-3">
-                            <select chosen="offices" id="parentId" ng-model="formData.parentId" class="form-control" ng-options="office.id as office.name for office in offices" value="{{office.id}}"></select>
-                        </div> -->
-
-                        <!--  -->
                         <div class="col-sm-3">
                             <md-select id="parentId" ng-model="formData.parentId">
                                 <md-select-header>
@@ -59,7 +47,7 @@
     		                        class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="city" ng-autofocus="true" type="text" name="city" ng-model="formData.city" class="form-control uppercase" required late-Validate/>
+                            <input id="city" type="text" name="city" ng-model="formData.city" class="form-control uppercase" />
                         </div>
                         <div class="col-sm-3">
                             <form-validate valattributeform="createofficeform" valattribute="city" />
@@ -98,6 +86,10 @@
                     </div>
 
                     <!-- Aqui iban botones -->
+                    <blockquote style="border-left: 6px solid#285c4d;">
+                        {{'label.input.address' | translate }}
+                    </blockquote>
+
                     <!-- Aqui empiezo -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.postal_code' | translate }}</label>
@@ -109,10 +101,25 @@
                         <div class="control-label col-sm-2">
                             <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
                         </div>
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
                             <select chosen="addressTypes" name="addressType" ng-model="addressArray[$index].addressTypeId" class="form-control" ng-options="addressType.id as addressType.name for addressType in addressTypes track by addressType.id" value="addressTypeId" required
-                                late-validate></select>
+                                late-validate>
+                            </select>
+                        </div> -->
+
+                        <!--  -->
+                        <div class="col-sm-3">
+                            <md-select class="form-control" id="addressType" ng-model="addressArray[$index].addressTypeId">
+                                <md-select-header>
+                                    <span> {{'label.input.addressType' | translate }} </span>
+                                </md-select-header>
+                                <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
+                                    {{addressType.name}}
+                                </md-option>
+                            </md-select>
                         </div>
+                        <!--  -->
+
                         <div class="col-sm-2">
                             <form-validate valattributeform="createclientform" valattribute="addressType" />
                         </div>
@@ -122,7 +129,7 @@
                             <label>{{'label.input.street' | translate }}<span class="required">*</span></label>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" name="street" ng-model="addressArray[$index].street" class="form-control" required late-validate/>
+                            <input type="text" name="street" ng-model="addressArray[$index].street" class="form-control" />
                         </div>
                         <div class="col-sm-2">
                             <form-validate valattributeform="createclientform" valattribute="street" />
@@ -170,11 +177,28 @@
                             <input type="text" name="city" ng-model="addressArray[$index].city" class="form-control">
                         </div>
                     </div>
+                    <!--  -->
                     <div class="form-group">
                         <div class="control-label col-sm-2">
                             <label>{{'label.input.country' | translate }}</label>
                         </div>
                         <div class="col-sm-3">
+                            <md-select class="form-control" id="countryOptions" ng-model="addressArray[$index].countryId">
+                                <md-select-header>
+                                    <span> {{'label.input.country' | translate }} </span>
+                                </md-select-header>
+                                <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
+                                    {{countryOption.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="form-group">
+                        <div class="control-label col-sm-2">
+                            <label>{{'label.input.state_province' | translate }}</label>
+                        </div>
+                        <!-- <div class="col-sm-3">
                             <select chosen="countryOptions" ng-model="addressArray[$index].countryId" class="form-control" ng-options="countryOption.id as countryOption.name for countryOption in countryOptions track by countryOption.id" value="countryId"></select>
                         </div>
                     </div>
@@ -186,21 +210,35 @@
                             <select chosen="stateOptions" ng-model="addressArray[$index].stateProvinceId" class="form-control" ng-options="stateOption.id as stateOption.name for stateOption in stateOptions track by stateOption.id" ng-change="filterMunicipality(addressArray[$index].stateProvinceId)"
                                 value="stateProvinceId"></select>
                         </div>
+                    </div> -->
+                        <!--  -->
+                        <div class="col-sm-3">
+                            <md-select class="form-control" id="stateOptions" ng-model="addressArray[$index].stateProvinceId">
+                                <md-select-header>
+                                    <span> {{'label.input.state_province' | translate }} </span>
+                                </md-select-header>
+                                <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+                                    {{stateOption.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <!--  -->
+
+                    <!--                     <div class="form-group">
                         <div class="control-label col-sm-2">
                             <label>{{'label.input.municipality' | translate }}</label>
                         </div>
                         <div class="col-sm-3">
                             <select chosen="municipalityOptions" ng-model="addressArray[$index].municipality" class="form-control" ng-options="municipalityOption.id as municipalityOption.name for municipalityOption in municipalityOptions track by municipalityOption.id" value="municipalityProvinceId"></select>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                    <!--                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.antiquity' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].antiquity" class="form-control">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.latitude' | translate }}</label>
                         <div class="col-sm-3">
@@ -219,17 +257,22 @@
                             <input class="input-mini-small" type="checkbox" ng-model="addressArray[$index].isActive">
                         </div>
                     </div>
+
+
                     <!-- Aqui termino -->
                     <!-- botones -->
                     <div class="col-md-12 center">
                         <a id="cancel" href="#!/offices">
-                            <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+                            <md-button type="reset" class="md-raised md-secondary">{{'label.button.cancel' | translate}}</md-button>
                         </a>
                         <md-button id="save" type="submit" has-permission='CREATE_OFFICE' class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
                     </div>
                     <!-- botones -->
                 </fieldset>
             </form>
+
+
+
         </div>
     </div>
 </div>
