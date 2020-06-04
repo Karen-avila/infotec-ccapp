@@ -154,7 +154,7 @@
 
             // Log out the user when the window/tab is closed.
             window.onunload = function () {
-                scope.logout();
+                // scope.logout();
                 Idle.unwatch();
                 scope.started = false;
             };
@@ -416,15 +416,13 @@
                 if (whereweare == '/reports/all' || whereweare == '/reports/clients' || whereweare == '/reports/loans' || whereweare == '/reports/savings' || whereweare == '/reports/funds' || whereweare == '/reports/accounting' || whereweare == '/xbrl') {
                     window.open(addresses[5]);
                     addrfound = true;
-                }// '/reports/...' are exception -> link to Search in Documentation word 'report'
-                else {
+                } else {
                     for (var i = 0; i < addrmodels.length; i++) {
                         if (i != 5 && i != 10) {
                             if (whereweare == addrmodels[i]) {
                                 addrfound = true;
                                 window.open(addresses[i]);
                                 break;
-                                // model found -> open address and break
                             }
                         }
                     }//for

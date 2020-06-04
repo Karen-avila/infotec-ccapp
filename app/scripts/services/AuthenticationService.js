@@ -63,6 +63,7 @@
                     username: credentials.username,
                     password: credentials.password
                 }
+                httpService.cancelAuthorization();
         		if (SECURITY === 'oauth') {
 	                httpService.post( "/fineract-provider/api/oauth/token?client_id=community-app&grant_type=password&client_secret=123", payload)
 	                    .then(getUserDetails, onLoginFailure);

@@ -135,7 +135,7 @@
                   ng-show="showNonPersonOptions">{{'label.input.incorporationdate' | translate}}<span
                      class="required">*</span></label>
                <div class="col-sm-3">
-                     <md-datepicker id="dateofbirth" ng-model="first.dateofbirth" 
+                     <md-datepicker id="dateofbirth" ng-model="first.dateOfBirth" 
                         md-placeholder="{{'label.selecttodate' | translate}}"
                         md-min-date="minDate" md-max-date="restrictDate">
                      </md-datepicker>
@@ -334,7 +334,7 @@
             </div>
 
             <div class="form-group" has-permission="ACTIVATE_CLIENT">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-md-offset-3">
                 <md-checkbox ng-model="formData.active" ng-change="setChoice()">
                     {{'label.input.active' | translate }}
                 </md-checkbox> 
@@ -466,18 +466,16 @@
                             <label>{{'label.input.gender' | translate }}</label>
                         </div>
                         <div class="col-sm-3" >
-                            <md-select chosen="genderIdOptions" id="genderIdOption" ng-model="familyArray[$index].genderId"  class="form-control"
-                                    ng-options="genderIdOption.id as genderIdOption.name for genderIdOption in genderIdOptions track by genderIdOption.id"
-                                    value="formData.genderId">
+                            <md-select id="genderIdOption" ng-model="familyArray[$index].genderId"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="relationshipIdOption in relationshipIdOptions" ng-value="relationshipIdOption.id">
-                                        {{relationshipIdOption.name | translate}}
+                                    <md-option ng-repeat="genderIdOption in genderIdOptions" ng-value="genderIdOption.id">
+                                        {{genderIdOption.name | translate}}
                                     </md-option>
                             </md-select>
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="control-label col-sm-3">
                             <label>{{'label.input.profession' | translate}}</label>
                         </div>
@@ -506,10 +504,9 @@
                     </div>
 
                     <div class="form-group" >
-                        <label class="control-label col-sm-3" for="dateofbirth">{{'label.input.dateofbirth' | translate }}</label>
-
+                        <label class="control-label col-sm-3">{{'label.input.dateofbirth' | translate }}</label>
                         <div class="col-sm-3">
-                            <md-datepicker id="dateofbirth" ng-model="familyArray[$index].dateOfBirth" 
+                            <md-datepicker ng-model="familyArray[$index].dateOfBirth" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
                                 md-max-date="restrictDate">
                             </md-datepicker>

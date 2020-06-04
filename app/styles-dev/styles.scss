@@ -1,6 +1,6 @@
 /* Variables */
-$brand-primary: #285C4D;
-$brand-secondary: #D4C19D;
+$brand-primary: #235B4E;
+$brand-secondary: #DDC9A3;
 $brand-success: $brand-secondary;
 $state-success-text: #fff;
 
@@ -44,6 +44,7 @@ $state-success-text: #fff;
 @import "./main/components/report";
 @import "./main/components/nv.d3";
 @import "./main/components/loader";
+@import "./main/components/login";
 @import "./main/components/pdf";
 @import "./main/mifos";
 

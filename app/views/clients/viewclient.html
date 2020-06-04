@@ -2,8 +2,8 @@
 	<ul class="breadcrumb">
 		<li ng-if="!groupid"><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
 		<li ng-if="groupid"><a href="#!/groups">{{'label.anchor.groups' | translate}}</a></li>
-		<li>{{client.officeName}}</li>
-		<li>{{client.staffName}}</li>
+        <li ng-if="!groupid" class="active pointer"><a ng-click="refresh()">{{client.displayName}}</a></li>
+        <li ng-if="groupid" class="active pointer"><a ng-click="refresh()">{{group.name}}</a></li>
 	</ul>
 	<script type="text/ng-template" id="deleteClient.html">
 		<div class="modal-header silver">
@@ -257,7 +257,7 @@
                                     {{'label.button.reports'| translate }}
                                     <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
+                                <ul class="dropdown-menu dropdown-menu-right" ng-if="clientReports.length > 0">
                                     <li data-ng-click="reportsClient(rep)" ng-repeat="rep in clientReports">
                                         <a>{{rep.report_name}}</a>
                                     </li>
@@ -322,8 +322,143 @@
                         <br>
                         <br>
                         <div class="row">
-                            <div class="col-sm-12 col-md-12">
+                            <!-- CLIENT DETAILS -->
+                            <div class="col-sm-4 col-md-4">
+                                <div>
                                 <br>
+                                <span class="span gray-head">
+                                    <strong>{{'label.heading.clientdetails' | translate }}</strong>
+                                </span>
+                                <table class="table small-font">
+                                    <tbody>
+                                        <tr>
+                                            <th class="table-bold" style="width: 50%;">{{'label.input.submittedOnDate' | translate }}</th>
+                                            <td><span
+                                                    class="padded-td">{{client.timeline.submittedOnDate | DateFormat}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="table-bold">{{'label.input.activationdate' | translate }}</th>
+                                            <td><span
+                                                    class="padded-td">{{client.timeline.activatedOnDate | DateFormat}}<span
+                                                        data-ng-hide="client.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="table-bold">{{'label.input.legalForm' | translate }}</th>
+                                            <td><span class="padded-td">{{client.legalForm.value}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()">
+                                            <th class="table-bold">{{'label.heading.memberof' | translate }}</th>
+                                            <td>
+                                                <span class="padded-td"
+                                                    data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span>
+                                                <span class="padded-td" ng-repeat="group in client.groups">
+                                                    <a class="list-group-item-text"
+                                                        href="#!/viewgroup/{{group.id}}">{{group.name}}</a>&nbsp;<span
+                                                        data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span><span
+                                                        ng-show="!$last">|</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()">
+                                            <th class="table-bold">{{'label.input.isStaff' | translate }}</th>
+                                            <td><span class="padded-td">{{client.isStaff | translate}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.officeName">
+                                            <th class="table-bold">{{'label.input.office' | translate }}</th>
+                                            <td><span class="padded-td">{{client.officeName}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.mobileNo">
+                                            <th class="table-bold">{{'label.input.mobilenumber' | translate }}</th>
+                                            <td><span class="padded-td">{{client.mobileNo}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
+                                            <th class="table-bold">{{'label.input.gender' | translate }}</th>
+                                            <td><span class="padded-td">{{client.gender.name}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.dateOfBirth">
+                                            <th ng-hide="isLegalEntity()" class="table-bold">{{'label.input.dateofbirth' | translate }}</th>
+                                            <th ng-show="isLegalEntity()" class="table-bold">{{'label.input.incorporationdate' | translate }}</th>
+                                            <td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
+                                            <th class="table-bold">{{'label.input.birthplace' | translate }}</th>
+                                            <td><span class="padded-td">{{client.birthplace.name}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.rfc">
+                                            <th class="table-bold">{{'label.input.rfc' | translate }}</th>
+                                            <td><span class="padded-td">{{client.rfc}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
+                                            <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
+                                            <td><span class="padded-td">{{client.uniqueId}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.externalId">
+                                            <th class="table-bold">{{'label.input.externalid' | translate }}</th>
+                                            <td><span class="padded-td">{{client.externalId}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.clientType.name">
+                                            <th class="table-bold">{{'label.input.clienttype' | translate }}</th>
+                                            <td><span class="padded-td">{{client.clientType.name}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.clientClassification.name">
+                                            <th class="table-bold">{{'label.input.clientclassification' | translate }}</th>
+                                            <td><span class="padded-td">{{client.clientClassification.name}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-show="client.status.value=='Closed'">
+                                            <th class="table-bold">{{'label.heading.closedate' | translate }}</th>
+                                            <td><span class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
+                                            <th class="table-bold">{{'label.input.groupLoanCounter' | translate }}</th>
+                                            <td><span class="padded-td">{{client.groupLoanCounter}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="whitebg" colspan="2">
+                                                {{'label.heading.performancehistory' | translate }}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>{{'label.heading.numofloancycle' | translate }}</th>
+                                            <td><span class="padded-td">{{client.ClientSummary.loanCycle}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{'label.lastloanamount' | translate }}</th>
+                                            <td><span
+                                                    class="padded-td">{{client.ClientSummary.lastLoanAmount| FormatNumber}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{'label.numofactiveloans' | translate }}</th>
+                                            <td><span class="padded-td">{{client.ClientSummary.activeLoans}}</span></td>
+                                        </tr>
+                                        <tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
+                                            <th>{{'label.totalsavings' | translate }}({{t.code}})</th>
+                                            <td><span class="padded-td">{{t.totalSavings| FormatNumber}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{'label.numofactivesavings' | translate }}</th>
+                                            <td><span class="padded-td">{{client.ClientSummary.activeSavings}}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-md-8">
                                 <div>
                                     <api-validate></api-validate>
                                     <div class="pull-right" data-ng-show="charges.length">
@@ -384,15 +519,13 @@
                                     </div>
                                     <br>
                                     <div class="pull-right">
-                                        <span data-ng-show="clientAccounts.loanAccounts">
-                                            <button data-ng-show="openLoan" type="button" class="btn-primary btn btn-sm"
-                                                data-ng-click="setLoan()">{{
-                                                    'label.button.viewclosedloans' | translate }}
-                                            </button>
-                                            <button data-ng-show="!openLoan" type="button" class="btn-primary btn btn-sm"
-                                                data-ng-click="setLoan()">{{
-                                                    'label.button.viewactiveloans' | translate }}
-                                            </button>
+                                        <span ng-show="clientAccounts.loanAccounts">
+                                            <md-button md-no-ink ng-show="openLoan" class="md-primary" ng-click="setLoan()">
+                                                {{'label.button.viewclosedloans' | translate }}
+                                            </md-button>
+                                            <md-button md-no-ink ng-show="!openLoan" class="md-primary" ng-click="setLoan()">
+                                                {{'label.button.viewactiveloans' | translate }}
+                                            </md-button>
                                         </span>
                                     </div>
                                     <div data-ng-show="clientAccounts.loanAccounts">
@@ -737,477 +870,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- CLIENT DETAILS -->
-                        <br>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6">
-                                <table class="table-condensed" style="width: 100%;">
-                                    <tr>
-                                        <th class="table-bold" style="width: 50%;">{{'label.input.submittedOnDate' | translate }}</th>
-                                        <td><span
-                                                class="padded-td">{{client.timeline.submittedOnDate | DateFormat}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-bold">{{'label.input.activationdate' | translate }}</th>
-                                        <td><span
-                                                class="padded-td">{{client.timeline.activatedOnDate | DateFormat}}<span
-                                                    data-ng-hide="client.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-bold">{{'label.input.legalForm' | translate }}</th>
-                                        <td><span class="padded-td">{{client.legalForm.value}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()">
-                                        <th class="table-bold">{{'label.heading.memberof' | translate }}</th>
-                                        <td>
-                                            <span class="padded-td"
-                                                data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span>
-                                            <span class="padded-td" ng-repeat="group in client.groups">
-                                                <a class="list-group-item-text"
-                                                    href="#!/viewgroup/{{group.id}}">{{group.name}}</a>&nbsp;<span
-                                                    data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span><span
-                                                    ng-show="!$last">|</span>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()">
-                                        <th class="table-bold">{{'label.input.isStaff' | translate }}</th>
-                                        <td><span class="padded-td">{{client.isStaff}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.officeName">
-                                        <th class="table-bold">{{'label.input.office' | translate }}</th>
-                                        <td><span class="padded-td">{{client.officeName}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.mobileNo">
-                                        <th class="table-bold">{{'label.input.mobilenumber' | translate }}</th>
-                                        <td><span class="padded-td">{{client.mobileNo}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
-                                        <th class="table-bold">{{'label.input.gender' | translate }}</th>
-                                        <td><span class="padded-td">{{client.gender.name}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.clientType.name">
-                                        <th class="table-bold">{{'label.input.clienttype' | translate }}</th>
-                                        <td><span class="padded-td">{{client.clientType.name}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.clientClassification.name">
-                                        <th class="table-bold">{{'label.input.clientclassification' | translate }}</th>
-                                        <td><span class="padded-td">{{client.clientClassification.name}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
-                                        <th class="table-bold">{{'label.input.birthplace' | translate }}</th>
-                                        <td><span class="padded-td">{{client.birthplace.name}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.rfc">
-                                        <th class="table-bold">{{'label.input.rfc' | translate }}</th>
-                                        <td><span class="padded-td">{{client.rfc}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
-                                        <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
-                                        <td><span class="padded-td">{{client.uniqueId}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.externalId">
-                                        <th class="table-bold">{{'label.input.externalid' | translate }}</th>
-                                        <td><span class="padded-td">{{client.externalId}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.dateOfBiafrth">
-                                        <th ng-hide="isLegalEntity()" class="table-bold">{{'label.input.dateofbirth' | translate }}</th>
-                                        <th ng-show="isLegalEntity()" class="table-bold">{{'label.input.incorporationdate' | translate }}</th>
-                                        <td><span class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr data-ng-show="client.status.value=='Closed'">
-                                        <th class="table-bold">{{'label.heading.closedate' | translate }}</th>
-                                        <td><span class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
-                                        <th class="table-bold">{{'label.input.groupLoanCounter' | translate }}</th>
-                                        <td><span class="padded-td">{{client.groupLoanCounter}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="whitebg" colspan="2">
-                                            {{'label.heading.performancehistory' | translate }}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.heading.numofloancycle' | translate }}</th>
-                                        <td><span class="padded-td">{{client.ClientSummary.loanCycle}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.lastloanamount' | translate }}</th>
-                                        <td><span
-                                                class="padded-td">{{client.ClientSummary.lastLoanAmount| FormatNumber}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.numofactiveloans' | translate }}</th>
-                                        <td><span class="padded-td">{{client.ClientSummary.activeLoans}}</span></td>
-                                    </tr>
-                                    <tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
-                                        <th>{{'label.totalsavings' | translate }}({{t.code}})</th>
-                                        <td><span class="padded-td">{{t.totalSavings| FormatNumber}}</span></td>
-                                    <tr>
-                                        <th>{{'label.numofactivesavings' | translate }}</th>
-                                        <td><span class="padded-td">{{client.ClientSummary.activeSavings}}</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-sm-6 col-md-6" ng-show="enableAddress">
-                                <table class="table" ng-repeat="address in addresses" class="table table-condensed">
-                                    <thead>
-                                        <tr class="graybg">
-                                            <th class="graybg"> {{address.addressType}}</th>
-                                            <td>
-                                                <button class="btn btn-primary pull-right btn-sm"
-                                                    ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i
-                                                        class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-show="view.street">
-                                            <th>
-                                                {{'label.input.street' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.street}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine1">
-                                            <th>
-                                                {{'label.input.addressline1' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine1}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine2">
-                                            <th>
-                                                {{'label.input.addressline2' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine2}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine3">
-                                            <th>
-                                                {{'label.input.addressline3' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine3}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine4">
-                                            <th>
-                                                {{'label.input.addressline4' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine4}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine5">
-                                            <th>
-                                                {{'label.input.addressline5' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine5}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.addressLine6">
-                                            <th>
-                                                {{'label.input.addressline6' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.addressLine6}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.city">
-                                            <th>
-                                                {{'label.input.city' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.city}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.townVillage">
-                                            <th>
-                                                {{'label.input.town_village' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.townVillage}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.countyDistrict">
-                                            <th>
-                                                {{'label.input.county_district' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.countyDistrict}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.countryId">
-                                            <th>
-                                                {{'label.input.country' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.countryName}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.stateProvinceId">
-                                            <th>
-                                                {{'label.input.state_province' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.stateName}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.municipality">
-                                            <th>
-                                                {{'label.input.municipality' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.municipalityName}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.postalCode">
-                                            <th>
-                                                {{'label.input.postal_code' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.postalCode}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.latitude">
-                                            <th>
-                                                {{'label.input.latitude' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.latitude}}
-                                            </td>
-        
-                                        </tr>
-                                        <tr ng-show="view.longitude">
-                                            <th>
-                                                {{'label.input.longitude' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.longitude}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.antiquity">
-                                            <th>
-                                                {{'label.input.antiquity.address' | translate }}
-                                            </th>
-                                            <td>
-                                                {{address.antiquity}}
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="view.isActive">
-                                            <th>
-                                                {{'label.input.is_active' | translate}}
-                                            </th>
-                                            <td>
-                                                <button
-                                                    ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"
-                                                    data-ng-hide="address.isActive" class="btn btn-primary btn-sm">
-                                                    {{"label.button.enable" | translate}}
-                                                </button>
-                                                <button
-                                                    ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"
-                                                    data-ng-show="address.isActive" class="btn btn-primary btn-sm">
-                                                    {{"label.button.disable" | translate}}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <button class="btn btn-sm btn-primary pull-right" ng-click="routeTo()"><i
-                                    class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</button>
-                            <br>
-                            </div>
-                        </div>
-                        <!-- DATATABLES -->
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
-                                <table class="table-minified">
-                                    <tbody>
-                                        <tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
-                                            has-permission='READ_{{datatabledetail.registeredTableName}}'>
-                                            <td style="display: block;">
-                                                <div>
-                                                    <table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
-                                                        <tbody>
-                                                            <tr class="graybg">
-                                                                <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
-                                                                <td style="width: 50%;">
-                                                                    <div data-ng-hide="isClosedClient" class="btn-group">
-                                                                        <a ng-show="datatabledetail.isData" class="btn btn-sm btn-danger pull-right"
-                                                                            ng-click="deleteAll(datatabledetail.registeredTableName, client.id)"
-                                                                            has-permission='DELETE_{{datatabledetail.registeredTableName}}'><i
-                                                                                class="fa fa-trash-o "></i>{{'label.button.deleteall' | translate}}</a>
-                                                                        <a data-ng-show="datatabledetail.showDataTableAddButton"
-                                                                            ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{client.id}}?fromEntity=client"
-                                                                            class="btn btn-sm btn-primary"
-                                                                            has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
-                                                                                class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
-                                                                        <a data-ng-show="datatabledetail.showDataTableEditButton"
-                                                                            ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{client.id}}?mode=edit"
-                                                                            class="btn btn-sm btn-primary"
-                                                                            has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
-                                                                                class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr ng-repeat="value in datatabledetail.singleRow" data-ng-hide="datatabledetail.isMultirow">
-                                                                <th style="width: 50%;" class="table-font-nav">
-                                                                    <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
-                                                                </th>
-                                                                <td style="width: 50%; padding-left: 10px;"><span class="padded-td">{{getDatatableValue(value)}}</span></td>
-                                                            </tr>
-                                                            <tr class="graybg" data-ng-show="datatabledetail.isData">
-                                                                <th class="graybg table-font-nav">{{'label.heading.score' | translate}}</th>
-                                                                <td><span class="padded-td">{{datatabledetail.dataTableScoring}}</span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr ng-show="families">
-                                            <td>
-                                                <div>
-                                                    <button class="btn btn-primary pull-right" ng-click="routeToaddFamilyMember()"><i
-                                                            class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</button>
-                                                    <br>
-                                                    <table class="table" ng-repeat="family in families" class="table table-condensed">
-                                                        <thead>
-                                                            <tr class="graybg">
-                                                                <th class="graybg"> {{family.relationship}}</th>
-                                                                <td>
-                                                                    <button class="btn btn-primary pull-right"
-                                                                        ng-click="deleteFamilyMember(family.id)"><i
-                                                                            class="fa fa-plus"></i>{{'label.button.delete' | translate}}</button>
-                            
-                                                                    <button class="btn btn-primary pull-right"
-                                                                        ng-click="editFamilyMember(family.id)"><i
-                                                                            class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
-                                                                </td>
-                                                            </tr>
-                                                        </thead>
-                            
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.firstname' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.firstName}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.middlename' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.middleName}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.lastname' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.lastName}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.qualification' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.qualification}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.mobileNumber' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.mobileNumber}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.age' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.age}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.isDependent' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.isDependent}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.maritalstatus' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.maritalStatus}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.gender' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.gender}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.profession' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.profession}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>
-                                                                    {{'label.input.dateofbirth' | translate }}
-                                                                </th>
-                                                                <td>
-                                                                    {{family.dateOfBirth | DateFormat }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                         </md-tab-body>
                     </md-tab>
 
@@ -1301,7 +963,356 @@
                         </md-tab-body>
                     </md-tab>
 
-                    <md-tab has-permission='READ_CLIENTNOTE'>
+                    <md-tab md-on-select="getAddresses()" ng-show="enableAddress">
+                        <md-tab-label>{{'label.heading.addresses' | translate}}</md-tab-label>
+                        <md-tab-body>
+                            <br />
+                            <md-button md-no-ink class="md-primary pull-right" ng-click="routeTo()"><i
+                                class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</md-button>
+                            <table class="table" ng-repeat="address in addresses" class="table table-condensed">
+                                <thead>
+                                    <tr class="graybg">
+                                        <th class="graybg"> {{address.addressType}}</th>
+                                        <td>
+                                            <button class="btn btn-primary pull-right btn-sm"
+                                                ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i
+                                                    class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="view.street">
+                                        <th>
+                                            {{'label.input.street' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.street}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine1">
+                                        <th>
+                                            {{'label.input.addressline1' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine1}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine2">
+                                        <th>
+                                            {{'label.input.addressline2' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine2}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine3">
+                                        <th>
+                                            {{'label.input.addressline3' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine3}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine4">
+                                        <th>
+                                            {{'label.input.addressline4' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine4}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine5">
+                                        <th>
+                                            {{'label.input.addressline5' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine5}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.addressLine6">
+                                        <th>
+                                            {{'label.input.addressline6' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.addressLine6}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.city">
+                                        <th>
+                                            {{'label.input.city' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.city}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.townVillage">
+                                        <th>
+                                            {{'label.input.town_village' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.townVillage}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.countyDistrict">
+                                        <th>
+                                            {{'label.input.county_district' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.countyDistrict}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.countryId">
+                                        <th>
+                                            {{'label.input.country' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.countryName}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.stateProvinceId">
+                                        <th>
+                                            {{'label.input.state_province' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.stateName}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.municipality">
+                                        <th>
+                                            {{'label.input.municipality' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.municipalityName}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.postalCode">
+                                        <th>
+                                            {{'label.input.postal_code' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.postalCode}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.latitude">
+                                        <th>
+                                            {{'label.input.latitude' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.latitude}}
+                                        </td>
+
+                                    </tr>
+                                    <tr ng-show="view.longitude">
+                                        <th>
+                                            {{'label.input.longitude' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.longitude}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.antiquity">
+                                        <th>
+                                            {{'label.input.antiquity.address' | translate }}
+                                        </th>
+                                        <td>
+                                            {{address.antiquity}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="view.isActive">
+                                        <th>
+                                            {{'label.input.is_active' | translate}}
+                                        </th>
+                                        <td>
+                                            <button
+                                                ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"
+                                                data-ng-hide="address.isActive" class="btn btn-primary btn-sm">
+                                                {{"label.button.enable" | translate}}
+                                            </button>
+                                            <button
+                                                ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"
+                                                data-ng-show="address.isActive" class="btn btn-primary btn-sm">
+                                                {{"label.button.disable" | translate}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <md-tab md-on-select="getFamilyMembers()" ng-show="families">
+                        <md-tab-label>{{'label.heading.familymembers' | translate}}</md-tab-label>
+                        <md-tab-body>
+                            <md-button md-no-ink class="md-primary pull-right" ng-click="routeToaddFamilyMember()"><i
+                                    class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</md-button>
+                            <br>
+                            <table class="table" ng-repeat="family in families" class="table table-condensed">
+                                <thead>
+                                    <tr class="graybg">
+                                        <th class="graybg">{{family.relationship}}</th>
+                                        <td>
+                                            <button class="btn btn-primary pull-right"
+                                                ng-click="deleteFamilyMember(family.id)"><i
+                                                    class="fa fa-plus"></i>{{'label.button.delete' | translate}}</button>
+    
+                                            <button class="btn btn-primary pull-right"
+                                                ng-click="editFamilyMember(family.id)"><i
+                                                    class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.firstname' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.firstName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.middlename' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.middleName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.lastname' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.lastName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.qualification' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.qualification}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.mobileNumber' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.mobileNumber}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.age' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.age}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.isDependent' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.isDependent}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.maritalstatus' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.maritalStatus}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.gender' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.gender}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.profession' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.profession}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{'label.input.dateofbirth' | translate }}
+                                        </th>
+                                        <td>
+                                            {{family.dateOfBirth | DateFormat }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <md-tab md-on-select="getDataTables()">
+                        <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
+                        <md-tab-body>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
+                                    <table class="table-minified">
+                                        <tbody>
+                                            <tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
+                                                has-permission='READ_{{datatabledetail.registeredTableName}}'>
+                                                <td style="display: block;">
+                                                    <div>
+                                                        <table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
+                                                            <tbody>
+                                                                <tr class="graybg">
+                                                                    <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
+                                                                    <td style="width: 50%;">
+                                                                        <div data-ng-hide="isClosedClient" class="btn-group">
+                                                                            <a ng-show="datatabledetail.isData" class="btn btn-sm btn-danger pull-right"
+                                                                                ng-click="deleteAll(datatabledetail.registeredTableName, client.id)"
+                                                                                has-permission='DELETE_{{datatabledetail.registeredTableName}}'><i
+                                                                                    class="fa fa-trash-o "></i>{{'label.button.deleteall' | translate}}</a>
+                                                                            <a data-ng-show="datatabledetail.showDataTableAddButton"
+                                                                                ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{client.id}}?fromEntity=client"
+                                                                                class="btn btn-sm btn-primary"
+                                                                                has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
+                                                                                    class="fa fa-plus "></i>{{'label.button.add' | translate}}</a>
+                                                                            <a data-ng-show="datatabledetail.showDataTableEditButton"
+                                                                                ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{client.id}}?mode=edit"
+                                                                                class="btn btn-sm btn-primary"
+                                                                                has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
+                                                                                    class="fa fa-edit "></i>{{'label.button.edit' | translate}}</a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr ng-repeat="value in datatabledetail.singleRow" data-ng-hide="datatabledetail.isMultirow">
+                                                                    <th style="width: 50%;" class="table-font-nav">
+                                                                        <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
+                                                                    </th>
+                                                                    <td style="width: 50%; padding-left: 10px;"><span class="padded-td">{{getDatatableValue(value)}}</span></td>
+                                                                </tr>
+                                                                <tr class="graybg" data-ng-show="datatabledetail.isData">
+                                                                    <th class="graybg table-font-nav">{{'label.heading.score' | translate}}</th>
+                                                                    <td><span class="padded-td">{{datatabledetail.dataTableScoring}}</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <md-tab md-on-select="getNotes()" has-permission='READ_CLIENTNOTE'>
                         <md-tab-label>{{'label.heading.notes' | translate}}</md-tab-label>
                         <md-tab-body>
                         <br />

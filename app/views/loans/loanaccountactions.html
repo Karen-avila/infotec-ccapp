@@ -21,7 +21,7 @@
                             </td>
                             <td ng-show="addDisburseDetails" align="right">
                                 <legend>
-                                    <md-button type="button" class="btn btn-sm md-raised md-primary" align="right"
+                                    <md-button type="button" class="md-raised md-primary" align="right"
                                         ng-click="addTranches()">{{'label.button.add' | translate }}
                                     </md-button>
                                 </legend>
@@ -66,7 +66,7 @@
                             <table style="width:80%" class="table table-bordered">
                                 <tr>
                                     <td colspan="5" align="right">
-                                        <md-button type="button" class="btn btn-sm md-raised md-primary"
+                                        <md-button type="button" class="md-raised md-primary"
                                             ng-click="addTranches()">{{'label.button.addTranche' | translate }}
                                         </md-button>
                                     </td>
@@ -177,29 +177,35 @@
                         <div class="form-group" ng-show="action == 'disburse'">
                             <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}<span class="required">*</span></label>
                             <div class="col-sm-6">
-                                <select id="fundId" ng-model="formData.fundId" class="form-control" class="form-control"
-                                    required ng-options="fund.id as fund.name for fund in funds" value="{{fund.id}}">
-                                    <option value="">{{'label.selectfund' | translate}}</option>
-                                </select>
+                                <md-select id="fundId" ng-model="formData.fundId" required 
+                                    placeholder="{{'label.selectfund' | translate}}">
+                                    <md-option ng-repeat="fund in funds" ng-value="fund.id">
+                                        {{fund.name}}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="action == 'repayment' || action == 'prepayloan'">
+                            <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}<span class="required">*</span></label>
+                            <div class="col-sm-3">
+                                <md-select id="currencyCode" ng-model="formData.currencyCode" required
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="currency in currencyOptions" ng-value="currency.id">
+                                        {{currency.code}} {{currency.name | translate}}
+                                    </md-option>
+                                </md-select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
                                 for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
-                                <select id="paymentTypeId" ng-model="formData.paymentTypeId" class="form-control"
-                                    ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
-                                    value="{{paymentType.id}}">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-show="action == 'repayment' || action == 'prepayloan'">
-                            <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}</label>
-                            <div class="col-sm-3">
-                                <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                                    ng-options="currency.id as currency.name | translate for currency in currencyOptions"
-                                    value="{{currency.id}}"></select>
+                                <md-select id="paymentTypeId" ng-model="formData.paymentTypeId" 
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+                                        {{paymentType.name}}
+                                    </md-option>
+                                </md-select>
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
@@ -218,11 +224,12 @@
                             <label class="control-label col-sm-3"
                                 for="channelId">{{'label.input.channel' | translate}}</label>
                             <div class="col-sm-6">
-                                <select id="channelId" ng-model="formData.channelId" class="form-control"
-                                    ng-options="channel.id as channel.name for channel in channelOptions"
-                                    value="{{channel.id}}">
-                                    <option value="">{{'label.selectachannel' | translate}}</option>
-                                </select>
+                                <md-select id="channelId" ng-model="formData.channelId" 
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="channel in channelOptions" ng-value="channel.id">
+                                        {{channel.name | translate}}
+                                    </md-option>
+                                </md-select>
                             </div>
                         </div>
                     </div>
@@ -241,9 +248,12 @@
                             for="note">{{'label.input.installment' | translate}}</label>
 
                         <div class="col-sm-6">
-                            <select id="installmentNumber" ng-model="formData.installmentNumber" class="form-control"
-                                ng-options="installmentCharge.installmentNumber as installmentCharge.installmentNumber for installmentCharge in installmentCharges"
-                                value="{{installmentCharge.installmentNumber}}"></select>
+                            <md-select id="installmentNumber" ng-model="formData.installmentNumber" 
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="installmentCharge in installmentCharges" ng-value="installmentCharge.installmentNumber">
+                                    {{installmentCharge.installmentNumber}}
+                                </md-option>                            
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group" ng-show="paymentDatefield">
@@ -355,7 +365,7 @@
                         </tbody>
                     </table>
                     <div class="">
-                        <md-button id="save1" wz-next class="btn btn-sm md-raised md-primary pull-right"
+                        <md-button id="save1" wz-next class="md-raised md-primary pull-right"
                             ng-show="isEntityDatatables">
                             {{'label.button.proceed' | translate}}
                         </md-button>
@@ -369,7 +379,7 @@
                             translate}}
                                 </md-button>
                                 <md-button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm md-raised md-primary">{{
+                                    class="md-raised md-primary">{{
                             'label.button.confirm' |
                             translate}}
                                 </md-button>
@@ -379,7 +389,7 @@
                             translate}}
                                 </md-button>
                                 <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm md-raised md-primary">{{
+                                    class="md-raised md-primary">{{
                             'label.button.save' | translate}}
                                 </md-button>
                             </div>
@@ -461,7 +471,7 @@
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <md-button id="save4" type="submit" class="btn btn-sm md-raised md-primary" wz-next>
+                            <md-button id="save4" type="submit" class="md-raised md-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
                             </md-button>
                         </div>
@@ -474,7 +484,7 @@
                                     translate}}
                                 </md-button>
                                 <md-button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm md-raised md-primary">{{
+                                    class="md-raised md-primary">{{
                                     'label.button.confirm' |
                                     translate}}
                                 </md-button>
@@ -484,7 +494,7 @@
                                     translate}}
                                 </md-button>
                                 <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm md-raised md-primary">{{
+                                    class="md-raised md-primary">{{
                                     'label.button.save' | translate}}
                                 </md-button>
                             </div>

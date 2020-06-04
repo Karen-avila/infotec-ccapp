@@ -7,7 +7,7 @@
                     href="#!/viewgroup/{{savingaccountdetails.groupId}}">{{savingaccountdetails.groupName}}</a>
             <li ng-show="savingaccountdetails.clientName"><a
                     href="#!/viewclient/{{savingaccountdetails.clientId}}">{{savingaccountdetails.clientName}}</a>
-            <li class="active">{{savingaccountdetails.savingsProductName}}({{savingaccountdetails.accountNo}})</li>
+            <li class="active">{{savingaccountdetails.savingsProductName}} - {{savingaccountdetails.accountNo}}</li>
         </ul>
     </div>
     <script type="text/ng-template" id="savingsunassignstaff.html">
@@ -89,9 +89,8 @@
                     <strong><i ng-show="savingaccountdetails.subStatus.id==0"
                             class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i><i
                             ng-hide="savingaccountdetails.subStatus.id==0"
-                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}}(#{{savingaccountdetails.accountNo}})</strong>
+                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}} (#{{savingaccountdetails.accountNo}})</strong>
                 </span>
-                {{savingaccountdetails.status.code | translate}}
             </div>
             <br>
             <div class="col-sm-12 col-md-12 primarydiv">
@@ -134,7 +133,7 @@
             <br>
             <div class="col-md-12"
                 ng-show="!savingaccountdetails.status.rejected && !savingaccountdetails.status.submittedAndPendingApproval">
-                <h3>{{'label.heading.currentBalance' | translate}}: {{savingaccountdetails.currency.displaySymbol}}
+                <h3>{{'label.heading.savings.currentBalance' | translate}}: {{savingaccountdetails.currency.displaySymbol}}
                     {{savingaccountdetails.summary.accountBalance | FormatNumber}}</h3>
                 <h3>{{'label.heading.availableBalance' | translate}}: {{savingaccountdetails.currency.displaySymbol}}
                     {{savingaccountdetails.availableBalance | FormatNumber}}</h3>
@@ -415,7 +414,7 @@
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.currency' | translate}}</th>
                             <td><span
-                                    class="padded-td">{{savingaccountdetails.currency.name | translate}} ({{savingaccountdetails.currency.code}})</span>
+                                    class="padded-td">({{savingaccountdetails.currency.code}}) {{savingaccountdetails.currency.name | translate}}</span>
                             </td>
                         </tr>
                         <tr>
