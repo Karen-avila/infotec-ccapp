@@ -19,9 +19,11 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-								ng-options="office.id as office.name for office in offices" value="{{office.id}}">
-							</select>
+                            <md-select id="officeId" ng-model="formData.officeId" placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="office in offices" ng-value="office.id">
+                                {{office.name | translate}}
+                                </md-option>
+                            </md-select>
 						</div>
 					</div>
 
@@ -79,13 +81,12 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-sm-3 pull-right">
-							<label class="checkbox">
-								<input type="checkbox" id="isLoanOfficer" ng-model="formData.isLoanOfficer">
-							</label>
-						</div>
-						<label class="control-label col-sm-6"
-							for="isLoanOfficer">{{'label.input.isLoanOfficer' | translate }}</label>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-3 left">
+                            <md-checkbox id="isLoanOfficer" ng-model="formData.isLoanOfficer">
+                                {{'label.input.isLoanOfficer' | translate}}
+                            </md-checkbox>
+                        </div>
 					</div>
 
 					<div class="form-group">
@@ -99,19 +100,18 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.joinedon' | translate }} <span
 								class="required">*</span> </label>
-						<div class="col-sm-3">
-							<input id="joiningDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-								ng-model="formData.joiningDate" class="form-control" is-open="opened" min="minDat()"
-								max="restrictDate" late-Validate />
-						</div>
+                        <div class="col-sm-3">
+                            <md-datepicker id="joiningDate" ng-model="formData.joiningDate" 
+                                md-placeholder="{{'label.selecttodate' | translate}}"
+                                md-min-date="minDate" md-max-date="restrictDate">
+                            </md-datepicker>
+                        </div>
 					</div>
 
 					<div class="col-md-12 center">
-						<a id="cancel" href="#!/employees">
-							<button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel'| translate}}</button>
-						</a>
-						<button id="save" type="submit" class="btn btn-sm btn-primary"
-							has-permission='CREATE_STAFF'>{{'label.button.save'| translate}}</button>
+                        <md-button md-no-ink id="cancel" href="#!/employees">{{'label.button.cancel' | translate}}
+                        </md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_STAFF'>{{'label.button.save' | translate}}</md-button>
 					</div>
 				</fieldset>
 			</form>
