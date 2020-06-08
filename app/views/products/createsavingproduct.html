@@ -31,7 +31,7 @@
                         </label>
                         <div class="col-sm-2">
                             <input type="text" id="shortName" name="shortName" class="form-control"
-                                ng-model="formData.shortName" maxlength="4" required late-validate />
+                                ng-model="formData.shortName" maxlength="12" required late-validate />
                             <form-validate valattributeform="Details" valattribute="shortName" />
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+                            <input type="number" id="digitsAfterDecimal" name="decimalplace" class="form-control"
                                 ng-model="formData.digitsAfterDecimal" required late-validate number=true />
                             <form-validate valattributeform="Currency" valattribute="decimalplace" />
                         </div>
@@ -90,7 +90,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input type="text" id="inMultiplesOf" class="form-control" name="multiplesof"
+                            <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof"
                                 ng-model="formData.inMultiplesOf" required late-validate number=true />
                             <form-validate valattributeform="Currency" valattribute="multiplesof" />
                         </div>
@@ -117,7 +117,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text"
+                            <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="number"
                                 class="form-control" ng-model="formData.nominalAnnualInterestRate" required
                                 late-validate decimals />
                             <form-validate valattributeform="Terms" valattribute="nominalAnnualInterestRate" />
@@ -201,7 +201,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-2">
-                            <input id="minRequiredOpeningBalance" type="text" name="minRequiredOpeningBalance"
+                            <input id="minRequiredOpeningBalance" type="number" name="minRequiredOpeningBalance"
                                 class="form-control" number-format ng-model="formData.minRequiredOpeningBalance"
                                 late-validate>
                             <form-validate valattributeform="Settings" valattribute="minRequiredOpeningBalance" />
@@ -212,7 +212,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-2">
-                            <input id="lockinPeriodFrequency" type="text" name="lockinPeriodFrequency"
+                            <input id="lockinPeriodFrequency" type="number" name="lockinPeriodFrequency"
                                 class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate
                                 number=true>
                             <form-validate valattributeform="Settings" valattribute="lockinPeriodFrequency" />
@@ -244,7 +244,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="minBalanceForInterestCalculation" type="text" class="form-control" number-format
+                            <input id="minBalanceForInterestCalculation" type="number" class="form-control" number-format
                                 ng-model="formData.minBalanceForInterestCalculation">
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3" ng-show="formData.enforceMinRequiredBalance">
-                            <input id="minRequiredBalance" type="text" class="form-control" number-format
+                            <input id="minRequiredBalance" type="number" class="form-control" number-format
                                 ng-model="formData.minRequiredBalance" />
                         </div>
                     </div>
@@ -285,7 +285,7 @@
                                     tooltip-append-to-body="true"></i>
                             </label>
                             <div class="col-sm-3">
-                                <input id="overdraftLimit" type="text" class="form-control"
+                                <input id="overdraftLimit" type="number" class="form-control"
                                     ng-model="formData.overdraftLimit">
                             </div>
                         </div>
@@ -298,7 +298,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="nominalAnnualInterestRateOverdraft" type="text" class="form-control"
+                            <input id="nominalAnnualInterestRateOverdraft" type="number" class="form-control"
                                 ng-model="formData.nominalAnnualInterestRateOverdraft">
                         </div>
                         <label
@@ -308,7 +308,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="minOverdraftForInterestCalculation" type="text" class="form-control"
+                            <input id="minOverdraftForInterestCalculation" type="number" class="form-control"
                                 ng-model="formData.minOverdraftForInterestCalculation">
                         </div>
                     </div>
@@ -355,7 +355,7 @@
                                     tooltip-append-to-body="true"></i>
                             </label>
                             <div class="col-sm-3">
-                                <input id="daysToInactive" type="text" class="form-control"
+                                <input id="daysToInactive" type="number" class="form-control"
                                     ng-model="formData.daysToInactive">
                             </div>
                         </div>
@@ -367,7 +367,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="daysToDormancy" type="text" class="form-control"
+                            <input id="daysToDormancy" type="number" class="form-control"
                                 ng-model="formData.daysToDormancy">
                         </div>
 
@@ -376,7 +376,7 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <input id="daysToEscheat" type="text" class="form-control"
+                            <input id="daysToEscheat" type="number" class="form-control"
                                 ng-model="formData.daysToEscheat">
                         </div>
                     </div>
