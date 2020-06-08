@@ -20,7 +20,7 @@
 	            <label class="control-label col-sm-2">{{'label.input.product.shortname' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-3">
 	                <input type="text" id="shortName" name="shortName" class="form-control" ng-model="formData.shortName"
-                    	maxlength="4" required late-validate/>
+                    	maxlength="12" required late-validate/>
 
 	                <form-validate valattributeform="createsavingproductform" valattribute="shortName"/>
 	            </div>
@@ -44,13 +44,13 @@
 	            </div>
 	            <label class="control-label col-sm-2">{{'label.input.decimalplaces' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-2">
-	            	<input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+	            	<input type="number" id="digitsAfterDecimal" name="decimalplace" class="form-control"
 	                   	ng-model="formData.digitsAfterDecimal" required late-validate/>
 	               	<form-validate valattributeform="createsavingproductform" valattribute="decimalplace"/>
 	               </div>
 	            <label class="control-label col-sm-2">{{'label.input.multiplesof' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-2">
-	                <input type="text" id="inMultiplesOf" class="form-control" name="multiplesof" ng-model="formData.inMultiplesOf"
+	                <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof" ng-model="formData.inMultiplesOf"
 	                	required late-validate/>
 	                <form-validate valattributeform="createsavingproductform" valattribute="multiplesof"/>
 	            </div>
@@ -60,7 +60,7 @@
 	        <div class="form-group">
 	            <label class="control-label col-sm-2">{{'label.input.nominalannualinterestrate' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-4">
-	            	<input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" class="form-control" 
+	            	<input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="number" class="form-control" 
 	                	ng-model="formData.nominalAnnualInterestRate" required late-validate/>
 	                <form-validate valattributeform="createsavingproductform" valattribute="nominalAnnualInterestRate"/>
                 </div>
@@ -103,12 +103,12 @@
 	    	<div class="form-group">
 	            <label class="control-label col-sm-2">{{'label.input.minimumopeningbalance' | translate }}</label>
 	            <div class="col-sm-4">
-	                <input id="minRequiredOpeningBalance" type="text" class="form-control" 
+	                <input id="minRequiredOpeningBalance" type="number" class="form-control" 
 	                	number-format ng-model="formData.minRequiredOpeningBalance">
 	            </div>
 	            <label class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}</label>
 	            <div class="col-sm-2">
-	            	<input id="lockinPeriodFrequency" type="text" class="form-control"
+	            	<input id="lockinPeriodFrequency" type="number" class="form-control"
                     	ng-model="formData.lockinPeriodFrequency">
                 </div>
                 <div class="col-sm-2">
@@ -128,7 +128,7 @@
 	        	<label class="control-label col-sm-4 left">{{'label.input.applywithdrawalfeefortransfers' | translate }}</label>
                 <label class="control-label col-sm-2">{{'label.input.minbalanceforinterest' | translate }}</label>
                 <div class="col-sm-4">
-                    <input id="minBalanceForInterestCalculation"  type="text" class="form-control"
+                    <input id="minBalanceForInterestCalculation" type="number" class="form-control"
                            number-format ng-model="formData.minBalanceForInterestCalculation">
                 </div>
 			</div>
@@ -141,7 +141,7 @@
                 <label class="control-label col-sm-2" ng-show="formData.enforceMinRequiredBalance">{{
                     'label.input.minRequiredBalance' | translate }}</label>
                 <div class="col-sm-4" ng-show="formData.enforceMinRequiredBalance">
-                    <input id="minRequiredBalance" type="text" class="form-control"
+                    <input id="minRequiredBalance" type="number" class="form-control"
                            number-format ng-model="formData.minRequiredBalance"/>
                 </div>
             </div>
@@ -153,19 +153,19 @@
                 <label class="control-label col-sm-4 left">{{'label.input.allowoverdraft' | translate }}</label>
 	            <label class="control-label col-sm-2" ng-show="formData.allowOverdraft">{{'label.input.overdraftlimit' | translate }}</label>
 	            <div class="col-sm-4" ng-show="formData.allowOverdraft">
-	                <input id="overdraftLimit" type="text" class="form-control"
+	                <input id="overdraftLimit" type="number" class="form-control"
                     	ng-model="formData.overdraftLimit">
 	            </div>
 	        </div>
             <div class="form-group" ng-show="formData.allowOverdraft">
                 <label class="control-label col-sm-2">{{'label.input.nominalannualinterestrateoverdraft' | translate }}</label>
                 <div class="col-sm-4">
-                    <input id="nominalAnnualInterestRateOverdraft" type="text" class="form-control"
+                    <input id="nominalAnnualInterestRateOverdraft" type="number" class="form-control"
                            ng-model="formData.nominalAnnualInterestRateOverdraft">
                 </div>
                 <label class="control-label col-sm-2">{{'label.input.minoverdraftforinterestcalculation' | translate }}</label>
                 <div class="col-sm-4">
-                    <input id="minOverdraftForInterestCalculation" type="text" class="form-control"
+                    <input id="minOverdraftForInterestCalculation" type="number" class="form-control"
                            ng-model="formData.minOverdraftForInterestCalculation">
                 </div>
             </div>
@@ -197,19 +197,19 @@
 				<label class="control-label col-sm-4 left">{{'label.input.isDormancyTrackingActive' | translate }}</label>
 				<label class="control-label col-sm-2" ng-show="formData.isDormancyTrackingActive">{{'label.input.daysToInactive' | translate }}</label>
 				<div class="col-sm-4" ng-show="formData.isDormancyTrackingActive">
-					<input id="daysToInactive" type="text" class="form-control"
+					<input id="daysToInactive" type="number" class="form-control"
 						   ng-model="formData.daysToInactive">
 				</div>
 			</div>
 			<div class="form-group" ng-show="formData.isDormancyTrackingActive">
 				<label class="control-label col-sm-2">{{'label.input.daysToDormancy' | translate }}</label>
 				<div class="col-sm-4">
-					<input id="daysToDormancy" type="text" class="form-control"
+					<input id="daysToDormancy" type="number" class="form-control"
 						   ng-model="formData.daysToDormancy">
 				</div>
 				<label class="control-label col-sm-2">{{'label.input.daysToEscheat' | translate }}</label>
 				<div class="col-sm-4">
-					<input id="daysToEscheat" type="text" class="form-control"
+					<input id="daysToEscheat" type="number" class="form-control"
 						   ng-model="formData.daysToEscheat">
 				</div>
 			</div>
