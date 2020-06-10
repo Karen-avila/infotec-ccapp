@@ -21,6 +21,10 @@
                         <td>{{loanTransaction.loanCharge.dueDate | DateFormat}}</td>
                     </tr>
                     <tr>
+                        <th>{{'label.heading.installment' | translate}}</th>
+                        <td>{{loanTransaction.loanCharge.installment}}</td>
+                    </tr>
+                    <tr>
                         <th>{{'label.heading.days' | translate}}</th>
                         <td class="amount">{{days | FormatNumber : 0}}</td>
                     </tr>

@@ -555,7 +555,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="pointer-main" ng-class="{strikeoff : transaction.manuallyReversed==true}"
-                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && transaction.type.accrual">
+                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && (transaction.type.accrual || transaction.type.accrualOverdue)">
                                                     <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                                         {{transaction.officeName}}
                                                     </td>
@@ -1122,6 +1122,14 @@
                         <tr>
                             <th>{{'label.heading.numberOfExpiredPayments' | translate}}</th>
                             <td>{{payments.expired}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'label.account.overdue.since' | translate}}</th>
+                            <td>{{payments.firstOverdueDate | DateFormat}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{'label.account.overdue.days' | translate}}</th>
+                            <td>{{payments.overdueDays}}</td>
                         </tr>
                         <tr ng-show="loandetails.inArrears">
                             <th>{{'label.account.npa.since' | translate}}</th>
