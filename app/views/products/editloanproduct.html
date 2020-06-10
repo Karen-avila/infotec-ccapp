@@ -1136,7 +1136,7 @@
                         <select id="assetNPAOverdueInterestAccountId" ng-model="formData.assetNPAOverdueInterestAccountId"
                             chosen="assetAccountOptions"
                             ng-options='assetAccount.id as (assetAccount.glCode + " " + assetAccount.name) for assetAccount in assetAccountOptions'
-                            ng-change="loanproduct.accountingMappings.assetNPAInterestAccount.name = formValue(assetAccountOptions,formData.assetNPAInterestAccountId,'id','name')"
+                            ng-change="loanproduct.accountingMappings.assetNPAOverdueInterestAccount.name = formValue(assetAccountOptions,formData.assetNPAOverdueInterestAccountId,'id','name')"
                             value="{{assetAccount.id}}">
                         </select>
                     </div>
