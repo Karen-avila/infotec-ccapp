@@ -27,21 +27,21 @@
             </div>
         </div>
 
-        <table class="table">
-        <thead>
-        <tr class="graybg">
-            <th>{{'label.heading.office' | translate }}</th>
-            <th>{{'label.heading.accountingclosuredate' | translate }}</th>
-            <th>{{'label.heading.comments' | translate }}</th>
-            <th>{{'label.heading.closeaccountingcreatedby' | translate }}</th>
+        <table md-table>
+        <thead md-head>
+        <tr md-row>
+            <th md-column>{{'label.heading.office' | translate }}</th>
+            <th md-column>{{'label.heading.accountingclosuredate' | translate }}</th>
+            <th md-column>{{'label.heading.comments' | translate }}</th>
+            <th md-column>{{'label.heading.closeaccountingcreatedby' | translate }}</th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="pointer-main" ng-repeat="accountClosure in accountClosures">
-            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.officeName}}</td>
-            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.closingDate | DateFormat}}</td>
-            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.comments}}</td>
-            <td class="pointer" data-ng-click="routeTo(accountClosure.id)">{{accountClosure.createdByUsername}}</td>
+        <tbody md-body>
+        <tr md-row md-select="accountClosure" ng-repeat="accountClosure in accountClosures"  data-ng-click="routeTo(accountClosure.id)">
+            <td md-cell>{{accountClosure.officeName}}</td>
+            <td md-cell>{{accountClosure.closingDate | DateFormat}}</td>
+            <td md-cell>{{accountClosure.comments}}</td>
+            <td md-cell>{{accountClosure.createdByUsername}}</td>
         </tr>
         </tbody>
         </table>

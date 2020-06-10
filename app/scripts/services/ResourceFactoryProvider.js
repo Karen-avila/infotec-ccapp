@@ -570,7 +570,7 @@
                         get: { method: 'GET', params: {} }
                     }
                     ),
-                    addressFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
+                    addresssFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
                     clientAddress: defineResource(apiVer + "/client/:clientId/addresses", {}, {
@@ -700,7 +700,18 @@
                         save: { method: 'POST', params: {} },
                         delete: { method: 'DELETE', params: {} }
                     }),
-
+                    officeaddressFields: defineResource(apiVer + "/offices/address/template", {}, {
+                        get: { method: 'GET', params: {} }
+                    }
+                    ),
+                    addressFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
+                        get: { method: 'GET', params: {}, isArray: true }
+                    }),
+                    officeAddress: defineResource(apiVer + "/offices/:resourceId/address", {}, {
+                        post: { method: 'POST', params: { type: '@type' } },
+                        get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
+                        put: { method: 'PUT', params: {} }
+                    }),
                     adHocQueryResource: defineResource(apiVer + "/adhocquery/:adHocId", { adHocId: '@adHocId' }, {
                         getAllAdHocQuery: { method: 'GET', params: {}, isArray: true },
                         disableAdHocQuery: { method: 'POST' },

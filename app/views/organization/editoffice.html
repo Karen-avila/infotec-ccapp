@@ -28,11 +28,14 @@
     				        <label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}<span class="required">*</span></label>
     		
     				        <div class="col-sm-3">
-    				            <select chosen="offices" id="parentId" ng-model="formData.parentId"
-    				                    ng-options="office.id as office.name for office in offices"
-    				                    value="{{office.id}}" class="form-control"></select>
+    				            <md-select  id="parentId" ng-model="formData.parentId" placeholder="{{'label.selectone' | translate}}">
+									<md-option ng-repeat="office in offices" ng-value="office.id">
+                                     {{office.name}}
+									</md-option>
+									</md-select>	
     				        </div>
-                        </div>
+						</div>
+
     				    <div class="form-group">
     				        <label class="control-label col-sm-2" for="city">{{'label.input.office.cityid' | translate }}<span
     				                class="required">*</span></label>
@@ -71,9 +74,9 @@
     				    </div>
     				    <div class="col-md-12 center">
     				        <a id="cancel" href="#!/offices">
-    				            <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+    				            <md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
     				        </a>
-    				        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_OFFICE'>{{'label.button.save' | translate}}</button>
+    				        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_OFFICE'>{{'label.button.save' | translate}}</md-button>
     				    </div>
     		    </fieldset>
     		</form>

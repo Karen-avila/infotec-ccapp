@@ -5,50 +5,51 @@
         <li class="active">{{office.name}}</li>
     </ul>
     <div class="card">
-        <div class="content">
-            <uib-tabset class="overflowhidden marginbottom0 scrollable" tabset-name="officeTabset" scrollable>
-                <uib-tab heading="{{'label.heading.general' | translate}}">
-                    <div class="container-fluid">
-                        <div class="col-md-12 col-sm-12">
+        <md-content class="md-padding">
+            <md-tabs md-dynamic-height md-border-bottompersistent-tab class="full-width">
+                <md-tab>
+                    <md-tab-label>{{'label.heading.general' | translate}}</md-tab-label>
+                    <md-tab-body>
+                        <div class="col-md-12 col-sm-12 btn-group row">
                             <div class="row primarydiv">
                                 <div class="pull-right">
                                     <div class="btn-group">
-                                        <a href="#!/editoffice/{{office.id}}" class="btn btn-sm btn-primary"
+                                        <md-button href="#!/editoffice/{{office.id}}" class="md-raised md-primary"
                                             has-permission='UPDATE_OFFICE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
-                                            'label.button.edit' | translate }}</a>
+                                            'label.button.edit' | translate }}</md-button>
                                     </div>
                                 </div>
                             </div>
 
                             <h3><strong>{{office.name}}</strong></h3>
                             <table class="table-bordered table view-table" style="width: 350px">
-                                <tr>
-                                    <td>{{'label.heading.parentoffice' | translate }}</td>
-                                    <td>{{office.parentName}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.office.cityid' | translate }}</td>
-                                    <td>{{office.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.office.branchid' | translate }}</td>
-                                    <td>{{office.branch}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.openedon' | translate }}</td>
-                                    <td>{{office.openingDate | DateFormat}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.namedecorated' | translate }}</td>
-                                    <td>{{office.nameDecorated | DotRemove}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.externalid' | translate }}</td>
-                                    <td>{{office.externalId}}</td>
-                                </tr>
-                            </table>
+                                    <tr >
+                                        <th >{{'label.heading.parentoffice' | translate }}</th>
+                                        <td >{{office.parentName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.heading.office.cityid' | translate }}</th>
+                                        <td>{{office.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.heading.office.branchid' | translate }}</th>
+                                        <td>{{office.branch}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.heading.openedon' | translate }}</th>
+                                        <td>{{office.openingDate | DateFormat}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.heading.namedecorated' | translate }}</th>
+                                        <td>{{office.nameDecorated | DotRemove}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.heading.externalid' | translate }}</th>
+                                        <td>{{office.externalId}}</td>
+                                    </tr>
+
+                                </table>
                         </div>
-                    </div>
 					<div class="row">
 						<div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
 							<table class="table-minified">
@@ -95,8 +96,87 @@
                             </table>
                         </div>
                     </div>
-                </uib-tab>
-            </uib-tabset>
-        </div>
+              
+            </md-tab-body>
+          </md-tab>
+            <!--
+                                        SE AGREGA DIRECCIONES
+                                    -->
+          <md-tab >
+            <md-tab-label>{{'label.heading.documents' | translate}}</md-tab-label>
+            <md-tab-body>
+                <div class="col-md-12 col-sm-12 btn-group row">
+                    <div class="row primarydiv">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <md-button href="#!/editoffice/{{office.id}}" class="md-raised md-primary"
+                                    has-permission='UPDATE_OFFICE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
+                                    'label.button.edit' | translate }}</md-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3><strong>{{office.name}}</strong></h3>
+                    <table class="table-bordered table view-table" style="width: 350px">
+                                 
+                                    <tr>
+                                        <th>{{'label.heading.zip' | translate }}</th>
+                                        <td>  {{address.postalCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressType' | translate }}</th>
+                                        <td>{{}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.street' | translate }}</th>
+                                        <td>{{address.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline1' | translate }}</th>
+                                        <td> {{address.addressLine1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline2' | translate }}</th>
+                                        <td>{{address.addressLine2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline3' | translate }}</th>
+                                        <td>{{address.addressLine3}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{'label.input.city' | translate}}</th>
+                                        <td>{{address.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.country' | translate}}</th>
+                                        <td> {{address.countryName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.state_province' | translate}}</th>
+                                        <td> {{address.stateName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.latitude' | translate}}</th>
+                                        <td> {{address.latitude}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.longitude' | translate }}</th>
+                                        <td> {{address.longitude}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.is_active' | translate}}</th>
+                                        <td></td>
+                                    </tr>
+                            </table>
+            </md-tab-body>
+            </md-tab>
+  </md-tabs>
+            
+
+
+
+
+        </md-content>
     </div>
 </div>
