@@ -36,7 +36,7 @@
             for (var i = 1; i <= 28; i++) {
                 scope.interestRecalculationOnDayTypeOptions.push(i);
             }
-            resourceFactory.loanProductResource.get({ resourceType: 'template' }, function (data) {
+            resourceFactory.loanProductResource.get({resourceType: 'template' }, function (data) {
                 scope.product = data;
                 scope.assetAccountOptions = scope.product.accountingMappingOptions.assetAccountOptions || [];
                 scope.incomeAccountOptions = scope.product.accountingMappingOptions.incomeAccountOptions || [];
