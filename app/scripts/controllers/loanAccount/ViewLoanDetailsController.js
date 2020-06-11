@@ -487,6 +487,7 @@
                 }
 
                 const today = new Date();
+                var firstOverduePayment = false;
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
@@ -496,6 +497,13 @@
                             scope.payments.pending++;
                             if (new Date(period.dueDate) < today) {
                                 scope.payments.expired++;
+                                if (!firstOverduePayment) {
+                                    firstOverduePayment = true;
+                                    const periodDate = new Date(period.dueDate);
+                                    scope.payments.firstOverdueDate = periodDate;
+                                    const diffTime = Math.abs(today - periodDate);
+                                    scope.payments.overdueDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                                }
                             }
                         }
                         scope.payments.total++;

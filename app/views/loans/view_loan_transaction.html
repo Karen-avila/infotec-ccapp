@@ -6,7 +6,7 @@
     </ul>
     <script type="text/ng-template" id="undotransaction.html">
         <div class="modal-header silver">
-            <h3 class="bolder">{{'label.button.undo' | translate}}</h3>
+            <h3 class="bolder">{{'label.button.undo.transaction' | translate}}</h3>
         </div>
         <div class="modal-body ">
             <api-validate></api-validate>
@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <th>{{'label.heading.type' | translate}}</th>
-                        <td>{{transaction.type.value | translate}</td>
+                        <td>{{transaction.type.value | translate}}</td>
                     </tr>
                     <tr>
                         <th>{{'label.heading.date' | translate}}</th>
