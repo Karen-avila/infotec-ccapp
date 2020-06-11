@@ -47,6 +47,55 @@
                                         <th>{{'label.heading.externalid' | translate }}</th>
                                         <td>{{office.externalId}}</td>
                                     </tr>
+                                    <tr>
+                                        <th>{{'label.heading.zip' | translate }}</th>
+                                        <td>  {{address.postalCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressType' | translate }}</th>
+                                        <td>{{}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.street' | translate }}</th>
+                                        <td>{{address.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline1' | translate }}</th>
+                                        <td> {{address.addressLine1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline2' | translate }}</th>
+                                        <td>{{address.addressLine2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.addressline3' | translate }}</th>
+                                        <td>{{address.addressLine3}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{'label.input.city' | translate}}</th>
+                                        <td>{{address.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.country' | translate}}</th>
+                                        <td> {{address.countryName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.state_province' | translate}}</th>
+                                        <td> {{address.stateName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.latitude' | translate}}</th>
+                                        <td> {{address.latitude}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.longitude' | translate }}</th>
+                                        <td> {{address.longitude}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'label.input.is_active' | translate}}</th>
+                                        <td></td>
+                                    </tr>
 
                                 </table>
                         </div>
@@ -99,84 +148,8 @@
               
             </md-tab-body>
           </md-tab>
-            <!--
-                                        SE AGREGA DIRECCIONES
-                                    -->
-          <md-tab >
-            <md-tab-label>{{'label.heading.documents' | translate}}</md-tab-label>
-            <md-tab-body>
-                <div class="col-md-12 col-sm-12 btn-group row">
-                    <div class="row primarydiv">
-                        <div class="pull-right">
-                            <div class="btn-group">
-                                <md-button href="#!/editoffice/{{office.id}}" class="md-raised md-primary"
-                                    has-permission='UPDATE_OFFICE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
-                                    'label.button.edit' | translate }}</md-button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3><strong>{{office.name}}</strong></h3>
-                    <table class="table-bordered table view-table" style="width: 350px">
-                                 
-                                    <tr>
-                                        <th>{{'label.heading.zip' | translate }}</th>
-                                        <td>  {{address.postalCode}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.addressType' | translate }}</th>
-                                        <td>{{}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.street' | translate }}</th>
-                                        <td>{{address.street}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.addressline1' | translate }}</th>
-                                        <td> {{address.addressLine1}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.addressline2' | translate }}</th>
-                                        <td>{{address.addressLine2}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.addressline3' | translate }}</th>
-                                        <td>{{address.addressLine3}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>{{'label.input.city' | translate}}</th>
-                                        <td>{{address.city}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.country' | translate}}</th>
-                                        <td> {{address.countryName}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.state_province' | translate}}</th>
-                                        <td> {{address.stateName}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.latitude' | translate}}</th>
-                                        <td> {{address.latitude}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.longitude' | translate }}</th>
-                                        <td> {{address.longitude}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'label.input.is_active' | translate}}</th>
-                                        <td></td>
-                                    </tr>
-                            </table>
-            </md-tab-body>
-            </md-tab>
   </md-tabs>
             
-
-
-
-
         </md-content>
     </div>
 </div>

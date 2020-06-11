@@ -7,6 +7,7 @@
             scope.restrictDate = new Date();
             scope.formData = {};
             scope.formDat = {};
+            scope.address={};
            
             //address
             scope.addressTypes = [];
@@ -26,12 +27,15 @@
             
 
             });
+
+
+          
                  //----------
             resourceFactory.clientTemplateResource.get(function(data) {
                 scope.enableAddress = data.isAddressEnabled;
-                scope.addressTypes = data.address[0].addressTypeIdOptions;
-                scope.countryOptions = data.address[0].countryIdOptions;
-                scope.stateOptions = data.address[0].stateProvinceIdOptions;
+                scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
+                scope.countryOptions = data.address[0].countryIdOptions.sort(sortBy("name"));
+                scope.stateOptions = data.address[0].stateProvinceIdOptions.sort(sortBy("name"));
                 resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function(data) {
                     for (var i = 0; i < data.length; i++) {
                         data[i].field = 'scope.' + data[i].field;
@@ -40,7 +44,7 @@
                 })
 
             });
-            //---------
+
              scope.minDat = function() {
                  for(var i=0;i<scope.offices.length;i++) {
                      if ((scope.offices[i].id) === (scope.formData.parentId)) {
@@ -61,75 +65,57 @@
             // end of address
 
             scope.submit = function () {
-                this.formData.locale = scope.optlang.code;
-                var reqDate = dateFilter(scope.first.date, scope.df);
-                this.formData.dateFormat = scope.df;
-                this.formData.openingDate = reqDate;
-                this.formData.name = this.formData.name.toUpperCase();
-                this.formData.city = this.formData.city.padStart(3, "0");
-                this.formData.branch = this.formData.branch.padStart(6, "0");
-
-                resourceFactory.officeResource.save(this.formData, function (data) {
-                    location.path('/viewoffice/' + data.resourceId);
-                });
-            
-                    scope.formData.address = [];
-                    for (var i = 0; i < scope.addressArray.length; i++) {
-                        var temp = new Object();
-
-                        if (scope.addressArray[i].addressTypeId) {
-                            temp.addressTypeId = scope.addressArray[i].addressTypeId;
-                        }
-                        if (scope.addressArray[i].street) {
-                            temp.street = scope.addressArray[i].street;
-                        }
-                        if (scope.addressArray[i].addressLine1) {
-                            temp.addressLine1 = scope.addressArray[i].addressLine1;
-                        }
-                        if (scope.addressArray[i].addressLine2) {
-                            temp.addressLine2 = scope.addressArray[i].addressLine2;
-                        }
-                        if (scope.addressArray[i].addressLine3) {
-                            temp.addressLine3 = scope.addressArray[i].addressLine3;
-                        }
-                    
-                   
-                        if (scope.addressArray[i].city) {
-                            temp.city = scope.addressArray[i].city;
-                        }
-                      
-                        if (scope.addressArray[i].countryId) {
-                            temp.countryId = scope.addressArray[i].countryId;
-                        }
-                      
-                        if (scope.addressArray[i].stateProvinceId) {
-                            temp.stateProvinceId = scope.addressArray[i].stateProvinceId;
-                        }
-                        if (scope.addressArray[i].postalCode) {
-                            temp.postalCode = scope.addressArray[i].postalCode;
-                        }
-                        if (scope.addressArray[i].latitude) {
-                            temp.latitude = scope.addressArray[i].latitude;
-                        }
-                        if (scope.addressArray[i].longitude) {
-                            temp.longitude = scope.addressArray[i].longitude;
-                        }
-                        if (scope.addressArray[i].isActive) {
-                            temp.isActive = scope.addressArray[i].isActive;
-                        }
-                        if (scope.addressArray[i].locale) {
-                            temp.locale = scope.addressArray[i].locale;
-                        }
-                   
-                        scope.formData.address.push(temp);
-                    
-                }
-                resourceFactory.officeAddress.save(this.formData, function (data) {
-                    location.path('/viewoffice/' + data.resourceId);
-                });
+                const reqDate = dateFilter(scope.first.date, scope.df)
+                this.formData.locale = scope.optlang.code
+                this.formData.dateFormat = scope.df
+                this.formData.openingDate = reqDate
+                this.formData.name = this.formData.name ? this.formData.name.toUpperCase() : undefined
+                this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
+                this.formData.branch = this.formData.branch ? this.formData.branch.padStart(6, "0") : undefined
+                resourceFactory.officeResource.save(this.formData, data => {
+                    const address=scope.address;
+                    const newAddress = {
+                           
+                        addressTypeId:address.addressTypeId ? address.addressTypeId :'',
+                        street : address.street ? address.street : '',
+                        addressLine1: address.addressLine1 ? address.addressLine1 : '',
+                        addressLine2: address.addressLine2 ? address.addressLine2 : '',
+                        addressLine3: address.addressLine3 ? address.addressLine3 : '',
+                        city:address.city ? address.city : '',
+                        countryId:address.countryId ? address.countryId : '',
+                        stateProvinceId: address.stateProvinceId ? address.stateProvinceId : '',
+                        postalCode:address.postalCode ? address.postalCode : '',
+                        latitude:address.latitude ? address.latitude :'',
+                        longitude:address.longitude ? address.longitude : '',
+                        isActive:address.isActive ? address.isActive : false,
+                        locale : scope.optlang.code
+                       };
+                       console.log(JSON.stringify(newAddress));
               
-              
+                        resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress,function(dataaddress){
+                            location.path('/viewoffice/' + data.resourceId)
+                        });
+                          
+                    });
             };
+
+          
+           function sortBy(property) {
+               var sortOrder = 1;
+
+               if(property[0] === "-") {
+                   sortOrder = -1;
+                   property = property.substr(1);
+               }
+
+               return function (a,b) {
+                   if(sortOrder == -1){
+                       return b[property].localeCompare(a[property]);
+                   }else{
+                       return a[property].localeCompare(b[property]);
+                   }        
+               }
+           }
         }
     });
     mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateOfficeController]).run(function ($log) {

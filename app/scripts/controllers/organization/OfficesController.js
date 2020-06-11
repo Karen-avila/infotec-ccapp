@@ -13,13 +13,7 @@
                 scope.searchCriteria.offices = null;
                 scope.saveSC();
             }
-            scope.filterText = scope.searchCriteria.offices || '';
-
-            scope.onFilter = function () {
-                scope.searchCriteria.offices = scope.filterText;
-                scope.saveSC();
-            };
-
+       
             scope.deepCopy = function (obj) {
                 if (Object.prototype.toString.call(obj) === '[object Array]') {
                     var out = [], i = 0, len = obj.length;
@@ -66,6 +60,38 @@
                 }
                 scope.treedata = root;
             });
+
+
+
+      scope.filters = [];
+      scope.$watch("filter.search", function (newValue, oldValue) {
+        if (newValue != undefined) {
+          scope.filters = newValue.split(" ");
+        }
+      });
+
+      scope.searachData = {};
+
+      scope.customSearch = function (item) {
+        scope.searachData.status = true;
+
+        angular.forEach(scope.filters, function (value1, key) {
+          scope.searachData.tempStatus = false;
+          angular.forEach(item, function (value2, key) {
+            var dataType = typeof value2;
+
+            if (dataType == "string" && !value2.includes("object")) {
+              if (value2.toLowerCase().includes(value1)) {
+                scope.searachData.tempStatus = true;
+              }
+            }
+          });
+          scope.searachData.status =
+            scope.searachData.status & scope.searachData.tempStatus;
+        });
+
+        return scope.searachData.status;
+      };
         }
     });
     mifosX.ng.application.controller('OfficesController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.OfficesController]).run(function ($log) {

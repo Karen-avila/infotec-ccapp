@@ -707,7 +707,7 @@
                     addressFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
-                    officeAddress: defineResource(apiVer + "/offices/:resourceId/address", {}, {
+                    officeAddress: defineResource(apiVer + "/offices/:officeId/address", {}, {
                         post: { method: 'POST', params: { type: '@type' } },
                         get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
                         put: { method: 'PUT', params: {} }
