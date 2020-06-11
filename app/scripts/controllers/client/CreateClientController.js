@@ -253,6 +253,26 @@
                 }
             };
 
+            scope.$watch('formData.firstname', function (value) {
+                scope.createCurpRfc();
+            });
+
+            scope.$watch('formData.lastname', function (value) {
+                scope.createCurpRfc();
+            });
+
+            scope.$watch('formData.surname', function (value) {
+                scope.createCurpRfc();
+            });
+
+            scope.$watch('formData.genderId', function (value) {
+                scope.createCurpRfc();
+            });
+
+            scope.$watch('formData.birthPlaceId', function (value) {
+                scope.createCurpRfc();
+            });
+
             scope.$watch('first.dateOfBirth', function (value) {
                 scope.createCurpRfc();
             });

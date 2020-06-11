@@ -219,6 +219,7 @@
                         scope.formData.assetNPALoanPortfolioAccountId = scope.product.accountingMappings.assetNPALoanPortfolioAccount.id;
                         scope.formData.assetNPAInterestAccountId = scope.product.accountingMappings.assetNPAInterestAccount.id;
                         scope.formData.assetOverdueInterestAccountId = scope.product.accountingMappings.assetOverdueInterestAccount.id;
+                        scope.formData.assetNPAOverdueInterestAccountId = scope.product.accountingMappings.assetNPAOverdueInterestAccount.id;
                         scope.formData.incomeFromOverdueInterestAccountId = scope.product.accountingMappings.incomeFromOverdueInterestAccount.id;
                     }
 
