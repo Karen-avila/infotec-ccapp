@@ -24,22 +24,11 @@
                 scope.schedulerstatus = data.active === true ? 'Active' : 'Standby';
             });
 
-            scope.errorLog = function (id){
+            scope.errorLog = function (ev, id){
                 scope.id = id;
-                $uibModal.open({
-                    templateUrl: 'errorlog.html',
-                    controller: ErrorLogCtrl,
-                    resolve: {
-                        ids: function () {
-                            return id;
-                        }
-                    }
-                });
                 $mdDialog.show({
                     controller: ErrorLogCtrl,
                     templateUrl: 'errorlog.html',
-
-                    controller: DialogCalcsController,
                     templateUrl: 'views/system/viewJobErrorLog.tmpl.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
@@ -47,21 +36,22 @@
                     fullscreen: true, // Only for -xs, -sm breakpoints.
                     locals: {
                         data: {
-                            jobId: id
+                            jobId: id,
+                            jobs: scope.jobs
                         }
                     },
                 });  
             };
 
             var ErrorLogCtrl = function ($scope, $mdDialog, data) {
-                for (var i in scope.jobs) {
-                    if (scope.jobs[i].jobId === ids) {
-                        var index = i;
+                for (var i in data.jobs) {
+                    if (data.jobs[i].jobId === data.jobId) {
+                        $scope.error = data.jobs[i].lastRunHistory.jobRunErrorLog;
+                        break;
                     }
                 }
 
-                $scope.error = scope.jobs[index].lastRunHistory.jobRunErrorLog;
-                scope.closeDialog = function() {
+                $scope.closeDialog = function() {
                     $mdDialog.hide();
                 }
             };
