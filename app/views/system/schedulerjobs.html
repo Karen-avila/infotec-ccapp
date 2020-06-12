@@ -79,8 +79,8 @@
                                                 <i class="fa fa-circle {{job.lastRunHistory.status | StatusLookup}}"></i> 
                                                 {{'jobStatusType.' + job.lastRunHistory.status | translate}}</td>
                                             <td md-cell>{{job.currentlyRunning | YesOrNo}}</td>
-                                            <td><md-button md-no-ink class="md-warning" ng-show="job.lastRunHistory.jobRunErrorLog" 
-                                                ng-click="errorLog(job.jobId)" aria-label="{{'jobDetails' + job.id}}">
+                                            <td><md-button md-no-ink class="md-warn" ng-show="job.lastRunHistory.jobRunErrorLog" 
+                                                ng-click="errorLog($event, job.jobId)" aria-label="{{'jobDetails' + job.id}}">
                                                 <i class="fa fa-exclamation"></i></md-button>
                                             </td>
                                         </tr>
