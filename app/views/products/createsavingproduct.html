@@ -65,11 +65,14 @@
                                 tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-3">
-                            <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                                ng-options="currency.code as currency.name | translate for currency in product.currencyOptions"
+                            <md-select id="currencyCode" ng-model="formData.currencyCode" 
+                                placeholder="{{'label.selectone' | translate}}"
                                 ng-change="savingproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
-                                value="{{currency.code}}">
-                            </select>
+                                >
+                                <md-option ng-repeat="currency in product.currencyOptions" ng-value="currency.code">
+                                    {{currency.name | translate}}
+                                </md-option>
+                            </md-select>
                         </div>
                         <label
                             class="control-label col-sm-3">{{'label.input.decimalplaces' | translate}}
@@ -421,7 +424,7 @@
                             </tr>
                             <tr ng-repeat="charge in charges">
                                 <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                <td>{{'charge.type' + charge.chargeCalculationType.value | translate}}</td>
+                                <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
                                 <td></td>
                                 <td>{{charge.amount| FormatNumber}}</td>
                                 <td></td>
