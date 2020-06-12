@@ -585,13 +585,13 @@
                                                     </td>
             
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true && transaction.penaltyChargesPortion" ng-click="showTransactionCalculation($event, transaction.id)">
+                                                        <span ng-if="allowShowTransactionCalculation(transaction)" ng-click="showTransactionCalculation($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewdetails' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
                                                     </td>
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true" ng-click="showTransactionReceipt($event, transaction.id)">
+                                                        <span ng-if="allowShowTransactionReceipt(transaction)" ng-click="showTransactionReceipt($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewreceipts' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
