@@ -61,7 +61,7 @@
                     <strong> <i ng-hide="loandetails.inArrears"
                                 class="fa fa-circle {{loandetails.status.code | StatusLookup}}"></i>
                         <i ng-show="loandetails.inArrears"
-                            class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
+                            class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i> {{loandetails.loanProductName}} (#{{loandetails.accountNo}})</strong>
                 </span>
             </div>
             <br>
@@ -555,7 +555,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="pointer-main" ng-class="{strikeoff : transaction.manuallyReversed==true}"
-                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && transaction.type.accrual">
+                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && (transaction.type.accrual || transaction.type.accrualOverdue)">
                                                     <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                                         {{transaction.officeName}}
                                                     </td>
@@ -585,13 +585,13 @@
                                                     </td>
             
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true && transaction.penaltyChargesPortion" ng-click="showTransactionCalculation($event, transaction.id)">
+                                                        <span ng-if="allowShowTransactionCalculation(transaction)" ng-click="showTransactionCalculation($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewdetails' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
                                                     </td>
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true" ng-click="showTransactionReceipt($event, transaction.id)">
+                                                        <span ng-if="allowShowTransactionReceipt(transaction)" ng-click="showTransactionReceipt($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewreceipts' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
@@ -1127,7 +1127,15 @@
                             <th>{{'label.account.overdue.since' | translate}}</th>
                             <td>{{loandetails.summary.overdueSinceDate | DateFormat}}</td>
                         </tr>
-                        <tr>
+                        <tr ng-show="loandetails.inArrears">
+                            <th>{{'label.account.overdue.days' | translate}}</th>
+                            <td>{{loandetails.summary.overdueDays}}</td>
+                        </tr>
+                        <tr ng-show="loandetails.inArrears">
+                            <th>{{'label.account.npa.since' | translate}}</th>
+                            <td>{{loandetails.summary.npaSinceDate | DateFormat}}</td>
+                        </tr>
+                        <tr ng-show="loandetails.inArrears">
                             <th>{{'label.account.is.npa' | translate}}</th>
                             <td>{{loandetails.isNPA | translate}}</td>
                         </tr>

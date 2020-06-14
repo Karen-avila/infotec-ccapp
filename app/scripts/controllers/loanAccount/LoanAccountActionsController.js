@@ -551,9 +551,6 @@
                 if (scope.action == "recoverguarantee") {
                     params.command = "recoverGuarantees";
                 }
-                if (scope.action == "prepayloan") {
-                    params.command = "repayment";
-                }
                 
                 if (scope.action == "approve") {
                     this.formData.expectedDisbursementDate = dateFilter(scope.form.expectedDisbursementDate, scope.df);
