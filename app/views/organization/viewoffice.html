@@ -22,7 +22,7 @@
                             </div>
 
                             <h3><strong>{{office.name}}</strong></h3>
-                            <table class="table-bordered table view-table" style="width: 350px">
+                            <table class="table" class="table table-condensed">
                                     <tr >
                                         <th >{{'label.heading.parentoffice' | translate }}</th>
                                         <td >{{office.parentName}}</td>
@@ -49,48 +49,48 @@
                                     </tr>
                                     <tr>
                                         <th>{{'label.heading.zip' | translate }}</th>
-                                        <td>  {{address.postalCode}}</td>
+                                        <td>  {{office.postalCode}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.addressType' | translate }}</th>
-                                        <td>{{}}</td>
+                                        <td>{{office.addressType}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.street' | translate }}</th>
-                                        <td>{{address.street}}</td>
+                                        <td>{{office.street}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.addressline1' | translate }}</th>
-                                        <td> {{address.addressLine1}}</td>
+                                        <td> {{office.addressLine1}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.addressline2' | translate }}</th>
-                                        <td>{{address.addressLine2}}</td>
+                                        <td>{{office.addressLine2}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.addressline3' | translate }}</th>
-                                        <td>{{address.addressLine3}}</td>
+                                        <td>{{office.addressLine3}}</td>
                                     </tr>
 
                                     <tr>
                                         <th>{{'label.input.city' | translate}}</th>
-                                        <td>{{address.city}}</td>
+                                        <td>{{office.city}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.country' | translate}}</th>
-                                        <td> {{address.countryName}}</td>
+                                        <td> {{office.countryName}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.state_province' | translate}}</th>
-                                        <td> {{address.stateName}}</td>
+                                        <td> {{office.stateName}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.latitude' | translate}}</th>
-                                        <td> {{address.latitude}}</td>
+                                        <td> {{office.latitude}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.longitude' | translate }}</th>
-                                        <td> {{address.longitude}}</td>
+                                        <td> {{office.longitude}}</td>
                                     </tr>
                                     <tr>
                                         <th>{{'label.input.is_active' | translate}}</th>
