@@ -4,7 +4,8 @@
             scope.charges = [];
             scope.datatabledetails = [];
             scope.datatableLoaded = false;
-
+          
+           
             resourceFactory.officeResource.get({ officeId: routeParams.id }, function (data) {
                 scope.office = data;
             });

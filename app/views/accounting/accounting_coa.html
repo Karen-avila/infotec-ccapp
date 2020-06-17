@@ -50,7 +50,7 @@
                     </thead>
                     <tbody md-body>
                     
-                    <tr   md-row md-select="coadata" ng-repeat="coadata in coadatas | filter: customSearch | orderBy: query.order" data-ng-click="routeTo(coadata.id)">
+                    <tr md-row md-select="coadata" ng-repeat="coadata in coadatas | filter: customSearch | orderBy: query.order" data-ng-click="routeTo(coadata.id)">
                         <td md-cell>{{coadata.type.value | translate}}</td>
                         <td md-cell>{{coadata.glCode}}</td>
                         <td md-cell>{{coadata.name}}</td>

@@ -15,35 +15,35 @@
 
             <br>
             <hr/>
-            <table class="table">
-                <thead>
-                <tr class="graybg">
-                    <th>{{'label.heading.createdby' | translate}}</th>
-                    <th>{{'label.heading.createdon' | translate}}</th>
-                    <th>{{'label.heading.journalentry.created' | translate}}</th>
-                    <th>{{'label.heading.viewreport' | translate}}</th>
-                    <th>{{'label.heading.recreateprovisioning' | translate}}</th>
-                    <th>{{'label.heading.viewjournals' | translate}}</th>
+            <table md-table>
+                <thead md-head>
+                <tr md-row>
+                    <th md-column>{{'label.heading.createdby' | translate}}</th>
+                    <th md-column>{{'label.heading.createdon' | translate}}</th>
+                    <th md-column>{{'label.heading.journalentry.created' | translate}}</th>
+                    <th md-column>{{'label.heading.viewreport' | translate}}</th>
+                    <th md-column>{{'label.heading.recreateprovisioning' | translate}}</th>
+                    <th md-column>{{'label.heading.viewjournals' | translate}}</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr class="pointer-main" ng-repeat="entryObject in entries.currentPageItems | filter:filterText">
-                    <td>{{entryObject.createdUser}}</td>
-                    <td>{{entryObject.createdDate | DateFormat}}</td>
+                <tbody md-body>
+                <tr md-row ng-repeat="entryObject in entries.currentPageItems | filter:filterText">
+                    <td md-cell>{{entryObject.createdUser}}</td>
+                    <td md-cell>{{entryObject.createdDate | DateFormat}}</td>
 
-                    <td><input type="checkbox" name="name1" ng-model="entryObject.journalEntry" disabled/>&nbsp;</td>
-                    <td>
-                        <button class="btn btn-info" id="viewreport" data-ng-click="routeTo(entryObject.id)" type="submit" name="viewreport">
+                    <td md-cell><input type="checkbox" name="name1" ng-model="entryObject.journalEntry" disabled/>&nbsp;</td>
+                    <td md-cell>
+                        <md-button class="md-raised" id="viewreport" data-ng-click="routeTo(entryObject.id)" type="submit" name="viewreport">
                             <i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}
-                        </button>
+                        </md-button>
                     </td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" id="recreate" data-ng-click="recreate(entryObject.id)" type="submit" name="recreate"
-                        ng-disabled="entryObject.journalEntry"><i class="fa fa-edit"></i>&nbsp;&nbsp;{{'label.button.recreate' | translate}}</button>
+                    <td md-cell>
+                        <md-button class="md-raised md-primary" id="recreate" data-ng-click="recreate(entryObject.id)" type="submit" name="recreate"
+                        ng-disabled="entryObject.journalEntry"><i class="fa fa-edit"></i>&nbsp;&nbsp;{{'label.button.recreate' | translate}}</md-button>
                     </td>
-                    <td>
-                        <button class="btn btn-info" id="viewjournals" data-ng-click="viewJournals(entryObject.id)" type="submit" name="viewjournals"
-                        ng-disabled="!entryObject.journalEntry"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}</button>
+                    <td md-cell>
+                        <md-button class="md-raised" id="viewjournals" data-ng-click="viewJournals(entryObject.id)" type="submit" name="viewjournals"
+                        ng-disabled="!entryObject.journalEntry"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}</md-button>
                     </td>
 
                 </tr>

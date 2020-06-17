@@ -52,29 +52,29 @@
                     </div>
                 </div>
 
-                <table class="table" ng-show="allGls">
-                    <thead>
-                    <tr class="graybg">
-                        <th>{{'label.heading.type' | translate}}</th>
-                        <th>{{'label.heading.glcode' | translate}}</th>
-                        <th>{{'label.heading.account' | translate}}</th>
-                        <th ng-if="totalDebitAmount > 0">{{'label.heading.debit' | translate}} : {{totalDebitAmount | FormatNumber}}</th>
-                        <th ng-if="totalDebitAmount == 0">{{'label.heading.debit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'DEBIT'  | FormatNumber}} </th>
-                        <th ng-if="totalCreditAmount > 0">{{'label.heading.credit' | translate}} : {{totalCreditAmount | FormatNumber}}</th>
-                        <th ng-if="totalCreditAmount == 0">{{'label.heading.credit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'CREDIT'  | FormatNumber}} </th>
+                <table md-table ng-show="allGls">
+                    <thead md-head>
+                    <tr md-row>
+                        <th md-column>{{'label.heading.type' | translate}}</th>
+                        <th md-column>{{'label.heading.glcode' | translate}}</th>
+                        <th md-column>{{'label.heading.account' | translate}}</th>
+                        <th md-column ng-if="totalDebitAmount > 0">{{'label.heading.debit' | translate}} : {{totalDebitAmount | FormatNumber}}</th>
+                        <th md-column ng-if="totalDebitAmount == 0">{{'label.heading.debit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'DEBIT'  | FormatNumber}} </th>
+                        <th md-column ng-if="totalCreditAmount > 0">{{'label.heading.credit' | translate}} : {{totalCreditAmount | FormatNumber}}</th>
+                        <th md-column ng-if="totalCreditAmount == 0">{{'label.heading.credit' | translate}} : {{ allGls | AddUpTotalFor:'amount':'entryType.value':'CREDIT'  | FormatNumber}} </th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr ng-repeat="gl in allGls">
-                        <td>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="gl in allGls">
+                        <td md-cell>
                             <span ng-show="allGls[$index].glAccountType.value != allGls[$index-1].glAccountType.value">
                             {{gl.glAccountType.value | translate}}
                             </span>
                         </td>
-                        <td>{{gl.glAccountCode}}</td>
-                        <td>{{gl.glAccountName}}</td>
-                        <td><input type="text" name="debits{{$index}}" ng-model="gl.debit"  number-format class="form-control" ng-change="keyPress()" /></td>
-                        <td><input type="text" name="credits{{$index}}" ng-model="gl.credit"  number-format class="form-control" ng-change="keyPress()" /></td>
+                        <td md-cell>{{gl.glAccountCode}}</td>
+                        <td md-cell>{{gl.glAccountName}}</td>
+                        <td md-cell><input type="text" name="debits{{$index}}" ng-model="gl.debit"  number-format class="form-control" ng-change="keyPress()" /></td>
+                        <td md-cell><input type="text" name="credits{{$index}}" ng-model="gl.credit"  number-format class="form-control" ng-change="keyPress()" /></td>
                     </tr>
                     </tbody>
                 </table>
