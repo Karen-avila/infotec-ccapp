@@ -1,61 +1,97 @@
 <div class="content-container" ng-controller="OfficesController">
-    <ul class="breadcrumb">
-        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li class="active">{{'label.anchor.manageoffices' | translate}}</li>
-    </ul>
-    <div class="card">
-        <div class="content">
-            <div class="toolbar">
-                <div class="pull-right">
-                    <md-button ng-show="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm md-primary"><i
-                            class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</md-button>
-                    <md-button ng-hide="isTreeView" ng-click="isTreeView=!isTreeView" class="btn btn-sm md-primary"><i
-                            class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</md-button>
-                    <md-button href="#!/createoffice" class="btn btn-sm btn-primary" has-permission='CREATE_OFFICE'><i
-                            class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createoffice' | translate}}</md-button>&nbsp;&nbsp;
-                    <md-button href="#!/bulkimportoffices" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_OFFICE'><i
-                            + class="fa fa-upload"></i>&nbsp;{{'label.button.importoffices' | translate}}</md-button>
-                </div>
-            </div>
-            <br>
-            <div class="clear"></div>
-            <div ng-hide="isTreeView">
-                <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()"
-                    class="form-control span marginbottom0px"
-                    placeholder="{{'label.input.filterbynameexternalid' | translate}}">
-                <table class="table">
-                    <thead>
-                        <tr class="graybg">
-                            <th>{{'label.heading.officeName' | translate}}</th>
-                            <th>{{'label.heading.office.cityid' | translate}}</th>
-                            <th>{{'label.heading.office.branchid' | translate}}</th>
-                            <th>{{'label.heading.externalid' | translate}}</th>
-                            <th>{{'label.heading.parentoffice' | translate}}</th>
-                            <th>{{'label.heading.openedon' | translate}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer-main"
-                            dir-paginate="office in offices | orderBy:'name':reverse  | filter:filterText |  itemsPerPage: OfficesPerPage">
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.name}}</td>
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.city}}</td>
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.branch}}</td>
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.externalId}}</td>
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.parentName}}</td>
-                            <td class="pointer" data-ng-click="routeTo(office.id)">{{office.openingDate | DateFormat}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <dir-pagination-controls boundary-links="true"
-                    template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html">
-                </dir-pagination-controls>
-            </div>
-            <div ng-show="isTreeView">
-                <div data-angular-treeview="true" data-tree-id="treeview" data-tree-model="treedata" data-node-id="id"
-                    data-node-label="name" data-node-children="children">
-                </div>
-            </div>
+  <ul class="breadcrumb">
+    <li>
+      <a href="#!/organization">{{'label.anchor.organization' | translate}}</a>
+    </li>
+    <li class="active">{{'label.anchor.manageoffices' | translate}}</li>
+  </ul>
+  <div class="card">
+    <div class="content">
+      <div class="toolbar">
+        <div class="pull-right">
+          <md-button
+            ng-show="isTreeView"
+            ng-click="isTreeView=!isTreeView"
+            class="btn btn-sm md-primary"
+            ><i class="fa fa-list"></i>&nbsp;&nbsp;{{'label.button.listview' |
+            translate}}</md-button
+          >
+          <md-button
+            ng-hide="isTreeView"
+            ng-click="isTreeView=!isTreeView"
+            class="btn btn-sm md-primary"
+            ><i class="fa fa-sitemap"></i>&nbsp;&nbsp;{{'label.button.treeview'
+            | translate}}</md-button
+          >
+          <md-button
+            href="#!/createoffice"
+            class="btn btn-sm md-primary"
+            has-permission="CREATE_OFFICE"
+            ><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.createoffice'
+            | translate}}</md-button
+          >&nbsp;&nbsp;
         </div>
+      </div>
+      <br />
+      <div class="clear"></div>
+
+      <div ng-hide="isTreeView">
+        <md-input-container class="full-width" ng-show="offices.length > 0" >
+          <div class="row">
+            <div class="col-md-7">
+              <md-input-container class="full-width">
+                <label
+                  >{{'label.input.filterbynameexternalid' | translate}}</label
+                >
+                <input ng-model="filter.search" />
+              </md-input-container>
+            </div>
+            <md-divider></md-divider>
+          </div>
+          <div class="row">
+            <div clas="col-sm-12">
+              <table md-table>
+                <thead md-head md-order="query.order">
+                  <tr md-row>
+                    <th md-column md-order-by="name">{{'label.heading.officeName' | translate}}</th>
+                    <th md-column md-order-by="city">{{'label.heading.office.cityid' | translate}}</th>
+                    <th md-column md-order-by="branch">{{'label.heading.office.branchid' | translate}}</th>
+                    <th md-column md-order-by="externalId">{{'label.heading.externalid' | translate}}</th>
+                    <th md-column md-order-by="parentName">{{'label.heading.parentoffice' | translate}}</th>
+                    <th md-column md-order-by="openingDate">{{'label.heading.openedon' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody md-body>
+                  <tr md-row md-select="office"
+                    ng-repeat="office in offices | filter:customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                    data-ng-click="routeTo(office.id)">
+                    <td md-cell>{{office.name}}</td>
+                    <td md-cell>{{office.city}}</td>
+                    <td md-cell>{{office.branch}}</td>
+                    <td md-cell>{{office.externalId}}</td>
+                    <td md-cell>{{office.parentName}}</td>
+                    <td md-cell>{{office.openingDate | DateFormat}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-table-pagination ng-show="offices.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+            md-page="query.page" md-total="{{totalOffices}}" md-on-paginate="getResultsPage" md-page-select>
+        </md-table-pagination>
+      </div>
+      <div ng-show="isTreeView">
+        <div
+          data-angular-treeview="true"
+          data-tree-id="treeview"
+          data-tree-model="treedata"
+          data-node-id="id"
+          data-node-label="name"
+          data-node-children="children"
+        ></div>
+      </div>
     </div>
+  </div>
 </div>
