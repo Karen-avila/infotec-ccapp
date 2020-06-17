@@ -8,7 +8,7 @@
             scope.accountingOptions = ['None', 'Cash', 'Accrual(Periodic)', 'Accrual(Upfront)'];
             scope.floatingrateoptions = [];
             scope.loanProductConfigurableAttributes = [];
-            scope.showOrHideValue = "show";
+            scope.showOrHideValue = "Mostrar";
             scope.configureFundOptions = [];
             scope.specificIncomeAccountMapping = [];
             scope.penaltySpecificIncomeaccounts = [];
@@ -156,12 +156,12 @@
             //advanced accounting rule
             scope.showOrHide = function (showOrHideValue) {
 
-                if (showOrHideValue == "show") {
-                    scope.showOrHideValue = 'hide';
+                if (showOrHideValue == "Mostrar") {
+                    scope.showOrHideValue = 'Ocultar';
                 }
 
-                if (showOrHideValue == "hide") {
-                    scope.showOrHideValue = 'show';
+                if (showOrHideValue == "Ocultar") {
+                    scope.showOrHideValue = 'Mostrar';
                 }
             };
 

@@ -173,7 +173,11 @@
                     <div class="form-group">
                         <label
                             class="control-label col-sm-3">{{'label.input.installmentinmultiplesof' | translate }}<span
-                                class="required">*</span></label>
+                                class="required">*</span>
+                                <i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.loanproduct.installmentinmultiplesof' | translate}}"
+                                tooltip-append-to-body="true"></i>
+                            </label>
 
                         <div class="col-sm-3">
                             <input type="number" id="installmentAmountInMultiplesOf" class="form-control"
@@ -374,6 +378,9 @@
                             <md-checkbox name="name1" ng-model="formData.isLinkedToFloatingInterestRates"></md-checkbox>
                         </div>
                         <label class="control-label left col-sm-6">{{'label.input.islinedtofloatinginterestrates' | translate }}
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.islinedtofloatinginterestrates' | translate}}"
+                            tooltip-append-to-body="true"></i>
                         </label>
                     </div>
 
@@ -408,6 +415,9 @@
                                 ng-model="formData.isFloatingInterestRateCalculationAllowed"></md-checkbox>
                         </div>
                         <label class="control-label col-sm-3">{{'label.input.isfloatingcalculationallowed' | translate }}
+                            <i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.isfloatingcalculationallowed' | translate}}"
+                                tooltip-append-to-body="true"></i>
                         </label>
                     </div>
 
@@ -551,7 +561,9 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3">{{
                     'label.input.minimum.days.between.disbursal.and.first.repayment'
-                    | translate }}</label>
+                    | translate }}
+                    <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.minimum.days.between.disbursal.and.first.repayment' | translate}}"
+                    tooltip-append-to-body="true"></i></label>
 
                         <div class="col-sm-2">
                             <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="number"
@@ -640,7 +652,11 @@
                                 ng-false-value="false"></md-checkbox>
                         </div>
                         <label
-                            class="control-label left col-sm-2">{{'label.input.isequalamortization' | translate }}</label>
+                            class="control-label left col-sm-2">{{'label.input.isequalamortization' | translate }}
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.input.isequalamortization' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -746,7 +762,10 @@
                             <md-checkbox ng-model="formData.canDefineInstallmentAmount"></md-checkbox>
                         </div>
                         <label
-                            class="control-label left col-sm-6">{{'label.input.candefineinstallmentamount' | translate }}</label>
+                            class="control-label left col-sm-6">{{'label.input.candefineinstallmentamount' | translate }}
+                            <i class="fa fa-question-circle " uib-tooltip="{{'label.tooltip.input.candefineinstallmentamount' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -784,12 +803,19 @@
                                 ng-model="formData.accountMovesOutOfNPAOnlyOnArrearsCompletion"></md-checkbox>
                         </div>
                         <label class="control-label left col-sm-9">{{'label.input.loan.account.moves.out.of.npa.only.on.arrears.completion'
-                            | translate }}<span class="required">*</span></label>        
+                            | translate }}<span class="required">*</span>
+                            <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.loan.account.moves.out.of.npa.only.on.arrears.completion' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>        
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-9">{{'label.input.thresholdforlastinstallment' | translate
-                    }}</label>
+                        <label class="control-label col-sm-9">{{'label.input.thresholdforlastinstallment' | translate}}
+                            <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.linput.thresholdforlastinstallment' | translate}}"
+                            tooltip-append-to-body="true"></i>  
+                        </label>
 
                         <div class="col-sm-3">
                             <input id="principalThresholdForLastInstallment" type="numbe"
@@ -845,13 +871,17 @@
                             <md-checkbox ng-model="formData.isInterestRecalculationEnabled"></md-checkbox>
                         </div>
                         <label
-                            class="control-label left col-sm-6">{{'label.input.recalculateinterest' | translate }}</label>
+                            class="control-label left col-sm-6">{{'label.input.recalculateinterest' | translate }}
+                            <i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.input.recalculateinterest' | translate}}"
+                            tooltip-append-to-body="true"></i> 
+                        </label>
                     </div>
                     <div class="form-group" data-ng-show="formData.isInterestRecalculationEnabled">
                         <label class="control-label col-sm-3">{{'label.input.preclose.interest.calculation.strategy'
                     | translate }}<span class="required">*</span>
                             <i class="fa fa-question-circle "
-                                uib-tooltip="{{'label.tooltip.preclosureinterestcalculationstrategy' | translate}}"
+                                uib-tooltip="{{'label.tooltip.precloseinterestcalculationstrategy' | translate}}"
                                 tooltip-append-to-body="true"></i>
                         </label>
 
@@ -1033,7 +1063,11 @@
                                 ng-model="formData.isArrearsBasedOnOriginalSchedule"></md-checkbox>
                         </div>
                         <label class="control-label col-sm-6">{{'label.input.arrearsbasedonoriginalschedule'
-                            | translate }}<span class="required">*</span></label>
+                            | translate }}<span class="required">*</span>
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.arrearsbasedonoriginalschedule' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
                     </div>
                     <h3>{{'label.heading.gauranteeRequirements' | translate }}</h3>
                     <hr>
@@ -1041,11 +1075,19 @@
                         <div class="col-sm-3 right">
                             <md-checkbox ng-model="formData.holdGuaranteeFunds" ></md-checkbox>
                         </div>
-                        <label class="control-label left col-sm-6">{{'label.input.holdguaranteefunds' | translate }}</label>
+                        <label class="control-label left col-sm-6">{{'label.input.holdguaranteefunds' | translate }}
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.input.holdguaranteefunds' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
                     </div>
                     <div class="form-group" data-ng-show="formData.holdGuaranteeFunds">
                         <label class="control-label col-sm-3">{{'label.input.mandatory.guarantee'
-                            | translate }}<span class="required">*</span></label>
+                            | translate }}<span class="required">*</span>
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.mandatory.guarantee' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
 
                         <div class="col-sm-3">
                             <input id="mandatoryGuarantee" type="number" class="form-control"
@@ -1054,14 +1096,22 @@
                     </div>
                     <div class="form-group" data-ng-show="formData.holdGuaranteeFunds">
                         <label class="control-label col-sm-3">{{'label.input.minimum.guarantee.from.own.funds'
-                            | translate }}</label>
+                            | translate }}
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.minimum.guarantee.from.own.funds' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
 
                         <div class="col-sm-3">
                             <input id="minimumGuaranteeFromOwnFunds" type="number" class="form-control"
                                 ng-model="formData.minimumGuaranteeFromOwnFunds" />
                         </div>
                         <label class="control-label col-sm-3">{{'label.input.minimum.guarantee.from.guarantor'
-                            | translate }}</label>
+                            | translate }}
+                            <i class="fa fa-question-circle "
+                            uib-tooltip="{{'label.tooltip.minimum.guarantee.from.guarantor' | translate}}"
+                            tooltip-append-to-body="true"></i>
+                        </label>
 
                         <div class="col-sm-3"><input id="minimumGuaranteeFromGuarantor" type="number" class="form-control"
                                 ng-model="formData.minimumGuaranteeFromGuarantor" />
@@ -1595,7 +1645,7 @@
                             </div>
                             <label class="control-label col-sm-2">{{'label.input.accounting.debit.order.overdue.interest' | translate }}
                                 <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.debit.order.interest' | translate}}"
+                                    uib-tooltip="{{'label.tooltip.debit.order.interest.mora' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
                             <div class="col-sm-4">
@@ -1651,7 +1701,7 @@
                             </div>
                             <label class="control-label col-sm-2">{{'label.input.accounting.credit.order.overdue.interest' | translate }}
                                 <i class="fa fa-question-circle"
-                                    uib-tooltip="{{'label.tooltip.credit.order.interest' | translate}}"
+                                    uib-tooltip="{{'label.tooltip.credit.order.interest.mora' | translate}}"
                                     tooltip-append-to-body="true"></i>
                             </label>
                             <div class="col-sm-4">
@@ -1667,7 +1717,7 @@
                                 ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                         </h4>
         
-                        <div class="col-md-12" ng-show="showOrHideValue == 'hide'">
+                        <div class="col-md-12" ng-show="showOrHideValue == 'Ocultar'">
                             <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}
                             </div>
                             <div class="col-md-4">
