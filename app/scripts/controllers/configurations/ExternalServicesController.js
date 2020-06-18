@@ -20,7 +20,7 @@
             });
             resourceFactory.externalServicesSMTPResource.get(function (data) {
                 for (var i in data) {
-                    //console.log(data[0]);
+                    console.log(data[i]);
                     if(data[i].name != "") {
                         data[i].showEditvalue = true;
                         scope.SMTPConfigs.push(data[i])

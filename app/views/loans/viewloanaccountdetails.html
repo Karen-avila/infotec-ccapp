@@ -61,7 +61,7 @@
                     <strong> <i ng-hide="loandetails.inArrears"
                                 class="fa fa-circle {{loandetails.status.code | StatusLookup}}"></i>
                         <i ng-show="loandetails.inArrears"
-                            class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i>&nbsp;{{loandetails.loanProductName}}(#{{loandetails.accountNo}})</strong>
+                            class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i> {{loandetails.loanProductName}} (#{{loandetails.accountNo}})</strong>
                 </span>
             </div>
             <br>
@@ -94,10 +94,6 @@
                     <div class="row">
                         <table class="table table-striped" ng-show="loandetails.summary">
                             <thead>
-                                <tr>
-                                    <th colspan=5 class="empty"></th>
-                                    <th colspan=2 class="center">{{'label.heading.outstanding' | translate}}</th>
-                                </tr>
                                 <tr>
                                     <th class="empty"></th>
                                     <th class="center">{{'label.heading.original' | translate}}</th>
@@ -534,9 +530,9 @@
                                                     <th class="pointer" ng-click="changeTransactionSort('officeName')">{{'label.heading.office' | translate}}</th>
                                                     <th class="pointer" ng-click="changeTransactionSort('date')">{{'label.heading.transactiondate' | translate}}</th>
                                                     <th class="pointer" ng-click="changeTransactionSort('type.value')">{{'label.heading.transactiontype' | translate}}</th>
-                                                    <th class="pointer" ng-click="changeTransactionSort('amount')">{{'label.heading.amount' | translate}}</th>
-                                                    <th class="pointer" colspan="4" scope="colgroup">{{'label.heading.breakdown' | translate}}</th>
-                                                    <th class="pointer" scope="colgroup">{{'label.heading.loan.balance' | translate}}</th>
+                                                    <th class="pointer right" ng-click="changeTransactionSort('amount')">{{'label.heading.amount' | translate}}</th>
+                                                    <th class="pointer center" colspan="4" scope="colgroup">{{'label.heading.breakdown' | translate}}</th>
+                                                    <th class="pointer right" scope="colgroup">{{'label.heading.loan.balance' | translate}}</th>
                                                     <th></th>
                                                     <th></th>
                                                     <th></th>
@@ -546,16 +542,16 @@
                                                     <th scope="col">&nbsp;</th>
                                                     <th scope="col">&nbsp;</th>
                                                     <th scope="col">&nbsp;</th>
-                                                    <th scope="col">&nbsp;</th>
                                                     <th class="pointer" scope="col" ng-click="changeTransactionSort('principalPortion')">{{'label.heading.principal' | translate}}</th>
                                                     <th class="pointer" scope="col" ng-click="changeTransactionSort('interestPortion')">{{'label.heading.interest' | translate}}</th>
                                                     <th class="pointer" scope="col" ng-click="changeTransactionSort('feeChargesPortion')">{{'label.heading.fees' | translate}}</th>
                                                     <th class="pointer" scope="col" ng-click="changeTransactionSort('penaltyChargesPortion')">{{'label.heading.penalities' | translate}}</th>
+                                                    <th scope="col">&nbsp;</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="pointer-main" ng-class="{strikeoff : transaction.manuallyReversed==true}"
-                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && transaction.type.accrual">
+                                                    ng-repeat="transaction in loandetails.transactions | orderBy:transactionSort.column:transactionSort.descending" ng-hide = "hideAccrualTransactions && (transaction.type.accrual || transaction.type.accrualOverdue)">
                                                     <td class="pointer" data-ng-click="routeTo(loandetails.id,transaction.id,transaction.type.id)">
                                                         {{transaction.officeName}}
                                                     </td>
@@ -585,19 +581,21 @@
                                                     </td>
             
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true && transaction.penaltyChargesPortion" ng-click="showTransactionCalculation($event, transaction.id)">
+                                                        <span ng-if="allowShowTransactionCalculation(transaction)" ng-click="showTransactionCalculation($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewdetails' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
                                                     </td>
                                                     <td> 
-                                                        <span ng-if="transaction.manuallyReversed!=true" ng-click="showTransactionReceipt($event, transaction.id)">
+                                                        <!--
+                                                        <span ng-if="allowShowTransactionReceipt(transaction)" ng-click="showTransactionReceipt($event, transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewreceipts' | translate}}</md-tooltip>
                                                             <i class="fa fa-file-text fa fa-large"></i>
                                                         </span>
+                                                        -->
                                                     </td>
                                                     <td> 
-                                                        <span ng-click="viewloantransactionjournalentries(transaction.id)">
+                                                        <span ng-if="allowShowJournalEntries(transaction)" ng-click="viewloantransactionjournalentries(transaction.id)">
                                                             <md-tooltip md-direction="top">{{'label.anchor.viewjournalentries' | translate}}</md-tooltip>
                                                             <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
                                                         </span>
@@ -961,7 +959,7 @@
                 </div>
 
                 <div class="col-sm-3 col-md-3">
-                    <table class="table table-striped" ng-show="loandetails.status.id==300">
+                    <table class="table table-striped" ng-show="loandetails.status.id==300 && prepay.total">
                         <thead>
                             <tr>
                                 <th colspan="2"><center>{{'label.heading.balances' | translate}}</center></th>
@@ -969,12 +967,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>{{'label.heading.currentBalance' | translate}}</th>
-                                <td class="amount">{{loandetails.summary.totalOutstanding | FormatNumber}}</td>
-                            </tr>
-                            <tr>
                                 <th>{{'label.heading.arrearsby' | translate}}</th>
                                 <td class="amount">{{loandetails.summary.totalOverdue | FormatNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{'label.heading.arrearsby.no' | translate}}</th>
+                                <td class="amount">{{(prepay.total - loandetails.summary.totalOverdue) | FormatNumber}}</td>
                             </tr>
                             <tr>
                                 <th>{{'label.heading.prepay.balance' | translate}}</th>
@@ -1127,7 +1125,15 @@
                             <th>{{'label.account.overdue.since' | translate}}</th>
                             <td>{{loandetails.summary.overdueSinceDate | DateFormat}}</td>
                         </tr>
-                        <tr>
+                        <tr ng-show="loandetails.inArrears">
+                            <th>{{'label.account.overdue.days' | translate}}</th>
+                            <td>{{loandetails.summary.overdueDays}}</td>
+                        </tr>
+                        <tr ng-show="loandetails.inArrears">
+                            <th>{{'label.account.npa.since' | translate}}</th>
+                            <td>{{loandetails.summary.npaSinceDate | DateFormat}}</td>
+                        </tr>
+                        <tr ng-show="loandetails.inArrears">
                             <th>{{'label.account.is.npa' | translate}}</th>
                             <td>{{loandetails.isNPA | translate}}</td>
                         </tr>

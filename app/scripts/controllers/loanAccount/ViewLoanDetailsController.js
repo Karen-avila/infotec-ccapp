@@ -145,6 +145,29 @@
                 });
             };
 
+            scope.allowShowTransactionCalculation = function(transaction) {
+                if (transaction.type.value == 'Repayment') {
+                    return false;
+                } else if (transaction.manuallyReversed!=true && transaction.penaltyChargesPortion) {
+                    return true;
+                }
+                return false;
+            }
+
+            scope.allowShowTransactionReceipt = function(transaction) {
+                if (transaction.type.value == 'Repayment' && transaction.manuallyReversed!=true) {
+                    return true;
+                }
+                return false;
+            }
+
+            scope.allowShowJournalEntries = function(transaction) {
+                if (transaction.type.value == 'Accrual Overdue') {
+                    return false;
+                }
+                return true;
+            }
+
             scope.showTransactionCalculation = function(ev, transactionId) {
                 resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
                 function (data) {
@@ -486,7 +509,6 @@
                     };
                 }
 
-                const today = new Date();
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
@@ -494,18 +516,17 @@
                             scope.payments.paid++;
                         } else {
                             scope.payments.pending++;
-                            if (new Date(period.dueDate) < today) {
-                                scope.payments.expired++;
-                            }
                         }
                         scope.payments.total++;
                     }
                 }
 
+                /*
                 resourceFactory.standingInstructionTemplateResource.get({fromClientId: scope.loandetails.clientId,fromAccountType: 1,fromAccountId: routeParams.id},function (response) {
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
+                */
             });
 
             resourceFactory.loanTrxnsTemplateResource.get({ loanId: routeParams.id, command: 'prepayLoan' }, function (data) {
