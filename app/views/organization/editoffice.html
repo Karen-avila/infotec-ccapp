@@ -1,185 +1,203 @@
 <div class="content-container">
-    <ul class="breadcrumb">
-        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#!/offices">{{'label.anchor.manageoffices' | translate}}</a></li>
-        <li class="active">{{'label.anchor.editoffice' | translate}}</li>
-    </ul>
-    <div class="card">
-    	<div class="content">
-    		<form name="editofficeform" novalidate="" class="form-horizontal form-extra" 
-    			ng-controller="EditOfficeController"
-    		      rc-submit="submit()">
-    		    <api-validate></api-validate>
-    		    <fieldset>
-    		        <legend>{{'label.heading.editoffice' | translate}}</legend>
-    				    <div class="form-group">
-    				        <label class="control-label col-sm-2" for="name">{{'label.input.office' | translate }}<span
-    				                class="required">*</span></label>
-    		
-    				        <div class="col-sm-3">
-    				            <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
-    				                   class="form-control uppercase" required late-Validate/>
-    				        </div>
-    				        <div class="col-sm-3">
-    				            <form-validate valattributeform="editofficeform" valattribute="name"/>
-    				        </div>
-    				    </div>
-    				    <div class="form-group" data-ng-hide="parentId==id">
-    				        <label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}<span class="required">*</span></label>
-    		
-    				        <div class="col-sm-3">
-    				            <md-select  id="parentId" ng-model="formData.parentId" placeholder="{{'label.selectone' | translate}}">
-									<md-option ng-repeat="office in offices" ng-value="office.id">
-                                     {{office.name}}
-									</md-option>
-									</md-select>	
-    				        </div>
-						</div>
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li><a href="#!/offices">{{'label.anchor.manageoffices' | translate}}</a></li>
+		<li class="active">{{'label.anchor.editoffice' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<form name="editofficeform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="EditOfficeController" rc-submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
+					<legend>{{'label.heading.editoffice' | translate}}</legend>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="name">{{'label.input.office' | translate }}<span
+								class="required">*</span></label>
 
-    				    <div class="form-group">
-    				        <label class="control-label col-sm-2" for="city">{{'label.input.office.cityid' | translate }}<span
-    				                class="required">*</span></label>
-    		
-    				        <div class="col-sm-3">
-    				            <input id="city" ng-autofocus="true" type="text" name="city" ng-model="formData.city"
-    				                   class="form-control uppercase" required late-Validate/>
-    				        </div>
-    				        <div class="col-sm-3">
-    				            <form-validate valattributeform="editofficeform" valattribute="city"/>
-    				        </div>
-                        </div>
-    				    <div class="form-group">
-    				        <label class="control-label col-sm-2" for="branch">{{'label.input.office.branchid' | translate }}</label>
-    		
-    				        <div class="col-sm-3">
-    				            <input id="branch" ng-autofocus="true" type="text" name="branch" ng-model="formData.branch"
-    				                   class="form-control" required late-Validate/>
-    				        </div>
-    				    </div>
-    				    <div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.openedon' | translate }}<span
-    				                class="required">*</span></label>
-    		
-    				        <div class="col-sm-3">
-    				            <input id="openingDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-    				                   is-open="opened" min="minDate" max="restrictDate" class="form-control"/>
-    				        </div>
-    				    </div>
-    				    <div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.externalid' | translate }}</label>
-    		
-    				        <div class="col-sm-3">
-    				            <input id="externalId" type="text" name="externalId" ng-model="formData.externalId" class="form-control"/>
-    				        </div>
+						<div class="col-sm-3">
+							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
+								class="form-control uppercase" required late-Validate />
 						</div>
-						 
-						<div class="form-group">
-    				        <label class="control-label col-sm-2" >{{'label.input.postal_code' | translate }}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-								<input id="postal_code" type="number" name="postal_code" ng-model="address.postalCode" class="form-control"/>
-    				        </div>
+						<div class="col-sm-3">
+							<form-validate valattributeform="editofficeform" valattribute="name" />
 						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.addressType' | translate }}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-								<md-select id="addressType"  ng-model="address.addressTypeId" 
+					</div>
+					<div class="form-group" data-ng-hide="parentId==id">
+						<label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<md-select id="parentId" ng-model="formData.parentId"
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option ng-repeat="office in offices" ng-value="office.id">
+									{{office.name}}
+								</md-option>
+							</md-select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="city">{{'label.input.office.cityid' | translate }}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input id="city" ng-autofocus="true" type="text" name="city" ng-model="formData.city"
+								class="form-control uppercase" required late-Validate />
+						</div>
+						<div class="col-sm-3">
+							<form-validate valattributeform="editofficeform" valattribute="city" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="branch">{{'label.input.office.branchid' | translate }}</label>
+
+						<div class="col-sm-3">
+							<input id="branch" ng-autofocus="true" type="text" name="branch" ng-model="formData.branch"
+								class="form-control" required late-Validate />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.openedon' | translate }}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input id="openingDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
+								is-open="opened" min="minDate" max="restrictDate" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.externalid' | translate }}</label>
+
+						<div class="col-sm-3">
+							<input id="externalId" type="text" name="externalId" ng-model="formData.externalId"
+								class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.postal_code' | translate }}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input id="postal_code" type="text" name="postal_code" ng-model="address.postalCode"
+								pattern="[0-9]{5}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.addressType' | translate }}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<md-select id="addressType" ng-model="address.addressTypeId"
 								placeholder="{{'label.menu.selectone' | translate}}" required>
 								<md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
 									{{addressType.name}}
-								</md-option>  
+								</md-option>
 							</md-select>
-    				        </div>
 						</div>
-					
-						<div class="form-group">
-    				        <label class="control-label col-sm-2" for="street">{{'label.input.street' | translate }}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-    				            <input id="street" type="text" name="street" ng-model="address.street" class="form-control"/>
-    				        </div>
-						</div>
-				
-						<div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.addressline1' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-    				            <input id="addressline1" type="text" name="addressline1" ng-model="address.addressLine1" 
-								class="form-control"/>
-    				        </div>
-						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2" for="addressline2">{{'label.input.addressline2' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-								<input type="text" id="addressline2" name="addressline2" ng-model="address.addressLine2"
-								class="form-control">
-    				        </div>
-						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2" for="addressline3">{{'label.input.addressline3' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-								<input id="addressline3" type="text"  name="addressline3" ng-model="address.addressLine3"
-								class="form-control">
-    				        </div>
-						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2" for="city">{{'label.input.city' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-    				            <input id="city" type="text" name="city" ng-model="address.city" class="form-control"/>
-    				        </div>
-						</div>
+					</div>
 
-						<div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.country' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-								<md-select id="countryOption" ng-model="address.countryId"
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="street">{{'label.input.street' | translate }}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input id="street" type="text" name="street" ng-model="address.street"
+								class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.addressline1' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input id="addressline1" type="text" name="addressline1" ng-model="address.addressLine1"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="addressline2">{{'label.input.addressline2' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input type="text" id="addressline2" name="addressline2" ng-model="address.addressLine2"
+								class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="addressline3">{{'label.input.addressline3' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input id="addressline3" type="text" name="addressline3" ng-model="address.addressLine3"
+								class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="city">{{'label.input.city' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input id="city" type="text" name="city" ng-model="address.city" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.country' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<md-select id="countryOption" ng-model="address.countryId"
 								placeholder="{{'label.menu.selectone' | translate}}">
 								<md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
 									{{countryOption.name}}
-								</md-option>  
+								</md-option>
 							</md-select>
-    				        </div>
 						</div>
-						<div class="form-group" >
-							<div class="control-label col-sm-2">
+					</div>
+					<div class="form-group">
+						<div class="control-label col-sm-2">
 							<label>{{'label.input.state_province' | translate }}<span class="required">*</span></label>
-							</div>
-							<div class="col-sm-3" >
-								<md-select ng-model="address.stateProvinceId"
-									ng-change="filterMunicipality()" placeholder="{{'label.menu.selectone' | translate}}" required>
-									<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
-										{{stateOption.name}}
-									</md-option>  
-								</md-select>
-							</div>
 						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.latitude' | translate}}<span class="required">*</span></label>
-    				        <div class="col-sm-3">
-    				            <input  type="number" name="latitude" ng-model="address.latitude" class="form-control"/>
-    				        </div>
+						<div class="col-sm-3">
+							<md-select ng-model="address.stateProvinceId" ng-change="filterMunicipality()"
+								placeholder="{{'label.menu.selectone' | translate}}" required>
+								<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+									{{stateOption.name}}
+								</md-option>
+							</md-select>
 						</div>
-						<div class="form-group">
-    				        <label class="control-label col-sm-2">{{'label.input.longitude' | translate}}<span
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.latitude' | translate}}<span
 								class="required">*</span></label>
-    				        <div class="col-sm-3">
-    				            <input  type="number" name="longitude" ng-model="address.longitude" class="form-control" >
-    				        </div>
+						<div class="col-sm-3">
+							<input type="number" name="latitude" ng-model="address.latitude" class="form-control" />
 						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" >{{'label.input.active' | translate}} </label>
-							<div class="col-sm-3">
-								<md-checkbox id="isActive" ng-model="address.isActive">
-									{{'label.input.active' | translate }}
-								</md-checkbox>
-							</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.longitude' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input type="number" name="longitude" ng-model="address.longitude" class="form-control">
 						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.active' | translate}} </label>
+						<div class="col-sm-3">
+							<md-checkbox id="isActive" ng-model="address.isActive">
+								{{'label.input.active' | translate }}
+							</md-checkbox>
+						</div>
+					</div>
 
-    				    <div class="col-md-12 center">
-    				        <a id="cancel" href="#!/offices">
-    				            <md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
-    				        </a>
-    				        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_OFFICE'>{{'label.button.save' | translate}}</md-button>
-    				    </div>
-    		    </fieldset>
-    		</form>
-    	</div>
-    </div>
+					<div class="col-md-12 center">
+						<a id="cancel" href="#!/offices">
+							<md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+						</a>
+						<md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_OFFICE'>
+							{{'label.button.save' | translate}}</md-button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
