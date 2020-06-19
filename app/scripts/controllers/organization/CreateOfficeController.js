@@ -17,18 +17,8 @@
             entityname = "ADDRESS";
             scope.addressArray = [];
             scope.formData.address = [];
+            scope.center={};
 
-            angular.extend(
-                scope, {
-                mapa: {
-                    lat: 37.78,
-                    lng: -122.42,
-                    zoom: 13
-                },
-            
-            });
-
-        
 
        
               
@@ -37,6 +27,35 @@
                 scope.formData = {
                     parentId: scope.offices[0].id
                 }
+                var mainMarker = {
+                   
+                    lat: parseFloat(data.address.latitude) ,
+                    lng: parseFloat(data.address.longitude),
+                    focus: true,
+                    message: "Ubicación",
+                    draggable: true
+                };
+    
+                angular.extend(scope, {
+                    center: {
+                        lat: parseFloat(data.address.latitude) ,
+                        lng: parseFloat(data.address.longitude),
+                        zoom: 16
+                    },
+                    markers: {
+                        mainMarker: angular.copy(mainMarker)
+                    },
+                    position: {
+                        lat: parseFloat(data.address.latitude) ,
+                        lng: parseFloat(data.address.longitude),
+                    },
+                    events: { // or just {} //all events
+                        markers:{
+                          enable: [ 'dragend' ]
+                          //logic: 'emit'
+                        }
+                    }
+                });
             
 
             });
