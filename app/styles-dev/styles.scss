@@ -30,6 +30,9 @@ $state-success-text: #fff;
 /* Angular Stepper */
 @import "../bower_components/md-steppers/dist/md-steppers.min.css";
 
+/*leaflet maps*/
+@import "../bower_components/leaflet/dist/leaflet.css";
+
 /* Load style components */
 @import "./main/components/alerts";
 @import "./main/components/variables";
@@ -48,6 +51,9 @@ $state-success-text: #fff;
 @import "./main/components/pdf";
 @import "./main/mifos";
 
+
 @import "https://framework-gb.cdn.gob.mx/assets/styles/main.css";
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
