@@ -29,7 +29,8 @@ var mifosX = (function (module) {
       "httpErrorHandler",
       "angular-loading-bar",
       "md.data.table",
-      "md-steppers"
+      "md-steppers",
+      "leaflet-directive"
     ]),
   };
   return module;

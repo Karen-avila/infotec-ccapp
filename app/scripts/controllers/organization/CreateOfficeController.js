@@ -18,7 +18,20 @@
             scope.addressArray = [];
             scope.formData.address = [];
 
-      
+            angular.extend(
+                scope, {
+                mapa: {
+                    lat: 37.78,
+                    lng: -122.42,
+                    zoom: 13
+                },
+            
+            });
+
+        
+
+       
+              
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
@@ -28,8 +41,6 @@
 
             });
 
-
-          
                  //----------
             resourceFactory.clientTemplateResource.get(function(data) {
                 scope.enableAddress = data.isAddressEnabled;
@@ -76,7 +87,7 @@
                     const address=scope.address;
                     const newAddress = {
                            
-                        addressTypeId:address.addressTypeId ? address.addressTypeId :'',
+                        addressTypeId: address.addressTypeId ? address.addressTypeId :'',
                         street : address.street ? address.street : '',
                         addressLine1: address.addressLine1 ? address.addressLine1 : '',
                         addressLine2: address.addressLine2 ? address.addressLine2 : '',
@@ -115,7 +126,9 @@
                        return a[property].localeCompare(b[property]);
                    }        
                }
+               
            }
+           
         }
     });
     mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateOfficeController]).run(function ($log) {
