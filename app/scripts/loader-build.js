@@ -49,7 +49,9 @@
             'moment': '../bower_components/moment/min/moment-with-locales.min',
             'pdf': '../bower_components/pdfjs/src/pdf',
             'CURPUtils': '../scripts/js/CURPUtils',
-            'RFCUtils': '../scripts/js/RFCUtils'
+            'RFCUtils': '../scripts/js/RFCUtils',
+            'L': '../bower_components/leaflet/dist/leaflet',
+            'leaflet-directive': '../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min'
         },
         shim: {
             'angular': { deps: ['jquery','chosen.jquery.min'], exports: 'angular' },
@@ -95,6 +97,8 @@
             'pdf': {deps: ['angular']},
             'CURPUtils': {deps: ['moment']},
             'RFCUtils': {deps: ['moment']},
+            'L': {deps: ['angular']},
+            'leaflet-directive': {deps: ['angular','L']},
             'mifosX': {
                 deps: [
                     'jquery',
@@ -138,7 +142,9 @@
                     'moment',
                     'pdf',
                     'CURPUtils',
-                    'RFCUtils'
+                    'RFCUtils',
+                    'L',
+                    'leaflet-directive'
                 ],
                 exports: 'mifosX'
             }
