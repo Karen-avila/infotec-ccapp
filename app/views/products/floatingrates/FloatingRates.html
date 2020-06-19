@@ -3,33 +3,45 @@
         <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
         <li class="active">{{'label.anchor.floatingrates' | translate}}</li>
     </ul>
-<div class="card well">
-    <div class="row">
-        <div class="col-md-9">
-            <input ng-model="filterText" type="text" class="form-control" ng-keyup="onFilter()" placeholder="{{'label.input.filterbyname' | translate}}">
+
+    <div class="card well">
+
+        <div class="row">
+            <div class="col-md-9 col-sm-9">
+                <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control"
+                    placeholder="{{'label.input.filterbyname' | translate}}">
+            </div>
+
+            <div class="col-md-3 col-sm-3">
+                <md-button md-no-ink class="md-primary" href="#!/createfloatingrate" has-permission='CREATE_FLOATINGRATE'>
+                    <i class="fa fa-plus "></i>{{'label.button.createfloatingrate' | translate}}</md-button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <a href="#!/createfloatingrate" class="btn btn-primary pull-right" has-permission='CREATE_FLOATINGRATE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createfloatingrate' | translate}}</a>
-        </div>
+
+        <md-divider></md-divider>
+        <md-table-container>
+            <table md-table>
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column>{{'label.heading.name' | translate}}</th>
+                        <th md-column>{{'label.heading.createdby' | translate}}</th>
+                        <th md-column>{{'label.heading.isbaselendingrate' | translate}}</th>
+                        <th md-column>{{'label.heading.active' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="floatingrate in floatingrates |orderBy:'name' | filter:filterText"
+                        data-ng-click="routeTo(floatingrate.id)" md-select="product" md-select-id="name" >
+                        <td md-cell>{{floatingrate.name}}</td>
+                        <td md-cell>{{floatingrate.createdBy}}</td>
+                        <td md-cell>{{floatingrate.isBaseLendingRate}}</td>
+                        <td md-cell>{{floatingrate.isActive}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
-    <hr>
-    <table class="table">
-        <thead>
-        <tr class="graybg">
-            <th>{{'label.heading.name' | translate}}</th>
-            <th>{{'label.heading.createdby' | translate}}</th>
-            <th>{{'label.heading.isbaselendingrate' | translate}}</th>
-            <th>{{'label.heading.active' | translate}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="pointer-main" ng-repeat="floatingrate in floatingrates |orderBy:'name' | filter:filterText">
-            <td class="pointer" data-ng-click="routeTo(floatingrate.id)">{{floatingrate.name}}</td>
-            <td class="pointer" data-ng-click="routeTo(floatingrate.id)">{{floatingrate.createdBy}}</td>
-            <td class="pointer" data-ng-click="routeTo(floatingrate.id)">{{floatingrate.isBaseLendingRate}}</td>
-            <td class="pointer" data-ng-click="routeTo(floatingrate.id)">{{floatingrate.isActive}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+
 </div>
