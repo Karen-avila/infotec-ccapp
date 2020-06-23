@@ -8,6 +8,17 @@
 
     <form class="card form-horizontal well" ng-controller="ViewTaxGroupController">
         <fieldset>
+
+            <h3 class="bolder">{{'label.heading.viewtaxcomponent' | translate}}
+                <div class="form-group pull-right">
+                    <md-button md-no-ink class="md-primary" href="#!/edittaxgroup/{{taxgroup.id}}" has-permission='UPDATE_TAXGROUP'>
+                        <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
+                    </md-button>
+                </div>
+            </h3>
+            <hr>
+
+            <!--
             <div class="pull-right">
                 <div class="btn-group">
                     <a href="#!/edittaxgroup/{{taxgroup.id}}" class="btn btn-sm btn-primary"
@@ -16,6 +27,7 @@
                 </div>
             </div>
             <legend>{{'label.heading.viewtaxgroup' | translate}}</legend>
+            -->
             <div class="form-group">
                 <label class="text-right  col-sm-2">{{'label.input.name' | translate }}</label>
 

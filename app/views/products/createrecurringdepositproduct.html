@@ -66,7 +66,7 @@
                         <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate
                             }}<span class="required">*</span></label>
                         <div class="col-sm-2">
-                            <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+                            <input type="number" id="digitsAfterDecimal" name="decimalplace" class="form-control"
                                    ng-model="formData.digitsAfterDecimal" required late-validate number=true />
                         </div>
                         <div class="col-sm-2">
@@ -78,9 +78,9 @@
                         <label class="control-label col-sm-2">{{'label.input.multiplesof' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-2">
-                            <input type="text" id="inMultiplesOf" class="form-control" name="multiplesof" number-format
+                            <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof" number-format
                                    ng-model="formData.inMultiplesOf"
-                                   required late-validate number=true />
+                                   required late-validate number=true/>
                         </div>
                         <div class="col-sm-2">
                             <form-validate valattributeform="Currency"
@@ -105,7 +105,7 @@
                         <label class="control-label col-sm-2">{{'label.input.default.deposit.amount' | translate
                             }}<span class="required">*</span></label>
                         <div class="col-sm-2">
-                            <input type="text" id="depositAmount" name="depositAmount" class="form-control"
+                            <input type="number" id="depositAmount" name="depositAmount" class="form-control"
                                    number-format ng-model="formData.depositAmount" required late-validate/>
                         </div>
                         <div class="col-sm-2">
