@@ -46,6 +46,7 @@
                 </fieldset>
             </form>
         </wz-step>
+
         <wz-step wz-title="{{'label.heading.currency' | translate }}">
             <form name="Currency" ng-submit="goNext(Currency)" novalidate="" class="form-horizontal form-extra">
                 <fieldset>
@@ -54,12 +55,27 @@
                     <hr>
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span class="required">*</span></label>
+                        
+                        <div class="col-sm-3">
+
+                            <md-select aria-label="currencyCode" id="currencyCode" ng-model="formData.currencyCode" ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')">
+                                <md-select-header>
+                                    {{'label.selectcurrency' | translate}}
+                                </md-select-header>
+                                <md-option ng-repeat="currency in product.currencyOptions" ng-value="currency.code">
+                                    {{currency.name | translate}}
+                                </md-option>
+                            </md-select>
+
+                        </div>
+                        <!--
                         <div class="col-sm-2">
                             <select id="currencyCode" ng-model="formData.currencyCode" class="form-control" ng-options="currency.code as currency.name for currency in product.currencyOptions"
                                 ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
                                 value="{{currency.code}}">
                             </select>
                         </div>
+                        -->
                         <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' |
                             translate
                             }}<span class="required">*</span></label>
@@ -100,6 +116,7 @@
                 </fieldset>
             </form>
         </wz-step>
+
         <wz-step wz-title="{{'label.heading.terms' | translate}}">
             <form name="Terms" ng-submit="goNext(Terms)" novalidate="" class="form-horizontal form-extra">
                 <fieldset>
@@ -1085,13 +1102,13 @@
                     </table>
                     <br>
                     <br>
-                    <div class="col-md-offset-5 paddedtop">
-                        <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
-                            {{'label.button.cancel' | translate}}
-                        </button>
-                        <button id="save" wz-next class="btn btn-sm btn-primary" type="submit">
+                    <div class="ol-md-12 center">
+                        <md-button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
+                            translate}}
+                        </md-button>
+                        <md-button id="save" wz-next class="btn btn-sm btn-primary" type="submit">
                             {{'label.button.createfixeddepositproduct' | translate}}
-                        </button>
+                        </md-button>
                     </div>
                     <md-button class="btn-default btn-sm pull-left" wz-previous>&nbsp;&nbsp;<i class="fa fa-arrow-left"></i>{{'label.button.previous' | translate}}
                     </md-button>
