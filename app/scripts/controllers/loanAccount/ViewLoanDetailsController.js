@@ -274,6 +274,8 @@
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
 
+                scope.freePeriods = data.graceOnPrincipalPayment;
+
                 if (scope.loandetails.charges) {
                     scope.charges = scope.loandetails.charges;
                     for (var i in scope.charges) {
@@ -512,7 +514,7 @@
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
-                        if (period.complete == true) {
+                        if (period.complete == true && period.period > scope.freePeriods) {
                             scope.payments.paid++;
                         } else {
                             scope.payments.pending++;
