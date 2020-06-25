@@ -19,50 +19,19 @@
             scope.formData.address = [];
             scope.center={};
 
-
-       
-              
+            scope.center= {          
+                    zoom: 8
+                }
+        
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
                     parentId: scope.offices[0].id
                 }
-                var mainMarker = {
-                   
-                    lat: parseFloat(data.address.latitude) ,
-                    lng: parseFloat(data.address.longitude),
-                    focus: true,
-                    message: "Ubicación",
-                    draggable: true
-                };
-    
-                angular.extend(scope, {
-                    center: {
-                        lat: parseFloat(data.address.latitude) ,
-                        lng: parseFloat(data.address.longitude),
-                        zoom: 16
-                    },
-                    markers: {
-                        mainMarker: angular.copy(mainMarker)
-                    },
-                    position: {
-                        lat: parseFloat(data.address.latitude) ,
-                        lng: parseFloat(data.address.longitude),
-                    },
-                    events: { // or just {} //all events
-                        markers:{
-                          enable: [ 'dragend' ]
-                          //logic: 'emit'
-                        }
-                    }
-                });
-            
-
-            });
+                 });
 
                  //----------
             resourceFactory.clientTemplateResource.get(function(data) {
-                scope.enableAddress = data.isAddressEnabled;
                 scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
                 scope.countryOptions = data.address[0].countryIdOptions.sort(sortBy("name"));
                 scope.stateOptions = data.address[0].stateProvinceIdOptions.sort(sortBy("name"));
@@ -93,6 +62,22 @@
                 scope.addressArray.splice(index, 1);
             }
             // end of address
+            scope.changeState= function () {
+               console.log(this.address.stateProvinceId);
+                var  values= setLatLngByState(this.address.stateProvinceId);
+                scope.address.latitude= values.latitude;
+                scope.address.longitude= values.longitude;
+                scope.center={lat:values.latitude, lng:values.longitude};
+            
+                angular.extend(scope, {
+                    center: {
+                        lat: parseFloat(values.latitude) ,
+                        lng: parseFloat(values.longitude),
+                        zoom: 16
+                    },
+                });
+            }
+
 
             scope.submit = function () {
                 const reqDate = dateFilter(scope.first.date, scope.df)
