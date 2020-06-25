@@ -1,11 +1,11 @@
 <div id="menubarContainer" layout="row" ng-cloak>
-    <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left" >
+    <md-toolbar md-theme="mifos" layout="row" layout-align="space-between left">
         <div class="md-toolbar-tools" style="width:100%;">
             <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between left" style="min-height:70px;width:100%;">
                 <div layout="row" layout-align="left left" style="width:100%;">
                     <!--The left side is hidden when the screen size is larger than small --->
                     <md-button class="menu" hide-gt-sm><i class="fa fa-bars"></i></md-button>
-                    
+
                     <a class="navbar-brand" href="#!/home">
                         <img src="./images/logo_header.png" alt="">
                     </a>
@@ -17,6 +17,11 @@
                     <md-button ng-href="#!/accounting" has-permission='READ_ACCOUNTING' class="automargin">
                         <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
                     </md-button>
+                    <!-- oficinas -->
+                    <md-button ng-href="#!/branchoffice" class="automargin">
+                        <i class="fa fa-building fa fa-large"></i> Sucursales
+                    </md-button>
+                    <!--  -->
                     <md-menu>
                         <md-button aria-label="Reports menu" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bar-chart-o"></i> {{'label.anchor.reports' | translate }}
@@ -24,42 +29,43 @@
                         <md-menu-content width="6" ng-mouseleave="$mdCloseMenu()">
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/all">
-                                    <i class="fa fa-bar-chart-o"></i> 
+                                    <i class="fa fa-bar-chart-o"></i>
                                     <span md-menu-align-target>{{'label.reports.type.all' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/clients">
-                                    <i class="fa fa-users"></i> 
+                                    <i class="fa fa-users"></i>
                                     <span md-menu-align-target>{{'label.reports.type.clients' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/loans">
-                                    <i class="fa fa-money"></i> 
+                                    <i class="fa fa-money"></i>
                                     <span md-menu-align-target>{{'label.reports.type.loans' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/savings">
-                                    <i class="fa fa-money"></i> 
+                                    <i class="fa fa-money"></i>
                                     <span md-menu-align-target>{{'label.reports.type.savings' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/accounting">
-                                    <i class="fa fa-calculator"></i> 
+                                    <i class="fa fa-calculator"></i>
                                     <span md-menu-align-target>{{'label.reports.type.accounting' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-href="#!/reports/funds">
-                                    <i class="fa fa-money"></i> 
+                                    <i class="fa fa-money"></i>
                                     <span md-menu-align-target>{{'label.reports.type.funds' | translate }}</span>
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
+
                     <md-menu>
                         <md-button ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bank"></i> {{'label.anchor.admin' | translate }}
@@ -90,14 +96,14 @@
                                     <i class="fa fa-file"></i> {{'label.anchor.templates' | translate }}
                                 </md-button>
                             </md-menu-item>
-                        </md-menu-content>  
+                        </md-menu-content>
                     </md-menu>
+
                     <!--  Blank -->
                     <span flex ng-show="!toggleSearch"></span>
                     <!--  Search bar -->
-                    <md-input-container ng-show="toggleSearch" class="md-input-container-small" style="padding-left:20%" flex> 
-                        <input type="text" ng-model="searchText" aria-label="filter" class="input-secondary small-font"
-                        ng-keyup="$event.keyCode == 13 && searchText.length > 4 && searchAll(searchText)"> 
+                    <md-input-container ng-show="toggleSearch" class="md-input-container-small" style="padding-left:20%" flex>
+                        <input type="text" ng-model="searchText" aria-label="filter" class="input-secondary small-font" ng-keyup="$event.keyCode == 13 && searchText.length > 4 && searchAll(searchText)">
                     </md-input-container>
                     <md-button aria-label="search menu" class="md-icon-button automargin" ng-click="showSearchBar(!toggleSearch)">
                         <i class="fa fa-search"></i>
@@ -125,7 +131,7 @@
                                     <i class="fa fa-power-off"></i> {{'label.anchor.logout' | translate }}
                                 </md-button>
                             </md-menu-item>
-                        </md-menu-content> 
+                        </md-menu-content>
                     </md-menu>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewOfficeController: function (scope, routeParams, route, location,resourceFactory, leafletData) {
+        ViewOfficeController: function (scope, routeParams, route, location,resourceFactory) {
             scope.charges = [];
             scope.datatabledetails = [];
             scope.datatableLoaded = false;

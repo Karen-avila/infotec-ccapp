@@ -17,6 +17,7 @@
             <api-validate></api-validate>
             <fieldset>
                 <legend>{{'label.heading.createaddress' | translate}}</legend>
+                <div class="col-sm-8 col-md-8">
                 <div class="form-group" ng-show="postalCode">
                     <label class="control-label col-md-4">
                         {{'label.input.postal_code' | translate }}
@@ -213,6 +214,11 @@
                         'label.button.save' | translate }}
                     </md-button>
                 </div>
+                </div>
+                <div class= "col-sm-4 col-md-4">
+					<leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
+				   </div>
+
             </fieldset>
         </form>
     </div>

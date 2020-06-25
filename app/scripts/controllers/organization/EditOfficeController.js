@@ -5,7 +5,6 @@
             scope.first = {};
             scope.restrictDate = new Date();
             //direcciones
-
             scope.addressTypes=[];
             scope.countryOptions=[];
             scope.stateOptions=[];
@@ -49,7 +48,21 @@
                     costCenter: data.costCenter
                 }
         
-            });
+            
+            scope.address = {
+                addressLine1: data.address.addressLine1,
+                addressLine2: data.address.addressLine2,
+                addressLine3: data.address.addressLine3,
+                city: data.address.city,
+                countryId: data.address.countryId,
+                isActive: data.address.isActive,
+                latitude: data.address.latitude,
+                longitude: data.address.longitude,
+                postalCode: data.address.postalCode,
+                stateProvinceId: data.address.stateProvinceId,
+                street: data.address.street
+            }
+        });
 
             scope.submit = function () {
                 

@@ -13,10 +13,12 @@
             </li>
             <li class="active">{{'label.heading.editaddress' | translate}}</li>
         </ul>
+        
         <form name="FieldConfiguration" novalidate="" class="form-horizontal well">
             <api-validate></api-validate>
             <fieldset>
                 <legend>{{'label.heading.editaddress' | translate}}</legend>
+                <div class="col-sm-8 col-md-8">
                 <div class="form-group" ng-show="postalCode">
                     <label class="control-label col-sm-4"
                         for="postal_code">{{'label.input.postal_code' | translate }}</label>
@@ -212,7 +214,13 @@
                         'label.button.save' | translate }}
                     </md-button>
                 </div>
+                </div>
+                <div class= "col-sm-4 col-md-4">
+					<leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
+				   </div>
+
             </fieldset>
         </form>
+        
     </div>
 </md-content>
