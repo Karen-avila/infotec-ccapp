@@ -1,5 +1,5 @@
-(function (mifosX) {
-    var defineRoutes = function ($routeProvider, $locationProvider) {
+(function(mifosX) {
+    var defineRoutes = function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home.html'
@@ -403,22 +403,22 @@
             .when('/editaccrule/:id', {
                 templateUrl: 'views/accounting/edit_acc_rule.html'
             })
-            .when('/run_periodic_accrual',{
+            .when('/run_periodic_accrual', {
                 templateUrl: 'views/accounting/periodic_accrual_accounting.html'
             })
-            .when('/openingbalances',{
+            .when('/openingbalances', {
                 templateUrl: 'views/accounting/openingbalances.html'
             })
-            .when('/viewprovisioningentries',{
+            .when('/viewprovisioningentries', {
                 templateUrl: 'views/accounting/provisioning/ProvisioningEntries.html'
             })
-            .when('/createprovisioningentries',{
+            .when('/createprovisioningentries', {
                 templateUrl: 'views/accounting/provisioning/CreateProvisioningEntries.html'
             })
-            .when('/viewprovisioningentry/:entryId',{
+            .when('/viewprovisioningentry/:entryId', {
                 templateUrl: 'views/accounting/provisioning/ViewProvisioningEntry.html'
             })
-            .when('/viewprovisioningjournalentry/:entryId',{
+            .when('/viewprovisioningjournalentry/:entryId', {
                 templateUrl: 'views/accounting/provisioning/ViewProvisioningJournalEntries.html'
             })
             .when('/viewcode/:id', {
@@ -871,7 +871,7 @@
             .when('/editprovisioningcriteria/:criteriaId', {
                 templateUrl: 'views/organization/provisioning/EditProvisioningCriteria.html'
             })
-            .when('/taxconfiguration',{
+            .when('/taxconfiguration', {
                 templateUrl: 'views/products/tax/TaxConfigurations.html'
             })
             .when('/createtaxcomponent', {
@@ -952,13 +952,13 @@
             .when('/notifications', {
                 templateUrl: 'views/notification/notifications.html'
             })
-            .when('/surveys',{
+            .when('/surveys', {
                 templateUrl: 'views/surveys/surveys.html'
             })
-            .when('/surveys/add',{
+            .when('/surveys/add', {
                 templateUrl: 'views/surveys/createsurvey.html'
             })
-            .when('/editsurvey/:id',{
+            .when('/editsurvey/:id', {
                 templateUrl: 'views/surveys/editsurvey.html'
             })
             .when('/editfamilymember/:clientId/:familyMemberId', {
@@ -968,13 +968,13 @@
                 templateUrl: 'views/clients/addfamilymembers.html'
             })
             .when('/bulkimportoffices', {
-                 templateUrl: 'views/organization/bulkimport/bulkimportoffices.html'
-             })
-             .when('/bulkimportclients', {
-                 templateUrl: 'views/organization/bulkimport/bulkimportclients.html'
-             })
+                templateUrl: 'views/organization/bulkimport/bulkimportoffices.html'
+            })
+            .when('/bulkimportclients', {
+                templateUrl: 'views/organization/bulkimport/bulkimportclients.html'
+            })
             .when('/bulkimportloanaccounts', {
-            templateUrl: 'views/organization/bulkimport/bulkimportloanaccounts.html'
+                templateUrl: 'views/organization/bulkimport/bulkimportloanaccounts.html'
             })
             .when('/bulkimportloanrepayments', {
                 templateUrl: 'views/organization/bulkimport/bulkimportloanrepayments.html'
@@ -1024,7 +1024,7 @@
             .when('/bulkimport', {
                 templateUrl: 'views/organization/bulkimport/bulkimport.html'
             })
-			.when('/adhocquery/', {
+            .when('/adhocquery/', {
                 templateUrl: 'views/adhocquery/adhocquerylists.html'
             })
             .when('/createadhocquery/', {
@@ -1036,12 +1036,18 @@
             .when('/editadhocquery/:id', {
                 templateUrl: 'views/adhocquery/editadhocquery.html'
             })
+            .when('/branchoffice', {
+                templateUrl: 'views/branchoffice/branchoffice.html'
+            })
+            .when('/openbranchoffice', {
+                templateUrl: 'views/branchoffice/openbranchoffice.html'
+            })
             .otherwise({
                 templateUrl: "views/errors/404.html"
             });
         $locationProvider.html5Mode(false);
     };
-    mifosX.ng.application.config(defineRoutes).run(function ($log) {
+    mifosX.ng.application.config(defineRoutes).run(function($log) {
         $log.info("Routes definition completed");
     });
 }(mifosX || {}));
