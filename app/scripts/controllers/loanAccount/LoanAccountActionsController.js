@@ -302,6 +302,8 @@
                     break;
                 case "waiveinterest":
                     scope.modelName = 'transactionDate';
+                    scope.minDate = scope._minDate;
+                    scope.maxDate = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'waiveinterest' }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                         scope.formData.transactionAmount = data.amount;
@@ -315,6 +317,8 @@
                     break;
                 case "writeoff":
                     scope.modelName = 'transactionDate';
+                    scope.minDate = scope._minDate;
+                    scope.maxDate = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'writeoff' }, function (data) {
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
                         scope.writeOffAmount = data.amount;
@@ -337,6 +341,8 @@
                     break;
                 case "close":
                     scope.modelName = 'transactionDate';
+                    scope.minDate = scope._minDate;
+                    scope.maxDate = new Date();
                     resourceFactory.loanTrxnsTemplateResource.get({ loanId: scope.accountId, command: 'close' }, function (data) {
                         scope.formData[scope.modelName] = new Date(data.date) || new Date();
                     });
@@ -411,6 +417,8 @@
                     scope.taskPermissionName = 'WAIVE_LOANCHARGE';
                     break;
                 case "paycharge":
+                    scope.minDate = scope._minDate;
+                    scope.maxDate = new Date();
                     resourceFactory.LoanAccountResource.get({ loanId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: 'pay' }, function (data) {
                         if (data.dueDate) {
                             scope.formData.transactionDate = new Date(data.dueDate);

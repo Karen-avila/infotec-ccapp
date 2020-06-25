@@ -135,7 +135,8 @@
                         getReport: { method: 'GET', params: {} }
                     }),
                     reportsResource: defineResource(apiVer + "/reports/:id/:resourceType", { id: '@id', resourceType: '@resourceType' }, {
-                        get: { method: 'GET', params: { id: '@id' } },
+                        query: {method: 'GET', isArray: true },
+                        get: { method: 'GET', isArray: true, params: { id: '@id' } },
                         getReport: { method: 'GET', params: { id: '@id' }, isArray: true },
                         getReportDetails: { method: 'GET', params: { id: '@id' } },
                         update: { method: 'PUT', params: {} }
