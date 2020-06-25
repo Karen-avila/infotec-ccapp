@@ -86,14 +86,16 @@
         $mdDateLocaleProvider.firstDayOfWeek = localeData._week.dow;
       
         // Format and parse dates based on moment's 'L'-format
-        // 'L'-format may later be changed
         $mdDateLocaleProvider.parseDate = function(dateString) {
-          var m = moment(dateString, 'L', true);
-          return m.isValid() ? m.toDate() : new Date(NaN);
+          var m = moment(dateString); // , 'DD - MMMM - YYYY', true);
+          console.log("parse " + dateString + " -- " + m.isValid());
+          return (m.isValid() ? m.format('DD - MMMM - YYYY') : '');
         };
       
         $mdDateLocaleProvider.formatDate = function(date) {
-            return date ? moment(date).format('DD - MMM - YYYY') : null;
+            var m = moment(date); // , 'DD - MMMM - YYYY', true);
+            console.log("format " + date + " -- " + m.isValid());
+            return (m.isValid() ? m.format('DD - MMMM - YYYY') : '');
         };
 
         // Theme
