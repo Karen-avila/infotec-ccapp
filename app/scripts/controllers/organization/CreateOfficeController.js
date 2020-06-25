@@ -63,7 +63,7 @@
             }
             // end of address
             scope.changeState= function () {
-               console.log(this.address.stateProvinceId);
+              // console.log(this.address.stateProvinceId);
                 var  values= setLatLngByState(this.address.stateProvinceId);
                 scope.address.latitude= values.latitude;
                 scope.address.longitude= values.longitude;
