@@ -20,7 +20,7 @@
             scope.center={};
 
             scope.center= {          
-                    zoom: 8
+                    zoom: 5
                 }
         
             resourceFactory.officeResource.getAllOffices(function (data) {
@@ -73,7 +73,7 @@
                     center: {
                         lat: parseFloat(values.latitude) ,
                         lng: parseFloat(values.longitude),
-                        zoom: 16
+                        zoom: 13
                     },
                 });
             }
