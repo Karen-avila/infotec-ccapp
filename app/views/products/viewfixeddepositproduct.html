@@ -6,8 +6,18 @@
             <li class="active">{{depositproduct.name}}</li>
         </ul>
     
-<div class="card">
+<div class="md-padding">
     <div class="content">
+    <h3 class="bolder">{{depositproduct.name}}
+        <div class="form-group pull-right">
+            <md-button md-no-ink class="md-primary" href="#!/editfixeddepositproduct/{{depositproduct.id}}">
+                <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
+            </md-button>
+        </div>
+    </h3>
+    <hr>
+
+<!--
     <div class="pull-right">
         <div class="btn-group">
             <a href="#!/editfixeddepositproduct/{{depositproduct.id}}" class="btn btn-sm btn-primary"><i
@@ -16,6 +26,8 @@
     </div>
 
     <legend>{{depositproduct.name}}</legend>
+
+-->
     <table class="width100">
     <tr>
         <td>
