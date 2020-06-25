@@ -5,9 +5,15 @@
         <li class="active">{{'label.anchor.managetaxcomponents' | translate}}</li>
     </ul>
 <div class="card well">
-    <div class="pull-right">
-        <a href="#!/createtaxcomponent" class="btn btn-sm btn-primary" has-permission='CREATE_TAXCOMPONENT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createtaxcomponent' | translate}}</a>
+
+    <div class="row">
+		<div class="pull-right paddedbottom20">
+			<md-button md-no-ink class="md-primary" href="#!/createtaxcomponent" has-permission='CREATE_TAXCOMPONENT'>
+				<i class="fa fa-plus "></i>{{'label.button.createtaxcomponent' | translate}}</md-button>
+		</div>
     </div>
+    
+    <!--
     <div class="clear"></div>
     <div >
         <table class="table">
@@ -25,5 +31,29 @@
             </tbody>
         </table>
     </div>
+    -->
+
+    <md-divider></md-divider>
+        <md-table-container>
+            <table md-table>
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column>{{'label.heading.name' | translate}}</th>
+                        <th md-column>{{'label.heading.percentage' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="taxcomponent in taxcomponents| orderBy:'name':reverse  | filter:filterText"
+                        data-ng-click="routeTo(taxcomponent.id)">
+                        <td md-cell>{{taxcomponent.name}}</td>
+                        <td md-cell>{{taxcomponent.percentage | FormatNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+		</md-table-container>
+
+
+
+
 </div>
 </div>
