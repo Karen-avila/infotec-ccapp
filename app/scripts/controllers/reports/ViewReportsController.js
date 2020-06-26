@@ -24,7 +24,7 @@
       scope.routeTo = function (report) {
         location
           .path("/run_report/" + report.report_name)
-          .search({ reportId: report.report_id, type: report.report_type });
+          .search({ reportId: report.id, type: report.report_type });
       };
 
       if (!scope.searchCriteria.reports) {
