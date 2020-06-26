@@ -32,6 +32,8 @@
             { value: "CSV", label: "exportcsv" },
             { value: "PDF", label: "pdfformat" },
           ];
+          scope.minDate = new Date("2000-01-01T00:00:00.000+06:00");
+          scope.maxDate = new Date("2040-12-31T00:00:00.000+06:00");
 
           scope.highlight = function (id) {
               var i = document.getElementById(id);
