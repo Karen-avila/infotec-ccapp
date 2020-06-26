@@ -32,6 +32,8 @@
             { value: "CSV", label: "exportcsv" },
             { value: "PDF", label: "pdfformat" },
           ];
+          scope.minDate = new Date("2000-01-01T00:00:00.000+06:00");
+          scope.maxDate = new Date("2040-12-31T00:00:00.000+06:00");
 
           scope.highlight = function (id) {
               var i = document.getElementById(id);
@@ -46,7 +48,6 @@
           };
 
           resourceFactory.runReportsResource.getReport({reportSource: 'FullParameterList', parameterType: true, R_reportListing: "'" + routeParams.name + "'"}, function (data) {
-
               for (var i in data.data) {
                   var temp = {
                       name: data.data[i].row[0],
@@ -65,6 +66,7 @@
                       intializeParams(temp, {});
                   } else if (temp.displayType == 'date') {
                       scope.reportDateParams.push(temp);
+                      scope.formData[temp.inputName] = new Date();
                   } else if (temp.displayType == 'text') {
                       scope.reportTextParams.push(temp);
                   }
@@ -72,9 +74,8 @@
           });
 
           if (scope.reportType == "Pentaho" || scope.reportType == "Jasper") {
-            resourceFactory.reportsResource.query({id: scope.reportId, fields: 'reportParameters'}, function (data) {
+            resourceFactory.reportsResource.get({id: scope.reportId, fields: 'reportParameters'}, function (data) {
                 scope.pentahoReportParameters = data.reportParameters || [];
-                buildReportParms();
             });
           }
     
@@ -349,9 +350,9 @@
                           reportURL = $sce.trustAsResourceUrl(reportURL);
                           reportURL = $sce.valueOf(reportURL);
                           http.get(reportURL, {responseType: 'arraybuffer'}).
-                            success(function(data, status, headers, config) {
-                              var contentType = headers('Content-Type');
-                              var file = new Blob([data], {type: contentType});
+                            then(function(response) {
+                              var contentType = "application/pdf"; // data.config.headers('Content-Type');
+                              var file = new Blob([response], {type: contentType});
                               var fileContent = URL.createObjectURL(file);
 
                               // Pass the form data to the iframe as a data url.
