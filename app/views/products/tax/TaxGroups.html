@@ -5,10 +5,34 @@
         <li class="active">{{'label.anchor.managetaxgroup' | translate}}</li>
     </ul>
     <div class="clear"></div>
+
     <div class="card well">
-        <div class="pull-right">
-            <a href="#!/createtaxgroup" class="btn btn-sm btn-primary" has-permission='CREATE_TAXGROUP'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createtaxgroup' | translate}}</a>
+
+        <div class="row">
+            <div class="pull-right paddedbottom20">
+                <md-button md-no-ink class="md-primary" href="#!/createtaxgroup" has-permission='CREATE_TAXGROUP'>
+                    <i class="fa fa-plus "></i>{{'label.button.createtaxgroup' | translate}}</md-button>
+            </div>
         </div>
+
+        <md-divider></md-divider>
+        <md-table-container>
+            <table md-table>
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column>{{'label.heading.name' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="taxgroup in taxgroups | orderBy:'name':reverse  | filter:filterText"
+                        data-ng-click="routeTo(taxgroup.id)">
+                        <td md-cell>{{taxgroup.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+		</md-table-container>
+
+        <!--
         <table class="table">
             <thead>
             <tr class="graybg">
@@ -21,5 +45,7 @@
             </tr>
             </tbody>
         </table>
+        -->
+
     </div>
 </div>
