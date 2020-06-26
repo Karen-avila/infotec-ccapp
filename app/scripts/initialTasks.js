@@ -86,14 +86,27 @@
         $mdDateLocaleProvider.firstDayOfWeek = localeData._week.dow;
       
         // Format and parse dates based on moment's 'L'-format
-        // 'L'-format may later be changed
         $mdDateLocaleProvider.parseDate = function(dateString) {
-          var m = moment(dateString, 'L', true);
-          return m.isValid() ? m.toDate() : new Date(NaN);
+            if (!dateString || dateString === 'undefined') {
+                return dateString;
+            }
+            console.log((typeof dateString));
+            if (typeof dateString !== 'undefined') {
+                var m = moment(dateString, 'L', true);
+                console.log("parse " + dateString + " : " + m.isValid());
+                return m.isValid() ? m.toDate() : new Date(NaN);
+            }
         };
       
         $mdDateLocaleProvider.formatDate = function(date) {
-            return date ? moment(date).format('DD - MMM - YYYY') : null;
+            if (!date || date === 'undefined') {
+                return date;
+            }
+            console.log((typeof date));
+            if (typeof date !== 'undefined' ) {
+                var m = moment(date);
+                return m.isValid() ? m.format('L') : '';
+            }
         };
 
         // Theme
