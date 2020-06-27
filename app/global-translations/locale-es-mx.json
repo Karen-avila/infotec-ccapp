@@ -4280,7 +4280,11 @@
     "label.reports.name.Loan Transaction Receipt": "Recibo Transacción de Crédito",
     "label.reports.name.Income Statement": "Estado de Resultados",
     "label.reports.name.Balance Sheet": "Hoja de Balance",
-
+    "label.reports.name.Trial Balance": "Balanza de Comprobación",
+    "label.reports.name.GeneralLedgerReport": "Libro de Mayor",
+    "label.reports.name.Reporte Operativo Contable": "Reporte Operativo Contable",
+    "label.input.pie": "Gráfica Pastel",
+    "label.input.bar": "Gráfica Barra",
     "day.monday": "Lunes",
     "day.tuesday": "Martes",
     "day.wednesday": "Miércoles",
