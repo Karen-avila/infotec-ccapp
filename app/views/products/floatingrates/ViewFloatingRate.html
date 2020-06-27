@@ -8,9 +8,17 @@
     <form name="newfloatingrateform" novalidate="" class="card form-horizontal well">
         <api-validate></api-validate>
         <fieldset>
+
+            <div class="form-group pull-right">
+                <md-button md-no-ink class="md-primary" href="#!/editfloatingrate/{{id}}" has-permission='UPDATE_FLOATINGRATE'>
+                    <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
+                </md-button>
+            </div>
+            <!--
             <div class="btn-group pull-right">
                 <a href="#!/editfloatingrate/{{id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_FLOATINGRATE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
             </div>
+            -->
             <div class="form-group">
                 <div class="col-sm-4">
                     <label class="control-label">{{'label.input.floatingratename' | translate}}:&nbsp;</label>

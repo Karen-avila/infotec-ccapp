@@ -3,8 +3,20 @@
         OfficesController: function (scope, resourceFactory, location) {
             scope.offices = [];
             scope.isTreeView = false;
-            var idToNodeMap = {};
+            scope.totalOffices = 0;
 
+            scope.query = {
+                order: "name",
+                limit: 25,
+                page: 1,
+            };
+
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+            };
+
+            var idToNodeMap = {};
             scope.routeTo = function (id) {
                 location.path('/viewoffice/' + id);
             };
@@ -13,12 +25,6 @@
                 scope.searchCriteria.offices = null;
                 scope.saveSC();
             }
-            scope.filterText = scope.searchCriteria.offices || '';
-
-            scope.onFilter = function () {
-                scope.searchCriteria.offices = scope.filterText;
-                scope.saveSC();
-            };
 
             scope.deepCopy = function (obj) {
                 if (Object.prototype.toString.call(obj) === '[object Array]') {
@@ -38,9 +44,9 @@
                 return obj;
             }
 
-            scope.OfficesPerPage =15;
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = scope.deepCopy(data);
+                scope.totalOffices = data.length;
                 for (var i in data) {
                     data[i].children = [];
                     idToNodeMap[data[i].id] = data[i];
@@ -66,6 +72,38 @@
                 }
                 scope.treedata = root;
             });
+
+
+
+            scope.filters = [];
+            scope.$watch("filter.search", function (newValue, oldValue) {
+                if (newValue != undefined) {
+                    scope.filters = newValue.split(" ");
+                }
+            });
+
+            scope.searachData = {};
+
+            scope.customSearch = function (item) {
+                scope.searachData.status = true;
+
+                angular.forEach(scope.filters, function (value1, key) {
+                    scope.searachData.tempStatus = false;
+                    angular.forEach(item, function (value2, key) {
+                        var dataType = typeof value2;
+
+                        if (dataType == "string" && !value2.includes("object")) {
+                            if (value2.toLowerCase().includes(value1)) {
+                                scope.searachData.tempStatus = true;
+                            }
+                        }
+                    });
+                    scope.searachData.status =
+                        scope.searachData.status & scope.searachData.tempStatus;
+                });
+
+                return scope.searachData.status;
+            };
         }
     });
     mifosX.ng.application.controller('OfficesController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.OfficesController]).run(function ($log) {

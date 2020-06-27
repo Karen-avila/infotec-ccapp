@@ -145,6 +145,29 @@
                 });
             };
 
+            scope.allowShowTransactionCalculation = function(transaction) {
+                if (transaction.type.value == 'Repayment') {
+                    return false;
+                } else if (transaction.manuallyReversed!=true && transaction.penaltyChargesPortion) {
+                    return true;
+                }
+                return false;
+            }
+
+            scope.allowShowTransactionReceipt = function(transaction) {
+                if (transaction.type.value == 'Repayment' && transaction.manuallyReversed!=true) {
+                    return true;
+                }
+                return false;
+            }
+
+            scope.allowShowJournalEntries = function(transaction) {
+                if (transaction.type.value == 'Accrual Overdue') {
+                    return false;
+                }
+                return true;
+            }
+
             scope.showTransactionCalculation = function(ev, transactionId) {
                 resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
                 function (data) {
@@ -250,6 +273,8 @@
                 scope.status = data.status.value;
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
+
+                scope.freePeriods = data.graceOnPrincipalPayment;
 
                 if (scope.loandetails.charges) {
                     scope.charges = scope.loandetails.charges;
@@ -486,34 +511,24 @@
                     };
                 }
 
-                const today = new Date();
-                var firstOverduePayment = false;
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
-                        if (period.complete == true) {
+                        if (period.complete == true && period.period > scope.freePeriods) {
                             scope.payments.paid++;
                         } else {
                             scope.payments.pending++;
-                            if (new Date(period.dueDate) < today) {
-                                scope.payments.expired++;
-                                if (!firstOverduePayment) {
-                                    firstOverduePayment = true;
-                                    const periodDate = new Date(period.dueDate);
-                                    scope.payments.firstOverdueDate = periodDate;
-                                    const diffTime = Math.abs(today - periodDate);
-                                    scope.payments.overdueDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                                }
-                            }
                         }
                         scope.payments.total++;
                     }
                 }
 
+                /*
                 resourceFactory.standingInstructionTemplateResource.get({fromClientId: scope.loandetails.clientId,fromAccountType: 1,fromAccountId: routeParams.id},function (response) {
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
+                */
             });
 
             resourceFactory.loanTrxnsTemplateResource.get({ loanId: routeParams.id, command: 'prepayLoan' }, function (data) {

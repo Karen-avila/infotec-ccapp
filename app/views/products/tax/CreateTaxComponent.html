@@ -94,12 +94,12 @@
 
 
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/taxcomponents">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-                </a>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_TAXCOMPONENT'>
-                    {{'label.button.save' | translate}}
-                </button>
+
+                <md-button id="cancel" href="#!/taxcomponents" class="md-raised" type="reset">{{'label.button.cancel' | translate }}
+				</md-button>
+				<md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_TAXCOMPONENT'>{{'label.button.save' | translate }}
+                </md-button>
+               
             </div>
         </fieldset>
     </form>

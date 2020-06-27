@@ -11,30 +11,31 @@
             <legend>{{'label.heading.rescheduleloan' | translate}}</legend>
             <div class="form-group">
                 <label class="control-label col-sm-2 width20" style="text-align: left;">{{'label.input.installmentOn' | translate}}<span class="required">*</span></label>
-
-                <div class="col-sm-3">
-                    <input id="rescheduleFromDate" type="text" name="rescheduleFromDate" datepicker-pop="dd MMMM yyyy"
-                           class="form-control paddedbottom10 paddedtop" ng-model="formData.rescheduleFromDate" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+                <div class="col-sm-6">
+                    <md-datepicker id="rescheduleFromDate" ng-model="formData.rescheduleFromDate" 
+                        md-placeholder="{{'label.selecttodate' | translate}}"
+                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2 width20" style="text-align: left;">{{'label.input.rescheduleReasonId' | translate}}<span class="required">*</span></label>
-
-                <div class="col-sm-3 paddedbottom10 paddedtop">
-                    <select chosen="codes" class="form-control ng-pristine ng-valid" value="{{rescheduleReasonCode.id}}"
-                            ng-options="rescheduleReasonCode.id as rescheduleReasonCode.name for rescheduleReasonCode in codes"
-                            ng-model="formData.rescheduleReasonId" >
-                        <option style="display:none" value="">{{'label.menu.rescheduleReason' | translate}}</option>
-                    </select>
+                <div class="col-sm-3">
+                    <md-select id="currencyCode" ng-model="formData.rescheduleReasonId" required
+                    placeholder="{{'label.selectone' | translate}}">
+                    <md-option ng-repeat="rescheduleReasonCode in codes" ng-value="rescheduleReasonCode.id">
+                        {{rescheduleReasonCode.code}} {{rescheduleReasonCode.name | translate}}
+                    </md-option>
+                </md-select>
                 </div>
             </div>
             <div class="form-group">
-
-                <label class="control-label col-sm-2 width20" style="text-align: left;">{{'label.input.submittedOnDate' | translate}}<span class="required">*</span></label>
-                <div class="col-sm-3 paddedbottom10 paddedtop">
-
-                    <input id="submittedOnDate" type="text" name="submittedOnDate" datepicker-pop="dd MMMM yyyy"
-                           class="form-control" ng-model="formData.submittedOnDate" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+                    <label class="control-label col-sm-2 width20" style="text-align: left;">{{'label.input.submittedOnDate' | translate}}<span class="required">*</span></label>
+                <div class="col-sm-6">
+                    <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate" 
+                        md-placeholder="{{'label.selecttodate' | translate}}"
+                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
             <div class="form-group">
@@ -52,9 +53,11 @@
 
                 <label class="control-label col-sm-2 width20" data-ng-show="changeRepaymentDate" style="padding-left: 32px;text-align: left;">{{'label.input.installemtrescheduledto' | translate
                     }}&nbsp;</label>
-                <div class="col-sm-3 paddedbottom10">
-                    <input id="adjustedDueDate" ng-show="changeRepaymentDate" type="text" name="adjustedDueDate" datepicker-pop="dd MMMM yyyy"
-                           class="form-control " ng-model="formData.adjustedDueDate" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+                <div class="col-sm-6">
+                    <md-datepicker id="adjustedDueDate" ng-show="changeRepaymentDate" ng-model="formData.adjustedDueDate"  name="adjustedDueDate"
+                        md-placeholder="{{'label.selecttodate' | translate}}"
+                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
 
@@ -114,12 +117,11 @@
             <br>-->
             <div align="center">
 
-                <button type="button" data-ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</button>
+                <md-button type="button" data-ng-click="cancel()" class="btn md-raised btn-default">{{'label.button.cancel' | translate }}</md-button>
 
-                <button type="button" data-ng-click="submit()" class="btn btn-sm btn-primary"  has-permission='APPROVE_RESCHEDULELOAN'>
+                <md-button type="button" data-ng-click="submit()" class="md-raised md-primary"  has-permission='APPROVE_RESCHEDULELOAN'>
                     {{'label.button.save' | translate}}
-
-                </button>
+                </md-button>
             </div>
 
         </fieldset>

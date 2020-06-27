@@ -54,7 +54,7 @@
                             placeholder="{{'label.input.searchbytransaction' | translate}}" class="form-control"/>
                         </div>&nbsp;&nbsp;
                         <div class="form-group">
-                            <md-button ng-click="searchTransaction()" class="md-raised md-primary" has-permission='READ_JOURNALENTRY'> Search <i class="fa fa-search "></i></md-button>
+                            <md-button ng-click="searchTransaction()" class="md-raised md-primary" has-permission='READ_JOURNALENTRY'>{{'label.heading.search' | translate}} <i class="fa fa-search "></i></md-button>
                         </div>
                 </div>
             </div>
@@ -66,44 +66,35 @@
             </div>
             <div class="clear"></div>
             <div ng-show="displayResults">
-                <table class="table">
-                    <thead>
-                    <tr class="graybg">
-                        <th>{{'label.heading.entryid' | translate}}</th>
-                        <th>{{'label.heading.office' | translate}}</th>
-                        <th>{{'label.heading.transactiondate' | translate}}</th>
-                        <th>{{'label.heading.transactionid' | translate}}</th>
-                        <th>{{'label.heading.type' | translate}}</th>
-                        <th>{{'label.heading.createdby' | translate}}</th>
-                        <th>{{'label.heading.account' | translate}}</th>
-                        <th>{{'label.heading.debit' | translate}}</th>
-                        <th>{{'label.heading.credit' | translate}}</th>
+                <table md-table>
+                    <thead md-head>
+                    <tr md-row>
+                        <th md-column>{{'label.heading.entryid' | translate}}</th>
+                        <th md-column>{{'label.heading.office' | translate}}</th>
+                        <th md-column>{{'label.heading.transactiondate' | translate}}</th>
+                        <th md-column>{{'label.heading.transactionid' | translate}}</th>
+                        <th md-column>{{'label.heading.type' | translate}}</th>
+                        <th md-column>{{'label.heading.createdby' | translate}}</th>
+                        <th md-column>{{'label.heading.account' | translate}}</th>
+                        <th md-column>{{'label.heading.debit' | translate}}</th>
+                        <th md-column>{{'label.heading.credit' | translate}}</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="pointer-main" ng-repeat="transaction in transactions.currentPageItems">
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">{{transaction.id}}</td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">{{transaction.officeName}}</td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">{{transaction.transactionDate |
-                            DateFormat}}
-                        </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">{{transaction.transactionId}}
-                        </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">
-                            {{transaction.glAccountType.value}}
-                        </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">
-                            {{transaction.createdByUserName}}
-                        </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">
-                            {{transaction.glAccountName}}({{transaction.glAccountCode}})
-                        </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">
+                    <tbody md-body>
+                    <tr md-row ng-repeat="transaction in transactions.currentPageItems" data-ng-click="routeTo(transaction.transactionId)">
+                        <td md-cell>{{transaction.id}}</td>
+                        <td md-cell>{{transaction.officeName}}</td>
+                        <td md-cell>{{transaction.transactionDate |DateFormat}}</td>
+                        <td md-cell>{{transaction.transactionId}}</td>
+                        <td md-cell>{{transaction.glAccountType.value}} </td>
+                        <td md-cell>{{transaction.createdByUserName}}</td>
+                        <td md-cell>{{transaction.glAccountName}}({{transaction.glAccountCode}})</td>
+                        <td md-cell>
                             <div ng-show="transaction.entryType.value == 'DEBIT'">
                                 {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}
                             </div>
                         </td>
-                        <td class="pointer" data-ng-click="routeTo(transaction.transactionId)">
+                        <td md-cell>
                             <div ng-show="transaction.entryType.value == 'CREDIT'">
                                 {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}
                             </div>

@@ -10,15 +10,17 @@
 	    <fieldset>
 	        <legend>{{'label.heading.addproductmix' | translate}}</legend>
 	        <div class="form-group">
-	            <label class="control-label col-sm-2">{{'label.input.selectproduct' | translate }}</label>
+	            <label class="control-label col-sm-3">{{'label.input.selectproduct' | translate }}</label>
 	
 	            <div class="col-sm-3">
-	                <select id="productId" name="product" ng-model="formData.productId"
+
+					<select id="productId" name="product" ng-model="formData.productId"
 	                        ng-options="product.id as product.name for product in products" value="{{product.id}}"
 	                        data-ng-change="productInfo(formData.productId)" class="form-control" required>
 	                    <option value="">{{'label.selectproduct' | translate}}</option>
 	                </select>
-	                <form-validate valattributeform="addproductmixform" valattribute="product"/>
+					<form-validate valattributeform="addproductmixform" valattribute="product"/>
+					
 	            </div>
 	        </div>
 	        <div class="form-group">
@@ -44,10 +46,14 @@
 	                </div>
 	            </div>
 	        </div>
-	        <div class="col-md-12 center">
-	            <a href="#!/productmix" class="btn btn-sm btn-default">{{'label.button.cancel' | translate }}</a>
-	            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_PRODUCTMIX'>{{'label.button.save' | translate }}</button>
-	        </div>
+	       
+			<div class="col-md-12 center">
+				<md-button id="cancel" href="#!/productmix" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate }}
+				</md-button>
+				<md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_PRODUCTMIX'>{{'label.button.save' | translate }}
+				</md-button>
+			</div>
+
 	    </fieldset>
 	</form>
 </div>

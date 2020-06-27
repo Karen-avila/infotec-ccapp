@@ -1,14 +1,50 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewOfficeController: function (scope, routeParams, route, location, resourceFactory) {
+        ViewOfficeController: function (scope, routeParams, route, location,resourceFactory, leafletData) {
             scope.charges = [];
             scope.datatabledetails = [];
             scope.datatableLoaded = false;
-
+            scope.center= {};
+            
+         
             resourceFactory.officeResource.get({ officeId: routeParams.id }, function (data) {
                 scope.office = data;
+             
+                var mainMarker = {
+                   
+                    lat: parseFloat(data.address.latitude) ,
+                    lng: parseFloat(data.address.longitude),
+                    focus: true,
+                    message: "Ubicación",
+                    draggable: true
+                };
+    
+                angular.extend(scope, {
+                    center: {
+                        lat: parseFloat(data.address.latitude) ,
+                        lng: parseFloat(data.address.longitude),
+                        zoom: 16
+                    },
+                    markers: {
+                        mainMarker: angular.copy(mainMarker)
+                    },
+                    position: {
+                        lat: parseFloat(data.address.latitude) ,
+                        lng: parseFloat(data.address.longitude),
+                    },
+                    events: { // or just {} //all events
+                        markers:{
+                          enable: [ 'dragend' ]
+                          //logic: 'emit'
+                        }
+                    }
+                });
+    
+
             });
 
+           
+         
             resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_office' }, function (data) {
                 scope.officedatatables = data;
                 if (scope.datatableLoaded == false) {
