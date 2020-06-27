@@ -1,102 +1,214 @@
 <div class="content-container" ng-controller="ViewOfficeController">
-    <ul class="breadcrumb">
-        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#!/offices">{{'label.anchor.manageoffices' | translate}}</a></li>
-        <li class="active">{{office.name}}</li>
-    </ul>
-    <div class="card">
-        <div class="content">
-            <uib-tabset class="overflowhidden marginbottom0 scrollable" tabset-name="officeTabset" scrollable>
-                <uib-tab heading="{{'label.heading.general' | translate}}">
-                    <div class="container-fluid">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="row primarydiv">
-                                <div class="pull-right">
-                                    <div class="btn-group">
-                                        <a href="#!/editoffice/{{office.id}}" class="btn btn-sm btn-primary"
-                                            has-permission='UPDATE_OFFICE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
-                                            'label.button.edit' | translate }}</a>
-                                    </div>
-                                </div>
-                            </div>
+  <ul class="breadcrumb">
+    <li>
+      <a href="#!/organization">{{'label.anchor.organization' | translate}}</a>
+    </li>
+    <li>
+      <a href="#!/offices">{{'label.anchor.manageoffices' | translate}}</a>
+    </li>
+    <li class="active">{{office.name}}</li>
+  </ul>
+  <div class="card">
+    <md-content class="md-padding">
+      <md-tabs
+        md-dynamic-height
+        md-border-bottompersistent-tab
+        class="full-width"
+      >
+        <md-tab>
+          <md-tab-label>{{'label.heading.general' | translate}}</md-tab-label>
+          <md-tab-body>
+            <div class="col-md-12 col-sm-12 btn-group row">
+              <div class="row primarydiv">
+                <div class="pull-right">
+                  <div class="btn-group">
+                    <md-button
+                      href="#!/editoffice/{{office.id}}"
+                      class="md-raised md-primary"
+                      has-permission="UPDATE_OFFICE"
+                      ><i class="fa fa-edit"></i>&nbsp;&nbsp;{{
+                      'label.button.edit' | translate }}</md-button
+                    >
+                  </div>
+                </div>
+              </div>
 
-                            <h3><strong>{{office.name}}</strong></h3>
-                            <table class="table-bordered table view-table" style="width: 350px">
-                                <tr>
-                                    <td>{{'label.heading.parentoffice' | translate }}</td>
-                                    <td>{{office.parentName}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.office.cityid' | translate }}</td>
-                                    <td>{{office.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.office.branchid' | translate }}</td>
-                                    <td>{{office.branch}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.openedon' | translate }}</td>
-                                    <td>{{office.openingDate | DateFormat}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.namedecorated' | translate }}</td>
-                                    <td>{{office.nameDecorated | DotRemove}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{'label.heading.externalid' | translate }}</td>
-                                    <td>{{office.externalId}}</td>
-                                </tr>
-                            </table>
+              <h3><strong>{{office.name}}</strong></h3>
+              <table class="table" class="table table-condensed">
+                <tr>
+                  <th>{{'label.heading.parentoffice' | translate }}</th>
+                  <td>{{office.parentName}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.office.cityid' | translate }}</th>
+                  <td>{{office.city}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.office.branchid' | translate }}</th>
+                  <td>{{office.branch}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.openedon' | translate }}</th>
+                  <td>{{office.openingDate | DateFormat}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.namedecorated' | translate }}</th>
+                  <td>{{office.nameDecorated | DotRemove}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.externalid' | translate }}</th>
+                  <td>{{office.externalId}}</td>
+                </tr>
+                <tr>
+                  <th colspan="2">{{'label.heading.address' | translate }}</th>
+                </tr>
+                <tr>
+                  <th>{{'label.heading.zip' | translate }}</th>
+                  <td>{{office.address.postalCode}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.addressType' | translate }}</th>
+                  <td>{{office.address.addressType}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.street' | translate }}</th>
+                  <td>{{office.address.street}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.addressline1' | translate }}</th>
+                  <td>{{office.address.addressLine1}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.addressline2' | translate }}</th>
+                  <td>{{office.address.addressLine2}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.addressline3' | translate }}</th>
+                  <td>{{office.address.addressLine3}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.city' | translate}}</th>
+                  <td>{{office.address.city}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.country' | translate}}</th>
+                  <td>{{office.address.countryName}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.state_province' | translate}}</th>
+                  <td>{{office.address.stateName}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.latitude' | translate}}</th>
+                  <td>{{office.address.latitude}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.longitude' | translate }}</th>
+                  <td>{{office.address.longitude}}</td>
+                </tr>
+                <tr>
+                  <th>{{'label.input.is_active' | translate}}</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <leaflet lf-center="center" event-broadcast="events" markers="markers" height="480px" width="100%"></leaflet>
+                  </body>
+                </html>      
+                  </td>
+                </tr>
+              </table>
+               
+            </div>
+            <div class="row">
+              <div
+                class="col-sm-12 col-md-12"
+                style="
+                  padding-top: 20px;
+                  padding-left: 0px;
+                  padding-right: 0px;
+                "
+              >
+                <table class="table-minified">
+                  <tbody>
+                    <tr
+                      class="col-sm-12 col-md-12"
+                      ng-repeat="datatabledetail in datatabledetails"
+                      has-permission="READ_{{datatabledetail.registeredTableName}}"
+                    >
+                      <td style="display: block;">
+                        <div>
+                          <table
+                            class="table table-condensed"
+                            data-ng-hide="datatabledetail.isMultirow"
+                          >
+                            <tbody>
+                              <tr class="graybg">
+                                <td style="width: 50%;" class="graybg">
+                                  <strong
+                                    >{{datatabledetail.registeredTableName}}</strong
+                                  >
+                                </td>
+                                <td style="width: 50%;">
+                                  <div class="form-group pull-right">
+                                    <a
+                                      data-ng-show="datatabledetail.showDataTableAddButton"
+                                      ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?fromEntity=office"
+                                      class="btn btn-sm btn-primary"
+                                      has-permission="CREATE_{{datatabledetail.registeredTableName}}"
+                                      ><i class="fa fa-plus"></i
+                                      >&nbsp;&nbsp;{{'label.button.add' |
+                                      translate}}</a
+                                    >
+                                    <a
+                                      data-ng-show="datatabledetail.showDataTableEditButton"
+                                      ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?mode=edit"
+                                      class="btn btn-sm btn-primary"
+                                      has-permission="UPDATE_{{datatabledetail.registeredTableName}}"
+                                      ><i class="fa fa-edit"></i
+                                      >&nbsp;&nbsp;{{'label.button.edit' |
+                                      translate}}</a
+                                    >
+                                    <a
+                                      ng-show="datatabledetails.isData"
+                                      class="btn btn-danger"
+                                      ng-click="deleteAll(datatabledetail.registeredTableName, office.id)"
+                                      has-permission="DELETE_{{datatabledetail.registeredTableName}}"
+                                      ><i class="fa fa-trash-o"></i
+                                      >&nbsp;&nbsp;{{'label.button.deleteall' |
+                                      translate}}</a
+                                    >
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr
+                                ng-repeat="value in datatabledetail.singleRow"
+                                data-ng-hide="datatabledetail.isMultirow"
+                              >
+                                <th style="width: 50%;" class="table-font-nav">
+                                  <strong
+                                    >{{getDatatableColumn(datatabledetail.registeredTableName,
+                                    value.key) | translate}}</strong
+                                  >
+                                </th>
+                                <td style="width: 50%; padding-left: 10px;">
+                                  <span class="padded-td"
+                                    >{{getDatatableValue(value)}}</span
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-                    </div>
-					<div class="row">
-						<div class="col-sm-12 col-md-12" style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
-							<table class="table-minified">
-								<tbody>
-                                    <tr class="col-sm-12 col-md-12" ng-repeat="datatabledetail in datatabledetails" 
-                                    has-permission='READ_{{datatabledetail.registeredTableName}}'>
-                                    <td style="display: block;">
-                                        <div>
-                                            <table class="table table-condensed" data-ng-hide="datatabledetail.isMultirow">
-                                                <tbody>
-                                                    <tr class="graybg">
-                                                        <td style="width: 50%;" class="graybg"><strong>{{datatabledetail.registeredTableName}}</strong></td>
-                                                        <td style="width: 50%;">
-                                                            <div class="form-group pull-right">
-                                                                <a data-ng-show="datatabledetail.showDataTableAddButton"
-                                                                    ng-href="#!/makedatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?fromEntity=office"
-                                                                    class="btn btn-sm btn-primary"
-                                                                    has-permission='CREATE_{{datatabledetail.registeredTableName}}'><i
-                                                                        class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</a>
-                                                                <a data-ng-show="datatabledetail.showDataTableEditButton"
-                                                                    ng-href="#!/viewsingledatatableentry/{{datatabledetail.registeredTableName}}/{{office.id}}?mode=edit"
-                                                                    class="btn btn-sm btn-primary"
-                                                                    has-permission='UPDATE_{{datatabledetail.registeredTableName}}'><i
-                                                                        class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
-                                                                <a ng-show="datatabledetails.isData" class="btn btn-danger"
-                                                                    ng-click="deleteAll(datatabledetail.registeredTableName, office.id)"
-                                                                    has-permission='DELETE_{{datatabledetail.registeredTableName}}'><i
-                                                                        class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.deleteall' | translate}}</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr ng-repeat="value in datatabledetail.singleRow" data-ng-hide="datatabledetail.isMultirow">
-                                                        <th style="width: 50%;" class="table-font-nav">
-                                                            <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
-                                                        </th>
-                                                        <td style="width: 50%; padding-left: 10px;"><span class="padded-td">{{getDatatableValue(value)}}</span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </uib-tab>
-            </uib-tabset>
-        </div>
-    </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div>
 </div>

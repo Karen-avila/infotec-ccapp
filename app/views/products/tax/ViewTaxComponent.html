@@ -8,6 +8,17 @@
 
     <form class="card form-horizontal well" ng-controller="ViewTaxComponentController">
         <fieldset>
+
+            
+                <h3 class="bolder">{{'label.heading.viewtaxcomponent' | translate}}
+                    <div class="form-group pull-right">
+                        <md-button md-no-ink class="md-primary" href="#!/edittaxcomponent/{{taxComponent.id}}" has-permission='UPDATE_TAXCOMPONENT'>
+                            <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
+                        </md-button>
+                    </div>
+                </h3>
+                <hr>
+             <!--
             <div class="pull-right">
                 <div class="btn-group">
                     <a href="#!/edittaxcomponent/{{taxComponent.id}}" class="btn btn-sm btn-primary"
@@ -16,6 +27,8 @@
                 </div>
             </div>
             <legend>{{'label.heading.viewtaxcomponent' | translate}}</legend>
+            -->   
+
             <div class="form-group">
                 <label class="text-right  col-sm-2">{{'label.input.name' | translate }}</label>
 
@@ -75,9 +88,10 @@
 
             <div class="col-md-12 center">
                 <a id="cancel" href="#!/taxcomponents">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.back' | translate}}</button>
+                    <md-button type="reset" class="btn btn-sm btn-default">{{'label.button.back' | translate}}</md-button>
                 </a>
             </div>
+            
         </fieldset>
     </form>
 </div>

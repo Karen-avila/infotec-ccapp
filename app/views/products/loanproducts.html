@@ -25,7 +25,7 @@
                         <th md-column>{{'label.heading.shortname' | translate}}</th>
                         <th md-column>{{'label.heading.currency' | translate}}</th>
                         <th md-column>{{'label.heading.description' | translate}}</th>
-                        <th md-column>{{'label.heading.closeDate' | translate}}</th>
+                        <th md-column>{{'label.heading.closedate' | translate}}</th>
                         <th md-column>{{'label.heading.status' | translate}}</th>
                     </tr>
                 </thead>
@@ -36,8 +36,7 @@
                         <td md-cell >{{loanproduct.shortName}}</td>
                         <td md-cell >{{loanproduct.currency.code}}</td>
                         <td md-cell >{{loanproduct.description}}</td>
-                        <td md-cell >{{loanproduct.closeDate | DateFormat}}
-                        </td>
+                        <td md-cell >{{loanproduct.closeDate | DateFormat}}</td>
                         <td md-cell >
                             <i class="fa fa-circle {{loanproduct.status | StatusLookup}}"
                                 uib-tooltip="{{'label.tooltip.' + loanproduct.status | translate}}"

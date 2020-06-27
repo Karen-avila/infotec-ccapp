@@ -20,7 +20,7 @@
             <br>
             <div class="pull-corner" ng-show="isDisabled">
                 <div class="btn-group">
-                    <a class="btn btn-sm btn-primary" ng-click="editMCTasks();" has-permission='UPDATE_PERMISSION'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate }}</a>
+                    <md-button class="md-raised md-primary" ng-click="editMCTasks();" has-permission='UPDATE_PERMISSION'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate }}</md-button>
                 </div>
             </div>
             <table width="100%">
@@ -35,8 +35,8 @@
                     <td class="left-border" valign="top">
                         <table width="100%">
                             <tr ng-repeat="permission in permissions.permissions">
-                                <td><input id="{{permission.code}}" type="checkbox" ng-model="formData[permission.code]"
-                                           ng-disabled="isDisabled">
+                                <td><md-checkbox id="{{permission.code}}" ng-model="formData[permission.code]"
+                                           ng-disabled="isDisabled"></md-checkbox>
                                 &nbsp;&nbsp;<label for="{{permission.code}}">{{permissionName(permission.code)}}</label>
                                 </td>
                             </tr>
@@ -46,8 +46,8 @@
             </table>
 
             <div class="col-md-offset-3" ng-hide="isDisabled">
-                <a id="cancel" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</a>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_PERMISSION'>{{'label.button.save' | translate}}</button>
+                <md-button id="cancel" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+                <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_PERMISSION'>{{'label.button.save' | translate}}</md-button>
             </div>
         </div>
     </div>
