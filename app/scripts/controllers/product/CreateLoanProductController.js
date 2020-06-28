@@ -169,9 +169,9 @@
                 scope.frFlag = true;
                 scope.configureFundOptions.push({
                     paymentTypeId: scope.product.paymentTypeOptions.length > 0 ? scope.product.paymentTypeOptions[0].id : '',
-                    fundSourceAccountId: scope.assetAccountOptions.length > 0 ? scope.assetAccountOptions[0].id : '',
+                    fundSourceAccountId: scope.liabilityAccountOptions.length > 0 ? scope.liabilityAccountOptions[0].id : '',
                     paymentTypeOptions: scope.product.paymentTypeOptions.length > 0 ? scope.product.paymentTypeOptions : [],
-                    assetAccountOptions: scope.assetAccountOptions.length > 0 ? scope.assetAccountOptions : []
+                    assetAccountOptions: scope.liabilityAccountOptions.length > 0 ? scope.liabilityAccountOptions : []
                 });
             };
 

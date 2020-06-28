@@ -680,7 +680,7 @@
                                 </tr>
                                 <tr ng-repeat="paymentChannel in loanproduct.paymentChannelToFundSourceMappings">
                                     <td>{{paymentChannel.paymentType.name}}</td>
-                                    <td colspan="3">{{paymentChannel.fundSourceAccount.name}}</td>
+                                    <td colspan="3">{{paymentChannel.fundSourceAccount.name}} ({{paymentChannel.fundSourceAccount.glCode}})</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"></td>
@@ -694,7 +694,7 @@
                                 </tr>
                                 <tr ng-repeat="feeToIncomeAccount in loanproduct.feeToIncomeAccountMappings">
                                     <td>{{feeToIncomeAccount.charge.name}}</td>
-                                    <td colspan="3">{{feeToIncomeAccount.incomeAccount.name}}</td>
+                                    <td colspan="3">{{feeToIncomeAccount.incomeAccount.name}} ({{feeToIncomeAccount.incomeAccount.glCode}})</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"></td>
@@ -708,7 +708,7 @@
                                 </tr>
                                 <tr ng-repeat="penaltyToIncomeAccount in loanproduct.penaltyToIncomeAccountMappings">
                                     <td>{{penaltyToIncomeAccount.charge.name}}</td>
-                                    <td colspan="3">{{penaltyToIncomeAccount.incomeAccount.name}}</td>
+                                    <td colspan="3">{{penaltyToIncomeAccount.incomeAccount.name}} ({{penaltyToIncomeAccount.incomeAccount.glCode}})</td>
                                 </tr>
                             </table>
                         </td>

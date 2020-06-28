@@ -30,7 +30,7 @@
             { value: "XLS", label: "exportexcel", contentType: "application/vnd.ms-excel" },
             { value: "XLSX", label: "exportexcel2", contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
             { value: "CSV", label: "exportcsv", contentType: "text/csv" },
-            { value: "PDF", label: "pdfformat", contentType: "	application/pdf" },
+            { value: "PDF", label: "pdfformat", contentType: "application/pdf" },
           ];
           scope.minDate = new Date("2000-01-01T00:00:00.000+06:00");
           scope.maxDate = new Date("2040-12-31T00:00:00.000+06:00");
@@ -364,7 +364,8 @@
                           var config = { responseType: 'arraybuffer' };
                           http.get(reportURL, config).
                             then(function onSuccess(response) {
-                                var file = new Blob([response.data], {type: response.headers['content-type']});
+                                scope.contentType = getContenType(scope.formData.outputType);
+                                var file = new Blob([response.data], {type: scope.contentType});
                                 var fileContent = URL.createObjectURL(file);
                                 // Pass the form data to the iframe as a data url.
                                 scope.baseURL = $sce.trustAsResourceUrl(fileContent);
