@@ -8,22 +8,29 @@
         <div class="content">
             <div class="toolbar"></div>
             <br>
-            <form name="createprovisioningentryform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+            <form name="createprovisioningentryform" novalidate="" class="form-horizontal form-extra"
+                rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset style="padding-top: 50px; padding-bottom: 20px;">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="submittedOnDate">{{'label.input.provisioningcriteria' |
-                            translate}}<span class="required">*</span></label>
+                        <label class="control-label col-sm-3" for="submittedOnDate">
+                            {{'label.input.date.of.provisioningcriteria' | translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <md-datepicker id="submittedOnDate" ng-model="submitteddate"  min="'2000-01-01'" max="restrictDate"></md-datepicker>
+                            <md-datepicker id="submittedOnDate" ng-model="submitteddate" min="'2000-01-01'"
+                                max="restrictDate"></md-datepicker>
                         </div>
-
-                        <div class="col-sm-3">
-                            <md-checkbox ng-model="formData.createjournalentries"> {{'label.createjournalentries' | translate }}</md-checkbox>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-4">
+                            <md-checkbox ng-model="formData.createjournalentries">
+                                {{'label.createjournalentries' | translate }}</md-checkbox>
                         </div>
-
-                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_PROVISIONING_ENTRIES'>
+                    </div>
+                    <div class="col-sm-12 center">
+                        <md-button id="save" type="submit" class="md-raised md-primary"
+                            has-permission='CREATE_PROVISIONING_ENTRIES'>
                             {{'label.button.save' | translate}}
                         </md-button>
                     </div>

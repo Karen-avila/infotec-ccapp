@@ -15,7 +15,6 @@ var mifosX = (function (module) {
       "ngRoute",
       "ngSanitize",
       "LocalStorageModule",
-      "ngStorage",
       "ngIdle",
       "ngCsv",
       "frAngular",

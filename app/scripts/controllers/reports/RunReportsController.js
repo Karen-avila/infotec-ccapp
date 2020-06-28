@@ -115,12 +115,13 @@
 
           function getContenType(outputType) {
             var contentType = "text/html";
-            scope.formats.forEach(function(item){
+            for (var i=0; i<scope.formats.length; i++) {
+                const item = scope.formats[i];
                 if (item.value === outputType) {
                     contentType = item.contentType;
                     break;
                 }
-            });
+            }
             return contentType;
           }
 
