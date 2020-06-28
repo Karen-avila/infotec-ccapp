@@ -1,17 +1,19 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         JournalEntryController: function (scope, resourceFactory, location, dateFilter) {
-
             scope.formData = {};
             scope.formData.crAccounts = [{}];
             scope.formData.dbAccounts = [{}];
-            scope.first = {};
+            scope.first = {
+                date: new Date()
+            };
             scope.errorcreditevent = false;
             scope.errordebitevent = false;
             scope.creditaccounttemplate = false;
             scope.debitaccounttemplate = false;
             scope.restrictDate = new Date();
             scope.showPaymentDetails = false;
+
             resourceFactory.accountCoaResource.getAllAccountCoas({manualEntriesAllowed: true, usage: 1, disabled: false}, function (data) {
                 scope.glAccounts = data;
             });
