@@ -74,7 +74,6 @@
 
         var moment = require("moment");
         moment.locale('es');
-        // moment.tz.setDefault("America/Mexico_City");
 
         // Set month and week names for the general $mdDateLocale service
         var localeData = moment.localeData();
@@ -86,14 +85,36 @@
         $mdDateLocaleProvider.firstDayOfWeek = localeData._week.dow;
       
         // Format and parse dates based on moment's 'L'-format
-        // 'L'-format may later be changed
         $mdDateLocaleProvider.parseDate = function(dateString) {
-          var m = moment(dateString, 'L', true);
-          return m.isValid() ? m.toDate() : new Date(NaN);
+            if (!dateString || dateString === 'undefined') {
+                return dateString;
+            }
+            console.log((typeof dateString));
+            if (typeof dateString !== 'undefined') {
+                if (typeof dateString === 'string') {
+                    var dateFormat = 'LL';
+                    const m = moment(dateString, dateFormat, true);
+                    console.log("parse " + dateString + " : " + m.isValid());
+                    return m.isValid() ? m.toDate() : new Date(NaN);
+                } else {
+                    const m = moment(dateString, 'L', true);
+                    console.log("parse " + dateString + " : " + m.isValid());
+                    return m.isValid() ? m.toDate() : new Date(NaN);
+                }
+            }
         };
       
         $mdDateLocaleProvider.formatDate = function(date) {
-            return date ? moment(date).format('DD - MMM - YYYY') : null;
+            if (!date || date === 'undefined') {
+                return date;
+            }
+            console.log("formatDate");
+            console.log((typeof date));
+            if (typeof date !== 'undefined' ) {
+                const m = moment(date);
+                var dateFormat = 'LL';
+                return m.isValid() ? m.format(dateFormat) : '';
+            }
         };
 
         // Theme

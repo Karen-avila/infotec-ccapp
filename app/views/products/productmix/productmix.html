@@ -4,23 +4,31 @@
         <li class="active">{{'label.anchor.productmix' | translate}}</li>
     </ul>
    
-	<div class="card well" ng-controller="ProductMixController">
-	<div class="pull-right paddedbottom20">
-        <a href="#!/addproductmix" class="btn btn-sm btn-primary" has-permission='CREATE_PRODUCTMIX'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' |
-            translate}}</a>
-    </div>
-	    <br>
-	    <table class="table">
-	        <thead>
-	        <tr class="graybg">
-	            <th>{{'label.heading.productname' | translate}}</th>
-	        </tr>
-	        </thead>
-	        <tbody>
-	        <tr class="pointer-main" ng-repeat="productmix in productmixes | orderBy:'productName':reverse">
-	            <td class="pointer" data-ng-click="routeTo(productmix.productId)">{{productmix.productName}}</td>
-	        </tr>
-	        </tbody>
-	    </table>
+	<div class="card well">
+	<div class="row">
+		<div class="pull-right paddedbottom20">
+			<md-button md-no-ink class="md-primary" href="#!/addproductmix" has-permission='CREATE_PRODUCTMIX'>
+				<i class="fa fa-plus "></i> {{'label.button.add' | translate}}</md-button>
+		</div>
+	</div>
+
+	<md-divider></md-divider>
+        <md-table-container>
+            <table md-table>
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column>{{'label.heading.name' | translate}}</th>
+                        <th md-column>{{'label.heading.shortname' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="productmix in productmixes | orderBy:'name':reverse  | filter:filterText"
+                        data-ng-click="routeTo(productmix.productId)" md-select="product" md-select-id="name" >
+                        <td md-cell>{{productmix.productName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+		</md-table-container>
+			        
 	</div>
 </div>

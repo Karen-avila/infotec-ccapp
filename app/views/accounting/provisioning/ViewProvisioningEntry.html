@@ -41,34 +41,43 @@
                                     class="fa fa-search "></i></md-button>
                         </div>
                     </div>
+                    <md-table-container ng-show="transactions.currentPageItems.length > 0" class="noscroll-x">>
+                        <div class="row">
+                            <div clas="col-sm-12">
+                                <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                                    <thead md-head md-order="query.order">
+                                        <tr md-row>
+                                            <th md-column>{{'label.heading.officeName' | translate}}</th>
+                                            <th md-column>{{'label.heading.productname' | translate}}</th>
+                                            <th md-column>{{'label.heading.currencycode' | translate}}</th>
+                                            <th md-column>{{'label.heading.categoryname' | translate}}</th>
+                                            <th md-column>{{'label.heading.provisioningamount' | translate}}</th>
+                                            <th md-column>{{'label.input.liabilityaccount' | translate}}</th>
+                                            <th md-column>{{'label.input.expenseaccount' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="provisioningentry in transactions.currentPageItems">
+                                            <td>{{provisioningentry.officeName}}</td>
+                                            <td>{{provisioningentry.productName}}</td>
+                                            <td>{{provisioningentry.currencyCode}}</td>
+                                            <td>{{provisioningentry.categoryName}}</td>
+                                            <td>{{provisioningentry.amountreserved | FormatNumber}}</td>
+                                            <td>{{provisioningentry.liabilityAccountName}}</td>
+                                            <td>{{provisioningentry.expenseAccountName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </md-table-container>
 
-                    <table class="table" class="width100">
-                        <tr class="graybg">
-                            <th>{{'label.heading.officeName' | translate}}</th>
-                            <th>{{'label.heading.productname' | translate}}</th>
-                            <th>{{'label.heading.currencycode' | translate}}</th>
-                            <th>{{'label.heading.categoryname' | translate}}</th>
-                            <th>{{'label.heading.provisioningamount' | translate}}</th>
-                            <th>{{'label.input.liabilityaccount' | translate}}</th>
-                            <th>{{'label.input.expenseaccount' | translate}}</th>
-                        </tr>
-                        <tr ng-repeat="provisioningentry in transactions.currentPageItems">
-                            <td>{{provisioningentry.officeName}}</td>
-                            <td>{{provisioningentry.productName}}</td>
-                            <td>{{provisioningentry.currencyCode}}</td>
-                            <td>{{provisioningentry.categoryName}}</td>
-                            <td>{{provisioningentry.amountreserved | FormatNumber}}</td>
-                            <td>{{provisioningentry.liabilityAccountName}}</td>
-                            <td>{{provisioningentry.expenseAccountName}}</td>
-                        </tr>
-                    </table>
-                    <ul class="pager">
-                        <li class="previous"><a id="prev" ng-click="transactions.previous()" href="" ng-disabled="!transactions.hasPrevious()">&larr; {{'label.button.previous' | translate}}</a></li>
-                        <li class="next"><a id="next" ng-click="transactions.next()" href="" ng-disabled="!transactions.hasNext()">{{'label.button.next' | translate}} </a></li>
-                    </ul>
+                    <md-table-pagination ng-show="clients.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                        md-page="query.page" md-total="{{totalItems}}" md-on-paginate="getResultsPage" md-page-select>
+                    </md-table-pagination>
 
                     <div class="col-md-12 center">
-                        <button ng-show="isjournalEntriesCreated" id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_JOURNAL_ENTRY'>{{'label.button.addjournalentry' | translate}}</button>
+                        <md-button ng-show="isjournalEntriesCreated" id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_JOURNAL_ENTRY'>{{'label.button.addjournalentry' | translate}}</button>
                     </div>
                 </fieldset>
             </form>
