@@ -50,7 +50,9 @@
     "angular-material-data-table": "^0.10.10",
     "md-steppers": "^0.4.1",
     "leaflet": "^0.7.7",
-    "angular-leaflet-directive": "^0.10.0"
+    "angular-leaflet-directive": "^0.10.0",
+    "ngstorage": "^0.3.11",
+    "angular-local-storage": "^0.7.1"
   },
   "devDependencies": {
     "jasmine": "2.4.1",

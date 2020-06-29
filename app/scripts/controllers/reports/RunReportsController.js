@@ -26,11 +26,11 @@
           scope.type = "pie";
           scope.decimals = [0, 1, 2, 3, 4];
           scope.formats = [
-            { value: "HTML", label: "showreport" },
-            { value: "XLS", label: "exportexcel" },
-            { value: "XLSX", label: "exportexcel2" },
-            { value: "CSV", label: "exportcsv" },
-            { value: "PDF", label: "pdfformat" },
+            { value: "HTML", label: "showreport", contentType: "text/html" },
+            { value: "XLS", label: "exportexcel", contentType: "application/vnd.ms-excel" },
+            { value: "XLSX", label: "exportexcel2", contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+            { value: "CSV", label: "exportcsv", contentType: "text/csv" },
+            { value: "PDF", label: "pdfformat", contentType: "application/pdf" },
           ];
           scope.minDate = new Date("2000-01-01T00:00:00.000+06:00");
           scope.maxDate = new Date("2040-12-31T00:00:00.000+06:00");
@@ -111,6 +111,18 @@
               params.parameterType = true;
               var successFunction = getSuccuessFunction(paramData);
               resourceFactory.runReportsResource.getReport(params, successFunction);
+          }
+
+          function getContenType(outputType) {
+            var contentType = "text/html";
+            for (var i=0; i<scope.formats.length; i++) {
+                const item = scope.formats[i];
+                if (item.value === outputType) {
+                    contentType = item.contentType;
+                    break;
+                }
+            }
+            return contentType;
           }
 
           scope.getDependencies = function (paramData) {
@@ -349,14 +361,14 @@
                           // http://docs.angularjs.org/error/$sce/insecurl
                           reportURL = $sce.trustAsResourceUrl(reportURL);
                           reportURL = $sce.valueOf(reportURL);
-                          http.get(reportURL, {responseType: 'arraybuffer'}).
-                            then(function(response) {
-                              var contentType = "application/pdf"; // data.config.headers('Content-Type');
-                              var file = new Blob([response], {type: contentType});
-                              var fileContent = URL.createObjectURL(file);
-
-                              // Pass the form data to the iframe as a data url.
-                              scope.baseURL = $sce.trustAsResourceUrl(fileContent);
+                          var config = { responseType: 'arraybuffer' };
+                          http.get(reportURL, config).
+                            then(function onSuccess(response) {
+                                scope.contentType = getContenType(scope.formData.outputType);
+                                var file = new Blob([response.data], {type: scope.contentType});
+                                var fileContent = URL.createObjectURL(file);
+                                // Pass the form data to the iframe as a data url.
+                                scope.baseURL = $sce.trustAsResourceUrl(fileContent);
                             });
                           break;
                       case "Chart":
