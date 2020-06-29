@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        SearchTransactionController: function (scope, resourceFactory, paginatorService, dateFilter, location) {
+        SearchTransactionController: function (scope, resourceFactory, paginatorService, dateFilter, location, MAX_DATEPICKER) {
             scope.filters = [
                 {option: "All", value: ""},
                 {option: "Manual Entries", value: true},
@@ -13,6 +13,7 @@
             scope.offices = [];
             scope.date = {};
             scope.formData = {};
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
             scope.routeTo = function (id) {
                 location.path('/viewtransactions/' + id);
@@ -146,7 +147,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('SearchTransactionController', ['$scope', 'ResourceFactory', 'PaginatorService', 'dateFilter', '$location', mifosX.controllers.SearchTransactionController]).run(function ($log) {
+    mifosX.ng.application.controller('SearchTransactionController', ['$scope', 'ResourceFactory', 'PaginatorService', 'dateFilter', '$location', 'MAX_DATEPICKER', mifosX.controllers.SearchTransactionController]).run(function ($log) {
         $log.info("SearchTransactionController initialized");
     });
 }(mifosX.controllers || {}));

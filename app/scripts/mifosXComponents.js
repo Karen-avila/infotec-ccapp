@@ -4,7 +4,8 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'clientStatus',
             'LoggedInUser',
             'roleMap',
-            'Langs'
+            'Langs',
+            'DateFormats'
         ],
         services: [
             'ResourceFactoryProvider',
@@ -12,10 +13,8 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'AuthenticationService',
             'SessionManager',
             'Paginator',
-            'UIConfigService',
             'NotificationResponseHeaderProvider'
         ],
-
         controllers: [
             'main/MainController',
             'main/LoginFormController',
@@ -322,7 +321,6 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'adhocquery/ViewAdHocQueryController',
             'adhocquery/EditAdHocQueryController',
             'branchoffice/OpenBranchOfficeController'
-
         ],
         filters: [
             'StatusLookup',
@@ -363,7 +361,6 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
     };
 
     return function() {
-        console.log();
         var defer = Q.defer();
         require(_.reduce(_.keys(components), function(list, group) {
             return list.concat(_.map(components[group], function(name) {

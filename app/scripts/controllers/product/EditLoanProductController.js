@@ -6,6 +6,7 @@
             scope.charges = [];
             scope.loanProductConfigurableAttributes = [];
             scope.showOrHideValue = "show";
+            scope.showAdvanceAccounting = false;
             scope.configureFundOptions = [];
             scope.specificIncomeAccountMapping = [];
             scope.penaltySpecificIncomeaccounts = [];
@@ -239,12 +240,18 @@
                         scope.formData.creditOrderOverdueInterestAccountId = scope.product.accountingMappings.creditOrderOverdueInterestAccount.id;
                     }
 
+                    scope.showAdvanceAccounting = (
+                        (scope.product.paymentChannelToFundSourceMappings.length > 0)
+                        || (scope.product.feeToIncomeAccountMappings.length > 0)
+                        || (scope.product.penaltyToIncomeAccountMappings.length > 0)
+                    );
+
                     _.each(scope.product.paymentChannelToFundSourceMappings, function (fundSource) {
                         scope.configureFundOptions.push({
                             paymentTypeId: fundSource.paymentType.id,
                             fundSourceAccountId: fundSource.fundSourceAccount.id,
                             paymentTypeOptions: scope.product.paymentTypeOptions,
-                            assetAccountOptions: scope.assetAccountOptions
+                            assetAccountOptions: scope.liabilityAccountOptions
                         })
                     });
 
@@ -326,12 +333,12 @@
             scope.addConfigureFundSource = function () {
                 scope.frFlag = true;
                 if (scope.product.paymentTypeOptions && scope.product.paymentTypeOptions.length > 0 &&
-                    scope.assetAccountOptions && scope.assetAccountOptions.length > 0) {
+                    scope.liabilityAccountOptions && scope.liabilityAccountOptions.length > 0) {
                     scope.configureFundOptions.push({
                         paymentTypeId: scope.product.paymentTypeOptions[0].id,
-                        fundSourceAccountId: scope.assetAccountOptions[0].id,
+                        fundSourceAccountId: scope.liabilityAccountOptions[0].id,
                         paymentTypeOptions: scope.product.paymentTypeOptions,
-                        assetAccountOptions: scope.assetAccountOptions
+                        assetAccountOptions: scope.liabilityAccountOptions
                     });
                 }
             };
