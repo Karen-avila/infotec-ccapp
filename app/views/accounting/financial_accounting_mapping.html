@@ -22,7 +22,7 @@
                 <tbody md-body>
                 <tr md-row ng-repeat="mapping in mappings" data-ng-click="routeTo(mapping.id)">
                     <td md-cell>{{mapping.financialActivityData.name | translate }}</td>
-                    <td md-cell>{{mapping.glAccountData.name}}({{mapping.glAccountData.glCode}})</td>
+                    <td md-cell>{{mapping.glAccountData.glCode}} {{mapping.glAccountData.name}}</td>
                 </tr>
                 </tbody>
             </table>

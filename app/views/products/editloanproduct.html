@@ -1420,7 +1420,7 @@
                         ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                 </h4>
 
-                <div class="col-md-12" ng-show="showOrHideValue == 'hide'">
+                <div class="col-md-12" ng-show="showAdvanceAccounting">
                     <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}
                     </div>
                     <div class="col-md-4">
@@ -1440,7 +1440,7 @@
                             <td class="width30">
                                 <select id="configureFundOptions[{{$index}}].paymentTypeId" class="form-control"
                                     ng-model="configureFundOption.paymentTypeId"
-                                    ng-options="paymentType.id as paymentType.name | translate for paymentType in configureFundOption.paymentTypeOptions"
+                                    ng-options='paymentType.id as "payment.type." + paymentType.name | translate for paymentType in configureFundOption.paymentTypeOptions'
                                     ng-change="loanproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')"
                                     value="{{paymentType.id}}">
                                 </select>

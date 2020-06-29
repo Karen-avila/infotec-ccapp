@@ -25,7 +25,25 @@
                     location.path('/viewfinancialactivitymapping/' + data.resourceId);
                 });
             };
+        
+            scope.searchText = "";
+            scope.selectedItem = null;
 
+            scope.getItemText = function(item) {
+                return item.glCode + " " + item.name;
+            }
+
+            scope.querySearch = function(query) {
+                const value = query.toLowerCase();
+                var results = scope.accountOptions.filter(function(item) {
+                    return (item.glCode.indexOf(value) > 0) || (item.name.toLowerCase().indexOf(value) > 0);
+                });
+                return results;
+            }
+        
+            scope.selectedItemChange = function(item) {
+                scope.formData.glAccountId = item.id;
+            }
         }
     });
     mifosX.ng.application.controller('AddFinancialMappingController', ['$scope', 'ResourceFactory', '$location', mifosX.controllers.AddFinancialMappingController]).run(function ($log) {

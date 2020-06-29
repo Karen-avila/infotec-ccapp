@@ -16,35 +16,31 @@
             <form name="addaccountruleform" novalidate="" class="form-horizontal form-extra" ng-controller="AccCreateRuleController" rc-submit="submit()">
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">{{'label.input.accountingrulename' | translate }}<span class="required">*</span>
+                        <label class="control-label col-sm-3" for="name">{{'label.input.accountingrulename' | translate }}<span class="required">*</span>
                         </label>
+                        <div class="col-sm-3">
+                            <input type="text" id="name" name="name" ng-model="formData.name" class="form-control uppercase" required late-Validate/>
+                        </div>
 
-                        <div class="col-sm-3">
-                            <input type="text" id="name" name="name" ng-model="formData.name" class="form-control" required late-Validate/>
-                        </div>
-                        <div class="col-sm-3">
-                            <form-validate valattributeform="addaccountruleform" valattribute="name" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.office' | translate }}<span class="required">*</span>
+                        <label class="control-label col-sm-3">{{'label.input.office' | translate }}<span class="required">*</span>
                         </label>
-
                         <div class="col-sm-3">
                             <md-select  ng-model="formData.officeId" id="officeId" placeholder="{{'label.selectone' | translate}}">
                               <md-option ng-repeat="office in offices" ng-value="office.id">
-                                  {{office.name }}
+                                  {{office.name}}
                               </md-option>
                             </md-select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.description' | translate }}</label>
 
-                        <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">{{'label.input.description' | translate }}</label>
+
+                        <div class="col-sm-9">
                             <textarea id="description" rows="2" ng-model="formData.description" class="form-control"></textarea>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.affectedglentries' | translate }}<span class="required">*</span>
                         </label>
@@ -56,12 +52,14 @@
                                     {{'label.heading.debitaccountdetails' | translate }}</p>
                                     <label class="control-label">
                                     {{'label.input.debitruletype' | translate }} </label>
-                                    <input type="radio" ng-model="debitRuleType" value="Account" ng-change="resetDebits()">&nbsp;{{'label.input.fixed' | translate}} &nbsp;&nbsp;&nbsp;
-                                    <input type="radio" ng-model="debitRuleType" value="tags" ng-change="resetDebits()">&nbsp;{{'label.input.list' | translate}}
+                                    <md-radio-group ng-model="debitRuleType" class="md-primary" ng-change="resetDebits()">
+                                        <md-radio-button value="Account">&nbsp;{{'label.input.fixed' | translate}}</md-radio-button>
+                                        <md-radio-button value="tags">&nbsp;{{'label.input.list' | translate}}</md-radio-button>
+                                    </md-radio-group>
                                     <div ng-show="debitRuleType=='Account'" class="marginbuttontop25px">
                                         <md-select ng-model="formData.accountToDebit"  placeholder="{{'label.selectone' | translate}}">
                                         <md-option ng-repeat="debitAccount in glAccounts" ng-value="debitAccount.id">
-                                              {{debitAccount.name}}
+                                            {{debitAccount.glCode}} {{debitAccount.name}}
                                         </md-option>
                                     </div>
                                     <div ng-show="debitRuleType=='tags'" class="row">
@@ -69,30 +67,32 @@
                                             <label class="control-label col-sm-12 center">{{'label.input.availabledebittags' | translate }}</label>
                                             <select ng-model="availableDebit" multiple class="form-control clear" ng-options="debitTag.name for debitTag in debitTagOptions"></select>
                                         </div>
-                                        <div class="col-sm-1 col-md-1 paddedtop25px">
-                                            <md-button  class="md-raised md-primary" data-ng-click="addDebitTag()"><i class="fa fa-angle-double-right"></i>
+                                        <div class="col-sm-1 col-md-1 paddedtop25px" style="padding-left: 0px;">
+                                            <md-button class="md-raised md-primary btn-list" data-ng-click="addDebitTag()"><i class="fa fa-angle-double-right"></i>
                                             </md-button>
-                                            <md-button class="md-raised" data-ng-click="removeDebitTag()"><i class="fa fa-angle-double-left"></i>
+                                            <md-button class="md-raised btn-list" data-ng-click="removeDebitTag()"><i class="fa fa-angle-double-left"></i>
                                             </md-button>
                                         </div>
                                         <div class="col-sm-5 col-md-5">
                                             <label class="control-label col-sm-12 center">{{'label.input.selecteddebittags' | translate }}</label>
                                             <select ng-model="selectedDebit" multiple class="form-control clear" ng-options="dbTag.name for dbTag in formData.debitTags"></select>
                                         </div>
-                                        <label>{{'label.input.allowMultipleDebitEntries' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <md-checkbox ng-model="formData.allowMultipleDebitEntries"> </md-checkbox>
-                                        </label>
+                                        <md-checkbox ng-model="formData.allowMultipleDebitEntries"> 
+                                            {{'label.input.allowMultipleDebitEntries' | translate}}
+                                        </md-checkbox>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <p class="bolder center">{{'label.heading.creditaccountdetails' | translate }}</p>
                                     <label class="control-label">{{'label.input.creditruletype' | translate }}</label>
-                                    <input type="radio" ng-model="creditRuleType" value="Account" ng-change="resetCredits()">{{'label.input.fixed' | translate}} &nbsp;&nbsp;&nbsp;
-                                    <input type="radio" ng-model="creditRuleType" value="tags" ng-change="resetCredits()">{{'label.input.list' | translate}}
+                                    <md-radio-group ng-model="creditRuleType" class="md-primary" ng-change="resetCredits()">
+                                        <md-radio-button value="Account">{{'label.input.fixed' | translate}}</md-radio-button>
+                                        <md-radio-button value="tags">{{'label.input.list' | translate}}</md-radio-button>
+                                    </md-radio-group>
                                     <div ng-show="creditRuleType=='Account'" class="marginbuttontop25px">
                                         <md-select ng-model="formData.accountToCredit" placeholder="{{'label.selectone' | translate}}">
                                             <md-option ng-repeat="creditAccount in glAccounts" ng-value="creditAccount.id">
-                                                 {{creditAccount.name}}
+                                                {{creditAccount.glCode}} {{creditAccount.name}}
                                             </md-option>
                                         </md-select>
                                     </div>
@@ -101,19 +101,19 @@
                                             <label class="control-label col-sm-12 center">{{'label.input.availablecredittags' | translate }}</label>
                                             <select ng-model="availableCredit" multiple class="form-control clear" ng-options="creditTag.name for creditTag in creditTagOptions"></select>
                                         </div>
-                                        <div class="col-sm-1 col-md-1 paddedtop25px">
-                                            <md-button class="md-raised md-primary" data-ng-click="addCreditTag()"><i class="fa fa-angle-double-right"></i>
+                                        <div class="col-sm-1 col-md-1 paddedtop25px" style="padding-left: 0px;">
+                                            <md-button class="md-raised md-primary btn-list" data-ng-click="addCreditTag()"><i class="fa fa-angle-double-right"></i>
                                             </md-button>
-                                            <md-button  class="md-raised" data-ng-click="removeCreditTag()"><i class="fa fa-angle-double-left"></i>
+                                            <md-button  class="md-raised btn-list" data-ng-click="removeCreditTag()"><i class="fa fa-angle-double-left"></i>
                                             </md-button>
                                         </div>
                                         <div class="col-sm-5 col-md-5">
                                             <label class="control-label col-sm-12 center">{{'label.input.selectedcredittags' | translate }}</label>
                                             <select ng-model="selectedCredit" multiple class="form-control clear" ng-options="crTag.name for crTag in formData.creditTags"></select>
                                         </div>
-                                        <label>{{'label.input.allowMultipleCreditEntries' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <md-checkbox  ng-model="formData.allowMultipleCreditEntries"> </md-checkbox>
-                                        </label>
+                                        <md-checkbox ng-model="formData.allowMultipleCreditEntries">
+                                            {{'label.input.allowMultipleCreditEntries' | translate}}
+                                        </md-checkbox>
                                     </div>
                                 </div>
                             </div>
