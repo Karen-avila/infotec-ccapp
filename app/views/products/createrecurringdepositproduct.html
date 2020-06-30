@@ -426,9 +426,15 @@
                                 <td>{{'label.heading.interestratedetails.interest' | translate}}</td>
                                 <td>{{'label.heading.interestratedetails.description' | translate}}</td>
                                 <td>
-                                    <div ng-show="chart.chartSlabs.length < 1">
+                                    <div ng-show="chart.chartSlabs.length 1">
+                                        <md-button ng-click="addNewRow()"><i
+                                            class="fa fa-plus"></i>&nbsp;{{'label.add.row'
+                                            | translate}}
+                                        </md-button>
+                                        <!--
                                         <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
+                                            -->
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>
@@ -478,8 +484,13 @@
 
                                     <div ng-show="$last">
                                         <br />
+                                        <!--
                                         <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
+                                            -->
+                                        <md-button ng-click="addNewRow()"><i
+                                            class="fa fa-plus"></i>&nbsp;{{'label.add.row' | translate}}
+                                        </md-button>    
                                     </div>
                                 </td>
                                 <td>
@@ -512,8 +523,13 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
+                            <!--
                             <a class="btn btn-sm btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' |
                                 translate }}</a>
+                            -->
+                            <md-button ng-click="chargeSelected(chargeId)"><i
+                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
+                            </md-button>
                         </div>
                     </div>
                     <div class="form-group col-md-12">
