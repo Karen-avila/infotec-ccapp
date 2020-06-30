@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        EditLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, uiConfigService, translate) {
+        EditLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, translate) {
             scope.previewRepayment = false;
             scope.formData = {};
             scope.chargeFormData = {}; //For charges
@@ -263,8 +263,6 @@
 
             }
 
-            uiConfigService.appendConfigToScope(scope);
-
             scope.submit = function () {
                 // MultiplesOf validation
                 if ((scope.formData.principal % scope.loanaccountinfo.currency.inMultiplesOf) > 0) {
@@ -336,7 +334,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('EditLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'UIConfigService', '$translate', mifosX.controllers.EditLoanAccAppController]).run(function ($log) {
+    mifosX.ng.application.controller('EditLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', '$translate', mifosX.controllers.EditLoanAccAppController]).run(function ($log) {
         $log.info("EditLoanAccAppController initialized");
     });
 }(mifosX.controllers || {}));
