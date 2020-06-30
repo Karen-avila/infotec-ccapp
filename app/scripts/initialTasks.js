@@ -86,8 +86,11 @@
       
         // Format and parse dates based on moment's 'L'-format
         $mdDateLocaleProvider.parseDate = function(dateString) {
-            if (!dateString || dateString === 'undefined') {
+            if (!dateString) {
                 return dateString;
+            }
+            if (dateString === 'undefined') {
+                return '';
             }
             console.log((typeof dateString));
             if (typeof dateString !== 'undefined') {
@@ -107,6 +110,9 @@
         $mdDateLocaleProvider.formatDate = function(date) {
             if (!date || date === 'undefined') {
                 return date;
+            }
+            if (date === 'undefined') {
+                return '';
             }
             console.log("formatDate");
             console.log((typeof date));
