@@ -98,11 +98,11 @@
                     var dateFormat = 'LL';
                     const m = moment(dateString, dateFormat, true);
                     console.log("parse " + dateString + " : " + m.isValid());
-                    return m.isValid() ? m.toDate() : new Date(NaN);
+                    return m.isValid() ? m.toDate() : new Date();
                 } else {
                     const m = moment(dateString, 'L', true);
                     console.log("parse " + dateString + " : " + m.isValid());
-                    return m.isValid() ? m.toDate() : new Date(NaN);
+                    return m.isValid() ? m.toDate() : new Date();
                 }
             }
         };

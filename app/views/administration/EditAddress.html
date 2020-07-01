@@ -21,7 +21,7 @@
                     <label class="control-label col-sm-4"
                         for="postal_code">{{'label.input.postal_code' | translate }}</label>
                     <div class="col-sm-4">
-                        <input type="number" id="postal_code" name="postal_code" ng-model="formData.postalCode"
+                        <input type="text" id="postal_code" pattern="\d{5}" name="postal_code" maxlength="5" ng-model="formData.postalCode"
                             class="form-control">
                     </div>
                 </div>
@@ -204,11 +204,11 @@
                         </md-checkbox>
                     </div>
                 </div>
-                <div class="col-md-offset-3" ng-model="editable">
+                <div class="col-md-12 center">
                     <md-button id="cancel" ng-click="routeTo()" class="md-raised">{{
                         'label.button.cancel' | translate }}
                     </md-button>
-                    <md-button id="edit" type="submit" ng-disabled="editable" ng-click="updateaddress()" class="md-raised md-primary">{{
+                    <md-button id="edit" type="submit" ng-click="updateaddress()" class="md-raised md-primary">{{
                         'label.button.save' | translate }}
                     </md-button>
                 </div>
