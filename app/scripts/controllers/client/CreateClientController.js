@@ -1,13 +1,16 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         CreateClientController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, Upload, $rootScope, routeParams, $uibModal) {
-
             scope.offices = [];
             scope.staffs = [];
             scope.savingproducts = [];
             scope.first = {};
-            scope.first.date = new Date();
-            scope.first.submitondate = new Date();
+            scope.initDate = new Date();
+            scope.first = {
+                date: scope.initDate,
+                dateOfBirth: scope.initDate,
+                submittedon: scope.initDate
+            }
             scope.formData = {};
             scope.formDat = {};
             scope.clientNonPersonDetails = {};

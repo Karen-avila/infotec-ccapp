@@ -9,7 +9,6 @@
             scope.entityformData = {};
             scope.entityformData.datatables = {};
             scope.restrictDate = new Date();
-            // Transaction UI Related
             scope.isTransaction = false;
             scope.transactionAmountField = false;
             scope.showPaymentDetails = false;
@@ -43,7 +42,6 @@
                                 scope.isCenter = (colName == 'center_id') ? true : false;
                             }
 
-
                             data.noData = (data.data.length == 0);
                             if(data.noData){
                                 scope.datatables.push(data);
@@ -61,10 +59,7 @@
                                 scope.isEntityDatatables = true;
                             }
                         });
-
-
                     });
-
                 });
             };
 
@@ -136,6 +131,7 @@
                     scope.title = 'label.heading.approvesavingaccount';
                     scope.labelName = 'label.input.savingaccountapprovedOnDate';
                     scope.modelName = 'approvedOnDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.taskPermissionName = 'APPROVE_SAVINGSACCOUNT';
@@ -145,6 +141,7 @@
                     scope.title = 'label.heading.rejectsavingaccount';
                     scope.labelName = 'label.input.rejectedon';
                     scope.modelName = 'rejectedOnDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.taskPermissionName = 'REJECT_SAVINGSACCOUNT';
@@ -154,6 +151,7 @@
                     scope.title = 'label.heading.withdrawsavingaccount';
                     scope.labelName = 'label.input.withdrawnon';
                     scope.modelName = 'withdrawnOnDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.taskPermissionName = 'WITHDRAW_SAVINGSACCOUNT';
@@ -168,6 +166,7 @@
                     scope.title = 'label.heading.activatesavingaccount';
                     scope.labelName = 'label.input.activatedon';
                     scope.modelName = 'activatedOnDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = false;
                     scope.taskPermissionName = 'ACTIVATE_SAVINGSACCOUNT';
@@ -180,6 +179,7 @@
                     scope.title = 'label.heading.depositmoneytosavingaccount';
                     scope.labelName = 'label.input.transactiondate';
                     scope.modelName = 'transactionDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.isTransaction = true;
@@ -193,6 +193,7 @@
                     });
                     scope.labelName = 'label.input.transactiondate';
                     scope.modelName = 'transactionDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showAccountNumber=true;
                     scope.taskPermissionName = 'POSTINTEREST_SAVINGSACCOUNT';
@@ -204,6 +205,7 @@
                     scope.title = 'label.heading.withdrawmoneyfromsavingaccount';
                     scope.labelName = 'label.input.transactiondate';
                     scope.modelName = 'transactionDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.isTransaction = true;
@@ -224,6 +226,7 @@
                     scope.title = 'label.heading.savingaccountapplyannualFee';
                     scope.labelName = 'label.input.annualfeetransactiondate';
                     scope.modelName = 'dueDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showAnnualAmountField = true;
                     scope.showAmountField = false;
@@ -240,6 +243,7 @@
                     scope.title = 'label.heading.closesavingaccount';
                     scope.labelName = 'label.input.closedon';
                     scope.modelName = 'closedOnDate';
+                    scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.withdrawBalance = true;
