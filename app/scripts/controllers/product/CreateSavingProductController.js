@@ -10,6 +10,9 @@
             scope.penaltySpecificIncomeaccounts = [];
             scope.configureFundOption = {};
             scope.isClicked = false;
+            scope.maxStep = 7;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
 
             resourceFactory.savingProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
@@ -34,9 +37,24 @@
                 scope.savingproduct = angular.extend(scope.savingproduct,newVal);
             },true);
 
-            scope.goNext = function(form){
-                WizardHandler.wizard().checkValid(form);
-                scope.isClicked = true;
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+            }
+        
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
             }
 
             scope.formValue = function(array,model,findattr,retAttr){

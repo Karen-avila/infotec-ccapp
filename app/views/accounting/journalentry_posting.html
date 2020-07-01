@@ -10,7 +10,7 @@
 			</div>
 			<br />
 			<form name="journalpostingform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="JournalEntryController" rc-submit="submit()">
+				ng-controller="JournalEntryController">
 				<api-validate></api-validate>
 				<fieldset>
 					<div class="form-group">
@@ -185,7 +185,7 @@
 					<div class="col-md-12 center">
 						<md-button id="cancel" href="#!/accounting" class="md-raised">
 							{{'label.button.cancel' | translate }}</md-button>
-						<md-button id="save" type="submit" class="md-raised md-primary"
+						<md-button id="save" type="submit" class="md-raised md-primary" ng-click="submit()"
 							has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</md-button>
 					</div>
 				</fieldset>

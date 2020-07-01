@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, uiConfigService) {
+        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter) {
             scope.previewRepayment = false;
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
@@ -309,10 +309,7 @@
                     scope.previewRepayment = true;
                     scope.formData.syncRepaymentsWithMeeting = scope.syncRepaymentsWithMeeting;
                 });
-
             }
-
-            uiConfigService.appendConfigToScope(scope);
 
             //return input type
             scope.fieldType = function (type) {
@@ -423,7 +420,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'UIConfigService', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
+    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
         $log.info("NewLoanAccAppController initialized");
     });
 }(mifosX.controllers || {}));

@@ -21,20 +21,20 @@
             <table md-table ng-model="loanproducts" md-progress="promise">
                 <thead md-head md-order="query.order">
                     <tr md-row>
-                        <th md-column>{{'label.heading.name' | translate}}</th>
-                        <th md-column>{{'label.heading.shortname' | translate}}</th>
+                        <th md-column md-order-by="name">{{'label.heading.name' | translate}}</th>
+                        <th md-column md-order-by="shortName">{{'label.heading.shortname' | translate}}</th>
                         <th md-column>{{'label.heading.currency' | translate}}</th>
                         <th md-column>{{'label.heading.description' | translate}}</th>
-                        <th md-column>{{'label.heading.closedate' | translate}}</th>
-                        <th md-column>{{'label.heading.status' | translate}}</th>
+                        <th md-column md-order-by="closedate">{{'label.heading.closedate' | translate}}</th>
+                        <th md-column md-order-by="status">{{'label.heading.status' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row ng-repeat="loanproduct in loanproducts | orderBy:'name':reverse  | filter:filterText"
+                    <tr md-row ng-repeat="loanproduct in loanproducts | orderBy: query.order | filter:filterText"
                         data-ng-click="routeTo(loanproduct.id)" md-select="product" md-select-id="name" >
                         <td md-cell >{{loanproduct.name}}</td>
                         <td md-cell >{{loanproduct.shortName}}</td>
-                        <td md-cell >{{loanproduct.currency.code}}</td>
+                        <td md-cell >{{loanproduct.currency.code}} {{loanproduct.currency.name | translate}}</td>
                         <td md-cell >{{loanproduct.description}}</td>
                         <td md-cell >{{loanproduct.closeDate | DateFormat}}</td>
                         <td md-cell >

@@ -6,8 +6,7 @@
         <li class="active">{{'label.anchor.createtaxcomponent' | translate}}</li>
     </ul>
     <form name="createtaxcomponentform" novalidate="" class="card form-horizontal well"
-          ng-controller="CreateTaxComponentController"
-          rc-submit="submit()">
+        ng-controller="CreateTaxComponentController" rc-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <legend>{{'label.heading.createtaxcomponent' | translate}}</legend>
@@ -17,9 +16,8 @@
 
                 <div class="col-sm-4">
                     <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
-                           class="form-control"
-                           required late-Validate/>
-                    <form-validate valattributeform="createtaxcomponentform" valattribute="name"/>
+                        class="form-control" required late-Validate />
+                    <form-validate valattributeform="createtaxcomponentform" valattribute="name" />
                 </div>
             </div>
 
@@ -28,10 +26,8 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-4">
-                    <input id="percentage" type="text" name="percentage" ng-model="formData.percentage"
-                           class="form-control" number-format
-                           required late-Validate/>
-                    <form-validate valattributeform="createtaxcomponentform" valattribute="percentage"/>
+                    <input id="percentage" type="number" name="percentage" ng-model="formData.percentage"
+                        class="form-control" required late-Validate />
                 </div>
             </div>
 
@@ -39,10 +35,13 @@
                 <label class="control-label col-sm-3">{{'label.input.debitaccounttype' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <select id="debitAccountType" ng-model="formData.debitAccountType"
-                            ng-options="accountType.id as accountType.value for accountType in data.glAccountTypeOptions"
-                            value="{{accountType.id}}" class="form-control"
-                            data-ng-change="populateDebitAccount()"></select>
+                    <md-select id="debitAccountType" ng-model="formData.debitAccountType"
+                        data-ng-change="populateDebitAccount()" placeholder="{{'label.selectone' | translate}}">
+                        <md-option ng-repeat="accountType in data.glAccountTypeOptions"
+                            ng-value="accountType.id">
+                            {{accountType.value | translate}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
 
@@ -50,12 +49,13 @@
                 <label class="control-label col-sm-3">{{'label.input.debitaccount' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <select id="debitAcountId" ng-model="formData.debitAcountId" class="form-control"
-                            chosen="debitaccounts"
-                            ng-options="account.id as account.name for account in debitaccounts"
-                            value="{{account.id}}">
-                        <option value="">{{'label.select' | translate}}</option>
-                    </select>
+                    <md-select id="debitAcountId" ng-model="formData.debitAcountId"
+                        placeholder="{{'label.selectone' | translate}}">
+                        <md-option ng-repeat="account in debitaccounts"
+                            ng-value="account.id">
+                            {{account.glCode}} {{account.name}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
 
@@ -63,10 +63,12 @@
                 <label class="control-label col-sm-3">{{'label.input.creditaccounttype' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <select id="creditAccountType" ng-model="formData.creditAccountType"
-                            ng-options="accountType.id as accountType.value for accountType in data.glAccountTypeOptions"
-                            value="{{accountType.id}}" class="form-control" data-ng-change="populateCreditAccount()">
-                    </select>
+                    <md-select id="creditAccountType" ng-model="formData.creditAccountType"
+                        data-ng-change="populateCreditAccount()" placeholder="{{'label.selectone' | translate}}">
+                        <md-option ng-repeat="accountType in data.glAccountTypeOptions" ng-value="accountType.id">
+                            {{accountType.value | translate}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
 
@@ -74,12 +76,12 @@
                 <label class="control-label col-sm-3">{{'label.input.creditaccount' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <select id="creditAcountId" ng-model="formData.creditAcountId" class="form-control"
-                            chosen="creditaccounts"
-                            ng-options="account.id as account.name for account in creditaccounts"
-                            value="{{account.id}}">
-                        <option value="">{{'label.select' | translate}}</option>
-                    </select>
+                    <md-select id="creditAcountId" ng-model="formData.creditAcountId" 
+                        placeholder="{{'label.selectone' | translate}}">
+                        <md-option ng-repeat="account in creditaccounts" ng-value="account.id">
+                            {{account.glCode}} {{account.name}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
 
@@ -93,19 +95,20 @@
                 <label class="control-label col-sm-3">{{'label.input.startdate' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <input id="startDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date"
-                           class="form-control" is-open="opened" min="minDate" max="restrictDate"/>
+                    <md-datepicker id="startDate" ng-model="start.date"
+                        md-placeholder="{{'label.selecttodate' | translate}}" required
+                        md-min-date="minDate" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
 
-
             <div class="col-md-12 center">
-
-                <md-button id="cancel" href="#!/taxcomponents" class="md-raised" type="reset">{{'label.button.cancel' | translate }}
-				</md-button>
-				<md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_TAXCOMPONENT'>{{'label.button.save' | translate }}
+                <md-button id="cancel" href="#!/taxcomponents" class="md-raised" type="reset">
+                    {{'label.button.cancel' | translate }}
                 </md-button>
-               
+                <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_TAXCOMPONENT'>
+                    {{'label.button.save' | translate }}
+                </md-button>
             </div>
         </fieldset>
     </form>
