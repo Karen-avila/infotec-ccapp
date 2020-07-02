@@ -6,7 +6,7 @@
       resourceFactory,
       location,
       route,
-      $uibModal
+      $mdDialog
     ) {
       scope.flag = false;
       scope.manualEntry = false;
@@ -42,91 +42,98 @@
           }
         }
       );
-      scope.confirmation = function () {
-        $uibModal.open({
-          templateUrl: "confirmation.html",
-          controller: ConfirmationCtrl,
-          resolve: {
-            id: function () {
-              return scope.trxnid;
+
+      scope.confirmation = function (ev, trxnid) {
+        $mdDialog.show({
+            controller: ConfirmationCtrl,
+            templateUrl: 'views/accounting/confirmation.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true, // Only for -xs, -sm breakpoints.
+            locals: {
+                data: {
+                  id: trxnid
+                }
             },
-          },
-        });
+        });  
       };
 
-      var ConfirmationCtrl = function ($scope, $uibModalInstance, id) {
-        $scope.transactionnumber = id.transactionId;
-        $scope.redirect = function () {
-          $uibModalInstance.close("delete");
-          location.path("/viewtransactions/" + id.transactionId);
-        };
-        $scope.cancel = function () {
-          $uibModalInstance.dismiss("cancel");
-        };
-      };
+      var ConfirmationCtrl = function (scope, $mdDialog, data) {
+          scope.data = data;
+          scope.closeDialog = function() {
+            $mdDialog.hide();
+          }
+          scope.transactionnumber = scope.data.id.transactionId;
+          scope.redirect = function () {
+            $mdDialog.hide();
+            location.path("/viewtransactions/" + scope.data.id.transactionId);
+          };
+      }
 
-      scope.showTransaction = function (transaction) {
-        scope.transaction = transaction;
-        $uibModal.open({
-          templateUrl: "viewjournalentry.html",
-          controller: ViewJournalEntryCtrl,
-          resolve: {
-            transaction: function () {
-              return scope.transaction;
+      scope.showTransaction = function (ev, transaction) {
+        $mdDialog.show({
+            controller: ViewJournalEntryCtrl,
+            templateUrl: 'views/accounting/viewjournalentry.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true, // Only for -xs, -sm breakpoints.
+            locals: {
+                data: {
+                  transaction: transaction
+                }
             },
-          },
-        });
+        }); 
       };
 
-      var ViewJournalEntryCtrl = function (
-        $scope,
-        $uibModalInstance,
-        transaction
-      ) {
-        $scope.transaction = transaction;
-        $scope.cancel = function () {
-          $uibModalInstance.dismiss("cancel");
-        };
+      var ViewJournalEntryCtrl = function (scope, $mdDialog, data) {
+        scope.data = data;
+        scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
+        scope.transaction = scope.data.transaction;
       };
 
-      scope.reverseTransaction = function (transactionId) {
-        $uibModal.open({
-          templateUrl: "reverseTransaction.html",
-          controller: ReverseJournalEntriesCtrl,
-          resolve: {
-            transactionId: function () {
-              return transactionId;
+      scope.reverseTransaction = function (ev, transactionId) {
+        $mdDialog.show({
+            controller: ReverseJournalEntriesCtrl,
+            templateUrl: 'views/accounting/reverseTransaction.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true, // Only for -xs, -sm breakpoints.
+            locals: {
+                data: {
+                  transactionId: transactionId
+                }
             },
-          },
-        });
+        }); 
       };
 
-      var ReverseJournalEntriesCtrl = function (
-        $scope,
-        $uibModalInstance,
-        transactionId
-      ) {
-        $scope.data = {
+      var ReverseJournalEntriesCtrl = function (scope, $mdDialog, data) {
+        scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
+        scope.data = {
           reverseComments: "",
         };
-        $scope.reverse = function () {
+        scope.reverse = function () {
           reverseData = {
-            transactionId: transactionId,
-            comments: $scope.data.reverseComments,
+            transactionId: data.transactionId,
+            comments: scope.data.reverseComments,
           };
+          
           resourceFactory.journalEntriesResource.reverse(reverseData, function (
             data
           ) {
-            $uibModalInstance.dismiss("cancel");
+              $mdDialog.hide();
 
-            scope.trxnid = data;
-            scope.confirmation();
+              scope.trxnid = data;
+              scope.confirmation();
 
-            route.reload();
+              route.reload();
           });
-        };
-        $scope.cancel = function () {
-          $uibModalInstance.dismiss("cancel");
         };
       };
     },
@@ -138,7 +145,7 @@
       "ResourceFactory",
       "$location",
       "$route",
-      "$uibModal",
+      "$mdDialog",
       mifosX.controllers.ViewTransactionController,
     ])
     .run(function ($log) {

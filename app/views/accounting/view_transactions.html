@@ -13,149 +13,28 @@
       <a href="#!/viewclient/{{clientId}}">{{clientName}}</a>
     </li>
     <li ng-if="loanId != null">
-        <a href="#!/viewloanaccount/{{loanId}}">{{productName}} ({{accountNo}})</a>
+      <a href="#!/viewloanaccount/{{loanId}}">{{productName}} ({{accountNo}})</a>
     </li>
     <li ng-if="savingId != null">
       <a href="#!/viewsavingaccount/{{savingId}}">{{productName}} ({{accountNo}})</a>
     </li>
     <li class="active">{{'label.anchor.journalentries' | translate}}</li>
   </ul>
-  <script type="text/ng-template" id="confirmation.html">
-    <div class="modal-header silver">
-        <h3 class="bolder">{{'label.transactionreverse' | translate}}</h3>
-        <h4><strong class="required">{{'label.heading.transactionnumber' | translate }}&nbsp;:&nbsp;&nbsp;<b>{{transactionnumber}}</b></strong>
-        </h4>
-    </div>
-    <div class="modal-footer">
-        <api-validate></api-validate>
-        <br>
-        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-        <md-button class="md-raised md-primary" ng-click="redirect()">{{'label.button.redirecttonewtrx' | translate}}
-        </md-button>
-    </div>
-  </script>
-  <script type="text/ng-template" id="viewjournalentry.html">
-    <div class="modal-header silver">
-        <h3 class="bolder">{{'label.heading.viewjournalentry' | translate}}</h3>
-        <legend></legend>
-        <table class="modalwidth600">
-            <tr>
-                <td class="width31">{{'label.input.office' | translate}}</td>
-                <td>{{transaction.officeName}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.entryid' | translate}}</td>
-                <td>{{transaction.id}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.transactionid' | translate}}</td>
-                <td>{{transaction.transactionId}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.transactiondate' | translate}}</td>
-                <td>{{transaction.transactionDate | DateFormat}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.type' | translate}}</td>
-                <td>{{transaction.glAccountType.value}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.account' | translate}}</td>
-                <td>{{transaction.glAccountName}}({{transaction.glAccountCode}})</td>
-            </tr>
-            <tr>
-                <td>{{transaction.entryType.code | translate}}</td>
-                <td>{{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}</td>
-            </tr>
-            <tr ng-show="transaction.referenceNumber">
-                <td>{{'label.input.referencenumber' | translate}}</td>
-                <td>{{transaction.referenceNumber}}</td>
-            </tr>
-            <tr ng-show="transaction.comments">
-                <td>{{'label.input.comments' | translate}}</td>
-                <td>{{transaction.comments}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.heading.paymentdetails' | translate}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.paymentypeid' | translate}}</td>
-                <td> {{transaction.transactionDetails.paymentDetails.paymentType.name}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.accnum' | translate}}</td>
-                <td>{{transaction.transactionDetails.paymentDetails.accountNumber}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.checknumber' | translate}}</td>
-                <td>{{transaction.transactionDetails.paymentDetails.checkNumber}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.routingcode' | translate}}</td>
-                <td>{{transaction.transactionDetails.paymentDetails.routingCode}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.receiptnumber' | translate}}</td>
-                <td>{{transaction.transactionDetails.paymentDetails.receiptNumber}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.input.banknumber' | translate}}</td>
-                <td>{{transaction.transactionDetails.paymentDetails.bankNumber}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.createdby' | translate}}</td>
-                <td>{{transaction.createdByUserName}}</td>
-            </tr>
-            <tr>
-                <td>{{'label.createdon' | translate}}</td>
-                <td>{{transaction.createdDate | DateFormat}}</td>
-            </tr>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-    </div>
-  </script>
-  <script type="text/ng-template" id="reverseTransaction.html">
-    <div class="modal-header silver">
-        <h3 class="bolder">{{'label.heading.reverse' | translate}}</h3>
-    </div>
-    <div class="modal-body">
-        <api-validate></api-validate>
-        <br>
-        <div class="form-group">
-            <label class="control-label col-sm-2">{{'label.input.comments' | translate }}</label>
-            <textarea rows="4" ng-model="data.reverseComments"></textarea>
-        </div>
-        <br>
-        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-        <md-button class="md-raised md-primary" ng-click="reverse()">{{'label.button.reverse' | translate}}</md-button>
-    </div>
-  </script>
+
   <div class="card">
     <div class="content">
       <div class="toolbar">
         <div class="col-md-11">
           <span>
-            <strong class="h4"
-              >{{'label.heading.transactionnumber' | translate
-              }}&nbsp;-&nbsp;{{transactionNumber}}</strong
-            >
+            <strong class="h4">{{'label.heading.accounting.transactionnumber' | translate
+              }} : {{transactionNumber}}</strong>
             <div class="pull-right" ng-show="manualEntry">
-              <span class="required" data-ng-show="!flag"
-                ><strong
-                  >{{'label.transactionisreversedonce' | translate }}</strong
-                ></span
-              >
+              <span class="required"
+                data-ng-show="!flag"><strong>{{'label.transactionisreversedonce' | translate }}</strong></span>
               <div class="btn-group">
-                <a
-                  data-ng-show="flag"
-                  ng-click="reverseTransaction(transactionNumber)"
-                  class="btn btn-sm btn-primary"
-                  has-permission="REVERSE_JOURNALENTRY"
-                  ><i class="fa fa-undo"></i
-                  >&nbsp;&nbsp;{{'label.button.reverse' | translate}}</a
-                >
+                <a data-ng-show="flag" ng-click="reverseTransaction(transactionNumber)" class="btn btn-sm btn-primary"
+                  has-permission="REVERSE_JOURNALENTRY"><i
+                    class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reverse' | translate}}</a>
               </div>
             </div>
           </span>
@@ -172,7 +51,7 @@
               </td>
               <td class="width36">{{transactions[0].officeName}}</td>
               <td class="width19">
-                <label>{{'label.input.transactiondate' | translate}}</label>
+                <label>{{'label.heading.accounting.transactiondate' | translate}}</label>
               </td>
               <td class="width31">
                 {{transactions[0].transactionDate | DateFormat}}
@@ -184,7 +63,7 @@
               </td>
               <td class="width36">{{transactions[0].createdByUserName}}</td>
               <td class="width19">
-                <label>{{'label.createdon' | translate}}</label>
+                <label>{{'label.accounting.createdon' | translate}}</label>
               </td>
               <td class="width31">
                 {{transactions[0].createdDate | DateFormat}}
@@ -204,38 +83,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="transaction in transactions">
-                <td
-                  class="pointer"
-                  data-ng-click="showTransaction(transaction)"
-                >
+              <tr class="pointer-main" ng-repeat="transaction in transactions" ng-click="showTransaction($event, transaction)">
+                <td class="pointer">
                   {{transaction.id}}
                 </td>
-                <td
-                  class="pointer"
-                  data-ng-click="showTransaction(transaction)"
-                >
+                <td class="pointer">
                   {{transaction.glAccountType.value | translate}}
                 </td>
-                <td
-                  class="pointer"
-                  data-ng-click="showTransaction(transaction)"
-                >
+                <td class="pointer">
                   ({{transaction.glAccountCode}}) {{transaction.glAccountName}}
                 </td>
-                <td
-                  class="pointer"
-                  data-ng-click="showTransaction(transaction)"
-                >
+                <td class="pointer">
                   <div ng-show="transaction.entryType.value == 'DEBIT'">
                     {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount
                     | FormatNumber}}
                   </div>
                 </td>
-                <td
-                  class="pointer"
-                  data-ng-click="showTransaction(transaction)"
-                >
+                <td class="pointer">
                   <div ng-show="transaction.entryType.value == 'CREDIT'">
                     {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount
                     | FormatNumber}}
@@ -246,16 +110,12 @@
           </table>
         </div>
         <div class="center" ng-if="loadId">
-          <a
-            href="#!/viewloanaccount/{{loanId}}"
-            class="btn btn-sm btn-primary center"
-            ><i class=""></i>{{'label.button.back' | translate}}</a>
+          <a href="#!/viewloanaccount/{{loanId}}" class="md-primary center"><i
+              class=""></i>{{'label.button.back' | translate}}</a>
         </div>
         <div class="center" ng-if="savingId">
-          <a
-            href="#!/viewsavingaccount/{{savingId}}"
-            class="btn btn-sm btn-primary center"
-            ><i class=""></i>{{'label.button.back' | translate}}</a>
+          <a href="#!/viewsavingaccount/{{savingId}}" class="md-primary center"><i
+              class=""></i>{{'label.button.back' | translate}}</a>
         </div>
       </div>
     </div>
