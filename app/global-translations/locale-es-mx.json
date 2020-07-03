@@ -4081,7 +4081,7 @@
     "label.heading.cashmgmt.tellerName": "Caja",
     "label.heading.cashmgmt.cashierName": "Cajero",
     "label.heading.cashmgmt.tellerStatus": "Estado",
-    "label.heading.cashmgmt.tellerStartDate": "Abrio rl",
+    "label.heading.cashmgmt.tellerStartDate": "Fecha de Inicio",
     "label.heading.cashmgmt.teller.actions": "Acciones",
     "label.heading.cashmgmt.createTeller": "Crear Caja",
     "label.heading.cashmgmt.cashier.allocateFunds": "Asignar Fondos Para Caja",
