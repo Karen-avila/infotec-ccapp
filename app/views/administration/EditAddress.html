@@ -13,10 +13,12 @@
             </li>
             <li class="active">{{'label.heading.editaddress' | translate}}</li>
         </ul>
+        
         <form name="FieldConfiguration" novalidate="" class="form-horizontal well">
             <api-validate></api-validate>
             <fieldset>
                 <legend>{{'label.heading.editaddress' | translate}}</legend>
+                <div class="col-sm-8 col-md-8">
                 <div class="form-group" ng-show="postalCode">
                     <label class="control-label col-sm-4"
                         for="postal_code">{{'label.input.postal_code' | translate }}</label>
@@ -53,7 +55,7 @@
                         for="addressline1">{{'label.input.addressline1' | translate }}</label>
                     <div class="col-sm-4">
                         <input type="text" id="addressline1" name="addressline1" ng-model="formData.addressLine1"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -63,7 +65,7 @@
 
                     <div class="col-sm-4">
                         <input type="text" id="addressline2" name="addressline2" ng-model="formData.addressLine2"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -73,7 +75,7 @@
 
                     <div class="col-sm-4">
                         <input type="text" id="addressline3" name="addressline3" ng-model="formData.addressLine3"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -83,7 +85,7 @@
 
                     <div class="col-sm-4">
                         <input type="text" id="addressline4" name="addressline4" ng-model="formData.addressLine4"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -93,7 +95,7 @@
 
                     <div class="col-sm-4">
                         <input type="text" id="addressline5" name="addressline5" ng-model="formData.addressLine5"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -103,7 +105,7 @@
 
                     <div class="col-sm-4">
                         <input type="text" id="addressline6" name="addressline6" ng-model="formData.addressLine6"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -111,7 +113,7 @@
                     <label class="control-label col-sm-4" for="city">{{'label.input.city' | translate }}</label>
 
                     <div class="col-sm-4">
-                        <input type="text" id="city" name="city" ng-model="formData.city" class="form-control">
+                        <input type="text" id="city" name="city" ng-model="formData.city" class="form-control uppercase">
                     </div>
                 </div>
 
@@ -120,7 +122,7 @@
                         for="town_village">{{'label.input.town_village' | translate }}</label>
                     <div class="col-sm-4">
                         <input type="text" id="town_village" name="town_village" ng-model="formData.townVillage"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -129,7 +131,7 @@
                         for="county_district">{{'label.input.county_district' | translate }}</label>
                     <div class="col-sm-4">
                         <input type="text" id="county_district" name="county_district" ng-model="formData.countyDistrict"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -212,7 +214,13 @@
                         'label.button.save' | translate }}
                     </md-button>
                 </div>
+                </div>
+                <div class= "col-sm-4 col-md-4">
+					<leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
+				   </div>
+
             </fieldset>
         </form>
+        
     </div>
 </md-content>

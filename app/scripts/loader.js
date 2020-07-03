@@ -110,6 +110,7 @@
             'pdf': {deps: ['angular']},
             'moment': {deps: ['angular'], exports: 'moment'},
             'CURPUtils': {deps: ['moment']},
+           
             'RFCUtils': {deps: ['moment']},
             'L': {deps: ['angular']},
             'leaflet-directive': {deps: ['angular','L']},
