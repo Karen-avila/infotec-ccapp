@@ -60,7 +60,6 @@
             'moment': '../bower_components/moment/min/moment-with-locales.min',
             'pdf': '../bower_components/pdfjs/src/pdf',
             'CURPUtils': '../scripts/js/CURPUtils',
-            'MapUtils':'../scripts/js/MapUtils',
             'RFCUtils': '../scripts/js/RFCUtils',
             'L': '../bower_components/leaflet/dist/leaflet',
             'leaflet-directive': '../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min'
@@ -111,7 +110,7 @@
             'pdf': {deps: ['angular']},
             'moment': {deps: ['angular'], exports: 'moment'},
             'CURPUtils': {deps: ['moment']},
-            'MapUtils':{deps: ['angular']},
+           
             'RFCUtils': {deps: ['moment']},
             'L': {deps: ['angular']},
             'leaflet-directive': {deps: ['angular','L']},
@@ -163,7 +162,6 @@
                     'pdf',
                     'CURPUtils',
                     'RFCUtils',
-                    'MapUtils',
                     'L',
                     'leaflet-directive'
                 ],

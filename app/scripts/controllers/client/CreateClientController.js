@@ -43,13 +43,10 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
-            scope.center={};
+         
 
-            scope.center= {          
-                    zoom: 5
-                }
-
-
+                
+         
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -289,22 +286,7 @@
                 scope.createCurpRfc();
             });
 
-            scope.changeState= function () {
-                //console.log(this.address.stateProvinceId);
-                  var  values= setLatLngByState(this.address.stateProvinceId);
-                  scope.address.latitude= values.latitude;
-                  scope.address.longitude= values.longitude;
-                  scope.center={lat:values.latitude, lng:values.longitude};
-              
-                  angular.extend(scope, {
-                      center: {
-                          lat: parseFloat(values.latitude) ,
-                          lng: parseFloat(values.longitude),
-                          zoom: 13
-                      },
-                  });
-              }
-  
+         
 
 
             scope.submit = function () {
