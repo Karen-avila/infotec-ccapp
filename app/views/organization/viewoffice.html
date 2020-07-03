@@ -34,6 +34,7 @@
               </div>
 
               <h3><strong>{{office.name}}</strong></h3>
+              <div class="col-sm-8 col-md-8">
               <table class="table" class="table table-condensed">
                 <tr>
                   <th>{{'label.heading.parentoffice' | translate }}</th>
@@ -110,15 +111,13 @@
                   <th>{{'label.input.is_active' | translate}}</th>
                   <td></td>
                 </tr>
-                <tr>
-                  <td colspan="2">
-                    <leaflet lf-center="center" event-broadcast="events" markers="markers" height="480px" width="100%"></leaflet>
-                  </body>
-                </html>      
-                  </td>
-                </tr>
               </table>
-               
+               </div>
+               <div class= "col-sm-4 col-md-4">
+                 <h4> Ubicación</h4> 
+                <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
+                 </div>
+              
             </div>
             <div class="row">
               <div

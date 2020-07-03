@@ -31,6 +31,8 @@
             entityname = "ADDRESS";
             scope.addressArray = [];
             scope.formData.address = [];
+            scope.address = {};
+
             //familymembers
             scope.formData.familyMembers = [];
             scope.familyArray = [];
@@ -41,6 +43,10 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
+         
+
+                
+         
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -279,6 +285,9 @@
             scope.$watch('first.dateOfBirth', function (value) {
                 scope.createCurpRfc();
             });
+
+         
+
 
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);

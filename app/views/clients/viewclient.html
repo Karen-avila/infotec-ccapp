@@ -969,6 +969,7 @@
                             <br />
                             <md-button md-no-ink class="md-primary pull-right" ng-click="routeTo()"><i
                                 class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</md-button>
+                                <div class="col-sm-8 col-md-8">
                             <table class="table" ng-repeat="address in addresses" class="table table-condensed">
                                 <thead>
                                     <tr class="graybg">
@@ -1137,6 +1138,11 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class= "col-sm-4 col-md-4">
+                                      <leaflet lf-center="center" event-broadcast="events" markers="markers" height="480px" width="100%"></leaflet>
+                                    </div>
                         </md-tab-body>
                     </md-tab>
 

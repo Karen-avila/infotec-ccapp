@@ -14,6 +14,7 @@
             scope.updateDefaultSavings = false;
             scope.charges = [];
             scope.datatableLoaded = false;
+            scope.center= {};
 
             // address
             scope.addresses = [];
@@ -35,12 +36,45 @@
                         })
                     }
                 });
+                
             }
             scope.getClientTemplate();
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
+            
                     scope.addresses = data;
+                    var mainMarker = {
+                   
+                        lat: parseFloat(data.latitude) ,
+                        lng: parseFloat(data.longitude),
+                        focus: true,
+                        message: "Ubicación",
+                        draggable: true
+                    };
+        
+                    angular.extend(scope, {
+                        center: {
+                            lat: parseFloat(data.latitude) ,
+                            lng: parseFloat(data.longitude),
+                            zoom: 16
+                        },
+                        markers: {
+                            mainMarker: angular.copy(mainMarker)
+                        },
+                        position: {
+                            lat: parseFloat(data.latitude) ,
+                            lng: parseFloat(data.longitude),
+                        },
+                        events: { // or just {} //all events
+                            markers:{
+                              enable: [ 'dragend' ]
+                              //logic: 'emit'
+                            }
+                        }
+                    });
+
+
                 })                
             }
 
@@ -504,6 +538,8 @@
 
             resourceFactory.clientAccountResource.get({ clientId: routeParams.id }, function (data) {
                 scope.clientAccounts = data;
+
+                
                 if (data.savingsAccounts) {
                     for (var i in data.savingsAccounts) {
                         if (data.savingsAccounts[i].status.value == "Active") {
