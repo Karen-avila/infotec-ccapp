@@ -23,7 +23,7 @@
                         {{'label.input.postal_code' | translate }}
                         <span class="required">*</span></label>
                     <div class="col-md-4">
-                        <input type="number" id="postal_code" name="postal_code" ng-model="formData.postalCode"
+                        <input type="text" id="postal_code" pattern="\d{5}" name="postal_code" maxlength="5" ng-model="formData.postalCode"
                             class="form-control">
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <label class="control-label col-md-4" for="street">{{'label.input.street' | translate }}<span class="required">*</span></label>
 
                     <div class="col-md-4">
-                        <input type="text" id="street" name="street" ng-model="formData.street" class="form-control" required late-validate>
+                        <input type="text" id="street" name="street" ng-model="formData.street" class="form-control uppercase" required late-validate>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                         for="addressline1">{{'label.input.addressline1' | translate }}</label>
                     <div class="col-md-4">
                         <input type="text" id="addressline1" name="addressline1" ng-model="formData.addressLine1"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
 
                     <div class="col-md-4">
                         <input type="text" id="addressline2" name="addressline2" ng-model="formData.addressLine2"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -75,37 +75,37 @@
 
                     <div class="col-md-4">
                         <input type="text" id="addressline3" name="addressline3" ng-model="formData.addressLine3"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="addressLine4">
                     <label class="control-label col-md-4"
-                        for="addressline3">{{'label.input.addressline4' | translate }}</label>
+                        for="addressLine4">{{'label.input.addressline4' | translate }}</label>
 
                     <div class="col-md-4">
                         <input type="text" id="addressline4" name="addressline4" ng-model="formData.addressLine4"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="addressLine5">
                     <label class="control-label col-md-4"
-                        for="addressline3">{{'label.input.addressline5' | translate }}</label>
+                        for="addressLine5">{{'label.input.addressline5' | translate }}</label>
 
                     <div class="col-md-4">
                         <input type="text" id="addressline5" name="addressline5" ng-model="formData.addressLine5"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="addressLine6">
                     <label class="control-label col-md-4"
-                        for="addressline3">{{'label.input.addressline6' | translate }}</label>
+                        for="addressLine6">{{'label.input.addressline6' | translate }}</label>
 
                     <div class="col-md-4">
                         <input type="text" id="addressline6" name="addressline6" ng-model="formData.addressLine6"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                     <label class="control-label col-md-4" for="city">{{'label.input.city' | translate }}</label>
 
                     <div class="col-md-4">
-                        <input type="text" id="city" name="city" ng-model="formData.city" class="form-control">
+                        <input type="text" id="city" name="city" ng-model="formData.city" class="form-control uppercase">
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@
                         for="town_village">{{'label.input.town_village' | translate }}</label>
                     <div class="col-md-4">
                         <input type="text" id="town_village" name="town_village" ng-model="formData.townVillage"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 
@@ -131,7 +131,7 @@
                         for="county_district">{{'label.input.county_district' | translate }}</label>
                     <div class="col-md-4">
                         <input type="text" id="county_district" name="county_district" ng-model="formData.countyDistrict"
-                            class="form-control">
+                            class="form-control uppercase">
                     </div>
                 </div>
 

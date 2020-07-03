@@ -6,15 +6,14 @@
         <li class="active">{{'label.anchor.addfinancialmapping' | translate}}</li>
     </ul>
     <div class="card">
-        
+
         <div class="content">
             <div class="toolbar">
                 <h4>{{'label.heading.add.financial.activity.mapping' | translate}}</h4>
             </div>
-            <br/>
+            <br />
             <form name="createfinancialmappingform" novalidate="" class="form-horizontal form-extra"
-                  ng-controller="AddFinancialMappingController"
-                  rc-submit="submit()">
+                ng-controller="AddFinancialMappingController" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -22,11 +21,14 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <md-select id="financialActivityId" ng-model="formData.financialActivityId" ng-change="updateActivityOptions(formData.financialActivityId)" placeholder="{{'label.selectone'  | translate}}">
-                                <md-option ng-repeat="activityOption in financialActivityOptions" ng-value="{{activityOption.id}}">
-                                 {{activityOption.name | translate }}
+                            <md-select id="financialActivityId" ng-model="formData.financialActivityId"
+                                ng-change="updateActivityOptions(formData.financialActivityId)"
+                                placeholder="{{'label.selectone'  | translate}}">
+                                <md-option ng-repeat="activityOption in financialActivityOptions"
+                                    ng-value="{{activityOption.id}}">
+                                    {{activityOption.id}} {{activityOption.name | translate }}
                                 </md-option>
-                                </md-select>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -34,19 +36,31 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <md-select id="glAccountId" ng-model="formData.glAccountId" placeholder="{{'label.selectone'  | translate}}">
-                               <md-option ng-repeat="account in accountOptions" ng-value="{{account.id}}">
-                                  {{account.name }} {{ account.glCode }}
-                               </md-option>
-                            </md-select>
-                        <form-validate valattributeform="createfinancialmappingform" valattribute="glAccountId"/>
+                            <md-autocomplete
+                                md-selected-item="selectedItem"
+                                md-search-text="searchText"
+                                md-selected-item-change="selectedItemChange(item)"
+                                md-items="item in querySearch(searchText)"
+                                md-item-text="getItemText(item)"
+                                md-min-length="4"
+                                md-escape-options="clear"
+                                placeholder="{{'label.accounting.select.one' | translate}}"
+                                input-aria-labelledby="formData.glAccountId">
+                                <md-item-template>
+                                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.glCode}} {{item.name}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    "{{searchText}}" {{'error.msg.not.found' | translate}}
+                                </md-not-found>
+                            </md-autocomplete>
                         </div>
                     </div>
 
-                    <div class="col-md-9 center">
+                    <div class="col-md-12 center">
                         <md-button id="cancel" href="#!/financialactivityaccountmappings" class="md-raised">{{'label.button.cancel'
                             | translate}}</md-button>
-                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_FINANCIALACTIVITYACCOUNT'>
+                        <md-button id="save" type="submit" class="md-raised md-primary"
+                            has-permission='CREATE_FINANCIALACTIVITYACCOUNT'>
                             {{'label.button.save' | translate}}
                         </md-button>
                     </div>

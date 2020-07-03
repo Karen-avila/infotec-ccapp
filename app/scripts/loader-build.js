@@ -18,6 +18,7 @@
             'angularuitpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
             'underscore': '../bower_components/underscore/underscore.min',
             'webstorage': '../bower_components/angular-webstorage/angular-webstorage.min',
+            'angular-local-storage': '../bower_components/angular-local-storage/dist/angular-local-storage.min',
             'pdfMake': '../bower_components/pdfmake/build/pdfmake',
             'vfs_fonts': '../bower_components/pdfmake/build/vfs_fonts',
             'require-css': '../bower_components/require-css/css',

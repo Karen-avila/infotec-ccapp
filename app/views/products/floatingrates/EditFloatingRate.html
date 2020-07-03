@@ -48,7 +48,12 @@
                     </label>
                 </div>
                 <div class="col-sm-1">
+                    <md-button id="add" ng-click="addRatePeriod()" name="add"><i
+                        class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
+                    </md-button>
+                    <!--
                     <button id="add" data-ng-click="addRatePeriod()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
+                    -->
                 </div>
             </div>
 
@@ -95,11 +100,11 @@
 
             <div class="col-md-offset-4">
                 <a id="cancel" href="#!/floatingrates">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+                    <md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
                 </a>
-                <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-sm btn-primary"
+                <md-button id="save" type="submit" ng-click="visitValidation=true" class="md-raised md-primary"
                         has-permission='UPDATE_FLOATINGRATE'>{{'label.button.save' | translate}}
-                </button>
+                </md-button>
             </div>
         </fieldset>
     </form>

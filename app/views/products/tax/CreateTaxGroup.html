@@ -28,8 +28,15 @@
             <div class="form-group col-sm-12 grbgcolor">
                 <label class="col-sm-4">{{'label.input.taxcomponent' | translate }}</label>
                 <label class="col-sm-4">{{'label.input.startdate' | translate }}</label>
-                <label class="col-sm-2"> <a class="btn btn-sm btn-primary" ng-click="addTaxComponent()"><i
-                        class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row' | translate}}</a></label>
+                <label class="col-sm-2"> 
+                    <!--
+                    <a class="btn btn-sm btn-primary" ng-click="addTaxComponent()"><i
+                        class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row' | translate}}</a>
+                    -->
+                    <md-button ng-click="addTaxComponent()"><i
+                        class="fa fa-plus"></i>&nbsp;{{'label.add.row' | translate}}
+                    </md-button>
+                </label>
             </div>
             <div class="form-group col-sm-12" ng-repeat="taxcomponent in taxComponents">
                 <div class="col-sm-4">
@@ -50,12 +57,12 @@
             </div>
 
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/taxgroups">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-                </a>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_TAXGROUP'>
-                    {{'label.button.save' | translate}}
-                </button>
+
+                <md-button id="cancel" href="#!/taxgroups" class="md-raised" type="reset">{{'label.button.cancel' | translate }}
+				</md-button>
+				<md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_TAXGROUP'>{{'label.button.save' | translate }}
+                </md-button>
+
             </div>
         </fieldset>
     </form>

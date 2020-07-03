@@ -8,54 +8,68 @@
             <div class="toolbar">
                 <h4></h4>
             </div>
-            <br/>
-            <md-button href="#!/createprovisioningentries" class="md-raised md-primary"
-            has-permission='VIEW_ALL_PROVISIONING_ENTRIES'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createprovisioning.entry'
-             | translate}}</md-button>
+            <br />
+            <div class="row">
+                <div class="col-sm-7"></div>
+                <div class="col-sm-5">
+                    <md-button href="#!/createprovisioningentries" class="md-primary"
+                        has-permission='VIEW_ALL_PROVISIONING_ENTRIES'><i class="fa fa-plus"></i> 
+                        {{'label.button.createprovisioning.entry' | translate}}</md-button>
+                </div>
+            </div>
 
+            <md-divider></md-divider>
             <br>
-            <hr/>
-            <table md-table>
-                <thead md-head>
-                <tr md-row>
-                    <th md-column>{{'label.heading.createdby' | translate}}</th>
-                    <th md-column>{{'label.heading.createdon' | translate}}</th>
-                    <th md-column>{{'label.heading.journalentry.created' | translate}}</th>
-                    <th md-column>{{'label.heading.viewreport' | translate}}</th>
-                    <th md-column>{{'label.heading.recreateprovisioning' | translate}}</th>
-                    <th md-column>{{'label.heading.viewjournals' | translate}}</th>
-                </tr>
-                </thead>
-                <tbody md-body>
-                <tr md-row ng-repeat="entryObject in entries.currentPageItems | filter:filterText">
-                    <td md-cell>{{entryObject.createdUser}}</td>
-                    <td md-cell>{{entryObject.createdDate | DateFormat}}</td>
+            <md-table-container ng-show="entries.currentPageItems.length > 0" class="noscroll-x">
+                <table md-table>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column>{{'label.heading.createdby' | translate}}</th>
+                            <th md-column>{{'label.heading.createdon' | translate}}</th>
+                            <th md-column>{{'label.heading.journalentry.created' | translate}}</th>
+                            <th md-column>{{'label.heading.viewreport' | translate}}</th>
+                            <th md-column>{{'label.heading.recreateprovisioning' | translate}}</th>
+                            <th md-column>{{'label.heading.viewjournals' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="entryObject in entries.currentPageItems | filter:filterText">
+                            <td md-cell>{{entryObject.createdUser}}</td>
+                            <td md-cell>{{entryObject.createdDate | DateFormat}}</td>
 
-                    <td md-cell><input type="checkbox" name="name1" ng-model="entryObject.journalEntry" disabled/>&nbsp;</td>
-                    <td md-cell>
-                        <md-button class="md-raised" id="viewreport" data-ng-click="routeTo(entryObject.id)" type="submit" name="viewreport">
-                            <i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}
-                        </md-button>
-                    </td>
-                    <td md-cell>
-                        <md-button class="md-raised md-primary" id="recreate" data-ng-click="recreate(entryObject.id)" type="submit" name="recreate"
-                        ng-disabled="entryObject.journalEntry"><i class="fa fa-edit"></i>&nbsp;&nbsp;{{'label.button.recreate' | translate}}</md-button>
-                    </td>
-                    <td md-cell>
-                        <md-button class="md-raised" id="viewjournals" data-ng-click="viewJournals(entryObject.id)" type="submit" name="viewjournals"
-                        ng-disabled="!entryObject.journalEntry"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}</md-button>
-                    </td>
+                            <td md-cell><input type="checkbox" name="name1" ng-model="entryObject.journalEntry"
+                                    disabled />&nbsp;</td>
+                            <td md-cell>
+                                <md-button class="md-raised" id="viewreport" data-ng-click="routeTo(entryObject.id)"
+                                    type="submit" name="viewreport">
+                                    <i class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}
+                                </md-button>
+                            </td>
+                            <td md-cell>
+                                <md-button class="md-raised md-primary" id="recreate"
+                                    data-ng-click="recreate(entryObject.id)" type="submit" name="recreate"
+                                    ng-disabled="entryObject.journalEntry"><i
+                                        class="fa fa-edit"></i>&nbsp;&nbsp;{{'label.button.recreate' | translate}}
+                                </md-button>
+                            </td>
+                            <td md-cell>
+                                <md-button class="md-raised" id="viewjournals"
+                                    data-ng-click="viewJournals(entryObject.id)" type="submit" name="viewjournals"
+                                    ng-disabled="!entryObject.journalEntry"><i
+                                        class="fa fa-eye"></i>&nbsp;&nbsp;{{'label.button.view' | translate}}
+                                </md-button>
+                            </td>
 
-                </tr>
-                </tbody>
-            </table>
-            <ul class="pager">
-                <li class="previous"><a id="prev" ng-click="entries.previous()" href=""
-                                        ng-disabled="!entries.hasPrevious()">&larr; {{'label.button.previous' |
-                    translate}}</a></li>
-                <li class="next"><a id="next" ng-click="entries.next()" href="" ng-disabled="!entries.hasNext()">{{'label.button.next'
-                    | translate}} </a></li>
-            </ul>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
+            <md-table-pagination ng-show="entries.currentPageItems.length > query.limit" md-limit="query.limit"
+                md-limit-options="[15,25,50]" md-page-select="options.pageSelector"
+                md-boundary-links="options.boundaryLinks" md-page="query.page" md-total="{{totalItems}}"
+                md-on-paginate="getResultsPage" md-page-select>
+            </md-table-pagination>
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@
             };
 
             scope.query = {
-                order: 'shortName',
+                order: 'name',
                 limit: 25,
                 page: 1
             }

@@ -23,6 +23,7 @@
             'bootstrap-csp': '../bower_components/angular-bootstrap/ui-bootstrap-csp.css',
             'underscore': '../bower_components/underscore/underscore',
             'webstorage': '../bower_components/angular-webstorage/angular-webstorage',
+            'angular-local-storage': '../bower_components/angular-local-storage/dist/angular-local-storage.min',
             'pdfMake': '../bower_components/pdfmake/build/pdfmake',
             'vfs_fonts': '../bower_components/pdfmake/build/vfs_fonts',
             'angular-animate': '../bower_components/angular-animate/angular-animate',

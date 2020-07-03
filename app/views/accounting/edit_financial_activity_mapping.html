@@ -10,15 +10,16 @@
             <div class="toolbar">
                 <h4>{{'label.heading.edit.financial.activity.mapping' | translate}}</h4>
             </div>
+
             <br/>
             <form name="editfinancialmappingform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.financial.activity.type' | translate}}<span
+                        <label class="control-label col-sm-3">{{'label.input.financial.activity.type' | translate}}<span
                                 class="required">*</span></label>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <md-select id="financialActivityId" ng-model="formData.financialActivityId" ng-change="updateActivityOptions(formData.financialActivityId)">
                               <md-option ng-repeat="activityOption in financialActivityOptions" ng-value="activityOption.id">
                                        {{activityOption.name  | translate}}
@@ -27,19 +28,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.account' | translate}}<span
+                        <label class="control-label col-sm-3">{{'label.input.account' | translate}}<span
                                 class="required">*</span></label>
 
-                        <div class="col-sm-3">
-                            <md-select  id="glAccountId" ng-model="formData.glAccountId">
-                                <md-option ng-repeat="account in accountOptions" ng-value="account.id">
-                                    {{account.name}} {{account.glCode }}
-                                </md-option>
-                            </md-select>
+                        <div class="col-sm-6">
+                            <md-autocomplete
+                                md-selected-item="selectedItem"
+                                md-search-text="searchText"
+                                md-selected-item-change="selectedItemChange(item)"
+                                md-items="item in querySearch(searchText)"
+                                md-item-text="getItemText(item)"
+                                md-min-length="4"
+                                md-escape-options="clear"
+                                placeholder="{{'label.accounting.select.one' | translate}}"
+                                input-aria-labelledby="formData.glAccountId">
+                                <md-item-template>
+                                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.glCode}} {{item.name}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    "{{searchText}}" {{'error.msg.not.found' | translate}}
+                                </md-not-found>
+                            </md-autocomplete>
                         </div>
                     </div>
 
-                    <div class="col-md-offset-2">
+                    <div class="col-md-12 center">
                         <md-button id="cancel" href="#!/viewfinancialactivitymapping/{{mapping.id}}" class="md-raised">{{'label.button.cancel'
                             | translate}}</md-button>
                         <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_FINANCIALACTIVITYACCOUNT'>

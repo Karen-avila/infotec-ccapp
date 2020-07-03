@@ -33,6 +33,10 @@
             scope.allowAttributeConfiguration = true;
             scope.includeOrderAccounts = false;
             scope.interestRecalculationOnDayTypeOptions = [];
+            scope.maxStep = 7;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
+
             for (var i = 1; i <= 28; i++) {
                 scope.interestRecalculationOnDayTypeOptions.push(i);
             }
@@ -111,9 +115,24 @@
                 })[retAttr];
             };
 
-            scope.goNext = function (form) {
-                WizardHandler.wizard().checkValid(form);
-                scope.isClicked = true;
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+            }
+        
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
             }
 
             scope.taxGroupSelected = function (groupId) {
@@ -169,9 +188,9 @@
                 scope.frFlag = true;
                 scope.configureFundOptions.push({
                     paymentTypeId: scope.product.paymentTypeOptions.length > 0 ? scope.product.paymentTypeOptions[0].id : '',
-                    fundSourceAccountId: scope.assetAccountOptions.length > 0 ? scope.assetAccountOptions[0].id : '',
+                    fundSourceAccountId: scope.liabilityAccountOptions.length > 0 ? scope.liabilityAccountOptions[0].id : '',
                     paymentTypeOptions: scope.product.paymentTypeOptions.length > 0 ? scope.product.paymentTypeOptions : [],
-                    assetAccountOptions: scope.assetAccountOptions.length > 0 ? scope.assetAccountOptions : []
+                    assetAccountOptions: scope.liabilityAccountOptions.length > 0 ? scope.liabilityAccountOptions : []
                 });
             };
 

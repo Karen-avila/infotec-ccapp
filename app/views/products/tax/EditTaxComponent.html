@@ -19,8 +19,6 @@
                     <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
                            class="form-control"
                            required late-Validate/>
-
-                    <form-validate valattributeform="edittaxcomponentform" valattribute="name"/>
                 </div>
             </div>
 
@@ -29,16 +27,13 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-4">
-                    <input id="percentage" type="text" name="percentage" ng-model="formData.percentage"
-                           class="form-control" number-format
-                           required late-Validate/>
-
-                    <form-validate valattributeform="edittaxcomponentform" valattribute="percentage"/>
+                    <input id="percentage" type="number" name="percentage" ng-model="formData.percentage"
+                           class="form-control" required late-Validate/>
                 </div>
             </div>
 
             <div class="form-group" ng-show="taxComponent.debitAccountType">
-                <label class="text-right col-sm-2">{{'label.input.debitaccounttype' | translate }}</label>
+                <label class="text-right col-sm-3">{{'label.input.debitaccounttype' | translate }}</label>
 
                 <div class="col-sm-4">
                     {{taxComponent.debitAccountType.code | translate}}
@@ -46,15 +41,15 @@
             </div>
 
             <div class="form-group" ng-show="taxComponent.debitAccount">
-                <label class="text-right col-sm-2">{{'label.input.debitaccount' | translate }}</label>
+                <label class="text-right col-sm-3">{{'label.input.debitaccount' | translate }}</label>
 
                 <div class="col-sm-4">
-                    {{taxComponent.debitAccount.name}}
+                    {{taxComponent.debitAccount.glCode}} {{taxComponent.debitAccount.name}}
                 </div>
             </div>
 
             <div class="form-group" ng-show="taxComponent.creditAccountType">
-                <label class="text-right col-sm-2">{{'label.input.creditaccounttype' | translate }}</label>
+                <label class="text-right col-sm-3">{{'label.input.creditaccounttype' | translate }}</label>
 
                 <div class="col-sm-4">
                     {{taxComponent.creditAccountType.code | translate}}
@@ -62,10 +57,10 @@
             </div>
 
             <div class="form-group" ng-show="taxComponent.creditAccount">
-                <label class="text-right col-sm-2">{{'label.input.creditaccount' | translate }}</label>
+                <label class="text-right col-sm-3">{{'label.input.creditaccount' | translate }}</label>
 
                 <div class="col-sm-4">
-                    {{taxComponent.creditAccount.name}}
+                    {{taxComponent.creditAccount.glCode}} {{taxComponent.creditAccount.name}}
                 </div>
             </div>
 
@@ -73,19 +68,20 @@
                 <label class="control-label col-sm-3">{{'label.input.startdate' | translate }}</label>
 
                 <div class="col-sm-4">
-                    <input id="startDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date"
-                           class="form-control" is-open="opened" min="minDate" max="restrictDate"/>
+                    <md-datepicker id="startDate" ng-model="start.date"
+                        md-placeholder="{{'label.selecttodate' | translate}}" required
+                        md-min-date="minDate" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
 
-
             <div class="col-md-12 center">
                 <a id="cancel" href="#!/viewtaxcomponent/{{taxComponent.id}}">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+                    <md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
                 </a>
-                <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_TAXCOMPONENT'>
+                <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_TAXCOMPONENT'>
                     {{'label.button.save' | translate}}
-                </button>
+                </md-button>
             </div>
         </fieldset>
     </form>

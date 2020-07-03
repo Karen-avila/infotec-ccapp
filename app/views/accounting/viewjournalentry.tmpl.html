@@ -1,0 +1,88 @@
+<md-dialog arial-label="{{data.id}}" style="width:600px; height:650px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{'label.heading.viewjournalentry' | translate}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <table class="table modalwidth600">
+                <tr>
+                    <th class="width50">{{'label.input.office' | translate}}</th>
+                    <td>{{transaction.officeName}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.entryid' | translate}}</th>
+                    <td>{{transaction.id}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.transactionid' | translate}}</th>
+                    <td>{{transaction.transactionId}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.transactiondate' | translate}}</th>
+                    <td>{{transaction.transactionDate | DateFormat}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.type' | translate}}</th>
+                    <td>{{transaction.glAccountType.value}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.account' | translate}}</th>
+                    <td>{transaction.glAccountCode}} {{transaction.glAccountName}}</td>
+                </tr>
+                <tr>
+                    <th>{{transaction.entryType.code | translate}}</th>
+                    <td>{{transaction.currency.displaySymbol}} {{transaction.amount | FormatNumber}}</td>
+                </tr>
+                <tr ng-show="transaction.referenceNumber">
+                    <th>{{'label.input.referencenumber' | translate}}</th>
+                    <td>{{transaction.referenceNumber}}</td>
+                </tr>
+                <tr ng-show="transaction.comments">
+                    <th>{{'label.input.comments' | translate}}</th>
+                    <td>{{transaction.comments}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">{{'label.heading.paymentdetails' | translate}}</th>
+                </tr>
+                <tr>
+                    <th>{{'label.input.paymentypeid' | translate}}</th>
+                    <td> {{transaction.transactionDetails.paymentDetails.paymentType.name}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.accnum' | translate}}</th>
+                    <td>{{transaction.transactionDetails.paymentDetails.accountNumber}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.checknumber' | translate}}</th>
+                    <td>{{transaction.transactionDetails.paymentDetails.checkNumber}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.routingcode' | translate}}</th>
+                    <td>{{transaction.transactionDetails.paymentDetails.routingCode}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.receiptnumber' | translate}}</th>
+                    <td>{{transaction.transactionDetails.paymentDetails.receiptNumber}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.input.banknumber' | translate}}</th>
+                    <td>{{transaction.transactionDetails.paymentDetails.bankNumber}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.createdby' | translate}}</th>
+                    <td>{{transaction.createdByUserName}}</td>
+                </tr>
+                <tr>
+                    <th>{{'label.createdon' | translate}}</th>
+                    <td>{{transaction.createdDate | DateFormat}}</td>
+                </tr>
+            </table>
+        </div>
+    </md-dialog-content>
+</md-dialog>

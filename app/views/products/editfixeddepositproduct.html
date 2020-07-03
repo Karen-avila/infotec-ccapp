@@ -43,9 +43,19 @@
 <div class="form-group">
     <label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span class="required">*</span></label>
     <div class="col-sm-2">
+        <md-select aria-label="currencyCode" id="currencyCode" ng-model="formData.currencyCode">
+            <md-select-header>
+                {{'label.selectcurrency' | translate}}
+            </md-select-header>
+            <md-option ng-repeat="currency in product.currencyOptions" ng-value="currency.code">
+                {{currency.name | translate}}
+            </md-option>
+        </md-select>
+        <!--
         <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
                 ng-options="currency.code as currency.name for currency in product.currencyOptions"
                 value="{{currency.code}}"/>
+            -->
     </div>
     <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate }}<span class="required">*</span></label>
     <div class="col-sm-2">
@@ -105,11 +115,13 @@
            tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
+        
         <select id="interestCompoundingPeriodTypeOptions"
                 ng-model="formData.interestCompoundingPeriodType" class="form-control"
                 ng-options="type.id as type.value for type in product.interestCompoundingPeriodTypeOptions"
                 value="{{type.id}}">
         </select>
+        
     </div>
     <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.interestpostingperiod' | translate }}<span class="required">*</span>
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.postingperiod' | translate}}"
@@ -371,8 +383,15 @@
             <option class="displaynone" value="">{{'label.selectcharge' | translate}}</option>
         </select>
     </div>
+    <!--
     <div class="col-sm-1">
         <a class="btn btn-sm btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</a>
+    </div>
+    -->
+    <div class="col-sm-1">
+        <md-button ng-click="chargeSelected(chargeId)"><i
+                class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
+        </md-button>
     </div>
 </div>
 <div class="form-group col-md-12">
@@ -596,8 +615,8 @@
     </div>
 </div>
 <div class="col-md-offset-5 paddedtop">
-    <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-    <button id="save" type="submit" class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
+    <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+    <md-button id="save" type="submit" class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
 </div>
 <script type="text/ng-template" id="incentive.html">
     <div class="modal-header silver">

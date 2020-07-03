@@ -1,7 +1,7 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, Idle, tmhDynamicLocale,
-            uiConfigService, $http, mdDateLocale) {
+            $http) {
             $http.get('release.json').then(function (data) {
                 scope.version = data.data.version;
                 scope.releasedate = data.data.releasedate;
@@ -53,8 +53,6 @@
                 console.log('Scrollbar hide');
             });
 
-            uiConfigService.init(scope);
-
             scope.$on('configJsonObj', function (e, response) {
                 scope.response = response;
             });
@@ -82,6 +80,15 @@
                 scope.df = scope.dateformat;
                 scope.dft = scope.dateformat + ' ' + 'HH:mm:ss'
             };
+
+            scope.getDateFormat = function () {
+                if (localStorageService.getFromLocalStorage('dateformat')) {
+                    return localStorageService.getFromLocalStorage('dateformat');
+                } else {
+                    return 'dd MMMM yyyy';
+                }
+            };
+
             scope.setDecimals = function () {
                 if (localStorageService.getFromLocalStorage('numDecimals')) {
                     scope.nd = localStorageService.getFromLocalStorage('numDecimals');
@@ -453,9 +460,7 @@
         'localStorageService',
         'keyboardManager', 'Idle',
         'tmhDynamicLocale',
-        'UIConfigService',
         '$http',
-        '$mdDateLocale',
         mifosX.controllers.MainController
     ]).run(function ($log) {
         $log.info("MainController initialized");

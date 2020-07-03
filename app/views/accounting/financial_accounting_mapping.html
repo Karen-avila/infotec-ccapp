@@ -3,19 +3,15 @@
         <li><a href="#!/accounting">{{'label.anchor.accounting' | translate}}</a></li>
         <li class="active">{{'label.anchor.financialactivity.accountmappings' | translate}}</li>
     </ul>
-    <div class="card">
-        <div class="content">
-            <div class="toolbar">
-                
+    
+    <div class="card well">
+        <div class="row">
+            <div class="pull-right paddedbottom20">
+                <md-button md-no-ink class="md-primary" href="#!/addfinancialmapping" has-permission='CREATE_FINANCIALACTIVITYACCOUNT'>
+                    <i class="fa fa-plus "></i> {{'label.button.define.new.financial.mapping' | translate}}</md-button>
             </div>
-            <br/>
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6">
-                    <md-button href="#!/addfinancialmapping" class="md-raised md-primary" has-permission='CREATE_FINANCIALACTIVITYACCOUNT'>
-                        <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.define.new.financial.mapping' | translate}}</md-button>            
-            </div>
-            <hr/>
+        </div>
+        <md-divider></md-divider>
             <table md-table>
                 <thead md-head>
                 <tr md-row>
@@ -26,10 +22,9 @@
                 <tbody md-body>
                 <tr md-row ng-repeat="mapping in mappings" data-ng-click="routeTo(mapping.id)">
                     <td md-cell>{{mapping.financialActivityData.name | translate }}</td>
-                    <td md-cell>{{mapping.glAccountData.name}}({{mapping.glAccountData.glCode}})</td>
+                    <td md-cell>{{mapping.glAccountData.glCode}} {{mapping.glAccountData.name}}</td>
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+    </div>    
 </div>

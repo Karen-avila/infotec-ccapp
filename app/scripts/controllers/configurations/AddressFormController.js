@@ -6,7 +6,11 @@
       routeParams,
       location
     ) {
-      $scope.formData = {};
+      $scope.formData = {
+        locale: "en",
+        latitude: 0,
+        longitude: 0
+      };
       $scope.addressTypes = [];
       $scope.countryOptions = [];
       $scope.stateOptions = [];
@@ -68,7 +72,6 @@
       };
 
       $scope.updateaddress = function () {
-        $scope.formData.locale = "en";
         resourceFactory.clientAddress.put(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,

@@ -46,6 +46,7 @@
                 </fieldset>
             </form>
         </wz-step>
+
         <wz-step wz-title="{{'label.heading.currency' | translate }}">
             <form name="Currency" ng-submit="goNext(Currency)" novalidate="" class="form-horizontal form-extra">
                 <fieldset>
@@ -54,12 +55,27 @@
                     <hr>
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span class="required">*</span></label>
+                        
+                        <div class="col-sm-3">
+
+                            <md-select aria-label="currencyCode" id="currencyCode" ng-model="formData.currencyCode" ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')">
+                                <md-select-header>
+                                    {{'label.selectcurrency' | translate}}
+                                </md-select-header>
+                                <md-option ng-repeat="currency in product.currencyOptions" ng-value="currency.code">
+                                    {{currency.name | translate}}
+                                </md-option>
+                            </md-select>
+
+                        </div>
+                        <!--
                         <div class="col-sm-2">
                             <select id="currencyCode" ng-model="formData.currencyCode" class="form-control" ng-options="currency.code as currency.name for currency in product.currencyOptions"
                                 ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
                                 value="{{currency.code}}">
                             </select>
                         </div>
+                        -->
                         <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' |
                             translate
                             }}<span class="required">*</span></label>
@@ -100,6 +116,7 @@
                 </fieldset>
             </form>
         </wz-step>
+
         <wz-step wz-title="{{'label.heading.terms' | translate}}">
             <form name="Terms" ng-submit="goNext(Terms)" novalidate="" class="form-horizontal form-extra">
                 <fieldset>
@@ -426,8 +443,13 @@
                                 <td>{{'label.heading.interestratedetails.description' | translate}}</td>
                                 <td>
                                     <div ng-show="chart.chartSlabs.length < 1">
+                                        <!--
                                         <a class="btn btn-sm btn-primary" ng-click="addNewRow()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
+                                            -->
+                                            <md-button ng-click="addNewRow()"><i
+                                                class="fa fa-plus"></i>&nbsp;{{'label.add.row' | translate}}
+                                            </md-button>
                                     </div>
                                 </td>
                             </tr>
@@ -493,8 +515,13 @@
 
                                     <div ng-show="$last">
                                         <br />
+                                        <!--
                                         <a ng-click="addNewRow()" class="btn btn-sm btn-primary"><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.add.row'
                                             | translate}}</a>
+                                        -->
+                                        <md-button ng-click="addNewRow()"><i
+                                            class="fa fa-plus"></i>&nbsp;{{'label.add.row' | translate}}
+                                        </md-button>
                                     </div>
                                 </td>
                                 <td class="width8">
@@ -526,9 +553,9 @@
                             </select>
                         </div>
                         <div class="col-sm-1">
-                            <a class="btn btn-sm btn-primary" ng-click="chargeSelected(chargeId)"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{
-                                'label.button.add' |
-                                translate }}</a>
+                            <md-button ng-click="chargeSelected(chargeId)"><i
+                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
+                            </md-button>
                         </div>
                     </div>
                     <div class="form-group col-md-12">
@@ -979,7 +1006,7 @@
                             <td colspan="4">
                                 <table class="width100" ng-show="formData.accountingRule == 2">
                                     <tr class="toppadding">
-                                        <td>{{'label.heading.savingsreference' | translate}}({{'label.heading.assets' |
+                                        <td>{{'label.heading.savingsreference' | translate}} ({{'label.heading.assets' |
                                             translate}})
                                         </td>
                                         <td colspan="3">
@@ -988,7 +1015,7 @@
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.savingscontrol' |
-                                            translate}}({{'label.heading.liabilities' | translate}})
+                                            translate}} ({{'label.heading.liabilities' | translate}})
                                         </td>
                                         <td colspan="3">
                                             {{depositproduct.accountingMappings.savingsControlAccount.name}}
@@ -996,7 +1023,7 @@
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.transfersinsuspenpense' |
-                                            translate}}({{'label.heading.liabilities' | translate}})
+                                            translate}} ({{'label.heading.liabilities' | translate}})
                                         </td>
                                         <td colspan="3">
                                             {{depositproduct.accountingMappings.transfersInSuspenseAccount.name}}
@@ -1004,14 +1031,14 @@
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.interestonsavings' |
-                                            translate}}({{'label.heading.expenses' | translate}})
+                                            translate}} ({{'label.heading.expenses' | translate}})
                                         </td>
                                         <td colspan="3">
                                             {{depositproduct.accountingMappings.interestOnSavingsAccount.name}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>{{'label.heading.incomefromfee' | translate}}({{'label.heading.income' |
+                                        <td>{{'label.heading.incomefromfee' | translate}} ({{'label.heading.income' |
                                             translate}})
                                         </td>
                                         <td colspan="3">
@@ -1020,7 +1047,7 @@
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.incomefrompenalties' |
-                                            translate}}({{'label.heading.income' | translate}})
+                                            translate}} ({{'label.heading.income' | translate}})
                                         </td>
                                         <td colspan="3">
                                             {{depositproduct.accountingMappings.incomeFromPenaltyAccount.name}}
@@ -1085,13 +1112,13 @@
                     </table>
                     <br>
                     <br>
-                    <div class="col-md-offset-5 paddedtop">
-                        <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
-                            {{'label.button.cancel' | translate}}
-                        </button>
-                        <button id="save" wz-next class="btn btn-sm btn-primary" type="submit">
+                    <div class="ol-md-12 center">
+                        <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                            translate}}
+                        </md-button>
+                        <md-button id="save" wz-next class="md-raised md-primary" type="submit">
                             {{'label.button.createfixeddepositproduct' | translate}}
-                        </button>
+                        </md-button>
                     </div>
                     <md-button class="btn-default btn-sm pull-left" wz-previous>&nbsp;&nbsp;<i class="fa fa-arrow-left"></i>{{'label.button.previous' | translate}}
                     </md-button>
