@@ -5,24 +5,26 @@
             scope.accountTypes = [];
             scope.usageTypes = [];
             scope.headerTypes = [];
+            scope.searchText = "";
+            scope.selectedItem = null;
 
-            resourceFactory.accountCoaTemplateResource.get({type: '0'}, function (data) {
+            resourceFactory.accountCoaTemplateResource.get({ type: '0' }, function (data) {
                 scope.coadata = data;
                 scope.accountTypes = data.accountTypeOptions;
                 scope.usageTypes = data.usageOptions;
-                
+
                 scope.formData = {
-                        manualEntriesAllowed: true,
-                        type: scope.accountTypes[0].id,
-                        usage: scope.usageTypes[0].id
-                    };
+                    manualEntriesAllowed: true,
+                    type: scope.accountTypes[0].id,
+                    usage: scope.usageTypes[0].id
+                };
                 scope.formData.type;
                 scope.formData.parentId;
-                
+
                 for (var i = 0; i < data.accountTypeOptions.length; i++) {
-                	if(data.accountTypeOptions[i].value == $routeParams.acctype ) {
-                		scope.formData.type = scope.accountTypes[i].id;
-                	}
+                    if (data.accountTypeOptions[i].value == $routeParams.acctype) {
+                        scope.formData.type = scope.accountTypes[i].id;
+                    }
                 }
 
                 //by default display assetTagsOptions and assetHeaderAccountOptions
@@ -30,10 +32,9 @@
                 scope.headerTypes = data.assetHeaderAccountOptions;
                 scope.changeType();
 
-
                 for (var i = 0; i < scope.headerTypes.length; i++) {
-                    if(scope.headerTypes[i].id == $routeParams.parent ) {
-                        console.log($routeParams.parent + scope.headerTypes[i].id)
+                    if (scope.headerTypes[i].id == $routeParams.parent) {
+                        // console.log($routeParams.parent + scope.headerTypes[i].id)
                         scope.formData.parentId = scope.headerTypes[i].id;
                     }
                 }
@@ -66,14 +67,30 @@
                     scope.types = [];
                     scope.headerTypes = [];
                 }
-            } ;
+            };
 
-            if($routeParams.parent){
-            	scope.cancel = '#!/viewglaccount/' + $routeParams.parent
-        	}else{
-        		scope.cancel = "#!/accounting_coa"
-        	}
-            
+            scope.getItemText = function(item) {
+                return item.glCode + " " + item.name;
+            }
+
+            scope.querySearch = function(query) {
+                const value = query.toLowerCase();
+                var results = scope.headerTypes.filter(function(item) {
+                    return (item.glCode.indexOf(value) > 0) || (item.name.toLowerCase().indexOf(value) > 0);
+                });
+                return results;
+            }
+        
+            scope.selectedItemChange = function(item) {
+                scope.formData.parentId = item.id;
+            }
+
+            if ($routeParams.parent) {
+                scope.cancel = '#!/viewglaccount/' + $routeParams.parent
+            } else {
+                scope.cancel = "#!/accounting_coa"
+            }
+
             scope.submit = function () {
                 this.formData.name = this.formData.name.toUpperCase();
                 resourceFactory.accountCoaResource.save(this.formData, function (data) {
@@ -82,7 +99,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('AccCreateGLAccountController', ['$scope', 'ResourceFactory', '$location','$routeParams', mifosX.controllers.AccCreateGLAccountController]).run(function ($log) {
+    mifosX.ng.application.controller('AccCreateGLAccountController', ['$scope', 'ResourceFactory', '$location', '$routeParams', mifosX.controllers.AccCreateGLAccountController]).run(function ($log) {
         $log.info("AccCreateGLAccountController initialized");
     });
 }(mifosX.controllers || {}));

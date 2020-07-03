@@ -161,13 +161,6 @@
                 return false;
             }
 
-            scope.allowShowJournalEntries = function(transaction) {
-                if (transaction.type.value == 'Accrual Overdue') {
-                    return false;
-                }
-                return true;
-            }
-
             scope.showTransactionCalculation = function(ev, transactionId) {
                 resourceFactory.loanTrxnsResource.get({ loanId: routeParams.id, transactionId: transactionId, charge: 'true' },
                 function (data) {

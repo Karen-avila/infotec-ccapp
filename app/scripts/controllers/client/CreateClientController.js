@@ -1,13 +1,16 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         CreateClientController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, Upload, $rootScope, routeParams, $uibModal) {
-
             scope.offices = [];
             scope.staffs = [];
             scope.savingproducts = [];
             scope.first = {};
-            scope.first.date = new Date();
-            scope.first.submitondate = new Date();
+            scope.initDate = new Date();
+            scope.first = {
+                date: scope.initDate,
+                dateOfBirth: scope.initDate,
+                submittedon: scope.initDate
+            }
             scope.formData = {};
             scope.formDat = {};
             scope.clientNonPersonDetails = {};
@@ -28,6 +31,8 @@
             entityname = "ADDRESS";
             scope.addressArray = [];
             scope.formData.address = [];
+            scope.address = {};
+
             //familymembers
             scope.formData.familyMembers = [];
             scope.familyArray = [];
@@ -38,6 +43,10 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
+         
+
+                
+         
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -276,6 +285,9 @@
             scope.$watch('first.dateOfBirth', function (value) {
                 scope.createCurpRfc();
             });
+
+         
+
 
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);

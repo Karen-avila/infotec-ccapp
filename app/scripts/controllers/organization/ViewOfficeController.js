@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewOfficeController: function (scope, routeParams, route, location,resourceFactory, leafletData) {
+        ViewOfficeController: function (scope, routeParams, route, location,resourceFactory) {
             scope.charges = [];
             scope.datatabledetails = [];
             scope.datatableLoaded = false;
@@ -10,8 +10,8 @@
             resourceFactory.officeResource.get({ officeId: routeParams.id }, function (data) {
                 scope.office = data;
              
+                console.log(data.address)
                 var mainMarker = {
-                   
                     lat: parseFloat(data.address.latitude) ,
                     lng: parseFloat(data.address.longitude),
                     focus: true,
@@ -23,6 +23,7 @@
                     center: {
                         lat: parseFloat(data.address.latitude) ,
                         lng: parseFloat(data.address.longitude),
+
                         zoom: 16
                     },
                     markers: {

@@ -6,7 +6,11 @@
       routeParams,
       location
     ) {
-      $scope.formData = {};
+      $scope.formData = {
+        locale: "en",
+        latitude: 0,
+        longitude: 0
+      };
       $scope.addressTypes = [];
       $scope.countryOptions = [];
       $scope.stateOptions = [];
@@ -16,6 +20,7 @@
       entityname = "ADDRESS";
       $scope.editable = false;
       $scope.clientId = routeParams.id;
+      
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
         $scope.countryOptions = data.countryIdOptions;
@@ -67,7 +72,6 @@
       };
 
       $scope.updateaddress = function () {
-        $scope.formData.locale = "en";
         resourceFactory.clientAddress.put(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,

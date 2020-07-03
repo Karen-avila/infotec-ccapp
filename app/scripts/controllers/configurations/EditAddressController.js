@@ -19,7 +19,7 @@
 
             isActive = {};
             var addressId = routeParams.addrId;
-
+          
             resourceFactory.clientaddressFields.get(function (data) {
                 $scope.addressTypes = data.addressTypeIdOptions;
                 $scope.countryOptions = data.countryIdOptions;
@@ -27,6 +27,8 @@
                 $scope.allMunicipalityOptions = data.municipalityIdOptions;
                 $scope.stateOptions = data.stateProvinceIdOptions;
             })
+
+            
 
             resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
                 for (var i = 0; i < data.length; i++) {

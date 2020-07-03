@@ -1,0 +1,26 @@
+<md-dialog arial-label="{{data.id}}" style="width:600px; height:200px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{'label.transactionreverse' | translate}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="modal-header silver">
+                <h4><strong class="required">{{'label.heading.transactionnumber' | translate }}&nbsp;:&nbsp;&nbsp;
+                    <b>{{transactionnumber}}</b></strong>
+                </h4>
+            </div>
+            <api-validate></api-validate>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+        <md-button class="md-raised md-primary" ng-click="redirect()">{{'label.button.redirecttonewtrx' | translate}}
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
