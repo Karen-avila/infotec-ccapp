@@ -20,7 +20,7 @@
       entityname = "ADDRESS";
       $scope.editable = false;
       $scope.clientId = routeParams.id;
-
+      
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
         $scope.countryOptions = data.countryIdOptions;
