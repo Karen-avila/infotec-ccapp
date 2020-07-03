@@ -14,15 +14,15 @@
             scope.restrictDate = new Date();
             scope.showPaymentDetails = false;
 
-            resourceFactory.accountCoaResource.getAllAccountCoas({manualEntriesAllowed: true, usage: 1, disabled: false}, function (data) {
+            resourceFactory.accountCoaResource.getAllAccountCoas({ manualEntriesAllowed: true, usage: 1, disabled: false }, function (data) {
                 scope.glAccounts = data;
             });
 
-            resourceFactory.paymentTypeResource.getAll( function (data) {
+            resourceFactory.paymentTypeResource.getAll(function (data) {
                 scope.paymentTypes = data;
             });
 
-            resourceFactory.currencyConfigResource.get({fields: 'selectedCurrencyOptions'}, function (data) {
+            resourceFactory.currencyConfigResource.get({ fields: 'selectedCurrencyOptions' }, function (data) {
                 scope.currencyOptions = data.selectedCurrencyOptions;
                 scope.formData.currencyCode = scope.currencyOptions[0].code;
             });
@@ -43,7 +43,7 @@
 
             //events for debits
             scope.addDebitAccount = function () {
-                    scope.formData.dbAccounts.push({});
+                scope.formData.dbAccounts.push({});
             }
 
             scope.removeDebitAccount = function (index) {
@@ -71,8 +71,8 @@
                 jeTransaction.credits = [];
                 for (var i = 0; i < this.formData.crAccounts.length; i++) {
                     var temp = new Object();
-                    if(this.formData.crAccounts[i].select){
-                    	temp.glAccountId = this.formData.crAccounts[i].select.id;
+                    if (this.formData.crAccounts[i].select) {
+                        temp.glAccountId = this.formData.crAccounts[i].select;
                     }
                     temp.amount = this.formData.crAccounts[i].crAmount;
                     jeTransaction.credits.push(temp);
@@ -81,8 +81,8 @@
                 jeTransaction.debits = [];
                 for (var i = 0; i < this.formData.dbAccounts.length; i++) {
                     var temp = new Object();
-                    if(this.formData.dbAccounts[i].select){
-                    	temp.glAccountId = this.formData.dbAccounts[i].select.id;
+                    if (this.formData.dbAccounts[i].select) {
+                        temp.glAccountId = this.formData.dbAccounts[i].select;
                     }
                     temp.amount = this.formData.dbAccounts[i].debitAmount;
                     jeTransaction.debits.push(temp);
