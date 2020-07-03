@@ -161,7 +161,7 @@
 							<label>{{'label.input.state_province' | translate }}<span class="required">*</span></label>
 						</div>
 						<div class="col-sm-6">
-							<md-select ng-model="address.stateProvinceId" ng-change="filterMunicipality()"
+							<md-select id="stateOptions" ng-model="address.stateProvinceId" ng-change="changeState(stateOption.name)"
 								placeholder="{{'label.menu.selectone' | translate}}" required>
 								<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
 									{{stateOption.name}}
@@ -193,8 +193,19 @@
 					</div>
 				</div>
 				<div class= "col-sm-4 col-md-4">
-					<leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
-				   </div>
+					<div id= 'map'></div>
+					 <div id= 'buscador'>
+						<input type="text" name="direccion" value="" id="direccion" size="10" />
+						<md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+						<div>
+							<ul>
+								<li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+									<a>{{address.display_name}}<a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					</div>
 
 					<div class="col-md-12 center">
 						<a id="cancel" href="#!/offices">

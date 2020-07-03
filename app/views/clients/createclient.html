@@ -627,8 +627,8 @@
                         <label>{{'label.input.state_province' | translate }}</label>
                      </div>
                      <div class="col-sm-6" >
-                        <md-select chosen="stateOptions" ng-model="addressArray[$index].stateProvinceId" 
-                           ng-change="filterMunicipality(addressArray[$index].stateProvinceId)" 
+                        <md-select  ng-model="addressArray[$index].stateProvinceId" 
+                           ng-change="filterMunicipality(addressArray[$index].stateProvinceId); changeState(stateOption.name)"
                            placeholder="{{'label.selectone' | translate}}">
                            <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
                                {{stateOption.name | translate}}

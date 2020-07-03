@@ -17,12 +17,8 @@
             entityname = "ADDRESS";
             scope.addressArray = [];
             scope.formData.address = [];
-            scope.center={};
-
-            scope.center= {          
-                    zoom: 5
-                }
-        
+            scope.addressresult = [];
+         
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
@@ -53,31 +49,26 @@
             };
 
 
-            // address
-            scope.addAddress = function() {
-                scope.addressArray.push({});
+       
+         
+            var map = new L.map('map', {zoomControl:true});
+            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+            osmAttribution = 'Map data &copy; 2012 <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+            layer_osm = new L.TileLayer(osmUrl, {maxZoom: 13, attribution: osmAttribution});
+            map.setView(new L.LatLng(23.634501, -102.552784), 5).addLayer(layer_osm);
+
+            scope.elegirdireccion = (item) => {
+                map.setView(new L.LatLng(item.boundingbox[0], item.boundingbox[2]), 10).addLayer(layer_osm);
+                scope.address.latitude = `${item.boundingbox[0]}`
+                scope.address.longitude= `${item.boundingbox[2]}`
             }
 
-            scope.removeAddress = function (index) {
-                scope.addressArray.splice(index, 1);
+            scope.direccion_buscador = () => {
+                fetch(`http://nominatim.openstreetmap.org/search?format=json&limit=5&q=${document.getElementById("direccion").value}`)
+                .then((response) => { return response.json(); })
+                .then((json) => { scope.addressresult = json });
+                
             }
-            // end of address
-            scope.changeState= function () {
-              // console.log(this.address.stateProvinceId);
-                var  values= setLatLngByState(this.address.stateProvinceId);
-                scope.address.latitude= values.latitude;
-                scope.address.longitude= values.longitude;
-                scope.center={lat:values.latitude, lng:values.longitude};
-            
-                angular.extend(scope, {
-                    center: {
-                        lat: parseFloat(values.latitude) ,
-                        lng: parseFloat(values.longitude),
-                        zoom: 13
-                    },
-                });
-            }
-
 
             scope.submit = function() {
                 const reqDate = dateFilter(scope.first.date, scope.df)

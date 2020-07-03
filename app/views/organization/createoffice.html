@@ -1,23 +1,29 @@
 <div class="content-container">
+
 	<ul class="breadcrumb">
 		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
 		<li><a href="#!/offices">{{'label.anchor.manageoffices' | translate}}</a></li>
 		<li class="active">{{'label.anchor.createoffice' | translate}}</li>
 	</ul>
-	<div class="card">
+
+	<div class="card ">
 		<div class="content">
 			<div class="toolbar">
 				<h4>{{'label.heading.createoffice' | translate}}</h4>
 			</div>
 			<br />
-			<form name="createofficeform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="CreateOfficeController" ng-submit="submit()">
+			<form name="createofficeform" 
+									novalidate="" 
+									class="form-horizontal form-extra"
+									ng-controller="CreateOfficeController" 
+									ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
-					
-					<div class="form-group">
-						<label class="control-label col-sm-2">{{'label.input.office' | translate }}<span
-								class="required">*</span></label>
+			
+					<div class="form-group row">
+						<label class="control-label col-sm-2">{{'label.input.office' | translate }}
+							<span class="required">*</span>
+						</label>
 
 						<div class="col-sm-4">
 							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
@@ -28,13 +34,15 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}<span
-								class="required">*</span></label>
+					<div class="form-group row">
+						<label class="control-label col-sm-2">{{'label.input.parentoffice' | translate }}
+							<span class="required">*</span>
+						</label>
 
 						<div class="col-sm-4">
-							<md-select id="parentId" ng-model="formData.parentId"
-								placeholder="{{'label.selectone' | translate}}">
+							<md-select id="parentId"  
+							                  ng-model="formData.parentId"
+								            placeholder="{{'label.selectone' | translate}}">
 								<md-option ng-repeat="office in offices" ng-value="office.id">
 									{{office.name}}
 								</md-option>
@@ -42,7 +50,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="control-label col-sm-2">{{'label.input.office.cityid' | translate }}<span
 								class="required">*</span></label>
 
@@ -50,26 +58,26 @@
 							<input id="city" ng-autofocus="true" type="text" name="city" ng-model="formData.city"
 								class="form-control uppercase" required late-Validate />
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-2">
 							<form-validate valattributeform="createofficeform" valattribute="city" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="control-label col-sm-2">{{'label.input.office.branchid' | translate }}</label>
 
 						<div class="col-sm-4">
 							<input id="branchId" type="text" name="branchId" class="form-control"
-								ng-model="formData.branch">
+								ng-model="formData.branch"/>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="control-label col-sm-2">{{'label.input.externalid' | translate }}</label>
 
 						<div class="col-sm-4">
 							<input id="externalId" type="text" name="externalId" class="form-control"
-								ng-model="formData.externalId">
+								ng-model="formData.externalId"/>
 						</div>
 					</div>
 
@@ -86,24 +94,40 @@
 					<blockquote style="border-left: 6px solid#285c4d;">
                         {{'label.input.address' | translate }}
 					</blockquote>
-
 					<div class="col-sm-8 col-md-8">
-							<div class="form-group row">
-								<label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}<span
+						<div class="form-group row">
+							<div class="control-label col-sm-3">
+								<label>{{'label.input.state_province' | translate}}<span
 										class="required">*</span></label>
+							</div>
+							<div class="col-sm-6">
+								<md-select class="form-control" id="stateOptions"
+									ng-model="address.stateProvinceId">
+									<md-select-header>
+										<span> {{'label.input.state_province' | translate }} </span>
+									</md-select-header>
+									<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+										{{stateOption.name}}
+									</md-option>
+								</md-select>
+							</div>
+						</div>
+							<div class="form-group row">
+								<label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}
+									<span class="required">*</span></label>
 								<div class="col-sm-6">
 									<input type="text" name="postal_code" maxlength="5" pattern="[0-9]{5}"
-										ng-model="address.postalCode" class="form-control">
+										ng-model="address.postalCode" class="form-control"/>
 								</div>
 							</div>
 
 							<div class="form-group row">
 								<div class="control-label col-sm-3">
-									<label>{{'label.input.addressType' | translate }}<span
-											class="required">*</span></label>
+									<label>{{'label.input.addressType' | translate }}
+										<span class="required">*</span></label>
 								</div>
 								<div class="col-sm-6">
-									<md-select class="form-control" id="addressType" ng-model="address.addressTypeId">
+									<md-select id="addressType" ng-model="address.addressTypeId">
 										<md-select-header>
 											<span> {{'label.input.addressType' | translate }} </span>
 										</md-select-header>
@@ -130,11 +154,11 @@
 							</div>
 
 							<div class="form-group row" >
-								<label class="control-label col-sm-3">{{'label.input.addressline1' | translate}}<span
-										class="required">*</span></label>
+								<label class="control-label col-sm-3">{{'label.input.addressline1' | translate}}
+									<span class="required">*</span></label>
 								<div class="col-sm-6">
 									<input type="text" name="addressline1" ng-model="address.addressLine1"
-										class="form-control">
+										class="form-control"/>
 								</div>
 							</div>
 
@@ -142,23 +166,23 @@
 								<label class="control-label col-sm-3">{{'label.input.addressline2' | translate}}</label>
 								<div class="col-sm-6">
 									<input type="text" name="addressline2" ng-model="address.addressLine2"
-										class="form-control">
+										class="form-control"/>
 								</div>
 							</div>
 							<div class="form-group row" >
-								<label class="control-label col-sm-3">{{'label.input.addressline3' | translate}}<span
-										class="required">*</span></label>
+								<label class="control-label col-sm-3">{{'label.input.addressline3' | translate}}
+									<span class="required">*</span></label>
 								<div class="col-sm-6">
 									<input type="text" name="addressline3" ng-model="address.addressLine3"
-										class="form-control">
+										class="form-control"/>
 								</div>
 							</div>
 							<div class="form-group row" >
-								<label class="control-label col-sm-3">{{'label.input.city' | translate}}<span
-										class="required">*</span></label>
+								<label class="control-label col-sm-3">{{'label.input.city' | translate}}
+									<span class="required">*</span></label>
 								<div class="col-sm-6">
 									<input type="text" name="city" ng-model="address.city"
-										class="form-control uppercase">
+										class="form-control uppercase"/>
 								</div>
 							</div>
 							<div class="form-group row" >
@@ -166,7 +190,7 @@
 									<label>{{'label.input.country' | translate}}<span class="required">*</span></label>
 								</div>
 								<div class="col-sm-6">
-									<md-select class="form-control" id="countryOptions" ng-model="address.countryId">
+									<md-select cid="countryOptions" ng-model="address.countryId">
 										<md-select-header>
 											<span> {{'label.input.country' | translate }} </span>
 										</md-select-header>
@@ -177,56 +201,48 @@
 									</md-select>
 								</div>
 							</div>
-
 							<div class="form-group row">
-								<div class="control-label col-sm-3">
-									<label>{{'label.input.state_province' | translate}}<span
-											class="required">*</span></label>
-								</div>
+								<label class="control-label col-sm-3">{{'label.input.latitude' | translate}}
+									<span class="required">*</span>
+								</label>
 								<div class="col-sm-6">
-									<md-select class="form-control" id="stateOptions"
-										ng-model="address.stateProvinceId" ng-change="changeState(stateOption.name)">
-										<md-select-header>
-											<span> {{'label.input.state_province' | translate }} </span>
-										</md-select-header>
-										<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
-											{{stateOption.name}}
-										</md-option>
-									</md-select>
+									<input type="text" name="latitude" ng-model="address.latitude" class="form-control">
 								</div>
 							</div>
+	
 							<div class="form-group row">
-								<label class="control-label col-sm-3">{{'label.input.latitude' | translate}}<span
-										class="required">*</span></label>
+								<label class="control-label col-sm-3">{{'label.input.longitude' | translate}}
+									<span class="required">*</span>
+								</label>
 								<div class="col-sm-6">
-									<input type="number" name="latitude" ng-model="address.latitude"
-										class="form-control">
+									<input type="text" name="longitude" ng-model="address.longitude" class="form-control">
 								</div>
 							</div>
-							<div class="form-group row">
-								<label class="control-label col-sm-3">{{'label.input.longitude' | translate}}<span
-										class="required">*</span></label>
-								<div class="col-sm-6">
-									<input type="number" name="longitude" ng-model="address.longitude"
-										class="form-control">
-								</div>
-							</div>
-  
-
+								
+		
 							<div class="form-group row" ng-show="isActive">
 								<label class="control-label col-sm-3">{{'label.input.active' | translate}} </label>
 								<div class="col-sm-6">
 									<input class="input-mini-small" type="checkbox" ng-model="address.isActive">
 								</div>
 							</div> 
-							</div>
-
+							
+				</div>
                      <div class= "col-sm-4 col-md-4">
-	                     <leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
-                        </div>
-                      </div>
-					</div>
-
+						<div id= 'map'></div>
+						 <div id= 'buscador'>
+							<input type="text" name="direccion" value="" id="direccion" size="10" />
+							<md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+							<div>
+								<ul>
+									<li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+										<a>{{address.display_name}}<a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						</div>
+                     
 					<div class="col-md-12 center">
 						<a id="cancel" href="#!/offices">
 							<md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>

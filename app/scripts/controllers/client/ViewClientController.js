@@ -44,11 +44,10 @@
                 resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
             
                     scope.addresses = data;
-                    
                     var mainMarker = {
                    
-                        lat: parseFloat(data.address.latitude) ,
-                        lng: parseFloat(data.address.longitude),
+                        lat: parseFloat(data.latitude) ,
+                        lng: parseFloat(data.longitude),
                         focus: true,
                         message: "Ubicación",
                         draggable: true
@@ -56,16 +55,16 @@
         
                     angular.extend(scope, {
                         center: {
-                            lat: parseFloat(data.address.latitude) ,
-                            lng: parseFloat(data.address.longitude),
+                            lat: parseFloat(data.latitude) ,
+                            lng: parseFloat(data.longitude),
                             zoom: 16
                         },
                         markers: {
                             mainMarker: angular.copy(mainMarker)
                         },
                         position: {
-                            lat: parseFloat(data.address.latitude) ,
-                            lng: parseFloat(data.address.longitude),
+                            lat: parseFloat(data.latitude) ,
+                            lng: parseFloat(data.longitude),
                         },
                         events: { // or just {} //all events
                             markers:{
