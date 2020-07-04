@@ -579,9 +579,9 @@
                                     </tr>
                                     <tr ng-repeat="charge in charges">
                                         <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                        <td>{{charge.chargeCalculationType.value | translate}}</td>
+                                        <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
                                         <td>{{charge.amount | FormatNumber}}</td>
-                                        <td>{{charge.chargeTimeType.value | translate}</td>
+                                        <td>{{charge.chargeTimeType.value | translate}}</td>
                                         <td>
                                             {{charge.feeOnMonthDay | DateFormat}} {{charge.dueDate | DateFormat}}
                                         </td>
