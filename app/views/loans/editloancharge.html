@@ -17,19 +17,19 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="amount" ng-autofocus="true" class="form-control" type="text" name="amount" ng-model="formData.amount" required
-                                   late-Validate/>
-                            <form-validate valattributeform="loanchargeform" valattribute="amount"/>
+                            <input id="amount" ng-autofocus="true" class="form-control" type="number" name="amount" 
+                            ng-model="formData.amount" required />
                         </div>
                     </div>
 
                     <div class="col-md-12 center">
-                        <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate
-                            }}
-                        </button>
-                        <button id="save" type="submit" ng-disabled="!loanchargeform.$valid" has-permission='UPDATE_LOANCHARGE' class="btn btn-sm btn-primary">{{
-                            'label.button.save' | translate }}
-                        </button>
+                        <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">
+                            {{'label.button.cancel' | translate}}
+                        </md-button>
+                        <md-button id="save" type="submit" ng-disabled="!loanchargeform.$valid" 
+                            has-permission='UPDATE_LOANCHARGE' class="md-raised md-primary">
+                            {{'label.button.save' | translate }}
+                        </md-button>
                     </div>
                 </fieldset>
             </form>

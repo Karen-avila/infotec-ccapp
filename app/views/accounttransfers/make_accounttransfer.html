@@ -25,11 +25,11 @@
                                 <td>{{'label.heading.fromaccount' | translate}}</td>
                                 <td>{{transfer.fromAccount.productName}}&nbsp;-&nbsp;#{{transfer.fromAccount.accountNo}}</td>
                                 <td>{{'label.heading.fromaccounttype' | translate}}</td>
-                                <td>{{transfer.fromAccountType.value}}</td>
+                                <td>{{transfer.fromAccountType.value | translate}}</td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.currency' | translate}}</td>
-                                <td colspan="3">{{transfer.currency.name}}</td>
+                                <td colspan="3">{{transfer.currency.name | translate}}</td>
                             </tr>
                         </table>
                     </div>
@@ -40,12 +40,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="toOfficeId" ng-model="formData.toOfficeId" name="office" class="form-control"
-                                    ng-options="toOffice.id as toOffice.name for toOffice in toOffices"
-                                    ng-change="changeEvent()" value="{{toOffice.id}}" required>
-                                <option value="">{{'label.selectone' | translate}}</option>
-                            </select>
-                            <form-validate valattributeform="accounttransferform" valattribute="office"/>
+                            <md-select id="toOfficeId" ng-model="formData.toOfficeId" name="office"
+                                    ng-change="changeEvent()" required placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="toOffice in toOffices" ng-value="toOffice.id">
+                                    {{toOffice.name}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,7 +56,6 @@
                             <input id="toClientId" ng-model="toClientData" name="client" class="form-control" type="text"
                                     uib-typeahead="(toClient.id + ' ' + toClient.displayName) as (toClient.id + ' ' + toClient.displayName) for toClient in toClients | filter:$viewValue | limitTo:8"
                                     typeahead-on-select="changeClient($item)" required>
-                            <form-validate valattributeform="accounttransferform" valattribute="client"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,13 +63,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="toAccountType" ng-model="formData.toAccountType" name="account" class="form-control"
-                                    ng-options="toAccountType.id as toAccountType.value for toAccountType in toAccountTypes"
-                                    ng-change="changeEvent()" value="{{toAccountType.id}}"
-                                    required>
-                                <option value="">{{'label.selectone' | translate}}</option>
-                            </select>
-                            <form-validate valattributeform="accounttransferform" valattribute="account"/>
+                            <md-select id="toAccountType" ng-model="formData.toAccountType" name="account"
+                                    ng-change="changeEvent()" required placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="toAccountType in toAccountTypes" ng-value="toAccountType.id">
+                                    {{toAccountType.value | translate}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,12 +76,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="toAccountId" ng-model="formData.toAccountId" name="accountnumber" class="form-control"
-                                    ng-options="toAccount.id as (toAccount.productName+' - '+toAccount.accountNo) for toAccount in toAccounts"
-                                    ng-change="changeEvent()" value="{{toAccount.id}}" required>
-                                <option value="">{{'label.selectone' | translate}}</option>
-                            </select>
-                            <form-validate valattributeform="accounttransferform" valattribute="accountnumber"/>
+                            <md-select id="toAccountId" ng-model="formData.toAccountId" name="accountnumber"
+                                    ng-change="changeEvent()" required placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="toAccount in toAccounts" ng-value="toAccount.id">
+                                    {{toAccount.accountNo}} - {{toAccount.productName}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,11 +89,8 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="transferAmount" number-format name="transferAmount" ng-model="formData.transferAmount" class="form-control"
-                                   required late-validate/>
-                        </div>
-                        <div class="col-sm-3">
-                            <form-validate valattributeform="accounttransferform" valattribute="transferAmount"/>
+                            <input type="number" id="transferAmount" name="transferAmount" ng-model="formData.transferAmount" class="form-control"
+                                   required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -103,7 +98,10 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="transferDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.transferDate" class="form-control" is-open="opened" min="'2000-01-01'" max="restrictDate"/>
+                            <md-datepicker id="transferDate" ng-model="formData.transferDate" 
+                                md-placeholder="{{'label.selectdate' | translate}}"
+                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                            </md-datepicker>
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,13 +113,10 @@
                             <textarea type="text" id="transferDescription" name="transferDescription" class="form-control" rows="2"
                                    ng-model="formData.transferDescription" required late-validate></textarea>
                         </div>
-                        <div class="col-sm-3">
-                            <form-validate valattributeform="accounttransferform" valattribute="transferDescription"/>
-                        </div>
                     </div>
                     <div class="col-md-12 center">
-                        <a id="cancel" class="btn btn-sm btn-default" data-ng-click="back()">{{'label.button.cancel' | translate }}</a>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_ACCOUNTTRANSFER'>{{'label.button.save' | translate }}</button>
+                        <md-button id="cancel" class="md-raised" ng-click="back()">{{'label.button.cancel' | translate }}</md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_ACCOUNTTRANSFER'>{{'label.button.save' | translate }}</md-button>
                     </div>
                 </fieldset>
             </form>

@@ -15,11 +15,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <select id="chargeId" ng-model="formData.chargeId" class="form-control"
-                                    ng-options="charge.id as (charge.name+' '+'('+charge.currency.name+')') for charge in charges"
-                                    value="{{charge.id}}" ng-change="selectCharge(formData.chargeId)">
-                                <option value="">{{'label.selectcharge' | translate}}</option>
-                            </select>
+                            <md-select ng-model="formData.chargeId" id="chargeId" ng-change="selectCharge(formData.chargeId)" required
+                                placeholder="{{'label.selectcharge' | translate}}">
+                                <md-option ng-repeat="charge in chargeOptions" ng-value="charge.id">
+                                    {{charge.name}} - {{charge.currency.name | translate}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div ng-hide="isCollapsed">
@@ -28,8 +29,7 @@
                                     class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <input id="amount" type="text" class="form-control" name="amount" ng-model="formData.amount" required
-                                       number-format ng-late-Validate>
+                                <input id="amount" type="number" class="form-control" name="amount" ng-model="formData.amount" required>
                             </div>
                             <div class="col-sm-3">
                                 <span ng-show="loanchargeform.amount.$invalid">
@@ -43,14 +43,14 @@
                             <label class="control-label col-sm-2">{{'label.input.chargecalculation' | translate }}</label>
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{chargeData.chargeCalculationType.value}}" readonly>
+                                <input type="text" class="form-control" value="{{chargeData.chargeCalculationType.value | translate}}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">{{'label.input.chargetime' | translate }}</label>
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{chargeData.chargeTimeType.value}}" readonly>
+                                <input type="text" class="form-control" value="{{chargeData.chargeTimeType.value | translate}}" readonly>
                             </div>
                         </div>
                         <div class="form-group" ng-show="chargeData.chargeTimeType.id==2">
@@ -58,19 +58,20 @@
                                     class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <input id="dueDate" type="text" datepicker-pop="dd MMMM yyyy" class="form-control"
-                                       placeholder="{{'label.input.duedate' | translate}}" ng-model="formData.dueDate"
-                                       is-open="opened" min="minDate" max="'2030-06-22'"/>
+                                <md-datepicker id="dueforcollectedon" ng-model="formData.dueDate" 
+                                    md-placeholder="{{'label.input.duedate' | translate}}"
+                                    md-min-date="minDate" md-max-date="'2030-06-22'">
+                                </md-datepicker>
                             </div>
                         </div>
                     </div>
                 </fieldset>
                 <div class="col-md-12 center">
-                    <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate }}
-                    </button>
-                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_LOANCHARGE' ng-show="!isCollapsed">{{'label.button.save' |
+                    <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate }}
+                    </md-button>
+                    <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_LOANCHARGE' ng-show="!isCollapsed">{{'label.button.save' |
                         translate }}
-                    </button>
+                    </md-button>
                 </div>
             </form>    
         </div>
