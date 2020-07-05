@@ -765,13 +765,12 @@
                                         </tr>
                                         <tr ng-repeat="charge in charges">
                                             <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                            <td>{{charge.chargeCalculationType.value}}</td>
+                                            <td>{{"charge.type." + charge.chargeCalculationType.value | translate}}</td>
                                             <td>
                                                 <input id="{{charges[$index].amount}}" class="form-control" type="number"
-                                                    ng-model="charge.amount" placeholder="{{'label.input.amount' | translate}}"
-                                                    >
+                                                    ng-model="charge.amount" placeholder="{{'label.input.amount' | translate}}">
                                             </td>
-                                            <td>{{charge.chargeTimeType.value}}</td>
+                                            <td>{{charge.chargeTimeType.value | translate}}</td>
                                             <td>
                                                 <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate" 
                                                     md-placeholder="{{'label.input.duedate' | translate}}"
@@ -798,9 +797,9 @@
                                             </tr>
                                             <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                                 <td>{{charge.name}}, {{charge.currency.displaySymbol}}</td>
-                                                <td>{{charge.chargeCalculationType.value | translate }}</td>
+                                                <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
                                                 <td>{{charge.amount | FormatNumber}}</td>
-                                                <td>{{charge.chargeTimeType.value}}</td>
+                                                <td>{{charge.chargeTimeType.value | translate}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -1303,7 +1302,7 @@
                                     <tr ng-repeat="charge in charges" ng-show="charges.length>0">
                                         <td colspan="2">{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                         <td>{{'charge.type.' + charge.chargeCalculationType.value | translate }}</td>
-                                        <td colspan="2">{{charge.amount}}</td>
+                                        <td colspan="2">{{charge.amount | FormatNumber}}</td>
                                         <td>{{charge.chargeTimeType.value | translate }}</td>
                                         <td>{{charge.dueDate | DateFormat}}</td>
                                     </tr>
@@ -1315,7 +1314,7 @@
                                     </tr>
                                     <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                         <td colspan="2">{{charge.name}},{{charge.currency.displaySymbol}}</td>
-                                        <td>{{charge.chargeCalculationType.value | translate }}</td>
+                                        <td>{{'charge.type.' + charge.chargeCalculationType.value | translate }}</td>
                                         <td colspan="2">{{charge.amount | FormatNumber}}</td>
                                         <td>{{charge.chargeTimeType.value | translate }}</td>
                                     </tr>

@@ -29,20 +29,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.isactivejob' | translate }}</label>
+                        <div class="col-sm-2"></div>
 
                         <div class="col-sm-3">
-                            <label class="checkbox">
-                                <input type="checkbox" ng-model="formData.active">
-                            </label>
+                            <md-checkbox ng-model="formData.active">
+                                {{'label.input.isactivejob' | translate }}
+                            </md-checkbox>
                         </div>
                     </div>
 
                     <div class="col-md-12 center">
-                        <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
-                        </button>
-                        </a>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_SCHEDULER'>{{'label.button.save' | translate}}</button>
+                        <md-button id="cancel" type="reset" ng-click="cancel()" class="md-raised">{{'label.button.cancel' | translate}}
+                        </md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_SCHEDULER'>{{'label.button.save' | translate}}</button>
                     </div>
                 </fieldset>
             </form>
