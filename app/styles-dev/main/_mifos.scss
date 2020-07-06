@@ -276,7 +276,7 @@ tr.md-row:hover {
 }
 
 td.amount, th.amount {
-    text-align: right;
+    text-align: right !important;
     padding-right: 5px;  
 }
 
@@ -288,15 +288,29 @@ td.amount, th.amount {
     margin-left: 12px;
     width: 170px;
 }
+
 .md-datepicker-input {
     width:inherit;
+}
+
+table.md-table {
+  margin-left: 18px;
+}
+
+td.md-cell {
+  padding: 0 20px 0 0 !important;
 }
 
 #map{
   height: 50vh;
   width: 100hw;
 }
+
 div#buscador input {
   width: 250px;
   height: 35px;
+}
+
+md-tab-content {
+  overflow: auto !important;
 }
