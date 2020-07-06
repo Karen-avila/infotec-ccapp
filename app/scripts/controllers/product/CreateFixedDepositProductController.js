@@ -27,7 +27,8 @@
                 scope.expenseAccountOptions = scope.product.accountingMappingOptions.expenseAccountOptions || [];
 
                 scope.formData.currencyCode = data.currencyOptions[0].code;
-                scope.formData.digitsAfterDecimal = data.currencyOptions[0].decimalPlaces;
+                scope.formData.digitsAfterDecimal = '2';
+                scope.formData.inMultiplesOf = '0';
                 scope.formData.interestCompoundingPeriodType = data.interestCompoundingPeriodType.id;
                 scope.formData.interestPostingPeriodType = data.interestPostingPeriodType.id;
                 scope.formData.interestCalculationType = data.interestCalculationType.id;
@@ -38,6 +39,10 @@
                 scope.chart.chartSlabs = [];
                 scope.formData.accountingRule = '1';
                 scope.depositproduct = angular.copy(scope.formData);
+
+                scope.maxStep = 8;
+                scope.selectedStep = 0;
+                scope.stepProgress = 0;
 
             });
 
@@ -188,6 +193,30 @@
                 resourceFactory.fixedDepositProductResource.save(this.formData, function (data) {
                     location.path('/viewfixeddepositproduct/' + data.resourceId);
                 });
+            }
+            /**
+             * Go to next step
+             */
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+            }
+            /**
+             * Go to previus step
+             */        
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
             }
 
             /**

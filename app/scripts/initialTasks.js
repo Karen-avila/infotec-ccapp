@@ -92,16 +92,16 @@
             if (dateString === 'undefined') {
                 return '';
             }
-            console.log((typeof dateString));
+            // console.log((typeof dateString));
             if (typeof dateString !== 'undefined') {
                 if (typeof dateString === 'string') {
                     var dateFormat = 'LL';
                     const m = moment(dateString, dateFormat, true);
-                    console.log("parse " + dateString + " : " + m.isValid());
+                    // console.log("parse " + dateString + " : " + m.isValid());
                     return m.isValid() ? m.toDate() : new Date();
                 } else {
                     const m = moment(dateString, 'L', true);
-                    console.log("parse " + dateString + " : " + m.isValid());
+                    // console.log("parse " + dateString + " : " + m.isValid());
                     return m.isValid() ? m.toDate() : new Date();
                 }
             }
@@ -114,8 +114,8 @@
             if (date === 'undefined') {
                 return '';
             }
-            console.log("formatDate");
-            console.log((typeof date));
+            // console.log("formatDate");
+            // console.log((typeof date));
             if (typeof date !== 'undefined' ) {
                 const m = moment(date);
                 var dateFormat = 'LL';

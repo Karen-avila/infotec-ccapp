@@ -15,10 +15,14 @@ body {
   background-color: $body-bg;
   font-family: $brand-font-family !important;
   padding-top: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-container {
     margin-top:20px;
+    flex: 1 0 auto;
+    min-height: calc(100vh - 320px)
 }
 
 .no-padding {
@@ -27,6 +31,10 @@ body {
 
 .scroll-x {
     overflow-x:auto;
+}
+
+.scroll-y {
+  overflow-y:auto;
 }
 
 .noscroll-x {
@@ -172,9 +180,28 @@ body {
     > tr {
       > td {
         text-align: right;
+        white-space: nowrap;
       }
     }
   }
+}
+
+.fix {
+  position: absolute;
+  *position: relative; /*ie7*/
+  margin-left: -100px;
+  width: 100px;
+}
+
+.outer {
+  position: relative;
+}
+
+.inner {
+  overflow-x: scroll;
+  overflow-y: visible;
+  width: 400px; 
+  margin-left: 100px;
 }
 
 .well {
@@ -346,9 +373,10 @@ li a i .fa {
 #mifos-reskin-body-view {
   margin: 0 auto;
   width: 96%;
+  overflow-y: scroll;
   .content-container {
     width: 100%;
-    max-width: 1350px;
+    max-width: 90%;
     margin: 0 auto;
     min-height: 360px;
   }
