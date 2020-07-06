@@ -14,11 +14,23 @@
             scope.date = {};
             scope.formData = {};
             scope.maxDatePicker = new Date(MAX_DATEPICKER);
+            scope.totalItems = 0;
 
             scope.routeTo = function (id) {
                 location.path('/viewtransactions/' + id);
             };
 
+            scope.query = {
+                order: "id",
+                limit: 25,
+                page: 1,
+            };
+    
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+            };
+        
             resourceFactory.accountCoaResource.getAllAccountCoas({
                 manualEntriesAllowed: true,
                 usage: 1,
@@ -41,7 +53,6 @@
             scope.formData.manualEntriesOnly = scope.searchCriteria.journals[3];
             scope.date.first = scope.searchCriteria.journals[4];
             scope.date.second = scope.searchCriteria.journals[5];
-            console.log(JSON.stringify(scope.formData));
 
             var fetchFunction = function (offset, limit, callback) {
                 var reqFirstDate = dateFilter(scope.date.first, scope.df);
@@ -76,20 +87,6 @@
                 } else
                     scope.searchCriteria.journals[3] = null;
 
-                /*
-                if (scope.date.first) {
-                    params.fromDate = reqFirstDate;
-                    scope.searchCriteria.journals[4] = params.fromDate;
-                } else
-                    scope.searchCriteria.journals[4] = null;
-
-                if (scope.date.second) {
-                    params.toDate = reqSecondDate;
-                    scope.searchCriteria.journals[5] = params.toDate;
-                } else
-                    scope.searchCriteria.journals[5] = null;
-                */
-
                 if(scope.formData.loanaccountId){
                     params.loanId = scope.formData.loanaccountId;
                     scope.searchCriteria.journals[6] = params.loanId;
@@ -102,8 +99,6 @@
                 } else
                     scope.searchCriteria.journals[7] = null;
                     
-                console.log(JSON.stringify(params));
-
                 scope.saveSC();
                 resourceFactory.journalEntriesResource.search(params, callback);
             };
@@ -124,14 +119,14 @@
 
             scope.searchTransaction = function () {
                 scope.displayResults = true;
-                scope.transactions = paginatorService.paginate(fetchFunction, 14);
+                scope.transactions = paginatorService.paginate(fetchFunction, scope.query.limit);
                 scope.isCollapsed = false;
             };
 
             if(location.search().loanId != null){
                 scope.formData.loanaccountId = location.search().loanId;
                 scope.displayResults = true;
-                scope.transactions = paginatorService.paginate(fetchFunction, 14);
+                scope.transactions = paginatorService.paginate(fetchFunction, scope.query.limit);
                 scope.isCollapsed = false;
                 scope.isValid = true;
                 scope.path = "#!/viewloanaccount/" + scope.formData.loanaccountId;
@@ -140,7 +135,7 @@
             if(location.search().savingsId != null){
                 scope.formData.savingsaccountId = location.search().savingsId;
                 scope.displayResults = true;
-                scope.transactions = paginatorService.paginate(fetchFunction, 14);
+                scope.transactions = paginatorService.paginate(fetchFunction, scope.query.limit);
                 scope.isCollapsed = false;
                 scope.isValid = true;
                 scope.path = "#!/viewsavingaccount/" + scope.formData.savingsaccountId;

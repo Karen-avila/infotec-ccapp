@@ -329,7 +329,7 @@
                                         </md-tab-body>
                                     </md-tab>
 
-                                    <md-tab ng-if="loandetails.originalSchedule">
+                                    <md-tab class="scroll-y" ng-if="loandetails.originalSchedule">
                                         <md-tab-label>{{'label.heading.originalschedule' | translate}}</md-tab-label>
                                         <md-tab-body class="scroll-x">
                                         <table class="table table-striped width100 small-font">
@@ -384,65 +384,63 @@
                                     <md-tab>
                                         <md-tab-label>{{'label.heading.repaymentschedule' | translate}}</md-tab-label>
                                         <md-tab-body class="scroll-x">
-                                        <table class="table table-striped width100 repaymentschedule small-font>
-                                            <colgroup span="4"></colgroup>
-                                            <thead>
-                                            <tr>
-                                                <th colspan="2" scope="colgroup empty"></th>
-                                                <th colspan="3" scope="colgroup center">{{'label.heading.dates' | translate}}</th>
-                                                <th colspan="2" scope="colgroup center">{{'label.heading.principal' | translate}}</th>
-                                                <th colspan="4" scope="colgroup center">{{'label.heading.totalcostofloan' | translate}}</th>
-                                                <th scope="colgroup center"></th>
-                                                <th colspan="3" scope="colgroup center">{{'label.heading.installmenttotals' | translate}}</th>
-                                                <th colspan="2" scope="colgroup center">{{'label.heading.payments' | translate}}</th>
-                                                <th colspan="2" scope="colgroup center">{{'label.heading.totals' | translate}}</th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">{{'label.heading.days' | translate}}</th>
-                                                <th scope="col">{{'label.heading.date.repayment' | translate}}</th>
-                                                <th scope="col">{{'label.heading.date.completed' | translate}}</th>
-                                                <th scope="col">&nbsp;</th>
-            
-                                                <th scope="col">{{'label.heading.due' | translate}}</th>
-                                                <th scope="col">{{'label.heading.balance' | translate}}</th>
-            
-                                                <th scope="col">{{'label.heading.interest' | translate}}</th>
-                                                <th scope="col">{{'label.heading.taxes' | translate}}</th>
-                                                <th scope="col">{{'label.heading.fees' | translate}}</th>
-                                                <th scope="col">{{'label.heading.penalties' | translate}}</th>
-            
-                                                <th scope="col">{{'label.heading.due' | translate}}</th>
-                                                <th scope="col">{{'label.heading.paid' | translate}}</th>
-                                                <th scope="col">{{'label.heading.inadvance' | translate}}</th>
-                                                <th scope="col">{{'label.heading.late' | translate}}</th>
-                                                <th scope="col" data-ng-show="isWaived">{{'label.heading.waived' | translate}}</th>
-                                                <th scope="col">{{'label.heading.outstanding' | translate}}</th>
-                                            </tr>
+                                        <table md-table class="table table-striped width100 repaymentschedule small-font">
+                                            <thead md-head>
+                                                <tr md-row>
+                                                    <th md-column colspan="2" scope="colgroup empty"></th>
+                                                    <th md-column colspan="3" scope="colgroup center">{{'label.heading.dates' | translate}}</th>
+                                                    <th md-column colspan="2" scope="colgroup center">{{'label.heading.principal' | translate}}</th>
+                                                    <th md-column colspan="4" scope="colgroup center">{{'label.heading.totalcostofloan' | translate}}</th>
+                                                    <th md-column scope="colgroup center"></th>
+                                                    <th md-column colspan="3" scope="colgroup center">{{'label.heading.installmenttotals' | translate}}</th>
+                                                    <th md-column colspan="2" scope="colgroup center">{{'label.heading.payments' | translate}}</th>
+                                                </tr>
+                                                <tr md-row>
+                                                    <th md-column scope="col">#</th>
+                                                    <th md-column scope="col">{{'label.heading.days' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.date.repayment' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.date.completed' | translate}}</th>
+                                                    <th md-column scope="col">&nbsp;</th>
+                
+                                                    <th md-column scope="col">{{'label.heading.due' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.balance' | translate}}</th>
+                
+                                                    <th md-column scope="col">{{'label.heading.interest' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.taxes' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.fees' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.penalties' | translate}}</th>
+                
+                                                    <th md-column scope="col">{{'label.heading.due' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.paid' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.inadvance' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.late' | translate}}</th>
+                                                    <th md-column scope="col" data-ng-show="isWaived">{{'label.heading.waived' | translate}}</th>
+                                                    <th md-column scope="col">{{'label.heading.outstanding' | translate}}</th>
+                                                </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr ng-repeat="period in loandetails.repaymentSchedule.periods">
-                                                <td scope="row">{{period.period}}</td>
-                                                <td>{{period.daysInPeriod}}</td>
-                                                <td>{{period.dueDate | DateFormat}}</td>
-                                                <td>{{period.obligationsMetOnDate | DateFormat}}</td>
-                                                <td>
+                                            <tbody md-body>
+                                            <tr md-row ng-repeat="period in loandetails.repaymentSchedule.periods">
+                                                <td md-cell scope="row">{{period.period}}</td>
+                                                <td md-cell>{{period.daysInPeriod}}</td>
+                                                <td md-cell>{{period.dueDate | DateFormat}}</td>
+                                                <td md-cell>{{period.obligationsMetOnDate | DateFormat}}</td>
+                                                <td md-cell>
                                                     <div ng-show="period.obligationsMetOnDate"><i class="fa fa-check "></i></div>
                                                 </td>
             
-                                                <td>{{period.principalDue | FormatNumber}}</td>
-                                                <td>{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
-                                                <td>{{period.interestOriginalDue | FormatNumber}}</td>
-                                                <td>{{period.taxOnInterestDue | FormatNumber}}</td>
-                                                <td>{{period.feeChargesDue | FormatNumber}}</td>
-                                                <td>{{period.penaltyChargesDue | FormatNumber}}</td>
+                                                <td md-cell>{{period.principalDue | FormatNumber}}</td>
+                                                <td md-cell>{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                                <td md-cell>{{period.interestOriginalDue | FormatNumber}}</td>
+                                                <td md-cell>{{period.taxOnInterestDue | FormatNumber}}</td>
+                                                <td md-cell>{{period.feeChargesDue | FormatNumber}}</td>
+                                                <td md-cell>{{period.penaltyChargesDue | FormatNumber}}</td>
             
-                                                <td>{{period.totalDueForPeriod | FormatNumber}}</td>
-                                                <td>{{period.totalPaidForPeriod | FormatNumber}}</td>
-                                                <td>{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
-                                                <td>{{period.totalPaidLateForPeriod | FormatNumber}}</td>
-                                                <td data-ng-show="isWaived">{{period.totalWaivedForPeriod | FormatNumber}}</td>
-                                                <td>{{period.totalOutstandingForPeriod | FormatNumber}}</td>
+                                                <td md-cell>{{period.totalDueForPeriod | FormatNumber}}</td>
+                                                <td md-cell>{{period.totalPaidForPeriod | FormatNumber}}</td>
+                                                <td md-cell>{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
+                                                <td md-cell>{{period.totalPaidLateForPeriod | FormatNumber}}</td>
+                                                <td md-cell ng-show="isWaived">{{period.totalWaivedForPeriod | FormatNumber}}</td>
+                                                <td md-cell>{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                                             </tr>
                                             </tbody>
                                             <tfoot class="ui-widget-header">
@@ -462,7 +460,7 @@
                                                 <th>{{loandetails.repaymentSchedule.totalRepayment | FormatNumber}}</th>
                                                 <th>{{loandetails.repaymentSchedule.totalPaidInAdvance | FormatNumber}}</th>
                                                 <th>{{loandetails.repaymentSchedule.totalPaidLate | FormatNumber}}</th>
-                                                <th data-ng-show="isWaived">{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
+                                                <th ng-show="isWaived">{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
                                                 <th>{{loandetails.repaymentSchedule.totalOutstanding | FormatNumber}}</th>
                                             </tr>
                                             </tfoot>
@@ -470,7 +468,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.repaymentSchedule.futurePeriods">
+                                    <md-tab class="scroll-y" ng-if="loandetails.repaymentSchedule.futurePeriods">
                                         <md-tab-label>{{'label.heading.futureschedule' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="table table-striped width100 small-font>
@@ -512,7 +510,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.transactions" select="convertDateArrayToObject('date')">
+                                    <md-tab class="scroll-y" ng-if="loandetails.transactions" select="convertDateArrayToObject('date')">
                                         <md-tab-label>{{'label.heading.transactions' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <button class="btn btn-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export.statement' | translate}}</button>
@@ -614,7 +612,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.collateral">
+                                    <md-tab class="scroll-y" ng-if="loandetails.collateral">
                                         <md-tab-label>{{'label.heading.loancollaterals' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="table">
@@ -634,7 +632,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.multiDisburseLoan">
+                                    <md-tab class="scroll-y" ng-if="loandetails.multiDisburseLoan">
                                         <md-tab-label>{{'label.heading.tranchedetails' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="width100">
@@ -700,7 +698,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.overdueCharges.length>0">
+                                    <md-tab class="scroll-y" ng-if="loandetails.overdueCharges.length>0">
                                         <md-tab-label>{{'label.heading.overduepenalitycharge' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="table width100">
@@ -720,7 +718,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="loandetails.isLoanProductLinkedToFloatingRate">
+                                    <md-tab class="scroll-y" ng-if="loandetails.isLoanProductLinkedToFloatingRate">
                                         <md-tab-label>{{'label.heading.floatinginterestrates' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="table width100">
@@ -736,7 +734,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="chargeTableShow">
+                                    <md-tab class="scroll-y" ng-if="chargeTableShow">
                                         <md-tab-label>{{'label.heading.charges' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <table class="table width100">
@@ -782,7 +780,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab select="getLoanDocuments()">
+                                    <md-tab class="scroll-y" select="getLoanDocuments()">
                                         <md-tab-label>{{'label.heading.loandocuments' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <div class="pull-right" data-ng-show="choice">
@@ -816,7 +814,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab  md-on-select="getNotes()" has-permission='READ_LOANNOTE'>
+                                    <md-tab class="scroll-y" md-on-select="getNotes()" has-permission='READ_LOANNOTE'>
                                         <md-tab-label>{{'label.heading.notes' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <br/>
@@ -850,7 +848,7 @@
                                         </md-tab-body>
                                     </md-tab>
 
-                                    <md-tab md-on-select="getDataTables()">
+                                    <md-tab class="scroll-y" md-on-select="getDataTables()">
                                         <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
                                         <md-tab-body>
                                             <div class="row">
@@ -906,7 +904,7 @@
                                         </md-tab-body>
                                     </md-tab>
             
-                                    <md-tab ng-if="instructions.currentPageItems.length > 0">
+                                    <md-tab class="scroll-y" ng-if="instructions.currentPageItems.length > 0">
                                         <md-tab-label>{{'label.heading.standinginstruction' | translate}}</md-tab-label>
                                         <md-tab-body>
                                         <br>
