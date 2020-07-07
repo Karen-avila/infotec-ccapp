@@ -52,17 +52,32 @@
                     {{taxcomponent.name}}
                 </div>
                 <div class="col-sm-3" ng-show="taxcomponent.new">
+
+                    <md-datepicker id="taxComponents[{{$index}}].startDate" ng-model="start.date"
+                        md-placeholder="{{'label.selecttodate' | translate}}" required
+                        md-min-date="minDate" md-max-date="restrictDate">
+                    </md-datepicker>
+                    <!--
                     <input id="taxComponents[{{$index}}].startDate" sort type="text"
                            datepicker-pop="dd MMMM yyyy" ng-model="taxcomponent.date"
                            class="form-control" is-open="opened" min="minDate" max="restrictDate"/>
+                    -->       
                 </div>
                 <div class="col-sm-3" ng-hide="taxcomponent.new">
                     {{taxcomponent.date | DateFormat}}
                 </div>
                 <div class="col-sm-3" ng-show="taxcomponent.canModify">
+
+                    <md-datepicker id="taxComponents[{{$index}}].endDate" ng-model="taxcomponent.endDate"
+                        md-placeholder="{{'label.selecttodate' | translate}}" required
+                        md-min-date="minDate" md-max-date="restrictDate">
+                    </md-datepicker>
+
+                    <!--
                     <input id="taxComponents[{{$index}}].endDate" sort type="text"
                            datepicker-pop="dd MMMM yyyy" ng-model="taxcomponent.endDate"
                            class="form-control" is-open="opened" min="minDate" max="restrictDate"/>
+                    -->
                 </div>
                 <div class="col-sm-3" ng-hide="taxcomponent.canModify">
                     {{taxcomponent.endDate | DateFormat}}
