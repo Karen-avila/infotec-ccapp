@@ -4,128 +4,124 @@
         <li class="active">{{'label.anchor.searchjournalentries' | translate}}</li>
     </ul>
     <div class="row">
-        <div class="col-md-12">
-            <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">
-                <div class="col-md-12 form" ng-show="isCollapsed">
-                    <div class="col-md-12 form-group">
-                        <div class="col-md-4 form-group">
-                            <md-select id="glAccounts" ng-model="formData.glAccount"
-                                placeholder="{{'label.input.selectaccountnameorcode' | translate}}">
-                                <md-option ng-repeat="glAccount in glAccounts" ng-value="{{glAccount.id}}">
-                                    {{glAccount.glCode}} {{glAccount.name}}
-                                </md-option>
-                            </md-select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <md-select id="officeId" ng-model="formData.officeId"
-                                placeholder="{{'label.selectoffice' | translate}}">
-                                <md-option ng-repeat="office in offices" ng-value="office.id">
-                                    {{office.name}}
-                                </md-option>
-                            </md-select>
-                        </div>
-                        <div class="col-md-3 form-group">
-                            <md-select id="filters" ng-model="formData.manualEntriesOnly"
-                                placeholder="{{'label.selectfilter' | translate}}">
-                                <md-option ng-repeat="filter in filters" ng-value="filter.value">
-                                    {{'accounting.entry.' + filter.option | translate}}
-                                </md-option>
-                            </md-select>
-                        </div>
-                        <div class="col-md-1 form-group clear">
-                            <md-button ng-click="clearFilters()" class="md-raised md-primary"><i class="fa fa-undo"></i>
-                            </md-button>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-md-12 form-group">
-                        <h4 class="control-label ng-binding col-md-2">{{'label.heading.daterange' | translate}}</h4>
-                        <br>
-                        <div class="col-md-4 form-group">
-                            <md-datepicker ng-model="date.first" min="minDate" max="maxDatePicker"
-                                md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <md-datepicker ng-model="date.second" min="'minDate'" max="maxDatePicker"
-                                md-placeholder="{{'label.input.todate' | translate }}"> </md-datepicker>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-md-12 form-group">
-                        <h4 class="control-label ng-binding col-md-4">{{'label.heading.transactionid' | translate}}</h4>
-                        <br>
-                        <div class="form-group col-md-4">
-                            <input ng-model="formData.transactionId" type="text"
-                                placeholder="{{'label.input.searchbytransaction' | translate}}"
-                                class="form-control uppercase" />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <md-button ng-click="searchTransaction()" class="md-raised md-primary"
-                                has-permission='READ_JOURNALENTRY'>{{'label.heading.search' | translate}} <i
-                                    class="fa fa-search "></i></md-button>
-                        </div>
-                    </div>
+        <div class="col-md-12 pull-right" ng-show="!isCollapsed">
+            <md-button ng-click="isCollapsed = !isCollapsed" class="md-raised md-primary"><i
+                    class="fa fa-chevron-down"></i>&nbsp;&nbsp;
+                {{'label.button.parameters' | translate }}
+            </md-button>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div class="row">
+        <div class="col-md-12 form" ng-show="isCollapsed">
+            <div class="col-md-12 form-group">
+                <div class="col-md-4 form-group">
+                    <md-select id="glAccounts" ng-model="formData.glAccount"
+                        placeholder="{{'label.input.selectaccountnameorcode' | translate}}">
+                        <md-option ng-repeat="glAccount in glAccounts" ng-value="{{glAccount.id}}">
+                            {{glAccount.glCode}} {{glAccount.name}}
+                        </md-option>
+                    </md-select>
                 </div>
-                <md-divider></md-divider>
-
-                <div class="pull-right" ng-show="!isCollapsed">
-                    <md-button ng-click="isCollapsed = !isCollapsed" class="md-raised md-primary"><i
-                            class="fa fa-chevron-down"></i>&nbsp;&nbsp;
-                        {{'label.button.parameters' | translate }}
+                <div class="col-md-4 form-group">
+                    <md-select id="officeId" ng-model="formData.officeId"
+                        placeholder="{{'label.selectoffice' | translate}}">
+                        <md-option ng-repeat="office in offices" ng-value="office.id">
+                            {{office.name}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <md-select id="filters" ng-model="formData.manualEntriesOnly"
+                        placeholder="{{'label.selectfilter' | translate}}">
+                        <md-option ng-repeat="filter in filters" ng-value="filter.value">
+                            {{'accounting.entry.' + filter.option | translate}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div class="col-md-1 form-group clear">
+                    <md-button ng-click="clearFilters()" class="md-raised md-primary"><i class="fa fa-undo"></i>
                     </md-button>
                 </div>
-                <md-divider></md-divider>
-                <div class="col-md-12" ng-show="displayResults">
-                    <table md-table>
-                        <thead md-head>
-                            <tr md-row>
-                                <th md-column>{{'label.heading.entryid' | translate}}</th>
-                                <th md-column>{{'label.heading.office' | translate}}</th>
-                                <th md-column>{{'label.heading.transactiondate' | translate}}</th>
-                                <th md-column>{{'label.heading.transactionid' | translate}}</th>
-                                <th md-column>{{'label.heading.type' | translate}}</th>
-                                <th md-column>{{'label.heading.createdby' | translate}}</th>
-                                <th md-column>{{'label.heading.account' | translate}}</th>
-                                <th md-column>{{'label.heading.debit' | translate}}</th>
-                                <th md-column>{{'label.heading.credit' | translate}}</th>
-                            </tr>
-                        </thead>
-                        <tbody md-body>
-                            <tr md-row ng-repeat="transaction in transactions.currentPageItems"
-                                data-ng-click="routeTo(transaction.transactionId)">
-                                <td md-cell>{{transaction.id}}</td>
-                                <td md-cell>{{transaction.officeName}}</td>
-                                <td md-cell>{{transaction.transactionDate |DateFormat}}</td>
-                                <td md-cell>{{transaction.transactionId}}</td>
-                                <td md-cell>{{transaction.glAccountType.value}} </td>
-                                <td md-cell>{{transaction.createdByUserName}}</td>
-                                <td md-cell>{{transaction.glAccountCode}} {{transaction.glAccountName}}</td>
-                                <td md-cell>
-                                    <div ng-show="transaction.entryType.value == 'DEBIT'">
-                                        {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}
-                                    </div>
-                                </td>
-                                <td md-cell>
-                                    <div ng-show="transaction.entryType.value == 'CREDIT'">
-                                        {{transaction.currency.displaySymbol}}&nbsp;{{transaction.amount | FormatNumber}}
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="center"
-                        ng-show="(formData.loanaccountId != null && isValid == true) || (formData.savingsaccountId != null && isValid == true)">
-                        <a href="{{path}}" class="btn btn-sm btn-primary center"><i
-                                class=""></i>{{'label.button.back' | translate}}</a></div>
-                    <ul class="pager">
-                        <li class="btn btn-default btn-sm previous"><a id="prev" ng-click="transactions.previous()"
-                                href="" ng-disabled="!transactions.hasPrevious()">&larr;
-                                {{'label.button.previous' | translate}}</a>
-                        </li>
-                        <li class="btn btn-default btn-sm next"><a id="next" ng-click="transactions.next()" href=""
-                                ng-disabled="!transactions.hasNext()">{{'label.button.next' | translate}} &rarr;</a>
-                        </li>
-                    </ul>
+            </div>
+            <br>
+            <div class="col-md-12 form-group">
+                <h4 class="control-label ng-binding col-md-2">{{'label.heading.daterange' | translate}}</h4>
+                <br>
+                <div class="col-md-4 form-group">
+                    <md-datepicker ng-model="date.first" min="minDate" max="maxDatePicker"
+                        md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
+                </div>
+                <div class="col-md-4 form-group">
+                    <md-datepicker ng-model="date.second" min="'minDate'" max="maxDatePicker"
+                        md-placeholder="{{'label.input.todate' | translate }}"> </md-datepicker>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-12 form-group">
+                <h4 class="control-label ng-binding col-md-4">{{'label.heading.transactionid' | translate}}</h4>
+                <br>
+                <div class="form-group col-md-4">
+                    <input ng-model="formData.transactionId" type="text"
+                        placeholder="{{'label.input.searchbytransaction' | translate}}"
+                        class="form-control uppercase" />
+                </div>
+                <div class="form-group col-md-2">
+                    <md-button ng-click="searchTransaction()" class="md-raised md-primary"
+                        has-permission='READ_JOURNALENTRY'>{{'label.heading.search' | translate}} <i
+                            class="fa fa-search "></i></md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div class="row">
+        <div class="col-md-12">
+            <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">
+                <div class="row">
+                    <md-table-container ng-show="displayResults" class="noscroll-x">
+                        <table md-table class="small-font">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="id">{{'label.heading.entryid' | translate}}</th>
+                                    <th md-column>{{'label.heading.office' | translate}}</th>
+                                    <th md-column md-order-by="transactiondate">{{'label.heading.transactiondate' | translate}}</th>
+                                    <th md-column md-order-by="transactionid">{{'label.heading.transactionid' | translate}}</th>
+                                    <th md-column>{{'label.heading.type' | translate}}</th>
+                                    <th md-column>{{'label.heading.createdby' | translate}}</th>
+                                    <th md-column>{{'label.heading.account' | translate}}</th>
+                                    <th md-column>{{'label.heading.debit' | translate}}</th>
+                                    <th md-column>{{'label.heading.credit' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="transaction in transactions.currentPageItems | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                    ng-click="routeTo(transaction.transactionId)">
+                                    <td md-cell>{{transaction.id}}</td>
+                                    <td md-cell>{{transaction.officeName}}</td>
+                                    <td md-cell>{{transaction.transactionDate | DateFormat}}</td>
+                                    <td md-cell>{{transaction.transactionId}}</td>
+                                    <td md-cell>{{transaction.glAccountType.value | translate}} </td>
+                                    <td md-cell>{{transaction.createdByUserName}}</td>
+                                    <td md-cell>{{transaction.glAccountCode}} {{transaction.glAccountName}}</td>
+                                    <td md-cell class="amount">
+                                        <div ng-show="transaction.entryType.value == 'DEBIT'">
+                                            {{transaction.amount | FormatNumber}}
+                                        </div>
+                                    </td>
+                                    <td md-cell class="amount">
+                                        <div ng-show="transaction.entryType.value == 'CREDIT'">
+                                            {{transaction.amount | FormatNumber}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                    <md-table-pagination ng-show="transactions.currentPageItems.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                        md-page="query.page" md-total="{{totalItems}}" md-on-paginate="getResultsPage" md-page-select>
+                    </md-table-pagination>
                 </div>
             </md-whiteframe>
         </div>

@@ -17,9 +17,12 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select class="form-control" id="toLoanOfficerId" ng-model="formData.toLoanOfficerId"
-                                ng-options="loanOfficer.id as loanOfficer.displayName for loanOfficer in loanOfficers"
-                                value="{{loanOfficer.id}}"></select>
+                        <md-select id="toLoanOfficerId" ng-model="formData.toLoanOfficerId"
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="loanOfficer in loanOfficers" ng-value="loanOfficer.id">
+                                {{loanOfficer.displayName}}
+                            </md-option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -27,17 +30,19 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input class="form-control" sort id="assignmentDate" type="text" datepicker-pop="dd MMMM yyyy"
-                               ng-model="formData.assignmentDate" is-open="opened" max="restrictDate"/>
+                        <md-datepicker id="assignmentDate" ng-model="formData.assignmentDate" 
+                            md-placeholder="{{'label.selectdate' | translate}}"
+                            md-min-date="minDate" md-max-date="restrictDate">
+                        </md-datepicker>
                     </div>
                 </div>
                 <div class="col-md-12 center">
-                    <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate
-                        }}
-                    </button>
-                    <button id="save" type="submit" ng-disabled="!assignloanofficerform.$valid" has-permission='BULKREASSIGN_LOAN' class="btn btn-sm btn-primary">{{
-                        'label.button.save' | translate }}
-                    </button>
+                    <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">
+                        {{'label.button.cancel' | translate}}
+                    </md-button>
+                    <md-button id="save" type="submit" ng-disabled="!assignloanofficerform.$valid" has-permission='BULKREASSIGN_LOAN' class="md-raised md-primary">
+                        {{'label.button.save' | translate}}
+                    </md-button>
                 </div>
             </fieldset>
         </form>

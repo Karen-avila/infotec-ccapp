@@ -17,17 +17,15 @@
                             {{'label.anchor.office' | translate}}
                         </label>
                         <div class="col-sm-4">
-                            <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-                                ng-options="office.id as office.name for office in offices" value="{{office.id}}"
-                                ng-change="changeOffice()">
-                                <option value="">{{'label.menu.selectoffice' | translate}}</option>
-                            </select>
+                            <md-select id="officeId" ng-model="formData.officeId" ng-change="changeOffice()" placeholder="{{'label.menu.selectoffice' | translate}}">
+                                <md-option ng-repeat="office in offices" ng-value="{{office.id}}">{{office.name}}</md-option>
+                            </md-select>
                         </div>
                         <div class="col-sm-3 pull-right">
-                            <a class='btn btn-sm btn-primary'
+                            <md-button class="md-raised md-primary"
                                 href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}"
                                 has-permission='READ_CLIENT'><i
-                                    class="fa fa-cloud-download"></i>&nbsp;{{'label.button.download' | translate}}</a>
+                                    class="fa fa-cloud-download"></i>&nbsp;{{'label.button.download' | translate}}</md-button>
                         </div>
                     </div>
                 </form>
@@ -45,13 +43,13 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input type="file" id="file" accept=".xls,.xlsx" class="form-control btn btn-sm btn-default"
+                        <input type="file" id="file" accept=".xls,.xlsx" class="md-raised md-primary btn-default"
                             ngf-select="onFileSelect($files)">
                     </div>
                     <div class="col-sm-3 pull-right">
-                        <button type="button" class="form-control btn btn-sm btn-primary" ng-click="upload()">
+                        <md-button type="button" class="md-raised md-primary" ng-click="upload()">
                             <i class="fa fa-cloud-upload"></i> {{'label.button.upload' | translate}}
-                        </button>
+                        </md-button>
                     </div>
                 </form>
             </div>
@@ -60,10 +58,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'label.heading.requests' | translate}}</h3>
-            <button style="margin-left:1050px;" type="button" class="btn btn-sm btn-primary"
+            <md-button style="margin-left:1050px;" type="button" class="md-raised md-primary"
                 ng-click="refreshImportTable()">
                 <i class="fa fa-repeat"></i> {{'label.button.refresh' | translate}}
-            </button>
+            </md-button>
         </div>
         <div class="panel-body">
             <table class="table">
