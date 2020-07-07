@@ -11,7 +11,7 @@
 			</div>
 			<br>
 			<form name="createemployeeform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="CreateEmployeeController" rc-submit="submit()">
+				ng-controller="CreateEmployeeController">
 				<api-validate></api-validate>
 				<fieldset>
 					<div class="form-group">
@@ -111,7 +111,7 @@
 					<div class="col-md-12 center">
                         <md-button md-no-ink id="cancel" href="#!/employees">{{'label.button.cancel' | translate}}
                         </md-button>
-                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_STAFF'>{{'label.button.save' | translate}}</md-button>
+                        <md-button id="save" type="submit" class="md-raised md-primary" ng-click="submit()" has-permission='CREATE_STAFF'>{{'label.button.save' | translate}}</md-button>
 					</div>
 				</fieldset>
 			</form>
