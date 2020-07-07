@@ -104,6 +104,7 @@
     "transaction.type.Accrual Overdue": "Moratorios",
     "transaction.type.Withdrawal": "Retiro",
     "transaction.type.Waive interest": "Renuncia Interes",
+    "transaction.type.Waive loan charges": "Renuncia Cargos",
     "Waive interest": "Renuncia Interes",
     "Flat": "Fija",
     "Declining Balance": "Saldo Decreciente",
