@@ -41,12 +41,20 @@
             <div class="form-group col-sm-12" ng-repeat="taxcomponent in taxComponents">
                 <div class="col-sm-4">
 
+                    <md-select placeholder="{{'label.selectone' | translate}}" id="taxComponents[{{$index}}].taxcomponent" ng-model="taxcomponent.taxComponentId">
+                        <md-option ng-repeat="component in data.taxComponents" ng-value="component.id">
+                            {{component.name}}
+                        </md-option>
+                    </md-select>
+
+                    <!--
                     <select id="taxComponents[{{$index}}].taxcomponent" ng-model="taxcomponent.taxComponentId"
                             chosen="data.taxComponents"
                             ng-options="component.id as component.name for component in data.taxComponents"
                             value="{{component.id}}" class="form-control">
                         <option value="">{{'label.select' | translate}}</option>
                     </select>
+                    -->
                 </div>
                 <div class="col-sm-4">
                     <md-datepicker id="taxComponents[{{$index}}].startDate" ng-model="taxcomponent.date"
