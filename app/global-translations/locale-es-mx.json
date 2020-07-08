@@ -2267,15 +2267,6 @@
     "label.tooltip.overdraftlimit": "Establece la cantidad máxima permitida sobregiro para una cuenta de ahorro que pueda tener un sobregiro.",
     "label.tooltip.nominalannualinterestrateoverdraft": "Tasa de interés anual predeterminada por sobregiro.",
     "label.tooltip.minoverdraftforinterestcalculation": "Establece el sobregiro requerido para el cálculo de interés.",
-<<<<<<< HEAD
-    "label.tooltip.savingreference": "Una cuenta de Activos (normalmente una cuenta de dinero en Efectivo), para la que el importe se cargará cuando se efectúa un depósito por el titular de la cuenta y el crédito cuando el titular de la cuenta hace un retiro",
-    "label.tooltip.overdraftprotfolio": "Una cuenta de Activos (normalmente una cuenta de dinero en Efectivo), que aumenta cuando un cliente hace un sobregiro de retiro",
-    "label.tooltip.savingcontrol": "Una cuenta de pasivo que denota las cuentas de los depósitos de ahorro de la cartera y se acredita cuando se hace un depósito y se debita cuando el retiro se realiza.",
-    "label.tooltip.interestonsavings": "Una cuenta de gasto, se debita cuando obedece a interés a pagar al cliente",
-    "label.tooltip.Writeoffoverdraft": "Una cuenta de Gastos que aumenta cuando el cliente no pagar sobregiro equilibrio",
-    "label.tooltip.incomefromoverdraftinterest": "Una cuenta de Ingresos, donde los ingresos generados cuando el cliente paga intereses por sobregiros",
-    "label.tooltip.savingsuspense": "Una cuenta de activo que se utiliza una cuenta de espera para el seguimiento de las carteras de créditos bajo transferencia.",
-=======
     "label.tooltip.savingreference": "Una cuenta de activos (normalmente una cuenta de dinero en efectivo), para la que el importe se carga cuando se efectúa un depósito por el titular de la cuenta y el titular de la cuenta hace un retiro.",
     "label.tooltip.overdraftprotfolio": "Una cuenta de activos (normalmente una cuenta de dinero en efectivo), que aumenta cuando un cliente hace un sobregiro de retiro.",
     "label.tooltip.savingcontrol": "Una cuenta de pasivo que denota las cuentas de los depósitos de ahorro de la cartera y se acredita cuando se hace un depósito y se debita cuando el retiro se realiza.",
@@ -2283,7 +2274,6 @@
     "label.tooltip.Writeoffoverdraft": "Una cuenta de gastos, que aumenta cuando un cliente no paga el saldo de sobregiro.",
     "label.tooltip.incomefromoverdraftinterest": "Una cuenta de ingresos, donde los ingresos generados cuando el cliente paga intereses por sobregiros.",
     "label.tooltip.savingsuspense": "Una cuenta de activo utiliza una cuenta de espera para el seguimiento de las carteras de créditos bajo transferencia.",
->>>>>>> c88995cfe9a4f9e4e918f2c4318b20abf5d35b78
     "label.tooltip.withholdtax": "Se habilita esta casilla para configurar el grupo de impuestos a retener.",
     "label.tooltip.sharereference": "Una cuenta de Ventaja (típicamente una cuenta de Dinero efectivo), al cual la cantidad está cargada cuándo participaciones nuevas adquirió por el titular de cuenta y crédito cuándo el titular de cuenta hace un redimir",
     "label.tooltip.sharecontrol": "Una cuenta de Responsabilidad qué denota la carpeta de cuentas de depósito de Participación está cargada cuándo compra de participación está aprobado y abonado cuándo compra de participación está rehusada",
