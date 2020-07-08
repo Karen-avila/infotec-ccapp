@@ -152,11 +152,13 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <select id="interestCompoundingPeriodTypeOptions" class="form-control"
+                                            <md-select id="interestCompoundingPeriodTypeOptions" 
                                             ng-model="formData.interestCompoundingPeriodType"
-                                            ng-options="type.id as type.value | translate for type in product.interestCompoundingPeriodTypeOptions"
-                                            ng-change="savingproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)"
-                                            value="{{type.id}}"></select>
+                                            ng-change="savingproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)">
+                                            <md-option ng-value="type.id" ng-repeat="type in product.interestCompoundingPeriodTypeOptions">
+                                                {{type.value | translate}}
+                                            </md-option>
+                                        </md-select>
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.interestpostingperiod' | translate }}
@@ -166,11 +168,13 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <select id="interestPostingPeriodTypeOptions" class="form-control"
+                                            <md-select id="interestPostingPeriodTypeOptions"
                                             ng-model="formData.interestPostingPeriodType"
-                                            ng-options="type.id as type.value | translate for type in product.interestPostingPeriodTypeOptions"
-                                            ng-change="savingproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)"
-                                            value="{{type.id}}"></select>
+                                            ng-change="savingproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)">
+                                            <md-option ng-value="type.id" ng-repeat="type in product.interestPostingPeriodTypeOptions">
+                                             {{type.value | translate}}
+                                            </md-option>
+                                            </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -181,11 +185,13 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <select id="interestCalculationType" class="form-control"
+                                        <md-select id="interestCalculationType" 
                                             ng-model="formData.interestCalculationType"
-                                            ng-options="type.id as type.value | translate for type in product.interestCalculationTypeOptions"
-                                            ng-change="savingproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)"
-                                            value="{{type.id}}"></select>
+                                            ng-change="savingproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)">
+                                            <md-option ng-value="type.id" ng-repeat="type in product.interestCalculationTypeOptions">
+                                                {{type.value | translate}}
+                                            </md-option>
+                                        </md-select>
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.daysinyears' | translate }}
@@ -194,11 +200,13 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <select id="interestCalculationDaysInYearType" class="form-control"
-                                            ng-model="formData.interestCalculationDaysInYearType"
-                                            ng-options="type.id as type.value | translate for type in product.interestCalculationDaysInYearTypeOptions"
-                                            ng-change="savingproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)"
-                                            value="{{type.id}}"></select>
+                                        <md-select id="interestCalculationDaysInYearType" 
+                                        ng-model="formData.interestCalculationDaysInYearType"
+                                        ng-change="savingproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)">
+                                        <md-option ng-value="type.id" ng-repeat="type in product.interestCalculationDaysInYearTypeOptions">
+                                            {{type.value | translate}}
+                                        </md-option>
+                                        </md-select>
                                     </div>
                                 </div>
                             </fieldset>
@@ -247,13 +255,13 @@
                                         <form-validate valattributeform="Settings" valattribute="lockinPeriodFrequency" />
                                     </div>
                                     <div class="col-sm-2">
-                                        <select id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType"
-                                            class="form-control"
-                                            ng-options="type.id as type.value | translate for type in product.lockinPeriodFrequencyTypeOptions"
-                                            ng-change="savingproduct.lockinPeriodFrequencyOption.value = formValue(product.lockinPeriodFrequencyTypeOptions,formData.lockinPeriodFrequencyType)"
-                                            value="{{type.id}}">
-                                            <option class="displaynone" value="">{{'label.selectone' | translate}}</option>
-                                        </select>
+                                        <md-select id="lockinPeriodFrequencyType" 
+                                        ng-model="formData.lockinPeriodFrequencyType"
+                                        ng-change="savingproduct.lockinPeriodFrequencyOption.value = formValue(product.lockinPeriodFrequencyTypeOptions,formData.lockinPeriodFrequencyType)">
+                                        <md-option ng-value="lockinPeriodFrequencyType.id"  ng-repeat="lockinPeriodFrequencyType in product.lockinPeriodFrequencyTypeOptions">
+                                            {{lockinPeriodFrequencyType.value | translate}}
+                                        </md-option>
+                                        </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -356,18 +364,17 @@
                                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.label.input.taxgroup' | translate}}"
                                             tooltip-append-to-body="true"></i>
                                         </label>
-
                                         <div class="col-sm-3">
-                                            <select id="taxGroupId" ng-model="formData.taxGroupId" chosen="product.taxGroupOptions"
-                                                ng-options="taxGroup.id as taxGroup.name for taxGroup in product.taxGroupOptions"
-                                                ng-change="savingproduct.taxGroup.name = formValue(product.taxGroupOptions,formData.taxGroupId,'id','name')"
-                                                value="{{taxGroup.id}}">
-                                                <option value="">{{'label.select' | translate}}</option>
-                                            </select>
+                                            <md-select id="taxGroupId" 
+                                            ng-model="formData.taxGroupId" 
+                                            ng-change="savingproduct.taxGroup.name = formValue(product.taxGroupOptions,formData.taxGroupId,'id','name')">
+                                                <md-option value="taxGroup.id" ng-repeat="taxGroup in product.taxGroupOptions">
+                                                    {{taxGroup.name | translate}}
+                                                </md-option>
+                                            </md-select>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <input id="isDormancyTrackingActive" type="checkbox"
@@ -469,8 +476,8 @@
                                             <td></td>
                                             <td>{{charge.chargeTimeType.value | translate}}</td>
                                             <td></td>
-                                            <td><a href="" ng-click="deleteCharge($index)"><i
-                                                        class="fa fa-times-circle fa-2x"></i></a></td>
+                                            <td><md-button href="" ng-click="deleteCharge($index)"><i
+                                                        class="fa fa-times-circle fa-2x"></i></md-button></td>
                                         </tr>
                                     </table>
                                 </div>
