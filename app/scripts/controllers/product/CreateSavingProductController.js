@@ -13,6 +13,9 @@
             scope.maxStep = 7;
             scope.selectedStep = 0;
             scope.stepProgress = 0;
+            scope.frFlag = false;
+            scope.fiFlag = false;
+            scope.piFlag = false;
 
             resourceFactory.savingProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
@@ -94,6 +97,7 @@
             }
 
             scope.addConfigureFundSource = function () {
+                scope.frFlag = true;
                 if (scope.product.paymentTypeOptions && scope.product.paymentTypeOptions.length > 0 &&
                     scope.assetAccountOptions && scope.assetAccountOptions.length > 0) {
                     scope.configureFundOptions.push({
@@ -107,6 +111,7 @@
             }
 
             scope.mapFees = function () {
+                scope.fiFlag = true;
                 if (scope.product.chargeOptions && scope.product.chargeOptions.length > 0 && scope.incomeAccountOptions && scope.incomeAccountOptions.length > 0) {
                     scope.specificIncomeaccounts.push({
                         chargeId: scope.product.chargeOptions[0].id,
@@ -118,6 +123,7 @@
             }
 
             scope.mapPenalty = function () {
+                scope.piFlag = true;
                 if (scope.product.penaltyOptions && scope.product.penaltyOptions.length > 0 && scope.incomeAccountOptions && scope.incomeAccountOptions.length > 0) {
                     scope.penaltySpecificIncomeaccounts.push({
                         chargeId: scope.product.penaltyOptions[0].id,
