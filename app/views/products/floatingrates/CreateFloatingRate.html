@@ -74,9 +74,15 @@
                 <tr ng-repeat="rateperiod in formData.ratePeriods">
                     <td>
                         <ng-form name="fromDate{{$index}}">
+                            <md-datepicker id="fromDate{{$index}}" ng-model="rateperiod.fromDate"
+                                md-placeholder="{{'label.selecttodate' | translate}}" required
+                                md-min-date="minDate" md-max-date="restrictDate">
+                            </md-datepicker>
+                    <!--
                         <input type="text" id="fromDate{{$index}}" name="fromDate" datepicker-pop="dd MMMM yyyy"
                                ng-model="rateperiod.fromDate" is-open="opened" min="'2000-01-01'" max="restrictDate"
                                class="form-control" required/>
+                    -->
                             <span class="error" ng-show="visitValidation&&fromDate{{$index}}.fromDate.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>
                     </td>
