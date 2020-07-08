@@ -18,7 +18,7 @@
                             <md-select ng-model="formData.chargeId" id="chargeId" ng-change="selectCharge(formData.chargeId)" required
                                 placeholder="{{'label.selectcharge' | translate}}">
                                 <md-option ng-repeat="charge in chargeOptions" ng-value="charge.id">
-                                    {{charge.name}} - {{charge.currency.name | translate}}
+                                    {{charge.currency.code}} - {{charge.name}}
                                 </md-option>
                             </md-select>
                         </div>
