@@ -518,26 +518,34 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="savingsReferenceAccountId" ng-model="formData.savingsReferenceAccountId"
-                                                chosen="assetAccountOptions"
-                                                ng-options="assetAccount.id as assetAccount.name for assetAccount in assetAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')"
-                                                value="{{assetAccount.id}}">
-                                            </select>
+                                            <md-select id="savingsReferenceAccountId" ng-model="formData.savingsReferenceAccountId"
+                                            ng-change="savingproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')">    
+                                            <md-option  value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
+                                                {{(assetAccount.glCode + " " + assetAccount.name)}}
+                                            </md-option>    
+                                            </md-select>
                                         </div>
+                                        
                                         <label
-                                            class="control-label col-sm-3">{{'label.input.overdraftportfoliocontrol' | translate }}
+                                            class="control-label col-sm-2">{{'label.input.overdraftportfoliocontrol' | translate }}
                                             <i class="fa fa-question-circle"
                                                 uib-tooltip="{{'label.tooltip.overdraftprotfolio' | translate}}"
                                                 tooltip-append-to-body="true"></i>
                                         </label>
-                                        <div class="col-sm-3">
-                                            <select id="overdraftPortfolioControlId" ng-model="formData.overdraftPortfolioControlId"
+                                        <div class="col-sm-4">
+                                            
+                                            <!-- <select id="overdraftPortfolioControlId" ng-model="formData.overdraftPortfolioControlId"
                                                 chosen="assetAccountOptions"
                                                 ng-options="assetAccount.id as assetAccount.name for assetAccount in assetAccountOptions"
                                                 ng-change="savingproduct.accountingMappings.overdraftPortfolioControl.name = formValue(assetAccountOptions,formData.overdraftPortfolioControlId,'id','name')"
                                                 value="{{assetAccount.id}}">
-                                            </select>
+                                            </select> -->
+                                            <md-select id="overdraftPortfolioControlId" ng-model="formData.overdraftPortfolioControlId"
+                                            ng-change="savingproduct.accountingMappings.overdraftPortfolioControl.name = formValue(assetAccountOptions,formData.overdraftPortfolioControlId,'id','name')">
+                                            <md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
+                                            {{(assetAccount.glCode + " " + assetAccount.name)}}
+                                            </md-option>
+                                            </md-select>
                                         </div>
                                     </div>
                                     <hr>
@@ -549,12 +557,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="savingsControlAccountId" ng-model="formData.savingsControlAccountId"
-                                                chosen="liabilityAccountOptions"
-                                                ng-options="liabilityAccount.id as liabilityAccount.name for liabilityAccount in liabilityAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.savingsControlAccount.name = formValue(liabilityAccountOptions,formData.savingsControlAccountId,'id','name')"
-                                                value="{{liabilityAccount.id}}">
-                                            </select>
+                                            <md-select id="savingsControlAccountId" 
+                                            ng-model="formData.savingsControlAccountId" 
+                                            ng-change="savingproduct.accountingMappings.savingsControlAccount.name = formValue(liabilityAccountOptions,formData.savingsControlAccountId,'id','name')">
+                                            <md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
+                                                {{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
+                                            </md-option>
+                                        </md-select>                                            
                                         </div>
                                         <label
                                             class="control-label col-sm-3">{{'label.input.savingstransfersinsuspenpense' | translate }}
@@ -563,12 +572,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="transfersInSuspenseAccountId"
-                                                ng-model="formData.transfersInSuspenseAccountId" chosen="liabilityAccountOptions"
-                                                ng-options="liabilityAccount.id as liabilityAccount.name for liabilityAccount in liabilityAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(liabilityAccountOptions,formData.transfersInSuspenseAccountId,'id','name')"
-                                                value="{{liabilityAccount.id}}">
-                                            </select>
+                                            <md-select id="transfersInSuspenseAccountId"
+                                                ng-model="formData.transfersInSuspenseAccountId"
+                                                ng-change="savingproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(liabilityAccountOptions,formData.transfersInSuspenseAccountId,'id','name')">
+                                                <md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions ">
+                                                    {{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
+                                                </md-option> 
+                                            </md-select>
                                         </div>
                                     </div>
                                     <div class="form-group" ng-show="formData.isDormancyTrackingActive">
@@ -578,12 +588,21 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <!--      
                                             <select id="escheatLiabilityId" ng-model="formData.escheatLiabilityId"
                                                 chosen="liabilityAccountOptions"
                                                 ng-options="liabilityAccount.id as liabilityAccount.name for liabilityAccount in liabilityAccountOptions"
                                                 ng-change="savingproduct.accountingMappings.escheatLiabilityAccount.name = formValue(liabilityAccountOptions,formData.escheatLiabilityId,'id','name')"
                                                 value="{{liabilityAccount.id}}">
                                             </select>
+                                             -->
+                                            <md-select id="escheatLiabilityId" 
+                                            ng-model="formData.escheatLiabilityId"
+                                            ng-change="savingproduct.accountingMappings.escheatLiabilityAccount.name = formValue(liabilityAccountOptions,formData.escheatLiabilityId,'id','name')">
+                                            <md-opcion ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
+                                                {{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
+                                            </md-opcion>
+                                            </md-select>                                            
                                         </div>
                                     </div>
                                     <hr>
@@ -595,12 +614,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="interestOnSavingsAccountId" ng-model="formData.interestOnSavingsAccountId"
-                                                chosen="expenseAccountOptions"
-                                                ng-options="expenseAccount.id as expenseAccount.name for expenseAccount in expenseAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.interestOnSavingsAccount.name = formValue(expenseAccountOptions,formData.interestOnSavingsAccountId,'id','name')"
-                                                value="{{expenseAccount.id}}">
-                                            </select>
+                                            <md-select id="interestOnSavingsAccountId" 
+                                            ng-model="formData.interestOnSavingsAccountId" 
+                                            ng-change="savingproduct.accountingMappings.interestOnSavingsAccount.name = formValue(expenseAccountOptions,formData.interestOnSavingsAccountId,'id','name')">
+                                            <md-option ng-value="expenseAccount.id" ng-repeat="expenseAccount in expenseAccountOptions">
+                                                {{(expenseAccount.glCode + " " + expenseAccount.name)}}
+                                            </md-option>
+                                        </md-select>
                                         </div>
                                         <label class="control-label col-sm-3">{{'label.input.writeOff' | translate }}
                                             <i class="fa fa-question-circle"
@@ -608,12 +628,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="writeOffAccountId" ng-model="formData.writeOffAccountId"
-                                                chosen="expenseAccountOptions"
-                                                ng-options="expenseAccount.id as expenseAccount.name for expenseAccount in expenseAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.writeOffAccount.name = formValue(expenseAccountOptions,formData.writeOffAccountId,'id','name')"
-                                                value="{{expenseAccount.id}}">
-                                            </select>
+                                            <md-select id="writeOffAccountId" 
+                                            ng-model="formData.writeOffAccountId"
+                                            ng-change="savingproduct.accountingMappings.writeOffAccount.name = formValue(expenseAccountOptions,formData.writeOffAccountId,'id','name')">
+                                            <md-option ng-value="expenseAccount.id" ng-repeat="expenseAccount in expenseAccountOptions">
+                                                {{(expenseAccount.glCode + " " + expenseAccount.name)}}
+                                            </md-option>
+                                            </md-select>
                                         </div>
                                     </div>
                                     <hr>
@@ -625,12 +646,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="incomeFromFeeAccountId" ng-model="formData.incomeFromFeeAccountId"
-                                                chosen="incomeAccountOptions"
-                                                ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')"
-                                                value="{{incomeAccount.id}}">
-                                            </select>
+                                           <md-select id="incomeFromFeeAccountId" 
+                                            ng-model="formData.incomeFromFeeAccountId"
+                                            ng-change="savingproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')">
+                                            <md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
+                                                {{(incomeAccount.glCode + " " + incomeAccount.name)}}
+                                            </md-option>                                              
+                                            </md-select>
                                         </div>
                                         <label class="control-label col-sm-3">{{'label.input.incomefrompenalties' | translate }}
                                             <i class="fa fa-question-circle"
@@ -638,12 +660,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="incomeFromPenaltyAccountId" ng-model="formData.incomeFromPenaltyAccountId"
-                                                chosen="incomeAccountOptions"
-                                                ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')"
-                                                value="{{incomeAccount.id}}">
-                                            </select>
+                                         <md-select id="incomeFromPenaltyAccountId" 
+                                         ng-model="formData.incomeFromPenaltyAccountId"
+                                         ng-change="savingproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')">
+                                         <md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
+                                          {{(incomeAccount.glCode + " " + incomeAccount.name)}}
+                                         </md-option>
+                                         </md-select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -653,27 +676,29 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
-                                            <select id="incomeFromInterestId" ng-model="formData.incomeFromInterestId"
-                                                chosen="incomeAccountOptions"
-                                                ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAccountOptions"
-                                                ng-change="savingproduct.accountingMappings.incomeFromInterest.name = formValue(incomeAccountOptions,formData.incomeFromInterestId,'id','name')"
-                                                value="{{incomeAccount.id}}">
-                                            </select>
+                                            <md-select id="incomeFromInterestId"
+                                             ng-model="formData.incomeFromInterestId"
+                                             ng-change="savingproduct.accountingMappings.incomeFromInterest.name = formValue(incomeAccountOptions,formData.incomeFromInterestId,'id','name')">    
+                                            <md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
+                                            {{(incomeAccount.glCode + " " + incomeAccount.name)}}
+                                            </md-option>    
+                                            </md-select>
                                         </div>
                                     </div>
                                     <hr>
                                     <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
-                                            ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]</h4>
+                                            ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
+                                    </h4>
+
                                     <div class="col-md-12" ng-show="showOrHideValue == 'hide'">
                                         <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' |
                                             translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="addConfigureFundSource()"><i
-                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' |
-                                                translate}}</a>
+                                        <md-button ng-click="addConfigureFundSource()"><i
+                                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate}}</md-button>
                                         </div>
-                                        <table class="table">
+                                        <table class="table" data-ng-show="frFlag">
                                             <tr class="graybg">
                                                 <th class="width30">{{'label.heading.paymenttype' | translate}}</th>
                                                 <th></th>
@@ -683,33 +708,36 @@
                                             </tr>
                                             <tr ng-repeat="configureFundOption in configureFundOptions">
                                                 <td class="width30">
-                                                    <select id="configureFundOptions[{{$index}}].paymentTypeId" class="form-control"
-                                                        ng-model="configureFundOption.paymentTypeId"
-                                                        ng-options="paymentType.id as paymentType.name | translate for paymentType in configureFundOption.paymentTypeOptions"
-                                                        ng-change="savingproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')"
-                                                        value="{{paymentType.id}}">
-                                                    </select>
+                                                    <md-select id="configureFundOptions[{{$index}}].paymentTypeId"
+                                                    ng-model="configureFundOption.paymentTypeId" 
+                                                    ng-change="savingproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')"> 
+                                                      <md-option ng-value="paymentType.id" ng-repeat="paymentType in configureFundOption.paymentTypeOptions">
+                                                          {{paymentType.name |translate}}
+                                                      </md-option> 
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
-                                                    <select id="configureFundOptions[{{$index}}].fundSourceAccountId"
-                                                        class="form-control" ng-model="configureFundOption.fundSourceAccountId"
-                                                        ng-options="assetAccount.id as assetAccount.name for assetAccount in configureFundOption.assetAccountOptions"
-                                                        ng-change="savingproduct.paymentChannelToFundSourceMappings[$index].fundSourceAccount.name = formValue(configureFundOption.assetAccountOptions,configureFundOption.fundSourceAccountId,'id','name')"
-                                                        value="{{assetAccount.id}}">
-                                                    </select>
+                                                    <md-select id="configureFundOptions[{{$index}}].fundSourceAccountId"
+                                                        ng-model="configureFundOption.fundSourceAccountId"
+                                                        ng-change="savingproduct.paymentChannelToFundSourceMappings[$index].fundSourceAccount.name = formValue(configureFundOption.assetAccountOptions,configureFundOption.fundSourceAccountId,'id','name')">
+                                                        <md-option ng-value="assetAccount.id" ng-repeat="assetAccount in configureFundOption.assetAccountOptions">
+                                                            {{(assetAccount.glCode + " " + assetAccount.name)}}  
+                                                        </md-option>     
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
-                                                <td class="width30"><a ng-click="deleteFund($index)"><i
-                                                            class="fa fa-times-circle fa-2x"></i></a></td>
+                                                <td class="width30">
+                                                <md-button ng-click="deleteFund($index)"><i class="fa fa-remove"></i></md-button>
+                                                </td>
                                             </tr>
                                         </table>
                                         <div class="col-md-8">{{'label.heading.mapfeestoincomeaccounts' | translate}}</div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="mapFees()"><i
-                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</a>
+                                            <md-button ng-click="mapFees()"><i
+                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</md-button>
                                         </div>
-                                        <table class="table">
+                                        <table class="table" class="table width100" data-ng-show="fiFlag">
                                             <tr class="graybg">
                                                 <th class="width30">{{'label.heading.fees' | translate}}</th>
                                                 <th></th>
@@ -719,34 +747,37 @@
                                             </tr>
                                             <tr ng-repeat="specificIncomeaccount in specificIncomeaccounts">
                                                 <td class="width30">
-                                                    <select id="specificIncomeaccounts[{{$index}}].chargeId" class="form-control"
+                                                    <md-select id="specificIncomeaccounts[{{$index}}].chargeId" 
                                                         ng-model="specificIncomeaccount.chargeId"
-                                                        ng-options="charge.id as charge.name for charge in specificIncomeaccount.chargeOptions"
-                                                        ng-change="savingproduct.feeToIncomeAccountMappings[$index].charge.name = formValue(specificIncomeaccount.chargeOptions,specificIncomeaccount.chargeId,'id','name')"
-                                                        value="{{charge.id}}">
-                                                    </select>
+                                                        ng-change="savingproduct.feeToIncomeAccountMappings[$index].charge.name = formValue(specificIncomeaccount.chargeOptions,specificIncomeaccount.chargeId,'id','name')">
+                                                    <md-option ng-value="charge.id" ng-repeat="charge in specificIncomeaccount.chargeOptions">
+                                                        {{charge.name |translate}}
+                                                    </md-option>
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
-                                                    <select id="specificIncomeaccounts[{{$index}}].incomeAccountId"
-                                                        class="form-control" ng-model="specificIncomeaccount.incomeAccountId"
-                                                        ng-options="assetAccount.id as assetAccount.name for assetAccount in specificIncomeaccount.incomeAccountOptions"
-                                                        ng-change="savingproduct.feeToIncomeAccountMappings[$index].incomeAccount.name = formValue(specificIncomeaccount.incomeAccountOptions,specificIncomeaccount.incomeAccountId,'id','name')"
-                                                        value="{{assetAccount.id}}">
-                                                    </select>
+                                                    <md-select id="specificIncomeaccounts[{{$index}}].incomeAccountId"
+                                                     ng-model="specificIncomeaccount.incomeAccountId"
+                                                     ng-change="savingproduct.feeToIncomeAccountMappings[$index].incomeAccount.name = formValue(specificIncomeaccount.incomeAccountOptions,specificIncomeaccount.incomeAccountId,'id','name')">
+                                                     <md-option ng-value="assetAccount.id" ng-repeat="assetAccount in specificIncomeaccount.incomeAccountOptions">
+                                                        {{(assetAccount.glCode + " " + assetAccount.name)}}
+                                                     </md-option>
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
-                                                <td class="width30"><a ng-click="deleteFee($index)"><i
-                                                            class="fa fa-times-circle fa-2x"></i></a></td>
+                                                <td class="width30">
+                                                    <md-button ng-click="deleteFee($index)"><i class="fa fa-remove"></i></md-button>
+                                                </td>
                                             </tr>
                                         </table>
                                         <div class="col-md-8">{{'label.heading.mappenaltiestospecificincomeaccounts' | translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="mapPenalty()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate
-                                                }}</a>
+                                            <md-button ng-click="mapPenalty()"><i 
+                                                class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</md-button>
                                         </div>
-                                        <table class="table">
+                                        <table class="table" data-ng-show="piFlag">
                                             <tr class="graybg">
                                                 <th class="width30">{{'label.heading.penalty' | translate}}</th>
                                                 <th></th>
