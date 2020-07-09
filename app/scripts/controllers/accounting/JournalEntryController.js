@@ -4,6 +4,9 @@
             scope.formData = {};
             scope.formData.crAccounts = [{}];
             scope.formData.dbAccounts = [{}];
+            scope.searchText = "";
+            scope.selectedItem = null;
+           
             scope.first = {
                 date: new Date()
             };
@@ -49,7 +52,24 @@
             scope.removeDebitAccount = function (index) {
                 scope.formData.dbAccounts.splice(index, 1);
             }
+            
+            scope.getItemText = function(item) {
+                return item.glCode + " " + item.name;
+            }
 
+            scope.querySearch = function(query) {
+                const value = query.toLowerCase();
+                const results = scope.glAccounts.filter(function(item) {
+                    return (item.glCode.indexOf(value) > 0) || (item.name.toLowerCase().indexOf(value) > 0);
+                });
+                return results;
+            }
+        
+            scope.selectedItemChange = function(item) {
+                scope.formData.select= item.id;
+            }
+
+          
             scope.submit = function () {
                 var jeTransaction = new Object();
                 var reqDate = dateFilter(scope.first.date, scope.df);
