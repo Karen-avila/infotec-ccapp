@@ -19,6 +19,7 @@
             scope.formData.address = [];
             scope.addressresult = [];
          
+
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
@@ -47,10 +48,6 @@
                     }
                 }
             };
-
-
-       
-         
             var map = new L.map('map', {zoomControl:true});
             var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
             osmAttribution = 'Map data &copy; 2012 <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -58,13 +55,15 @@
             map.setView(new L.LatLng(23.634501, -102.552784), 5).addLayer(layer_osm);
 
             scope.elegirdireccion = (item) => {
-                map.setView(new L.LatLng(item.boundingbox[0], item.boundingbox[2]), 10).addLayer(layer_osm);
-                scope.address.latitude = `${item.boundingbox[0]}`
-                scope.address.longitude= `${item.boundingbox[2]}`
+            map.setView(new L.LatLng(item.boundingbox[0], item.boundingbox[2]), 18).addLayer(layer_osm);
+               scope.address.latitude = `${item.boundingbox[0]}`
+               scope.address.longitude= `${item.boundingbox[2]}`
+               scope.address.postalCode = item.address.postcode ? item.address.postcode : scope.address.postalCode;
+               scope.address.city = item.address.county ? item.address.county :   scope.address.city ;
+               console.log(item);
             }
-
-            scope.direccion_buscador = () => {
-                fetch(`http://nominatim.openstreetmap.org/search?format=json&limit=5&q=${document.getElementById("direccion").value}`)
+               scope.direccion_buscador = () => {
+                fetch(`http://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
                 .then((response) => { return response.json(); })
                 .then((json) => { scope.addressresult = json });
                 
