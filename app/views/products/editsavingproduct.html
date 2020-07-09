@@ -15,14 +15,11 @@
 	            <div class="col-sm-4">
 	                <input ng-autofocus="true" id="name" class="form-control" name="name" type="text" ng-model="formData.name" 
 	                	required late-validate/>
-	                <form-validate valattributeform="createsavingproductform" valattribute="name"/>
 	            </div>
 	            <label class="control-label col-sm-2">{{'label.input.product.shortname' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-3">
 	                <input type="text" id="shortName" name="shortName" class="form-control" ng-model="formData.shortName"
                     	maxlength="12" required late-validate/>
-
-	                <form-validate valattributeform="createsavingproductform" valattribute="shortName"/>
 	            </div>
 	        </div>
 	        <div class="form-group">
@@ -104,7 +101,7 @@
 	            <label class="control-label col-sm-2">{{'label.input.minimumopeningbalance' | translate }}</label>
 	            <div class="col-sm-4">
 	                <input id="minRequiredOpeningBalance" type="number" class="form-control" 
-	                	number-format ng-model="formData.minRequiredOpeningBalance">
+	                	 ng-model="formData.minRequiredOpeningBalance">
 	            </div>
 	            <label class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}</label>
 	            <div class="col-sm-2">
@@ -121,36 +118,39 @@
                 </div>            
 	        </div>
 	        <div class="form-group">
-	        	<div class="col-sm-2 right">
-                    <input id="withdrawalFeeForTransfers" type="checkbox" ng-model="formData.withdrawalFeeForTransfers"
-                           ng-true-value="true" ng-false-value="false">
+	        	<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<md-checkbox id="withdrawalFeeForTransfers" ng-model="formData.withdrawalFeeForTransfers">
+						{{'label.input.applywithdrawalfeefortransfers' | translate }}
+					</md-checkbox>
                 </div>
-	        	<label class="control-label col-sm-4 left">{{'label.input.applywithdrawalfeefortransfers' | translate }}</label>
                 <label class="control-label col-sm-2">{{'label.input.minbalanceforinterest' | translate }}</label>
                 <div class="col-sm-4">
                     <input id="minBalanceForInterestCalculation" type="number" class="form-control"
-                           number-format ng-model="formData.minBalanceForInterestCalculation">
+                            ng-model="formData.minBalanceForInterestCalculation">
                 </div>
 			</div>
             <div class="form-group">
-                <div class="col-sm-2 right">
-                    <input id="enforceMinRequiredBalance" type="checkbox"
-                           ng-model="formData.enforceMinRequiredBalance"/>
+	        	<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<md-checkbox id="enforceMinRequiredBalance" ng-model="formData.enforceMinRequiredBalance">
+						{{'label.input.enforceMinRequiredBalance' | translate }}
+					</md-checkbox>
                 </div>
-                <label class="control-label col-sm-4 left">{{'label.input.enforceMinRequiredBalance' | translate }}</label>
                 <label class="control-label col-sm-2" ng-show="formData.enforceMinRequiredBalance">{{
                     'label.input.minRequiredBalance' | translate }}</label>
                 <div class="col-sm-4" ng-show="formData.enforceMinRequiredBalance">
                     <input id="minRequiredBalance" type="number" class="form-control"
-                           number-format ng-model="formData.minRequiredBalance"/>
+                            ng-model="formData.minRequiredBalance"/>
                 </div>
             </div>
 	        <div class="form-group" >
-                <div class="col-sm-2 right">
-                    <input id="allowOverdraft" type="checkbox" ng-model="formData.allowOverdraft" ng-true-value="true"
-                           ng-false-value="false">
+	        	<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<md-checkbox id="allowOverdraft" ng-model="formData.allowOverdraft">
+						{{'label.input.allowoverdraft' | translate }}
+					</md-checkbox>
                 </div>
-                <label class="control-label col-sm-4 left">{{'label.input.allowoverdraft' | translate }}</label>
 	            <label class="control-label col-sm-2" ng-show="formData.allowOverdraft">{{'label.input.overdraftlimit' | translate }}</label>
 	            <div class="col-sm-4" ng-show="formData.allowOverdraft">
 	                <input id="overdraftLimit" type="number" class="form-control"
@@ -170,13 +170,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-2 right">
-                    <input id="withHoldTax" type="checkbox" ng-model="formData.withHoldTax" ng-true-value="true"
-                           ng-false-value="false">
+	        	<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<md-checkbox id="withHoldTax" ng-model="formData.withHoldTax">
+						{{'label.input.withholdtax' | translate }}
+					</md-checkbox>
                 </div>
-                <label class="control-label col-sm-4 left">{{'label.input.withholdtax' | translate }}
-                    <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.withholdtax' | translate}}" tooltip-append-to-body="true"></i>
-                </label>
                 <div ng-show="formData.withHoldTax">
                     <label class="control-label col-sm-2">{{'label.input.taxgroup' | translate }}</label>
                     <div class="col-sm-4">
@@ -190,11 +189,12 @@
                 </div>
             </div>
 			<div class="form-group" >
-				<div class="col-sm-2 right">
-					<input id="isDormancyTrackingActive" type="checkbox" ng-model="formData.isDormancyTrackingActive" ng-true-value="true"
-						   ng-false-value="false">
-				</div>
-				<label class="control-label col-sm-4 left">{{'label.input.isDormancyTrackingActive' | translate }}</label>
+	        	<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<md-checkbox id="isDormancyTrackingActive" ng-model="formData.isDormancyTrackingActive">
+						{{'label.input.isDormancyTrackingActive' | translate }}
+					</md-checkbox>
+                </div>
 				<label class="control-label col-sm-2" ng-show="formData.isDormancyTrackingActive">{{'label.input.daysToInactive' | translate }}</label>
 				<div class="col-sm-4" ng-show="formData.isDormancyTrackingActive">
 					<input id="daysToInactive" type="number" class="form-control"
@@ -388,7 +388,7 @@
 	        	<div class="col-md-12" ng-show="showOrHideValue == 'hide'">
                     <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}</div>
                     <div class="col-md-4">
-                    	<a class="btn btn-sm btn-primary" ng-click="addConfigureFundSource()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</a>
+                    	<md-button class="md-primary" ng-click="addConfigureFundSource()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</md-button>
                     </div>
 	                <table class="table">
 	                    <tr class="graybg">
@@ -422,7 +422,7 @@
 	                </table>
 	                <div class="col-md-8">{{'label.heading.mapfeestoincomeaccounts' | translate}}</div>
                     <div class="col-md-4">
-                    	<a class="btn btn-sm btn-primary" ng-click="mapFees()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</a>
+                    	<md-button class="md-primary" ng-click="mapFees()"><i class="fa fa-plus"></i>  {{'label.button.add' | translate }}</md-button>
                     </div>
                     <table class="table">
                         <tr class="graybg">
@@ -456,7 +456,7 @@
                     </table>
                     <div class="col-md-8">{{'label.heading.mappenaltiestospecificincomeaccounts' | translate}}</div>
                     <div class="col-md-4">
-                    	<a class="btn btn-sm btn-primary" ng-click="mapPenalty()"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate }}</a>
+                    	<md-button class="md-primary" ng-click="mapPenalty()"><i class="fa fa-plus"></i>  {{'label.button.add' | translate }}</md-button>
                     </div>
                     <table class="table">
                         <tr class="graybg">
@@ -491,10 +491,10 @@
             	</div>
 	        </div>
 	        <div class="col-md-offset-5 paddedtop">
-				<button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-				<button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_SAVINGSPRODUCT'>{{'label.button.save'
+				<md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+				<md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_SAVINGSPRODUCT'>{{'label.button.save'
 				        | translate}}
-				</button>
+				</md-button>
 			</div>
 		</fieldset>
 	</form>
