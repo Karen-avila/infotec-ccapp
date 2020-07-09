@@ -58,10 +58,22 @@
                         <label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span
                                 class="required">*</span></label>
                         <div class="col-sm-2">
+
+                            <md-select aria-label="currencyCode" id="currencyCode" ng-model="formData.currencyCode" ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')">
+                                <md-select-header>
+                                    {{'label.selectcurrency' | translate}}
+                                </md-select-header>
+                                <md-option ng-repeat="currency in product.currencyOptions" ng-value="currency.code">
+                                    {{currency.code}} {{currency.name | translate}}
+                                </md-option>
+                            </md-select>
+
+                            <!--
                             <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
                                     ng-options="currency.code as currency.name for currency in product.currencyOptions"
                                     ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
                                     value="{{currency.code}}"></select>
+                            -->
                         </div>
                         <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate
                             }}<span class="required">*</span></label>

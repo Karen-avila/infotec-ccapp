@@ -14,11 +14,19 @@
 	
 	            <div class="col-sm-3">
 
+					<md-select placeholder="{{'label.selectone' | translate}}" id="productId" ng-model="formData.productId">
+                        <md-option ng-repeat="product in products" ng-value="product.id">
+                            {{product.name}}
+                        </md-option>
+					</md-select>
+					
+					<!--
 					<select id="productId" name="product" ng-model="formData.productId"
 	                        ng-options="product.id as product.name for product in products" value="{{product.id}}"
 	                        data-ng-change="productInfo(formData.productId)" class="form-control" required>
 	                    <option value="">{{'label.selectproduct' | translate}}</option>
-	                </select>
+					</select>
+					-->
 					<form-validate valattributeform="addproductmixform" valattribute="product"/>
 					
 	            </div>
