@@ -39,7 +39,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3">{{'label.input.affectedglentries' | translate }}<span
+						<label class="control-label col-sm-3" >{{'label.input.affectedglentries' | translate }}<span
 								class="required">*</span></label>
 
 						<div class="col-sm-9">
@@ -52,17 +52,27 @@
 							<div ng-repeat="dbAccount in formData.dbAccounts"
 								class="col-md-12 form-inline paddedbottom10">
 								<div class="col-md-6">
-									<md-select ng-model="dbAccount.select"
-										placeholder="{{'label.select.account.debit' | translate}}">
-										<md-option ng-repeat="debitAccount in glAccounts | orderBy:'glCode'"
-											ng-value="debitAccount.id">
-											{{debitAccount.glCode}} {{debitAccount.name}}
-										</md-option>
-									</md-select>
+									<md-autocomplete
+						md-selected-item="selectedItem"
+						md-search-text="searchText"
+						md-selected-item-change="selectedItemChange(item)"
+						md-items="item in querySearch(searchText)"
+						md-item-text="getItemText(item)"
+						md-min-length="4"
+						md-escape-options="clear"
+						placeholder="{{'label.select.account.debit' | translate}}"
+						input-aria-labelledby="formData.select">
+                      	<md-item-template>
+							<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.glCode}} {{item.name}}</span>
+						</md-item-template>
+						<md-not-found>
+							"{{searchText}}" {{'error.msg.not.found' | translate}}
+						</md-not-found>
+					</md-autocomplete>
 								</div>
 								<div class="col-md-2">
-									<label class="control-label">{{'label.input.amount' | translate }}<span
-											class="required">*</span></label>
+								<label class="control-label">{{'label.input.amount' | translate }}<span
+									class="required">*</span></label>
 								</div>
 								<div class="col-md-3">
 									<input type="number" class="input-small form-control"
@@ -80,13 +90,23 @@
 							<div ng-repeat="crAccount in formData.crAccounts "
 								class="col-md-12 form-inline paddedbottom10">
 								<div class="col-md-6">
-									<md-select ng-model="crAccount.select"
-										placeholder="{{'label.select.account.credit' | translate}}">
-										<md-option ng-repeat="creditAccount in glAccounts | orderBy:'glCode'"
-											ng-value="creditAccount.id">
-											{{creditAccount.glCode}} {{creditAccount.name}}
-										</md-option>
-									</md-select>
+									<md-autocomplete
+						md-selected-item="selectedItem"
+						md-search-text="searchText"
+						md-selected-item-change="selectedItemChange(item)"
+						md-items="item in querySearch(searchText)"
+						md-item-text="getItemText(item)"
+						md-min-length="4"
+						md-escape-options="clear"
+						placeholder="{{'label.select.account.credit' | translate}}"
+						input-aria-labelledby="formData.select"">
+						<md-item-template>
+							<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.glCode}} {{item.name}}</span>
+						</md-item-template>
+						<md-not-found>
+							"{{searchText}}" {{'error.msg.not.found' | translate}}
+						</md-not-found>
+					                </md-autocomplete>
 								</div>
 								<div class="col-md-2">
 									<label class="control-label">{{'label.input.amount' | translate }}<span
@@ -98,6 +118,7 @@
 								<a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
 							</div>
 						</div>
+						
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-3"
