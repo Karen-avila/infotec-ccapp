@@ -188,7 +188,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" id="depositAmount" name="depositAmount" class="form-control"
+                                        <input type="number" id="depositAmount" name="depositAmount" class="form-control"
                                             number-format ng-model="formData.depositAmount" required late-validate
                                             decimal-number=true />
                                     </div>
@@ -211,7 +211,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" id="minDepositAmount" name="minDepositAmount"
+                                        <input type="number" id="minDepositAmount" name="minDepositAmount"
                                             class="form-control" number-format ng-model="formData.minDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="minDepositAmount" />
@@ -223,7 +223,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" id="maxDepositAmount" name="maxDepositAmount"
+                                        <input type="number" id="maxDepositAmount" name="maxDepositAmount"
                                             class="form-control" number-format ng-model="formData.maxDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="maxDepositAmount" />
@@ -238,12 +238,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestCompoundingPeriodTypeOptions" ng-model="formData.interestCompoundingPeriodType"
+                                        ng-change="depositproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)">
+                                            <md-option ng-repeat="type in product.interestCompoundingPeriodTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="interestCompoundingPeriodTypeOptions"
                                             ng-model="formData.interestCompoundingPeriodType" class="form-control"
                                             ng-options="type.id as type.value for type in product.interestCompoundingPeriodTypeOptions"
                                             ng-change="depositproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)"
                                             value="{{type.id}}">
                                         </select>
+                                        -->
                                     </div>
                                     <label class="control-label col-sm-3">{{'label.input.interestpostingperiod' |
                             translate }}<span class="required">*</span>
@@ -252,12 +262,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestPostingPeriodTypeOptions" ng-model="formData.interestPostingPeriodType"
+                                        ng-change="depositproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)">
+                                            <md-option ng-repeat="type in product.interestPostingPeriodTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="interestPostingPeriodTypeOptions"
                                             ng-model="formData.interestPostingPeriodType" class="form-control"
                                             ng-options="type.id as type.value for type in product.interestPostingPeriodTypeOptions"
                                             ng-change="depositproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)"
                                             value="{{type.id}}">
                                         </select>
+                                        -->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -268,12 +288,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
+                                        
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestCalculationType" ng-model="formData.interestCalculationType"
+                                        ng-change="depositproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)">
+                                            <md-option ng-repeat="type in product.interestCalculationTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="interestCalculationType" ng-model="formData.interestCalculationType"
                                             class="form-control"
                                             ng-options="type.id as type.value for type in product.interestCalculationTypeOptions"
                                             ng-change="depositproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)"
                                             value="{{type.id}}">
                                         </select>
+                                        -->
                                     </div>
                                     <label class="control-label col-sm-3">{{'label.input.daysinyears' | translate
                             }}<span class="required">*</span>
@@ -282,12 +312,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestCalculationDaysInYearType" ng-model="formData.interestCalculationDaysInYearType"
+                                        ng-change="depositproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)">
+                                            <md-option ng-repeat="type in product.interestCalculationDaysInYearTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="interestCalculationDaysInYearType"
                                             ng-model="formData.interestCalculationDaysInYearType" class="form-control"
                                             ng-options="type.id as type.value for type in product.interestCalculationDaysInYearTypeOptions"
                                             ng-change="depositproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)"
                                             value="{{type.id}}">
                                         </select>
+                                        -->
                                     </div>
                                 </div>
                             </fieldset>
@@ -326,7 +366,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="lockinPeriodFrequency" type="text" name="lockinPeriodFrequency"
+                                        <input id="lockinPeriodFrequency" type="number" name="lockinPeriodFrequency"
                                             class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate
                                             number=true>
                                         <form-validate valattributeform="Settings"
@@ -334,6 +374,15 @@
                                     </div>
 
                                     <div class="col-sm-2">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType"
+                                        ng-change="depositproduct.lockinPeriodFrequencyOption.value = formValue(product.lockinPeriodFrequencyTypeOptions,formData.lockinPeriodFrequencyType)">
+                                            <md-option ng-repeat="type in product.lockinPeriodFrequencyTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="lockinPeriodFrequencyType"
                                             ng-model="formData.lockinPeriodFrequencyType" class="form-control"
                                             ng-options="type.id as type.value for type in product.lockinPeriodFrequencyTypeOptions"
@@ -342,6 +391,7 @@
                                             <option class="displaynone" value="">{{'label.selectone' | translate}}
                                             </option>
                                         </select>
+                                        -->
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.minimumdepositterm' | translate }}<span
@@ -351,13 +401,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="minimumDepositTerm" type="text" name="minimumDepositTerm"
+                                        <input id="minimumDepositTerm" type="number" name="minimumDepositTerm"
                                             class="form-control" ng-model="formData.minDepositTerm" required
                                             late-validate number=true>
                                         <form-validate valattributeform="Settings" valattribute="minimumDepositTerm" />
                                     </div>
 
                                     <div class="col-sm-2">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="minDepositTermTypeId" ng-model="formData.minDepositTermTypeId"
+                                        ng-change="depositproduct.minDepositTermType.value = formValue(product.periodFrequencyTypeOptions,formData.minDepositTermTypeId)">
+                                            <md-option ng-repeat="type in product.periodFrequencyTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="minDepositTermTypeId" ng-model="formData.minDepositTermTypeId"
                                             class="form-control"
                                             ng-options="type.id as type.value for type in product.periodFrequencyTypeOptions"
@@ -366,6 +425,7 @@
                                             <option class="displaynone" value="">{{'label.selectone' | translate}}
                                             </option>
                                         </select>
+                                        -->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -375,13 +435,22 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="inMultiplesOfDepositTerm" type="text" name="inMultiplesOfDepositTerm"
+                                        <input id="inMultiplesOfDepositTerm" type="number" name="inMultiplesOfDepositTerm"
                                             class="form-control" ng-model="formData.inMultiplesOfDepositTerm"
                                             late-validate number=true>
                                         <form-validate valattributeform="Settings"
                                             valattribute="inMultiplesOfDepositTerm" />
                                     </div>
                                     <div class="col-sm-2">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="inMultiplesOfDepositTermTypeId" ng-model="formData.inMultiplesOfDepositTermTypeId"
+                                        ng-change="depositproduct.inMultiplesOfDepositTermType.value = formValue(product.periodFrequencyTypeOptions,formData.inMultiplesOfDepositTermTypeId)">
+                                            <md-option ng-repeat="type in product.periodFrequencyTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="inMultiplesOfDepositTermTypeId"
                                             ng-model="formData.inMultiplesOfDepositTermTypeId" class="form-control"
                                             ng-options="type.id as type.value for type in product.periodFrequencyTypeOptions"
@@ -390,6 +459,7 @@
                                             <option class="displaynone" value="">{{'label.selectone' | translate}}
                                             </option>
                                         </select>
+                                        -->
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.maximumdepositterm' | translate }}
@@ -398,12 +468,21 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="maximumDepositTerm" type="text" name="maximumDepositTerm"
+                                        <input id="maximumDepositTerm" type="number" name="maximumDepositTerm"
                                             class="form-control" ng-model="formData.maxDepositTerm" late-validate
                                             number=true />
                                         <form-validate valattributeform="Settings" valattribute="maximumDepositTerm" />
                                     </div>
                                     <div class="col-sm-2">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="maxDepositTermTypeId" ng-model="formData.maxDepositTermTypeId"
+                                        ng-change="depositproduct.maxDepositTermType.value = formValue(product.periodFrequencyTypeOptions,formData.maxDepositTermTypeId)">
+                                            <md-option ng-repeat="type in product.periodFrequencyTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select id="maxDepositTermTypeId" ng-model="formData.maxDepositTermTypeId"
                                             class="form-control"
                                             ng-options="type.id as type.value for type in product.periodFrequencyTypeOptions"
@@ -412,6 +491,7 @@
                                             <option class="displaynone" value="">{{'label.selectone' | translate}}
                                             </option>
                                         </select>
+                                        -->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -433,7 +513,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="preClosurePenalInterest" name="preClosurePenalInterest" type="text"
+                                        <input id="preClosurePenalInterest" name="preClosurePenalInterest" type="number"
                                             class="form-control" ng-model="formData.preClosurePenalInterest"
                                             late-validate decimal-number=true />
                                         <span
@@ -450,11 +530,20 @@
                                     </div>
 
                                     <div class="col-sm-2">
+
+                                        <md-select placeholder="{{'label.selectone' | translate}}" id="preClosurePenalInterestOnTypeId" ng-model="formData.preClosurePenalInterestOnTypeId">
+                                            <md-option ng-repeat="type in product.preClosurePenalInterestOnTypeOptions" ng-value="type.id">
+                                                {{type.value}}
+                                            </md-option>
+                                        </md-select>
+
+                                        <!--
                                         <select class="form-control" id="preClosurePenalInterestOnTypeId"
                                             ng-model="formData.preClosurePenalInterestOnTypeId"
                                             ng-options="type.id as type.value for type in product.preClosurePenalInterestOnTypeOptions"
                                             value="{{formData.preClosurePenalInterestOnTypeId}}">
                                         </select>
+                                        -->
                                     </div>
                                 </div>
 
@@ -472,12 +561,21 @@
                                         <label
                                             class="control-label col-sm-3">{{'label.input.taxgroup' | translate }}</label>
                                         <div class="col-sm-3">
+
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="taxGroupId" ng-model="formData.taxGroupId">
+                                                <md-option ng-repeat="taxGroup in product.taxGroupOptions" ng-value="taxGroup.id">
+                                                    {{taxGroup.name}}
+                                                </md-option>
+                                            </md-select>
+
+                                            <!--
                                             <select id="taxGroupId" ng-model="formData.taxGroupId"
                                                 chosen="product.taxGroupOptions"
                                                 ng-options="taxGroup.id as taxGroup.name for taxGroup in product.taxGroupOptions"
                                                 value="{{taxGroup.id}}">
                                                 <option value="">{{'label.select' | translate}}</option>
                                             </select>
+                                            -->
                                         </div>
                                     </div>
                                 </div>
@@ -518,18 +616,24 @@
                             translate }}<span class="required">*</span>
                                     </label>
                                     <div class="col-sm-3">
+                                        <md-datepicker id="fromDate" ng-model="fromDate.date" min="minDate" max="restrictDate" required></md-datepicker>
+                                        <!--
                                         <input id="fromDate" sort type="text" name="fromDate" class="form-control"
                                             datepicker-pop="dd MMMM yyyy" ng-model="fromDate.date" is-open="opened"
                                             min="minDate" max="restrictDate" required late-validate>
+                                        -->
                                         <form-validate valattributeform="interestchart" valattribute="fromDate" />
 
                                     </div>
                                     <label class="control-label col-sm-3" for="name">{{
                             'label.input.interestratechart.valid.to' | translate }}</label>
                                     <div class="col-sm-3">
+                                        <md-datepicker id="endDate" ng-model="endDate.date" min="minDate" max="restrictDate" required></md-datepicker>
+                                        <!--
                                         <input id="endDate" sort type="text" class="form-control"
                                             datepicker-pop="dd MMMM yyyy" ng-model="endDate.date" is-open="opened"
                                             min="minDate" />
+                                        -->
                                     </div>
                                 </div>
 
@@ -591,11 +695,18 @@
                                                 </span>
                                             </td>
                                             <td class="width20">
+                                                <md-select placeholder="{{'label.selectone' | translate}}" id="periodType" ng-model="chartSlab.periodType.id">
+                                                    <md-option ng-repeat="type in chart.periodTypes" ng-value="type.id">
+                                                        {{type.value}}
+                                                    </md-option>
+                                                </md-select>
+                                                <!--
                                                 <select class="form-control" id="periodType"
                                                     ng-model="chartSlab.periodType.id"
                                                     ng-options="type.id as type.value for type in chart.periodTypes"
                                                     value="{{chartSlab.periodType.id}}">
                                                 </select>
+                                                -->
                                             </td>
                                             <td class="width15">
                                                 <table class="width100">
@@ -688,13 +799,21 @@
                                 <hr>
 
                                 <div class="form-group">
+
                                     <div class="col-sm-3">
+                                        <md-select placeholder="{{'label.selectone' | translate}}" ng-model="chargeId">
+                                            <md-option ng-repeat="charge in product.chargeOptions|filter:formData.currencyCode:strict" ng-value="charge.id">
+                                                {{(charge.name+' '+'('+charge.currency.name+')')}}
+                                            </md-option>
+                                        </md-select>
+                                        <!--
                                         <select ng-model="chargeId" class="form-control"
                                             ng-options="charge.id as ((charge.name+' '+'('+charge.currency.name+')')) for charge in product.chargeOptions|filter:formData.currencyCode:strict"
                                             value="{{charge.id}}">
                                             <option class="displaynone" value="">{{'label.selectcharge' | translate}}
                                             </option>
                                         </select>
+                                        -->
                                     </div>
                                     <div class="col-sm-1">
                                         <md-button ng-click="chargeSelected(chargeId)"><i
@@ -778,6 +897,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="savingsReferenceAccountId" ng-model="formData.savingsReferenceAccountId"
+                                            ng-change="depositproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')">
+                                                <md-option ng-repeat="assetAccount in assetAccountOptions" ng-value="assetAccount.id">
+                                                    {{assetAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="savingsReferenceAccountId"
                                                 ng-model="formData.savingsReferenceAccountId"
                                                 chosen="assetAccountOptions"
@@ -785,6 +911,7 @@
                                                 ng-change="depositproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')"
                                                 value="{{assetAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                     </div>
                                     <hr>
@@ -797,6 +924,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="savingsControlAccountId" ng-model="formData.savingsControlAccountId"
+                                            ng-change="depositproduct.accountingMappings.savingsControlAccount.name = formValue(liabilityAccountOptions,formData.savingsControlAccountId,'id','name')">
+                                                <md-option ng-repeat="liabilityAccount in liabilityAccountOptions" ng-value="liabilityAccount.id">
+                                                    {{liabilityAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="savingsControlAccountId"
                                                 ng-model="formData.savingsControlAccountId"
                                                 chosen="liabilityAccountOptions"
@@ -804,6 +938,7 @@
                                                 ng-change="depositproduct.accountingMappings.savingsControlAccount.name = formValue(liabilityAccountOptions,formData.savingsControlAccountId,'id','name')"
                                                 value="{{liabilityAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                         <label class="control-label col-sm-2">{{'label.input.savingstransfersinsuspenpense' |
                                 translate }}
@@ -812,6 +947,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="transfersInSuspenseAccountId" ng-model="formData.transfersInSuspenseAccountId"
+                                            ng-change="depositproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(liabilityAccountOptions,formData.transfersInSuspenseAccountId,'id','name')">
+                                                <md-option ng-repeat="liabilityAccount in liabilityAccountOptions" ng-value="liabilityAccount.id">
+                                                    {{liabilityAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="transfersInSuspenseAccountId"
                                                 ng-model="formData.transfersInSuspenseAccountId"
                                                 chosen="liabilityAccountOptions"
@@ -819,6 +961,7 @@
                                                 ng-change="depositproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(liabilityAccountOptions,formData.transfersInSuspenseAccountId,'id','name')"
                                                 value="{{liabilityAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                     </div>
                                     <hr>
@@ -831,6 +974,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="interestOnSavingsAccountId" ng-model="formData.interestOnSavingsAccountId"
+                                            ng-change="depositproduct.accountingMappings.interestOnSavingsAccount.name = formValue(expenseAccountOptions,formData.interestOnSavingsAccountId,'id','name')">
+                                                <md-option ng-repeat="expenseAccount in expenseAccountOptions" ng-value="expenseAccount.id">
+                                                    {{expenseAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="interestOnSavingsAccountId"
                                                 ng-model="formData.interestOnSavingsAccountId"
                                                 chosen="expenseAccountOptions"
@@ -838,6 +988,7 @@
                                                 ng-change="depositproduct.accountingMappings.interestOnSavingsAccount.name = formValue(expenseAccountOptions,formData.interestOnSavingsAccountId,'id','name')"
                                                 value="{{expenseAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                     </div>
                                     <hr>
@@ -850,12 +1001,21 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="incomeFromFeeAccountId" ng-model="formData.incomeFromFeeAccountId"
+                                            ng-change="depositproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')">
+                                                <md-option ng-repeat="incomeAccount in incomeAccountOptions" ng-value="incomeAccount.id">
+                                                    {{incomeAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="incomeFromFeeAccountId"
                                                 ng-model="formData.incomeFromFeeAccountId" chosen="incomeAccountOptions"
                                                 ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAccountOptions"
                                                 ng-change="depositproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')"
                                                 value="{{incomeAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                         <label
                                             class="control-label col-sm-2">{{'label.input.incomefrompenalties' | translate }}
@@ -864,6 +1024,13 @@
                                                 tooltip-append-to-body="true"></i>
                                         </label>
                                         <div class="col-sm-3">
+                                            <md-select placeholder="{{'label.selectone' | translate}}" id="incomeFromPenaltyAccountId" ng-model="formData.incomeFromPenaltyAccountId"
+                                            ng-change="depositproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')">
+                                                <md-option ng-repeat="incomeAccount in incomeAccountOptions" ng-value="incomeAccount.id">
+                                                    {{incomeAccount.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <!--
                                             <select id="incomeFromPenaltyAccountId"
                                                 ng-model="formData.incomeFromPenaltyAccountId"
                                                 chosen="incomeAccountOptions"
@@ -871,6 +1038,7 @@
                                                 ng-change="depositproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')"
                                                 value="{{incomeAccount.id}}">
                                             </select>
+                                            -->
                                         </div>
                                     </div>
                                     <hr>
@@ -881,10 +1049,9 @@
                                 translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="addConfigureFundSource()"><i
-                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{
-                                    'label.button.add' |
-                                    translate}}</a>
+                                            <md-button ng-click="addConfigureFundSource()"><i
+                                                class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate
+                                    }}</md-button>
                                         </div>
                                         <table class="table">
                                             <tr class="graybg">
@@ -896,6 +1063,13 @@
                                             </tr>
                                             <tr ng-repeat="configureFundOption in configureFundOptions">
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="configureFundOptions[{{$index}}].paymentTypeId" ng-model="configureFundOption.paymentTypeId"
+                                                    ng-change="depositproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')">
+                                                        <md-option ng-repeat="paymentType in configureFundOption.paymentTypeOptions" ng-value="paymentType.id">
+                                                            {{paymentType.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select id="configureFundOptions[{{$index}}].paymentTypeId"
                                                         class="form-control"
                                                         ng-model="configureFundOption.paymentTypeId"
@@ -903,9 +1077,17 @@
                                                         ng-change="depositproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')"
                                                         value="{{paymentType.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="configureFundOptions[{{$index}}].fundSourceAccountId" ng-model="configureFundOption.fundSourceAccountId"
+                                                    ng-change="depositproduct.paymentChannelToFundSourceMappings[$index].fundSourceAccount.name = formValue(configureFundOption.assetAccountOptions,configureFundOption.fundSourceAccountId,'id','name')">
+                                                        <md-option ng-repeat="assetAccount in configureFundOption.assetAccountOptions" ng-value="assetAccount.id">
+                                                            {{assetAccount.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select id="configureFundOptions[{{$index}}].fundSourceAccountId"
                                                         class="form-control"
                                                         ng-model="configureFundOption.fundSourceAccountId"
@@ -913,6 +1095,7 @@
                                                         ng-change="depositproduct.paymentChannelToFundSourceMappings[$index].fundSourceAccount.name = formValue(configureFundOption.assetAccountOptions,configureFundOption.fundSourceAccountId,'id','name')"
                                                         value="{{assetAccount.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30"><a ng-click="deleteFund($index)"><i
@@ -922,9 +1105,8 @@
                                         <div class="col-md-8">{{'label.heading.mapfeestoincomeaccounts' | translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="mapFees()"><i
-                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{
-                                    'label.button.add' | translate }}</a>
+                                            <md-button ng-click="mapFees()"><i
+                                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}</md-button>
                                         </div>
                                         <table class="table">
                                             <tr class="graybg">
@@ -936,15 +1118,30 @@
                                             </tr>
                                             <tr ng-repeat="specificIncomeaccount in specificIncomeaccounts">
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="specificIncomeaccounts[{{$index}}].chargeId" ng-model="specificIncomeaccount.chargeId"
+                                                    ng-change="depositproduct.feeToIncomeAccountMappings[$index].charge.name = formValue(specificIncomeaccount.chargeOptions,specificIncomeaccount.chargeId,'id','name')">
+                                                        <md-option ng-repeat="charge in specificIncomeaccount.chargeOptions" ng-value="charge.id">
+                                                            {{charge.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select id="specificIncomeaccounts[{{$index}}].chargeId"
                                                         class="form-control" ng-model="specificIncomeaccount.chargeId"
                                                         ng-options="charge.id as charge.name for charge in specificIncomeaccount.chargeOptions"
                                                         ng-change="depositproduct.feeToIncomeAccountMappings[$index].charge.name = formValue(specificIncomeaccount.chargeOptions,specificIncomeaccount.chargeId,'id','name')"
                                                         value="{{charge.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="specificIncomeaccounts[{{$index}}].incomeAccountId" ng-model="specificIncomeaccount.incomeAccountId"
+                                                    ng-change="depositproduct.feeToIncomeAccountMappings[$index].incomeAccount.name = formValue(specificIncomeaccount.incomeAccountOptions,specificIncomeaccount.incomeAccountId,'id','name')">
+                                                        <md-option ng-repeat="assetAccount in specificIncomeaccount.incomeAccountOptions" ng-value="assetAccount.id">
+                                                            {{assetAccount.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select id="specificIncomeaccounts[{{$index}}].incomeAccountId"
                                                         class="form-control"
                                                         ng-model="specificIncomeaccount.incomeAccountId"
@@ -952,6 +1149,7 @@
                                                         ng-change="depositproduct.feeToIncomeAccountMappings[$index].incomeAccount.name = formValue(specificIncomeaccount.incomeAccountOptions,specificIncomeaccount.incomeAccountId,'id','name')"
                                                         value="{{assetAccount.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30"><a ng-click="deleteFee($index)"><i
@@ -962,10 +1160,8 @@
                                             {{'label.heading.mappenaltiestospecificincomeaccounts' | translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="btn btn-sm btn-primary" ng-click="mapPenalty()"><i
-                                                    class="fa fa-plus"></i>&nbsp;&nbsp;{{
-                                    'label.button.add' | translate
-                                    }}</a>
+                                            <md-button ng-click="mapPenalty()"><i
+                                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}</md-button>
                                         </div>
                                         <table class="table">
                                             <tr class="graybg">
@@ -978,6 +1174,13 @@
                                             <tr
                                                 ng-repeat="penaltySpecificIncomeaccount in penaltySpecificIncomeaccounts">
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="penaltySpecificIncomeaccounts[{{$index}}].chargeId" ng-model="penaltySpecificIncomeaccount.chargeId"
+                                                    ng-change="depositproduct.penaltyToIncomeAccountMappings[$index].charge.name = formValue(penaltySpecificIncomeaccount.penaltyOptions,penaltySpecificIncomeaccount.chargeId,'id','name')">
+                                                        <md-option ng-repeat="charge in penaltySpecificIncomeaccount.penaltyOptions" ng-value="charge.id">
+                                                            {{charge.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select id="penaltySpecificIncomeaccounts[{{$index}}].chargeId"
                                                         class="form-control"
                                                         ng-model="penaltySpecificIncomeaccount.chargeId"
@@ -985,9 +1188,17 @@
                                                         ng-change="depositproduct.penaltyToIncomeAccountMappings[$index].charge.name = formValue(penaltySpecificIncomeaccount.penaltyOptions,penaltySpecificIncomeaccount.chargeId,'id','name')"
                                                         value="{{charge.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
+                                                    <md-select placeholder="{{'label.selectone' | translate}}" id="penaltySpecificIncomeaccounts[{{$index}}].incomeAccountId" ng-model="penaltySpecificIncomeaccount.incomeAccountId"
+                                                    ng-change="depositproduct.penaltyToIncomeAccountMappings[$index].incomeAccount.name = formValue(penaltySpecificIncomeaccount.incomeAccountOptions,penaltySpecificIncomeaccount.incomeAccountId,'id','name')">
+                                                        <md-option ng-repeat="assetAccount in penaltySpecificIncomeaccount.incomeAccountOptions" ng-value="assetAccount.id">
+                                                            {{assetAccount.name}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    <!--
                                                     <select
                                                         id="penaltySpecificIncomeaccounts[{{$index}}].incomeAccountId"
                                                         class="form-control"
@@ -996,6 +1207,7 @@
                                                         ng-change="depositproduct.penaltyToIncomeAccountMappings[$index].incomeAccount.name = formValue(penaltySpecificIncomeaccount.incomeAccountOptions,penaltySpecificIncomeaccount.incomeAccountId,'id','name')"
                                                         value="{{assetAccount.id}}">
                                                     </select>
+                                                    -->
                                                 </td>
                                                 <td></td>
                                                 <td class="width30"><a ng-click="deletePenalty($index)"><i
