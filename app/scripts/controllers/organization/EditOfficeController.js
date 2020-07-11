@@ -57,13 +57,27 @@
                 }
 
                 // Country
-                for (var i=0; i<scope.countryOptions.length; i++) {
+                for (let i=0; i<scope.countryOptions.length; i++) {
                     if (scope.countryOptions[i].name === data.address.countryName) {
                         scope.address.countryId = scope.countryOptions[i].id;
                         break;
                     }
                 }
-
+                for (let i=0; i<scope.stateOptions.length; i++) {
+                    if (scope.stateOptions[i].name === data.address.stateName) {
+                        scope.address.stateProvinceId = scope.stateOptions[i].id;
+                        break;
+                    }
+                }
+                for (let i=0; i<scope.addressTypes.length; i++) {
+                    if (scope.addressTypes[i].name === data.address.addressType) {
+                        scope.address.addressTypeId  = scope.addressTypes[i].id;
+                        break;
+                    }
+                }
+            
+            
+            
             });
             var map = new L.map('map', { zoomControl: true });
             var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';

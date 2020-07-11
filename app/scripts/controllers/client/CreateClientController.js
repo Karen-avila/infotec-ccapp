@@ -43,10 +43,53 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
-         
+            scope.center={};
+ 
 
+            var mainMarker={
+                lat: 23.634501,
+                lng: -102.552784,
+                focus: true,
+                message: "Ubicación",
+                draggable:true
+            };
+            angular.extend(scope, {
+                center: {
+                    lat: 23.634501 ,
+                    lng: -102.552784,
+                    zoom: 4
+                     },
+                 markers:{
+                     mainMarker: angular.copy(mainMarker)
+                 },
+                 position:{
+                     lat: 23.634501,
+                     lng: -102.552784
+                 },
+                 events:{
+                    markers:{
+                        enable: [ 'dragend' ] 
+                 }}
+            });
+      
+            scope.elegirdireccion = (item) => {
+                angular.extend(scope, {
+                center:{
+                     lat:parseFloat(item.boundingbox[0]),
+                     lng:parseFloat(item.boundingbox[2]),
+                     zoom:12
+                }
                 
-         
+            });
+             addressArray[$index].latitude=`${item.boundingbox[0]}`
+            }
+
+            scope.direccion_buscador = () => {
+                fetch(`http://nominatim.openstreetmap.org/search?format=json&limit=5&q=${document.getElementById("direccion").value}`)
+                .then((response) => { return response.json(); })
+                .then((json) => { scope.addressresult = json });
+                
+            }
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
