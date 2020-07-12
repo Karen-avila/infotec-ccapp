@@ -43,10 +43,6 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
-         
-
-                
-         
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -286,9 +282,6 @@
                 scope.createCurpRfc();
             });
 
-         
-
-
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);
 
@@ -348,9 +341,11 @@
                 }
 
                 if (scope.first.incorpValidityTillDate) {
-                    this.formData.clientNonPersonDetails.locale = scope.optlang.code;
-                    this.formData.clientNonPersonDetails.dateFormat = scope.df;
-                    this.formData.clientNonPersonDetails.incorpValidityTillDate = dateFilter(scope.first.incorpValidityTillDate, scope.df);
+                    this.formData.clientNonPersonDetails = {
+                        locale: scope.optlang.code,
+                        dateFormat: scope.df,
+                        incorpValidityTillDate: dateFilter(scope.first.incorpValidityTillDate, scope.df)
+                    }
                 }
 
                 if (!scope.savings.opensavingsproduct) {
