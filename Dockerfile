@@ -138,10 +138,5 @@ COPY --from=builder /usr/src/app/dist/community-app /usr/local/lsws/Mifos/html
 COPY ./httpd_config.conf /usr/local/lsws/conf/httpd_config.conf
 
 COPY ./vhconf.conf /usr/local/lsws/conf/vhosts/Mifos/vhconf.conf 
-#COPY ./nginx.develop.conf /etc/nginx/nginx.conf
-
-#COPY ./options-ssl-nginx.conf /etc/nginx/options-ssl-nginx.conf
 
 EXPOSE 80 443 7080
-
-#CMD ["nginx", "-g", "daemon off;"]
