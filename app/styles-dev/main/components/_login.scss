@@ -37,15 +37,22 @@
       }
     }
 
+    .espacio{
+      padding: 80px 3% 20px;     
+    }
+    
     .cover-description {
+    
       .cover-link {
         text-decoration: underline;
         color: #fff;
 
         &:hover {
           color: $gray-light;
+        
         }
       }
+    
     }
   }
 }
