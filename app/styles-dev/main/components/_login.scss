@@ -25,6 +25,7 @@
     color: #fff;
     text-align: justify;
     z-index: 2;
+    margin-top: 400px;
 
     .cover-title {
       border-bottom: 2px solid #fff;
@@ -35,10 +36,6 @@
       span {
           color: $brand-primary;
       }
-    }
-
-    .espacio{
-      padding: 80px 3% 20px;     
     }
     
     .cover-description {
