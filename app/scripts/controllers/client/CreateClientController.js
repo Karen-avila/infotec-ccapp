@@ -43,10 +43,39 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
-         
+            scope.center = {};
 
-                
-         
+
+            angular.extend(scope, {
+                center: {
+                    lat: 23.634501,
+                    lng: -102.552784,
+                    zoom: 4
+                }
+            });
+            scope.elegirdireccion = (item) => {
+                angular.extend(scope, {
+                    center: {
+                        lat: parseFloat(item.boundingbox[0]),
+                        lng: parseFloat(item.boundingbox[2]),
+                        zoom: 12
+                    }
+                });
+                scope.addressArray = [
+                    {
+                        "latitude": `${item.boundingbox[0]}`,
+                        "longitude": `${item.boundingbox[2]}`,
+                        "postalCode": item.address.postcode ? item.address.postcode : scope.address.postalCode,
+                        "city": item.address.county ? item.address.county : scope.address.city
+                    }
+                ]
+            }
+            scope.direccion_buscador = () => {
+                fetch(`http://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
+                    .then((response) => { return response.json(); })
+                    .then((json) => { scope.addressresult = json });
+
+            }
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -286,7 +315,7 @@
                 scope.createCurpRfc();
             });
 
-         
+
 
 
             scope.submit = function () {
@@ -535,17 +564,17 @@
             function sortBy(property) {
                 var sortOrder = 1;
 
-                if(property[0] === "-") {
+                if (property[0] === "-") {
                     sortOrder = -1;
                     property = property.substr(1);
                 }
 
-                return function (a,b) {
-                    if(sortOrder == -1){
+                return function (a, b) {
+                    if (sortOrder == -1) {
                         return b[property].localeCompare(a[property]);
-                    }else{
+                    } else {
                         return a[property].localeCompare(b[property]);
-                    }        
+                    }
                 }
             }
         }
