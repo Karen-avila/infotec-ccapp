@@ -25,6 +25,7 @@
     color: #fff;
     text-align: justify;
     z-index: 2;
+    margin-top: 400px;
 
     .cover-title {
       border-bottom: 2px solid #fff;
@@ -36,16 +37,19 @@
           color: $brand-primary;
       }
     }
-
+    
     .cover-description {
+    
       .cover-link {
         text-decoration: underline;
         color: #fff;
 
         &:hover {
           color: $gray-light;
+        
         }
       }
+    
     }
   }
 }
