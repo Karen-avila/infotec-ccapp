@@ -16,53 +16,51 @@
                   {{'label.input.office' | translate}} <span ng-show="forceOffice == null" class="required">*</span>
                </label>
                <div class="col-sm-3">
-                    <md-select id="officeId" ng-model="formData.officeId"
-                        ng-change="changeOffice(formData.officeId)"
-                        placeholder="{{'label.selectone' | translate}}">
-                        <md-option ng-repeat="office in offices" ng-value="office.id">
-                                {{office.name}}
-                        </md-option>
-                    </md-select>
+                  <md-select id="officeId" ng-model="formData.officeId" ng-change="changeOffice(formData.officeId)"
+                     placeholder="{{'label.selectone' | translate}}">
+                     <md-option ng-repeat="office in offices" ng-value="office.id">
+                        {{office.name}}
+                     </md-option>
+                  </md-select>
                </div>
                <label class="control-label col-sm-3">{{'label.input.staff' | translate}}</label>
                <div class="col-sm-3">
-                    <md-select id="staffId" ng-model="formData.staffId" 
-                        placeholder="{{'label.selectone' | translate}}">
-                        <md-option ng-repeat="staff in staffs" ng-value="staff.id">
-                            {{staff.displayName}}
-                        </md-option>
-                    </md-select>
+                  <md-select id="staffId" ng-model="formData.staffId" placeholder="{{'label.selectone' | translate}}">
+                     <md-option ng-repeat="staff in staffs" ng-value="staff.id">
+                        {{staff.displayName}}
+                     </md-option>
+                  </md-select>
                </div>
             </div>
 
             <div class="form-group">
                <label class="control-label col-sm-3">{{'label.input.legalForm' | translate}}</label>
                <div class="col-sm-3">
-                    <md-select id="legalFormId" ng-model="formData.legalFormId"
-                        ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)"
-                        placeholder="{{'label.selectone' | translate}}">
-                        <md-option ng-repeat="legalForm in clientLegalFormOptions" ng-value="legalForm.id">
-                            {{legalForm.value | translate}}
-                        </md-option>
-                    </md-select>
+                  <md-select id="legalFormId" ng-model="formData.legalFormId"
+                     ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)"
+                     placeholder="{{'label.selectone' | translate}}">
+                     <md-option ng-repeat="legalForm in clientLegalFormOptions" ng-value="legalForm.id">
+                        {{legalForm.value | translate}}
+                     </md-option>
+                  </md-select>
                </div>
                <div class="col-sm-3"></div>
                <div data-ng-switch on="showNonPersonOptions" class="col-sm-3">
-                    <md-checkbox ng-model="formData.isStaff">
-                        {{'label.input.isStaff' | translate }}
-                    </md-checkbox>                    
+                  <md-checkbox ng-model="formData.isStaff">
+                     {{'label.input.isStaff' | translate }}
+                  </md-checkbox>
                </div>
             </div>
 
             <div data-ng-switch on="showNonPersonOptions">
                <div data-ng-switch-when="false">
                   <div class="form-group">
-                     <label class="control-label col-sm-3"
-                        for="firstname">{{'label.input.firstname' | translate }}<span class="required">*</span></label>
+                     <label class="control-label col-sm-3" for="firstname">{{'label.input.firstname' | translate }}<span
+                           class="required">*</span></label>
                      <div class="col-sm-3">
                         <input type="text" id="firstname" name="firstname" ng-model="formData.firstname"
                            class="form-control uppercase" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
-                           ng-blur="createCurpRfc()" maxlength="50"/>
+                           ng-blur="createCurpRfc()" maxlength="50" />
                         <span ng-show="createclientform.firstname.$invalid && createclientform.firstname.$dirty">
                            <small class="error required" ng-show="createclientform.firstname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -73,8 +71,9 @@
                      <label class="control-label col-sm-3"
                         for="middlename">{{'label.input.middlename' | translate}}</label>
                      <div class="col-sm-3">
-                        <input type="text" id="middlename" name="middlename" ng-model="formData.middlename" maxlength="50"
-                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" ng-blur="createCurpRfc()" />
+                        <input type="text" id="middlename" name="middlename" ng-model="formData.middlename"
+                           maxlength="50" class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/"
+                           ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.middlename.$invalid && createclientform.middlename.$dirty">
                            <small class="error required" ng-show="createclientform.middlename.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -103,7 +102,7 @@
                      <div class="col-sm-3">
                         <input type="text" id="surname" name="surname" ng-model="formData.surname"
                            class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
-                           ng-blur="createCurpRfc()" maxlength="50"/>
+                           ng-blur="createCurpRfc()" maxlength="50" />
                         <span ng-show="createclientform.surname.$invalid && createclientform.surname.$dirty">
                            <small class="error required" ng-show="createclientform.surname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -135,10 +134,10 @@
                   ng-show="showNonPersonOptions">{{'label.input.incorporationdate' | translate}}<span
                      class="required">*</span></label>
                <div class="col-sm-3">
-                     <md-datepicker id="dateofbirth" ng-model="first.dateOfBirth" 
-                        md-placeholder="{{'label.selecttodate' | translate}}"
-                        md-min-date="minDate" md-max-date="restrictDate">
-                     </md-datepicker>
+                  <md-datepicker id="dateofbirth" ng-model="first.dateOfBirth"
+                     md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+                     md-max-date="restrictDate">
+                  </md-datepicker>
                </div>
                <div data-ng-switch on="showNonPersonOptions">
                   <div data-ng-switch-when="false">
@@ -148,7 +147,7 @@
                         <md-select id="birthplaceId" ng-model="formData.birthPlaceId" ng-blur="createCurpRfc()"
                            placeholder="{{'label.menu.birthplace' | translate}}" required>
                            <md-option ng-repeat="birthplace in birthPlaceOptions" ng-value="birthplace.id">
-                               {{birthplace.name}}
+                              {{birthplace.name}}
                            </md-option>
                         </md-select>
                      </div>
@@ -189,7 +188,7 @@
                         <md-select id="genderId" ng-model="formData.genderId" ng-blur="createCurpRfc()" required
                            placeholder="{{'label.selectone' | translate}}">
                            <md-option ng-repeat="gender in genderOptions" ng-value="gender.id">
-                               {{gender.name | translate}}
+                              {{gender.name | translate}}
                            </md-option>
                         </md-select>
                      </div>
@@ -199,7 +198,7 @@
                      class="required">*</span></label>
                <div class="col-sm-3">
                   <input type="text" id="mobileNo" name="mobileNo" required ng-model="formData.mobileNo"
-                     ng-pattern="\d{50}" class="form-control" maxlength="50"/>
+                     ng-pattern="\d{50}" class="form-control" maxlength="50" />
                   <span ng-show="createclientform.mobileNo.$invalid && createclientform.mobileNo.$dirty">
                      <small class="required" ng-show="createclientform.mobileNo.$error.pattern">
                         {{'label.mustbenumeric' | translate}}
@@ -211,9 +210,9 @@
                   <div data-ng-switch-when="true">
                      <label class="control-label col-sm-3">{{'label.input.incorpValidityTillDate' | translate}}</label>
                      <div class="col-sm-3">
-                        <md-datepicker id="incorpValidityTillDate" ng-model="first.incorpValidityTillDate" 
-                           md-placeholder="{{'label.selecttodate' | translate}}"
-                           md-min-date="minDate" md-max-date="'2030-06-22'">
+                        <md-datepicker id="incorpValidityTillDate" ng-model="first.incorpValidityTillDate"
+                           md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+                           md-max-date="'2030-06-22'">
                         </md-datepicker>
                      </div>
                   </div>
@@ -239,7 +238,8 @@
                         <span class="required">*</span></label>
                      <div class="col-sm-3">
                         <input type="text" id="uniqueId" name="uniqueId" ng-model="formData.uniqueId"
-                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" maxlength="18" required late-Validate />
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" maxlength="18" required
+                           late-Validate />
                         <span ng-show="createclientform.uniqueId.$invalid && createclientform.uniqueId.$dirty">
                            <small class="error required" ng-show="createclientform.uniqueId.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -253,21 +253,22 @@
             <div class="form-group">
                <label class="control-label col-sm-3">{{'label.input.clienttype' | translate}}</label>
                <div class="col-sm-3">
-                    <md-select id="clienttypeId" ng-model="formData.clientTypeId" 
-                        placeholder="{{'label.selectone' | translate}}">
-                        <md-option ng-repeat="clienttype in clienttypeOptions" ng-value="clienttype.id">
-                            {{clienttype.name | translate}}
-                        </md-option>
-                    </md-select>
+                  <md-select id="clienttypeId" ng-model="formData.clientTypeId"
+                     placeholder="{{'label.selectone' | translate}}">
+                     <md-option ng-repeat="clienttype in clienttypeOptions" ng-value="clienttype.id">
+                        {{clienttype.name | translate}}
+                     </md-option>
+                  </md-select>
                </div>
                <label class="control-label col-sm-3">{{'label.input.clientclassification' | translate}}</label>
                <div class="col-sm-3">
-                    <md-select id="clientClassificationId" ng-model="formData.clientClassificationId" 
-                        placeholder="{{'label.selectone' | translate}}">
-                        <md-option ng-repeat="clientClassification in clientClassificationOptions" ng-value="clientClassification.id">
-                            {{clientClassification.name | translate}}
-                        </md-option>
-                    </md-select>
+                  <md-select id="clientClassificationId" ng-model="formData.clientClassificationId"
+                     placeholder="{{'label.selectone' | translate}}">
+                     <md-option ng-repeat="clientClassification in clientClassificationOptions"
+                        ng-value="clientClassification.id">
+                        {{clientClassification.name | translate}}
+                     </md-option>
+                  </md-select>
                </div>
             </div>
 
@@ -278,14 +279,15 @@
                         for="incorpNumber">{{'label.input.incorpNumber' | translate}}</label>
                      <div class="col-sm-3">
                         <input type="text" id="incorpNumber" ng-model="formData.clientNonPersonDetails.incorpNumber"
-                           class="form-control" maxlength="50"/>
+                           class="form-control" maxlength="50" />
                      </div>
                      <label class="control-label col-sm-3">{{'label.input.mainBusinessLine' | translate}}</label>
                      <div class="col-sm-3">
                         <md-select id="mainBusinessLineId" ng-model="formData.clientNonPersonDetails.mainBusinessLineId"
                            placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="mainBusinessLine in clientNonPersonMainBusinessLineOptions" ng-value="mainBusinessLine.id">
-                               {{mainBusinessLine.name | translate}}
+                           <md-option ng-repeat="mainBusinessLine in clientNonPersonMainBusinessLineOptions"
+                              ng-value="mainBusinessLine.id">
+                              {{mainBusinessLine.name | translate}}
                            </md-option>
                         </md-select>
                      </div>
@@ -302,8 +304,9 @@
                         <md-select id="constitutionId" name="constitution"
                            ng-model="formData.clientNonPersonDetails.constitutionId"
                            placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="constitution in clientNonPersonConstitutionOptions" ng-value="constitution.id">
-                               {{constitution.name | translate}}
+                           <md-option ng-repeat="constitution in clientNonPersonConstitutionOptions"
+                              ng-value="constitution.id">
+                              {{constitution.name | translate}}
                            </md-option>
                         </md-select>
                      </div>
@@ -319,7 +322,7 @@
                      <label class="control-label col-sm-3" for="remarks">{{'label.input.remarks' | translate}}</label>
                      <div class="col-sm-3">
                         <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="4"
-                           class="form-control uppercase" maxlength="100"/>
+                           class="form-control uppercase" maxlength="100" />
                         </div>
                   </div>
                 </div>
@@ -620,8 +623,6 @@
                         </md-select>
                      </div>
                   </div>
-
-
                   <div class="form-group" ng-show="stateProvinceId">
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.state_province' | translate }}</label>
@@ -658,13 +659,13 @@
                   <div class="form-group" ng-show="latitude">
                      <label class="control-label col-sm-3" >{{'label.input.latitude' | translate }}</label>
                      <div class="col-sm-6">
-                        <input type="number" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
+                        <input type="text" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="longitude">
                      <label class="control-label col-sm-3" >{{'label.input.longitude' | translate }}</label>
                      <div class="col-sm-6">
-                        <input type="number" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
+                        <input type="text" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="isActive">
@@ -673,8 +674,25 @@
                             {{'label.input.active' | translate }}
                         </md-checkbox>
                      </div>
+                  </div>         
                   </div>
-                  </div>
+                  <div class= "col-sm-4 col-md-4" >
+               
+                     <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
+                      <div id= 'buscador'>
+                        <input type="text" name="direccion" value="" id="direccion" size="10" />
+                        <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+                        <div>
+                           <ul>
+                              <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+                                 <a>{{address.display_name}}<a>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     </div>
+                     
+
                </div>
             </div>
 

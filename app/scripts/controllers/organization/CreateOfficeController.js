@@ -90,8 +90,8 @@
                         countryId: address.countryId ? address.countryId : '',
                         stateProvinceId: address.stateProvinceId ? address.stateProvinceId : '',
                         postalCode: address.postalCode ? address.postalCode : '',
-                        latitude: address.latitude ? address.latitude : '',
-                        longitude: address.longitude ? address.longitude : '',
+                        latitude: address.latitude ? address.latitude : 0,
+                        longitude: address.longitude ? address.longitude : 0,
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
