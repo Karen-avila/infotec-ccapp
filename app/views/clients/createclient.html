@@ -120,7 +120,7 @@
                      <div class="col-sm-8">
                         <textarea type="text" id="fullname" ng-model="formData.fullname" rows="3"
                            class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="250" />
-                     </div>
+                        </div>
                      <div class="col-sm-1">
                         <label class="control-label">{{formData.fullname.length}}</label> 
                      </div>
@@ -322,13 +322,8 @@
                <div data-ng-switch-when="true">
                   <div class="form-group">
                      <label class="control-label col-sm-3" for="remarks">{{'label.input.remarks' | translate}}</label>
-<<<<<<< HEAD
-                     <div class="col-sm-3">
-                        <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="4"
-=======
                      <div class="col-sm-8">
                         <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="2"
->>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
                            class="form-control uppercase" maxlength="100" />
                         </div>
                   </div>
@@ -630,10 +625,7 @@
                         </md-select>
                      </div>
                   </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
                   <div class="form-group" ng-show="stateProvinceId">
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.state_province' | translate }}</label>
@@ -685,25 +677,22 @@
                             {{'label.input.active' | translate }}
                         </md-checkbox>
                      </div>
-                  </div>         
                   </div>
-                  <div class= "col-sm-4 col-md-4" >
-               
-                     <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
-                      <div id= 'buscador'>
-                        <input type="text" name="direccion" value="" id="direccion" size="10" />
-                        <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
-                        <div>
-                           <ul>
-                              <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
-                                 <a>{{address.display_name}}<a>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                     </div>
-                     
-
+                  </div>
+  <div class= "col-sm-4 col-md-4" >             
+   <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
+    <div id= 'buscador'>
+      <input type="text" name="direccion" value="" id="direccion" size="10" />
+      <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+      <div>
+         <ul>
+            <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+               <a>{{address.display_name}}<a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   </div>
                </div>
             </div>
 
