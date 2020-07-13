@@ -4,9 +4,23 @@
             scope.funderror = [];
             scope.formData = [];
             scope.addfunderror = false;
+
+            scope.query = {
+                order: "name",
+                limit: 25,
+                page: 1,
+            };
+
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+            };
+
             resourceFactory.fundsResource.getAllFunds(function (data) {
                 scope.funds = data;
+                scope.totalFunds = data.length;
             });
+
             scope.editFund = function (fund, name, id) {
                 fund.edit = !fund.edit;
                 scope.formData[id] = name;
@@ -37,6 +51,7 @@
                     scope.funderror[id] = true;
                 }
             };
+
             scope.addFund = function () {
                 if (scope.newfund != undefined) {
                     scope.addfunderror = false;
@@ -48,6 +63,36 @@
                 }
 
                 scope.newfund = undefined;
+            };
+
+            scope.filters = [];
+            scope.$watch("filter.search", function (newValue, oldValue) {
+                if (newValue != undefined) {
+                    scope.filters = newValue.split(" ");
+                }
+            });
+
+            scope.searachData = {};
+
+            scope.customSearch = function (item) {
+                scope.searachData.status = true;
+
+                angular.forEach(scope.filters, function (value1, key) {
+                    scope.searachData.tempStatus = false;
+                    angular.forEach(item, function (value2, key) {
+                        var dataType = typeof value2;
+
+                        if (dataType == "string" && !value2.includes("object")) {
+                            if (value2.toLowerCase().includes(value1)) {
+                                scope.searachData.tempStatus = true;
+                            }
+                        }
+                    });
+                    scope.searachData.status =
+                        scope.searachData.status & scope.searachData.tempStatus;
+                });
+
+                return scope.searachData.status;
             };
 
         }

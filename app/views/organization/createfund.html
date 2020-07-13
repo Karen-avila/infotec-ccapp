@@ -1,65 +1,81 @@
 <div class="content-container">
-    <ul class="breadcrumb">
-        <li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
-        <li><a href="#!/funds">{{'label.anchor.managefunds' | translate}}</a></li>
-        <li class="active">{{'label.anchor.createfund' | translate}}</li>
-    </ul>
-    <div class="card">
-    	<div class="content">
-    		<div class="toolbar">
-    			<h4>{{'label.heading.createfund' | translate}}</h4>
-    		</div>
-    		<br/>
-    		<form name="createfundform" novalidate="" class="form-horizontal form-extra" ng-controller="CreateFundController"
-    		      rc-submit="submit()">
-    		    <api-validate></api-validate>
-    		    <fieldset>
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li><a href="#!/funds">{{'label.anchor.managefunds' | translate}}</a></li>
+		<li class="active">{{'label.anchor.createfund' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="toolbar">
+				<h4>{{'label.heading.createfund' | translate}}</h4>
+			</div>
+			<br />
+			<form name="createfundform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="CreateFundController" rc-submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.fundsource' | translate }}<span
 								class="required">*</span></label>
-		
+
 						<div class="col-sm-3">
-							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name" class="form-control"
-									required late-Validate/>
-							<form-validate valattributeform="createfundform" valattribute="name"/>
+							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
+								class="form-control" required late-Validate />
+							<form-validate valattributeform="createfundform" valattribute="name" />
 						</div>
 					</div>
-				
+
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.externalid' | translate }}</label>
-		
+
 						<div class="col-sm-3">
-								<input id="externalId" type="text" name="externalId" ng-model="formData.externalId" class="form-control"/>
-						</div>
-					</div>
-				
-					<div class="form-group">
-						<label class="control-label col-sm-3">{{'label.input.amount' | translate }}<span class="required">*</span></label>
-		
-						<div class="col-sm-3">
-								<input id="amount" type="number" name="amount" ng-model="formData.amount" class="form-control"
-								required late-Validate/>
-								<form-validate valattributeform="createfundform" valattribute="amount"/>
+							<input id="externalId" type="text" name="externalId" ng-model="formData.externalId"
+								class="form-control" />
 						</div>
 					</div>
 
 					<div class="form-group">
-						<div class="col-sm-3">
-							<label class="checkbox pull-right">
-								<input id="isActive" type="checkbox" ng-model="formData.active">
-							</label>
-						</div>
+						<label class="control-label col-sm-3">{{'label.heading.main.savingaccount' | translate }}</label>
 
-						<label class="control-label col-sm-3 left">{{'label.input.active' | translate }}</label>
+						<div class="col-sm-3">
+							<md-select id="savingsAccountId" ng-model="formData.savingsAccountId" 
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option ng-repeat="savingsAccount in savings" ng-value="savingsAccount.id">
+									{{savingsAccount.accountNo}} - {{savingsAccount.clientName}}
+								</md-option>
+							</md-select>
+						</div>
 					</div>
-    		        <div class="col-md-12 center">
-    		            <a id="cancel" href="#!/funds">
-    		                <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-    		            </a>
-    		            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_FUND'>{{'label.button.save' | translate}}</button>
-    		        </div>
-    		    </fieldset>
-    		</form>
-    	</div>
-    </div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.amount' | translate }}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input id="amount" type="number" name="amount" ng-model="formData.amount"
+								class="form-control" required late-Validate />
+							<form-validate valattributeform="createfundform" valattribute="amount" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-3">
+							<md-checkbox ng-model="formData.active" ng-change="setChoice()">
+								{{'label.input.active' | translate }}
+							</md-checkbox> 
+						</div>
+					</div>
+					<div class="col-md-12 center">
+						<a id="cancel" href="#!/funds">
+							<md-button type="reset"
+								class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+						</a>
+						<md-button id="save" type="submit" class="md-raised md-primary"
+							has-permission='CREATE_FUND'>{{'label.button.save' | translate}}</md-button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
