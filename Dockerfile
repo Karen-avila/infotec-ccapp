@@ -123,7 +123,7 @@ RUN grunt prod
 
 #RUN find . -type f -print0 | xargs -0 dos2unix
 
-FROM litespeedtech/openlitespeed:latest AS runner
+FROM nginx AS runner
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& apt-get install -y --no-install-recommends wget telnet unzip tzdata telnet vim dos2unix curl software-properties-common gnupg apt-transport-https \
@@ -131,12 +131,12 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \
 	&& dpkg-reconfigure --frontend noninteractive tzdata dos2unix \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --from=builder /usr/src/app/dist/community-app /var/www/vhosts/localhost/html
+COPY --from=builder /usr/src/app/dist/community-app /usr/share/nginx/html
 
-#COPY ./nginx.develop.conf /etc/nginx/nginx.conf
+COPY ./nginx.develop.conf /etc/nginx/nginx.conf
 
-#COPY ./options-ssl-nginx.conf /etc/nginx/options-ssl-nginx.conf
+COPY ./options-ssl-nginx.conf /etc/nginx/options-ssl-nginx.conf
 
-EXPOSE 80 443 7080
+EXPOSE 80 443
 
-#CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
