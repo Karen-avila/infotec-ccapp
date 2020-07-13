@@ -7,8 +7,9 @@
             scope.formData = {};
             scope.datatabledetails = [];
             scope.datatableLoaded = false;
-            scope.date = {};
-            scope.date.payDate = new Date();
+            scope.date = {
+                payDate: new Date()
+            }
             scope.hideAccrualTransactions = false;
             scope.isHideAccrualsCheckboxChecked = true;
             scope.loandetails = [];
@@ -504,13 +505,22 @@
                     };
                 }
 
+                const today = new Date();
                 for (var i in scope.loandetails.repaymentSchedule.periods) {
                     const period = scope.loandetails.repaymentSchedule.periods[i];
                     if ((typeof period.period != "undefined") && (period.totalInstallmentAmountForPeriod > 0)) {
-                        if (period.complete == true && period.period > scope.freePeriods) {
-                            scope.payments.paid++;
+                        if (period.complete == true) {
+                            if (period.period > scope.freePeriods) {
+                                scope.payments.paid++;
+                            }
                         } else {
                             scope.payments.pending++;
+                        }
+
+                        // Expired payments
+                        const dueDate = new Date(period.dueDate);
+                        if (+dueDate <= +today) {
+                            scope.payments.expired++;
                         }
                         scope.payments.total++;
                     }

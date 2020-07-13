@@ -120,7 +120,7 @@
                      <div class="col-sm-8">
                         <textarea type="text" id="fullname" ng-model="formData.fullname" rows="3"
                            class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="250" />
-                     </div>
+                        </div>
                      <div class="col-sm-1">
                         <label class="control-label">{{formData.fullname.length}}</label> 
                      </div>
@@ -662,13 +662,13 @@
                   <div class="form-group" ng-show="latitude">
                      <label class="control-label col-sm-3">{{'label.input.latitude' | translate }}</label>
                      <div class="col-sm-6">
-                        <input type="number" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
+                        <input type="text" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="longitude">
                      <label class="control-label col-sm-3">{{'label.input.longitude' | translate }}</label>
                      <div class="col-sm-6">
-                        <input type="number" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
+                        <input type="text" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="isActive">
@@ -679,6 +679,20 @@
                      </div>
                   </div>
                   </div>
+  <div class= "col-sm-4 col-md-4" >             
+   <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
+    <div id= 'buscador'>
+      <input type="text" name="direccion" value="" id="direccion" size="10" />
+      <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+      <div>
+         <ul>
+            <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+               <a>{{address.display_name}}<a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   </div>
                </div>
             </div>
 

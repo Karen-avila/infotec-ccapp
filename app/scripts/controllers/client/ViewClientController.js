@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewClientController: function (scope, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, Upload) {
+        ViewClientController: function (scope,  $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, Upload) {
             scope.client = [];
             scope.identitydocuments = [];
             scope.buttons = [];
@@ -23,6 +23,30 @@
             // scope.families=[];
             var entityname = "ADDRESS";
             formdata = {};
+
+      scope.showMap = function (ev, transaction) {
+        $mdDialog.show({
+            controller: ViewJournalEntryCtrl,
+            templateUrl: 'views/clients/viewmap.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true, 
+            locals: {
+                data: {
+                  transaction: transaction
+                }
+            },
+        }); 
+      };
+
+      var ViewJournalEntryCtrl = function (scope, $mdDialog, data) {
+        scope.data = data;
+        scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
+        scope.transaction = scope.data.transaction;
+      };
 
             scope.getClientTemplate = function () {
                 resourceFactory.clientTemplateResource.get(function (data) {
@@ -994,7 +1018,7 @@
         }
     });
 
-    mifosX.ng.application.controller('ViewClientController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', 'Upload', mifosX.controllers.ViewClientController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewClientController', ['$scope', '$mdDialog', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', 'Upload', mifosX.controllers.ViewClientController]).run(function ($log) {
         $log.info("ViewClientController initialized");
     });
 }(mifosX.controllers || {}));
