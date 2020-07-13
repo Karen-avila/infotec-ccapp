@@ -43,6 +43,7 @@
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
+<<<<<<< HEAD
             scope.center = {};
 
 
@@ -76,6 +77,8 @@
                     .then((json) => { scope.addressresult = json });
 
             }
+=======
+>>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
 
             var requestParams = { staffInSelectedOfficeOnly: true };
             if (routeParams.groupId) {
@@ -315,9 +318,12 @@
                 scope.createCurpRfc();
             });
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);
 
@@ -377,9 +383,11 @@
                 }
 
                 if (scope.first.incorpValidityTillDate) {
-                    this.formData.clientNonPersonDetails.locale = scope.optlang.code;
-                    this.formData.clientNonPersonDetails.dateFormat = scope.df;
-                    this.formData.clientNonPersonDetails.incorpValidityTillDate = dateFilter(scope.first.incorpValidityTillDate, scope.df);
+                    this.formData.clientNonPersonDetails = {
+                        locale: scope.optlang.code,
+                        dateFormat: scope.df,
+                        incorpValidityTillDate: dateFilter(scope.first.incorpValidityTillDate, scope.df)
+                    }
                 }
 
                 if (!scope.savings.opensavingsproduct) {

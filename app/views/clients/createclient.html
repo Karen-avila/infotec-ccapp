@@ -117,10 +117,12 @@
                   <div class="form-group">
                      <label class="control-label col-sm-3" for="fullname">{{'label.input.fullname' | translate}}<span
                            class="required">*</span></label>
-                     <div class="col-sm-6">
-                        <input type="text" id="fullname" name="fullname" ng-model="formData.fullname" maxlength="100"
-                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required late-Validate />
-                        <form-validate valattributeform="createclientform" valattribute="fullname" />
+                     <div class="col-sm-8">
+                        <textarea type="text" id="fullname" ng-model="formData.fullname" rows="3"
+                           class="form-control uppercase" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="250" />
+                     </div>
+                     <div class="col-sm-1">
+                        <label class="control-label">{{formData.fullname.length}}</label> 
                      </div>
                   </div>
                </div>
@@ -320,8 +322,13 @@
                <div data-ng-switch-when="true">
                   <div class="form-group">
                      <label class="control-label col-sm-3" for="remarks">{{'label.input.remarks' | translate}}</label>
+<<<<<<< HEAD
                      <div class="col-sm-3">
                         <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="4"
+=======
+                     <div class="col-sm-8">
+                        <textarea type="text" id="remarks" ng-model="formData.clientNonPersonDetails.remarks" rows="2"
+>>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
                            class="form-control uppercase" maxlength="100" />
                         </div>
                   </div>
@@ -339,29 +346,29 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">{{'label.input.submittedon' | translate}}</label>
                 <div class="col-sm-3">
-                <md-datepicker id="submittedon" ng-model="first.submittedon" 
-                    md-placeholder="{{'label.selecttodate' | translate}}"
-                    md-min-date="'2000-01-01'" md-max-date="restrictDate">
-                </md-datepicker>
+                  <md-datepicker id="submittedon" ng-model="first.submittedon" 
+                     md-placeholder="{{'label.selecttodate' | translate}}"
+                     md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                  </md-datepicker>
                 </div>
             </div>
 
             <div class="form-group" has-permission="ACTIVATE_CLIENT">
-               <div class="col-md-offset-3">
-               <md-checkbox ng-model="formData.active" ng-change="setChoice()">
-                   {{'label.input.active' | translate }}
-               </md-checkbox> 
+               <div class="col-sm-3 col-sm-offset-3">
+                  <md-checkbox ng-model="formData.active" ng-change="setChoice()">
+                     {{'label.input.active' | translate }}
+                  </md-checkbox> 
                </div>
                <div data-ng-switch on="choice">
-               <div data-ng-switch-when="1">
-                   <label class="control-label col-sm-3">{{'label.input.activationdate' | translate}}<span class="required">*</span></label>
-                   <div class="col-sm-3">
-                       <md-datepicker id="activationDate" ng-model="first.date" 
-                           md-placeholder="{{'label.selecttodate' | translate}}"
-                           md-min-date="'2000-01-01'" md-max-date="restrictDate">
-                       </md-datepicker>
-                   </div>
-               </div>
+                  <div data-ng-switch-when="1">
+                     <label class="control-label col-sm-3">{{'label.input.activationdate' | translate}}<span class="required">*</span></label>
+                     <div class="col-sm-3">
+                        <md-datepicker id="activationDate" ng-model="first.date" 
+                              md-placeholder="{{'label.selecttodate' | translate}}"
+                              md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                        </md-datepicker>
+                     </div>
+                  </div>
                </div>
            </div>
 
@@ -386,17 +393,17 @@
 
             <div class="form-group">
                 <div class="form-group">
-                <div class="control-label col-sm-3">
-                <h3><strong>{{'label.heading.familymembers' | translate }}</strong>&nbsp;<a ng-click="addFamilyMember()" ><i class="fa fa-plus" title="{{'label.button.addfamilymember' | translate}}"></i></a></h3>
-                </div>
+                   <div class="control-label col-sm-3">
+                      <h3><strong>{{'label.heading.familymembers' | translate }}</strong>&nbsp;<a ng-click="addFamilyMember()"><i class="fa fa-plus" title="{{'label.button.addfamilymember' | translate}}"></i></a></h3>
+                  </div>
                 </div>
 
                 <div ng-repeat="family in familyArray">
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="control-label col-sm-3">
                             <label>{{'label.input.relationship' | translate }}<span class="required">*</span></label>
                         </div>
-                        <div class="col-sm-3"  >
+                        <div class="col-sm-3">
                             <md-select id="relationshipIdOption" ng-model="familyArray[$index].relationshipId" 
                                     placeholder="{{'label.selectone' | translate}}">
                                     <md-option ng-repeat="relationshipIdOption in relationshipIdOptions" ng-value="relationshipIdOption.id">
@@ -410,7 +417,7 @@
                         <a ng-click="removeFamilyMember($index)" uib-tooltip="{{'label.remove.row' | translate}}"><i class="fa fa-times"></i></a>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3" for="firstName">{{'label.input.firstname' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" id="firstName" name="firstName" ng-model="familyArray[$index].firstName"
@@ -426,7 +433,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3" for="lastName">{{'label.input.lastname' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" id="lastName" name="lastName" ng-model="familyArray[$index].lastName"
@@ -434,14 +441,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3" for="qualification">{{'label.input.qualification' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" id="qualification" name="qualification" ng-model="familyArray[$index].qualification"  class="form-control">
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3" for="mobileNumber">{{'label.input.mobileNumber' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" id="mobileNumber" name="mobileNumber" ng-model="familyArray[$index].mobileNumber"
@@ -449,14 +456,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3" for="age">{{'label.input.age' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="number" min="0" max="120" id="age" name="age" ng-model="familyArray[$index].age" class="form-control">
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
                             <md-checkbox id="isDependent" ng-model="familyArray[$index].isDependent">
                                 {{'label.input.isDependent' | translate }}
@@ -464,11 +471,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="control-label col-sm-3">
                             <label>{{'label.input.gender' | translate }}</label>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <md-select id="genderIdOption" ng-model="familyArray[$index].genderId"
                                     placeholder="{{'label.selectone' | translate}}">
                                     <md-option ng-repeat="genderIdOption in genderIdOptions" ng-value="genderIdOption.id">
@@ -482,7 +489,7 @@
                         <div class="control-label col-sm-3">
                             <label>{{'label.input.profession' | translate}}</label>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <md-select id="professionIdOption" ng-model="familyArray[$index].professionId"  
                                 placeholder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="professionIdOption in professionIdOptions" ng-value="professionIdOption.id">
@@ -492,11 +499,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <div class="control-label col-sm-3">
                             <label>{{'label.input.maritalstatus' | translate}}</label>
                         </div>
-                        <div class="col-sm-3" >
+                        <div class="col-sm-3">
                             <md-select id="maritalStatusId" ng-model="familyArray[$index].maritalStatusId" 
                                 placeholder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="maritalStatusIdOption in maritalStatusIdOptions" ng-value="professionIdOption.id">
@@ -506,7 +513,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <label class="control-label col-sm-3">{{'label.input.dateofbirth' | translate }}</label>
                         <div class="col-sm-3">
                             <md-datepicker ng-model="familyArray[$index].dateOfBirth" 
@@ -521,22 +528,22 @@
             <div ng-show="enableAddress" class="form-group">
                <div class="form-group">
                   <div class="control-label col-sm-3">
-                     <h3><strong>{{'label.input.address' | translate }}</strong>&nbsp;<a ng-click="addAddress()" ><i class="fa fa-plus" title="{{'label.button.addAddress' | translate}}"></i></a></h3>
+                     <h3><strong>{{'label.input.address' | translate }}</strong>&nbsp;<a ng-click="addAddress()"><i class="fa fa-plus" title="{{'label.button.addAddress' | translate}}"></i></a></h3>
                   </div>
                </div>
                <div ng-repeat="addr in addressArray">
                   <div class="col-sm-8 col-md-8">
                   <div class="form-group" ng-show="postalCode">
-                     <label class="control-label col-sm-3" >{{'label.input.postal_code' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" pattern="\d{5}" name="postal_code" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].postalCode" class="form-control">
                      </div>
                   </div>
-                  <div class="form-group" >
+                  <div class="form-group">
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
                      </div>
-                     <div class="col-sm-6"  >
+                     <div class="col-sm-6">
                         <md-select id="addressType" ng-model="addressArray[$index].addressTypeId" required
                            placeholder="{{'label.selectone' | translate}}">
                            <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
@@ -562,49 +569,49 @@
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine1">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline1' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline1' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline1" ng-model="addressArray[$index].addressLine1" 
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine2">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline2' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline2' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline2" ng-model="addressArray[$index].addressLine2"
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine3">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline3' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline3' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline3" ng-model="addressArray[$index].addressLine3" 
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine4">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline4' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline4' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline4" ng-model="addressArray[$index].addressLine4" 
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine5">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline5' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline5' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline5" ng-model="addressArray[$index].addressLine5"
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="addressLine6">
-                     <label class="control-label col-sm-3" >{{'label.input.addressline6' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.addressline6' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="addressline6" ng-model="addressArray[$index].addressLine6" 
                             maxlength="200" class="form-control uppercase">
                      </div>
                   </div>
                   <div class="form-group" ng-show="city">
-                     <label class="control-label col-sm-3" >{{'label.input.city' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.city' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="city" ng-model="addressArray[$index].city"
                             maxlength="100" class="form-control uppercase">
@@ -614,7 +621,7 @@
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.country' | translate }}</label>
                      </div>
-                     <div class="col-sm-6" >
+                     <div class="col-sm-6">
                         <md-select name="countryOptions" ng-model="addressArray[$index].countryId"
                            placeholder="{{'label.selectone' | translate}}">
                            <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
@@ -623,11 +630,15 @@
                         </md-select>
                      </div>
                   </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3531d1a7a27d5aaa0ade6db0084c57e882bec935
                   <div class="form-group" ng-show="stateProvinceId">
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.state_province' | translate }}</label>
                      </div>
-                     <div class="col-sm-6" >
+                     <div class="col-sm-6">
                         <md-select  ng-model="addressArray[$index].stateProvinceId" 
                            ng-change="filterMunicipality(addressArray[$index].stateProvinceId); changeState(stateOption.name)"
                            placeholder="{{'label.selectone' | translate}}">
@@ -641,7 +652,7 @@
                      <div class="control-label col-sm-3">
                         <label>{{'label.input.municipality' | translate }}</label>
                      </div>
-                     <div class="col-sm-6" >
+                     <div class="col-sm-6">
                         <md-select chosen="municipalityOptions" ng-model="addressArray[$index].municipality" 
                            placeholder="{{'label.selectone' | translate}}">
                            <md-option ng-repeat="municipalityOption in municipalityOptions" ng-value="municipalityOption.id">
@@ -651,19 +662,19 @@
                      </div>
                   </div>
                   <div class="form-group" ng-show="antiquity">
-                     <label class="control-label col-sm-3" >{{'label.input.antiquity' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.antiquity' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].antiquity"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="latitude">
-                     <label class="control-label col-sm-3" >{{'label.input.latitude' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.latitude' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
                      </div>
                   </div>
                   <div class="form-group" ng-show="longitude">
-                     <label class="control-label col-sm-3" >{{'label.input.longitude' | translate }}</label>
+                     <label class="control-label col-sm-3">{{'label.input.longitude' | translate }}</label>
                      <div class="col-sm-6">
                         <input type="text" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
                      </div>
