@@ -962,14 +962,12 @@
                         </div>
                         </md-tab-body>
                     </md-tab>
-
                     <md-tab md-on-select="getAddresses()" ng-show="enableAddress">
                         <md-tab-label>{{'label.heading.addresses' | translate}}</md-tab-label>
                         <md-tab-body>
                             <br />
                             <md-button md-no-ink class="md-primary pull-right" ng-click="routeTo()"><i
                                 class="fa fa-plus"></i>{{'label.button.addAddress' | translate}}</md-button>
-                                <div class="col-sm-8 col-md-8">
                             <table class="table" ng-repeat="address in addresses" class="table table-condensed">
                                 <thead>
                                     <tr class="graybg">
@@ -1129,20 +1127,24 @@
                                                 data-ng-hide="address.isActive" class="btn btn-primary btn-sm">
                                                 {{"label.button.enable" | translate}}
                                             </button>
-                                            <button
+                                            <md-button class="md-primary md-raised"
                                                 ng-click="ChangeAddressStatus(address.client_id,address.isActive,address.addressId)"
-                                                data-ng-show="address.isActive" class="btn btn-primary btn-sm">
+                                                data-ng-show="address.isActive" >
                                                 {{"label.button.disable" | translate}}
-                                            </button>
+                                            </md-button>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <md-button class="md-primary md-raised pull-right" ng-click="showMap($event, transaction)"   >
+                                                Ver ubicación
+                                              </md-button>   
+                                        </td>
+
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-
-                        <div class= "col-sm-4 col-md-4">
-                                      <leaflet lf-center="center" event-broadcast="events" markers="markers" height="480px" width="100%"></leaflet>
-                                    </div>
                         </md-tab-body>
                     </md-tab>
 
