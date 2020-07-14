@@ -1,0 +1,92 @@
+version: "2.2"
+
+networks:
+  fincore:
+    driver: bridge
+services:
+  mifos-ui-backoffice:
+    image: com.mx.infotec.fineract.cn.ui.backoffice.develop
+    restart: always
+    volumes:
+      - /home/victor/dev/certificates/bundle.crt:/usr/local/lsws/admin/conf/webadmin.crt
+      - /home/victor/dev/certificates/infotec_2019.key:/usr/local/lsws/admin/conf/webadmin.key
+    extra_hosts:
+      - "eureka:172.22.216.195"
+      - "cassandra:172.22.216.198"
+      - "tidb:172.22.216.197"
+      - "activemq:172.22.216.196"
+    ports:
+      - 80:80
+      - 443:443
+      - 7080:7080
+    networks:
+      - fincore
+    healthcheck:
+      test: curl -kfsS https://127.0.0.1:443/#/ | grep 'RELEASE' | wc -l
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  mifos-ms-backoffice:
+    image: harbor.infotec.mx/mifosio/com.mx.infotec.fineract.cn.ms.backoffice.develop
+    restart: always
+    depends_on:
+      mifos-dbbalancer-server:
+        condition: service_healthy
+    volumes:
+      - /home/dads/certificates/bundle.crt:/etc/ssl/certs/fullchain.pem
+      - /home/dads/certificates/infotec_2019.key:/etc/ssl/private/privkey.pem
+    extra_hosts:
+      - "eureka:172.22.216.195"
+      - "cassandra:172.22.216.198"
+      - "docs.infotec.mx:172.22.216.198"
+      - "tidb:172.22.216.197"
+      - "activemq:172.22.216.196"
+    ports:
+      - 8080:8080
+      - 8009:8009 
+      - 8443:8443
+    networks:
+      - fincore
+    healthcheck:
+      test: curl -kfsS https://127.0.0.1:8443/#/ | grep 'RELEASE' | wc -l
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  mifos-activemqbalancer-server:
+    image: harbor.infotec.mx/mifosio/com.mx.infotec.fineract.cn.infra.lb.activemq.develop
+    restart: always       
+    ports:
+      - 61616:61616
+    extra_hosts:      
+      - "activemq:172.22.216.196"
+    networks:
+      - fincore  
+  mifos-dbbalancer-server:
+    image: harbor.infotec.mx/mifosio/com.mx.infotec.fineract.cn.infra.lb.db.develop
+    restart: always    
+    healthcheck:
+      test:  mysql --protocol TCP -u root -p'mysql' --port 3306 -e 'show databases;'
+      interval: 25s
+      retries: 20
+    ports:
+      - 3306:3306
+    networks:
+      - fincore  
+  mifos-db-server:
+    image: harbor.infotec.mx/mifosio/com.mx.infotec.fineract.cn.infra.lb.db.develop
+    restart: always
+    healthcheck:
+      test:  mysqladmin --user=root --password=mysql ping -h localhost
+      interval: 5s
+      retries: 20    
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql    
+    volumes:
+      - /data/db/datadir/:/var/lib/mysql
+    healthcheck:
+      test:  mysql --protocol TCP -u root -p'mysql' --port 3306 -e 'show databases;'
+      interval: 25s
+      retries: 20
+    networks:
+      - fincore
+

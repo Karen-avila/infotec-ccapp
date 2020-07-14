@@ -30,36 +30,36 @@
                             <tr>
                                 <th scope="col">{{'label.heading.date' | translate}}</th>
 
-                                <th scope="col">{{'label.heading.principaldue' | translate}}</th>
-                                <th scope="col">{{'label.heading.balanceofloan' | translate}}</th>
+                                <th scope="col" >{{'label.heading.principaldue' | translate}}</th>
+                                <th scope="col" >{{'label.heading.balanceofloan' | translate}}</th>
 
-                                <th scope="col">{{'label.heading.interest' | translate}}</th>
-                                <th scope="col">{{'label.heading.fees' | translate}}</th>
-                                <th scope="col">{{'label.heading.penalties' | translate}}</th>
+                                <th scope="col" >{{'label.heading.interest' | translate}}</th>
+                                <th scope="col" >{{'label.heading.fees' | translate}}</th>
+                                <th scope="col" >{{'label.heading.penalties' | translate}}</th>
 
-                                <th scope="col">{{'label.heading.outstanding' | translate}}</th>
+                                <th scope="col" >{{'label.heading.outstanding' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="period in data.periods">
                                 <td>{{period.dueDate | DateFormat}}</td>
-                                <td>{{period.principalDue | FormatNumber}}</td>
-                                <td>{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
-                                <td>{{period.interestOriginalDue | FormatNumber}}</td>
-                                <td>{{period.feeChargesDue | FormatNumber}}</td>
-                                <td>{{period.penaltyChargesDue | FormatNumber}}</td>
-                                <td>{{period.totalOutstandingForPeriod | FormatNumber}}</td>
+                                <td >{{period.principalDue | FormatNumber}}</td>
+                                <td >{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                <td >{{period.interestOriginalDue | FormatNumber}}</td>
+                                <td >{{period.feeChargesDue | FormatNumber}}</td>
+                                <td >{{period.penaltyChargesDue | FormatNumber}}</td>
+                                <td >{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                             </tr>
                         </tbody>
                         <tfoot class="ui-widget-header">
                             <tr>
                                 <th >{{'label.heading.total' | translate}}</th>
-                                <th>{{data.totalPrincipalExpected | FormatNumber}}</th>
-                                <th>&nbsp;</th>
-                                <th>{{data.totalInterestCharged | FormatNumber}}</th>
-                                <th>{{data.totalFeeChargesCharged | FormatNumber}}</th>
-                                <th>{{data.totalPenaltyChargesCharged | FormatNumber}}</th>
-                                <th>{{data.totalRepaymentExpected | FormatNumber}}</th>
+                                <th >{{data.totalPrincipalExpected | FormatNumber}}</th>
+                                <th >&nbsp;</th>
+                                <th >{{data.totalInterestCharged | FormatNumber}}</th>
+                                <th >{{data.totalFeeChargesCharged | FormatNumber}}</th>
+                                <th >{{data.totalPenaltyChargesCharged | FormatNumber}}</th>
+                                <th >{{data.totalRepaymentExpected | FormatNumber}}</th>
                             </tr>
                         </tfoot>
                     </table>

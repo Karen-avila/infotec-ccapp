@@ -11,30 +11,29 @@
 					<div class="row primarydiv">
 						<div class="pull-right">
 							<div class="btn-group">
-								<a href="#!/editfund/{{fund.id}}" class="btn btn-sm btn-primary"
-									has-permission='UPDATE_FUND'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{
-										'label.button.edit' | translate }}</a>
+								<md-button md-no-ink class="md-primary" has-permission='UPDATE_FUND' href="#!/editfund/{{fund.id}}">
+									<i class="fa fa-edit"></i> {{'label.button.edit' | translate}}</md-button>
 							</div>
 						</div>
 					</div>
 
 					<h3><strong>{{fund.name}}</strong></h3>
-					<table class="table-bordered table view-table" style="width: 350px">
-						<tr>
-							<td>{{'label.heading.fundsource' | translate }}</td>
-							<td>{{fund.name}}</td>
-						</tr>
+					<table class="table-bordered table view-table" style="width: 500px">
 						<tr>
 							<td>{{'label.heading.externalid' | translate }}</td>
 							<td>{{fund.externalId}}</td>
 						</tr>
+						<tr ng-if="fund.accountNo">
+							<td>{{'label.heading.main.savingaccount' | translate }}</td>
+							<td>{{fund.accountNo}} - {{fund.clienteName}}</td>
+						</tr>
 						<tr>
 							<td>{{'label.heading.amount' | translate }}</td>
-							<td>{{fund.amount}}</td>
+							<td class="amount">{{fund.amount | FormatNumber}}</td>
 						</tr>
 						<tr>
 							<td>{{'label.heading.active' | translate }}</td>
-							<td>{{fund.active}}</td>
+							<td>{{fund.active | translate}}</td>
 						</tr>
 					</table>
 				</div>

@@ -25,6 +25,9 @@
     color: #fff;
     text-align: justify;
     z-index: 2;
+    margin-top: 490px;
+    margin-right: 450px;
+    margin-left: 310px;
 
     .cover-title {
       border-bottom: 2px solid #fff;
@@ -36,16 +39,19 @@
           color: $brand-primary;
       }
     }
-
+    
     .cover-description {
+    
       .cover-link {
         text-decoration: underline;
         color: #fff;
 
         &:hover {
           color: $gray-light;
+        
         }
       }
+    
     }
   }
 }
@@ -60,7 +66,7 @@
   overflow: auto;
 
   .img-container {
-    margin-top: 50px;
+    margin-top: 120px;
     max-width: 36rem;
   }
 }
