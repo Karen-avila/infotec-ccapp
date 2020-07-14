@@ -9,35 +9,52 @@
 			<div class="toolbar">
 				<h4>{{'label.heading.fundsources' | translate}}</h4>
 				<div class="pull-right">
-					<a href="#!/createfund" class="btn btn-sm btn-primary" has-permission='CREATE_FUND'><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.addfund' | translate}}</a>
+					<md-button md-no-ink class="md-primary" has-permission='CREATE_FUND' href="#!/createfund"><i
+						class="fa fa-plus"></i> {{'label.button.addfund' | translate}}</md-button>
 				</div>
 			</div>
-			<div ng-hide="isTreeView">
-				<div class="">
-					<input ng-model="filterText" type="text" ng-keyup="onFilter()"
-					class="form-control " placeholder="{{'label.input.filterbyFundNameAmount' | translate}}">
+			<md-divider></md-divider>
+			<br>
+			<md-table-container ng-show="funds.length > 0">
+				<div class="row">
+					<div class="col-md-7">
+						<md-input-container class="full-width">
+							<label>{{'label.input.filterbynameaccno' | translate}}</label>
+							<input ng-model="filter.search"> 
+						</md-input-container>
+					</div>
+					<md-divider></md-divider>
 				</div>
-				<br>
-				<table class="table">
-					<thead>
-						<tr class="graybg">
-							<th>{{'label.heading.fundname' | translate }}</th>
-							<th>{{'label.heading.externalid' | translate }}</th>
-							<th>{{'label.heading.amount' | translate }}</th>
-							<th>{{'label.heading.active' | translate}}</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="fund in funds">
-							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.name}}</td>
-							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.externalId}}</td>
-							<td class="pointer" data-ng-click="routeTo(fund.id)">$ {{fund.amount | FormatNumber}}</td>
-							<td class="pointer" data-ng-click="routeTo(fund.id)">{{fund.active}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<div class="row">
+					<div clas="col-sm-12">
+						<table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+							<thead md-head md-order="query.order">
+								<tr md-row>
+									<th md-column md-order-by="name">{{'label.heading.fundname' | translate }}</th>
+									<th md-column md-order-by="externalId">{{'label.heading.externalid' | translate }}</th>
+									<th md-column>{{'label.heading.main.savingaccount' | translate }}</th>
+									<th md-column md-order-by="amount">{{'label.heading.amount' | translate }}</th>
+									<th md-column>{{'label.heading.active' | translate}}</th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr md-row ng-repeat="fund in funds | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+								data-ng-click="routeTo(fund.id)" md-select="fund" md-select-id="name">
+									<td md-cell>{{fund.name}}</td>
+									<td md-cell>{{fund.externalId}}</td>
+									<td md-cell>{{fund.accountNo}}</td>
+									<td md-cell>{{fund.amount | FormatNumber}}</td>
+									<td md-cell>{{fund.active | translate}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</md-table-container>
+
+			<md-table-pagination ng-show="funds.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+				md-page="query.page" md-total="{{totalFunds}}" md-on-paginate="getResultsPage" md-page-select>
+			</md-table-pagination>
 		</div>
 	</div>
 </div>

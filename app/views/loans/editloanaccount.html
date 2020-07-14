@@ -668,13 +668,13 @@
                         <tr class="graybg">
                             <th>{{'label.heading.name' | translate}}</th>
                             <th>{{'label.heading.type' | translate}}</th>
-                            <th class="text-right" style="padding-right: 10px;">{{'label.heading.amount' | translate}}</th>
+                            <th >{{'label.heading.amount' | translate}}</th>
                             <th>{{'label.heading.collectedon' | translate}}</th>
                         </tr>
                         <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                             <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                             <td>{{charge.chargeCalculationType.value | translate}}</td>
-                            <td class="text-right" style="padding-right: 10px;">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
+                            <td >{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value | translate}}</td>
                         </tr>
                     </table>
@@ -747,41 +747,41 @@
                         <td>#</td>
                         <td>{{'label.heading.date' | translate}}</td>
                         <td>{{'label.heading.days' | translate}}</td>
-                        <td class="text-right">{{'label.heading.disbursement' | translate}}</td>
-                        <td class="text-right">{{'label.heading.principaldue' | translate}}</td>
-                        <td class="text-right">{{'label.heading.principalbalance' | translate}}</td>
-                        <td class="text-right">{{'label.heading.interestdue' | translate}}</td>
-                        <td class="text-right">{{'label.heading.taxes' | translate}}</td>
-                        <td class="text-right">{{'label.heading.fees' | translate}}</td>
-                        <td class="text-right">{{'label.heading.penalty' | translate}}</td>
-                        <td class="text-right">{{'label.heading.due' | translate}}</td>
+                        <td >{{'label.heading.disbursement' | translate}}</td>
+                        <td >{{'label.heading.principaldue' | translate}}</td>
+                        <td >{{'label.heading.principalbalance' | translate}}</td>
+                        <td >{{'label.heading.interestdue' | translate}}</td>
+                        <td >{{'label.heading.taxes' | translate}}</td>
+                        <td >{{'label.heading.fees' | translate}}</td>
+                        <td >{{'label.heading.penalty' | translate}}</td>
+                        <td >{{'label.heading.due' | translate}}</td>
                     </tr>
                     <tr ng-repeat="period in repaymentscheduleinfo.periods">
                         <td>{{period.period}}</td>
                         <td>{{period.dueDate | DateFormat}}</td>
                         <td>{{period.daysInPeriod}}</td>
-                        <td class="text-right">{{period.principalDisbursed| FormatNumber}}</td>
-                        <td class="text-right">{{period.principalDue| FormatNumber}}</td>
-                        <td class="text-right">{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                        <td class="text-right">{{period.interestDue| FormatNumber}}</td>
-                        <td class="text-right">{{period.taxOnInterestDue | FormatNumber}}</td>
-                        <td class="text-right">{{period.feeChargesDue| FormatNumber}}</td>
-                        <td class="text-right">{{period.penaltyChargesDue| FormatNumber}}</td>
-                        <td class="text-right">{{period.totalDueForPeriod| FormatNumber}}</td>
+                        <td >{{period.principalDisbursed| FormatNumber}}</td>
+                        <td >{{period.principalDue| FormatNumber}}</td>
+                        <td >{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                        <td >{{period.interestDue| FormatNumber}}</td>
+                        <td >{{period.taxOnInterestDue | FormatNumber}}</td>
+                        <td >{{period.feeChargesDue| FormatNumber}}</td>
+                        <td >{{period.penaltyChargesDue| FormatNumber}}</td>
+                        <td >{{period.totalDueForPeriod| FormatNumber}}</td>
                     </tr>
                 </tbody>
                 <tfoot class="ui-widget-header">
                     <tr>
                         <td colspan="2">{{'label.heading.total' | translate}}</td>
                         <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
-                        <td class="text-right"></td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                        <td class="text-right">{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                        <td ></td>
+                        <td >{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                     </tr>
                 </tfoot>
             </table>
