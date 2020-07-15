@@ -21,6 +21,18 @@
       scope.staffData = {};
       scope.fieldOfficers = [];
       scope.savingaccountdetails = [];
+
+      scope.query = {
+        order: "date",
+        limit: 25,
+        page: 1,
+      };
+
+      scope.options = {
+        boundaryLinks: true,
+        rowSelection: true,
+      };
+
       scope.isDebit = function (savingsTransactionType) {
         return (
           savingsTransactionType.withdrawal == true ||
@@ -163,9 +175,9 @@
           case "applyAnnualFees":
             location.path(
               "/savingaccountcharge/" +
-                accountId +
-                "/applyAnnualFees/" +
-                scope.annualChargeId
+              accountId +
+              "/applyAnnualFees/" +
+              scope.annualChargeId
             );
             break;
           case "transferFunds":
@@ -219,7 +231,7 @@
           scope.savingaccountdetails.availableBalance = scope
             .savingaccountdetails.enforceMinRequiredBalance
             ? scope.savingaccountdetails.summary.accountBalance -
-              scope.savingaccountdetails.minRequiredOpeningBalance
+            scope.savingaccountdetails.minRequiredOpeningBalance
             : scope.savingaccountdetails.summary.accountBalance;
           scope.convertDateArrayToObject("date");
           if (scope.savingaccountdetails.groupId) {
@@ -505,6 +517,10 @@
         scope.viewTransactionReport = false;
       };
 
+      scope.refresh = function () {
+        route.reload();
+      };
+      
       scope.viewJournalEntries = function () {
         location
           .path("/searchtransaction/")
@@ -515,18 +531,18 @@
         if (scope.datatabledetails.isMultirow) {
           location.path(
             "/viewdatatableentry/" +
-              registeredTableName +
-              "/" +
-              scope.savingaccountdetails.id +
-              "/" +
-              data.row[0]
+            registeredTableName +
+            "/" +
+            scope.savingaccountdetails.id +
+            "/" +
+            data.row[0]
           );
         } else {
           location.path(
             "/viewsingledatatableentry/" +
-              registeredTableName +
-              "/" +
-              scope.savingaccountdetails.id
+            registeredTableName +
+            "/" +
+            scope.savingaccountdetails.id
           );
         }
       };
@@ -668,9 +684,9 @@
       scope.modifyTransaction = function (accountId, transactionId) {
         location.path(
           "/savingaccount/" +
-            accountId +
-            "/modifytransaction?transactionId=" +
-            transactionId
+          accountId +
+          "/modifytransaction?transactionId=" +
+          transactionId
         );
       };
 

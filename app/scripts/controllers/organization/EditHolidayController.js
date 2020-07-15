@@ -1,10 +1,11 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        EditHolidayController: function (scope, routeParams, resourceFactory, location, dateFilter) {
+        EditHolidayController: function (scope, routeParams, resourceFactory, location, dateFilter, MAX_DATEPICKER) {
             scope.formData = {};
             scope.date = {};
-            scope.restrictDate = new Date();
+            scope.minDate = new Date();
             scope.specificRescheduleType = 2;
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
             resourceFactory.holValueResource.getholvalues({holId: routeParams.id}, function (data) {
                 scope.holiday = data;
@@ -69,7 +70,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('EditHolidayController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.EditHolidayController]).run(function ($log) {
+    mifosX.ng.application.controller('EditHolidayController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'MAX_DATEPICKER', mifosX.controllers.EditHolidayController]).run(function ($log) {
         $log.info("EditHolidayController initialized");
     });
 }(mifosX.controllers || {}));
