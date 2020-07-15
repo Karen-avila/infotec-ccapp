@@ -1,18 +1,20 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        AddHolController: function (scope, resourceFactory, location, dateFilter) {
+        AddHolController: function (scope, resourceFactory, location, dateFilter, MAX_DATEPICKER) {
             scope.offices = [];
             scope.holidays = [];
-            scope.date = {};
-            scope.date.first = new Date();
-            scope.date.second = new Date();
-            scope.date.third = new Date();
+            scope.date = {
+                first: new Date(),
+                second: new Date(),
+                third: new Date()
+            }
             var idToNodeMap = {};
             var holidayOfficeIdArray = [];
             scope.firstError = false
             scope.secondError = false
             scope.thirdError = false
             scope.specificRescheduleType = 2;
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
             scope.deepCopy = function (obj) {
                 if (Object.prototype.toString.call(obj) === '[object Array]') {
@@ -116,7 +118,7 @@
                 }
             }
 
-            scope.minDat = new Date();
+            scope.minDate = new Date();
             scope.submit = function () {
                 var testDate = new Date();
                 testDate.setDate(testDate.getDate() - 1);
@@ -170,7 +172,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('AddHolController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.AddHolController]).run(function ($log) {
+    mifosX.ng.application.controller('AddHolController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', 'MAX_DATEPICKER', mifosX.controllers.AddHolController]).run(function ($log) {
         $log.info("AddHolController initialized");
     });
 }(mifosX.controllers || {}));

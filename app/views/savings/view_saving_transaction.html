@@ -14,8 +14,8 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="undoTransaction()">{{'label.button.undo' | translate}}</button>
+            <md-button class="md-raised md-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="undoTransaction()">{{'label.button.undo' | translate}}</md-button>
         </div>
     </script>
     <div class="card well">
@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                     <td>{{'label.heading.currency' | translate}}</td>
-                    <td>{{transaction.currency.name | translate}}</td>
+                    <td>{{transaction.currency.code}} {{transaction.currency.name | translate}}</td>
                 </tr>
                 <tr>
                     <td>{{'label.heading.amount' | translate}}</td>
@@ -69,7 +69,7 @@
                 </tr>
                 <tr ng-show="transaction.paymentDetailData.paymentType">
                     <td>{{'label.heading.type' | translate}}</td>
-                    <td>{{transaction.paymentDetailData.paymentType.name | translate}}</td>
+                    <td>{{'payment.type.' + transaction.paymentDetailData.paymentType.name | translate}}</td>
                 </tr>
                 <tr ng-show="transaction.paymentDetailData.accountNumber">
                     <td>{{'label.heading.accnum' | translate}}</td>

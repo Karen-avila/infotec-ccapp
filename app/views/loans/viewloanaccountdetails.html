@@ -3,7 +3,7 @@
         <li ng-show="loandetails.clientName"><a
                 ng-href="#!/viewclient/{{loandetails.clientId}}">{{loandetails.clientName}}</a></li>
         <li ng-show="loandetails.group"><a ng-href="#!/viewgroup/{{loandetails.group.id}}">{{loandetails.group.name}}</a></li>
-        <li class="active"><a ng-click="refresh()" class="pointer">{{loandetails.loanProductName}} - {{loandetails.accountNo}}</a></li>
+        <li class="active"><a ng-click="refresh()" class="pointer active">{{loandetails.loanProductName}} - {{loandetails.accountNo}}</a></li>
     </ul>
 
     <script type="text/ng-template" id="delcharge.html">
