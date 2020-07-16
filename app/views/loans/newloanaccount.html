@@ -798,7 +798,7 @@
                                             <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                                 <td>{{charge.name}}, {{charge.currency.displaySymbol}}</td>
                                                 <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
-                                                <td>{{charge.amount | FormatNumber}}</td>
+                                                <td>{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                                                 <td>{{charge.chargeTimeType.value | translate}}</td>
                                             </tr>
                                         </table>
