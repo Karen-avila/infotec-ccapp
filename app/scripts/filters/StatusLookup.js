@@ -6,6 +6,8 @@
                 var cssClassNameLookup = {
                     "true": "statusactive",
                     "false": "statusdeleted",
+                    "Enabled": "statusactive",
+                    "Disabled": "statusrejected",
                     "Active": "statusactive",
                     "Standby": "statuspending",
                     "success": "statusactive",
