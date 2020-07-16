@@ -879,6 +879,8 @@
     "jobScheduler.Standby": "Detenido",
     "jobStatusType.success": "Exitoso",
     "jobStatusType.failed": "Fallido",
+    "userStatusType.enabled": "Activo",
+    "userStatusType.disabled": "Fallido",
     "clientStatusType.pending": "Pendiente",
     "clientStatusType.active": "Activo",
     "clientStatusType.closed": "Cerrado",
