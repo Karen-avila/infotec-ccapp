@@ -3,7 +3,7 @@
         ViewUserController: function (scope, routeParams, route, location, resourceFactory, $uibModal) {
             scope.user = [];
             scope.formData = {};
-            resourceFactory.userListResource.get({userId: routeParams.id}, function (data) {
+            resourceFactory.userListResource.get({ userId: routeParams.id }, function (data) {
                 scope.user = data;
             });
             scope.open = function () {
@@ -18,13 +18,26 @@
                     controller: UserDeleteCtrl
                 });
             };
+            scope.unblockUser = function () {
+                $uibModal.open({
+                    templateUrl: 'unblockuser.html',
+                    controller: UserUnblockCtrl
+                });
+            };
+            scope.blockUser = function () {
+                $uibModal.open({
+                    templateUrl: 'blockuser.html',
+                    controller: UserBlockCtrl
+                });
+            };
+
             var ModalInstanceCtrl = function ($scope, $uibModalInstance) {
                 $scope.save = function (staffId) {
-                    resourceFactory.userListResource.update({'userId': routeParams.id}, this.formData, function (data) {
+                    resourceFactory.userListResource.update({ 'userId': routeParams.id }, this.formData, function (data) {
                         $uibModalInstance.close('activate');
                         if (data.resourceId == scope.currentSession.user.userId) {
                             scope.logout();
-                        } else{
+                        } else {
                             route.reload();
                         };
                     });
@@ -36,7 +49,7 @@
 
             var UserDeleteCtrl = function ($scope, $uibModalInstance) {
                 $scope.delete = function () {
-                    resourceFactory.userListResource.delete({userId: routeParams.id}, {}, function (data) {
+                    resourceFactory.userListResource.delete({ userId: routeParams.id }, {}, function (data) {
                         $uibModalInstance.close('delete');
                         location.path('/users');
                         // added dummy request param because Content-Type header gets removed
@@ -48,6 +61,29 @@
                 };
             };
 
+            var UserUnblockCtrl = function ($scope, $uibModalInstance) {
+                $scope.unblock = function () {
+                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'block'  }, {}, function (data) {
+                        $uibModalInstance.close('unblock');
+                        location.path('/users');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
+            var UserBlockCtrl = function ($scope, $uibModalInstance) {
+                $scope.block = function () {
+                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'block' }, {}, function (data) {
+                        $uibModalInstance.close('block');
+                        location.path('/users');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
         }
     });
     mifosX.ng.application.controller('ViewUserController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', '$uibModal', mifosX.controllers.ViewUserController]).run(function ($log) {
