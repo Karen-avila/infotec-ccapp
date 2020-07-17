@@ -7,7 +7,7 @@
 
             scope.query = {
                 order: "name",
-                limit: 25,
+                limit: 5,
                 page: 1,
             };
 
@@ -47,7 +47,7 @@
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = scope.deepCopy(data);
                 scope.totalOffices = data.length;
-                for (var i in data) {
+                for (let i in data) {
                     data[i].children = [];
                     idToNodeMap[data[i].id] = data[i];
                 }
@@ -58,7 +58,7 @@
                 data.sort(sortByParentId);
 
                 var root = [];
-                for (var i = 0; i < data.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                     var currentObj = data[i];
                     if (currentObj.children) {
                         currentObj.collapsed = "true";

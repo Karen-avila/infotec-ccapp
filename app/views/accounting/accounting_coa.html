@@ -9,86 +9,90 @@
             <div class="toolbar">
                 <h4>{{'label.heading.chartofaccounts' | translate}}</h4>
                 <div class="pull-right">
-                    <md-button md-no-ink class="md-primary" ng-show="isTreeView" ng-click="showTreeView()"><i class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</md-button>
-                    <md-button md-no-ink class="md-primary" ng-hide="isTreeView" ng-click="showTreeView()"><i class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</md-button>
-                    <md-button md-no-ink class="md-primary" href="#!/createglaccount" has-permission='CREATE_GLACCOUNT'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addaccount' | translate}}</md-button>
+                    <md-button md-no-ink class="md-primary" ng-show="isTreeView" ng-click="showTreeView()"><i
+                            class="fa fa-list "></i>&nbsp;&nbsp;{{'label.button.listview' | translate}}</md-button>
+                    <md-button md-no-ink class="md-primary" ng-hide="isTreeView" ng-click="showTreeView()"><i
+                            class="fa fa-sitemap "></i>&nbsp;&nbsp;{{'label.button.treeview' | translate}}</md-button>
+                    <md-button md-no-ink class="md-primary" href="#!/createglaccount" has-permission='CREATE_GLACCOUNT'>
+                        <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addaccount' | translate}}</md-button>
                 </div>
             </div>
             <div ng-hide="isTreeView">
-                <div class= "row">
-                <div class="col-sm-12">
-                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
-                    <div class="col-md-4" style="padding-right:0px;">
-                    <md-input-container class="full-width">
-                        <label >{{'label.input.filterbyAccountGlcodeAccounttype' | translate}}</label>
-                         <input ng-model="filter.search" type="text">
-                         </md-input-container>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">
+                            <div class="col-md-4" style="padding-right:0px;">
+                                <md-input-container class="full-width">
+                                    <label>{{'label.input.filterbyAccountGlcodeAccounttype' | translate}}</label>
+                                    <input ng-model="filter.search" type="text">
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-6" style="padding-left:0px;">
+                                <div class="col-md-4">
+                                    <md-button aria-label="btn-search"
+                                        class="md-raised md-primary md-icon-button search" ng-click="search()">
+                                        <i class="fa fa-search"></i>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </md-whiteframe>
+                    </div>
                 </div>
-                <div class="col-md-6" style="padding-left:0px;">
-                  <div class="col-md-4">
-                      <md-button aria-label="btn-search" class="md-raised md-primary md-icon-button search" ng-click="search()">
-                          <i class="fa fa-search"></i>
-                      </md-button>
-                </div>
-            </div>
-           </md-whiteframe>
-           </div>
-        </div>
-           <md-divider></md-divider>
+                <md-divider></md-divider>
                 <br>
-                <md-table-container ng-show="coadatas.length > 0"  class="noscroll-x">
+                <md-table-container ng-show="coadatas.length > 0" class="noscroll-x">
                     <div class="row">
                         <div class="col-sm-12">
-                <table md-table  md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="query.order">
-                        <tr md-row>
-                        <th md-column>{{'label.heading.acctype' | translate}}</th>
-                        <th md-column>{{'label.heading.glcode' | translate}}</th>
-                        <th md-column>{{'label.heading.account' | translate}}</th>
-                        <th md-column>{{'label.heading.disabled' | translate}}?</th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                    
-                    <tr md-row md-select="coadata" ng-repeat="coadata in coadatas | filter: customSearch | orderBy: query.order" data-ng-click="routeTo(coadata.id)">
-                        <td md-cell>{{coadata.type.value | translate}}</td>
-                        <td md-cell>{{coadata.glCode}}</td>
-                        <td md-cell>{{coadata.name}}</td>
-                        <td md-cell>{{coadata.disabled | translate}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            
+                            <table md-table md-row-select="options.rowSelection" ng-model="selected"
+                                md-progress="promise">
+                                <thead md-head md-order="query.order">
+                                    <tr md-row>
+                                        <th md-column>{{'label.heading.acctype' | translate}}</th>
+                                        <th md-column>{{'label.heading.glcode' | translate}}</th>
+                                        <th md-column>{{'label.heading.account' | translate}}</th>
+                                        <th md-column>{{'label.heading.disabled' | translate}}?</th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row md-select="coadata"
+                                        ng-repeat="coadata in coadatas | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                        data-ng-click="routeTo(coadata.id)">
+                                        <td md-cell>{{coadata.type.value | translate}}</td>
+                                        <td md-cell>{{coadata.glCode}}</td>
+                                        <td md-cell>{{coadata.name}}</td>
+                                        <td md-cell>{{coadata.disabled | translate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-table-container>
+                <md-table-pagination ng-show="coadatas .length > query.limit" md-limit="query.limit" md-limit-options="[10,25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                 md-boundary-links="options.boundaryLinks" md-total="{{coadatas.length}}" md-page="query.page"md-page-select></md-table-pagination>
             </div>
-        </div>
-    </md-table-container>
-</div>      
-    
-            <div ng-show="isTreeView"  >
-                <div ng-show="$root.tempNodeID >= 0" class="col-md-6 divscrollable" >
+
+            <div ng-show="isTreeView">
+                <div ng-show="$root.tempNodeID >= 0" class="col-md-6 divscrollable">
                     <table class="table table-bordered table-striped">
-                            <tr>
-                                <td>{{'label.heading.glcode' | translate }}</td>
-                                <td ng-repeat="coadata in coadatas" ng-show="coadata.id == $root.tempNodeID">{{coadata.glCode}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{'label.heading.acctype' | translate }}</td>
-                                <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">{{coadata.type.value | translate}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{'label.heading.accountusage' | translate }}</td>
-                                <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">{{coadata.usage.value | translate}}</td>
-                            </tr>
+                        <tr>
+                            <td>{{'label.heading.glcode' | translate }}</td>
+                            <td ng-repeat="coadata in coadatas" ng-show="coadata.id == $root.tempNodeID">
+                                {{coadata.glCode}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{'label.heading.acctype' | translate }}</td>
+                            <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">
+                                {{coadata.type.value | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{'label.heading.accountusage' | translate }}</td>
+                            <td ng-repeat="coadata in coadatas" ng-show="coadata.id ==  $root.tempNodeID">
+                                {{coadata.usage.value | translate}}</td>
+                        </tr>
                     </table>
                 </div>
-                <div
-                    data-angular-treeview="true"
-                    data-tree-id="treeview"
-                    data-tree-model="treedata"
-                    data-node-id="id"
-                    data-node-label="name"
-                    data-node-children="children"
-                    data-node-glCode="glCode">
+                <div data-angular-treeview="true" data-tree-id="treeview" data-tree-model="treedata" data-node-id="id"
+                    data-node-label="name" data-node-children="children" data-node-glCode="glCode">
                 </div>
             </div>
             <br>
