@@ -17,7 +17,7 @@
                         <div class="col-sm-3">
                             <md-select ng-model="formData.chargeId" id="chargeId" ng-change="selectCharge(formData.chargeId)" required
                                 placeholder="{{'label.selectcharge' | translate}}">
-                                <md-option ng-repeat="charge in chargeOptions" ng-value="charge.id">
+                                <md-option ng-repeat="charge in charges" ng-value="charge.id">
                                     {{charge.currency.code}} - {{charge.name}}
                                 </md-option>
                             </md-select>
@@ -69,7 +69,7 @@
                 <div class="col-md-12 center">
                     <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate }}
                     </md-button>
-                    <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_LOANCHARGE' ng-show="!isCollapsed">{{'label.button.save' |
+                    <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_LOANCHARGE' style="display:inline-block" ng-show="!isCollapsed">{{'label.button.save' |
                         translate }}
                     </md-button>
                 </div>
