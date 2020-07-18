@@ -19,7 +19,6 @@
             scope.formData.address = [];
             scope.addressresult = [];
 
-
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
@@ -60,16 +59,19 @@
                 scope.address.longitude = `${item.boundingbox[2]}`
                 scope.address.postalCode = item.address.postcode ? item.address.postcode : scope.address.postalCode;
                 scope.address.city = item.address.county ? item.address.county : scope.address.city;
+                
+                scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
                 console.log(item);
             }
 
             scope.direccion_buscador = () => {
-                fetch(`http://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
+                fetch(`https://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
                     .then((response) => { return response.json(); })
                     .then((json) => { scope.addressresult = json });
             }
 
             scope.submit = function () {
+                
                 const reqDate = dateFilter(scope.first.date, scope.df)
                 this.formData.locale = scope.optlang.code
                 this.formData.dateFormat = scope.df
@@ -96,6 +98,8 @@
                         locale: scope.optlang.code
                     };
                     console.log(JSON.stringify(newAddress));
+
+                    debugger;
 
                     resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
                         location.path('/viewoffice/' + data.resourceId)

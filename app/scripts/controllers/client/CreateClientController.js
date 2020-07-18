@@ -61,6 +61,7 @@
                         zoom: 12
                     }
                 });
+                
                 scope.addressArray = [
                     {
                         "latitude": `${item.boundingbox[0]}`,
@@ -126,7 +127,7 @@
 
                 if (routeParams.officeId) {
                     scope.formData.officeId = routeParams.officeId;
-                    for (var i in data.officeOptions) {
+                    for (let i in data.officeOptions) {
                         if (data.officeOptions[i].id == routeParams.officeId) {
                             scope.forceOffice = data.officeOptions[i];
                             break;
@@ -149,7 +150,7 @@
                     scope.municipalityOptions = data.address[0].municipalityIdOptions.sort(sortBy("name"));
                     scope.allMunicipalityOptions = data.address[0].municipalityIdOptions;
                     resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
-                        for (var i = 0; i < data.length; i++) {
+                        for (let i = 0; i < data.length; i++) {
                             data[i].field = 'scope.' + data[i].field;
                             eval(data[i].field + "=" + data[i].is_enabled);
                         }
@@ -164,7 +165,7 @@
             });
 
             scope.filterMunicipality = function (stateProvinceId) {
-                for (var i = 0; i < scope.stateOptions.length; i++) {
+                for (let i = 0; i < scope.stateOptions.length; i++) {
                     if (scope.stateOptions[i].id === stateProvinceId) {
                         const state = scope.stateOptions[i].name;
                         scope.municipalityOptions = scope.allMunicipalityOptions.filter(function (item) {
@@ -270,13 +271,13 @@
                     var nombre = scope.formData.middlename ? scope.formData.firstname + " " + scope.formData.middlename : scope.formData.firstname;
                     var genero = "";
                     var lugarNacimiento = "";
-                    for (var i in scope.genderIdOptions) {
+                    for (let i in scope.genderIdOptions) {
                         if (scope.genderIdOptions[i].id === scope.formData.genderId) {
                             genero = scope.genderIdOptions[i].name;
                             break;
                         }
                     }
-                    for (var i in scope.birthPlaceOptions) {
+                    for (let i in scope.birthPlaceOptions) {
                         if (scope.birthPlaceOptions[i].id === scope.formData.birthPlaceId) {
                             lugarNacimiento = scope.birthPlaceOptions[i].name;
                             break;
@@ -388,7 +389,7 @@
 
                 if (scope.enableAddress === true) {
                     scope.formData.address = [];
-                    for (var i = 0; i < scope.addressArray.length; i++) {
+                    for (let i = 0; i < scope.addressArray.length; i++) {
                         var temp = new Object();
                         if (scope.addressArray[i].addressTypeId) {
                             temp.addressTypeId = scope.addressArray[i].addressTypeId;
@@ -452,7 +453,7 @@
                 }
 
                 // family array
-                for (var i = 0; i < scope.familyArray.length; i++) {
+                for (let i = 0; i < scope.familyArray.length; i++) {
                     var temp = new Object();
                     if (scope.familyArray[i].relationshipId) {
                         temp.relationshipId = scope.familyArray[i].relationshipId;
