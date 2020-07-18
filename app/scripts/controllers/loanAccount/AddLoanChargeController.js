@@ -8,7 +8,7 @@
             scope.loanId = routeParams.id;
 
             resourceFactory.loanChargeTemplateResource.get({ loanId: scope.loanId }, function (data) {
-                scope.chargeOptions = data.chargeOptions;
+                scope.charges = data.chargeOptions;
                 console.log(scope.charges);
             });
 

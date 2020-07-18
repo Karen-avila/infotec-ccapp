@@ -7,18 +7,19 @@
             <br>
             <div class="row">
                 <div class="col-sm-12">
-                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center"> 
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">
                         <div class="col-md-4" style="padding-right:0px;">
                             <md-input-container class="full-width">
                                 <label>{{'label.input.searchByNameAccNo' | translate}}</label>
                                 <input data-ng-model="searchText" type="text"
-                                ng-keyup="searchText.length > 4 && $event.keyCode == 13 && search()" 
-                                class="uppercase" />
+                                    ng-keyup="searchText.length > 4 && $event.keyCode == 13 && search()"
+                                    class="uppercase" />
                             </md-input-container>
                         </div>
                         <div class="col-md-6" style="padding-left:0px;">
                             <div class="col-md-4">
-                                <md-button aria-label="btn-search" class="md-raised md-primary md-icon-button search" ng-click="search()">
+                                <md-button aria-label="btn-search" class="md-raised md-primary md-icon-button search"
+                                    ng-click="search()">
                                     <i class="fa fa-search "></i>
                                 </md-button>
                             </div>
@@ -29,8 +30,9 @@
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <md-button md-no-ink class="md-primary" has-permission='CREATE_CLIENT' href="#!/createclient"><i
-                                class="fa fa-plus"></i> {{'label.button.createclient' | translate}}</md-button>
+                            <md-button md-no-ink class="md-primary" has-permission='CREATE_CLIENT'
+                                href="#!/createclient"><i class="fa fa-plus"></i>
+                                {{'label.button.createclient' | translate}}</md-button>
                         </div>
                     </md-whiteframe>
                 </div>
@@ -42,7 +44,7 @@
                     <div class="col-md-7">
                         <md-input-container class="full-width">
                             <label>{{'label.input.filterbynameaccno' | translate}}</label>
-                            <input ng-model="filter.search"> 
+                            <input ng-model="filter.search">
                         </md-input-container>
                     </div>
                     <md-divider></md-divider>
@@ -56,16 +58,18 @@
                                     <th md-column md-order-by="displayName">{{'label.heading.name' | translate}}</th>
                                     <th md-column md-order-by="accountNo">{{'label.heading.clientno' | translate}}</th>
                                     <th md-column md-order-by="uniqueId">{{'label.heading.uniqueId' | translate}}</th>
-                                    <th md-column md-order-by="externalId">{{'label.heading.externalid' | translate}}</th>
+                                    <th md-column md-order-by="externalId">{{'label.heading.externalid' | translate}}
+                                    </th>
                                     <th md-column>{{'label.heading.status' | translate}}</th>
                                     <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
                                     <th md-column md-order-by="staffName">{{'label.heading.staff' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody md-body>
-                                <tr md-row ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
-                                data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name" 
-                                ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
+                                <tr md-row
+                                    ng-repeat="client in clients | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                    data-ng-click="routeTo(client.id)" md-select="client" md-select-id="name"
+                                    ng-show="client.status.code != 'clientStatusType.closed' || showClosed">
                                     <td md-cell>
                                         <i ng-show="client.legalForm.value == 'MORAL'" class="fa fa-building"></i>
                                         <i ng-show="client.legalForm.value == 'FISICA'" class="fa fa-user"></i>
@@ -76,9 +80,11 @@
                                     <td md-cell>{{client.externalId}}</td>
                                     <td md-cell>
                                         <i class="fa fa-circle {{client.status.code | StatusLookup}}"
-                                            uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}" uib-tooltip-placement="top"></i>
+                                            uib-tooltip="{{'clientStatusType.' + client.status.value.toLowerCase() | translate}}"
+                                            uib-tooltip-placement="top"></i>
                                         <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
-                                        <small ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
+                                        <small
+                                            ng-if="client.subStatus.description">[{{client.subStatus.description}}]</small>
                                     </td>
                                     <td md-cell>{{client.officeName}}</td>
                                     <td md-cell>{{client.staffName}}</td>
@@ -88,10 +94,8 @@
                     </div>
                 </div>
             </md-table-container>
-
-            <md-table-pagination ng-show="clients.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-page="query.page" md-total="{{totalClients}}" md-on-paginate="getResultsPage" md-page-select>
-            </md-table-pagination>
+            <md-table-pagination ng-show="clients.length > query.limit" md-limit="query.limit" md-limit-options="[10,25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+            md-boundary-links="options.boundaryLinks" md-total="{{clients.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
         </div>
     </div>
 </div>

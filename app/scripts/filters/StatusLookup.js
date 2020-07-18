@@ -6,6 +6,8 @@
                 var cssClassNameLookup = {
                     "true": "statusactive",
                     "false": "statusdeleted",
+                    "Enabled": "statusactive",
+                    "Disabled": "statusrejected",
                     "Active": "statusactive",
                     "Standby": "statuspending",
                     "success": "statusactive",
@@ -27,6 +29,7 @@
                     "clientStatusType.blacklisted":"statusblacklisted",
                     "clientStatusType.withdraw":"statuswithdraw",
                     "clientStatusType.active": "statusactive",
+                    "clientStatusType.validated": "statusactive",
                     "clientStatusType.submitted.and.pending.approval": "statuspending",
                     "clientStatusTYpe.approved": "statusApproved",
                     "clientStatusType.transfer.in.progress": "statustransferprogress",

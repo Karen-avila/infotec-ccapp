@@ -509,33 +509,34 @@
                                     <tr md-row ng-hide="transaction.reversed"
                                         data-ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)"
                                         ng-repeat="transaction in savingaccountdetails.transactions | orderBy: query.order">
-                                        <td md-cell class="pointer">
+                                        <td md-cell>
                                             {{transaction.id}}
                                         </td>
-                                        <td md-cell class="pointer">
+                                        <td md-cell>
                                             {{transaction.date | DateFormat}}
                                         </td>
-                                        <td md-cell class="pointer">
+                                        <td md-cell>
                                             {{'transaction.type.' + transaction.transactionType.value | translate}}
                                         </td>
-                                        <td md-cell class="pointer">
+                                        <td md-cell class="pointer amount">
                                             <div ng-show="isDebit(transaction.transactionType)">
                                                 {{transaction.amount| FormatNumber}}
                                             </div>
                                         </td>
-                                        <td md-cell class="pointer">
+                                        <td md-cell class="pointer amount">
                                             <div ng-show="!isDebit(transaction.transactionType)">
                                                 {{transaction.amount| FormatNumber}}
                                             </div>
                                         </td>
-                                        <td md-cell class="pointer">
+                                        <td md-cell class="pointer amount">
                                             {{transaction.runningBalance| FormatNumber}}
                                         </td>
-                                        <td md-cell class="pointer"><span ng-if=" transaction.reversed!=true">
+                                        <td md-cell><span ng-if=" transaction.reversed!=true">
                                                 <i class="fa fa-file-text fa fa-large"></i>
                                             </span>
                                         </td>
-                                        <td md-cell class="pointer"><span
+                                        <td md-cell class="pointer" ng-click="viewsavingtransactionjournalentries(transaction.id)">
+                                            <span
                                                 uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}"
                                                 tooltip-placement="left">
                                                 <i class="fa fa-arrow-circle-right fa fa-large coll"></i>

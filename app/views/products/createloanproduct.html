@@ -1342,7 +1342,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <md-select id="taxGroupId" ng-model="taxGroupId">
-                                            <md-option ng-value="penality.id" ng-repeat="group in taxGroups">
+                                            <md-option ng-value="group.id" ng-repeat="group in taxGroups">
                                                 {{group.name}}
                                             </md-option>
                                         </md-select>
