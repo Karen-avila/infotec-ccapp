@@ -34,28 +34,56 @@
     </script>
     <script type="text/ng-template" id="deleteuser.html">
         <div class="modal-header silver">
-            <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+            <h3 class="bolder">{{'label.heading.confirm.delete' | translate}}</h3>
         </div>
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="unblockuser.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.heading.confirm.unblock' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="unblock()">{{'label.button.unblock' | translate}}</md-button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="blockuser.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.heading.confirm.block' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="block()">{{'label.button.block' | translate}}</md-button>
         </div>
     </script>
     <div class="card well">
         <div class="pull-right">
             <div class="form-group">
-                <a href="#!/edituser/{{user.id}}" class="btn btn-sm btn-primary" has-permission='UPDATE_USER'><i
+                <md-button href="#!/edituser/{{user.id}}" class="md-raised md-primary" has-permission='UPDATE_USER'><i
                         class="fa fa-edit "></i>
-                    {{'label.button.edit' | translate}}</a>
-                <button type="button" ng-click="deleteuser()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    {{'label.button.edit' | translate}}</md-button>
+                <md-button type="button" ng-click="deleteuser()" class="md-raised md-danger" has-permission='DELETE_USER'>
                     <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
-                </button>
-                <button type="button" class="btn btn-sm btn-primary" data-ng-click="open()" has-permission='UPDATE_USER'><i
-                        class="fa fa-cog "></i>
+                </md-button>
+                <md-button ng-if="!user.enabled" type="button" ng-click="unblockUser()" class="md-raised" has-permission='UPDATE_USER'>
+                    <i class="fa fa-trash-o"></i> {{'label.button.unblock' | translate}}
+                </md-button>
+                <md-button ng-if="user.enabled" type="button" ng-click="blockUser()" class="md-raised" has-permission='UPDATE_USER'>
+                    <i class="fa fa-trash-o"></i> {{'label.button.block' | translate}}
+                </md-button>
+                <md-button type="button" class="md-raised" data-ng-click="open()"
+                    has-permission='UPDATE_USER'><i class="fa fa-cog "></i>
                     {{'label.button.changepassword' | translate}}
-                </button>
+                </md-button>
             </div>
         </div>
         <h3 class="bolder">{{user.firstname}}&nbsp;{{user.lastname}}</h3>
