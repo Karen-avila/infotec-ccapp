@@ -134,9 +134,8 @@
     		                            </td>
     		                            <td>
 											<md-select ng-show="column.type == 'Dropdown'" ng-model="column.code">
-												<md-option ng-repeat="code in codes" ng-value="code.id">{{code.name}}</md-option>
+												<md-option ng-repeat="code in codes" ng-value="code.name">{{code.name}}</md-option>
 											</md-select>
-											
     		                            </td>
     		                            <td align="center"><md-button ng-click="removeColumn($index)"><i class="fa fa-times-circle fa-2x"></i></md-button>
     		                            </td>

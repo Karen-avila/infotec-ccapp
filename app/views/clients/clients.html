@@ -80,7 +80,7 @@
                                     <td md-cell>{{client.externalId}}</td>
                                     <td md-cell>
                                         <i class="fa fa-circle {{client.status.code | StatusLookup}}"
-                                            uib-tooltip="{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}"
+                                            uib-tooltip="{{'clientStatusType.' + client.status.value.toLowerCase() | translate}}"
                                             uib-tooltip-placement="top"></i>
                                         <small>[{{'loanStatusType.' + client.status.value.toLowerCase() | translate}}]</small>
                                         <small
