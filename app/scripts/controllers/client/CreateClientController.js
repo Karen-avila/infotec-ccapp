@@ -72,7 +72,7 @@
                 ]
             }
             scope.direccion_buscador = () => {
-                fetch(`http://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
+                fetch(`https://nominatim.openstreetmap.org/search?addressdetails=1&format=json&limit=10&q=${document.getElementById("direccion").value}`)
                     .then((response) => { return response.json(); })
                     .then((json) => { scope.addressresult = json });
 

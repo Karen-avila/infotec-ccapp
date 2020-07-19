@@ -48,7 +48,7 @@
                 }
             };
             var map = new L.map('map', { zoomControl: true });
-            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
             osmAttribution = 'Map data &copy; 2012 <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
             layer_osm = new L.TileLayer(osmUrl, { maxZoom: 13, attribution: osmAttribution });
             map.setView(new L.LatLng(23.634501, -102.552784), 5).addLayer(layer_osm);
