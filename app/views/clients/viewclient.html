@@ -12,26 +12,15 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-			<md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
-		</div>
-    </script>
-    <script type="text/ng-template" id="validateClient.html">
-		<div class="modal-header silver">
-			<h3 class="bolder">{{'label.heading.confirm.validate.client' | translate}}</h3>
-		</div>
-		<div class="modal-body">
-			<api-validate></api-validate>
-			<br>
-			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-			<md-button class="md-raised md-primary" ng-click="validateClient()">{{'label.button.confirm' | translate}}</md-button>
+			<md-button class= "md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+			<md-button class="md-raised md-warn ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
 		</div>
 	</script>
     <script type="text/ng-template" id="reporte.html">
-        <div data-ng-include="'views/reports/run_reports_from.html'"></div>  
-        <div class="modal-body ">
-            <md-button class= "md-raised btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-        </div>
+	<div data-ng-include="'views/reports/run_reports_from.html'"></div>  
+	<div class="modal-body ">
+	<md-button class= "md-raised md-warn" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+	</div>
 	</script>
     <script type="text/ng-template" id="deletesig.html">
 		<div class="modal-header silver">
@@ -40,8 +29,8 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<span ng-show="docId == -1">{{'label.noClientSignature' | translate}}</span> <br> <br>
-			<md-button class= "md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-			<md-button class="md-raised md-primary" ng-show="docId != -1" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
+			<md-button class= "md-raised md-warn" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+			<md-button class="md-raised" ng-show="docId != -1" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
 		</div>
 	</script>
     <script type="text/ng-template" id="photo-dialog.html">
@@ -49,7 +38,7 @@
 			<img ng-src="{{largeImage}}" alt="Avatar">
 		</div>
 		<div class="modal-body ">
-			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+			<md-button class="md-raised md-warn" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
 		</div>
 	</script>
     <script type="text/ng-template" id="clientSignature.html">
@@ -226,10 +215,10 @@
                 </div>
 
                 <h3 class="client-title" style="display: inline-block;">
-                    <i ng-if="client.status.id==300" class="fa fa-circle {{client.status.code | StatusLookup}}" uib-tooltip="{{client.status.value}}"
-                        uib-tooltip-placement="top"></i>
-                    <i ng-if="client.status.id==310" class="fa fa-check-circle {{client.status.code | StatusLookup}}" uib-tooltip="{{client.status.value}}"
-                        uib-tooltip-placement="top"></i>
+                    <i ng-if="client.status.id==300" class="fa fa-circle {{client.status.code | StatusLookup}}"
+                        uib-tooltip="{{client.status.value}}" uib-tooltip-placement="top"></i>
+                    <i ng-if="client.status.id==310" class="fa fa-check-circle {{client.status.code | StatusLookup}}"
+                        uib-tooltip="{{client.status.value}}" uib-tooltip-placement="top"></i>
                     <small ng-if="client.subStatus.description">
                         [{{client.subStatus.description}}]
                     </small>
@@ -1042,7 +1031,7 @@
                                     <tr class="graybg">
                                         <th class="graybg"> {{address.addressType}}</th>
                                         <td>
-                                            <button class="btn btn-primary pull-right btn-sm"
+                                            <md-button class="md-raised md-primary pull-right"
                                                 ng-click="routeToEdit(address.addressTypeId,address.addressId)"><i
                                                     class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
                                         </td>
@@ -1206,12 +1195,11 @@
                                     <tr>
                                         <th></th>
                                         <td>
-                                            <md-button class="md-primary md-raised pull-right"
-                                                ng-click="showMap($event, transaction)">
-                                                Ver ubicación
+                                            <md-button class="md-fab md-primary pull-right"
+                                                ng-click="showMap($event)">
+                                                <md-icon md-svg-src="images/icons/ubicacion.svg" aria-label="Close dialog"></md-icon>
                                             </md-button>
                                         </td>
-
                                     </tr>
                                 </tbody>
                             </table>
@@ -1434,7 +1422,8 @@
                                         <md-button class="btn btn-danger"
                                             ng-click="showDeleteNote(client.id,clientNote.id,$index)"
                                             has-permission='DELETE_CLIENTNOTE'><i
-                                                class="fa fa-trash-o"></i>{{'label.button.delete' |translate}}</md-button>
+                                                class="fa fa-trash-o"></i>{{'label.button.delete' |translate}}
+                                        </md-button>
                                     </span>
                                     <p>{{$index + 1}}. {{clientNote.note}}</p>
                                     <small>{{'label.createdby' | translate}}
