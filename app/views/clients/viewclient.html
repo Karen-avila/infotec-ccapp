@@ -24,7 +24,8 @@
 			<api-validate></api-validate>
 			<br>
 			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-			<md-button class="md-raised md-primary" ng-click="validateClient()">{{'label.button.confirm' | translate}}</md-button>
+			<md-button class="md-raised md-primary" ng-click="validateClient(false)">{{'label.button.incomplete' | translate}}</md-button>
+			<md-button class="md-raised md-primary" ng-click="validateClient(true)">{{'label.button.complete' | translate}}</md-button>
 		</div>
 	</script>
     <script type="text/ng-template" id="reporte.html">

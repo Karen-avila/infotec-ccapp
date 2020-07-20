@@ -554,10 +554,10 @@
             };
 
             var ClientValidateCtrl = function ($scope, $uibModalInstance) {
-                $scope.validateClient = function () {
-                    resourceFactory.clientResource.update({ clientId: routeParams.id, command: 'validate' }, {}, function (data) {
+                $scope.validateClient = function (isValidated) {
+                    resourceFactory.clientResource.update({ clientId: routeParams.id, command: 'validate' }, {"isValidated": isValidated}, function (data) {
                         $uibModalInstance.close('validate');
-                        location.path('/clients');
+                        route.reload();
                     });
                 };
                 $scope.cancel = function () {
