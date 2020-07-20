@@ -14,7 +14,6 @@
             scope.updateDefaultSavings = false;
             scope.charges = [];
             scope.datatableLoaded = false;
-            scope.center = {};
 
             // address
             scope.addresses = [];
@@ -24,28 +23,56 @@
             var entityname = "ADDRESS";
             formdata = {};
 
-            scope.showMap = function (ev, transaction) {
+            scope.showMap = function (ev) {
                 $mdDialog.show({
-                    controller: ViewJournalEntryCtrl,
+                    controller: ViewMapController,
                     templateUrl: 'views/clients/viewmap.tmpl.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,
                     fullscreen: true,
-                    locals: {
-                        data: {
-                            transaction: transaction
-                        }
-                    },
+
                 });
             };
 
-            var ViewJournalEntryCtrl = function (scope, $mdDialog, data) {
-                scope.data = data;
+            var ViewMapController = function (scope, $mdDialog) {
+                scope.center = {};
                 scope.closeDialog = function () {
                     $mdDialog.hide();
                 }
-                scope.transaction = scope.data.transaction;
+                resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
+                    scope.addresses = data;
+                    for (i = 0; i < data.length; i++) {
+                        var mainMarker = {
+                            lat: parseFloat(data[i].latitude),
+                            lng: parseFloat(data[i].longitude),
+                            focus: true,
+                            message: "Ubicación",
+                            draggable: true
+                        };
+
+                        angular.extend(scope, {
+                            center: {
+                                lat: parseFloat(data[i].latitude),
+                                lng: parseFloat(data[i].longitude),
+                                zoom: 16
+                            },
+                            markers: {
+                                mainMarker: angular.copy(mainMarker)
+                            },
+                            position: {
+                                lat: parseFloat(data[i].latitude),
+                                lng: parseFloat(data[i].longitude),
+                            },
+                            events: { // or just {} //all events
+                                markers: {
+                                    enable: ['dragend']
+                                    //logic: 'emit'
+                                }
+                            }
+                        });
+                    }
+                })
             };
 
             scope.getClientTemplate = function () {
@@ -66,39 +93,9 @@
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
-
                     scope.addresses = data;
-                    var mainMarker = {
 
-                        lat: parseFloat(data.latitude),
-                        lng: parseFloat(data.longitude),
-                        focus: true,
-                        message: "Ubicación",
-                        draggable: true
-                    };
-
-                    angular.extend(scope, {
-                        center: {
-                            lat: parseFloat(data.latitude),
-                            lng: parseFloat(data.longitude),
-                            zoom: 16
-                        },
-                        markers: {
-                            mainMarker: angular.copy(mainMarker)
-                        },
-                        position: {
-                            lat: parseFloat(data.latitude),
-                            lng: parseFloat(data.longitude),
-                        },
-                        events: { // or just {} //all events
-                            markers: {
-                                enable: ['dragend']
-                                //logic: 'emit'
-                            }
-                        }
-                    });
-
-                })                
+                })
             }
 
             scope.routeTo = function () {
