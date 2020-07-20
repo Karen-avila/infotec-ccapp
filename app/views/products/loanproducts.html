@@ -30,26 +30,25 @@
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row ng-repeat="loanproduct in loanproducts | orderBy: query.order | filter:filterText"
-                        data-ng-click="routeTo(loanproduct.id)" md-select="product" md-select-id="name" >
-                        <td md-cell >{{loanproduct.name}}</td>
-                        <td md-cell >{{loanproduct.shortName}}</td>
-                        <td md-cell >{{loanproduct.currency.code}} {{loanproduct.currency.name | translate}}</td>
-                        <td md-cell >{{loanproduct.description}}</td>
-                        <td md-cell >{{loanproduct.closeDate | DateFormat}}</td>
-                        <td md-cell >
+                    <tr md-row ng-repeat="loanproduct in loanproducts | orderBy: query.order | filter:filterText | limitTo: query.limit : (query.page -1) * query.limit"
+                        data-ng-click="routeTo(loanproduct.id)" md-select="product" md-select-id="name">
+                        <td md-cell>{{loanproduct.name}}</td>
+                        <td md-cell>{{loanproduct.shortName}}</td>
+                        <td md-cell>{{loanproduct.currency.code}} {{loanproduct.currency.name | translate}}</td>
+                        <td md-cell>{{loanproduct.description}}</td>
+                        <td md-cell>{{loanproduct.closeDate | DateFormat}}</td>
+                        <td md-cell>
                             <i class="fa fa-circle {{loanproduct.status | StatusLookup}}"
                                 uib-tooltip="{{'label.tooltip.' + loanproduct.status | translate}}"
                                 tooltip-placement="right"></i>
-                                <small>[{{'label.tooltip.' + loanproduct.status | translate}}]</small>
+                            <small>[{{'label.tooltip.' + loanproduct.status | translate}}]</small>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </md-table-container>
-
-        <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" 
-            md-page="query.page" md-total="{{totalLoanProducts}}" md-on-paginate="getResultsPage" md-page-select>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-page="query.page"
+            md-total="{{loanproducts.length}}" md-on-paginate="getResultsPage" md-page-select>
         </md-table-pagination>
     </div>
 </div>

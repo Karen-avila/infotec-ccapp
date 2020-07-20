@@ -76,8 +76,6 @@
                     }
                 }
             
-            
-            
             });
             var map = new L.map('map', { zoomControl: true });
             var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
