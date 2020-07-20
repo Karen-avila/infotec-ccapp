@@ -17,7 +17,22 @@
     z-index: 1;
     position: absolute;
   }
-
+  .centrado{
+  text-align:center;
+  text-align: justify;
+  margin-left:-50px ;
+  margin-right: 140px;
+  
+}
+  div{
+    width:50%;
+    padding:8px;
+    margin:auto;
+  }
+  center{
+    margin:16px 0;
+  }
+  
   .cover-content {
     display: block;
     max-width: 80%;
@@ -25,9 +40,7 @@
     color: #fff;
     text-align: justify;
     z-index: 2;
-    margin-top: 490px;
-    margin-right: 450px;
-    margin-left: 310px;
+    margin-top:470px;
 
     .cover-title {
       border-bottom: 2px solid #fff;
