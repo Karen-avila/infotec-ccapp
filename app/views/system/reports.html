@@ -51,7 +51,7 @@
             </md-table-container>
 
             <md-table-pagination ng-show="reports.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-page="query.page" md-total="{{totalReports}}" md-on-paginate="getResultsPage" md-page-select>
+                md-page="query.page" md-total="{{reports.length}}" md-on-paginate="getResultsPage" md-page-select>
             </md-table-pagination>
         </div>
     </div>

@@ -13,7 +13,7 @@
       };
 
       scope.query = {
-        order: "displayName",
+        order: "name",
         limit: 25,
         page: 1,
       };
@@ -21,11 +21,12 @@
       scope.options = {
         boundaryLinks: true,
         rowSelection: true,
+        pageSelector: true,
       };
-
-      scope.getResultsPage = function (pageNumber, limit) {
+   
+      scope.getResultsPage = function (page, limit) {
         if (scope.searchText) {
-          var startPosition = (pageNumber - 1) * limit;
+          var startPosition = (page - 1) * limit;
           scope.clients = scope.actualClients.slice(
             startPosition,
             startPosition + limit
@@ -34,7 +35,7 @@
         }
         resourceFactory.clientResource.getAllClients(
           {
-            offset: (pageNumber - 1) * limit,
+            page: (page - 1) * limit,
             limit: limit,
           },
           function (data) {
@@ -99,7 +100,7 @@
                 }
                 scope.actualClients.push(client);
               }
-              scope.clients = scope.actualClients.slice(0, scope.query.limit);
+              scope.clients = scope.actualClients;
               scope.totalClients = scope.clients.length;
             }
           );

@@ -9,42 +9,58 @@
             <h4>{{'label.anchor.systemusers' | translate}}</h4>
         </div>
         <div class="content">
-            <div class="row">
-                <div class="col-sm-8">
-                    <input ng-model="filterText" type="text" ng-keyup="onFilter()" class="span marginbottom0px form-control" placeholder="{{'label.input.filterbyname' | translate}}">
+            <md-table-container ng-show="users.length > 0" class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.user.search' | translate}}</label>
+                            <input ng-model="filter.search"> 
+                        </md-input-container>
+                    </div>
+                    <div class="col-sm-5">
+                        <md-button md-no-ink href="#!/createuser" class="md-primary pull-right" has-permission='CREATE_USER'>
+                            <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createuser' | translate}}
+                        </md-button>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <a href="#!/createuser" class="btn btn-sm btn-primary pull-right" has-permission='CREATE_USER'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createuser' | translate}}</a>
+                <md-divider></md-divider>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="id">{{'label.heading.id' | translate}}</th>
+                                    <th md-column md-order-by="username">{{'label.heading.username' | translate}}</th>
+                                    <th md-column md-order-by="email">{{'label.heading.email' | translate}}</th>
+                                    <th md-column md-order-by="firstname">{{'label.heading.firstname' | translate}}</th>
+                                    <th md-column md-order-by="lastname">{{'label.heading.lastname' | translate}}</th>
+                                    <th md-column md-order-by="surname">{{'label.heading.surname' | translate}}</th>
+                                    <th md-column md-order-by="office">{{'label.heading.office' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="user in users | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                    ng-click="routeTo(user.id)">
+                                    <td md-cell>
+                                        <i class="fa fa-circle {{getUserStatus(user.enabled) | StatusLookup}}"></i> 
+                                        {{user.id}}
+                                    </td>
+                                    <td md-cell>{{user.username}}</td>
+                                    <td md-cell><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                                    <td md-cell>{{user.firstname}}</td>
+                                    <td md-cell>{{user.lastname}}</td>
+                                    <td md-cell>{{user.surname}}</td>
+                                    <td md-cell>{{user.officeName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <hr />
-            <table class="table">
-                <thead>
-                    <tr class="graybg">
-                        <th>{{'label.heading.id' | translate}}</th>
-                        <th>{{'label.heading.username' | translate}}</th>
-                        <th>{{'label.heading.firstname' | translate}}</th>
-                        <th>{{'label.heading.lastname' | translate}}</th>
-                        <th>{{'label.heading.surname' | translate}}</th>
-                        <th>{{'label.heading.email' | translate}}</th>
-                        <th>{{'label.heading.office' | translate}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="pointer-main" 
-                        dir-paginate="user in users | orderBy:'firstname':reverse  | filter:filterText |  itemsPerPage: UsersPerPage">
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.id}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.username}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.firstname}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.lastname}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.surname}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.email}}</td>
-                        <td class="pointer" data-ng-click="routeTo(user.id)">{{user.officeName}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls boundary-links="true"
-                template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html">
+            </md-table-container>
+
+            <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                md-page="query.page" md-total="{{totalUsers}}" md-on-paginate="getResultsPage" md-page-select>
+            </md-table-pagination>
         </div>
     </div>
 </div>

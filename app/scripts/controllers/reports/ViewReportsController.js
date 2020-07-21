@@ -19,6 +19,8 @@
       scope.options = {
         boundaryLinks: true,
         rowSelection: true,
+        pageSelector: true,
+        
       };
 
       scope.routeTo = function (report) {

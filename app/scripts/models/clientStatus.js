@@ -123,6 +123,47 @@
                     },
 
                 ],
+                "Validated": [
+                    {
+                        name: "label.button.edit",
+                        href: "#!/editclient",
+                        icon: "fa fa-edit",
+                        taskPermissionName: "UPDATE_CLIENT"
+                    },
+                    {
+                        name: "label.button.newloan",
+                        href: "#!/newclientloanaccount",
+                        icon: "fa fa-plus",
+                        taskPermissionName: "CREATE_LOAN"
+                    },
+                    {
+                        name: "label.button.newsaving",
+                        href: "#!/new_client_saving_application",
+                        icon: "fa fa-plus",
+                        taskPermissionName: "CREATE_SAVINGSACCOUNT"
+                    },
+                    {
+                        name: "label.button.newcharge",
+                        href: "#!/viewclient",
+                        subhref: "addcharge",
+                        icon: "fa fa-plus",
+                        taskPermissionName: "CREATE_CLIENTCHARGE"
+                    },
+                    {
+                        name: "label.button.transferclient",
+                        href: "#!/transferclient",
+                        icon: "fa fa-arrow-right",
+                        taskPermissionName: "PROPOSETRANSFER_CLIENT"
+                    },
+                    {
+                        name: "label.button.close",
+                        href: "#!/client",
+                        subhref: "close",
+                        icon: "fa fa-times-circle-o",
+                        taskPermissionName: "CLOSE_CLIENT"
+                    },
+
+                ],
                 "Transfer in progress": [
                     {
                         name: "label.button.accepttransfer",

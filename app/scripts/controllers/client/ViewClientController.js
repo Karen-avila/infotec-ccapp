@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewClientController: function (scope,  $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, Upload) {
+        ViewClientController: function (scope, $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, Upload) {
             scope.client = [];
             scope.identitydocuments = [];
             scope.buttons = [];
@@ -14,7 +14,6 @@
             scope.updateDefaultSavings = false;
             scope.charges = [];
             scope.datatableLoaded = false;
-            scope.center= {};
 
             // address
             scope.addresses = [];
@@ -24,29 +23,57 @@
             var entityname = "ADDRESS";
             formdata = {};
 
-      scope.showMap = function (ev, transaction) {
-        $mdDialog.show({
-            controller: ViewJournalEntryCtrl,
-            templateUrl: 'views/clients/viewmap.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: true, 
-            locals: {
-                data: {
-                  transaction: transaction
-                }
-            },
-        }); 
-      };
+            scope.showMap = function (ev) {
+                $mdDialog.show({
+                    controller: ViewMapController,
+                    templateUrl: 'views/clients/viewmap.tmpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true,
 
-      var ViewJournalEntryCtrl = function (scope, $mdDialog, data) {
-        scope.data = data;
-        scope.closeDialog = function() {
-          $mdDialog.hide();
-        }
-        scope.transaction = scope.data.transaction;
-      };
+                });
+            };
+
+            var ViewMapController = function (scope, $mdDialog) {
+                scope.center = {};
+                scope.closeDialog = function () {
+                    $mdDialog.hide();
+                }
+                resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
+                    scope.addresses = data;
+                    for (i = 0; i < data.length; i++) {
+                        var mainMarker = {
+                            lat: parseFloat(data[i].latitude),
+                            lng: parseFloat(data[i].longitude),
+                            focus: true,
+                            message: "Ubicación",
+                            draggable: true
+                        };
+
+                        angular.extend(scope, {
+                            center: {
+                                lat: parseFloat(data[i].latitude),
+                                lng: parseFloat(data[i].longitude),
+                                zoom: 16
+                            },
+                            markers: {
+                                mainMarker: angular.copy(mainMarker)
+                            },
+                            position: {
+                                lat: parseFloat(data[i].latitude),
+                                lng: parseFloat(data[i].longitude),
+                            },
+                            events: { // or just {} //all events
+                                markers: {
+                                    enable: ['dragend']
+                                    //logic: 'emit'
+                                }
+                            }
+                        });
+                    }
+                })
+            };
 
             scope.getClientTemplate = function () {
                 resourceFactory.clientTemplateResource.get(function (data) {
@@ -60,46 +87,15 @@
                         })
                     }
                 });
-                
+
             }
             scope.getClientTemplate();
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddress.get({ clientId: routeParams.id }, function (data) {
-            
                     scope.addresses = data;
-                    var mainMarker = {
-                   
-                        lat: parseFloat(data.latitude) ,
-                        lng: parseFloat(data.longitude),
-                        focus: true,
-                        message: "Ubicación",
-                        draggable: true
-                    };
-        
-                    angular.extend(scope, {
-                        center: {
-                            lat: parseFloat(data.latitude) ,
-                            lng: parseFloat(data.longitude),
-                            zoom: 16
-                        },
-                        markers: {
-                            mainMarker: angular.copy(mainMarker)
-                        },
-                        position: {
-                            lat: parseFloat(data.latitude) ,
-                            lng: parseFloat(data.longitude),
-                        },
-                        events: { // or just {} //all events
-                            markers:{
-                              enable: [ 'dragend' ]
-                              //logic: 'emit'
-                            }
-                        }
-                    });
 
-
-                })                
+                })
             }
 
             scope.routeTo = function () {
@@ -182,7 +178,7 @@
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
-                }               
+                }
                 // return tableName + '.' + columnName;
                 return columnName;
             }
@@ -281,7 +277,7 @@
                     ];
                 }
 
-                if (data.status.value == "Pending" || data.status.value == "Active") {
+                if (data.status.value == "Pending" || data.status.value == "Active" || data.status.value == "Validated") {
                     if (data.staffId) {
 
                     }
@@ -305,7 +301,7 @@
                     scope.clientReports = data;
                 });
             }
-            
+
             scope.deleteClient = function () {
                 $uibModal.open({
                     templateUrl: 'deleteClient.html',
@@ -319,6 +315,13 @@
                     controller: UploadPicCtrl
                 });
             };
+
+            scope.markAsValidated = function () {
+                $uibModal.open({
+                    templateUrl: 'validateClient.html',
+                    controller: ClientValidateCtrl
+                });
+            }
 
             var UploadPicCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
@@ -450,23 +453,23 @@
             scope.reportsClient = function (rep) {
                 $uibModal.open({
                     templateUrl: 'reporte.html',
-                    controller: function ($scope, $uibModalInstance){
-                        var aux=angular.copy(routeParams);
-                        routeParams.name= rep.report_name;
-                        routeParams.type='Jasper';
-                        routeParams.reportId= rep.id;
-                        routeParams.clientAccountNo=scope.client.accountNo;
+                    controller: function ($scope, $uibModalInstance) {
+                        var aux = angular.copy(routeParams);
+                        routeParams.name = rep.report_name;
+                        routeParams.type = 'Jasper';
+                        routeParams.reportId = rep.id;
+                        routeParams.clientAccountNo = scope.client.accountNo;
                         $scope.cancel = function () {
-                        	$uibModalInstance.dismiss('cancel');
-                        	routeParams=aux;
-                        	 route.reload();	
+                            $uibModalInstance.dismiss('cancel');
+                            routeParams = aux;
+                            route.reload();
                         }
-                        },
-                        backdrop: 'static',
-                        keyboard: false
+                    },
+                    backdrop: 'static',
+                    keyboard: false
                 });
             };
-                       
+
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {
@@ -491,7 +494,7 @@
                     $uibModalInstance.dismiss('cancel');
                 };
             };
-            
+
             scope.deleteSig = function () {
                 $uibModal.open({
                     templateUrl: 'deletesig.html',
@@ -548,6 +551,18 @@
                 };
             };
 
+            var ClientValidateCtrl = function ($scope, $uibModalInstance) {
+                $scope.validateClient = function (isValidated) {
+                    resourceFactory.clientResource.update({ clientId: routeParams.id, command: 'validate' }, {"isValidated": isValidated}, function (data) {
+                        $uibModalInstance.close('validate');
+                        route.reload();
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
             var ClientUnassignCtrl = function ($scope, $uibModalInstance) {
                 $scope.unassign = function () {
                     resourceFactory.clientResource.save({ clientId: routeParams.id, command: 'unassignstaff' }, scope.staffData, function (data) {
@@ -563,7 +578,6 @@
             resourceFactory.clientAccountResource.get({ clientId: routeParams.id }, function (data) {
                 scope.clientAccounts = data;
 
-                
                 if (data.savingsAccounts) {
                     for (var i in data.savingsAccounts) {
                         if (data.savingsAccounts[i].status.value == "Active") {
@@ -658,7 +672,7 @@
                     scope.clientNotes = data;
                 });
             }
-            
+
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: routeParams.id, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
@@ -680,7 +694,7 @@
                 });
             };
 
-            scope.getDataTables = function() {
+            scope.getDataTables = function () {
                 resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
                     scope.clientdatatables = data;
                     if (scope.datatableLoaded == false) {
