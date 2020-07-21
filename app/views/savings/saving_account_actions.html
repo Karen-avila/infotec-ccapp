@@ -303,12 +303,12 @@
                                 </button>
                             </div>
                             <div class="col-md-offset-2" ng-hide="showDelete || showwaiveforspecicficduedate">
-                                <button id="cancel" type="reset" class="btn btn-sm btn-primary" ng-click="cancel()">{{'label.button.cancel' |
+                                <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
                                     translate}}
-                                </button>
-                                <button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{'label.button.save' | translate}}
-                                </button>
+                                </md-button>
+                                <md-button id="save" type="submit" has-permission='{{taskPermissionName}}' wz-next
+                                    class="md-raised md-primary">{{'label.button.save' | translate}}
+                                </md-button>
                             </div>
                         </div>
                     </fieldset>

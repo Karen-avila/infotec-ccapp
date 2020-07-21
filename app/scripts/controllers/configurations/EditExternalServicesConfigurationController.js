@@ -9,14 +9,13 @@
             $scope.externalServicesType = $routeParams.externalServicesType;
             //$scope.name = $routeParams.name;
             var nvObject = {};
-            resourceFactory.externalServicesResource.get({id: $scope.externalServicesType}, function (data) {
+            resourceFactory.externalServicesResource.get({ id: $scope.externalServicesType }, function (data) {
                 for (var i in data) {
-                    if(data[i] != null && data[i].name != null) {
+                    if (data[i] != null && data[i].name != null) {
                         data[i].name.replace(/ /g, '');
                         if (!angular.equals(data[i].name, "")) {
                             nvObject[data[i].name] = data[i].value;
                             $scope.names.push(data[i].name);
-
                         }
                     }
                 }
@@ -26,14 +25,14 @@
             });
 
             $scope.cancel = function () {
-                location.path('/externalservices/'+ $scope.externalServicesType);
+                location.path('/externalservices/' + $scope.externalServicesType);
             };
 
             $scope.submit = function () {
 
                 //scope.formData1 = {  scope.name : scope.formData.value};
-                resourceFactory.externalServicesResource.put({id: $scope.externalServicesType}, this.formData, function (data) {
-                    location.path('/externalservices' );
+                resourceFactory.externalServicesResource.put({ id: $scope.externalServicesType }, this.formData, function (data) {
+                    location.path('/externalservices');
                 });
             };
         }

@@ -24,7 +24,7 @@
 
 				<div class="col-sm-3">
 					<input type="text" id="firstname" name="firstname" ng-model="formData.firstname"
-						class="form-control" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
+						class="form-control uppercase" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
 				</div>
 				<div class="col-sm-3">
 					<span ng-show="createuserform.firstname.$invalid && createuserform.firstname.$dirty">
@@ -40,7 +40,7 @@
 						class="required">*</span></label>
 
 				<div class="col-sm-3">
-					<input type="text" id="lastname" name="lastname" ng-model="formData.lastname" class="form-control"
+					<input type="text" id="lastname" name="lastname" ng-model="formData.lastname" class="form-control uppercase"
 						required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate />
 
 					<span ng-show="createuserform.lastname.$invalid && createuserform.lastname.$dirty">
@@ -54,7 +54,7 @@
 				<label class="control-label col-sm-3" for="surname">{{'label.input.surname' | translate}}</label>
 
 				<div class="col-sm-3">
-					<input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control"
+					<input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase"
 						ng-pattern="/(^[A-z])[A-z.'-]*/" />
 					<form-validate valattributeform="createuserform" valattribute="surname" />
 				</div>
@@ -68,8 +68,6 @@
 						<div class="col-sm-3">
 							<input type="email" id="email" name="email" class="form-control" ng-model="formData.email"
 								required late-Validate />
-						</div>
-						<div class="col-sm-3">
 							<form-validate valattributeform="createuserform" valattribute="email" />
 						</div>
 					</div>
@@ -86,25 +84,24 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<div class="col-sm-3"></div>
 				<div class="col-sm-3">
-					<label class="checkbox pull-right">
-						<input type="checkbox" ng-model="formData.sendPasswordToEmail">
-					</label>
+					<md-checkbox ng-model="formData.sendPasswordToEmail">
+						{{'label.input.autogeneratepassword' | translate }}
+					</md-checkbox>
 				</div>
-				<label class="control-label col-sm-6 left">{{'label.input.autogeneratepassword' | translate}}</label>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-3">
-					<label class="checkbox pull-right">
-						<input type="checkbox" ng-model="formData.passwordNeverExpires">
-					</label>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<md-checkbox ng-model="formData.passwordNeverExpires">
+						{{'label.input.overridepasswordexpiry' | translate}}
+						<i class="fa fa-question-circle"
+							uib-tooltip="{{'label.tooltip.overridepasswordexpiry' | translate}}"
+							tooltip-append-to-body="true">
+						</i>
+					</md-checkbox>
 				</div>
-				<label class="control-label col-sm-6 left">{{'label.input.overridepasswordexpiry' | translate}}
-					<i class="fa fa-question-circle"
-						uib-tooltip="{{'label.tooltip.overridepasswordexpiry' | translate}}"
-						tooltip-append-to-body="true">
-					</i>
-				</label>
 			</div>
 			<div data-ng-switch on="formData.sendPasswordToEmail">
 				<div data-ng-switch-when="false">
@@ -115,8 +112,6 @@
 						<div class="col-sm-3">
 							<input type="password" id="password" name="password" ng-model="formData.password"
 								class="form-control" required late-Validate>
-						</div>
-						<div class="col-sm-3">
 							<form-validate valattributeform="createuserform" valattribute="password" />
 						</div>
 					</div>
@@ -128,8 +123,6 @@
 						<div class="col-sm-3">
 							<input type="password" id="repeatPassword" name="repeatPassword" class="form-control"
 								ng-model="formData.repeatPassword" required late-Validate>
-						</div>
-						<div class="col-sm-3">
 							<form-validate valattributeform="createuserform" valattribute="repeatPassword" />
 						</div>
 					</div>
@@ -140,20 +133,23 @@
 						class="required">*</span></label>
 
 				<div class="col-sm-3">
-					<select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-						name="officeId" data-ng-change="getOfficeStaff()"
-						ng-options="office.id as office.name for office in offices" value="{{office.id}}" required>
-						<option value="">{{'label.menu.selectoffice' | translate}}</option>
-					</select>
+					<md-select id="officeId" ng-model="formData.officeId" name="officeId" data-ng-change="getOfficeStaff()"
+						required placeholder="{{'label.selectone' | translate}}">
+						<md-option ng-repeat="office in offices" ng-value="office.id">
+						   {{office.name}}
+						</md-option>
+					</md-select>
 				</div>
 				<form-validate valattributeform="createuserform" valattribute="officeId" />
 
 				<label class="control-label col-sm-3">{{'label.input.staff' | translate}}</label>
 				<div class="col-sm-3">
-					<select chosen="staffs" id="staffId" ng-model="formData.staffId" class="form-control"
-						ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}">
-						<option value="">{{'label.menu.selectstaff' | translate}}</option>
-					</select>
+					<md-select id="staffId" ng-model="formData.staffId" 
+						placeholder="{{'label.selectone' | translate}}">
+						<md-option ng-repeat="staff in staffs" ng-value="staff.id">
+						   {{staff.displayName}}
+						</md-option>
+					</md-select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -188,9 +184,9 @@
 			</div>
 
 			<div class="col-md-12 center">
-				<a id="cancel" href="#!/users" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
-				<button id="save" type="submit" class="btn btn-sm btn-primary"
-					has-permission='CREATE_USER'>{{'label.button.save' | translate}}</button>
+				<md-button id="cancel" href="#!/users" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+				<md-button id="save" type="submit" class="md-raised md-primary"
+					has-permission='CREATE_USER'>{{'label.button.save' | translate}}</md-button>
 			</div>
 		</fieldset>
 	</form>

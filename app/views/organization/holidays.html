@@ -7,19 +7,17 @@
         <div class="content">
             <div class="row">
                 <div class="col-md-5">
-                    <input ng-model="filterText" type="text" class="form-control span marginbottom0px" ng-keyup="onFilter()"
-                        placeholder="{{'label.input.filterbyname' | translate}}" />
+                    <md-select name="office" id="office" ng-model="formData.officeId"
+                        ng-change="getHolidays()" required placeholder="{{'label.selectoffice' | translate}}">
+                        <md-option ng-repeat="office in offices" ng-value="office.id">
+                            {{office.name}}
+                        </md-option>
+                    </md-select>
                 </div>
-                <div class="col-md-5">
-                    <select chosen="offices" name="office" id="office" ng-model="formData.officeId" class="form-control input-sm"
-                        data-ng-options="office.id as office.name for office in offices" data-ng-change="getHolidays()"
-                        value="{{office.id}}" required>
-                        <option class="displaynone" value="">{{'label.selectoffice' | translate}}</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <a href="#!/createholiday" class="btn btn-primary pull-right" has-permission='CREATE_HOLIDAY'><i
-                            class="fa fa-plus "></i>{{'label.button.createholiday' | translate}}</a>
+                <div class="col-md-7 pull-right">
+                    <md-button md-no-ink href="#!/createholiday" class="btn btn-primary pull-right"
+                        has-permission='CREATE_HOLIDAY'><i
+                            class="fa fa-plus "></i>{{'label.button.createholiday' | translate}}</md-button>
                 </div>
             </div>
             <br />
@@ -30,31 +28,54 @@
                 </span>
             </div>
             <br />
-            <table class="table">
-                <thead>
-                    <tr class="graybg">
-                        <th>{{'label.heading.holidayname' | translate}}</th>
-                        <th>{{'label.heading.startdate' | translate}}</th>
-                        <th>{{'endDateSelect' | translate}}</th>
-                        <th>{{'label.heading.repaymentsheduleto' | translate}}</th>
-                        <th>{{'label.heading.status' | translate}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="pointer-main" dir-paginate="holiday in holidays | orderBy:'fromDate' | filter:filterText | itemsPerPage: HolidaysPerPage"
-                        ng-show="holiday.status.value != 'Deleted'">
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)">{{holiday.name}}</td>
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)">{{holiday.fromDate | DateFormat}}</td>
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)">{{holiday.toDate | DateFormat}}</td>
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)" ng-show="holiday.repaymentsRescheduledTo == undefined || holiday.repaymentsRescheduledTo == null">{{'label.nextrepaymentdate'
+            <md-divider></md-divider>
+            <md-table-container class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbyname' | translate}}</label>
+                            <input ng-model="filter.search">
+                        </md-input-container>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="name">{{'label.heading.holidayname' | translate}}</th>
+                                    <th md-column md-order-by="fromDate">{{'label.heading.startdate' | translate}}</th>
+                                    <th md-column md-order-by="toDate">{{'endDateSelect' | translate}}</th>
+                                    <th>{{'label.heading.repaymentsheduleto' | translate}}</th>
+                                    <th md-column md-order-by="status">{{'label.heading.status' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="holiday in holidays | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+                                    ng-show="holiday.status.value != 'Deleted'" data-ng-click="routeTo(holiday.id)">
+                                    <td md-cell>{{holiday.name}}</td>
+                                    <td md-cell>{{holiday.fromDate | DateFormat}}</td>
+                                    <td md-cell>{{holiday.toDate | DateFormat}}</td>
+                                    <td md-cell
+                                        ng-show="holiday.repaymentsRescheduledTo == undefined || holiday.repaymentsRescheduledTo == null">{{'label.nextrepaymentdate'
                             | translate}}</td>
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)" ng-show="holiday.repaymentsRescheduledTo != undefined && holiday.repaymentsRescheduledTo != null">{{holiday.repaymentsRescheduledTo
+                                    <td md-cell
+                                        ng-show="holiday.repaymentsRescheduledTo != undefined && holiday.repaymentsRescheduledTo != null">{{holiday.repaymentsRescheduledTo
                             | DateFormat}}</td>
-                        <td class="pointer" data-ng-click="routeTo(holiday.id)">{{holiday.status.value}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                                    <td md-cell>{{holiday.status.value | translate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </md-table-container>
+
+            <md-table-pagination ng-show="holidays.length > query.limit" md-limit="query.limit"
+                md-limit-options="[15,25,50]" md-page-select="options.pageSelector"
+                md-boundary-links="options.boundaryLinks" md-page="query.page" md-total="{{holidays.length}}"
+                md-on-paginate="getResultsPage" md-page-select>
+            </md-table-pagination>
         </div>
     </div>
 </div>

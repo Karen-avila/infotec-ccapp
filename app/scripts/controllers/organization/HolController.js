@@ -5,6 +5,17 @@
             scope.offices = [];
             scope.formData = {};
 
+            scope.query = {
+                order: "name",
+                limit: 25,
+                page: 1,
+            };
+    
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+            };
+
             scope.routeTo = function (id) {
                 location.path('/viewholiday/' + id);
             };
@@ -21,9 +32,9 @@
                 scope.saveSC();
             };
 
-            scope.HolidaysPerPage =15;
+            scope.HolidaysPerPage = 15;
 
-            resourceFactory.holResource.getAllHols({officeId: scope.formData.officeId}, function (data) {
+            resourceFactory.holResource.getAllHols({ officeId: scope.formData.officeId }, function (data) {
                 scope.holidays = data;
             });
 
@@ -34,9 +45,39 @@
             scope.getHolidays = function () {
                 scope.searchCriteria.holidays[1] = scope.formData.officeId;
                 scope.saveSC();
-                resourceFactory.holResource.getAllHols({officeId: scope.formData.officeId}, function (data) {
+                resourceFactory.holResource.getAllHols({ officeId: scope.formData.officeId }, function (data) {
                     scope.holidays = data;
                 });
+            };
+
+            scope.filters = [];
+            scope.$watch("filter.search", function (newValue, oldValue) {
+              if (newValue != undefined) {
+                scope.filters = newValue.split(" ");
+              }
+            });
+      
+            scope.searachData = {};
+      
+            scope.customSearch = function (item) {
+              scope.searachData.status = true;
+      
+              angular.forEach(scope.filters, function (value1, key) {
+                scope.searachData.tempStatus = false;
+                angular.forEach(item, function (value2, key) {
+                  var dataType = typeof value2;
+      
+                  if (dataType == "string" && !value2.includes("object")) {
+                    if (value2.toLowerCase().includes(value1)) {
+                      scope.searachData.tempStatus = true;
+                    }
+                  }
+                });
+                scope.searachData.status =
+                  scope.searachData.status & scope.searachData.tempStatus;
+              });
+      
+              return scope.searachData.status;
             };
         }
     });
