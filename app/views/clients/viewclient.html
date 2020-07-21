@@ -1343,7 +1343,7 @@
                                     <table class="table-minified">
                                         <tbody>
                                             <tr class="col-sm-12 col-md-12"
-                                                ng-repeat="datatabledetail in datatabledetails"
+                                                ng-repeat="datatabledetail in datatabledetails | orderBy: registeredTableName"
                                                 has-permission='READ_{{datatabledetail.registeredTableName}}'>
                                                 <td style="display: block;">
                                                     <div>
@@ -1352,7 +1352,7 @@
                                                             <tbody>
                                                                 <tr class="graybg">
                                                                     <td style="width: 50%;" class="graybg">
-                                                                        <strong>{{datatabledetail.registeredTableName}}</strong>
+                                                                        <strong>{{'datatable.' + datatabledetail.registeredTableName | translate}}</strong>
                                                                     </td>
                                                                     <td style="width: 50%;">
                                                                         <div data-ng-hide="isClosedClient"
