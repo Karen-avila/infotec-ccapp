@@ -29,18 +29,9 @@
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
-                }
-                // return tableName + '.' + columnName;
-                return columnName;
-            }
-
-            scope.getDatatableColumn = function (tableName, columnName) {
-                var temp = columnName.split("_cd_");
-                if (temp[1] && temp[1] != "") {
-                    columnName = temp[1];
                 }               
-                // return tableName + '.' + columnName;
-                return columnName;
+                return tableName + '.' + columnName;
+                // return columnName;
             }
             
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
@@ -182,6 +173,7 @@
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.dateTimeFormat();
+                var _ = require('underscore');
                 for (var i = 0; i < scope.columnHeaders.length; i++) {
                     if (!_.contains(_.keys(this.formData), scope.columnHeaders[i].columnName)) {
                         this.formData[scope.columnHeaders[i].columnName] = "";
