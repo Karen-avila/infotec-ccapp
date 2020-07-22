@@ -171,7 +171,7 @@
                                             <md-select id="linkAccountId" ng-model="formData.linkAccountId"
                                                 ng-change="loandetails.linkAccountName = formValue(loanaccountinfo.accountLinkingOptions,formData.linkAccountId,'id','productName')"
                                                 placeholder="{{'label.menu.selectone' | translate}}">
-                                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions" ng-value="savingaccount.id">
+                                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions | orderBy: 'accountNo'" ng-value="savingaccount.id">
                                                     {{savingaccount.accountNo}} {{savingaccount.productName}}
                                                 </md-option>
                                             </md-select>

@@ -37,7 +37,7 @@
 
                                 <div class="col-sm-3">
                                     <select id="relationship" ng-model="formData.relationship" class="form-control"
-                                            ng-options="type.id as type.name for type in template.allowedClientRelationshipTypes"
+                                            ng-options="type.id as type.name for type in template.allowedClientRelationshipTypes | orderBy: 'selectone'"
                                             value="{{type.id}}">
                                         <option value="">{{'label.selectone' | translate}}</option>
                                     </select>
