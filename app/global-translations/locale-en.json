@@ -1709,6 +1709,7 @@
     "validation.msg.loan.charges.installment.loancharge.with.calculation.type.principal.not.allowed": "Installment charges as a % of principal cannot be used with products supporting interest recalculation",
     "validation.msg.loan.numberOfRepayments.lesser.than.minimumNumberOfRepayments": "The total number of calculated repayments for this loan ( `{{params[0].value}}`) is lesser than the allowed minimum of  `{{params[1].value}}`",
     "validation.msg.loan.numberOfRepayments.greater.than.maximumNumberOfRepayments": "The total number of calculated repayments for this loan ( `{{params[0].value}}`) is greater than the allowed maximum of  `{{params[1].value}}`",
+    "error.msg.charge.cannot.be.updated.no.pending.disbursements.in.loan":"This charge cannot be added, no disbursement is pending",
     "error.msg.loan.product.only.one.loan.associated.to.client.found":"Product loan allow only one at time associated with the given Client ID found.",
     "error.msg.loanCharge.cannot.be.added.as.date.is.before.last.transaction.date": "Charges must be added after last transaction date for products supporting interest recalculation",
     "error.msg.loanCharge.cannot.be.added.as.installment.charge": "Installment charges cannot be added after disbursement for products supporting interest recalculation",

@@ -96,7 +96,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="submittedOnDate" ng-model="date.first" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                                min="'2000-01-01'" max="restrictDate">
                                             </md-datepicker>
                                         </td>
                                         <td class="width25">
@@ -110,7 +110,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="expectedDisbursementDate" ng-model="date.second" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="date.first" md-max-date="'2030-06-22'" required>
+                                                min="date.first" max="'2030-06-22'" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -314,7 +314,7 @@
                                             ng-hide="loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                                             <md-datepicker id="repaymentsStartingFromDate" ng-model="date.fourth" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                min="minDate" max="'2030-06-22'" required>
                                             </md-datepicker>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true" class="width25">
@@ -327,7 +327,7 @@
                                             ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true">
                                             <md-datepicker id="interestChargedFromDate" ng-model="date.third" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                min="minDate" max="'2030-06-22'" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -775,7 +775,7 @@
                                             <td>
                                                 <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate" 
                                                     md-placeholder="{{'label.input.duedate' | translate}}"
-                                                    md-min-date="minDate" md-max-date="'2030-06-22'">
+                                                    min="minDate" max="'2030-06-22'">
                                                 </md-datepicker>
                                             </td>
                                             <td>
@@ -906,25 +906,25 @@
                                                 <td>{{period.period}}</td>
                                                 <td>{{period.daysInPeriod}}</td>
                                                 <td>{{period.dueDate | DateFormat}}</td>
-                                                <td >{{period.principalDisbursed | FormatNumber}}</td>
-                                                <td >{{period.principalDue| FormatNumber}}</td>
-                                                <td >{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                                                <td >{{period.interestDue| FormatNumber}}</td>
-                                                <td >{{period.feeChargesDue| FormatNumber}}</td>
-                                                <td >{{period.penaltyChargesDue| FormatNumber}}</td>
-                                                <td >{{period.totalDueForPeriod| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.principalDisbursed | FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.principalDue| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.interestDue| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.feeChargesDue| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.penaltyChargesDue| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{period.totalDueForPeriod| FormatNumber}}</td>
                                             </tr>
                                         <tfoot class="ui-widget-header">
                                             <tr>
                                                 <td colspan="2">{{'label.heading.total' | translate}}</td>
                                                 <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
                                                 <td ></td>
-                                                <td >{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                                             </tr>
                                         </tfoot>
                                         </tbody>
