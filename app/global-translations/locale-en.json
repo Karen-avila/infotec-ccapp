@@ -2526,6 +2526,7 @@
     "validation.msg.office.parentId.not.greater.than.zero": "You must select a parent office.",
     "validation.msg.office.openingDateFormatted.cannot.be.blank": "You must choose a date to represent when the office commenced services.",
     "validation.msg.office.externalId.exceeds.max.length": "External id exceeds max length of {{params[0].value}} alpha-numeric characters - {{params[1].value}}.",
+    "validation.msg.office.city.exceeds.max.length":"Maximum number of characters for the plaza",
     "error.msg.office.duplicate.name": "An office with name `{{params[0].value}}` already exists.",
     "error.msg.office.duplicate.externalId": "An office with external id `{{params[0].value}}` already exists.",
     "error.msg.office.unknown.data.integrity.issue": "An unknown data integrity issue occurred.",
