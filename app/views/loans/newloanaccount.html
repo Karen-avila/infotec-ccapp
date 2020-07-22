@@ -95,7 +95,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="submittedOnDate" ng-model="date.first" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                                md-min-date="minDatePicker" md-max-date="restrictDate">
                                             </md-datepicker>
                                         </td>
                                         <td class="width25">
@@ -109,7 +109,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="expectedDisbursementDate" ng-model="date.second" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="date.first" md-max-date="'2030-06-22'" required>
+                                                md-min-date="date.first" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -313,7 +313,7 @@
                                             ng-hide="loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                                             <md-datepicker id="repaymentsStartingFromDate" ng-model="date.fourth" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true" class="width25">
@@ -326,7 +326,7 @@
                                             ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true">
                                             <md-datepicker id="interestChargedFromDate" ng-model="date.third" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -698,7 +698,7 @@
                                                         <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
                                                             ng-model="disbursementDetail.expectedDisbursementDate" 
                                                             md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                                            md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                            md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                                         </md-datepicker>
                                                     </td>
                                                     <td>
@@ -774,7 +774,7 @@
                                             <td>
                                                 <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate" 
                                                     md-placeholder="{{'label.input.duedate' | translate}}"
-                                                    md-min-date="minDate" md-max-date="'2030-06-22'">
+                                                    md-min-date="minDatePicker" md-max-date="maxDatePicker">
                                                 </md-datepicker>
                                             </td>
                                             <td>
