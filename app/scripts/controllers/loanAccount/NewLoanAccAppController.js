@@ -24,6 +24,20 @@
 
             scope.date.first = new Date();
             scope.date.second = new Date();
+            
+            scope.currentDate = new Date();
+
+            scope.minDate = new Date(
+                scope.currentDate.getFullYear() - 10,
+                scope.currentDate.getMonth(),
+                scope.currentDate.getDate()
+              );
+            
+            scope.maxDate = new Date(
+                scope.currentDate.getFullYear() +10,
+                scope.currentDate.getMonth(),
+                scope.currentDate.getDate()
+              );
 
             scope.maxStep = 3;
             scope.selectedStep = 0;
@@ -74,6 +88,7 @@
                 scope.products = [];
                 if (data.clientName) {
                     scope.clientName = data.clientName;
+                    scope.minDate = data.
                 } else if (data.group) {
                     scope.groupName = data.group.name;
                 }
