@@ -20,6 +20,7 @@
                         <form name="Details" novalidate="" class="form-inline">
                             <fieldset>
                                 <api-validate></api-validate>
+                                <br>
                                 <hr>
                                 <table style="border-spacing: 10px; border-collapse: separate; width: 100%;">
                                     <tr>
@@ -34,7 +35,7 @@
                                             <md-select id="productId" ng-model="formData.productId" 
                                                 placeholder="{{'label.selectloanproduct' | translate}}"
                                                 ng-change="loanProductChange(formData.productId)" required>
-                                                <md-option ng-repeat="product in products" ng-value="product.id">
+                                                <md-option ng-repeat="product in products | orderBy: 'shortName'" ng-value="product.id">
                                                         {{product.shortName}} {{product.name}}
                                                 </md-option>
                                             </md-select>

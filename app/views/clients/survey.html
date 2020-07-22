@@ -14,7 +14,7 @@
 
                 <div class="col-sm-3">
                     <select id="surveyname" ng-change="surveySelected(survey)" ng-model="survey"
-                            ng-options="survey as survey.name for survey in surveys"
+                            ng-options="survey as survey.name for survey in surveys | orderBy:'name' track by name"
                             value="{{survey}}" class="form-control">
                             <option selected="true" value="">{{'label.selectsurvey' | translate}}</option>
                     </select>
