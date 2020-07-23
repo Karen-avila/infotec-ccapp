@@ -894,37 +894,37 @@
                                                 <td>#</td>
                                                 <td>{{'label.heading.days' | translate}}</td>
                                                 <td>{{'label.heading.date' | translate}}</td>
-                                                <td >{{'label.heading.disbursement' | translate}}</td>
-                                                <td >{{'label.heading.principaldue' | translate}}</td>
-                                                <td >{{'label.heading.principalbalance' | translate}}</td>
-                                                <td >{{'label.heading.interestdue' | translate}}</td>
-                                                <td >{{'label.heading.fees' | translate}}</td>
-                                                <td >{{'label.heading.penalty' | translate}}</td>
-                                                <td >{{'label.heading.due' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.disbursement' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.principaldue' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.principalbalance' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.interestdue' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.fees' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.penalty' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.due' | translate}}</td>
                                             </tr>
                                             <tr ng-repeat="period in repaymentscheduleinfo.periods">
                                                 <td>{{period.period}}</td>
                                                 <td>{{period.daysInPeriod}}</td>
                                                 <td>{{period.dueDate | DateFormat}}</td>
-                                                <td style="text-align: end;">{{period.principalDisbursed | FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.principalDue| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.interestDue| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.feeChargesDue| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.penaltyChargesDue| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{period.totalDueForPeriod| FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalDisbursed | FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                                                <td class="text-right">{{period.interestDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.feeChargesDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.penaltyChargesDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.totalDueForPeriod| FormatNumber}}</td>
                                             </tr>
                                         <tfoot class="ui-widget-header">
                                             <tr>
                                                 <td colspan="2">{{'label.heading.total' | translate}}</td>
                                                 <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
                                                 <td ></td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                                                <td style="text-align: end;">{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                                             </tr>
                                         </tfoot>
                                         </tbody>
