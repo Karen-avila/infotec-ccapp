@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter) {
+        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter,MIN_DATEPICKER,MAX_DATEPICKER) {
             scope.previewRepayment = false;
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
@@ -24,6 +24,9 @@
 
             scope.date.first = new Date();
             scope.date.second = new Date();
+
+            scope.minDatePicker =  new Date(MIN_DATEPICKER);
+            scope.maxDatePicker =  new Date(MAX_DATEPICKER);
 
             scope.maxStep = 3;
             scope.selectedStep = 0;
@@ -420,7 +423,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
+    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter','MIN_DATEPICKER','MAX_DATEPICKER', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
         $log.info("NewLoanAccAppController initialized");
     });
 }(mifosX.controllers || {}));
