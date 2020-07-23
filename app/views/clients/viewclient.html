@@ -558,14 +558,14 @@
                                         <br>
                                         <div class="pull-right">
                                             <span ng-show="clientAccounts.loanAccounts">
-                                                <md-button md-no-ink ng-show="openLoan" class="md-primary"
+                                                <button md-no-ink ng-show="openLoan" class="btn-primary btn btn-sm"
                                                     ng-click="setLoan()">
                                                     {{'label.button.viewclosedloans' | translate }}
-                                                </md-button>
-                                                <md-button md-no-ink ng-show="!openLoan" class="md-primary"
+                                                </button>
+                                                <button md-no-ink ng-show="!openLoan" class="btn-primary btn btn-sm"
                                                     ng-click="setLoan()">
                                                     {{'label.button.viewactiveloans' | translate }}
-                                                </md-button>
+                                                </button>
                                             </span>
                                         </div>
                                         <div data-ng-show="clientAccounts.loanAccounts">

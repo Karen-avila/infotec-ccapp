@@ -3,6 +3,7 @@ angular.module('configurations', [])
     .constant('IDLE_DURATION', 30 * 60)
     .constant('WARN_DURATION', 10)
     .constant('KEEPALIVE_INTERVAL', 15 * 60)
+    .constant('MIN_DATEPICKER', '2000-01-01')
     .constant('MAX_DATEPICKER', '2040-12-31')
     .constant('SECURITY', 'basicauth')
 // Use SECURITY constant as 'basicauth' to enable Basic on community app
