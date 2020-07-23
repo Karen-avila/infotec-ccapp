@@ -18,7 +18,7 @@
                         </label>
                         <div class="col-sm-4">
                             <md-select id="officeId" ng-model="formData.officeId" ng-change="changeOffice()" placeholder="{{'label.menu.selectoffice' | translate}}">
-                                <md-option ng-repeat="office in offices" ng-value="{{office.id}}">{{office.name}}</md-option>
+                                <md-option ng-repeat="office in offices | orderBy:'name'" ng-value="{{office.id}}" class="uppercase">{{office.name}}</md-option>
                             </md-select>
                         </div>
                         <div class="col-sm-3 pull-right">

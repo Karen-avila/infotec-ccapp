@@ -14,7 +14,7 @@
 
                 <div class="col-sm-3">
                     <select id="surveyname" ng-change="surveySelected(survey)" ng-model="survey"
-                            ng-options="survey as survey.name for survey in surveys"
+                            ng-options="survey as survey.name for survey in surveys | orderBy:'name' track by name"
                             value="{{survey}}" class="form-control">
                             <option selected="true" value="">{{'label.selectsurvey' | translate}}</option>
                     </select>
@@ -42,9 +42,9 @@
                 </ui-tabset>
 
                 <div class="col-md-offset-3" ng-show="!showDeleteClient">
-                    <button id="cancel" type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
-                    </button>
-                    <button id="save" type="submit" ng-click="submit()" ng-disabled="isAnyResponse()" class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
+                    <md-button id="cancel" type="reset" ng-click="cancel()" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}
+                    </md-button>
+                    <md-button id="save" type="submit" ng-click="submit()" ng-disabled="isAnyResponse()" class="btn btn-sm btn-primary md-primary md-raised">{{'label.button.save' | translate}}</md-button>
                 </div>
             </div>
         </div>
