@@ -20,6 +20,7 @@
                         <form name="Details" novalidate="" class="form-inline">
                             <fieldset>
                                 <api-validate></api-validate>
+                                <br>
                                 <hr>
                                 <table style="border-spacing: 10px; border-collapse: separate; width: 100%;">
                                     <tr>
@@ -34,7 +35,7 @@
                                             <md-select id="productId" ng-model="formData.productId" 
                                                 placeholder="{{'label.selectloanproduct' | translate}}"
                                                 ng-change="loanProductChange(formData.productId)" required>
-                                                <md-option ng-repeat="product in products" ng-value="product.id">
+                                                <md-option ng-repeat="product in products | orderBy: 'shortName'" ng-value="product.id">
                                                         {{product.shortName}} {{product.name}}
                                                 </md-option>
                                             </md-select>
@@ -95,7 +96,7 @@
                                         <td class="paddedbottom20">
                                             <md-datepicker id="submittedOnDate" ng-model="date.first" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="restrictDate">
+                                                md-min-date="minDatePicker" md-max-date="restrictDate">
                                             </md-datepicker>
                                         </td>
                                         <td class="width25">
@@ -109,7 +110,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="expectedDisbursementDate" ng-model="date.second" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="date.first" md-max-date="maxDate" required>
+                                                md-min-date="date.first" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -171,7 +172,7 @@
                                             <md-select id="linkAccountId" ng-model="formData.linkAccountId"
                                                 ng-change="loandetails.linkAccountName = formValue(loanaccountinfo.accountLinkingOptions,formData.linkAccountId,'id','productName')"
                                                 placeholder="{{'label.menu.selectone' | translate}}">
-                                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions" ng-value="savingaccount.id">
+                                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions | orderBy: 'accountNo'" ng-value="savingaccount.id">
                                                     {{savingaccount.accountNo}} {{savingaccount.productName}}
                                                 </md-option>
                                             </md-select>
@@ -313,7 +314,7 @@
                                             ng-hide="loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                                             <md-datepicker id="repaymentsStartingFromDate" ng-model="date.fourth" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true" class="width25">
@@ -326,7 +327,7 @@
                                             ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true">
                                             <md-datepicker id="interestChargedFromDate" ng-model="date.third" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -698,7 +699,7 @@
                                                         <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
                                                             ng-model="disbursementDetail.expectedDisbursementDate" 
                                                             md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                                            md-min-date="minDate" md-max-date="'2030-06-22'" required>
+                                                            md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
                                                         </md-datepicker>
                                                     </td>
                                                     <td>
@@ -774,7 +775,7 @@
                                             <td>
                                                 <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate" 
                                                     md-placeholder="{{'label.input.duedate' | translate}}"
-                                                    md-min-date="minDate" md-max-date="'2030-06-22'">
+                                                    md-min-date="minDatePicker" md-max-date="maxDatePicker">
                                                 </md-datepicker>
                                             </td>
                                             <td>
@@ -893,37 +894,37 @@
                                                 <td>#</td>
                                                 <td>{{'label.heading.days' | translate}}</td>
                                                 <td>{{'label.heading.date' | translate}}</td>
-                                                <td >{{'label.heading.disbursement' | translate}}</td>
-                                                <td >{{'label.heading.principaldue' | translate}}</td>
-                                                <td >{{'label.heading.principalbalance' | translate}}</td>
-                                                <td >{{'label.heading.interestdue' | translate}}</td>
-                                                <td >{{'label.heading.fees' | translate}}</td>
-                                                <td >{{'label.heading.penalty' | translate}}</td>
-                                                <td >{{'label.heading.due' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.disbursement' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.principaldue' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.principalbalance' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.interestdue' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.fees' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.penalty' | translate}}</td>
+                                                <td class="text-right">{{'label.heading.due' | translate}}</td>
                                             </tr>
                                             <tr ng-repeat="period in repaymentscheduleinfo.periods">
                                                 <td>{{period.period}}</td>
                                                 <td>{{period.daysInPeriod}}</td>
                                                 <td>{{period.dueDate | DateFormat}}</td>
-                                                <td >{{period.principalDisbursed | FormatNumber}}</td>
-                                                <td >{{period.principalDue| FormatNumber}}</td>
-                                                <td >{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                                                <td >{{period.interestDue| FormatNumber}}</td>
-                                                <td >{{period.feeChargesDue| FormatNumber}}</td>
-                                                <td >{{period.penaltyChargesDue| FormatNumber}}</td>
-                                                <td >{{period.totalDueForPeriod| FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalDisbursed | FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                                                <td class="text-right">{{period.interestDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.feeChargesDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.penaltyChargesDue| FormatNumber}}</td>
+                                                <td class="text-right">{{period.totalDueForPeriod| FormatNumber}}</td>
                                             </tr>
                                         <tfoot class="ui-widget-header">
                                             <tr>
                                                 <td colspan="2">{{'label.heading.total' | translate}}</td>
                                                 <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
                                                 <td ></td>
-                                                <td >{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                                                <td >{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                                                <td class="text-right">{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                                             </tr>
                                         </tfoot>
                                         </tbody>
