@@ -24,6 +24,7 @@
 
             scope.date.first = new Date();
             scope.date.second = new Date();
+
             scope.date.third = new Date();
             scope.date.fourth = new Date();
 
@@ -79,6 +80,7 @@
                 scope.products = [];
                 if (data.clientName) {
                     scope.clientName = data.clientName;
+                    scope.minDate = data;
                 } else if (data.group) {
                     scope.groupName = data.group.name;
                 }
