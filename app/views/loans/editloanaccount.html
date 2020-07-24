@@ -71,8 +71,8 @@
                 </td>
                 <td class="paddedbottom10">
                     <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate"
-                        md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                        md-max-date="restrictDate">
+                        md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                        max="restrictDate">
                     </md-datepicker>
                 </td>
                 <td>
@@ -82,7 +82,7 @@
                 <td class="paddedbottom10">
                     <md-datepicker id="expectedDisbursementDate" ng-model="formData.expectedDisbursementDate"
                         md-placeholder="{{'label.selecttodate' | translate}}" ng-disabled="disabled(date, mode)"
-                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                        min="minDate" max="'2030-06-22'">
                     </md-datepicker>
                 </td>
             </tr>
@@ -267,8 +267,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                             <md-datepicker id="repaymentsStartingFromDate"
                                 ng-model="formData.repaymentsStartingFromDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td
@@ -278,8 +278,8 @@
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestChargedFromDate == true">
                             <md-datepicker id="interestChargedFromDate" ng-model="formData.interestChargedFromDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -557,8 +557,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <md-datepicker id="recalculationRestFrequencyDate"
                                 ng-model="formData.recalculationRestFrequencyDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                                md-max-date="restrictDate">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -595,8 +595,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <md-datepicker id="recalculationCompoundingFrequencyDate"
                                 ng-model="formData.recalculationCompoundingFrequencyDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                                md-max-date="restrictDate">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -630,7 +630,7 @@
                                     <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate"
                                         ng-model="disbursementDetail.expectedDisbursementDate"
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                                        min="minDate" max="'2030-06-22'">
                                     </md-datepicker>
                                 </td>
                                 <td>
@@ -675,8 +675,8 @@
                         <td>{{charge.chargeTimeType.value | translate}}</td>
                         <td>
                             <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate"
-                                md-placeholder="{{'label.input.duedate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.input.duedate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td><a ng-click="deleteCharge($index)"><i class="fa fa-times-circle fa-2x"></i></a></td>

@@ -96,7 +96,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="submittedOnDate" ng-model="date.first" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDatePicker" md-max-date="restrictDate">
+                                                min="minDatePicker" max="restrictDate">
                                             </md-datepicker>
                                         </td>
                                         <td class="width25">
@@ -110,7 +110,7 @@
                                         <td class="paddedbottom20 ">
                                             <md-datepicker id="expectedDisbursementDate" ng-model="date.second" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="date.first" md-max-date="maxDatePicker" required>
+                                                min="date.first" max="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -314,7 +314,7 @@
                                             ng-hide="loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                                             <md-datepicker id="repaymentsStartingFromDate" ng-model="date.fourth" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
+                                                min="minDatePicker" max="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                         <td ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true" class="width25">
@@ -327,7 +327,7 @@
                                             ng-hide="loanAccount.isHiddenField.interestChargedFromDate == true">
                                             <md-datepicker id="interestChargedFromDate" ng-model="date.third" 
                                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                                md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
+                                                min="minDatePicker" max="maxDatePicker" required>
                                             </md-datepicker>
                                         </td>
                                     </tr>
@@ -699,7 +699,7 @@
                                                         <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
                                                             ng-model="disbursementDetail.expectedDisbursementDate" 
                                                             md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                                            md-min-date="minDatePicker" md-max-date="maxDatePicker" required>
+                                                            min="minDatePicker" max="maxDatePicker" required>
                                                         </md-datepicker>
                                                     </td>
                                                     <td>
@@ -775,7 +775,7 @@
                                             <td>
                                                 <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate" 
                                                     md-placeholder="{{'label.input.duedate' | translate}}"
-                                                    md-min-date="minDatePicker" md-max-date="maxDatePicker">
+                                                    min="minDatePicker" max="maxDatePicker">
                                                 </md-datepicker>
                                             </td>
                                             <td>
@@ -799,7 +799,7 @@
                                             <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                                 <td>{{charge.name}}, {{charge.currency.displaySymbol}}</td>
                                                 <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
-                                                <td>{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
+                                                <td >{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                                                 <td>{{charge.chargeTimeType.value | translate}}</td>
                                             </tr>
                                         </table>
@@ -1310,13 +1310,13 @@
                                     <tr class="graybg" ng-show="loanaccountinfo.overdueCharges.length>0">
                                         <th colspan="2">{{'label.heading.name' | translate}}</th>
                                         <th>{{'label.heading.type' | translate}}</th>
-                                        <th colspan="2" >{{'label.heading.amount' | translate}}</th>
+                                        <th colspan="2" class="text-right">{{'label.heading.amount' | translate}}</th>
                                         <th colspan="2">{{'label.heading.collectedon' | translate}}</th>
                                     </tr>
                                     <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                         <td colspan="2">{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                         <td>{{'charge.type.' + charge.chargeCalculationType.value | translate }}</td>
-                                        <td colspan="2" >{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
+                                        <td colspan="2" class="text-right">{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                                         <td>{{charge.chargeTimeType.value | translate }}</td>
                                     </tr>
                                 </table>
