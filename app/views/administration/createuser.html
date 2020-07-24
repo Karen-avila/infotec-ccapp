@@ -35,6 +35,7 @@
 					<form-validate valattributeform="createuserform" valattribute="firstname" />
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="lastname">{{'label.input.lastname' | translate}}<span
 						class="required">*</span></label>
@@ -59,6 +60,16 @@
 					<form-validate valattributeform="createuserform" valattribute="surname" />
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="phone">{{'label.input.mobilenumber' | translate}}<span
+						class="required">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" id="phone" name="phone" required ng-model="formData.phone"
+						ng-pattern="\d{15}" class="form-control" maxlength="15" />
+				</div>
+			</div>
+
 			<div data-ng-switch on="formData.sendPasswordToEmail">
 				<div data-ng-switch-when="true">
 					<div class="form-group">
