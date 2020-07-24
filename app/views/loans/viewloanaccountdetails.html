@@ -429,41 +429,39 @@
                                                     <td md-cell>
                                                         <div ng-show="period.obligationsMetOnDate"><i class="fa fa-check "></i></div>
                                                     </td>
-                
-                                                    <td md-cell class="amount">{{period.principalDue | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.interestOriginalDue | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.taxOnInterestDue | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.feeChargesDue | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.penaltyChargesDue | FormatNumber}}</td>
-                
-                                                    <td md-cell class="amount">{{period.totalDueForPeriod | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.totalPaidForPeriod | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.totalPaidLateForPeriod | FormatNumber}}</td>
-                                                    <td md-cell ng-show="isWaived" class="amount">{{period.totalWaivedForPeriod | FormatNumber}}</td>
-                                                    <td md-cell class="amount">{{period.totalOutstandingForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.principalDue ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.principalDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.principalLoanBalanceOutstanding ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.interestOriginalDue ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.interestOriginalDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.taxOnInterestDue ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.taxOnInterestDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.feeChargesDue ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.feeChargesDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.penaltyChargesDue ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.penaltyChargesDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalDueForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalDueForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalPaidForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidInAdvanceForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidLateForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalPaidLateForPeriod | FormatNumber}}</td>
+                                                    <td md-cell ng-show="isWaived" class="amount">{{period.totalWaivedForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalWaivedForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalOutstandingForPeriod ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                                                 </tr>
                                                 </tbody>
                                                 <tfoot class="ui-widget-header">
                                                 <tr>
-                                                    <th>&nbsp;</th>
+                                                    <th colspan="1">{{'label.heading.total' | translate}}</th>
                                                     <th>{{loandetails.repaymentSchedule.loanTermInDays}}</th>
-                                                    <th colspan="3">{{'label.heading.total' | translate}}</th>
-                
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPrincipalExpected | FormatNumber}}</th>
-                                                    <th class="amount">&nbsp;</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalInterestCharged | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalTaxes | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalFeeChargesCharged | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
-                
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepaymentExpected | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepayment | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidInAdvance | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidLate | FormatNumber}}</th>
-                                                    <th ng-show="isWaived" class="amount">{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
-                                                    <th class="amount">{{loandetails.repaymentSchedule.totalOutstanding | FormatNumber}}</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPrincipalExpected ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalPrincipalExpected | FormatNumber}}</th>
+                                                    <th></th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalInterestCharged ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalInterestCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalTaxes ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalTaxes | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalFeeChargesCharged ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalFeeChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPenaltyChargesCharged ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepaymentExpected ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalRepaymentExpected | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepayment ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalRepayment | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidInAdvance ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalPaidInAdvance | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidLate ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalPaidLate | FormatNumber}}</th>
+                                                    <th ng-show="isWaived" class="amount">{{loandetails.repaymentSchedule.totalWaived ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalOutstanding ? loandetails.repaymentSchedule.currency.displaySymbol : ''}}{{loandetails.repaymentSchedule.totalOutstanding | FormatNumber}}</th>
                                                 </tr>
                                                 </tfoot>
                                             </table>
