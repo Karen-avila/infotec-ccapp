@@ -345,14 +345,14 @@
                                                         <th md-column scope="col">#</th>
                                                         <th md-column scope="col">{{'label.heading.date' | translate}}</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.principaldue' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.balanceofloan' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.principaldue' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.balanceofloan' | translate}}</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.interest' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.fees' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.penalties' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.interest' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.fees' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.penalties' | translate}}</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.outstanding' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.outstanding' | translate}}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody md-body>
@@ -360,23 +360,23 @@
                                                         <td md-cell>{{period.period}}</td>
                                                         <td md-cell>{{period.dueDate | DateFormat}}</td>
                     
-                                                        <td md-cell style="text-align: right;">{{period.principalDue | FormatNumber}}</td>
-                                                        <td md-cell style="text-align: right;">{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
-                                                        <td md-cell style="text-align: right;">{{period.interestOriginalDue | FormatNumber}}</td>
-                                                        <td md-cell style="text-align: right;">{{period.feeChargesDue | FormatNumber}}</td>
-                                                        <td md-cell style="text-align: right;">{{period.penaltyChargesDue | FormatNumber}}</td>
-                                                        <td md-cell style="text-align: right;">{{period.totalOutstandingForPeriod | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.principalDue | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.interestOriginalDue | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.feeChargesDue | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.penaltyChargesDue | FormatNumber}}</td>
+                                                        <td md-cell class="amount">{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot class="ui-widget-header">
                                                 <tr md-row>
                                                     <th colspan="2">{{'label.heading.total' | translate}}</th>
-                                                    <th style="text-align: right;">{{loandetails.originalSchedule.totalPrincipalExpected | FormatNumber}}</th>
-                                                    <th style="text-align: right;">&nbsp;</th>
-                                                    <th style="text-align: right;">{{loandetails.originalSchedule.totalInterestCharged | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.originalSchedule.totalFeeChargesCharged | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.originalSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.originalSchedule.totalRepaymentExpected | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.originalSchedule.totalPrincipalExpected | FormatNumber}}</th>
+                                                    <th class="amount">&nbsp;</th>
+                                                    <th class="amount">{{loandetails.originalSchedule.totalInterestCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.originalSchedule.totalFeeChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.originalSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.originalSchedule.totalRepaymentExpected | FormatNumber}}</th>
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -404,20 +404,20 @@
                                                         <th md-column scope="col">{{'label.heading.date.completed' | translate}}</th>
                                                         <th md-column scope="col">&nbsp;</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.due' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.balance' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.due' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.balance' | translate}}</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.interest' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.taxes' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.fees' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.penalties' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.interest' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.taxes' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.fees' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.penalties' | translate}}</th>
                     
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.due' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.paid' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.inadvance' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.late' | translate}}</th>
-                                                        <th md-column scope="col" data-ng-show="isWaived" style="text-align: right; padding: 20px;">{{'label.heading.waived' | translate}}</th>
-                                                        <th md-column scope="col" style="text-align: right; padding: 20px;">{{'label.heading.outstanding' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.due' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.paid' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.inadvance' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.late' | translate}}</th>
+                                                        <th md-column scope="col" data-ng-show="isWaived" class="amount">{{'label.heading.waived' | translate}}</th>
+                                                        <th md-column scope="col" class="amount">{{'label.heading.outstanding' | translate}}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody md-body>
@@ -430,19 +430,19 @@
                                                         <div ng-show="period.obligationsMetOnDate"><i class="fa fa-check "></i></div>
                                                     </td>
                 
-                                                    <td md-cell style="text-align: right;">{{period.principalDue | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.interestOriginalDue | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.taxOnInterestDue | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.feeChargesDue | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.penaltyChargesDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.principalDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.principalLoanBalanceOutstanding | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.interestOriginalDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.taxOnInterestDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.feeChargesDue | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.penaltyChargesDue | FormatNumber}}</td>
                 
-                                                    <td md-cell style="text-align: right;">{{period.totalDueForPeriod | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.totalPaidForPeriod | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.totalPaidLateForPeriod | FormatNumber}}</td>
-                                                    <td md-cell ng-show="isWaived" style="text-align: right;">{{period.totalWaivedForPeriod | FormatNumber}}</td>
-                                                    <td md-cell style="text-align: right;">{{period.totalOutstandingForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalDueForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidInAdvanceForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalPaidLateForPeriod | FormatNumber}}</td>
+                                                    <td md-cell ng-show="isWaived" class="amount">{{period.totalWaivedForPeriod | FormatNumber}}</td>
+                                                    <td md-cell class="amount">{{period.totalOutstandingForPeriod | FormatNumber}}</td>
                                                 </tr>
                                                 </tbody>
                                                 <tfoot class="ui-widget-header">
@@ -451,19 +451,19 @@
                                                     <th>{{loandetails.repaymentSchedule.loanTermInDays}}</th>
                                                     <th colspan="3">{{'label.heading.total' | translate}}</th>
                 
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalPrincipalExpected | FormatNumber}}</th>
-                                                    <th style="text-align: right;">&nbsp;</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalInterestCharged | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalTaxes | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalFeeChargesCharged | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPrincipalExpected | FormatNumber}}</th>
+                                                    <th class="amount">&nbsp;</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalInterestCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalTaxes | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalFeeChargesCharged | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPenaltyChargesCharged | FormatNumber}}</th>
                 
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalRepaymentExpected | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalRepayment | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalPaidInAdvance | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalPaidLate | FormatNumber}}</th>
-                                                    <th ng-show="isWaived" style="text-align: right;">{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
-                                                    <th style="text-align: right;">{{loandetails.repaymentSchedule.totalOutstanding | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepaymentExpected | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalRepayment | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidInAdvance | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalPaidLate | FormatNumber}}</th>
+                                                    <th ng-show="isWaived" class="amount">{{loandetails.repaymentSchedule.totalWaived | FormatNumber}}</th>
+                                                    <th class="amount">{{loandetails.repaymentSchedule.totalOutstanding | FormatNumber}}</th>
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -707,13 +707,13 @@
                                             <tr class="graybg">
                                                 <th>{{'label.heading.name' | translate}}</th>
                                                 <th>{{'label.heading.type' | translate}}</th>
-                                                <th style="text-align: right; padding-right: 10px">{{'label.heading.amount' | translate}}</th>
+                                                <th class="amount">{{'label.heading.amount' | translate}}</th>
                                                 <th>{{'label.heading.collectedon' | translate}}</th>
                                             </tr>
                                             <tr ng-repeat="charge in loandetails.overdueCharges">
                                                 <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                                 <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
-                                                <td style="text-align: right; padding-right: 10px">{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
+                                                <td class="amount">{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                                                 <td>{{charge.chargeTimeType.value | translate}}</td>
                                             </tr>
                                         </table>
@@ -746,10 +746,10 @@
                                                 <th>{{'label.heading.paymentdueat' | translate}}</th>
                                                 <th>{{'label.heading.dueasof' | translate}}</th>
                                                 <th>{{'label.heading.calculationtype' | translate}}</th>
-                                                <th style="text-align: right; padding-right: 10px">{{'label.heading.due' | translate}}</th>
-                                                <th style="text-align: right; padding-right: 10px">{{'label.heading.paid' | translate}}</th>
-                                                <th style="text-align: right; padding-right: 10px">{{'label.heading.waived' | translate}}</th>
-                                                <th style="text-align: right; padding-right: 10px">{{'label.heading.outstanding' | translate}}</th>
+                                                <th class="amount">{{'label.heading.due' | translate}}</th>
+                                                <th class="amount">{{'label.heading.paid' | translate}}</th>
+                                                <th class="amount">{{'label.heading.waived' | translate}}</th>
+                                                <th class="amount">{{'label.heading.outstanding' | translate}}</th>
                                                 <th>{{'label.heading.actions' | translate}}</th>
                                             </tr>
                                             <tr ng-repeat="charge in charges" class="pointer-main">
@@ -759,10 +759,10 @@
                                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.chargeTimeType.value | translate}}</td>
                                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.dueDate | DateFormat}}</td>
                                                 <td class="pointer" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.chargeCalculationType.value | translate}}</td>
-                                                <td class="pointer text-right" style="padding-right: 10px" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
-                                                <td class="pointer text-right" style="padding-right: 10px" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountPaid| FormatNumber}}</td>
-                                                <td class="pointer text-right" style="padding-right: 10px" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountWaived| FormatNumber}}</td>
-                                                <td class="pointer text-right" style="padding-right: 10px" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountOutstanding| FormatNumber}}</td>
+                                                <td class="pointer amount" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
+                                                <td class="pointer amount" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountPaid| FormatNumber}}</td>
+                                                <td class="pointer amount" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountWaived| FormatNumber}}</td>
+                                                <td class="pointer amount" data-ng-click="viewLoanChargeDetails(charge.id)">{{charge.currency.displaySymbol}}{{charge.amountOutstanding| FormatNumber}}</td>
                                                 <td>
                                                     <a title="{{'label.edit' | translate}}" class="btn btn-sm btn-primary" data-ng-show="status=='Submitted and pending approval'"
                                                     href="#!/loanaccountcharge/{{loandetails.id}}/editcharge/{{charge.id}}"><i

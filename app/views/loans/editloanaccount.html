@@ -688,13 +688,13 @@
                         <tr class="graybg">
                             <th>{{'label.heading.name' | translate}}</th>
                             <th>{{'label.heading.type' | translate}}</th>
-                            <th>{{'label.heading.amount' | translate}}</th>
+                            <th class="amount">{{'label.heading.amount' | translate}}</th>
                             <th>{{'label.heading.collectedon' | translate}}</th>
                         </tr>
                         <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                             <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                             <td>{{charge.chargeCalculationType.value | translate}}</td>
-                            <td>{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
+                            <td class="amount">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value | translate}}</td>
                         </tr>
                     </table>

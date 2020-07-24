@@ -793,13 +793,13 @@
                                             <tr class="graybg">
                                                 <th>{{'label.heading.name' | translate}}</th>
                                                 <th>{{'label.heading.type' | translate}}</th>
-                                                <th >{{'label.heading.amount' | translate}}</th>
+                                                <th class="amount">{{'label.heading.amount' | translate}}</th>
                                                 <th>{{'label.heading.collectedon' | translate}}</th>
                                             </tr>
                                             <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                                                 <td>{{charge.name}}, {{charge.currency.displaySymbol}}</td>
                                                 <td>{{'charge.type.' + charge.chargeCalculationType.value | translate}}</td>
-                                                <td >{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
+                                                <td class="amount">{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                                                 <td>{{charge.chargeTimeType.value | translate}}</td>
                                             </tr>
                                         </table>
@@ -916,7 +916,7 @@
                                             </tr>
                                         <tfoot class="ui-widget-header">
                                             <tr>
-                                                <td colspan="2">{{'label.heading.total' | translate}}</td>
+                                                <td colspan="1">{{'label.heading.total' | translate}}</td>
                                                 <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
                                                 <td class="text-right">{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
                                                 <td class="text-right">{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
