@@ -80,7 +80,6 @@
                 scope.products = [];
                 if (data.clientName) {
                     scope.clientName = data.clientName;
-                    scope.minDate = data;
                 } else if (data.group) {
                     scope.groupName = data.group.name;
                 }
