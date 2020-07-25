@@ -4424,6 +4424,7 @@
     "label.button.deactivate": "Desactivar",
     "label.NOTIFICATION.description": "Configuración de notificaciones",
     "error.msg.no.survey.response": "No hay ninguna respuesta disponible para la encuesta.",
+    "error.msg.no.provisioning.criteria.definitions.found":"No se encuentran definiciones de criterios de aprovisionamiento",
     "label.heading.twofactor": "Autenticación en dos pasos",
     "label.heading.sms": "SMS",
     "label.heading.token": "Llave",

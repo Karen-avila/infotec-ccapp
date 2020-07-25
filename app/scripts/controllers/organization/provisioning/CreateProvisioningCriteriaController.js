@@ -13,8 +13,8 @@
                 scope.template = data;
                 scope.allloanproducts = data.loanProducts ;
                 scope.definitions = data.definitions;
-                scope.liabilityaccounts = data.glAccounts.filter(function(a) {return a.code == 'accountType.liability'});
-                scope.expenseaccounts = data.glAccounts.filter(function(a) {return a.code == 'accountType.expense'});
+                scope.liabilityaccounts = data.glAccounts.filter(function(a) {return a.type.code == 'accountType.liability'});
+                scope.expenseaccounts = data.glAccounts.filter(function(a) {return a.type.code == 'accountType.expense'});
             });
 
             scope.addLoanProduct = function () {
