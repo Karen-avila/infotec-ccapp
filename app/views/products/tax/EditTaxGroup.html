@@ -64,7 +64,7 @@
 
                     <md-datepicker id="taxComponents[{{$index}}].startDate" ng-model="start.date"
                         md-placeholder="{{'label.selecttodate' | translate}}" required
-                        md-min-date="minDate" md-max-date="restrictDate">
+                        min="minDate" max="restrictDate">
                     </md-datepicker>
                     <!--
                     <input id="taxComponents[{{$index}}].startDate" sort type="text"
@@ -79,7 +79,7 @@
 
                     <md-datepicker id="taxComponents[{{$index}}].endDate" ng-model="taxcomponent.endDate"
                         md-placeholder="{{'label.selecttodate' | translate}}" required
-                        md-min-date="minDate" md-max-date="restrictDate">
+                        min="minDate" max="restrictDate">
                     </md-datepicker>
 
                     <!--

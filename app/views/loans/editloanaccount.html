@@ -71,8 +71,8 @@
                 </td>
                 <td class="paddedbottom10">
                     <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate"
-                        md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                        md-max-date="restrictDate">
+                        md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                        max="restrictDate">
                     </md-datepicker>
                 </td>
                 <td>
@@ -82,7 +82,7 @@
                 <td class="paddedbottom10">
                     <md-datepicker id="expectedDisbursementDate" ng-model="formData.expectedDisbursementDate"
                         md-placeholder="{{'label.selecttodate' | translate}}" ng-disabled="disabled(date, mode)"
-                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                        min="minDate" max="'2030-06-22'">
                     </md-datepicker>
                 </td>
             </tr>
@@ -267,8 +267,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentsStartingFromDate == true">
                             <md-datepicker id="repaymentsStartingFromDate"
                                 ng-model="formData.repaymentsStartingFromDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td
@@ -278,8 +278,8 @@
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestChargedFromDate == true">
                             <md-datepicker id="interestChargedFromDate" ng-model="formData.interestChargedFromDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -557,8 +557,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <md-datepicker id="recalculationRestFrequencyDate"
                                 ng-model="formData.recalculationRestFrequencyDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                                md-max-date="restrictDate">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -595,8 +595,8 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
                             <md-datepicker id="recalculationCompoundingFrequencyDate"
                                 ng-model="formData.recalculationCompoundingFrequencyDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'2000-01-01'"
-                                md-max-date="restrictDate">
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -630,7 +630,7 @@
                                     <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate"
                                         ng-model="disbursementDetail.expectedDisbursementDate"
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                                        min="minDate" max="'2030-06-22'">
                                     </md-datepicker>
                                 </td>
                                 <td>
@@ -675,8 +675,8 @@
                         <td>{{charge.chargeTimeType.value | translate}}</td>
                         <td>
                             <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate"
-                                md-placeholder="{{'label.input.duedate' | translate}}" md-min-date="minDate"
-                                md-max-date="'2030-06-22'">
+                                md-placeholder="{{'label.input.duedate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td><a ng-click="deleteCharge($index)"><i class="fa fa-times-circle fa-2x"></i></a></td>
@@ -688,13 +688,13 @@
                         <tr class="graybg">
                             <th>{{'label.heading.name' | translate}}</th>
                             <th>{{'label.heading.type' | translate}}</th>
-                            <th>{{'label.heading.amount' | translate}}</th>
+                            <th class="amount">{{'label.heading.amount' | translate}}</th>
                             <th>{{'label.heading.collectedon' | translate}}</th>
                         </tr>
                         <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                             <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                             <td>{{charge.chargeCalculationType.value | translate}}</td>
-                            <td>{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
+                            <td class="amount">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value | translate}}</td>
                         </tr>
                     </table>
@@ -768,41 +768,41 @@
                         <td>#</td>
                         <td>{{'label.heading.date' | translate}}</td>
                         <td>{{'label.heading.days' | translate}}</td>
-                        <td>{{'label.heading.disbursement' | translate}}</td>
-                        <td>{{'label.heading.principaldue' | translate}}</td>
-                        <td>{{'label.heading.principalbalance' | translate}}</td>
-                        <td>{{'label.heading.interestdue' | translate}}</td>
-                        <td>{{'label.heading.taxes' | translate}}</td>
-                        <td>{{'label.heading.fees' | translate}}</td>
-                        <td>{{'label.heading.penalty' | translate}}</td>
-                        <td>{{'label.heading.due' | translate}}</td>
+                        <td class="amount">{{'label.heading.disbursement' | translate}}</td>
+                        <td class="amount">{{'label.heading.principaldue' | translate}}</td>
+                        <td class="amount">{{'label.heading.principalbalance' | translate}}</td>
+                        <td class="amount">{{'label.heading.interestdue' | translate}}</td>
+                        <td class="amount">{{'label.heading.taxes' | translate}}</td>
+                        <td class="amount">{{'label.heading.fees' | translate}}</td>
+                        <td class="amount">{{'label.heading.penalty' | translate}}</td>
+                        <td class="amount">{{'label.heading.due' | translate}}</td>
                     </tr>
                     <tr ng-repeat="period in repaymentscheduleinfo.periods">
                         <td>{{period.period}}</td>
                         <td>{{period.dueDate | DateFormat}}</td>
                         <td>{{period.daysInPeriod}}</td>
-                        <td>{{period.principalDisbursed| FormatNumber}}</td>
-                        <td>{{period.principalDue| FormatNumber}}</td>
-                        <td>{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                        <td>{{period.interestDue| FormatNumber}}</td>
-                        <td>{{period.taxOnInterestDue | FormatNumber}}</td>
-                        <td>{{period.feeChargesDue| FormatNumber}}</td>
-                        <td>{{period.penaltyChargesDue| FormatNumber}}</td>
-                        <td>{{period.totalDueForPeriod| FormatNumber}}</td>
+                        <td class="amount">{{period.principalDisbursed ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalDisbursed| FormatNumber}}</td>
+                        <td class="amount">{{period.principalDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalDue| FormatNumber}}</td>
+                        <td class="amount">{{period.principalLoanBalanceOutstanding ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                        <td class="amount">{{period.interestDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.interestDue| FormatNumber}}</td>
+                        <td class="amount">{{period.taxOnInterestDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.taxOnInterestDue | FormatNumber}}</td>
+                        <td class="amount">{{period.feeChargesDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.feeChargesDue| FormatNumber}}</td>
+                        <td class="amount">{{period.penaltyChargesDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.penaltyChargesDue| FormatNumber}}</td>
+                        <td class="amount">{{period.totalDueForPeriod ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.totalDueForPeriod| FormatNumber}}</td>
                     </tr>
                 </tbody>
                 <tfoot class="ui-widget-header">
                     <tr>
                         <td colspan="2">{{'label.heading.total' | translate}}</td>
-                        <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                        <td>{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                        <td>{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.loanTermInDays}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPrincipalDisbursed ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPrincipalExpected ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
                         <td></td>
-                        <td>{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                        <td>{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
-                        <td>{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                        <td>{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                        <td>{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalInterestCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalTaxes ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalFeeChargesCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPenaltyChargesCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalRepaymentExpected ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                     </tr>
                 </tfoot>
             </table>

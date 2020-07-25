@@ -470,6 +470,10 @@
                 });
             };
 
+            scope.refresh = function () {
+                route.reload();
+            };
+            
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {
