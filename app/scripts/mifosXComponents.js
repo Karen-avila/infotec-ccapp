@@ -353,6 +353,7 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'ScrollbarTopDirective',
             'ChosenComboboxDirective',
             'NumberFormatDirective',
+            'OnlyNumberDirective',
             'SuccessfulResponsesDirective',
             'TabsPersistenceDirective',
             'ScrollableDirective',

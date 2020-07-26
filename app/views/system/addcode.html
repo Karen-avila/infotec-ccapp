@@ -16,22 +16,29 @@
     		    <api-validate></api-validate>
     		    <fieldset>
     		        <div class="form-group">
-    		            <label class="control-label col-sm-2" for="codename">{{'label.input.codename' | translate}}<span
+    		            <label class="control-label col-sm-3" for="codename">{{'label.input.codename' | translate}}<span
     		                    class="required">*</span></label>
     		
-    		            <div class="col-sm-3">
-    		                <input type="text" id="codename" name="codename" ng-model="formData.name" class="form-control" required late-Validate/>
-    		            </div>
-    		            <div class="col-sm-3">
+    		            <div class="col-sm-4">
+							<input type="text" id="codename" name="codename uppercase" ng-model="formData.name" class="form-control" 
+								maxlength="45" required late-Validate/>
     		                <form-validate valattributeform="addcodeform" valattribute="codename"/>
+    		            </div>
+    		        </div>
+    		        <div class="form-group">
+    		            <label class="control-label col-sm-3" for="codename">{{'label.input.description' | translate}}<span
+    		                    class="required">*</span></label>
+    		
+    		            <div class="col-sm-9">
+							<textarea type="text" id="description" ng-model="formData.description" rows="3"
+							class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="500" />
+    		                <form-validate valattributeform="addcodeform" valattribute="description"/>
     		            </div>
     		        </div>
     		        <br>
     		
     		        <div class="col-md-12 center">
-    		            <a href="#!/codes">
-    		                <md-button class="md-raised">{{'label.button.cancel' | translate}}</md-button>
-    		            </a>
+						<md-button href="#!/codes" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
     		            <md-button type="submit" class="md-raised md-primary" has-permission='CREATE_CODE'>{{'label.button.save' | translate}}</md-button>
     		        </div>
     		    </fieldset>

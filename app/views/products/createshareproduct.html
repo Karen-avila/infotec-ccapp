@@ -140,7 +140,7 @@
                         <div class="col-sm-2">
                             <input ng-autofocus="true" type="text" id="totalsharestobeissued" name="totalsharestobeissued"
                                    ng-model="formData.sharesIssued"
-                                   number-format class="form-control" ng-change = "shareCapitaValue()" required late-validate number=true />
+                                    class="form-control" ng-change = "shareCapitaValue()" required late-validate number=true />
                         <form-validate valattributeform="Terms" valattribute="totalsharestobeissued"/>
                         </div>
 
@@ -163,7 +163,7 @@
                         </label>
                         <div class="col-sm-2">
                             <input type="text" id="capitalvalue" name="capitalvaue" ng-model="formData.shareCapital"
-                              number-format class="form-control" maxlength="4" disabled/>
+                               class="form-control" maxlength="4" disabled/>
                         </div>
                     </div>
                     <hr>
@@ -212,7 +212,7 @@
                         </label>
                         <div class="col-sm-2">
                             <input id="minimumactiveperiod" type="text" name="minimumactiveperiod" class="form-control"
-                                   number-format ng-model="formData.minimumActivePeriodForDividends" late-validate number=true>
+                                    ng-model="formData.minimumActivePeriodForDividends" late-validate number=true>
                             <form-validate valattributeform="Settings" valattribute="minimumactiveperiod"/>
                         </div>
 
@@ -307,7 +307,7 @@
                             <td>
                                 <ng-form name="shareValue{{$index}}">
                                     <input id="shareValue" name="shareValue" class="form-control" type="text"
-                                           ng-model="marketpriceperiod.shareValue" number-format required late-validate number=true />
+                                           ng-model="marketpriceperiod.shareValue"  required late-validate number=true />
                                     <span class="error"
                                           ng-show="visitValidation&&shareValue{{$index}}.shareValue.$error.required">{{'label.requirefield' | translate }}</span>
                                 </ng-form>
