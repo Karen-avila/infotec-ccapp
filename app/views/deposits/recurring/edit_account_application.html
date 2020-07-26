@@ -153,7 +153,7 @@
                     class="required">*</span></label>
         </td>
         <td class="width36 paddedbottom10">
-            <input id="mandatoryRecommendedDepositAmount" type="text" number-format class="form-control"
+            <input id="mandatoryRecommendedDepositAmount" type="text"  class="form-control"
                    ng-model="formData.mandatoryRecommendedDepositAmount">
         </td>
         <td class="width14"><label class="control-label">{{'label.input.depositperiod' | translate }}&nbsp;</label>
@@ -317,7 +317,7 @@
     <tr ng-repeat="charge in charges">
         <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
         <td>{{charge.chargeCalculationType.value}}</td>
-        <td><input id="charges[{{$index}}].amount" class="form-control" number-format type="text" ng-model="charge.amount"
+        <td><input id="charges[{{$index}}].amount" class="form-control"  type="text" ng-model="charge.amount"
                    placeholder="{{'label.placeholder.amount' | translate}}"/></td>
         <td>{{charge.chargeTimeType.value}}</td>
         <td ng-show="charge.chargeTimeType.value=='Annual Fee'">
@@ -333,7 +333,7 @@
                    ng-model="charge.feeOnMonthDay" is-open="opened"/>
         </td>
         <td ng-show="charge.chargeTimeType.value=='Monthly Fee'">
-            <input id="charges[{{$index}}].amount" class="form-control" number-format type="text"
+            <input id="charges[{{$index}}].amount" class="form-control"  type="text"
                    ng-model="charge.feeInterval"/>
         </td>
         <td ng-hide="charge.chargeTimeType.value=='Monthly Fee'"></td>
