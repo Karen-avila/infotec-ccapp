@@ -64,12 +64,14 @@
                 });
                 return results;
             }
-        
-            scope.selectedItemChange = function(item) {
-                scope.formData.select= item.id;
-            }
 
-          
+            scope.selectedcrAccountsItemChange = function(item, i) {
+                if(item) this.formData.crAccounts[i].id = item.id;
+            }
+            scope.selecteddbAccountItemChange = function(item, i) {
+                if(item) this.formData.dbAccounts[i].id = item.id;
+            }
+            
             scope.submit = function () {
                 var jeTransaction = new Object();
                 var reqDate = dateFilter(scope.first.date, scope.df);
@@ -91,8 +93,8 @@
                 jeTransaction.credits = [];
                 for (var i = 0; i < this.formData.crAccounts.length; i++) {
                     var temp = new Object();
-                    if (this.formData.crAccounts[i].select) {
-                        temp.glAccountId = this.formData.crAccounts[i].select;
+                    if (this.formData.crAccounts[i].id) {
+                        temp.glAccountId = this.formData.crAccounts[i].id;
                     }
                     temp.amount = this.formData.crAccounts[i].crAmount;
                     jeTransaction.credits.push(temp);
@@ -101,8 +103,8 @@
                 jeTransaction.debits = [];
                 for (var i = 0; i < this.formData.dbAccounts.length; i++) {
                     var temp = new Object();
-                    if (this.formData.dbAccounts[i].select) {
-                        temp.glAccountId = this.formData.dbAccounts[i].select;
+                    if (this.formData.dbAccounts[i].id) {
+                        temp.glAccountId = this.formData.dbAccounts[i].id;
                     }
                     temp.amount = this.formData.dbAccounts[i].debitAmount;
                     jeTransaction.debits.push(temp);
