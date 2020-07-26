@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter) {
+        NewLoanAccAppController: function (scope, routeParams, resourceFactory, location, dateFilter, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.previewRepayment = false;
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
@@ -9,7 +9,7 @@
             scope.loandetails = {};
             scope.chargeFormData = {}; //For charges
             scope.collateralFormData = {}; //For collaterals
-            scope.inparams = {resourceType: 'template', activeOnly: 'true'};
+            scope.inparams = { resourceType: 'template', activeOnly: 'true' };
             scope.date = {};
             scope.formDat = {};
             scope.datatables = [];
@@ -25,10 +25,16 @@
             scope.date.first = new Date();
             scope.date.second = new Date();
 
+            scope.date.third = new Date();
+            scope.date.fourth = new Date();
+
+            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
+
             scope.maxStep = 3;
             scope.selectedStep = 0;
             scope.stepProgress = 0;
-            scope.goNextStep = function() {
+            scope.goNextStep = function () {
                 var vm = scope;
                 //do not exceed into max step
                 if (vm.selectedStep >= vm.maxStep) {
@@ -40,8 +46,8 @@
                 }
                 vm.selectedStep = vm.selectedStep + 1;
             }
-        
-            scope.moveToPreviousStep = function() {
+
+            scope.moveToPreviousStep = function () {
                 var vm = scope;
                 if (vm.selectedStep > 0) {
                     vm.selectedStep = vm.selectedStep - 1;
@@ -92,7 +98,7 @@
                     scope.disabled = false;
                 });
 
-                resourceFactory.loanResource.get({resourceType: 'template', templateType: 'collateral', productId: loanProductId, fields: 'id,loanCollateralOptions'}, function (data) {
+                resourceFactory.loanResource.get({ resourceType: 'template', templateType: 'collateral', productId: loanProductId, fields: 'id,loanCollateralOptions' }, function (data) {
                     scope.collateralOptions = data.loanCollateralOptions || [];
                 });
             }
@@ -106,13 +112,13 @@
                         scope.updateColumnHeaders(datatable.columnHeaderData);
                         angular.forEach(datatable.columnHeaderData, function (colHeader, i) {
                             if (_.isEmpty(scope.formDat.datatables[index])) {
-                                scope.formDat.datatables[index] = {data: {}};
+                                scope.formDat.datatables[index] = { data: {} };
                             }
 
                             if (_.isEmpty(scope.formData.datatables[index])) {
                                 scope.formData.datatables[index] = {
                                     registeredTableName: datatable.registeredTableName,
-                                    data: {locale: scope.optlang.code}
+                                    data: { locale: scope.optlang.code }
                                 };
                             }
 
@@ -124,7 +130,7 @@
                 }
             };
 
-            scope.updateColumnHeaders = function(columnHeaderData) {
+            scope.updateColumnHeaders = function (columnHeaderData) {
                 var colName = columnHeaderData[0].columnName;
                 if (colName == 'id') {
                     columnHeaderData.splice(0, 1);
@@ -136,8 +142,8 @@
                 }
             };
             //Wizard is creating new scope on every step. So resetting the variable here
-            scope.resetPreviewFlag = function() {
-                scope.previewRepayment =  !scope.previewRepayment;
+            scope.resetPreviewFlag = function () {
+                scope.previewRepayment = !scope.previewRepayment;
             };
 
             scope.previewClientLoanAccInfo = function () {
@@ -175,7 +181,7 @@
                 scope.formData.graceOnInterestPayment = scope.loanaccountinfo.graceOnInterestPayment;
                 scope.formData.graceOnArrearsAgeing = scope.loanaccountinfo.graceOnArrearsAgeing;
                 scope.formData.transactionProcessingStrategyId = scope.loanaccountinfo.transactionProcessingStrategyId;
-                scope.loandetails.transactionProcessingStrategyValue = scope.formValue(scope.loanaccountinfo.transactionProcessingStrategyOptions,scope.formData.transactionProcessingStrategyId,'id','name');
+                scope.loandetails.transactionProcessingStrategyValue = scope.formValue(scope.loanaccountinfo.transactionProcessingStrategyOptions, scope.formData.transactionProcessingStrategyId, 'id', 'name');
                 scope.formData.graceOnInterestCharged = scope.loanaccountinfo.graceOnInterestCharged;
                 scope.formData.fixedEmiAmount = scope.loanaccountinfo.fixedEmiAmount;
                 scope.formData.maxOutstandingLoanBalance = scope.loanaccountinfo.maxOutstandingLoanBalance;
@@ -187,19 +193,19 @@
                     scope.date.recalculationCompoundingFrequencyDate = new Date(scope.loanaccountinfo.interestRecalculationData.recalculationCompoundingFrequencyDate);
                 }
 
-                if(scope.loanaccountinfo.isLoanProductLinkedToFloatingRate) {
-                    scope.formData.isFloatingInterestRate = false ;
+                if (scope.loanaccountinfo.isLoanProductLinkedToFloatingRate) {
+                    scope.formData.isFloatingInterestRate = false;
                 }
 
                 scope.loandetails = angular.copy(scope.formData);
-                scope.loandetails.productName = scope.formValue(scope.products,scope.formData.productId,'id','name');
+                scope.loandetails.productName = scope.formValue(scope.products, scope.formData.productId, 'id', 'name');
             };
 
-            scope.$watch('formData',function(newVal){
-                scope.loandetails = angular.extend(scope.loandetails,newVal);
-            },true);
+            scope.$watch('formData', function (newVal) {
+                scope.loandetails = angular.extend(scope.loandetails, newVal);
+            }, true);
 
-            scope.formValue = function(array,model,findattr,retAttr){
+            scope.formValue = function (array, model, findattr, retAttr) {
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
                 return _.find(array, function (obj) {
@@ -209,7 +215,7 @@
 
             scope.addCharge = function () {
                 if (scope.chargeFormData.chargeId) {
-                    resourceFactory.chargeResource.get({chargeId: this.chargeFormData.chargeId, template: 'true'}, function (data) {
+                    resourceFactory.chargeResource.get({ chargeId: this.chargeFormData.chargeId, template: 'true' }, function (data) {
                         data.chargeId = data.id;
                         scope.charges.push(data);
                         scope.chargeFormData.chargeId = undefined;
@@ -244,7 +250,7 @@
 
             scope.addCollateral = function () {
                 if (scope.collateralFormData.collateralIdTemplate && scope.collateralFormData.collateralValueTemplate) {
-                    scope.collaterals.push({type: scope.collateralFormData.collateralIdTemplate.id, name: scope.collateralFormData.collateralIdTemplate.name, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate});
+                    scope.collaterals.push({ type: scope.collateralFormData.collateralIdTemplate.id, name: scope.collateralFormData.collateralIdTemplate.name, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate });
                     scope.collateralFormData.collateralIdTemplate = undefined;
                     scope.collateralFormData.collateralValueTemplate = undefined;
                     scope.collateralFormData.collateralDescriptionTemplate = undefined;
@@ -259,7 +265,7 @@
                 // Make sure charges and collaterals are empty before initializing.
                 delete scope.formData.charges;
                 delete scope.formData.collateral;
-                if(_.isUndefined(scope.formData.datatables) || (!_.isUndefined(scope.formData.datatables) && scope.formData.datatables.length == 0)) {
+                if (_.isUndefined(scope.formData.datatables) || (!_.isUndefined(scope.formData.datatables) && scope.formData.datatables.length == 0)) {
                     delete scope.formData.datatables;
                 }
 
@@ -283,7 +289,7 @@
                 if (scope.collaterals.length > 0) {
                     scope.formData.collateral = [];
                     for (var i in scope.collaterals) {
-                        scope.formData.collateral.push({type: scope.collaterals[i].type, value: scope.collaterals[i].value, description: scope.collaterals[i].description});
+                        scope.formData.collateral.push({ type: scope.collaterals[i].type, value: scope.collaterals[i].value, description: scope.collaterals[i].description });
                     }
                     ;
                 }
@@ -301,10 +307,10 @@
                 this.formData.loanType = scope.inparams.templateType;
                 this.formData.expectedDisbursementDate = reqSecondDate;
                 this.formData.submittedOnDate = reqFirstDate;
-                if(this.formData.interestCalculationPeriodType == 0){
+                if (this.formData.interestCalculationPeriodType == 0) {
                     this.formData.allowPartialPeriodInterestCalcualtion = false;
                 }
-                resourceFactory.loanResource.save({command: 'calculateLoanSchedule'}, this.formData, function (data) {
+                resourceFactory.loanResource.save({ command: 'calculateLoanSchedule' }, this.formData, function (data) {
                     scope.repaymentscheduleinfo = data;
                     scope.previewRepayment = true;
                     scope.formData.syncRepaymentsWithMeeting = scope.syncRepaymentsWithMeeting;
@@ -355,7 +361,7 @@
                 if (scope.collaterals.length > 0) {
                     scope.formData.collateral = [];
                     for (var i in scope.collaterals) {
-                        scope.formData.collateral.push({type: scope.collaterals[i].type, value: scope.collaterals[i].value, description: scope.collaterals[i].description});
+                        scope.formData.collateral.push({ type: scope.collaterals[i].type, value: scope.collaterals[i].value, description: scope.collaterals[i].description });
                     }
                     ;
                 }
@@ -380,7 +386,7 @@
                     var restFrequencyDate = dateFilter(scope.date.recalculationCompoundingFrequencyDate, scope.df);
                     scope.formData.recalculationCompoundingFrequencyDate = restFrequencyDate;
                 }
-                if(this.formData.interestCalculationPeriodType == 0){
+                if (this.formData.interestCalculationPeriodType == 0) {
                     this.formData.allowPartialPeriodInterestCalcualtion = false;
                 }
                 if (!_.isUndefined(scope.datatables) && scope.datatables.length > 0) {
@@ -420,7 +426,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
+    mifosX.ng.application.controller('NewLoanAccAppController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.NewLoanAccAppController]).run(function ($log) {
         $log.info("NewLoanAccAppController initialized");
     });
 }(mifosX.controllers || {}));

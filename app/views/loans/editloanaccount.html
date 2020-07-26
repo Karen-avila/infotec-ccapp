@@ -3,7 +3,7 @@
         <ul class="breadcrumb">
             <li ng-show="groupName"><a href="#!/viewgroup/{{groupId}}"><strong>{{groupName}}</strong></a></li>
             <li ng-show="clientName"><a href="#!/viewclient/{{clientId}}"><strong>{{clientName}}</strong></a></li>
-            <li><a href="#!/viewloanaccount/{{loanaccountinfo.id}}">{{'loanaccountinfo.accountNo' | translate}}</a>
+            <li><a href="#!/viewloanaccount/{{loanaccountinfo.id}}">{{loanaccountinfo.accountNo}}</a>
             </li>
             <li class="active">{{'label.anchor.modifyloanapplication' | translate}}</li>
         </ul>
@@ -17,9 +17,10 @@
                 </td>
                 <td class="width36 paddedbottom10">
                     <md-select id="productId" ng-model="formData.productId"
-                        ng-change="loanProductChange(formData.productId)" placeholder="{{'label.selectloanproduct' | translate}}">
+                        ng-change="loanProductChange(formData.productId)"
+                        placeholder="{{'label.selectloanproduct' | translate}}">
                         <md-option ng-repeat="product in loanaccountinfo.productOptions" ng-value="product.id">
-                        {{product.name | translate}}
+                            {{product.name | translate}}
                         </md-option>
                     </md-select>
                 </td>
@@ -27,11 +28,12 @@
                     <label ng-show="formData.productId">{{'label.input.loanofficer' | translate }}:</label>
                 </td>
                 <td class="width36 paddedbottom10">
-                    <md-select ng-show="formData.productId" id="loanOfficerId" 
-                        ng-model="formData.loanOfficerId" placeholder="{{'label.selectloanofficer' | translate}}">
-                        <md-option ng-repeat="loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse" 
+                    <md-select ng-show="formData.productId" id="loanOfficerId" ng-model="formData.loanOfficerId"
+                        placeholder="{{'label.selectloanofficer' | translate}}">
+                        <md-option
+                            ng-repeat="loanOfficer in loanaccountinfo.loanOfficerOptions | orderBy:'displayName':reverse"
                             ng-value="loanOfficer.id">
-                        {{loanOfficer.displayName | translate}}
+                            {{loanOfficer.displayName | translate}}
                         </md-option>
                     </md-select>
                 </td>
@@ -43,9 +45,10 @@
                 <td class="paddedbottom10">
                     <md-select id="loanPurposeId" ng-model="formData.loanPurposeId">
                         <md-option><em>{{'label.selectpurpose' | translate}}</em></md-option>
-                        <md-option ng-repeat="loanPurpose in loanaccountinfo.loanPurposeOptions | orderBy:'name':reverse" ng-value="loanPurpose.id"
-                                ng-disabled="$index === 1">
-                        {{loanPurpose.name | translate}}
+                        <md-option
+                            ng-repeat="loanPurpose in loanaccountinfo.loanPurposeOptions | orderBy:'name':reverse"
+                            ng-value="loanPurpose.id" ng-disabled="$index === 1">
+                            {{loanPurpose.name | translate}}
                         </md-option>
                     </md-select>
                 </td>
@@ -56,8 +59,8 @@
                     <md-select id="fundId" ng-model="formData.fundId">
                         <md-option><em>{{'label.selectfund' | translate}}</em></md-option>
                         <md-option ng-repeat="fund in loanaccountinfo.fundOptions" ng-value="fund.id"
-                                ng-disabled="$index === 1">
-                        {{fund.name | translate}}
+                            ng-disabled="$index === 1">
+                            {{fund.name | translate}}
                         </md-option>
                     </md-select>
                 </td>
@@ -67,9 +70,9 @@
                     <label>{{'label.input.submittedon' | translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="paddedbottom10">
-                    <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate" 
-                        md-placeholder="{{'label.selecttodate' | translate}}"
-                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                    <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate"
+                        md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                        max="restrictDate">
                     </md-datepicker>
                 </td>
                 <td>
@@ -77,9 +80,9 @@
                 translate }}<span class="required">*</span>:&nbsp;</label>
                 </td>
                 <td class="paddedbottom10">
-                    <md-datepicker id="expectedDisbursementDate" ng-model="formData.expectedDisbursementDate" 
+                    <md-datepicker id="expectedDisbursementDate" ng-model="formData.expectedDisbursementDate"
                         md-placeholder="{{'label.selecttodate' | translate}}" ng-disabled="disabled(date, mode)"
-                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                        min="minDate" max="'2030-06-22'">
                     </md-datepicker>
                 </td>
             </tr>
@@ -109,12 +112,14 @@
                     </tr>
                     <tr ng-repeat="calendar in loanaccountinfo.calendarOptions">
                         <td align="center" colspan="2">
-                            <md-checkbox ng-model="formData.syncRepaymentsWithMeeting" ng-change="syncRepaymentsWithMeetingchange()">
+                            <md-checkbox ng-model="formData.syncRepaymentsWithMeeting"
+                                ng-change="syncRepaymentsWithMeetingchange()">
                                 {{'label.input.syncrepaymentswithmeeting' | translate }}
                             </md-checkbox>
                         </td>
                         <td align="center" colspan="2">
-                            <md-checkbox ng-model="formData.syncDisbursementWithMeeting" ng-change="syncDisbursementWithMeetingchange()">
+                            <md-checkbox ng-model="formData.syncDisbursementWithMeeting"
+                                ng-change="syncDisbursementWithMeetingchange()">
                                 {{'label.input.syncdisbursementdatewithmeeting' | translate }}
                             </md-checkbox>
                         </td>
@@ -125,8 +130,7 @@
                 </div>
                 <div
                     ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true && response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true">
-                    <legend
-                        ng-show="loanaccountinfo">{{'label.heading.savingsLinkage' | translate }}</legend>
+                    <legend ng-show="loanaccountinfo">{{'label.heading.savingsLinkage' | translate }}</legend>
                 </div>
                 <table ng-show="loanaccountinfo" ng-hide="previewRepayment" class="width100">
                     <tr>
@@ -138,14 +142,14 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.linkAccountId == true">
                             <md-select id="linkAccountId" ng-model="formData.linkAccountId">
                                 <md-option><em>{{'label.menu.selectone' | translate}}</em></md-option>
-                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions" ng-value="savingaccount.id"
-                                        ng-disabled="$index === 1">
-                                {{savingaccount.productName | translate}}
+                                <md-option ng-repeat="savingaccount in loanaccountinfo.accountLinkingOptions"
+                                    ng-value="savingaccount.id" ng-disabled="$index === 1">
+                                    {{savingaccount.productName | translate}}
                                 </md-option>
                             </md-select>
                         </td>
                         <td colspan="2"
-                            ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true" >
+                            ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.createStandingInstruction == true">
                             <md-checkbox ng-model="formData.createStandingInstructionAtDisbursement">
                                 {{'label.input.createStandingInstruction' | translate }}
                             </md-checkbox>
@@ -157,7 +161,7 @@
                 <table class="width100">
                     <tr ng-show="errors!=''">
                         <td colspan="4">
-                            <div class="alert alert-danger" >{{errors}}</div>
+                            <div class="alert alert-danger">{{errors}}</div>
                         </td>
                     </tr>
                     <tr>
@@ -165,14 +169,15 @@
                                     class="required">*</span></label></td>
                         <td class="width31 paddedbottom10">
                             <div class="col-md-8">
-                                <md-slider flex="95" class="md-primary" md-discrete ng-model="formData.principal" 
-                                    step="{{loanaccountinfo.currency.inMultiplesOf}}" 
-                                    min="{{loanaccountinfo.product.minPrincipal}}" 
+                                <md-slider flex="95" class="md-primary" md-discrete ng-model="formData.principal"
+                                    step="{{loanaccountinfo.currency.inMultiplesOf}}"
+                                    min="{{loanaccountinfo.product.minPrincipal}}"
                                     max="{{loanaccountinfo.product.maxPrincipal}}" id="principal-slider">
                                 </md-slider>
                             </div>
                             <div class="col-md-4 left">
-                                <label>{{loanaccountinfo.currency.displaySymbol}} {{formData.principal | FormatNumber}}</label>
+                                <label>{{loanaccountinfo.currency.displaySymbol}}
+                                    {{formData.principal | FormatNumber}}</label>
                             </div>
                         </td>
                         <td class="width14"><label>{{'label.input.loanterm' | translate }}&nbsp;<span
@@ -181,15 +186,15 @@
                         <td class="width36 paddedbottom10">
                             <div class="col-sm-4">
                                 <input id="loanTermFrequency" class="form-control" name="loanterm" type="number"
-                                ng-model="formData.loanTermFrequency" required />
+                                    ng-model="formData.loanTermFrequency" required />
                             </div>
                             <div class="col-sm-8">
                                 <md-select
                                     ng-disabled="response.uiDisplayConfigurations.loanAccount.isReadOnlyField.loanTermFrequencyType == true"
                                     id="loanTermFrequencyType" ng-model="formData.loanTermFrequencyType">
-                                    <md-option ng-repeat="termFrequencyType in loanaccountinfo.termFrequencyTypeOptions" ng-value="termFrequencyType.id"
-                                            ng-disabled="$index === 1">
-                                    {{termFrequencyType.value | translate}}
+                                    <md-option ng-repeat="termFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
+                                        ng-value="termFrequencyType.id" ng-disabled="$index === 1">
+                                        {{termFrequencyType.value | translate}}
                                     </md-option>
                                 </md-select>
                             </div>
@@ -205,7 +210,7 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.numberOfRepayments == true">
                             <div class="col-md-6">
                                 <input id="numberOfRepayments" class="form-control" name="numofrepayments" type="number"
-                                ng-model="formData.numberOfRepayments" />
+                                    ng-model="formData.numberOfRepayments" />
                             </div>
                         </td>
                         <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentEvery == true">
@@ -221,28 +226,34 @@
                             <div class="col-sm-3">
                                 <md-select id="repaymentFrequencyType" ng-model="formData.repaymentFrequencyType"
                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.repaymentEvery">
-                                    <md-option ng-repeat="repaymentFrequencyType in loanaccountinfo.termFrequencyTypeOptions" ng-value="repaymentFrequencyType.id">
-                                    {{repaymentFrequencyType.value | translate}}
+                                    <md-option
+                                        ng-repeat="repaymentFrequencyType in loanaccountinfo.termFrequencyTypeOptions"
+                                        ng-value="repaymentFrequencyType.id">
+                                        {{repaymentFrequencyType.value | translate}}
                                     </md-option>
                                 </md-select>
                             </div>
                             <div class="col-sm-3">
-                                <md-select id="repaymentFrequencyNthDayType" ng-model="formData.repaymentFrequencyNthDayType"
+                                <md-select id="repaymentFrequencyNthDayType"
+                                    ng-model="formData.repaymentFrequencyNthDayType"
                                     ng-show="formData.repaymentFrequencyType == 2">
                                     <md-option><em>{{'label.menu.selectone' | translate}}</em></md-option>
-                                    <md-option ng-repeat="repaymentFrequencyNthDayType in loanaccountinfo.repaymentFrequencyNthDayTypeOptions" ng-value="repaymentFrequencyNthDayType.id"
-                                            ng-disabled="$index === 1">
-                                    {{repaymentFrequencyNthDayType.value | translate}}
+                                    <md-option
+                                        ng-repeat="repaymentFrequencyNthDayType in loanaccountinfo.repaymentFrequencyNthDayTypeOptions"
+                                        ng-value="repaymentFrequencyNthDayType.id" ng-disabled="$index === 1">
+                                        {{repaymentFrequencyNthDayType.value | translate}}
                                     </md-option>
                                 </md-select>
                             </div>
                             <div class="col-sm-3">
-                                <md-select id="repaymentFrequencyDayOfWeekType" ng-model="formData.repaymentFrequencyDayOfWeekType"
+                                <md-select id="repaymentFrequencyDayOfWeekType"
+                                    ng-model="formData.repaymentFrequencyDayOfWeekType"
                                     ng-show="formData.repaymentFrequencyType == 2">
                                     <md-option><em>{{'label.selectday' | translate}}</em></md-option>
-                                    <md-option ng-repeat="repaymentFrequencyDayOfWeekType in loanaccountinfo.repaymentFrequencyDaysOfWeekTypeOptions" 
+                                    <md-option
+                                        ng-repeat="repaymentFrequencyDayOfWeekType in loanaccountinfo.repaymentFrequencyDaysOfWeekTypeOptions"
                                         ng-value="repaymentFrequencyDayOfWeekType.id" ng-disabled="$index === 1">
-                                    {{repaymentFrequencyDayOfWeekType.value | translate}}
+                                        {{repaymentFrequencyDayOfWeekType.value | translate}}
                                     </md-option>
                                 </md-select>
                             </div>
@@ -254,9 +265,10 @@
                             <label>{{'label.input.firstrepaymenton' | translate }}</label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.repaymentsStartingFromDate == true">
-                            <md-datepicker id="repaymentsStartingFromDate" ng-model="formData.repaymentsStartingFromDate" 
-                                md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="'2030-06-22'">
+                            <md-datepicker id="repaymentsStartingFromDate"
+                                ng-model="formData.repaymentsStartingFromDate"
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td
@@ -265,9 +277,9 @@
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestChargedFromDate == true">
-                            <md-datepicker id="interestChargedFromDate" ng-model="formData.interestChargedFromDate" 
-                                md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="'2030-06-22'">
+                            <md-datepicker id="interestChargedFromDate" ng-model="formData.interestChargedFromDate"
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -278,8 +290,7 @@
                         <td class="paddedbottom10">
                             <div class="col-md-6">
                                 <input id="interestRatePerPeriod" class="form-control" type="number"
-                                    name="nominalinterestrate"
-                                    ng-model="formData.interestRatePerPeriod" />
+                                    name="nominalinterestrate" ng-model="formData.interestRatePerPeriod" />
                             </div>
                             <div class="col-md-2">
                                 {{loanaccountinfo.interestRateFrequencyType.value | translate}}
@@ -291,8 +302,9 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true">
                             <md-select id="interestType" ng-model="formData.interestType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestType">
-                                <md-option ng-repeat="interestType in loanaccountinfo.interestTypeOptions" ng-value="interestType.id">
-                                {{interestType.value | translate}}
+                                <md-option ng-repeat="interestType in loanaccountinfo.interestTypeOptions"
+                                    ng-value="interestType.id">
+                                    {{interestType.value | translate}}
                                 </md-option>
                             </md-select>
                         </td>
@@ -311,8 +323,9 @@
                             <md-select id="interestType" ng-model="formData.interestType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestType"
                                 class="form-control " value="{{interestType.id}}">
-                                <md-option ng-repeat="interestType in loanaccountinfo.interestTypeOptions" ng-value="interestType.id">
-                                {{interestType.value | translate}}
+                                <md-option ng-repeat="interestType in loanaccountinfo.interestTypeOptions"
+                                    ng-value="interestType.id">
+                                    {{interestType.value | translate}}
                                 </md-option>
                             </md-select>
                             <md-checkbox id="isfloatingrate" ng-model="formData.isFloatingInterestRate">
@@ -331,12 +344,14 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.amortizationType == true">
                             <md-select id="amortizationType" ng-model="formData.amortizationType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.amortizationType">
-                                <md-option ng-repeat="amortizationType in loanaccountinfo.amortizationTypeOptions" ng-value="amortizationType.id">
-                                {{amortizationType.value | translate}}
+                                <md-option ng-repeat="amortizationType in loanaccountinfo.amortizationTypeOptions"
+                                    ng-value="amortizationType.id">
+                                    {{amortizationType.value | translate}}
                                 </md-option>
                             </md-select>
                         </td>
-                        <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true" colspan="2">
+                        <td ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestType == true"
+                            colspan="2">
                             <md-checkbox id="isEqualAmortization" ng-model="formData.isEqualAmortization">
                                 {{'label.input.isequalamortization' | translate }}
                             </md-checkbox>
@@ -349,18 +364,21 @@
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestCalculationPeriodType == true">
-                            <md-select id="interestCalculationPeriodType" ng-model="formData.interestCalculationPeriodType"
+                            <md-select id="interestCalculationPeriodType"
+                                ng-model="formData.interestCalculationPeriodType"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestCalculationPeriodType">
-                                <md-option ng-repeat="interestCalculationPeriodType in loanaccountinfo.interestCalculationPeriodTypeOptions" 
+                                <md-option
+                                    ng-repeat="interestCalculationPeriodType in loanaccountinfo.interestCalculationPeriodTypeOptions"
                                     ng-value="interestCalculationPeriodType.id">
-                                {{interestCalculationPeriodType.value | translate}}
+                                    {{interestCalculationPeriodType.value | translate}}
                                 </md-option>
                             </md-select>
                         </td>
                         <td colspan="2"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.interestCalculationPeriodType == true || formData.interestCalculationPeriodType == 0">
-                            <md-checkbox id="allowPartialPeriodInterestCalcualtion" ng-model="formData.allowPartialPeriodInterestCalcualtion"
-                            ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestCalculationPeriodType">
+                            <md-checkbox id="allowPartialPeriodInterestCalcualtion"
+                                ng-model="formData.allowPartialPeriodInterestCalcualtion"
+                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.interestCalculationPeriodType">
                                 {{'label.input.allowpartialperiodinterestcalcualtion' | translate }}
                             </md-checkbox>
                         </td>
@@ -373,8 +391,7 @@
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.inArrearsTolerance == true">
                             <input id="inArrearsTolerance" type="number" class="form-control"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.inArrearsTolerance"
-                                ng-model="formData.inArrearsTolerance"
-                                number-format>
+                                ng-model="formData.inArrearsTolerance" number-format>
                         </td>
                         <td
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestCharged == true">
@@ -392,11 +409,13 @@
                                     class="required">*</span></label></td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.transactionProcessingStrategyId == true">
-                            <md-select id="transactionProcessingStrategyId" ng-model="formData.transactionProcessingStrategyId" 
+                            <md-select id="transactionProcessingStrategyId"
+                                ng-model="formData.transactionProcessingStrategyId"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.transactionProcessingStrategyId">
-                                <md-option ng-repeat="transactionProcessingStrategy in loanaccountinfo.transactionProcessingStrategyOptions" 
+                                <md-option
+                                    ng-repeat="transactionProcessingStrategy in loanaccountinfo.transactionProcessingStrategyOptions"
                                     ng-value="transactionProcessingStrategy.id">
-                                {{transactionProcessingStrategy.name | translate}}
+                                    {{transactionProcessingStrategy.name | translate}}
                                 </md-option>
                             </md-select>
                         </td>
@@ -406,8 +425,8 @@
                         </td>
                         <td class="paddedbottom10">
                             <input id="graceOnArrearsAgeing" type="number" class="form-control"
-                                    ng-model="formData.graceOnArrearsAgeing"
-                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnArrearsAgeing"></label>
+                                ng-model="formData.graceOnArrearsAgeing"
+                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnArrearsAgeing"></label>
                         </td>
                     </tr>
                     <tr>
@@ -415,8 +434,7 @@
                             <label>{{'label.input.graceonprincipalpayment' | translate}}</label>
                         </td>
                         <td class="paddedbottom10">
-                            <input
-                                id="graceOnPrincipalPayment"  type="number" class="form-control"
+                            <input id="graceOnPrincipalPayment" type="number" class="form-control"
                                 ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
                                 ng-model="formData.graceOnPrincipalPayment">
                         </td>
@@ -427,10 +445,10 @@
                         </td>
                         <td class="paddedbottom10">
                             <input
-                                    ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true"
-                                    id="graceOnInterestPayment" type="number" class="form-control"
-                                    ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
-                                    ng-model="formData.graceOnInterestPayment">
+                                ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.graceOnInterestPayment == true"
+                                id="graceOnInterestPayment" type="number" class="form-control"
+                                ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
+                                ng-model="formData.graceOnInterestPayment">
                         </td>
                     </tr>
                     <tr data-ng-show="loanaccountinfo.canDefineInstallmentAmount">
@@ -450,9 +468,9 @@
                             <label>{{'label.input.loanIdToClose' | translate }}</label></td>
                         <td class="width36 paddedbottom10" ng-show="formData.isTopup == true">
                             <md-select id="loanIdToClose" ng-model="formData.loanIdToClose">
-                                <md-option ng-repeat="loanSummary in loanaccountinfo.clientActiveLoanOptions" 
+                                <md-option ng-repeat="loanSummary in loanaccountinfo.clientActiveLoanOptions"
                                     ng-value="loanSummary.id">
-                                {{loanSummary.accountNo | translate}}
+                                    {{loanSummary.accountNo | translate}}
                                 </md-option>
                             </md-select>
                         </td>
@@ -537,9 +555,10 @@
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <md-datepicker id="recalculationRestFrequencyDate" ng-model="formData.recalculationRestFrequencyDate" 
-                                md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                            <md-datepicker id="recalculationRestFrequencyDate"
+                                ng-model="formData.recalculationRestFrequencyDate"
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -574,9 +593,10 @@
                         </td>
                         <td class="paddedbottom10"
                             ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenSection.interestRecalculationSection == true">
-                            <md-datepicker id="recalculationCompoundingFrequencyDate" ng-model="formData.recalculationCompoundingFrequencyDate" 
-                                md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                            <md-datepicker id="recalculationCompoundingFrequencyDate"
+                                ng-model="formData.recalculationCompoundingFrequencyDate"
+                                md-placeholder="{{'label.selecttodate' | translate}}" min="'2000-01-01'"
+                                max="restrictDate">
                             </md-datepicker>
                         </td>
                     </tr>
@@ -607,10 +627,10 @@
                         <tbody>
                             <tr ng-repeat="disbursementDetail in formData.disbursementData">
                                 <td>
-                                    <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
+                                    <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate"
                                         ng-model="disbursementDetail.expectedDisbursementDate"
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'">
+                                        min="minDate" max="'2030-06-22'">
                                     </md-datepicker>
                                 </td>
                                 <td>
@@ -629,9 +649,10 @@
                     <legend>{{'label.heading.charges' | translate }}</legend>
                     <md-select ng-model="chargeFormData.chargeId">
                         <md-option><em>{{'label.selectcharge' | translate}}</em></md-option>
-                        <md-option ng-repeat="charge in loanaccountinfo.chargeOptions|filter:loanaccountinfo.currency.code:strict" 
+                        <md-option
+                            ng-repeat="charge in loanaccountinfo.chargeOptions|filter:loanaccountinfo.currency.code:strict"
                             ng-value="charge.id" ng-disabled="$index === 1">
-                        {{charge.name + ',' + charge.currency.displaySymbol | translate}}
+                            {{charge.name + ',' + charge.currency.displaySymbol | translate}}
                         </md-option>
                     </md-select>
                     <a ng-click="addCharge()"><i class="fa fa-plus "></i></a>
@@ -653,10 +674,9 @@
                         </td>
                         <td>{{charge.chargeTimeType.value | translate}}</td>
                         <td>
-                            <md-datepicker id="charges[{{$index}}].duedate" 
-                                ng-model="charge.dueDate"
-                                md-placeholder="{{'label.input.duedate' | translate}}"
-                                md-min-date="minDate" md-max-date="'2030-06-22'">
+                            <md-datepicker id="charges[{{$index}}].duedate" ng-model="charge.dueDate"
+                                md-placeholder="{{'label.input.duedate' | translate}}" min="minDate"
+                                max="'2030-06-22'">
                             </md-datepicker>
                         </td>
                         <td><a ng-click="deleteCharge($index)"><i class="fa fa-times-circle fa-2x"></i></a></td>
@@ -668,13 +688,13 @@
                         <tr class="graybg">
                             <th>{{'label.heading.name' | translate}}</th>
                             <th>{{'label.heading.type' | translate}}</th>
-                            <th >{{'label.heading.amount' | translate}}</th>
+                            <th class="amount">{{'label.heading.amount' | translate}}</th>
                             <th>{{'label.heading.collectedon' | translate}}</th>
                         </tr>
                         <tr ng-repeat="charge in loanaccountinfo.overdueCharges">
                             <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                             <td>{{charge.chargeCalculationType.value | translate}}</td>
-                            <td >{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
+                            <td class="amount">{{charge.currency.displaySymbol}}{{charge.amount| FormatNumber}}</td>
                             <td>{{charge.chargeTimeType.value | translate}}</td>
                         </tr>
                     </table>
@@ -685,18 +705,20 @@
                     <div layout="row">
                         <div class="col-sm-4">
                             <md-select ng-model="collateralFormData.collateralIdTemplate">
-                                <md-option ng-repeat="collateralTemplate in collateralTemplates" ng-value="collateralTemplate.name">
-                                {{collateralTemplate.name | translate}}
+                                <md-option ng-repeat="collateralTemplate in collateralTemplates"
+                                    ng-value="collateralTemplate.name">
+                                    {{collateralTemplate.name | translate}}
                                 </md-option>
                             </md-select>
                         </div>
                         <div class="col-sm-4">
-                            <input class="form-control" type="number" ng-model="collateralFormData.collateralValueTemplate"
+                            <input class="form-control" type="number"
+                                ng-model="collateralFormData.collateralValueTemplate"
                                 placeholder="{{'label.input.value' | translate}}">
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" ng-model="collateralFormData.collateralDescriptionTemplate" class="form-control"
-                            placeholder="{{'label.input.description' | translate}}">
+                            <input type="text" ng-model="collateralFormData.collateralDescriptionTemplate"
+                                class="form-control" placeholder="{{'label.input.description' | translate}}">
                         </div>
                         <div class="col-sm-2">
                             <a ng-click="addCollateral()">&nbsp;<i class="fa fa-plus"></i></a>
@@ -727,12 +749,11 @@
         <br>
         <md-divider></md-divider>
         <div ng-show="loanaccountinfo">
-            <md-button md-no-ink class="md-primary" ng-hide="previewRepayment"
-                    ng-click="previewRepayments()"> {{'label.anchor.repaymentinfo' | translate}}  <i
-                        class="fa fa-arrow-right"></i></md-button>
+            <md-button md-no-ink class="md-primary" ng-hide="previewRepayment" ng-click="previewRepayments()">
+                {{'label.anchor.repaymentinfo' | translate}} <i class="fa fa-arrow-right"></i></md-button>
             <md-button md-no-ink class="md-primary" ng-show="previewRepayment"
-                    ng-click="previewRepayment=!previewRepayment"><i
-                    class="fa fa-arrow-left"></i>  {{'label.anchor.backtoloaninfo' | translate}}</md-button>
+                ng-click="previewRepayment=!previewRepayment"><i class="fa fa-arrow-left"></i>
+                {{'label.anchor.backtoloaninfo' | translate}}</md-button>
         </div>
         <div>
             <table class="table width100" ng-show="previewRepayment">
@@ -747,48 +768,48 @@
                         <td>#</td>
                         <td>{{'label.heading.date' | translate}}</td>
                         <td>{{'label.heading.days' | translate}}</td>
-                        <td >{{'label.heading.disbursement' | translate}}</td>
-                        <td >{{'label.heading.principaldue' | translate}}</td>
-                        <td >{{'label.heading.principalbalance' | translate}}</td>
-                        <td >{{'label.heading.interestdue' | translate}}</td>
-                        <td >{{'label.heading.taxes' | translate}}</td>
-                        <td >{{'label.heading.fees' | translate}}</td>
-                        <td >{{'label.heading.penalty' | translate}}</td>
-                        <td >{{'label.heading.due' | translate}}</td>
+                        <td class="amount">{{'label.heading.disbursement' | translate}}</td>
+                        <td class="amount">{{'label.heading.principaldue' | translate}}</td>
+                        <td class="amount">{{'label.heading.principalbalance' | translate}}</td>
+                        <td class="amount">{{'label.heading.interestdue' | translate}}</td>
+                        <td class="amount">{{'label.heading.taxes' | translate}}</td>
+                        <td class="amount">{{'label.heading.fees' | translate}}</td>
+                        <td class="amount">{{'label.heading.penalty' | translate}}</td>
+                        <td class="amount">{{'label.heading.due' | translate}}</td>
                     </tr>
                     <tr ng-repeat="period in repaymentscheduleinfo.periods">
                         <td>{{period.period}}</td>
                         <td>{{period.dueDate | DateFormat}}</td>
                         <td>{{period.daysInPeriod}}</td>
-                        <td >{{period.principalDisbursed| FormatNumber}}</td>
-                        <td >{{period.principalDue| FormatNumber}}</td>
-                        <td >{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
-                        <td >{{period.interestDue| FormatNumber}}</td>
-                        <td >{{period.taxOnInterestDue | FormatNumber}}</td>
-                        <td >{{period.feeChargesDue| FormatNumber}}</td>
-                        <td >{{period.penaltyChargesDue| FormatNumber}}</td>
-                        <td >{{period.totalDueForPeriod| FormatNumber}}</td>
+                        <td class="amount">{{period.principalDisbursed ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalDisbursed| FormatNumber}}</td>
+                        <td class="amount">{{period.principalDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalDue| FormatNumber}}</td>
+                        <td class="amount">{{period.principalLoanBalanceOutstanding ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.principalLoanBalanceOutstanding| FormatNumber}}</td>
+                        <td class="amount">{{period.interestDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.interestDue| FormatNumber}}</td>
+                        <td class="amount">{{period.taxOnInterestDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.taxOnInterestDue | FormatNumber}}</td>
+                        <td class="amount">{{period.feeChargesDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.feeChargesDue| FormatNumber}}</td>
+                        <td class="amount">{{period.penaltyChargesDue ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.penaltyChargesDue| FormatNumber}}</td>
+                        <td class="amount">{{period.totalDueForPeriod ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{period.totalDueForPeriod| FormatNumber}}</td>
                     </tr>
                 </tbody>
                 <tfoot class="ui-widget-header">
                     <tr>
                         <td colspan="2">{{'label.heading.total' | translate}}</td>
-                        <td>{{repaymentscheduleinfo.loanTermInDays}}</td>
-                        <td >{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
-                        <td >{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
-                        <td ></td>
-                        <td >{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
-                        <td >{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
-                        <td >{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
-                        <td >{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
-                        <td >{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
+                        <td >{{repaymentscheduleinfo.loanTermInDays}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPrincipalDisbursed ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPrincipalDisbursed| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPrincipalExpected ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPrincipalExpected| FormatNumber}}</td>
+                        <td></td>
+                        <td class="amount">{{repaymentscheduleinfo.totalInterestCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalInterestCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalTaxes ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalTaxes| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalFeeChargesCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalFeeChargesCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalPenaltyChargesCharged ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalPenaltyChargesCharged| FormatNumber}}</td>
+                        <td class="amount">{{repaymentscheduleinfo.totalRepaymentExpected ? repaymentscheduleinfo.currency.displaySymbol : ''}}{{repaymentscheduleinfo.totalRepaymentExpected| FormatNumber}}</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <div class="col-md-12 center">
-            <md-button id="cancel" type="reset" class="md-raised"
-                ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">
+                {{'label.button.cancel' | translate}}</md-button>
             <md-button id="save" ng-click="submit()" class="md-raised md-primary" has-permission='UPDATE_LOAN'
                 ng-show="loanaccountinfo">{{'label.button.save' |
         translate}}

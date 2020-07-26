@@ -27,7 +27,7 @@
                     </form>
                 </div>
                 <div class="col-sm-2">
-                    <md-button href="#!/surveys/add" class="btn pull-right">
+                    <md-button href="#!/surveys/add" class="btn pull-right md-primary md-raised">
                         <i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.createsurvey' | translate}}
                     </md-button>
                 </div>
@@ -54,7 +54,7 @@
                         <td class="pointer" ng-show="isActive(survey.validFrom, survey.validTo)">{{'label.heading.active' | translate}}</td>
                         <td class="pointer" ng-show="!isActive(survey.validFrom, survey.validTo)">{{'label.heading.deactivated' | translate}}
                         </td>
-                        <td ng-show="isActive(survey.validFrom, survey.validTo)"><md-button type="button" class="md-warn md-raised" ng-click="activateOrDeactivateSurvey(survey.id,'deactivate')"><i class="fa fa-lock"></i>&nbsp;&nbsp;{{'label.button.deactivate' | translate}}</md-button></td>
+                        <td ng-show="isActive(survey.validFrom, survey.validTo)"><md-button type="button" class="md-primary md-raised" ng-click="activateOrDeactivateSurvey(survey.id,'deactivate')"><i class="fa fa-lock"></i>&nbsp;&nbsp;{{'label.button.deactivate' | translate}}</md-button></td>
                         <td ng-show="!isActive(survey.validFrom, survey.validTo)"><md-button type="button" class="md-primary md-raised" ng-click="activateOrDeactivateSurvey(survey.id,'activate')"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{{'label.button.activate' | translate}}</md-button></td>
                     </tr>
                 </tbody>

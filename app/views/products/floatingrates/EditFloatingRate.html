@@ -76,7 +76,7 @@
                         <ng-form name="fromDate{{$index}}">
                             <md-datepicker id="fromDate1{{$index}}" name="fromDate1" ng-model="rateperiod.fromDate"
                                 md-placeholder="{{'label.selecttodate' | translate}}" required
-                                md-min-date="minDate" md-max-date="restrictDate">
+                                min="minDate" max="restrictDate">
                             </md-datepicker>
                             <!--
                             <input type="text" id="fromDate1{{$index}}" name="fromDate1" datepicker-pop="dd MMMM yyyy"

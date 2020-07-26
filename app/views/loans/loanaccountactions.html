@@ -36,7 +36,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="{{modelName}}" ng-model="formData[modelName]" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="maxDate">
+                                min="minDate" max="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="expectedDisbursementDate" ng-model="form.expectedDisbursementDate" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="maxDate">
+                                min="minDate" max="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                     <td>
                                         <md-datepicker id="details[{{$index}}].expectedDisbursementDate" ng-model="details.expectedDisbursementDate" 
                                             md-placeholder="{{'label.selecttodate' | translate}}"
-                                            md-min-date="minDate" md-max-date="'2030-06-22'">
+                                            min="minDate" max="'2030-06-22'">
                                         </md-datepicker>
                                     </td>
                                     <td>
@@ -202,7 +202,7 @@
                             <div class="col-sm-6">
                                 <md-select id="paymentTypeId" ng-model="formData.paymentTypeId" 
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+                                    <md-option ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
                                         {{'payment.type.' + paymentType.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -319,7 +319,7 @@
                                     <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
                                         ng-model="disbursementDetail.expectedDisbursementDate" 
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        min="minDate" max="'2030-06-22'"
                                         >
                                     </md-datepicker>
                                 </td>
@@ -348,7 +348,7 @@
                                         ng-model="disbursementDetail.expectedDisbursementDate" 
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
                                         ng-show="disbursementDetail.actualDisbursementDate == null"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        min="minDate" max="'2030-06-22'"
                                         >
                                     </md-datepicker>
                                 </td>
