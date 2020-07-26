@@ -22,7 +22,7 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <input id="transactionAmount" type="text" name="transactionAmount"  number-format class="form-control" ng-model="formData.transactionAmount" />
+                    <input id="transactionAmount" type="text" name="transactionAmount"   class="form-control" ng-model="formData.transactionAmount" />
                 </div>
                 <div class="col-sm-5">
                     <span ng-if="outstandingChargeAmount">( {{'label.input.totalinstallmentamount' | translate}} : {{amount}} + {{'label.heading.chargeamount' | translate}} : {{outstandingChargeAmount}} )</span>
@@ -150,7 +150,7 @@
                 <label class="control-label col-sm-2">{{'label.input.amount'| translate}}<span class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <input type="text" id="amount" class="form-control" number-format ng-model="formData.amount">
+                    <input type="text" id="amount" class="form-control"  ng-model="formData.amount">
                 </div>
             </div>
 

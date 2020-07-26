@@ -64,16 +64,30 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.firstname' | translate }}:<span
 								class="required">*</span></label>
-
 						<div class="col-sm-3">
-							<input type="text" id="firstname" name="firstname" ng-model="formData.firstname"  class="form-control uppercase" required
-								   late-Validate/>
+							<input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z]*$/" class="form-control uppercase" required
+								   late-Validate maxlength="50"/>
+								   <div>
+									<span ng-show="editclientform.firstname.$invalid && editclientform.firstname.$dirty">
+										<small class="required error" ng-show="editclientform.firstname.$error.pattern">
+											{{'label.mustbeletter' | translate}}
+										</small>
+									</span>
+								</div>
 							<form-validate valattributeform="editclientform" valattribute="firstname"/>
 						</div>
+
 						<label class="control-label col-sm-3">{{'label.input.middlename' | translate }}:</label>
 
 						<div class="col-sm-3">
-							<input id="middlename" type="text" ng-model="formData.middlename" class="form-control uppercase">
+							<input id="middlename" type="text" name="middlename" ng-model="formData.middlename" class="form-control uppercase" ng-pattern="/^[a-zA-Z]*$/">
+							<div>
+								<span ng-show="editclientform.middlename.$invalid && editclientform.middlename.$dirty">
+									<small class="required error" ng-show="editclientform.middlename.$error.pattern">
+										{{'label.mustbeletter' | translate}}
+									</small>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -86,15 +100,28 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<input type="text" id="lastname" name="lastname" ng-model="formData.lastname"  class="form-control uppercase" required
+							<input type="text" id="lastname" name="lastname" ng-model="formData.lastname" ng-pattern="/^[a-zA-Z]*$/" class="form-control uppercase" required
 								   late-Validate/>
+								<div>
+									<span ng-show="editclientform.lastname.$invalid && editclientform.lastname.$dirty">
+										<small class="required error" ng-show="editclientform.lastname.$error.pattern">
+											{{'label.mustbeletter' | translate}}
+										</small>
+									</span>
+								</div>
 							<form-validate valattributeform="editclientform" valattribute="lastname"/>
 						</div>
-						<label class="control-label col-sm-3">{{'label.input.surname' | translate }}:<span
-							class="required">*</span></label>
+						<label class="control-label col-sm-3">{{'label.input.surname' | translate }}:</label>
 
 						<div class="col-sm-3">
-							<input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase" />
+							<input type="text" id="surname" name="surname" ng-model="formData.surname" ng-pattern="/^[a-zA-Z]*$/" class="form-control uppercase"/>
+							<div>
+								<span ng-show="editclientform.surname.$invalid && editclientform.surname.$dirty">
+									<small class="required error" ng-show="editclientform.surname.$error.pattern">
+										{{'label.mustbeletter' | translate}}
+									</small>
+								</span>
+							</div>
 							<form-validate valattributeform="editclientform" valattribute="surname"/>
 						</div>
 				</div>
@@ -131,15 +158,16 @@
 	            <label class="control-label col-sm-3" for="mobileNo">{{'label.input.mobilenumber' | translate}}</label>
 	
 	            <div class="col-sm-3">
-	                <input id="mobileNo" name="mobileNo" ng-model="formData.mobileNo" ng-pattern="/^[0-9]+$/" class="form-control"/>
-	            </div>
-	            <div class="col-sm-2">
-	                    <span ng-show="editclientform.mobileNo.$invalid && editclientform.mobileNo.$dirty">
-	                      <small class="required" ng-show="editclientform.mobileNo.$error.pattern">
-	                          {{'label.mustbenumeric' | translate}}
-	                      </small>
-	                    </span>
-	            </div>
+	                <input id="mobileNo" maxlength="10" name="mobileNo" ng-model="formData.mobileNo" ng-pattern="/^[0-9]+$/" class="form-control"/>
+					<div>
+						<span ng-show="editclientform.mobileNo.$invalid && editclientform.mobileNo.$dirty">
+							<small class="required error" ng-show="editclientform.mobileNo.$error.pattern">
+								{{'label.mustbenumeric' | translate}}
+							</small>
+						</span>
+					</div>
+				</div>
+	            
 	        </div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" ng-hide="showNonPersonOptions">{{'label.input.dateofbirth' | translate}}</label>
@@ -179,22 +207,36 @@
 				<label class="control-label col-sm-3">{{'label.input.rfc' | translate }}:</label>
 			    <div class="col-sm-3">
 			    	<div class="input-group">
-			        	<input id="rfc" type="text" ng-model="formData.rfc" class="form-control uppercase">
+			        	<input id="rfc" maxlength="13" name="rfc" ng-pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/" type="text" ng-model="formData.rfc" class="form-control uppercase">
 			        	<span class="input-group-btn">
 							<button class="btn btn-sm btn-default" type="button" ng-click="createCurpRfc()">
 								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 							</button>
 						</span>
-			        </div>
+					</div>
+					<div>
+						<span ng-show="editclientform.rfc.$invalid && editclientform.rfc.$dirty">
+							<small class="required error" ng-show="editclientform.rfc.$error.pattern">
+								{{'label.mustbealphanumeric' | translate}}
+							</small>
+						</span>
+					</div>
 			    </div>
 			    <label class="control-label col-sm-3">{{'label.input.uniqueId' | translate }}:</label>
 			    <div class="col-sm-3">
 			    	<div class="input-group">
-				        <input id="uniqueId" type="text" ng-model="formData.uniqueId" class="form-control uppercase">
+				        <input id="uniqueId" type="text" maxlength="18" name="uniqueId" ng-model="formData.uniqueId" ng-pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/" class="form-control uppercase">
 				        <span class="input-group-btn">
 					        <button class="btn btn-sm btn-default" type="button" ng-click="createCurpRfc()">
 								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 							</button>
+						</span>
+					</div>
+					<div>
+						<span ng-show="editclientform.uniqueId.$invalid && editclientform.uniqueId.$dirty">
+							<small class="required error" ng-show="editclientform.uniqueId.$error.pattern">
+								{{'label.mustbealphanumeric' | translate}}
+							</small>
 						</span>
 					</div>
 			    </div>

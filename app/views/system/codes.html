@@ -7,30 +7,45 @@
         <div class="content">
             <div class="toolbar"></div>
             <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control" placeholder="{{'label.input.filterbyname' | translate}}">
+            <md-table-container ng-show="codes.length > 0" class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbyname' | translate}}</label>
+                            <input ng-model="filter.search">
+                        </md-input-container>
+                    </div>
+                    <div class="col-md-3">
+                        <md-button href="#!/addcode" class="btn pull-right" has-permission='CREATE_CODE'><i
+                                class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcode' | translate }}</md-button>
+                    </div>
+                    <md-divider></md-divider>
                 </div>
-                <div class="col-md-6">
-                    <md-button href="#!/addcode" class="btn pull-right" has-permission='CREATE_CODE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcode' | translate }}</md-button>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="name">{{'label.heading.name' | translate}}</th>
+                                    <th md-column md-order-by="description">{{'label.heading.description' | translate}}</th>
+                                    <th md-column>{{'label.heading.systemdefined' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row
+                                    ng-repeat="code in codes | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                    ng-click="routeTo(code.id)" md-select="code" md-select-id="name">
+                                    <td md-cell>{{code.name}}</td>
+                                    <td md-cell>{{code.description}}</td>
+                                    <td md-cell>{{code.systemDefined | translate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-            <table class="table">
-                <thead>
-                <tr class="graybg">
-                    <th>{{'label.heading.codename' | translate }}</th>
-                    <th>{{'label.heading.systemdefined' | translate }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="pointer-main" dir-paginate="code in codes | filter:filterText |  itemsPerPage: CodesPerPage">
-                    <td class="pointer" data-ng-click="routeTo(code.id)">{{code.name | translate}}</td>
-                    <td class="pointer" data-ng-click="routeTo(code.id)">{{code.systemDefined | translate}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+            </md-table-container>
+            <md-table-pagination ng-show="codes.length > query.limit" md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                md-boundary-links="options.boundaryLinks" md-total="{{codes.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
         </div>
     </div>
 </div>
