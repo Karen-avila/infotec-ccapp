@@ -6,7 +6,7 @@
                 link: function (scope, elm, attrs, ctrl) {
                     elm.on('keydown', function (event) {
                         if(event.shiftKey){event.preventDefault(); return false;}
-                        // console.log(event.which);
+                        console.log(event.which);
                         if ([8, 13, 27, 37, 38, 39, 40].indexOf(event.which) > -1) {
                             // backspace, enter, escape, arrows
                             return true;
@@ -15,6 +15,9 @@
                             return true;
                         } else if (event.which >= 96 && event.which <= 105) {
                             // numpad number
+                            return true;
+                        } else if (event.which == 190) {
+                            // point
                             return true;
                         } 
                         else {
