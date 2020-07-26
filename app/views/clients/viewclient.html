@@ -268,7 +268,7 @@
                                     has-permission='UNASSIGNSTAFF_CLIENT'><i
                                         class="fa fa-user "></i>{{"label.button.unassignstaff" | translate}}
                                 </button>
-                                <span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)">
+                                <span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)" ng-show="clientReports.length > 0">
                                     <a class="btn btn-sm btn-primary" uib-dropdown-toggle>
                                         {{'label.button.reports'| translate }}
                                         <span class="caret"></span>
