@@ -47,7 +47,7 @@
                     this.formData.dateOfBirth = dateFilter(scope.date.dateOfBirth, scope.df);
                 }
                 resourceFactory.familyMembers.post({ clientId: scope.clientId }, scope.formData, function (data) {
-                    location.path('/viewclient/' + clientId);
+                    location.path('/viewclient/' + scope.clientId);
                 })
             }
         }
