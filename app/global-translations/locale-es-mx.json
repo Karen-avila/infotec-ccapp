@@ -162,6 +162,7 @@
     "label.heading.staff": "Personal",
     "label.heading.office": "Oficina",
     "label.heading.delete": "Borrar",
+    "label.heading.confirm.delete.value": "¿Está seguro de borrar este valor?",
     "label.heading.confirm.delete": "¿Está seguro de borrar este usuario?",
     "label.heading.confirm.unblock": "¿Desea desbloquear este usuario?",
     "label.heading.confirm.block": "¿Desea bloquear este usuario?",

@@ -200,8 +200,8 @@ module.exports = function (grunt) {
             '!jasmine/**', '!requirejs/**/**', 'requirejs/require.js', '!underscore/**', 'angular-bootstrap/*.css', 'ng-scrollbar/**/*.css',
             'angular-loading-bar/build/*.min.*', 'fontawesome/css/*.min.css', 'angular-utils-pagination/dirPagination.tpl.html', 'moment/min/*.min.js',
             'pdfjs/src/pdf*.js', 'pdfjs/src/shared/*.js', 'pdfjs/src/display/*.js', 'angular-material-data-table/dist/*.js', 'angular-material-data-table/dist/*.css',
-            "md-steppers/dist/*.min.*", 'leaflet/dist/leaflet.js', 'leaflet/dist/leaflet.css', 'angular-leaflet-directive/dist/*.js'
-
+            "md-steppers/dist/*.min.*", 'leaflet/dist/leaflet.js', 'leaflet/dist/leaflet.css', 'angular-leaflet-directive/dist/*.js',
+            'nvd3/build/nv.d3.min.js', 'nvd3/build/nv.d3.css', 'd3/d3.js'
           ]
         }
         ]
