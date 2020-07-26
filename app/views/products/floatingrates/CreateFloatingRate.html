@@ -89,7 +89,7 @@
                     <td>
                         <ng-form name="interestRate{{$index}}">
                            <input id="interestRate{{$index}}" name="interestRate" class="form-control" type="text"
-                                   ng-model="rateperiod.interestRate" number-format required/>
+                                   ng-model="rateperiod.interestRate"  required/>
                             <span class="error" ng-show="visitValidation&&interestRate{{$index}}.interestRate.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>
                     </td>

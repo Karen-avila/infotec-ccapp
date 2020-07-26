@@ -189,7 +189,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input type="number" id="depositAmount" name="depositAmount" class="form-control"
-                                            number-format ng-model="formData.depositAmount" required late-validate
+                                             ng-model="formData.depositAmount" required late-validate
                                             decimal-number=true />
                                     </div>
                                     <div class="col-sm-3">
@@ -212,7 +212,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input type="number" id="minDepositAmount" name="minDepositAmount"
-                                            class="form-control" number-format ng-model="formData.minDepositAmount"
+                                            class="form-control"  ng-model="formData.minDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="minDepositAmount" />
                                     </div>
@@ -224,7 +224,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input type="number" id="maxDepositAmount" name="maxDepositAmount"
-                                            class="form-control" number-format ng-model="formData.maxDepositAmount"
+                                            class="form-control"  ng-model="formData.maxDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="maxDepositAmount" />
                                     </div>
@@ -1633,7 +1633,7 @@
                     </td>
 
                     <td>
-                        <input id="amount" name="amount" type="text" class="form-control" number-format ng-model="incentiveData.amount" />
+                        <input id="amount" name="amount" type="text" class="form-control"  ng-model="incentiveData.amount" />
                     </td>
                     <td>
                         <a class="btn btn-sm btn-primary" ng-click="removeRow($index)"><i class="fa fa-times "></i>&nbsp;&nbsp;{{'label.remove.row'

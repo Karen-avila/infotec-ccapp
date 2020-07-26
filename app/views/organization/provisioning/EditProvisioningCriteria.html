@@ -60,7 +60,7 @@
                             <ng-form name="minage{{$index}}">
                                 <input id="minAge" name="minAge" class="form-control" type="text"
                                        ng-model="provisioningcategory.minAge"
-                                       placeholder="{{'label.input.indays' | translate}}" number-format required ng-focus="doFocus($index)" ng-blur="doBlur($index)"/>
+                                       placeholder="{{'label.input.indays' | translate}}"  required ng-focus="doFocus($index)" ng-blur="doBlur($index)"/>
                                 <span class="error" ng-show="visitValidation&&minage{{$index}}.minAge.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
@@ -69,7 +69,7 @@
                             <ng-form name="maxage{{$index}}">
                                 <input id="maxAge" name="maxAge" class="form-control" type="text"
                                        ng-model="provisioningcategory.maxAge"
-                                       placeholder="{{'label.input.indays' | translate}}" number-format required/>
+                                       placeholder="{{'label.input.indays' | translate}}"  required/>
                                 <span class="error" ng-show="visitValidation&&maxage{{$index}}.maxAge.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
                         </td>
@@ -78,7 +78,7 @@
                             <ng-form name="percentage{{$index}}">
                                 <input id="percentage" name="percentage" class="form-control" type="text"
                                        ng-model="provisioningcategory.provisioningPercentage"
-                                       placeholder="{{'label.input.amount' | translate}}" number-format required/>
+                                       placeholder="{{'label.input.amount' | translate}}"  required/>
                                 <span class="error"
                                       ng-show="visitValidation&&percentage{{$index}}.percentage.$error.required">{{'label.requirefield' | translate }}</span>
                             </ng-form>
