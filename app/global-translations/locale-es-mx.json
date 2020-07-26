@@ -1221,7 +1221,7 @@
     "label.input.accountusage": "Uso de la Cuenta",
     "label.input.parent": "Capital",
     "label.input.manualentriesallowed": "Permitir Entradas Manuales",
-    "label.input.affectedglentries": "Entradas de GL Afectadas",
+    "label.input.affectedglentries": "Cuentas Contable Afectadas",
     "label.input.currency": "Moneda",
     "label.input.referencenumber": "Número de Referencia",
     "label.input.searchbytransaction": "Búsqueda por Transacción",
@@ -4504,5 +4504,7 @@
     "direccion.campo_2":"¿Cuál es la escolaridad de la persona que dirige el negocio?",
     "direccion.campo_3":"¿Cuál es el rango de edad de la persona que dirige el negocio?",
     "direccion.campo_4":"¿El negocio tiene un plan de sucesión para que otra persona se encargue de la dirección en caso de ser necesario?",
+    "task.action.CREATE": "CREAR",
+    "task.action.UPDATE": "ACTUALIZAR",
     "----End---": "---Fin del archivo---"
 }
