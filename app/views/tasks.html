@@ -71,22 +71,22 @@
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <md-select ng-model="formData.action" class="form-control"
+                                        <md-select ng-model="formData.action" class="form-control" 
                                             placeholder="{{'label.selectaction' | translate}}">
                                             <md-option value="">{{'label.all' | translate}}</md-option>
-                                            <md-option ng-repeat="action in checkerTemplate.actionNames"
-                                                value="{{action}}">{{'task.action.' + action | translate}}
+                                            <md-option ng-repeat="action in checkerTemplate.actionNames | orderBy:'toString() | translate'"
+                                                value="{{action}}">{{ action | translate }}
                                             </md-option>
                                         </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <md-select ng-model="formData.entity" class="form-control"
-                                            placeholder="{{'label.selectentity' | translate}}">
+                                        <md-select ng-model="formData.action" class="form-control" 
+                                            placeholder="{{'label.selectaction' | translate}}">
                                             <md-option value="">{{'label.all' | translate}}</md-option>
-                                            <md-option ng-repeat="entity in checkerTemplate.entityNames"
-                                                value="{{entity}}">{{'task.entity.' + entity | translate}}
+                                            <md-option ng-repeat="entity in checkerTemplate.entityNames | orderBy:'toString() | translate'"
+                                                value="{{entity}}">{{ entity | translate }}
                                             </md-option>
                                         </md-select>
                                     </div>
