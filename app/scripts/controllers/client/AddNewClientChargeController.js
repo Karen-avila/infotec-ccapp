@@ -15,6 +15,7 @@
                     scope.chargeTimeType = data.chargeTimeType.id;
                     scope.chargeDetails = data;
                     scope.formData.amount = data.amount;
+                    scope.date.specificduedate = new Date();
                 });
             };
 
