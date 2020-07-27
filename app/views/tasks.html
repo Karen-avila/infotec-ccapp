@@ -71,28 +71,24 @@
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <!-- ng-options="transferType.id as transferType.value | translate for transferType in standinginstruction.transferTypeOptions |  orderBy:'value | translate' " value="{{transferType.id}}" > -->
-                                        <select ng-model="formData.action"
-                                        ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.actionNames |  orderBy:'toString() | translate'"
-                                         class="form-control">
-                                            <option value="">{{'label.all' | translate}}</option>
-                                            <!--<option value="">{{'label.selectaction' | translate}}</option>
-                                            <option ng-repeat="action in checkerTemplate.actionNames"
-                                                value="{{action}}">{{ 'task.select.label.' + action | translate}} -->
-                                            </option>
-                                        </select>
+                                        <md-select ng-model="formData.action" class="form-control" 
+                                            placeholder="{{'label.selectaction' | translate}}">
+                                            <md-option value="">{{'label.all' | translate}}</md-option>
+                                            <md-option ng-repeat="action in checkerTemplate.actionNames | orderBy:'toString() | translate'"
+                                                value="{{action}}">{{ action | translate }}
+                                            </md-option>
+                                        </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <select ng-model="formData.entity" class="form-control"
-                                        ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.entityNames |  orderBy:'toString() | translate'">
-                                            <option value="">{{'label.all' | translate}}</option>
-                                            <!-- <option value="">{{'label.selectaction' | translate}}</option> -->
-                                            <option ng-repeat="entity in checkerTemplate.entityNames"
-                                                value="{{entity}}">{{ 'task.select.label.' + entity | translate}}
-                                            </option>
-                                        </select>
+                                        <md-select ng-model="formData.action" class="form-control" 
+                                            placeholder="{{'label.selectaction' | translate}}">
+                                            <md-option value="">{{'label.all' | translate}}</md-option>
+                                            <md-option ng-repeat="entity in checkerTemplate.entityNames | orderBy:'toString() | translate'"
+                                                value="{{entity}}">{{ entity | translate }}
+                                            </md-option>
+                                        </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
