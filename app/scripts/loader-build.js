@@ -120,6 +120,8 @@
                     'lodash',
                     'pdfMake',
                     'vfs_fonts',
+                    'd3',
+                    'nvd3',
                     'nvd3ChartDirectives',
                     'notificationWidget',
                     'angularFileUpload',
