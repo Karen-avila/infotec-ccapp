@@ -36,22 +36,22 @@
             resourceFactory.checkerInboxResource.get({ templateResource: 'searchtemplate' }, function (data) {
                 scope.checkerTemplate = data;
                 scope.actionNames = [];
-                for(i = 0 ; i < data.actionNames.length; i++) {
+                for (i = 0; i < data.actionNames.length; i++) {
                     scope.actionNames[i] = {};
                     scope.actionNames[i].value = data.actionNames[i];
-                    scope.actionNames[i].text = translate.instant(data.actionNames[i]);
+                    scope.actionNames[i].text = translate.instant('task.action.' + data.actionNames[i]);
                 }
 
-                scope.actionNames.sort((a,b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0)); 
+                scope.actionNames.sort((a, b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0));
 
                 scope.entityNames = [];
-                for(i = 0 ; i < data.entityNames.length; i++) {
+                for (i = 0; i < data.entityNames.length; i++) {
                     scope.entityNames[i] = {};
                     scope.entityNames[i].value = data.entityNames[i];
-                    scope.entityNames[i].text = translate.instant(data.entityNames[i]);
+                    scope.entityNames[i].text = translate.instant('task.entity.' + data.entityNames[i]);
                 }
 
-                scope.entityNames.sort((a,b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0)); 
+                scope.entityNames.sort((a, b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0));
             });
 
             resourceFactory.fundsResource.getFunds({ activeOnly: 'true' }, function (data) {
