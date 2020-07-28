@@ -156,7 +156,7 @@
 	</script>
     <script type="text/ng-template" id="deleteNote.html">
 		<div class="modal-header silver">
-			<h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+			<h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
 		</div>
 		<div class="modal-body">
 			<p>{{'label.areyousure' | translate}}</p>
@@ -268,7 +268,7 @@
                                     has-permission='UNASSIGNSTAFF_CLIENT'><i
                                         class="fa fa-user "></i>{{"label.button.unassignstaff" | translate}}
                                 </button>
-                                <span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)">
+                                <span uib-dropdown class="btn-group dropdown" on-toggle="toggled(open)" ng-show="clientReports.length > 0">
                                     <a class="btn btn-sm btn-primary" uib-dropdown-toggle>
                                         {{'label.button.reports'| translate }}
                                         <span class="caret"></span>
@@ -1229,13 +1229,13 @@
                                     <tr class="graybg">
                                         <th class="graybg">{{family.relationship}}</th>
                                         <td>
-                                            <button class="btn btn-primary pull-right"
+                                            <md-button class="md-raised md-primary pull-right"
                                                 ng-click="deleteFamilyMember(family.id)"><i
-                                                    class="fa fa-plus"></i>{{'label.button.delete' | translate}}</button>
+                                                    class="fa fa-plus"></i>{{'label.button.delete' | translate}}</md-button>
 
-                                            <button class="btn btn-primary pull-right"
+                                            <md-button class="md-raised md-primary pull-right"
                                                 ng-click="editFamilyMember(family.id)"><i
-                                                    class="fa fa-plus"></i>{{'label.button.edit' | translate}}</button>
+                                                    class="fa fa-plus"></i>{{'label.button.edit' | translate}}</md-button>
                                         </td>
                                     </tr>
                                 </thead>

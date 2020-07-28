@@ -455,7 +455,7 @@
                         <td colspan=2>
                             <label>{{'label.input.fixedemiamount' | translate }}:</label>&nbsp;
                             <input id="fixedEmiAmount" type="number" ng-model="formData.fixedEmiAmount"
-                                class="form-control" number-format />&nbsp;
+                                class="form-control"  />&nbsp;
                         </td>
                     </tr>
                     <tr ng-show="loanaccountinfo.canUseForTopup">
@@ -635,7 +635,7 @@
                                 </td>
                                 <td>
                                     <input id="{{disbursementDetail[$index].principal}}" class="form-control"
-                                        number-format type="number" ng-model="disbursementDetail.principal"
+                                         type="number" ng-model="disbursementDetail.principal"
                                         placeholder="{{'label.input.principal' | translate}}">
                                 </td>
                                 <td><a ng-click="deleteTranches($index)"><i class="fa fa-times-circle fa-2x"></i></a>
@@ -669,7 +669,7 @@
                     <tr ng-repeat="charge in charges">
                         <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                         <td>{{charge.chargeCalculationType.value | translate}}</td>
-                        <td><input id="{{charges[$index].amount}}" class="form-control" number-format type="number"
+                        <td><input id="{{charges[$index].amount}}" class="form-control"  type="number"
                                 ng-model="charge.amountOrPercentage" placeholder="{{'label.input.amount' | translate}}">
                         </td>
                         <td>{{charge.chargeTimeType.value | translate}}</td>

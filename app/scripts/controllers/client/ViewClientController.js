@@ -301,6 +301,7 @@
                     scope.clientReports = data;
                 });
             }
+            scope.getClientReports();
 
             scope.deleteClient = function () {
                 $uibModal.open({

@@ -13,6 +13,8 @@
             scope.errordebitevent = false;
             scope.restrictDate = new Date();
             scope.showPaymentDetails = false;
+            scope.crAccount = {};
+            scope.dbAccount = {};
 
             resourceFactory.accountingRulesResource.getAllRules({associations: 'all'}, function (data) {
                 scope.rules = data;
@@ -21,6 +23,7 @@
             resourceFactory.paymentTypeResource.getAll( function (data) {
                 scope.paymentTypes = data;
             });
+
             resourceFactory.currencyConfigResource.get({fields: 'selectedCurrencyOptions'}, function (data) {
                 scope.currencyOptions = data.selectedCurrencyOptions;
                 scope.formData.currencyCode = scope.currencyOptions[0].code;
@@ -32,10 +35,12 @@
             });
 
             //event for rule change
-            scope.resetCrAndDb = function (rule) {
-            	  scope.rule = rule;
+            scope.resetCrAndDb = function () {
+            	scope.rule = scope.formData.rule;
                 scope.formData.crAccounts = [{}];
                 scope.formData.dbAccounts = [{}];
+                scope.crAccount = scope.rule.creditAccounts[0];
+                scope.dbAccount = scope.rule.debitAccounts[0];
                 
                 if(rule.allowMultipleDebitEntries) {
                   scope.allowDebitEntries = true;
@@ -88,6 +93,7 @@
             }
 
             scope.submit = function () {
+                console.log("123");
                 var jeTransaction = new Object();
                 var reqDate = dateFilter(scope.first.date, scope.df);
                 jeTransaction.locale = scope.optlang.code;
@@ -99,6 +105,7 @@
                 if (this.formData.rule) {
                     jeTransaction.accountingRule = this.formData.rule.id;
                 }
+                console.log("456");
                 jeTransaction.currencyCode = this.formData.currencyCode;
                 jeTransaction.paymentTypeId = this.formData.paymentTypeId;
                 jeTransaction.accountNumber = this.formData.accountNumber;
@@ -115,6 +122,7 @@
                     temp.amount = this.formData.crAccounts[i].crAmount;
                     jeTransaction.credits.push(temp);
                 }
+                console.log("789");
 
                 //construct debits array
                 jeTransaction.debits = [];
@@ -124,6 +132,7 @@
                     temp.amount = this.formData.dbAccounts[i].debitAmount;
                     jeTransaction.debits.push(temp);
                 }
+                console.log("ABC");
 
                 resourceFactory.journalEntriesResource.save(jeTransaction, function (data) {
                     location.path('/viewtransactions/' + data.transactionId);
