@@ -16,6 +16,8 @@
             scope.isCollapsed = true;
             scope.approveData = {};
             scope.restrictDate = new Date();
+            scope.date.to = new Date();
+            scope.date.from = new Date();
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
