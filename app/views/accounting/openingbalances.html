@@ -16,7 +16,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-2">
-                        <md-select id="officeId" ng-model="formData.officeId"
+                        <md-select id="officeId" ng-model="formDataa.officeIdd"
                             placeholder="{{'label.selectoffice' | translate}}">
                             <md-option ng-repeat="office in offices" ng-value="office.id">
                                 {{office.name}}
@@ -34,7 +34,7 @@
                         </md-select>
                     </div>
                     <div class="col-md-2 center">
-                        <md-button ng-click="retrieveOpeningBalances(formData.officeId, formData.currencyCode )"
+                        <md-button ng-click="retrieveOpeningBalances(formDataa.officeIdd, formData.currencyCode )"
                             class="md-raised md-primary"> {{'label.button.searchdata' | translate}} </md-button>
                     </div>
                 </div>

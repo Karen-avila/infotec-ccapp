@@ -23,33 +23,13 @@
             scope.options = {
                 boundaryLinks: true,
                 rowSelection: true,
+                pageSelector: true,
             };
-
-            scope.getResultsPage = function (page, limit) {
-              if (scope.searchText) {
-                var startPosition = (page - 1) * limit;
-                scope.clients = scope.actualUsers.slice(
-                  startPosition,
-                  startPosition + limit
-                );
-                return;
-              }
-              resourceFactory.clientResource.getAllClients(
-                {
-                  page: (page - 1) * limit,
-                  limit: limit,
-                },
-                function (data) {
-                  scope.clients = data.pageItems;
-                }
-              );
-            };
-            
 
           scope.refresh = function () {
             route.reload();
           };
-
+          
           scope.search = function () {
             scope.actualUsers = [];
             scope.searchResults = [];
