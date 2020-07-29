@@ -12,7 +12,6 @@
       scope.routeTo = function (id) {
         location.path("/viewclient/" + id);
       };
-      scope.elementos = ['Todos', 'Activo', 'Pendiente','ree', 'rere', 'rre', 'ddd', 'ddf'];
       scope.query = {
         order: "name",
         limit: 25,
