@@ -7,6 +7,7 @@
         AddFamilyMembersController: function (scope, resourceFactory, routeParams, dateFilter, location) {
             scope.formData = {};
             scope.date = {};
+            scope.date.dateofbirth = new Date();
             scope.clientId = routeParams.clientId;
             scope.familyMemberId = routeParams.familyMemberId;
             scope.restrictDate = new Date();
@@ -36,17 +37,17 @@
                 scope.formData.age = Math.abs(ageDate.getUTCFullYear() - 1970);
             }
 
-            scope.addClientMember = function () {
-                this.formData.firstName = this.formData.firstName.toUpperCase();
-                this.formData.middleName = this.formData.middleName.toUpperCase();
-                this.formData.lastName = this.formData.lastName.toUpperCase();
+            scope.submit = function () {
+                this.formData.firstName = this.formData.firstName ? this.formData.firstName.toUpperCase() : "";
+                this.formData.middleName = this.formData.middleName ? this.formData.middleName.toUpperCase() : "";
+                this.formData.lastName = this.formData.lastName ? this.formData.lastName.toUpperCase() : "";
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
 
                 if (scope.date.dateOfBirth) {
                     this.formData.dateOfBirth = dateFilter(scope.date.dateOfBirth, scope.df);
                 }
-                resourceFactory.familyMembers.post({ clientId: scope.clientId }, scope.formData, function (data) {
+                resourceFactory.familyMembers.save({ clientId: scope.clientId }, scope.formData, function (data) {
                     location.path('/viewclient/' + scope.clientId);
                 })
             }
