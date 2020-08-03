@@ -8,10 +8,10 @@
       scope.searchResults = [];
       scope.showClosed = false;
       scope.selected;
+      scope.myapp;
       scope.routeTo = function (id) {
         location.path("/viewclient/" + id);
       };
-
       scope.query = {
         order: "name",
         limit: 25,
@@ -56,7 +56,7 @@
       scope.refresh = function () {
         route.reload();
       };
-
+   
       scope.search = function () {
         scope.actualClients = [];
         scope.searchResults = [];
@@ -115,7 +115,6 @@
       });
 
       scope.searachData = {};
-
       scope.customSearch = function (item) {
         scope.searachData.status = true;
 

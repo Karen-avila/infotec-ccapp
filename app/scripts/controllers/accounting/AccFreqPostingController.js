@@ -118,7 +118,7 @@
                 jeTransaction.credits = [];
                 for (var i = 0; i < this.formData.crAccounts.length; i++) {
                     var temp = new Object();
-                    temp.glAccountId = this.formData.crAccounts[i].select.id;
+                    temp.glAccountId = this.formData.crAccounts[i].select;
                     temp.amount = this.formData.crAccounts[i].crAmount;
                     jeTransaction.credits.push(temp);
                 }
@@ -128,7 +128,7 @@
                 jeTransaction.debits = [];
                 for (var i = 0; i < this.formData.dbAccounts.length; i++) {
                     var temp = new Object();
-                    temp.glAccountId = this.formData.dbAccounts[i].select.id;
+                    temp.glAccountId = this.formData.dbAccounts[i].select;
                     temp.amount = this.formData.dbAccounts[i].debitAmount;
                     jeTransaction.debits.push(temp);
                 }

@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location) {
+        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -35,6 +35,23 @@
 
             resourceFactory.checkerInboxResource.get({ templateResource: 'searchtemplate' }, function (data) {
                 scope.checkerTemplate = data;
+                scope.actionNames = [];
+                for (i = 0; i < data.actionNames.length; i++) {
+                    scope.actionNames[i] = {};
+                    scope.actionNames[i].value = data.actionNames[i];
+                    scope.actionNames[i].text = translate.instant('task.action.' + data.actionNames[i]);
+                }
+
+                scope.actionNames.sort((a, b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0));
+
+                scope.entityNames = [];
+                for (i = 0; i < data.entityNames.length; i++) {
+                    scope.entityNames[i] = {};
+                    scope.entityNames[i].value = data.entityNames[i];
+                    scope.entityNames[i].text = translate.instant('task.entity.' + data.entityNames[i]);
+                }
+
+                scope.entityNames.sort((a, b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0));
             });
 
             resourceFactory.fundsResource.getFunds({ activeOnly: 'true' }, function (data) {
@@ -121,7 +138,7 @@
                         }
                     });
                     return (checkBoxesMet === scope.pendingApproval.length);
-                }            
+                }
             }
             scope.loanApprovalAllCheckBoxesMet = function (office) {
                 var checkBoxesMet = 0;
@@ -349,7 +366,7 @@
                                     tempOffice.loans.push(scope.loans[i]);
 
                                     var wasFound = false;
-                                    for (var j=0; j < scope.pendingApproval.length; j++) {
+                                    for (var j = 0; j < scope.pendingApproval.length; j++) {
                                         if (scope.pendingApproval[j].client.name === scope.loans[i].group.name) {
                                             scope.pendingApproval[j].loans.push({
                                                 id: scope.loans[i].id,
@@ -431,7 +448,7 @@
                                     tempOffice.loans.push(scope.loans[i]);
 
                                     var wasFound = false;
-                                    for (var j=0; j < scope.pendingDisburse.length; j++) {
+                                    for (var j = 0; j < scope.pendingDisburse.length; j++) {
                                         if (scope.pendingDisburse[j].client.name === scope.loans[i].group.name) {
                                             scope.pendingDisburse[j].loans.push({
                                                 id: scope.loans[i].id,
@@ -642,7 +659,7 @@
                                         method: "POST", body: JSON.stringify(scope.formData)
                                     });
                                 } else {
-                                    _.each(item.loans, function(loan) {
+                                    _.each(item.loans, function (loan) {
                                         scope.batchRequests.push({
                                             requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=approve",
                                             method: "POST", body: JSON.stringify(scope.formData)
@@ -653,7 +670,7 @@
                         });
                     }
                 });
-                
+
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
@@ -744,7 +761,7 @@
                                         method: "POST", body: JSON.stringify(scope.formData)
                                     });
                                 } else {
-                                    _.each(item.loans, function(loan) {
+                                    _.each(item.loans, function (loan) {
                                         scope.batchRequests.push({
                                             requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=disburse",
                                             method: "POST", body: JSON.stringify(scope.formData)
@@ -794,7 +811,7 @@
                 scope.checkForBulkLoanRescheduleApprovalData = [];
                 if (!angular.isUndefined(scope.loanRescheduleData)) {
                     for (var i = scope.loanRescheduleData.length - 1; i >= 0; i--) {
-                    scope.checkForBulkLoanRescheduleApprovalData[scope.loanRescheduleData[i].id] = newValue;
+                        scope.checkForBulkLoanRescheduleApprovalData[scope.loanRescheduleData[i].id] = newValue;
                     };
                 }
             }
@@ -844,7 +861,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));
