@@ -7,6 +7,7 @@
 
             scope.formData = {};
             scope.date = {};
+            scope.dateofbirth = new Date();
             scope.clientId = routeParams.clientId;
             familyMemberId = routeParams.familyMemberId;
 
