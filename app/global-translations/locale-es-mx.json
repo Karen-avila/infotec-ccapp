@@ -5109,10 +5109,10 @@
     "EXECUTEJOB SCHEDULER":"PROGRAMA DE EJECUCIÓN DE TRABAJO",
     "READ SCHEDULER":"LEER PROGRAMA",
     "UPDATE SCHEDULER":"PROGRAMA DE ACTUALIZACIÓN",
-    "APPROVE RESCHEDULELOAN":"APROBAR RESCHEDULELOAN",
-    "CREATE RESCHEDULELOAN":"CREAR RESCHEDULELOAN",
-    "READ RESCHEDULELOAN":"LEER RESCHEDULELOAN",
-    "REJECT RESCHEDULELOAN":"RECHAZAR RESCHEDULELOAN",
+    "APPROVE RESCHEDULELOAN":"APROBAR Reprogramar Créditos",
+    "CREATE RESCHEDULELOAN":"CREAR Reprogramar Créditos",
+    "READ RESCHEDULELOAN":"LEER Reprogramar Créditos",
+    "REJECT RESCHEDULELOAN":"RECHAZAR Reprogramar Créditos",
     "CREATE CHARGE":"CREAR CARGO",
     "CREATE CHARGE CHECKER":"CREAR CONTROLADOR DE CARGA",
     "DELETE CHARGE":"BORRAR CARGO",
@@ -5805,5 +5805,6 @@
     "Loan Transactions":"Transacciones Préstamos",
     "Savings Transactions":"Transacciones Cuenta de Ahorro",
     "Xbrlmapping":"Mapeo XBRL",
+    "Infrastructure":"Infraestructura",
     "----End---": "---Fin del archivo---"
 }
