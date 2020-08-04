@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <th>{{'label.heading.status' | translate }}</th>
-                                <td>{{status}}</td>
+                                <td>{{status | translate}}</td>
                             </tr>
 
                             <tr>
@@ -60,8 +60,8 @@
                                 <th>{{'label.heading.description' | translate }}</th>
                             </tr>
                             <tr data-ng-repeat="role in userDetails.roles">
-                                <td>{{role.name}}</td>
-                                <td>{{role.description}}</td>
+                                <td>{{role.name | translate}}</td>
+                                <td>{{role.description | translate}}</td>
                             </tr>
                         </table>
                     </div>
