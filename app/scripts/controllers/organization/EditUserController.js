@@ -16,7 +16,9 @@
                 scope.formData.username = data.username;
                 scope.formData.firstname = data.firstname;
                 scope.formData.lastname = data.lastname;
+                scope.formData.surname = data.surname;
                 scope.formData.email = data.email;
+                scope.formData.phone = data.phone;
                 scope.formData.officeId = data.officeId;
                 scope.getOfficeStaff();
                 if(data.staff){
