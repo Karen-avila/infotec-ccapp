@@ -175,9 +175,9 @@
                     </div>
                     <div ng-show="isTransaction">
                         <div class="form-group" ng-show="action == 'disburse'">
-                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}<span class="required">*</span></label>
+                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="fundId" ng-model="formData.fundId" required 
+                                <md-select id="fundId" ng-model="formData.fundId" 
                                     placeholder="{{'label.selectfund' | translate}}">
                                     <md-option ng-repeat="fund in funds" ng-value="fund.id">
                                         {{fund.name}}
