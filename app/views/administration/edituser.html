@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="EditUserController">
     <ul class="breadcrumb">
         <li><a href="#!/users">{{'label.anchor.users' | translate}}</a></li>
-        <li><a href="#!/viewuser/{{userId}}">{{formData.firstname}}{{formData.lastname}}</a></li>
+        <li><a href="#!/viewuser/{{userId}}">{{formData.firstname}} {{formData.lastname}} {{formData.surname}}</a></li>
         <li class="active">{{'label.anchor.edituser' | translate}}</li>
     </ul>
     <form name="edituserform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
@@ -44,8 +44,8 @@
                 <label class="control-label col-sm-3" for="surname">{{'label.input.surname' | translate}}</label>
 
                 <div class="col-sm-3">
-                    <input type="text" id="surname" name="surname" value="{{user.surname}}" ng-model="formData.surname"
-                        class="form-control uppercase" />
+                    <input type="text" id="surname" name="surname" value="{{user.surname}}" 
+                       ng-model="formData.surname" class="form-control uppercase" />
                     <form-validate valattributeform="edituserform" valattribute="surname" />
                 </div>
             </div>
@@ -63,7 +63,7 @@
 				<label class="control-label col-sm-3" for="phone">{{'label.input.mobilenumber' | translate}}<span
 						class="required">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" id="phone" name="phone" required ng-model="formData.phone"
+					<input type="text" id="phone" name="phone"  value="{{user.phone}}" required ng-model="formData.phone"
 						ng-pattern="\d{15}" class="form-control" maxlength="15" />
 				</div>
             </div>
