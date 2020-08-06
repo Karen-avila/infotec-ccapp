@@ -514,6 +514,7 @@
     "label.nodatafound": "No se encontraron datos relacionados con los parámetros de búsqueda introducidos.",
     "label.mustbenumeric": "Debe ser numérico",
     "label.mustbeletter": "Debe ser en letras",
+    "label.minimumnumbersincellphone": "Debe ser contener 10 numeros",
     "label.mustbealphanumeric": "Debe ser en alfanumerico",
     "label.percentage": "Porcentaje",
     "label.outstanding.amount": "Monto pendiente del crédito",
