@@ -25,7 +25,7 @@
                 if (data.dateOfBirth) {
                     var dobDate = dateFilter(data.dateOfBirth, scope.df);
                     scope.date.dateOfBirth = new Date(dobDate);
-                    calculateAge(scope.date.dateOfBirth);
+                    scope.calculateAge(scope.date.dateOfBirth);
                 }
             });
 
