@@ -4,14 +4,24 @@
         <li><a href="#!/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
         <li class="active">{{'label.anchor.addfamilymember' | translate}}</li>
     </ul>
-    <form name="familymemberInfo" novalidate="" class="form-horizontal well" ng-submit="submit()">
+    <form name="familymemberInfo" novalidate="" class="form-horizontal well card" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="firstName">{{'label.input.firstname' | translate }}</label>
+                <label class="control-label col-sm-2" for="firstName">{{'label.input.firstname' | translate }}<span
+                        class="required">*</span></label>
                 <div class="col-sm-3">
-                    <input type="text" id="firstName" name="firstName" ng-model="formData.firstName" late-Validate
-                        class="form-control uppercase">
+                    <input type="text" id="firstName" name="firstName" ng-pattern="/^[a-zA-Z]*$/"
+                        ng-model="formData.firstName" class="form-control uppercase" required late-Validate
+                        maxlength="50">
+                    <div>
+                        <span ng-show="familymemberInfo.firstName.$invalid && familymemberInfo.firstName.$dirty">
+                            <small class="required error" ng-show="familymemberInfo.firstName.$error.pattern">
+                                {{'label.mustbeletter' | translate}}
+                            </small>
+                        </span>
+                    </div>
+                    <form-validate valattributeform="familymemberInfo" valattribute="firstName" />
                 </div>
             </div>
 
@@ -24,9 +34,19 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="lastName">{{'label.input.lastname' | translate }}</label>
+                <label class="control-label col-sm-2" for="lastName">{{'label.input.lastname' | translate }}<span
+                        class="required">*</span></label>
                 <div class="col-sm-3">
-                    <input type="text" id="lastName" name="lastName" ng-model="formData.lastName" class="form-control uppercase" late-Validate>
+                    <input type="text" id="lastName" ng-pattern="/^[a-zA-Z]*$/" required late-Validate maxlength="50"
+                        name="lastName" ng-model="formData.lastName" class="form-control uppercase">
+                    <div>
+                        <span ng-show="familymemberInfo.lastName.$invalid && familymemberInfo.lastName.$dirty">
+                            <small class="required error" ng-show="familymemberInfo.lastName.$error.pattern">
+                                {{'label.mustbeletter' | translate}}
+                            </small>
+                        </span>
+                    </div>
+                    <form-validate valattributeform="familymemberInfo" valattribute="lastName" />
                 </div>
             </div>
 
@@ -34,28 +54,40 @@
                 <label class="control-label col-sm-2"
                     for="qualification">{{'label.input.qualification' | translate }}</label>
                 <div class="col-sm-3">
-                    <input type="text" only-number maxlength="3" id="qualification" name="qualification" ng-model="formData.qualification"
-                        class="form-control">
+                    <input type="text" only-number maxlength="3" id="qualification" name="qualification"
+                        ng-model="formData.qualification" class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2"
-                    for="mobileNumber">{{'label.input.mobileNumber' | translate }}</label>
+                    for="mobileNumber">{{'label.input.mobileNumber' | translate }}<span
+                        class="required">*</span></label>
                 <div class="col-sm-3">
                     <input type="text" maxlength="10" only-number id="mobileNumber" ng-pattern="/^[0-9]{10}$/"
-                        name="mobileNumber" ng-model="formData.mobileNumber" class="form-control">
+                        name="mobileNumber" ng-model="formData.mobileNumber" required class="form-control">
+                    <div>
+                        <span ng-show="familymemberInfo.mobileNumber.$invalid && familymemberInfo.mobileNumber.$dirty">
+                            <!-- <small class="required error" ng-show="familymemberInfo.mobileNumber.$error.pattern">
+                                {{'label.mustbenumeric' | translate}}<br>
+                            </small> -->
+                            <small class="required error" ng-show="familymemberInfo.mobileNumber.$error.pattern">
+                                {{'label.minimumnumbersincellphone' | translate}}
+                            </small>
+                        </span>
+                    </div>
+                    <form-validate valattributeform="familymemberInfo" valattribute="mobileNumber" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2"
-                    for="dateofbirth">{{'label.input.dateofbirth' | translate }}</label>
+                <label class="control-label col-sm-2" for="dateofbirth">{{'label.input.dateofbirth' | translate }}<span
+                        class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <md-datepicker id="dateofbirth" ng-model="date.dateofbirth"
-                        md-placeholder="{{'label.selecttodate' | translate}}"
-                         max="restrictDate" ng-change="calculateAge(date.dateofbirth)" >
+                        md-placeholder="{{'label.selecttodate' | translate}}" min="'1900-01-01'" max="restrictDate"
+                        ng-change="calculateAge(date.dateofbirth)">
                     </md-datepicker>
                 </div>
             </div>
@@ -63,7 +95,8 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="age">{{'label.input.age' | translate }}</label>
                 <div class="col-sm-3">
-                    <input type="text" only-number maxlength="3" id="age" name="age" ng-model="formData.age" class="form-control">
+                    <input type="text" only-number maxlength="3" id="age" name="age" ng-model="formData.age"
+                        class="form-control">
                 </div>
             </div>
 
@@ -78,57 +111,68 @@
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.relationship' | translate }}</label>
+                    <label>{{'label.input.relationship' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select id="relationshipIdOption" ng-model="formData.relationshipId">
-                        <md-option ng-repeat="relationshipIdOption in relationshipIdOptions | orderBy: name"
-                        ng-value="relationshipIdOption.id">
+                    <md-select class="uppercase" required placeholder="{{'label.selectone' | translate}}"
+                        id="relationshipIdOption" name="relationshipIdOption" ng-model="formData.relationshipId">
+                        <md-option class="uppercase"
+                            ng-repeat="relationshipIdOption in relationshipIdOptions | orderBy: name"
+                            ng-value="relationshipIdOption.id">
                             {{relationshipIdOption.name | translate}}
                         </md-option>
                     </md-select>
+                    <form-validate valattributeform="familymemberInfo" valattribute="relationshipIdOption" />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.gender' | translate }}</label>
+                    <label>{{'label.input.gender' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select id="genderIdOption" ng-model="formData.genderId">
-                        <md-option ng-repeat="genderIdOption in genderIdOptions | orderBy: name"
-                        ng-value="genderIdOption.id">
+                    <md-select class="uppercase" required placeholder="{{'label.selectone' | translate}}" id="genderIdOption"
+                        name="genderIdOption" ng-model="formData.genderId">
+                        <md-option class="uppercase" ng-repeat="genderIdOption in genderIdOptions | orderBy: name"
+                            ng-value="genderIdOption.id">
                             {{genderIdOption.name | translate}}
                         </md-option>
                     </md-select>
+                    <form-validate valattributeform="familymemberInfo" valattribute="genderIdOption" />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.profession' | translate }}</label>
+                    <label>{{'label.input.profession' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select id="professionIdOption" ng-model="formData.professionId">
-                        <md-option ng-repeat="professionIdOption in professionIdOptions | orderBy: name"
-                        ng-value="professionIdOption.id">
+                    <md-select class="uppercase" required placeholder="{{'label.selectone' | translate}}" id="professionIdOption"
+                        name="professionIdOption" ng-model="formData.professionId">
+                        <md-option class="uppercase"
+                            ng-repeat="professionIdOption in professionIdOptions | orderBy: name"
+                            ng-value="professionIdOption.id">
                             {{professionIdOption.name | translate}}
                         </md-option>
                     </md-select>
+                    <form-validate valattributeform="familymemberInfo" valattribute="professionIdOption" />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.maritalstatus' | translate }}</label>
+                    <label>{{'label.input.maritalstatus' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select id="maritalStatusId" ng-model="formData.maritalStatusId">
-                        <md-option ng-repeat="maritalStatusIdOption in maritalStatusIdOptions | orderBy: name"
-                        ng-value="maritalStatusIdOption.id">
+                    <md-select class="uppercase" required placeholder="{{'label.selectone' | translate}}" id="maritalStatusId"
+                        name="maritalStatusId" ng-model="formData.maritalStatusId">
+                        <md-option class="uppercase"
+                            ng-repeat="maritalStatusIdOption in maritalStatusIdOptions | orderBy: name"
+                            ng-value="maritalStatusIdOption.id">
                             {{maritalStatusIdOption.name | translate}}
                         </md-option>
                     </md-select>
+                    <form-validate valattributeform="familymemberInfo" valattribute="maritalStatusId" />
                 </div>
             </div>
 

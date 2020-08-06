@@ -11,7 +11,7 @@
             scope.clientId = routeParams.clientId;
             scope.familyMemberId = routeParams.familyMemberId;
             scope.restrictDate = new Date();
-
+            
             resourceFactory.familyMemberTemplate.get({ clientId: scope.clientId }, function (data) {
                 scope.relationshipIdOptions = data.relationshipIdOptions;
                 scope.genderIdOptions = data.genderIdOptions;
