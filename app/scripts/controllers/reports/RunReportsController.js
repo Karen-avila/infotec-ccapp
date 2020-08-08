@@ -1,7 +1,7 @@
 (function (module) {
   mifosX.controllers = _.extend(module, {
 
-      RunReportsController: function (scope, routeParams, resourceFactory, location, dateFilter, http, API_VERSION, $rootScope, $sce) {
+      RunReportsController: function (scope, routeParams, resourceFactory, dateFilter, http, API_VERSION, $rootScope, $sce, MIN_DATEPICKER, MAX_DATEPICKER) {
           scope.isCollapsed = false; //displays options div on startup
           scope.hideTable = true; //hides the results div on startup
           scope.hidePentahoReport = true; //hides the results div on startup
@@ -25,6 +25,12 @@
           scope.pentahoReportParameters = [];
           scope.type = "pie";
           scope.decimals = [0, 1, 2, 3, 4];
+          scope.delimiters = [
+            { value: "colon", label: "colon" },
+            { value: "semicolon", label: "semicolon" },
+            { value: "pipe", label: "pipe" },
+          ];
+          scope.delimiterChoice = ",";
           scope.formats = [
             { value: "HTML", label: "showreport", contentType: "text/html" },
             { value: "XLS", label: "exportexcel", contentType: "application/vnd.ms-excel" },
@@ -32,8 +38,8 @@
             { value: "CSV", label: "exportcsv", contentType: "text/csv" },
             { value: "PDF", label: "pdfformat", contentType: "application/pdf" },
           ];
-          scope.minDate = new Date("2000-01-01T00:00:00.000+06:00");
-          scope.maxDate = new Date("2040-12-31T00:00:00.000+06:00");
+          scope.minDate = new Date(MIN_DATEPICKER);
+          scope.maxDate = new Date(MAX_DATEPICKER);
 
           scope.highlight = function (id) {
               var i = document.getElementById(id);
@@ -47,7 +53,8 @@
               scope.formData.outputType = 'HTML';
           };
 
-          resourceFactory.runReportsResource.getReport({reportSource: 'FullParameterList', parameterType: true, R_reportListing: "'" + routeParams.name + "'"}, function (data) {
+          resourceFactory.runReportsResource.getReport({reportSource: 'FullParameterList', parameterType: true, 
+            R_reportListing: "'" + routeParams.name + "'"}, function (data) {
               for (var i in data.data) {
                   var temp = {
                       name: data.data[i].row[0],
@@ -331,6 +338,7 @@
                           scope.hidePentahoReport = true;
                           scope.hideChart = true;
                           scope.formData.reportSource = scope.reportName;
+                          scope.formData['R_delimiter'] = scope.delimiterChoice;
                           resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
                               //clear the csvData array for each request
                               scope.csvData = [];
@@ -411,7 +419,7 @@
           };
       }
   });
-  mifosX.ng.application.controller('RunReportsController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', '$http', 'API_VERSION', '$rootScope', '$sce', mifosX.controllers.RunReportsController]).run(function ($log) {
+  mifosX.ng.application.controller('RunReportsController', ['$scope', '$routeParams', 'ResourceFactory', 'dateFilter', '$http', 'API_VERSION', '$rootScope', '$sce', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.RunReportsController]).run(function ($log) {
       $log.info("RunReportsController initialized");
   });
 }(mifosX.controllers || {}));
