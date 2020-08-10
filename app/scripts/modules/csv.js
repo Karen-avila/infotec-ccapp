@@ -37,8 +37,11 @@
                 restrict: 'AC',
                 replace: true,
                 transclude: true,
-                scope: { data: '&ngCsv', filename: '@filename', header: '&csvHeader'},
+                scope: { data: '&ngCsv', filename: '@filename', header: '&csvHeader', delimiter: ',' },
                 controller: ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
+                    console.log("=============");
+                    console.log($attrs);
+                    console.log("=============");
                     $scope.csv = "";
                     $scope.$watch($scope.data, function (newValue, oldValue) {
                         $scope.buildCsv(newValue);
@@ -60,7 +63,7 @@
                                 }, encodingArray);
                             }
 
-                            headerString = encodingArray.join(",");
+                            headerString = encodingArray.join(delimiter);
                             csvContent += headerString + "\n";
                         }
 
@@ -77,15 +80,19 @@
                                 }, infoArray);
                             }
 
-                            dataString = '\"' + infoArray.join('\",\"') + '\"';
+                            dataString = '\"' + infoArray.join('\"' + delimiter + '\"') + '\"';
                             csvContent += index < data.length ? dataString + "\n" : dataString;
                         });
 
                         $scope.csv = encodeURI(csvContent);
                     };
 
-                    $scope.getFilename = function () {
-                        return $scope.filename ? $scope.filename : "download.csv";
+                    $scope.getFilename = function (prefix) {
+                        if (prefix != null) {
+                            return $scope.filename ? $scope.filename : "download_" + prefix + ".csv";
+                        } else {
+                            return $scope.filename ? $scope.filename : "download.csv";
+                        }
                     };
                 }],
                 template: '<div class="csv-wrap">' +
