@@ -250,7 +250,7 @@
 
             scope.addCollateral = function () {
                 if (scope.collateralFormData.collateralIdTemplate && scope.collateralFormData.collateralValueTemplate) {
-                    scope.collaterals.push({ type: scope.collateralFormData.collateralIdTemplate.id, name: scope.collateralFormData.collateralIdTemplate.name, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate });
+                    scope.collaterals.push({ type: scope.collateralFormData.collateralIdTemplate, name: scope.collateralFormData.collateralIdTemplate, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate });
                     scope.collateralFormData.collateralIdTemplate = undefined;
                     scope.collateralFormData.collateralValueTemplate = undefined;
                     scope.collateralFormData.collateralDescriptionTemplate = undefined;
