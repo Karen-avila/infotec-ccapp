@@ -825,7 +825,7 @@
                 </md-step>
                 <md-step ng-if="isClicked" label="{{'label.heading.preview' | translate}}">
                     <md-step-body>
-                        <form name="Preview" novalidate="" class="form-horizontal form-extra">
+                        <form name="Preview" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                             <fieldset>
                                 <api-validate></api-validate>
                                 <br>
@@ -1131,7 +1131,7 @@
                                     <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
                                         {{'label.button.cancel' | translate}}
                                     </button>
-                                    <button id="save" class="btn btn-sm btn-primary" has-permission='CREATE_SAVINGSPRODUCT'>{{'label.button.createsavingproduct'
+                                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_SAVINGSPRODUCT'>{{'label.button.createsavingproduct'
                                         | translate}}
                                     </button>
                                 </div>

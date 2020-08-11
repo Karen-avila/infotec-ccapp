@@ -3939,6 +3939,7 @@
     "error.msg.loan.cannot.be.done.before.disbursement": "Los reembolsos de crédito no se pueden hacer antes de desembolso",
     "error.msg.loanschedule.exceeding.max.outstanding.balance": "El crédito excede el saldo máximo pendiente: `{{params[0].value}}`",
     "error.msg.loanschedule.out.of.schedule.dusbursement.date": "Una de la fecha de desembolso no está cayendo en horario de crédito",
+    "error.msg.loanschedule.emi.amount.must.be.greter.than.interest":"Monto EMI debe ser mas mayor al interés",
     "error.msg.loan.transaction.cannot.be.done.before.disbursement": "El desembolso debe hacerse antes de hacer el reembolso",
     "validation.msg.loan.expectedDisbursementDate.disbursement.date.must.be.unique.for.tranches": "La fecha de desembolso del tramo debe ser única",
     "error.msg.loan.disburse.amount.must.be.less.than.approved.amount": "La cantidad de desembolso debe ser menor o igual al monto de capital aprobado",

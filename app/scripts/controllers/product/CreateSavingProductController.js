@@ -51,6 +51,10 @@
                     vm.stepProgress = vm.stepProgress + 1;
                 }
                 vm.selectedStep = vm.selectedStep + 1;
+
+                if(vm.selectedStep + 1 == scope.maxStep) {
+                    scope.isClicked = true;
+                }
             }
         
             scope.moveToPreviousStep = function() {
