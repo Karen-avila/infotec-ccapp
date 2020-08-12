@@ -596,9 +596,9 @@
                                             <md-select id="escheatLiabilityId" 
                                             ng-model="formData.escheatLiabilityId"
                                             ng-change="savingproduct.accountingMappings.escheatLiabilityAccount.name = formValue(liabilityAccountOptions,formData.escheatLiabilityId,'id','name')">
-                                            <md-opcion ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
+                                            <md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
                                                 {{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
-                                            </md-opcion>
+                                            </md-option>
                                             </md-select>                                            
                                         </div>
                                     </div>
