@@ -16,6 +16,7 @@
             scope.frFlag = false;
             scope.fiFlag = false;
             scope.piFlag = false;
+            scope.accountLevels = [1,2,3,4];
 
             resourceFactory.savingProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
