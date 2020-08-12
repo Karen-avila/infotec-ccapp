@@ -183,25 +183,25 @@
                         </div>
                     </div>
                     <div class="">
-                        <button id="save1" wz-next class="btn btn-sm btn-primary pull-right" ng-show="isEntityDatatables">
+                        <md-button id="save1" wz-next class="md-raised md-primary pull-right" ng-show="isEntityDatatables">
                             {{'label.button.proceed' | translate}}
-                        </button>
+                        </md-button>
                         <div ng-hide="isEntityDatatables">
                             <div class="form-group" ng-show="showDelete || waiveCharge || inactivateCharge">
                                 <label class="control-label col-sm-3">{{'label.areyousure' | translate }}</label>
                             </div>
                             <div class="col-md-12 center" ng-show="showDelete">
-                                <button type="reset" ng-click="submit()" has-permission='{{taskPermissionName}}'
-                                    class="btn btn-sm btn-primary">{{'label.button.confirm' | translate }}</button>
-                                <button type="submit" ng-click="cancel()"
-                                    class="btn btn-sm btn-primary">{{'label.button.cancel' | translate }}</button>
+                                <md-button type="reset" ng-click="submit()" has-permission='{{taskPermissionName}}'
+                                    class="md-raised md-primary">{{'label.button.confirm' | translate }}</md-button>
+                                <md-button type="submit" ng-click="cancel()"
+                                    class="md-raised">{{'label.button.cancel' | translate }}</md-button>
                             </div>
 
                             <div class="col-md-12 center" ng-hide="showDelete">
-                                <button id="cancel" ng-click="cancel()"
-                                    class="btn btn-sm btn-primary">{{'label.button.cancel' | translate }}</button>
-                                <button id="save" type="submit" has-permission='{{taskPermissionName}}'
-                                    class="btn btn-sm btn-primary">{{'label.button.save' | translate }}</button>
+                                <md-button id="cancel" ng-click="cancel()"
+                                    class="md-raised">{{'label.button.cancel' | translate }}</md-button>
+                                <md-button id="save" type="submit" has-permission='{{taskPermissionName}}'
+                                    class="md-raised md-primary">{{'label.button.save' | translate }}</md-button>
                             </div>
                         </div>
                     </div>
@@ -284,23 +284,20 @@
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
+                            <md-button id="save4" type="submit" class="md-raised md-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
-                            </button>
+                            </md-button>
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
                                 <label class="control-label col-sm-3">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-offset-2" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-primary">{{'label.button.cancel' |
-                                    translate}}
-                                </button>
-                                <button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
-                                    'label.button.confirm' |
-                                    translate}}
-                                </button>
+                                <md-button type="reset" ng-click="cancel()" class="md-raised">{{'label.button.cancel' | translate}}
+                                </md-button>
+                                <md-button type="submit" has-permission='{{taskPermissionName}}' class="md-raised md-primary" wz-next
+                                    class="btn btn-sm btn-primary">{{'label.button.confirm' | translate}}
+                                </md-button>
                             </div>
                             <div class="col-md-offset-2" ng-hide="showDelete || showwaiveforspecicficduedate">
                                 <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' |

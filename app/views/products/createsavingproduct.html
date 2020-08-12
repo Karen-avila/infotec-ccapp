@@ -131,6 +131,20 @@
                                 <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
                                 <hr>
                                 <div class="form-group">
+                                    <label class="control-label col-sm-3">{{'label.input.account.level' | translate}}
+                                        <span class="required">*</span>
+                                        <i class="fa fa-question-circle"
+                                            uib-tooltip="{{'label.tooltip.account.level' | translate}}"
+                                            tooltip-append-to-body="true"></i>
+                                    </label>
+                                    <div class="col-sm-3">
+                                            <md-select id="accountLevel" 
+                                                ng-model="formData.accountLevel">
+                                            <md-option ng-value="level" ng-repeat="level in accountLevels">
+                                                {{'label.input.level' | translate}} {{level}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
                                     <label class="control-label col-sm-3">{{'label.input.nominalannualinterestrate' | translate}}
                                         <span class="required">*</span>
                                         <i class="fa fa-question-circle"
@@ -596,9 +610,9 @@
                                             <md-select id="escheatLiabilityId" 
                                             ng-model="formData.escheatLiabilityId"
                                             ng-change="savingproduct.accountingMappings.escheatLiabilityAccount.name = formValue(liabilityAccountOptions,formData.escheatLiabilityId,'id','name')">
-                                            <md-opcion ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
+                                            <md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
                                                 {{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
-                                            </md-opcion>
+                                            </md-option>
                                             </md-select>                                            
                                         </div>
                                     </div>
@@ -825,7 +839,7 @@
                 </md-step>
                 <md-step ng-if="isClicked" label="{{'label.heading.preview' | translate}}">
                     <md-step-body>
-                        <form name="Preview" novalidate="" class="form-horizontal form-extra">
+                        <form name="Preview" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                             <fieldset>
                                 <api-validate></api-validate>
                                 <br>
@@ -1131,7 +1145,7 @@
                                     <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
                                         {{'label.button.cancel' | translate}}
                                     </button>
-                                    <button id="save" class="btn btn-sm btn-primary" has-permission='CREATE_SAVINGSPRODUCT'>{{'label.button.createsavingproduct'
+                                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_SAVINGSPRODUCT'>{{'label.button.createsavingproduct'
                                         | translate}}
                                     </button>
                                 </div>

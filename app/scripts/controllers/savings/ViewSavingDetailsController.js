@@ -230,9 +230,9 @@
           scope.savingaccountdetails = data;
           scope.savingaccountdetails.availableBalance = scope
             .savingaccountdetails.enforceMinRequiredBalance
-            ? scope.savingaccountdetails.summary.accountBalance -
+            ? scope.savingaccountdetails.summary.availableBalance -
             scope.savingaccountdetails.minRequiredOpeningBalance
-            : scope.savingaccountdetails.summary.accountBalance;
+            : scope.savingaccountdetails.summary.availableBalance;
           scope.convertDateArrayToObject("date");
           if (scope.savingaccountdetails.groupId) {
             resourceFactory.groupResource.get(
