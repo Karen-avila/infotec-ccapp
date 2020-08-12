@@ -47,7 +47,7 @@
             } else {
               resourceFactory.globalSearch.search(
                 {
-                  query: searchString.toUpperCase(),
+                  query: searchString,
                   resource: "users",
                   exactMatch: exactMatch,
                 },
