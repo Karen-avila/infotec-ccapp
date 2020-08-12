@@ -337,14 +337,14 @@
                 location.path('/viewsavingaccount/' + routeParams.id);
             };
 
-            scope.setTransactionDate = function (inputDate) {
+            scope.setTransactionDate = function (inputDate, modelName) {
                 var today = new Date(); //Current date
                 today.setHours(0, 0, 0, 0);
                 inputDate.setHours(0, 0, 0, 0);
                 if (inputDate < today) {
                     return scope.dateFormat;
                 } else {
-                    this.formData.transactionDate = new Date();
+                    this.formData[modelName] = new Date();
                     return scope.dateTimeFormat;
                 }
             }
@@ -354,7 +354,7 @@
 
                 if (scope.action != "undoapproval") {
                     this.formData.locale = scope.optlang.code;
-                    this.formData.dateFormat = scope.df;
+                    this.formData.dateFormat = scope.setTransactionDate(this.formData[scope.modelName], scope.modelName);
                 }
                 console.log(this.formData.transactionDate);
                 if (scope.action == "deposit" || scope.action == "withdrawal" || scope.action == "modifytransaction" || scope.action=="postInterestAsOn") {

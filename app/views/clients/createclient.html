@@ -137,8 +137,8 @@
                      class="required">*</span></label>
                <div class="col-sm-3">
                   <md-datepicker id="dateofbirth" ng-model="first.dateOfBirth"
-                     md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
-                     max="restrictDate">
+                     md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+                     md-max-date="restrictDate">
                   </md-datepicker>
                </div>
                <div data-ng-switch on="showNonPersonOptions">
