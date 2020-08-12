@@ -354,7 +354,7 @@
 
                 if (scope.action != "undoapproval") {
                     this.formData.locale = scope.optlang.code;
-                    this.formData.dateFormat = scope.setTransactionDate(this.formData.transactionDate);
+                    this.formData.dateFormat = scope.df;
                 }
                 console.log(this.formData.transactionDate);
                 if (scope.action == "deposit" || scope.action == "withdrawal" || scope.action == "modifytransaction" || scope.action=="postInterestAsOn") {

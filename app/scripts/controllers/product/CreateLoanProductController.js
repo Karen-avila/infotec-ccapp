@@ -37,6 +37,9 @@
             scope.selectedStep = 0;
             scope.stepProgress = 0;
 
+            scope.date.first = new Date();
+            scope.date.second = new Date();
+            
             for (var i = 1; i <= 28; i++) {
                 scope.interestRecalculationOnDayTypeOptions.push(i);
             }
@@ -126,6 +129,10 @@
                     vm.stepProgress = vm.stepProgress + 1;
                 }
                 vm.selectedStep = vm.selectedStep + 1;
+
+                if(vm.selectedStep + 1 == scope.maxStep) {
+                    scope.isClicked = true;
+                }
             }
         
             scope.moveToPreviousStep = function() {
