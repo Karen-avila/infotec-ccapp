@@ -34,6 +34,7 @@
             scope.maxStep = 3;
             scope.selectedStep = 0;
             scope.stepProgress = 0;
+
             scope.goNextStep = function () {
                 var vm = scope;
                 //do not exceed into max step
@@ -250,7 +251,8 @@
 
             scope.addCollateral = function () {
                 if (scope.collateralFormData.collateralIdTemplate && scope.collateralFormData.collateralValueTemplate) {
-                    scope.collaterals.push({ type: scope.collateralFormData.collateralIdTemplate, name: scope.collateralFormData.collateralIdTemplate, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate });
+                    scope.collateralNameSelected = scope.getCollateralName(scope.collateralFormData.collateralIdTemplate);
+                    scope.collaterals.push({ type: scope.collateralFormData.collateralIdTemplate, name: scope.collateralNameSelected, value: scope.collateralFormData.collateralValueTemplate, description: scope.collateralFormData.collateralDescriptionTemplate });
                     scope.collateralFormData.collateralIdTemplate = undefined;
                     scope.collateralFormData.collateralValueTemplate = undefined;
                     scope.collateralFormData.collateralDescriptionTemplate = undefined;
@@ -259,6 +261,10 @@
 
             scope.deleteCollateral = function (index) {
                 scope.collaterals.splice(index, 1);
+            };
+
+            scope.getCollateralName = function (id) {
+                return scope.collateralOptions.find(x => x.id === id).name;
             };
 
             scope.previewRepayments = function () {
