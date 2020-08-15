@@ -671,6 +671,7 @@
     "label.anchor.reactivate": "Reactivate",
     "label.anchor.undoReject": "Undo Rejection",
     "label.anchor.undoWithdrawn": "Undo Withdrawal",
+    "label.anchor.createfund":"Create Fund",
     "#Inputs": "..",
     "label.input.filterbynameaccno": "Filter display by name/client/staff/office",
     "label.input.searchByNameAccNo": "Find by name/mobile/client/externalId/identifier",

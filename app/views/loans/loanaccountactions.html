@@ -177,9 +177,9 @@
                         <div class="form-group" ng-show="action == 'disburse'">
                             <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="fundId" ng-model="formData.fundId" 
+                                <md-select class="uppercase" id="fundId" ng-model="formData.fundId" 
                                     placeholder="{{'label.selectfund' | translate}}">
-                                    <md-option ng-repeat="fund in funds" ng-value="fund.id">
+                                    <md-option class="uppercase" ng-repeat="fund in funds" ng-value="fund.id">
                                         {{fund.name}}
                                     </md-option>
                                 </md-select>
@@ -188,9 +188,9 @@
                         <div class="form-group" ng-show="action == 'repayment' || action == 'prepayloan'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}<span class="required">*</span></label>
                             <div class="col-sm-3">
-                                <md-select id="currencyCode" ng-model="formData.currencyCode" required
+                                <md-select class="uppercase" id="currencyCode" ng-model="formData.currencyCode" required
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="currency in currencyOptions" ng-value="currency.id">
+                                    <md-option class="uppercase" ng-repeat="currency in currencyOptions" ng-value="currency.id">
                                         {{currency.code}} {{currency.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -200,9 +200,9 @@
                             <label class="control-label col-sm-3"
                                 for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="paymentTypeId" ng-model="formData.paymentTypeId" 
+                                <md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId" 
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
+                                    <md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
                                         {{'payment.type.' + paymentType.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -224,9 +224,9 @@
                             <label class="control-label col-sm-3"
                                 for="channelId">{{'label.input.channel' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="channelId" ng-model="formData.channelId" 
+                                <md-select class="uppercase" id="channelId" ng-model="formData.channelId" 
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="channel in channelOptions" ng-value="channel.id">
+                                    <md-option class="uppercase" ng-repeat="channel in channelOptions" ng-value="channel.id">
                                         {{channel.name | translate}}
                                     </md-option>
                                 </md-select>
