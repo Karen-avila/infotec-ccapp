@@ -5904,5 +5904,13 @@
     "Savings Transactions":"Transacciones Cuenta de Ahorro",
     "Xbrlmapping":"Mapeo XBRL",
     "Infrastructure":"Infraestructura",
+    "datos_socioeconomicos.campo_1":"sector",
+    "datos_socioeconomicos.campo_2":"subsector",
+    "datos_socioeconomicos.campo_3":"rama",
+    "datos_socioeconomicos.campo_4":"subrama",
+    "datos_socioeconomicos.campo_5":"giro",
+    "datatable.datos_socioeconomicos":"Datos Socioeconómicos",
+    "datatable.direccion":"Dirección",
+    "datatable.reputacion":"Reputación",
     "----End---": "---Fin del archivo---"
 }
