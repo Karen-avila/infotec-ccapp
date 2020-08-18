@@ -2879,6 +2879,8 @@
     "label.input.checkedfrom": "Comprobado desde",
     "label.input.checkedto": "Comprobado para",
     "label.input.datatablename": "Nombre de la tabla de datos",
+    "label.input.datatabledescription": "Descripción de la tabla de datos",
+    "label.input.datatableweight": "Valor de la tabla de datos",
     "label.input.apptablename": "Entidad a que aplica",
     "label.input.multirow": "Fila múltiple",
     "label.input.addcolumns": "Agregar columnas",
