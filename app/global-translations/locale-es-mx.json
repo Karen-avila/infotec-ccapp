@@ -4464,6 +4464,8 @@
     "label.heading.editsurvey": "Editar encuesta",
     "label.heading.survey": "Encuesta",
     "label.heading.score": "Puntuación",
+    "label.heading.scoring": "Puntuación",
+    "label.heading.scoringWeight": "Porcentaje",
     "label.button.takesurvey": "Completar la Encuesta",
     "validation.msg.survey.question.key.cannot.be.blank": "La clave de la pregunta no puede estar vacía",
     "validation.msg.survey.question.text.cannot.be.blank": "El texto de la pregunta no puede estar vacío",

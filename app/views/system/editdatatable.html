@@ -28,16 +28,17 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-							<md-select id="apptableName" ng-model="formData.apptableName" name="apptable" placeholder="{{'label.selectone' | translate}}"required>
-    		                    <!--<md-option class="displaynone" value="">{{'label.selectone' | translate}}</md-option>-->
-    		                    <md-option value="m_client">{{'label.client' | translate}}</md-option>
-    		                    <md-option value="m_group">{{'label.group' | translate}}</md-option>
-    		                    <md-option value="m_center">{{'label.center' | translate}}</md-option>
-    		                    <md-option value="m_loan">{{'label.loan' | translate}}</md-option>
-    		                    <md-option value="m_office">{{'label.office' | translate}}</md-option>
-    		                    <md-option value="m_savings_account">{{'label.savingsaccount' | translate}}</md-option>
-    		                </md-select>
-    		                <form-validate valattributeform="createdatatableform" valattribute="apptable"/>
+                            <md-select id="apptableName" ng-model="formData.apptableName" name="apptable"
+                                placeholder="{{'label.selectone' | translate}}" required>
+                                <!--<md-option class="displaynone" value="">{{'label.selectone' | translate}}</md-option>-->
+                                <md-option value="m_client">{{'label.client' | translate}}</md-option>
+                                <md-option value="m_group">{{'label.group' | translate}}</md-option>
+                                <md-option value="m_center">{{'label.center' | translate}}</md-option>
+                                <md-option value="m_loan">{{'label.loan' | translate}}</md-option>
+                                <md-option value="m_office">{{'label.office' | translate}}</md-option>
+                                <md-option value="m_savings_account">{{'label.savingsaccount' | translate}}</md-option>
+                            </md-select>
+                            <form-validate valattributeform="createdatatableform" valattribute="apptable" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,20 +50,22 @@
                                     placeholder="{{'label.input.columnname' | translate}}" class="form-control" />
                             </div>
                             <div class="col-sm-3">
-    				            <md-select name="columnType" ng-model="datatableTemplate.columnType" placeholder="{{'label.selectcolumntype' | translate}}" >&nbsp;&nbsp;
-    				                <!--<md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}</md-option>-->
-    				                <md-option value="String">{{'label.string' | translate}}</md-option>
-    				                <md-option value="Number">{{'label.number' | translate}}</md-option>
-    				                <md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
-    				                <md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
-    				                <md-option value="Date">{{'label.date' | translate}}</md-option>
-    				                <md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
-    				                <md-option value="Text">{{'label.text' | translate}}</md-option>
-    				                <md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
-    				            </md-select>
+                                <md-select name="columnType" ng-model="datatableTemplate.columnType"
+                                    placeholder="{{'label.selectcolumntype' | translate}}">&nbsp;&nbsp;
+                                    <!--<md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}</md-option>-->
+                                    <md-option value="String">{{'label.string' | translate}}</md-option>
+                                    <md-option value="Number">{{'label.number' | translate}}</md-option>
+                                    <md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
+                                    <md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
+                                    <md-option value="Date">{{'label.date' | translate}}</md-option>
+                                    <md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
+                                    <md-option value="Text">{{'label.text' | translate}}</md-option>
+                                    <md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
+                                </md-select>
                             </div>
                             <div class="col-sm-1">
-                                <md-button class="md-raised md-primary" ng-click="addColumn()"><i class="fa fa-plus"></i></md-button>
+                                <md-button class="md-raised md-primary" ng-click="addColumn()"><i
+                                        class="fa fa-plus"></i></md-button>
                             </div>
                             <span ng-show="editdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
                                 <small class="error"
@@ -109,18 +112,23 @@
                                                     ng-show="column.originalName" />
                                             </td>
                                             <td md-cell>
-                    		                    <md-select ng-model="column.type" ng-disabled="column.originalName" required="required"
-    		                                        ng-change="updateDepenedencies($index)" >
-                                                    <md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}
+                                                <md-select ng-model="column.type" ng-disabled="column.originalName"
+                                                    required="required" ng-change="updateDepenedencies($index)">
+                                                    <md-option class="displaynone" value="">
+                                                        {{'label.selectcolumntype' | translate}}
                                                     </md-option>
                                                     <md-option value="String">{{'label.string' | translate}}</md-option>
                                                     <md-option value="Number">{{'label.number' | translate}}</md-option>
-                                                    <md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
-                                                    <md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
+                                                    <md-option value="Decimal">{{'label.decimal' | translate}}
+                                                    </md-option>
+                                                    <md-option value="Boolean">{{'label.boolean' | translate}}
+                                                    </md-option>
                                                     <md-option value="Date">{{'label.date' | translate}}</md-option>
-                                                    <md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
+                                                    <md-option value="DateTime">{{'label.datetime' | translate}}
+                                                    </md-option>
                                                     <md-option value="Text">{{'label.text' | translate}}</md-option>
-                                                    <md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
+                                                    <md-option value="Dropdown">{{'label.dropdown' | translate}}
+                                                    </md-option>
                                                 </md-select>
                                             </td>
                                             <td md-cell align="center" class="paddedleft0">
