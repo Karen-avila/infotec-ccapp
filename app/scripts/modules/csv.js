@@ -37,11 +37,12 @@
                 restrict: 'AC',
                 replace: true,
                 transclude: true,
-                scope: { data: '&ngCsv', filename: '@filename', header: '&csvHeader', delimiter: ',' },
+                scope: { data: '&ngCsv', filename: '@filename', header: '&csvHeader'},
                 controller: ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
                     console.log("=============");
-                    console.log($attrs);
+                    console.log($scope);
                     console.log("=============");
+                    const delimiter = ",";
                     $scope.csv = "";
                     $scope.$watch($scope.data, function (newValue, oldValue) {
                         $scope.buildCsv(newValue);
@@ -71,6 +72,7 @@
                         angular.forEach(data, function (row, index) {
                             var dataString, infoArray;
 
+                            /*
                             if (angular.isArray(row)) {
                                 infoArray = row;
                             } else {
@@ -81,6 +83,8 @@
                             }
 
                             dataString = '\"' + infoArray.join('\"' + delimiter + '\"') + '\"';
+                            */
+                            dataString = row;
                             csvContent += index < data.length ? dataString + "\n" : dataString;
                         });
 
