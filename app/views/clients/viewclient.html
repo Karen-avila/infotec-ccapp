@@ -1352,7 +1352,8 @@
                                                             <tbody>
                                                                 <tr class="graybg">
                                                                     <td style="width: 50%;" class="graybg">
-                                                                        <strong>{{'datatable.' + datatabledetail.registeredTableName | translate}}</strong>
+                                                                        <strong ng-show="datatabledetail.description==''">{{'datatable.' + datatabledetail.registeredTableName | translate}}</strong>
+                                                                        <strong ng-hide="datatabledetail.description==''">{{datatabledetail.description}}</strong>
                                                                     </td>
                                                                     <td style="width: 50%;">
                                                                         <div data-ng-hide="isClosedClient"

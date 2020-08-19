@@ -3,31 +3,48 @@
         <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
         <li class="active">{{'label.anchor.exchangerates' | translate}}</li>
     </ul>
-<div class="card well">
-    <div class="row">
-        <div class="col-md-9">
-            <input ng-model="filterText" type="text" class="form-control" ng-keyup="onFilter()" placeholder="{{'label.input.filterbyname' | translate}}">
+    <div class="card well">
+        <div class="row">
+            <div class="col-md-9">
+                <input ng-model="filterText" type="text" class="form-control" ng-keyup="onFilter()" placeholder="{{'label.input.filterbyname' | translate}}">
+            </div>
+            <div class="col-md-3">
+                <md-button href="#!/createexchangerate" class="md-raised md-primary pull-right" has-permission='CREATE_EXCHANGERATE'><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.createexchangerate' | translate}}</md-button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <a href="#!/createexchangerate" class="btn btn-primary pull-right" has-permission='CREATE_EXCHANGERATE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createexchangerate' | translate}}</a>
-        </div>
+        <md-divider></md-divider>
+        <br>
+        <md-table-container ng-show="clients.length > 0" class="noscroll-x">
+            <div class="row">
+                <div class="col-md-7">
+                    <md-input-container class="full-width">
+                        <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                        <input ng-model="filter.search">
+                    </md-input-container>
+                </div>
+                <md-divider></md-divider>
+            </div>
+            <div class="row">
+                <div clas="col-sm-12">
+                    <table md-table class="table">
+                        <thead md-head>
+                        <tr md-row class="graybg">
+                            <th md-column>{{'label.heading.name' | translate}}</th>
+                            <th md-column>{{'label.heading.createdby' | translate}}</th>
+                            <th md-column>{{'label.heading.active' | translate}}</th>
+                        </tr>
+                        </thead>
+                        <tbody md-body>
+                        <tr md-row class="pointer-main" ng-repeat="exchangerate in exchangerates | orderBy:'name' | filter:filterText"
+                            class="pointer" data-ng-click="routeTo(exchangerate.id)">
+                            <td md-cell>{{exchangerate.name}}</td>
+                            <td md-cell>{{exchangerate.createdBy}}</td>
+                            <td md-cell>{{exchangerate.isActive}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </md-table-container>
     </div>
-    <hr>
-    <table class="table">
-        <thead>
-        <tr class="graybg">
-            <th>{{'label.heading.name' | translate}}</th>
-            <th>{{'label.heading.createdby' | translate}}</th>
-            <th>{{'label.heading.active' | translate}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="pointer-main" ng-repeat="exchangerate in exchangerates |orderBy:'name' | filter:filterText">
-            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.name}}</td>
-            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.createdBy}}</td>
-            <td class="pointer" data-ng-click="routeTo(exchangerate.id)">{{exchangerate.isActive}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </div>
