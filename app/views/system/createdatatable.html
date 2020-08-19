@@ -1,177 +1,205 @@
 <div class="content-container">
-    <ul class="breadcrumb">
-        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
-        <li><a href="#!/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
-        <li class="active">{{'label.anchor.createdatatable' | translate}}</li>
-    </ul>
-    <div class="card">
-    	<div class="content">
-    		<div class="toolbar">
-    			<h4>{{'label.heading.createdatatable' | translate }}</h4>
-    		</div>
-    		<form name="createdatatableform" novalidate="" class="form-horizontal form-extra" ng-controller="CreateDataTableController" rc-submit="submit()">
-    		    <api-validate></api-validate>
-    		    <fieldset>
-    		        <div class="form-group">
+	<ul class="breadcrumb">
+		<li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+		<li><a href="#!/datatables">{{'label.anchor.managedatatables' | translate}}</a></li>
+		<li class="active">{{'label.anchor.createdatatable' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="toolbar">
+				<h4>{{'label.heading.createdatatable' | translate }}</h4>
+			</div>
+			<form name="createdatatableform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="CreateDataTableController" submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
+					<div class="form-group">
 						<div class="col-sm-2">
-							<label class="control-label" for="datatableName">{{'label.input.datatablename' | translate }}<span
-									class="required">*</span></label>
+							<label class="control-label"
+								for="apptableName">{{'label.input.apptablename' | translate }}<span
+									class="required"> *</span></label>
 						</div>
-    		            <div class="col-sm-3">
-    		                <input id="datatableName" type="text" name="datatableName" ng-model="formData.datatableName" class="form-control" required
-    		                       late-Validate/>
-    		                <form-validate valattributeform="createdatatableform" valattribute="datatableName"/>
-    		            </div>
 						<div class="col-sm-3">
-							<label class="control-label" for="datatabledescription">{{'label.input.datatabledescription' | translate }}<span
-									class="required">*</span></label>
+							<md-select id="apptableName" ng-model="formData.apptableName" name="apptable"
+								placeholder="{{'label.selectone' | translate}}" required>
+								<!--<md-option class="displaynone" value="">{{'label.selectone' | translate}}</md-option>-->
+								<md-option value="m_client">{{'label.client' | translate}}</md-option>
+								<md-option value="m_group">{{'label.group' | translate}}</md-option>
+								<md-option value="m_center">{{'label.center' | translate}}</md-option>
+								<md-option value="m_loan">{{'label.loan' | translate}}</md-option>
+								<md-option value="m_office">{{'label.office' | translate}}</md-option>
+								<md-option value="m_savings_account">{{'label.savingsaccount' | translate}}</md-option>
+							</md-select>
+							<form-validate valattributeform="createdatatableform" valattribute="apptable" />
 						</div>
-    		            <div class="col-sm-4">
-    		                <input id="datatableDescription" type="text" name="datatableDescription" ng-model="formData.datatableDescription" class="form-control" required
-    		                       late-Validate/>
-    		                <form-validate valattributeform="createdatatableform" valattribute="datatableDescription"/>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label class="control-label"
+								for="datatableName">{{'label.input.datatablename' | translate }}<span
+									class="required"> *</span></label>
 						</div>
-						
+						<div class="col-sm-6">
+							<input id="datatableName" type="text" name="datatableName" ng-model="formData.datatableName"
+								class="form-control" required late-Validate />
+							<form-validate valattributeform="createdatatableform" valattribute="datatableName" />
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-2">
-							<label class="control-label" for="apptableName">{{'label.input.apptablename' | translate }}<span
-									class="required">*</span></label>
+							<label class="control-label"
+								for="datatabledescription">{{'label.input.datatabledescription' | translate }}<span
+									class="required"> *</span></label>
 						</div>
-						<div class="col-sm-3">
-							<md-select id="apptableName" ng-model="formData.apptableName" name="apptable" placeholder="{{'label.selectone' | translate}}"required>
-    		                    <!--<md-option class="displaynone" value="">{{'label.selectone' | translate}}</md-option>-->
-    		                    <md-option value="m_client">{{'label.client' | translate}}</md-option>
-    		                    <md-option value="m_group">{{'label.group' | translate}}</md-option>
-    		                    <md-option value="m_center">{{'label.center' | translate}}</md-option>
-    		                    <md-option value="m_loan">{{'label.loan' | translate}}</md-option>
-    		                    <md-option value="m_office">{{'label.office' | translate}}</md-option>
-    		                    <md-option value="m_savings_account">{{'label.savingsaccount' | translate}}</md-option>
-    		                </md-select>
-    		                <form-validate valattributeform="createdatatableform" valattribute="apptable"/>
+						<div class="col-sm-6">
+							<input id="description" type="text" name="description"
+								ng-model="formData.description" class="form-control" maxlength="250" required late-Validate />
+							<form-validate valattributeform="createdatatableform" valattribute="description" />
 						</div>
-						<div class="col-sm-3">
-							<label class="control-label" for="datatableweight">{{'label.input.datatableweight' | translate }}<span
-									class="required">*</span></label>
-						</div>
-    		            <div class="col-sm-2">
-    		                <input id="datatableweight" type="number" name="datatableweight" ng-model="formData.datatableweight" class="form-control" required
-    		                       late-Validate/>
-    		                <form-validate valattributeform="createdatatableweight" valattribute="datatableweight"/>
-    		            </div>
 					</div>
-    		        <div class="form-group">
-						<div class="col-sm-2"/>
+					<div class="form-group">
+						<div class="col-sm-2" />
 						<div class="col-sm-4">
-    		            	 <md-checkbox ng-model="formData.multiRow"></md-checkbox>
-							 <label class="control-label">{{'label.input.multirow' | translate }}</label>
+							<md-checkbox ng-model="formData.multiRow">
+								{{'label.input.multirow' | translate }}
+							</md-checkbox>
 						</div>
+					</div>
 
+					<div class="form-group">
+						<div class="col-sm-2" />
 						<div class="col-sm-4">
-							<md-checkbox ng-model="formData.scoring"></md-checkbox>
-							<label class="control-label">{{'label.input.scoring' | translate }}</label>
+							<md-checkbox ng-model="formData.scoring">
+								{{'label.input.scoring' | translate }}
+							</md-checkbox>
 						</div>
-    		        </div>
-    		        <div class="form-group">
-    		            <label class="control-label col-sm-2">{{'label.input.addcolumns' | translate }}<span
-    		                    class="required">*</span></label>
+						<div class="col-sm-3" ng-show="formData.scoring">
+							<label class="control-label"
+								for="datatableweight">{{'label.input.datatableweight' | translate }}<span
+									class="required"> *</span></label>
+						</div>
+						<div class="col-sm-2" ng-show="formData.scoring">
+							<input id="scoringWeight" type="number" name="scoringWeight"
+								ng-model="formData.scoringWeight" class="form-control" required min="0" max="100" late-Validate />
+							<form-validate valattributeform="createdatatableweight" valattribute="scoringWeight" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{'label.input.addcolumns' | translate }}<span
+								class="required">*</span></label>
 
-    		            <div class="row">
-    						<div class="col-sm-3">
-    				            <input ng-model="datatableTemplate.columnName" name="columnname" type="text"
-    				                   placeholder="{{'label.input.columnname' | translate}}" class="form-control" >
-    						</div>
-    						<div class="col-sm-3">
-    				            <md-select name="columnType" ng-model="datatableTemplate.columnType" placeholder="{{'label.selectcolumntype' | translate}}" >&nbsp;&nbsp;
-    				                <!--<md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}</md-option>-->
-    				                <md-option value="String">{{'label.string' | translate}}</md-option>
-    				                <md-option value="Number">{{'label.number' | translate}}</md-option>
-    				                <md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
-    				                <md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
-    				                <md-option value="Date">{{'label.date' | translate}}</md-option>
-    				                <md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
-    				                <md-option value="Text">{{'label.text' | translate}}</md-option>
-    				                <md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
-    				            </md-select>
-    						</div>
-    		                <div class="col-sm-3">
-    		                    <md-button class="md-raised md-primary" ng-click="addColumn()"><i class="fa fa-plus"></i></md-button>
-    		                    <span ng-show="createdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
-    		                    <small class="error"
-    		                           ng-show="createdatatableform.columnname.$error.req || columnnameerror || columntypeerror || rc.createdatatableform.attempted">
-    		                        {{'label.'+labelerror | translate }}
-    		                    </small>
-    		                    </span>
-    		                </div>
-    		            </div>
-    		        </div>
+						<div class="row">
+							<div class="col-sm-3">
+								<input ng-model="datatableTemplate.columnName" name="columnname" type="text"
+									placeholder="{{'label.input.columnname' | translate}}" class="form-control">
+							</div>
+							<div class="col-sm-3">
+								<md-select name="columnType" ng-model="datatableTemplate.columnType"
+									placeholder="{{'label.selectcolumntype' | translate}}">&nbsp;&nbsp;
+									<!--<md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}</md-option>-->
+									<md-option value="String">{{'label.string' | translate}}</md-option>
+									<md-option value="Number">{{'label.number' | translate}}</md-option>
+									<md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
+									<md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
+									<md-option value="Date">{{'label.date' | translate}}</md-option>
+									<md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
+									<md-option value="Text">{{'label.text' | translate}}</md-option>
+									<md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
+								</md-select>
+							</div>
+							<div class="col-sm-3">
+								<md-button class="md-raised md-primary" ng-click="addColumn()"><i
+										class="fa fa-plus"></i></md-button>
+								<span
+									ng-show="createdatatableform.columnname.$invalid || columnnameerror || columntypeerror">
+									<small class="error"
+										ng-show="createdatatableform.columnname.$error.req || columnnameerror || columntypeerror || rc.createdatatableform.attempted">
+										{{'label.'+labelerror | translate }}
+									</small>
+								</span>
+							</div>
+						</div>
+					</div>
 
-    		        <table ng-show="columns.length > 0" class="width100">
-    		            <tr class="form-group">
-    		                <td class="width11">
-    		                    <label class="control-label col-sm-2"><h4>{{'label.heading.columns' | translate }}</h4></label>
+					<table ng-show="columns.length > 0" class="width100">
+						<tr class="form-group">
+							<td class="width11">
+								<label class="control-label col-sm-2">
+									<h4>{{'label.heading.columns' | translate }}</h4>
+								</label>
 							</td>
 						</tr>
 						<tr class="form-group">
-    		                <td class="blockquoteresult width100">
-    		                    <table md-table ng-show="columns.length > 0" class="table width100">
-    		                        <thead md-head>
-    		                        <tr md-row class="graybg">
-    		                            <th md-column>{{'label.heading.name' | translate}}</th>
-    		                            <th md-column>{{'label.heading.type' | translate}}</th>
-    		                            <th md-column>{{'label.heading.mandatory' | translate}}</th>
-    		                            <th md-column>{{'label.heading.length' | translate}}</th>
-    		                            <th md-column>{{'label.heading.code' | translate}}</th>
-    		                            <th md-column>{{'label.heading.actions' | translate}}</th>
-    		                        </tr>
-    		                        </thead>
-    		                        <tbody md-body>
-    		                        <tr md-row ng-repeat="column in columns">
-    		                            <td md-cell>
-											<input ng-model="column.name" type="text" class="input-sm form-control"
-    		                                       placeholder="{{'label.input.columnname' | translate}}"/></td>
-    		                            <td md-cell>
-    		                                <md-select ng-model="column.type" 
-    		                                        ng-change="updateDepenedencies($index)" >
-    		                                    <md-option class="displaynone" value="">{{'label.selectcolumntype' | translate}}
-    		                                    </md-option>
-    		                                    <md-option value="String">{{'label.string' | translate}}</md-option>
-    		                                    <md-option value="Number">{{'label.number' | translate}}</md-option>
-    		                                    <md-option value="Decimal">{{'label.decimal' | translate}}</md-option>
-    		                                    <md-option value="Boolean">{{'label.boolean' | translate}}</md-option>
-    		                                    <md-option value="Date">{{'label.date' | translate}}</md-option>
-    		                                    <md-option value="DateTime">{{'label.datetime' | translate}}</md-option>
-    		                                    <md-option value="Text">{{'label.text' | translate}}</md-option>
-    		                                    <md-option value="Dropdown">{{'label.dropdown' | translate}}</md-option>
-    		                                </md-select>
-    		                            </td>
-    		                            <td md-cell align="center">
-    		                                <md-checkbox ng-model="column.mandatory"></md-checkbox>
-    		                            </td>
-    		                            <td md-cell>
-    		                                <input ng-show="column.type == 'String'" ng-model="column.length" type="text" only-number maxlength="4"
-    		                                       class="input-sm form-control"/>
-    		                            </td>
-    		                            <td md-cell>
-											<md-select ng-show="column.type == 'Dropdown'" ng-model="column.code">
-												<md-option ng-repeat="code in codes | orderBy: name" ng-value="code.name">{{code.name}}</md-option>
-											</md-select>
-    		                            </td>
-    		                            <td md-cell align="center">
-											<md-button ng-click="removeColumn($index)"><i class="fa fa-times-circle fa-2x"></i></md-button>
-    		                            </td>
-    		                        </tr>
-    		                        </tbody>
-    		                    </table>
-    		                </td>
-    		            </tr>
-    		        </table>
-    		        <div class="col-md-12 center">
-						<md-button href="#!/datatables" type="reset" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
-    		            <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_DATATABLE'>{{'label.button.save' | translate }}</md-button>
-    		        </div>
-    		    </fieldset>
-    		</form>
-    	</div>
-    </div>
+							<td class="blockquoteresult width100">
+								<table md-table ng-show="columns.length > 0" class="table width100">
+									<thead md-head>
+										<tr md-row class="graybg">
+											<th md-column>{{'label.heading.name' | translate}}</th>
+											<th md-column>{{'label.heading.type' | translate}}</th>
+											<th md-column>{{'label.heading.mandatory' | translate}}</th>
+											<th md-column>{{'label.heading.length' | translate}}</th>
+											<th md-column>{{'label.heading.code' | translate}}</th>
+											<th md-column>{{'label.heading.actions' | translate}}</th>
+										</tr>
+									</thead>
+									<tbody md-body>
+										<tr md-row ng-repeat="column in columns">
+											<td md-cell>
+												<input ng-model="column.name" type="text" class="input-sm form-control"
+													placeholder="{{'label.input.columnname' | translate}}" /></td>
+											<td md-cell>
+												<md-select ng-model="column.type"
+													ng-change="updateDepenedencies($index)">
+													<md-option class="displaynone" value="">
+														{{'label.selectcolumntype' | translate}}
+													</md-option>
+													<md-option value="String">{{'label.string' | translate}}</md-option>
+													<md-option value="Number">{{'label.number' | translate}}</md-option>
+													<md-option value="Decimal">{{'label.decimal' | translate}}
+													</md-option>
+													<md-option value="Boolean">{{'label.boolean' | translate}}
+													</md-option>
+													<md-option value="Date">{{'label.date' | translate}}</md-option>
+													<md-option value="DateTime">{{'label.datetime' | translate}}
+													</md-option>
+													<md-option value="Text">{{'label.text' | translate}}</md-option>
+													<md-option value="Dropdown">{{'label.dropdown' | translate}}
+													</md-option>
+												</md-select>
+											</td>
+											<td md-cell align="center">
+												<md-checkbox ng-model="column.mandatory"></md-checkbox>
+											</td>
+											<td md-cell>
+												<input ng-show="column.type == 'String'" ng-model="column.length"
+													type="text" only-number maxlength="4"
+													class="input-sm form-control" />
+											</td>
+											<td md-cell>
+												<md-select ng-show="column.type == 'Dropdown'" ng-model="column.code">
+													<md-option ng-repeat="code in codes | orderBy: name"
+														ng-value="code.name">{{code.name}}</md-option>
+												</md-select>
+											</td>
+											<td md-cell align="center">
+												<md-button ng-click="removeColumn($index)"><i
+														class="fa fa-times-circle fa-2x"></i></md-button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<div class="col-md-12 center">
+						<md-button href="#!/datatables" type="reset" class="md-raised">
+							{{'label.button.cancel' | translate }}</md-button>
+						<md-button id="save" type="submit" ng-click="submit()" class="md-raised md-primary"
+							has-permission='CREATE_DATATABLE'>{{'label.button.save' | translate }}</md-button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
