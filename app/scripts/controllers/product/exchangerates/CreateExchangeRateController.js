@@ -5,11 +5,8 @@
             scope.formData.rateValues = [] ;
             scope.formData.isActive = false;
             scope.addRateValue = function () {
-                scope.formData.rateValues.push({
-                    locale: scope.optlang.code,
-                    dateFormat: scope.df,
-                    fromDate: new Date()
-                });
+                scope.formData.rateValues.push({});
+                console.log("Pass... " + scope.formData.rateValues.length);
             };
 
             scope.deleteRateValue = function (index) {
