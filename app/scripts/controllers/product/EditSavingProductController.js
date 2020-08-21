@@ -24,6 +24,7 @@
                     currencyCode: data.currency.code,
                     digitsAfterDecimal: data.currency.decimalPlaces,
                     inMultiplesOf: data.currency.inMultiplesOf,
+                    accountLevel: data.accountLevel,
                     nominalAnnualInterestRate: data.nominalAnnualInterestRate,
                     minRequiredOpeningBalance: data.minRequiredOpeningBalance,
                     lockinPeriodFrequency: data.lockinPeriodFrequency,

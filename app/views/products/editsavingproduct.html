@@ -5,7 +5,7 @@
 	        <li><a href="#!/viewsavingproduct/{{product.id}}">{{product.name}}</a></li>
 	        <li class="active">{{'label.anchor.editsavingproduct' | translate}}</li>
 	    </ul>
-	<form name="createsavingproductform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
+	<form name="createsavingproductform" novalidate="" class="card form-horizontal well" submit="submit()">
 		<api-validate></api-validate>
 		<fieldset>
 			<h3>{{'label.heading.details' | translate }}</h3>
@@ -55,6 +55,14 @@
 			<h3>{{'label.heading.terms' | translate }}</h3>
 			<hr>
 	        <div class="form-group">
+				<label class="control-label col-sm-2">{{'label.input.account.level' | translate }}<span class="required">*</span></label>
+	            <div class="col-sm-4">
+					<md-select id="accountLevel" ng-model="formData.accountLevel">
+						<md-option ng-value="level" ng-repeat="level in accountLevels">
+							{{'label.input.level' | translate}} {{level}}
+						</md-option>
+					</md-select>
+				</div>
 	            <label class="control-label col-sm-2">{{'label.input.nominalannualinterestrate' | translate }}<span class="required">*</span></label>
 	            <div class="col-sm-4">
 	            	<input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="number" class="form-control" 

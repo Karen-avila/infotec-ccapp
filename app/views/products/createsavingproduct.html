@@ -379,7 +379,7 @@
                                             <md-select id="taxGroupId" 
                                             ng-model="formData.taxGroupId" 
                                             ng-change="savingproduct.taxGroup.name = formValue(product.taxGroupOptions,formData.taxGroupId,'id','name')">
-                                                <md-option value="taxGroup.id" ng-repeat="taxGroup in product.taxGroupOptions">
+                                                <md-option ng-value="taxGroup.id" ng-repeat="taxGroup in product.taxGroupOptions">
                                                     {{taxGroup.name | translate}}
                                                 </md-option>
                                             </md-select>
@@ -877,6 +877,10 @@
                                     <tr>
                                         <td>{{'label.heading.currencyinmultiplesof' | translate}}</td>
                                         <td colspan="3">{{savingproduct.inMultiplesOf}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.input.account.level' | translate}}</td>
+                                        <td colspan="3">{{savingproduct.accountLevel}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.nominalannualinterestrate' | translate}}</td>

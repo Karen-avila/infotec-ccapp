@@ -7,6 +7,11 @@
             scope.datatableTemplate = {};
             scope.labelerror = "requiredfield";
 
+            scope.formData = {
+                scoring: false,
+                scoringWeight: 0
+            }
+
             resourceFactory.codeResources.getAllCodes({}, function (data) {
                 scope.codes = data;
             });

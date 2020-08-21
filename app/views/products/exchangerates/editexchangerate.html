@@ -1,19 +1,19 @@
-<div class="content-container" ng-controller="EditFloatingRateController">
+<div class="content-container" ng-controller="EditExchangeRateController">
     <ul class="breadcrumb">
         <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
-        <li><a href="#!/floatingrates">{{'label.anchor.floatingrates' | translate}}</a></li>
-        <li class="active">{{'label.anchor.floatingrate' | translate}}</li>
+        <li><a href="#!/exchangerates">{{'label.anchor.exchangerates' | translate}}</a></li>
+        <li class="active">{{'label.anchor.exchangerate' | translate}}</li>
     </ul>
 
-    <form name="newfloatingrateform" novalidate="" rc-submit="submit()" class="card form-horizontal well">
+    <form name="newexchangerateform" novalidate="" submit="submit()" class="card form-horizontal well">
         <api-validate></api-validate>
         <fieldset>
             <div class="form-group">
                 <div class="col-sm-3">
-                    <label class="control-label" for="name">{{'label.input.floatingratename' | translate}}<span
+                    <label class="control-label" for="name">{{'label.input.exchangeratename' | translate}}<span
                             class="required">*</span>
                         &nbsp;
-                        <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingratename' | translate}}"></i>
+                        <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.exchangeratename' | translate}}"></i>
                     </label>
                 </div>
                 <div class="col-sm-2">
@@ -21,7 +21,7 @@
                            required late-Validate/>
                 </div>
                 <div class="col-sm-2">
-                    <form-validate valattributeform="newfloatingrateform" valattribute="name"/>
+                    <form-validate valattributeform="newexchangerateform" valattribute="name"/>
                 </div>
 
                 <div class="col-sm-3">
@@ -57,12 +57,12 @@
                 <tr class="graybg">
                     <th>{{'label.heading.fromdate' | translate}}
                         <span class="required">*</span>
-                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingfromdate' | translate}}"></i></th>
+                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.exchangefromdate' | translate}}"></i></th>
                     <th>{{'label.heading.interestrate' | translate}}
                         <span class="required">*</span>
                         &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatigannualinterest' | translate}}"></i></th>
                     <th>{{'label.heading.isdifferentaialtobaselendingrate' | translate}}
-                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingisdifferential' | translate}}"></i></th>
+                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.exchangeisdifferential' | translate}}"></i></th>
                     <th> {{'label.heading.actions' | translate}}</th>
                 </tr>
 
@@ -94,7 +94,7 @@
             </table>
 
             <div class="col-md-offset-4">
-                <a id="cancel" href="#!/floatingrates">
+                <a id="cancel" href="#!/exchangerates">
                     <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
                 </a>
                 <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-sm btn-primary"

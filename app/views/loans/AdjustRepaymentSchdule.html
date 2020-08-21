@@ -28,7 +28,7 @@
         <h3 class="bolder">{{'label.heading.patternupdate' | translate}}</h3>
     </div>
     <div class="modal-body ">
-        <form name="popupform" novalidate=""  rc-submit="submit()">
+        <form name="popupform" novalidate=""  submit="submit()">
             <api-validate></api-validate>
             <fieldset>
                 <div class="row" ng-show="invaliddaterangeerror">
@@ -129,7 +129,7 @@
 </script>
 <div class="card">
     <div class="content">
-    <form name="adjustrepaymentschedule" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+    <form name="adjustrepaymentschedule" novalidate="" class="form-horizontal form-extra" submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <table class="table table-striped .width100">
