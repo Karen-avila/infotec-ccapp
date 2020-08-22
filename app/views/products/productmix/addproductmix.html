@@ -5,7 +5,7 @@
         <li class="active">{{'label.anchor.addproductmix' | translate}}</li>
     </ul>
 	<form name="addproductmixform" novalidate class="card form-horizontal well" ng-controller="AddProductMixController"
-	      submit="submit()">
+	      ng-submit="submit()">
 	    <api-validate></api-validate>
 	    <fieldset>
 	        <legend>{{'label.heading.addproductmix' | translate}}</legend>

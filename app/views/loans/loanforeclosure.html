@@ -3,7 +3,7 @@
         <li><a href="#!/viewloanaccount/{{accountId}}">{{'label.anchor.viewloanaccount' | translate}}</a></li>
         <li class="active">Foreclosure</li>
     </ul>
-    <form class="form-horizontal well" novalidate="" name="foreclosureform" submit="submit()">
+    <form class="form-horizontal well" novalidate="" name="foreclosureform" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <legend>{{'label.heading.loan.foreclosure' | translate}}</legend>

@@ -4,7 +4,7 @@
         <li><a href="#!/charges">{{'label.anchor.charges' | translate}}</a></li>
         <li class="active">{{'label.anchor.createcharge' | translate}}</li>
     </ul>
-    <form name="createchargeform" novalidate="" class="card form-horizontal well" submit="submit()">
+    <form name="createchargeform" novalidate="" class="card form-horizontal well" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <div class="form-group">
