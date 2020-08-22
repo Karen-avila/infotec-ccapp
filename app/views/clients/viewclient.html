@@ -1337,11 +1337,41 @@
                     <md-tab md-on-select="getDataTables()">
                         <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
                         <md-tab-body>
-                            <div class="row">
+                            <div class="row" ng-if="datatabledetails.length > 0">
                                 <div class="col-sm-12 col-md-12"
                                     style="padding-top: 20px;padding-left: 0px;padding-right: 0px;">
                                     <table class="table-minified">
                                         <tbody>
+                                            <tr class="col-sm-6 col-md-6">
+                                                <td style="display: block;">
+                                                    <div>
+                                                        <table class="table table-condensed">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="3"><strong>{{'label.input.scoring' | translate}}</strong></td>
+                                                                </tr>
+                                                                <tr ng-repeat="scoringDetail in scoringDetails">
+                                                                    <td>{{scoringDetail.table}}</td>
+                                                                    <td class="amount">{{scoringDetail.points | FormatNumber}} / {{scoringDetail.weight | FormatNumber}}</td>
+                                                                    <td class="amount">{{scoringDetail.value | FormatNumber}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"><strong>{{'label.input.scoring.internal' | translate}}</strong></td>
+                                                                    <td class="amount">{{scoringInternalTotal | FormatNumber}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"><strong>{{'label.input.scoring.external' | translate}}</strong></td>
+                                                                    <td class="amount">{{scoringExternalTotal | FormatNumber}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"><strong>{{'label.input.scoring.total' | translate}}</strong></td>
+                                                                    <td class="amount"><strong>{{scoringTotalTotal | FormatNumber}}</strong></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             <tr class="col-sm-12 col-md-12"
                                                 ng-repeat="datatabledetail in datatabledetails | orderBy: registeredTableName"
                                                 has-permission='READ_{{datatabledetail.registeredTableName}}'>
@@ -1352,8 +1382,8 @@
                                                             <tbody>
                                                                 <tr class="graybg">
                                                                     <td style="width: 50%;" class="graybg">
-                                                                        <strong ng-show="datatabledetail.description==''">{{'datatable.' + datatabledetail.registeredTableName | translate}}</strong>
-                                                                        <strong ng-hide="datatabledetail.description==''">{{datatabledetail.description}}</strong>
+                                                                        <strong ng-hide="datatabledetail.datatableData.description">{{'datatable.' + datatabledetail.registeredTableName | translate}}</strong>
+                                                                        <strong ng-show="datatabledetail.datatableData.description">{{datatabledetail.datatableData.description}}</strong>
                                                                     </td>
                                                                     <td style="width: 50%;">
                                                                         <div data-ng-hide="isClosedClient"
