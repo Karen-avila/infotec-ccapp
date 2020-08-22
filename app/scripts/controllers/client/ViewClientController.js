@@ -735,7 +735,6 @@
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
                     if (datatabledetail.datatableData.isScoring) {
-                        console.log(JSON.stringify(datatabledetail.datatableData));
                         for (var i in data.columnHeaders) {
                             if (datatabledetail.columnHeaders[i].columnCode) {
                                 for (var j in datatabledetail.columnHeaders[i].columnValues) {
