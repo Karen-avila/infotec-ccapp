@@ -6,6 +6,10 @@
             scope.buttons = [];
             scope.clientdocuments = [];
             scope.datatabledetails = [];
+            scope.scoringDetails = [];
+            scope.scoringInternalTotal = 0;
+            scope.scoringExternalTotal = 0;
+            scope.scoringTotalTotal = 0;
             scope.staffData = {};
             scope.formData = {};
             scope.openLoan = true;
@@ -714,6 +718,7 @@
             }
 
             scope.dataTableChange = function (registeredTableName) {
+                scope.scoringDetails = [];
                 resourceFactory.DataTablesResource.getTableDetails({
                     datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
@@ -729,22 +734,36 @@
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
-                    for (var i in data.columnHeaders) {
-                        if (datatabledetail.columnHeaders[i].columnCode) {
-                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
-                                for (var k in data.data) {
-                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
-                                        data.data[k].row[i] = {
-                                            value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                            score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                        }
-                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                    if (datatabledetail.datatableData.isScoring) {
+                        console.log(JSON.stringify(datatabledetail.datatableData));
+                        for (var i in data.columnHeaders) {
+                            if (datatabledetail.columnHeaders[i].columnCode) {
+                                for (var j in datatabledetail.columnHeaders[i].columnValues) {
+                                    for (var k in data.data) {
+                                        if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
+                                            data.data[k].row[i] = {
+                                                value: datatabledetail.columnHeaders[i].columnValues[j].value,
+                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
+                                            }
+                                            if (datatabledetail.columnHeaders[i].columnValues[j].score) {
+                                                datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        var scoringValue = 0;
+                        if (datatabledetail.dataTableScoring > 0 && datatabledetail.datatableData.scoringWeight > 0) {
+                            scoringValue = (datatabledetail.dataTableScoring * (datatabledetail.datatableData.scoringWeight / 100));
+                        }
+                        scope.scoringInternalTotal += scoringValue;
+                        scope.scoringDetails.push({
+                            table: datatabledetail.datatableData.description, 
+                            points: datatabledetail.dataTableScoring, 
+                            weight: (datatabledetail.datatableData.scoringWeight / 100),
+                            value: scoringValue
+                        });
                     }
                     if (datatabledetail.isData) {
                         for (var i in data.columnHeaders) {
@@ -760,11 +779,21 @@
                     }
                     scope.datatabledetails.push(datatabledetail);
                 });
+
+                // Scoring Total
+                scope.scoringExternalTotal = scope.getRandomInt(250, 500);
+                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + (scope.scoringExternalTotal + 0.8);
             };
 
             scope.getDataTableScoring = function () {
                 if (scope.dataTableScoring == 0) return "";
                 return scope.dataTableScoring;
+            }
+
+            scope.getRandomInt = function(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
             }
 
             scope.viewstandinginstruction = function () {
