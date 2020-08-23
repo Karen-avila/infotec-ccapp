@@ -41,8 +41,8 @@
                 <div data-ng-show="newcode.edit">
                     <api-validate></api-validate>
                     <div class="col-sm-4">
-                        <input type="text" data-ng-model="codename.name" class="form-control uppercase"
-                            maxlength="45" />
+                        <input type="text" data-ng-model="codename.name" class="form-control" maxlength="45"
+                            ng-disabled="code.systemDefined" />
                     </div>
                     <div class="col-sm-5">
                         <input type="text" data-ng-model="codename.description" class="form-control" maxlength="500" />
@@ -61,31 +61,35 @@
                     <md-table-container ng-show="codevalues.length > 0" class="noscroll-x">
                         <div class="row">
                             <div clas="col-sm-12">
-                            <table md-table class="table">
-                                <thead md-head md-order="query.order">
-                                    <tr md-row>
-                                        <th md-column md-order-by="name">{{'label.heading.name' | translate }}</th>
-                                        <th md-column md-order-by="description">{{'label.heading.description' | translate }}</th>
-                                        <th md-column md-order-by="score">{{'label.heading.score' | translate }}</th>
-                                        <th md-column md-order-by="position">{{'label.heading.position' | translate }}</th>
-                                        <th md-column>{{'label.heading.active' | translate}}</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody md-body>
-                                    <tr md-row
-                                        data-ng-repeat="codevalue in codevalues | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"">
+                                <table md-table class="table">
+                                    <thead md-head md-order="query.order">
+                                        <tr md-row>
+                                            <th md-column md-order-by="name">{{'label.heading.name' | translate }}</th>
+                                            <th md-column md-order-by="description">
+                                                {{'label.heading.description' | translate }}</th>
+                                            <th md-column md-order-by="score">{{'label.heading.score' | translate }}
+                                            </th>
+                                            <th md-column md-order-by="position">
+                                                {{'label.heading.position' | translate }}</th>
+                                            <th md-column>{{'label.heading.active' | translate}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row
+                                            data-ng-repeat="codevalue in codevalues | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"">
                                     <td md-cell>
                                         <span data-ng-hide=" codevalue.edit">{{codevalue.name}}</span>
-                                        <input data-ng-show="codevalue.edit" name="codevalue"
-                                            ng-model="formData[codevalue.id].name" type="text" class="form-control" required />
-                                        </td>
-                                        <td md-cell>
-                                            <span data-ng-hide="codevalue.edit">{{codevalue.description}}</span>
-                                            <textarea data-ng-show="codevalue.edit" name="description"
-                                                ng-model="formData[codevalue.id].description" type="text"
-                                                class="form-control" />
+                                            <input data-ng-show="codevalue.edit" name="codevalue"
+                                                ng-model="formData[codevalue.id].name" type="text" class="form-control"
+                                                required />
                                             </td>
+                                            <td md-cell>
+                                                <span data-ng-hide="codevalue.edit">{{codevalue.description}}</span>
+                                                <textarea data-ng-show="codevalue.edit" name="description"
+                                                    ng-model="formData[codevalue.id].description" type="text"
+                                                    class="form-control" />
+                                                </td>
                                     <td md-cell>
                                         <span data-ng-hide="codevalue.edit">{{codevalue.score}}</span>
                                         <input data-ng-show="codevalue.edit" name="score" ng-model="formData[codevalue.id].score"

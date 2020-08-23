@@ -682,6 +682,12 @@
                 });
             }
 
+            scope.getClientFiles = function () {
+                scope.getClientIdentityDocuments();
+                scope.getClientDocuments();
+                scope.getFamilyMembers();
+            }
+
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: routeParams.id, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;

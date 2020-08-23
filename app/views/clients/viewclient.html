@@ -934,104 +934,226 @@
                         </md-tab-body>
                     </md-tab>
 
-                    <md-tab md-on-select="getClientIdentityDocuments()" has-permission='READ_CLIENTIDENTIFIER'>
-                        <md-tab-label>{{'label.heading.identities' | translate}}</md-tab-label>
+                    <md-tab md-on-select="getClientFiles()">
+                        <md-tab-label>{{'label.heading.client.file' | translate}}</md-tab-label>
                         <md-tab-body>
-                            <div class="pull-right btn-group">
-                                <a href="#!/addclientidentifier/{{client.id}}" class="btn btn-sm btn-primary"
-                                    has-permission='CREATE_CLIENTIDENTIFIER'><i class="fa fa-plus "></i>{{
-                                'label.button.add' | translate }}</a>
+                            <div has-permission='READ_CLIENTIDENTIFIER'>
+                                <blockquote class="divider">
+                                    {{'label.heading.identities' | translate }}
+                                </blockquote>
+                                <div class="pull-right btn-group">
+                                    <md-button md-no-ink class="md-primary pull-right" href="#!/addclientidentifier/{{client.id}}"
+                                        has-permission='CREATE_CLIENTIDENTIFIER'><i class="fa fa-plus "></i>{{
+                                    'label.button.add.identity' | translate }}</md-button>
+                                </div>
+                                <br>
+                                <table class="table" ng-show="identitydocuments.length > 0">
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th>{{'label.heading.id' | translate}}</th>
+                                            <th>{{'label.heading.description' | translate}}</th>
+                                            <th>{{'label.heading.type' | translate}}</th>
+                                            <th>{{'label.heading.identitydocuments' | translate}}</th>
+                                            <th>{{'label.heading.status' | translate}}</th>
+                                            <th>{{'label.heading.actions' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="document in identitydocuments">
+                                            <td>{{document.documentKey}}</td>
+                                            <td>{{document.description}}</td>
+                                            <td>{{document.documentType.name}}</td>
+                                            <td>
+                                                <span ng-repeat="file in document.documents">
+                                                    {{file.fileName}}&nbsp;&nbsp;
+                                                    <a href="{{hostUrl}}{{file.docUrl}}" has-permission='READ_DOCUMENT'><i
+                                                            class="fa fa-cloud-download"></i></a>
+                                                </span>
+                                            </td>
+                                            <td>{{document.status | translate}}</td>
+                                            <td>
+                                                <span>
+                                                    <a href="#!/addclientidentifierdocument/{{client.id}}/{{document.id}}"
+                                                        has-permission='CREATE_DOCUMENT'><i
+                                                            class="fa fa-cloud-upload"></i></a>&nbsp;
+                                                    <a ng-click="deleteClientIdentifierDocument(client.id,document.id,$index)"
+                                                        has-permission='DELETE_CLIENTIDENTIFIER'><i
+                                                            class="fa fa-times"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <br>
-                            <table class="table" ng-show="identitydocuments.length > 0">
-                                <thead>
-                                    <tr class="graybg">
-                                        <th>{{'label.heading.id' | translate}}</th>
-                                        <th>{{'label.heading.description' | translate}}</th>
-                                        <th>{{'label.heading.type' | translate}}</th>
-                                        <th>{{'label.heading.identitydocuments' | translate}}</th>
-                                        <th>{{'label.heading.status' | translate}}</th>
-                                        <th>{{'label.heading.actions' | translate}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="document in identitydocuments">
-                                        <td>{{document.documentKey}}</td>
-                                        <td>{{document.description}}</td>
-                                        <td>{{document.documentType.name}}</td>
-                                        <td>
-                                            <span ng-repeat="file in document.documents">
-                                                {{file.fileName}}&nbsp;&nbsp;
-                                                <a href="{{hostUrl}}{{file.docUrl}}" has-permission='READ_DOCUMENT'><i
-                                                        class="fa fa-cloud-download"></i></a>
-                                            </span>
-                                        </td>
-                                        <td>{{document.status | translate}}</td>
-                                        <td>
-                                            <span>
-                                                <a href="#!/addclientidentifierdocument/{{client.id}}/{{document.id}}"
-                                                    has-permission='CREATE_DOCUMENT'><i
-                                                        class="fa fa-cloud-upload"></i></a>&nbsp;
-                                                <a ng-click="deleteClientIdentifierDocument(client.id,document.id,$index)"
-                                                    has-permission='DELETE_CLIENTIDENTIFIER'><i
+
+                            <div has-permission='READ_DOCUMENT'>
+                                <blockquote class="divider">
+                                    {{'label.heading.documents' | translate }}
+                                </blockquote>
+                                <div class="row">
+                                    <div class="pull-right">
+                                        <md-button md-no-ink ng-click="markAsValidated()" class="md-raised"
+                                            has-permission='READ_DOCUMENT'><i class="fa fa-plus "></i>
+                                            {{'label.button.mark.as.validated' | translate}}</md-button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <md-button md-no-ink href="#!/addclientdocument/{{client.id}}"
+                                            class="md-raise md-primary" has-permission='CREATE_DOCUMENT'><i
+                                                class="fa fa-plus "></i>
+                                            {{'label.button.add.document' | translate}}</md-button>
+                                    </div>
+                                </div>
+                                <br>
+                                <table class="table" ng-show="clientdocuments.length > 0">
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th>{{'label.heading.name' | translate}}</th>
+                                            <th>{{'label.heading.description' | translate}}</th>
+                                            <th>{{'label.heading.filename' | translate}}</th>
+                                            <th>{{'label.heading.actions' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="clientdocument in clientdocuments">
+                                            <td>{{clientdocument.name}}</td>
+                                            <td>{{clientdocument.description}}</td>
+                                            <td>{{clientdocument.fileName}}</td>
+                                            <td>
+                                                <a href="{{hostUrl}}{{clientdocument.docUrl}}"><i
+                                                        class="fa fa-cloud-download"></i></a>&nbsp;
+                                                <a ng-show="clientdocument.fileIsImage"
+                                                    ng-click="previewDocument(clientdocument.docUrl,clientdocument.fileName)"><i
+                                                        class="fa fa-eye"></i></a>
+                                                <a ng-click="deleteDocument(clientdocument.id,$index)"><i
                                                         class="fa fa-times"></i></a>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div style="padding-left: 25%;">
+                                    <object height="60%" width="70%" ng-show="preview" data="{{fileUrl}}"
+                                        type="{{fileType}}"></object>
+                                </div>
+                            </div>
+
+                            <div ng-show="families">
+                                <blockquote class="divider">
+                                    {{'label.heading.familymembers' | translate }}
+                                </blockquote>
+                                <md-button md-no-ink class="md-primary pull-right" ng-click="routeToaddFamilyMember()"><i
+                                    class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</md-button>
+                                <br>
+                                <table class="table" ng-repeat="family in families" class="table table-condensed">
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th class="graybg">{{family.relationship}}</th>
+                                            <td>
+                                                <md-button class="md-raised md-primary pull-right"
+                                                    ng-click="deleteFamilyMember(family.id)"><i
+                                                        class="fa fa-plus"></i>{{'label.button.delete' | translate}}</md-button>
+
+                                                <md-button class="md-raised md-primary pull-right"
+                                                    ng-click="editFamilyMember(family.id)"><i
+                                                        class="fa fa-plus"></i>{{'label.button.edit' | translate}}</md-button>
+                                            </td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.firstname' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.firstName}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.middlename' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.middleName}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.lastname' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.lastName}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.qualification' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.qualification}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.mobileNumber' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.mobileNumber}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.age' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.age}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.isDependent' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.isDependent}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.maritalstatus' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.maritalStatus}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.gender' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.gender}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.profession' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.profession}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                {{'label.input.dateofbirth' | translate }}
+                                            </th>
+                                            <td>
+                                                {{family.dateOfBirth | DateFormat }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </md-tab-body>
                     </md-tab>
 
-                    <md-tab md-on-select="getClientDocuments()" has-permission='READ_DOCUMENT'>
-                        <md-tab-label>{{'label.heading.documents' | translate}}</md-tab-label>
-                        <md-tab-body>
-                            <div class="row">
-                                <div class="pull-right">
-                                    <md-button md-no-ink ng-click="markAsValidated()" class="md-raised"
-                                        has-permission='READ_DOCUMENT'><i class="fa fa-plus "></i>
-                                        {{'label.button.mark.as.validated' | translate}}</md-button>
-                                </div>
-                                <div class="pull-right">
-                                    <md-button md-no-ink href="#!/addclientdocument/{{client.id}}"
-                                        class="md-raise md-primary" has-permission='CREATE_DOCUMENT'><i
-                                            class="fa fa-plus "></i>
-                                        {{'label.button.add' | translate}}</md-button>
-                                </div>
-                            </div>
-                            <br>
-                            <table class="table" ng-show="clientdocuments.length > 0">
-                                <thead>
-                                    <tr class="graybg">
-                                        <th>{{'label.heading.name' | translate}}</th>
-                                        <th>{{'label.heading.description' | translate}}</th>
-                                        <th>{{'label.heading.filename' | translate}}</th>
-                                        <th>{{'label.heading.actions' | translate}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="clientdocument in clientdocuments">
-                                        <td>{{clientdocument.name}}</td>
-                                        <td>{{clientdocument.description}}</td>
-                                        <td>{{clientdocument.fileName}}</td>
-                                        <td>
-                                            <a href="{{hostUrl}}{{clientdocument.docUrl}}"><i
-                                                    class="fa fa-cloud-download"></i></a>&nbsp;
-                                            <a ng-show="clientdocument.fileIsImage"
-                                                ng-click="previewDocument(clientdocument.docUrl,clientdocument.fileName)"><i
-                                                    class="fa fa-eye"></i></a>
-                                            <a ng-click="deleteDocument(clientdocument.id,$index)"><i
-                                                    class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div style="padding-left: 25%;">
-                                <object height="60%" width="70%" ng-show="preview" data="{{fileUrl}}"
-                                    type="{{fileType}}"></object>
-                            </div>
-                        </md-tab-body>
-                    </md-tab>
                     <md-tab md-on-select="getAddresses()" ng-show="enableAddress">
                         <md-tab-label>{{'label.heading.addresses' | translate}}</md-tab-label>
                         <md-tab-body>
@@ -1211,122 +1333,6 @@
                                                 ng-click="showMap($event)">
                                                 <md-icon md-svg-src="images/icons/ubicacion.svg" aria-label="Close dialog"></md-icon>
                                             </md-button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </md-tab-body>
-                    </md-tab>
-
-                    <md-tab md-on-select="getFamilyMembers()" ng-show="families">
-                        <md-tab-label>{{'label.heading.familymembers' | translate}}</md-tab-label>
-                        <md-tab-body>
-                            <md-button md-no-ink class="md-primary pull-right" ng-click="routeToaddFamilyMember()"><i
-                                    class="fa fa-plus"></i>{{'label.button.addfamilymember' | translate}}</md-button>
-                            <br>
-                            <table class="table" ng-repeat="family in families" class="table table-condensed">
-                                <thead>
-                                    <tr class="graybg">
-                                        <th class="graybg">{{family.relationship}}</th>
-                                        <td>
-                                            <md-button class="md-raised md-primary pull-right"
-                                                ng-click="deleteFamilyMember(family.id)"><i
-                                                    class="fa fa-plus"></i>{{'label.button.delete' | translate}}</md-button>
-
-                                            <md-button class="md-raised md-primary pull-right"
-                                                ng-click="editFamilyMember(family.id)"><i
-                                                    class="fa fa-plus"></i>{{'label.button.edit' | translate}}</md-button>
-                                        </td>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.firstname' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.firstName}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.middlename' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.middleName}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.lastname' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.lastName}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.qualification' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.qualification}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.mobileNumber' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.mobileNumber}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.age' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.age}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.isDependent' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.isDependent}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.maritalstatus' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.maritalStatus}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.gender' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.gender}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.profession' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.profession}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{'label.input.dateofbirth' | translate }}
-                                        </th>
-                                        <td>
-                                            {{family.dateOfBirth | DateFormat }}
                                         </td>
                                     </tr>
                                 </tbody>
