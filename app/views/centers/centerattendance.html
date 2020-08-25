@@ -18,12 +18,12 @@
                                     class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <input type="text" datepicker-pop="dd MMMM yyyy" id="date" name="date" ng-model="first.date" is-open="opened"
-                                       min="minDate" max="'2030-06-22'" class="form-control" required late-Validate />
+                                <md-datepicker id="validFrom" ng-model="first.date" md-min-date="minDate" md-max-date="'2030-06-22'"
+                                    md-placeholder="{{'label.selectdate' | translate }}" required></md-datepicker>
                                 <span class="col-sm-12">
                                     <form-validate valattributeform="centerattendanceform" valattribute="date"/>
                                 </span>
-                                       Next Meeting on:{{meeting.nextTenRecurringDates[0] |
+                                       {{'label.heading.nextmeetingon' | translate}}: {{meeting.nextTenRecurringDates[0] |
                                 DateFormat}}
                             </div>
 

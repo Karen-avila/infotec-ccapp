@@ -49,11 +49,11 @@
                 <h4 class="control-label ng-binding col-md-2">{{'label.heading.daterange' | translate}}</h4>
                 <br>
                 <div class="col-md-4 form-group">
-                    <md-datepicker ng-model="date.first" min="minDate" max="maxDatePicker"
+                    <md-datepicker ng-model="date.first" md-min-date="minDate" md-max-date="maxDatePicker"
                         md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
                 </div>
                 <div class="col-md-4 form-group">
-                    <md-datepicker ng-model="date.second" min="'minDate'" max="maxDatePicker"
+                    <md-datepicker ng-model="date.second" md-min-date="'minDate'" md-max-date="maxDatePicker"
                         md-placeholder="{{'label.input.todate' | translate }}"> </md-datepicker>
                 </div>
             </div>

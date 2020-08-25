@@ -146,6 +146,10 @@ body {
   color: $brand-primary;
 }
 
+.divider {
+  border-left: 6px solid $brand-color;
+}
+
 .no-border {
   border: none !important;
 }

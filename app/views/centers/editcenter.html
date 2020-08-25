@@ -48,8 +48,8 @@
                                         class="required">*</span></label>
 
                                 <div class="col-sm-3">
-                                    <input id="activationDate" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-                                           is-open="opened" min="'2000-01-01'" max="restrictDate" class="form-control" readonly/>
+                                    <md-datepicker id="activationDate" ng-model="first.date" md-min-date="'2000-01-01'" md-max-date="restrictDate" 
+                                        placeholder="{{'label.selectdate' | translate }}"></md-datepicker>
                                 </div>
                             </div>
                             <div class="col-md-offset-2 paddedleft120">
@@ -65,7 +65,8 @@
                             <label class="control-label col-sm-2">{{'label.input.enteractivationdate' | translate }}<span
                                     class="required">*</span></label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="mindate" max="restrictDate"/>
+                                <md-datepicker ng-model="first.date" md-min-date="minDate" md-max-date="restrictDate" 
+                                    placeholder="{{'label.selectdate' | translate }}"></md-datepicker>
                             </div>
                         </div>
                         <div class="form-group">
