@@ -6,8 +6,8 @@
 	</ul>
 	<div class="card">
 		<div class="content">
-			<form name="createtellerform" novalidate="" class="form-horizontal form-extra" ng-controller="CreateTellerController"
-				submit="submit()">
+			<form name="createtellerform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="CreateTellerController" submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
 					<legend>{{'label.heading.cashmgmt.createTeller' | translate}}</legend>
@@ -16,9 +16,12 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control"
-								ng-options="office.id as office.name for office in offices"
-								value="{{office.id}}"></select>
+							<md-select chosen="offices" id="officeId" ng-model="formData.officeId" 
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="office in offices" ng-value="office.id">
+                                    {{office.name}}
+								</md-option>
+							</md-select>
 						</div>
 					</div>
 
@@ -28,11 +31,11 @@
 
 						<div class="col-sm-3">
 							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
-								class="form-control" required late-Validate />
+								class="form-control uppercase" required late-Validate />
 							<form-validate valattributeform="createtellerform" valattribute="name" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.teller.description' | translate }}</label>
 
@@ -47,8 +50,10 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<input id="startDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-								class="form-control" is-open="opened" min="minDate" max="restrictDate" />
+							<md-datepicker id="startDate" ng-model="first.date" 
+								md-placeholder="{{'label.input.startDate' | translate}}"
+								md-min-date="minDate" md-max-date="restrictDate">
+							</md-datepicker>
 						</div>
 					</div>
 
@@ -56,26 +61,30 @@
 						<label class="control-label col-sm-3">{{'label.input.teller.endDate' | translate }}</label>
 
 						<div class="col-sm-3">
-							<input id="endDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-								ng-model="formData.endDate" class="form-control" is-open="opened" min="minDate" />
+							<md-datepicker id="endDate" ng-model="formData.endDate" 
+								md-placeholder="{{'label.input.endDate' | translate}}"
+								md-min-date="form.startDate" md-max-date="'2030-06-22'">
+							</md-datepicker>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.teller.status' | translate }}<span
 								class="required">*</span></label>
 						<div class="col-sm-3">
-							<select id="usage" ng-model="formData.status"
-								ng-options="tellerStatus.id as tellerStatus.value 1 translate for tellerStatus in tellerStatuses"
-								value="{{tellerStatus.id}}" class="form-control"></select>
+							<md-select id="usage" ng-model="formData.status">
+                                <md-option ng-repeat="tellerStatus in tellerStatuses" ng-value="tellerStatus.id">
+                                    {{tellerStatus.value | translate}}
+                                </md-option>
+							</md-select>
 						</div>
 					</div>
 
 					<div class="col-md-12 center">
-						<a id="cancel" href="#!/tellers">
-							<button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-						</a>
-						<button id="save" type="submit" class="btn btn-sm btn-primary"
-							has-permission='CREATE_TELLER'>{{'label.button.save' | translate}}</button>
+						<md-button id="cancel" href="#!/tellers"
+								class="md-raised">{{'label.button.cancel' | translate}}
+						</md-button>
+						<md-button id="save" type="submit" class="md-raised md-primary"
+							has-permission='CREATE_TELLER'>{{'label.button.save' | translate}}</md-button>
 					</div>
 				</fieldset>
 			</form>

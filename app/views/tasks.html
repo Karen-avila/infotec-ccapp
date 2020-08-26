@@ -58,14 +58,14 @@
                                 <div class="form-group">
                                     <md-datepicker id="date.from" ng-model="date.from"
                                         md-placeholder="{{'label.input.fromdate' | translate}}"
-                                        min="minDate" max="'2030-06-22'">
+                                        md-min-date="minDate" md-max-date="'2030-06-22'">
                                     </md-datepicker>
                                 </div>
                                 <div class="form-group">
                                     <div>
                                         <md-datepicker id="date.todate" ng-model="date.to"
                                             md-placeholder="{{'label.input.todate' | translate}}"
-                                            min="date.from" max="'2030-06-22'">
+                                            md-min-date="date.from" md-max-date="'2030-06-22'">
                                         </md-datepicker>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                                     <api-validate></api-validate>
                                     <br>
                                     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.actDate"
-                                           is-open="opened" min="restrictDate"
+                                           is-open="opened" md-min-date="restrictDate"
                                            max="restrictDate"/>
                                 </div>
                                 <div class="modal-footer">
@@ -415,7 +415,7 @@
                                                     <td><label>{{'label.input.disbursedondate' | translate }}: </label></td>
                                                     <td>
                                                         <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="disbursedondate"
-                                                        is-open="opened" min="restrictDate" max="restrictDate" class="form-control width170px"/>        
+                                                        is-open="opened" md-min-date="restrictDate" max="restrictDate" class="form-control width170px"/>        
                                                     </td>
                                                 </tr>
                                                 <tr>                            
