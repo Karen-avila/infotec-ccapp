@@ -86,7 +86,7 @@
 
                 <div class="col-sm-3">
                     <md-datepicker id="dateofbirth" ng-model="date.dateofbirth"
-                        md-placeholder="{{'label.selecttodate' | translate}}" min="'1900-01-01'" max="restrictDate"
+                        md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="'1900-01-01'" md-max-date="restrictDate"
                         ng-change="calculateAge(date.dateofbirth)">
                     </md-datepicker>
                 </div>

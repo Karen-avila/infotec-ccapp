@@ -124,14 +124,14 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="validFrom" datepicker-pop="dd MMMM yyyy" ng-model="formData.validFrom"
-                                   is-open="opened" min="restrictDate" />
+                            <md-datepicker ng-model="formData.validFrom" md-min-date="restrictDate" 
+                                md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
                         </div>
                          <label class="control-label col-sm-2" for="validTill">{{'label.heading.to' | translate }}</label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="validTill" datepicker-pop="dd MMMM yyyy" ng-model="formData.validTill"
-                                   is-open="opened" min="restrictDate"/>
+                            <md-datepicker ng-model="formData.validTill" md-min-date="formData.validFrom" 
+                                md-placeholder="{{'label.input.todate' | translate }}"></md-datepicker>
                         </div>
                     </div>
                     <div class="form-group">

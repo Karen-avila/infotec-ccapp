@@ -241,14 +241,14 @@
                             </label>
 
                             <div class="col-sm-4">
-                                <input type="text" id="validFrom" datepicker-pop="dd MMMM yyyy" ng-model="formData.validFrom"
-                                       is-open="opened" min="restrictDate" name="validFrom" class="form-control"/>
+                                <md-datepicker id="validFrom" ng-model="formData.validFrom" md-min-date="restrictDate" 
+                                    md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
                             </div>
                              <label class="control-label col-sm-1" for="validTill">{{'label.heading.to' | translate }}</label>
 
                             <div class="col-sm-4">
-                                <input type="text" id="validTill" datepicker-pop="dd MMMM yyyy" ng-model="formData.validTill"
-                                       is-open="opened" min="restrictDate" class="form-control"/>
+                                <md-datepicker id="validTill" ng-model="formData.validTill" md-min-date="restrictDate" 
+                                    md-placeholder="{{'label.input.todate' | translate }}"></md-datepicker>
                             </div>
                         </div>
                         <div class="form-group">

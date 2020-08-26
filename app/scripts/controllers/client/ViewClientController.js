@@ -7,6 +7,7 @@
             scope.clientdocuments = [];
             scope.datatabledetails = [];
             scope.scoringDetails = [];
+            scope.scoringInternalSubTotal = 0;
             scope.scoringInternalTotal = 0;
             scope.scoringExternalTotal = 0;
             scope.scoringTotalTotal = 0;
@@ -712,12 +713,24 @@
             scope.getDataTables = function () {
                 resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
                     scope.clientdatatables = data;
+                    scope.scoringInternalSubTotal = 0;
+                    scope.scoringInternalSubTotal = 0;
+                    console.log("Internal " + scope.scoringInternalSubTotal);
+                    scope.scoringExternalTotal = 0;
+                    scope.scoringTotalTotal = 0;
                     if (scope.datatableLoaded == false) {
                         for (var i in data) {
                             if (data[i].registeredTableName) {
                                 scope.dataTableChange(data[i].registeredTableName);
                             }
                         }
+                        // Scoring Total
+                        console.log("Internal 2 " + scope.scoringInternalSubTotal);
+                        scope.scoringInternalTotal = scope.reScale(scope.scoringInternalSubTotal, 4.05, 90.9);
+                        console.log("Internal 3 " + scope.scoringInternalTotal);
+                        scope.scoringExternalTotal = scope.reScale(scope.getRandomInt(300, 850), 850, 300);
+                        scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
+                            (scope.scoringExternalTotal * 0.8);
                         scope.datatableLoaded = true;
                     }
                 });
@@ -762,7 +775,7 @@
                         if (datatabledetail.dataTableScoring > 0 && datatabledetail.datatableData.scoringWeight > 0) {
                             scoringValue = (datatabledetail.dataTableScoring * (datatabledetail.datatableData.scoringWeight / 100));
                         }
-                        scope.scoringInternalTotal += scoringValue;
+                        scope.scoringInternalSubTotal += scoringValue;
                         scope.scoringDetails.push({
                             table: datatabledetail.datatableData.description, 
                             points: datatabledetail.dataTableScoring, 
@@ -784,11 +797,11 @@
                     }
                     scope.datatabledetails.push(datatabledetail);
                 });
-
-                // Scoring Total
-                scope.scoringExternalTotal = scope.getRandomInt(250, 500);
-                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + (scope.scoringExternalTotal + 0.8);
             };
+
+            scope.reScale = function (value, min, max) {
+                return ((value - min) / (max - min));
+            }
 
             scope.getDataTableScoring = function () {
                 if (scope.dataTableScoring == 0) return "";
