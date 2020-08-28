@@ -201,12 +201,12 @@
                 	if (data.data) {
                         datatabledetail.isData = data.data.length > 0 ? true : false;
                     }
-                	datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                	datatabledetail.isMultirow = data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
                     datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
-                    for (var i in data.columnHeaders) {
+                    for (var i in data.datatableData.columnHeaderData) {
                         if (datatabledetail.columnHeaders[i].columnCode) {
                             for (var j in datatabledetail.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
@@ -224,11 +224,11 @@
                         }
                     }
                     if (datatabledetail.isData) {
-                        for (var i in data.columnHeaders) {
+                        for (var i in data.datatableData.columnHeaderData) {
                             if (!datatabledetail.isMultirow) {
-                            	if (data.columnHeaders[i].columnName != "group_id") {
+                            	if (data.datatableData.columnHeaderData[i].columnName != "group_id") {
                             		var row = {};
-                            		row.key = data.columnHeaders[i].columnName;
+                            		row.key = data.datatableData.columnHeaderData[i].columnName;
                             		row.value = data.data[0].row[i];
                             		datatabledetail.singleRow.push(row);                            		
                             	}

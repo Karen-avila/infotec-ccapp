@@ -486,17 +486,20 @@
                                         <th md-column class="pointer" md-order-by="date">
                                             {{'label.heading.transactiondate' | translate}}
                                         </th>
+                                        <th md-column class="pointer" md-order-by="date">
+                                            {{'label.heading.transactionId' | translate}}
+                                        </th>
                                         <th md-column class="pointer"
                                             ng-click="changeTransactionSort('transactionType.value')">
                                             {{'label.heading.transactiontype' | translate}}
                                         </th>
-                                        <th md-column class="pointer" md-order-by="amount">{{'label.heading.debit' |
+                                        <th md-column class="pointer amount" md-order-by="amount">{{'label.heading.debit' |
                                     translate}}
                                         </th>
-                                        <th md-column class="pointer" md-order-by="amount">{{'label.heading.credit'
+                                        <th md-column class="pointer amount" md-order-by="amount">{{'label.heading.credit'
                                     | translate}}
                                         </th>
-                                        <th md-column class="pointer">
+                                        <th md-column class="pointer amount">
                                             {{'label.heading.balance' | translate}}
                                         </th>
                                         <th md-column class="pointer">
@@ -513,7 +516,10 @@
                                             {{transaction.id}}
                                         </td>
                                         <td md-cell>
-                                            {{transaction.date | DateFormat}}
+                                            {{transaction.date | DateTimeFormat}}
+                                        </td>
+                                        <td md-cell>
+                                            {{transaction.transactionIdentifer}}
                                         </td>
                                         <td md-cell>
                                             {{'transaction.type.' + transaction.transactionType.value | translate}}

@@ -156,7 +156,7 @@
                 //scope.formData = inQueryParameters;
                 resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
                     // get column headers for the given report
-                    scope.reportData.columnHeaders = data.columnHeaders;
+                    scope.reportData.columnHeaders = data.datatableData.columnHeaderData;
                 });
             };
 
