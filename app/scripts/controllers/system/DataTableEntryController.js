@@ -35,25 +35,25 @@
             }
             
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
-                for (var i in data.columnHeaders) {
-                    if (data.columnHeaders[i].columnCode) {
+                for (var i in data.datatableData.columnHeaderData) {
+                    if (data.datatableData.columnHeaderData[i].columnCode) {
                         //logic for display codeValue instead of codeId in view datatable details
-                        for (var j in data.columnHeaders[i].columnValues) {
-                            if (data.columnHeaders[i].columnDisplayType == 'CODELOOKUP') {
-                                if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].id) {
-                                    data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
+                        for (var j in data.datatableData.columnHeaderData[i].columnValues) {
+                            if (data.datatableData.columnHeaderData[i].columnDisplayType == 'CODELOOKUP') {
+                                if (data.data[0].row[i] == data.datatableData.columnHeaderData[i].columnValues[j].id) {
+                                    data.datatableData.columnHeaderData[i].value = data.datatableData.columnHeaderData[i].columnValues[j].value;
                                 }
-                            } else if (data.columnHeaders[i].columnDisplayType == 'CODEVALUE') {
-                                if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].value) {
-                                    data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
+                            } else if (data.datatableData.columnHeaderData[i].columnDisplayType == 'CODEVALUE') {
+                                if (data.data[0].row[i] == data.datatableData.columnHeaderData[i].columnValues[j].value) {
+                                    data.datatableData.columnHeaderData[i].value = data.datatableData.columnHeaderData[i].columnValues[j].value;
                                 }
                             }
                         }
                     } else {
-                        data.columnHeaders[i].value = data.data[0].row[i];
+                        data.datatableData.columnHeaderData[i].value = data.data[0].row[i];
                     }
                 }
-                scope.columnHeaders = data.columnHeaders;
+                scope.columnHeaders = data.datatableData.columnHeaderData;
                 if (routeParams.mode && routeParams.mode == 'edit') {
                     scope.editDatatableEntry();
                 }

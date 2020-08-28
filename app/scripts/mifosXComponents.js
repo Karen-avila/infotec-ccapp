@@ -329,6 +329,7 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
         filters: [
             'StatusLookup',
             'DateFormat',
+            'DateTimeFormat',
             'DayMonthFormat',
             'YesOrNo',
             'UrlToString',

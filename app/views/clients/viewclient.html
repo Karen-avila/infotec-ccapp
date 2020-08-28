@@ -1340,7 +1340,7 @@
                         </md-tab-body>
                     </md-tab>
 
-                    <md-tab md-on-select="getDataTables()">
+                    <md-tab md-on-select="getDataTablesAndScoring()">
                         <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
                         <md-tab-body>
                             <div class="row" ng-if="datatabledetails.length > 0">
@@ -1422,11 +1422,11 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr class="graybg"
-                                                                    data-ng-show="datatabledetail.isData">
+                                                                    data-ng-show="datatabledetail.scoring">
                                                                     <th class="graybg table-font-nav">
                                                                         {{'label.heading.score' | translate}}</th>
                                                                     <td><span
-                                                                            class="padded-td">{{datatabledetail.dataTableScoring}}</span>
+                                                                            class="padded-td">{{datatabledetail.scoring}}</span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
