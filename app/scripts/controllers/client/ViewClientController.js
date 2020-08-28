@@ -710,30 +710,42 @@
                 });
             };
 
+            scope.getDataTablesAndScoring = function () {
+                scope.getDataTables();
+                scope.calculateScoring();
+            }
+
+            scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
+                console.log("scoringInternalSubTotal: " + newValue);
+                scope.scoringInternalTotal = scope.reScale(scope.scoringInternalSubTotal, 4.05, 90.9);
+                console.log("scoringInternalTotal: " + scope.scoringInternalTotal);
+            });
+
             scope.getDataTables = function () {
-                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
+                scope.scoringInternalSubTotal = 0;
+                scope.scoringInternalSubTotal = 0;
+                scope.scoringExternalTotal = 0;
+                scope.scoringTotalTotal = 0;
+                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }).$promise.then( function (data) {
                     scope.clientdatatables = data;
-                    scope.scoringInternalSubTotal = 0;
-                    scope.scoringInternalSubTotal = 0;
-                    console.log("Internal " + scope.scoringInternalSubTotal);
-                    scope.scoringExternalTotal = 0;
-                    scope.scoringTotalTotal = 0;
                     if (scope.datatableLoaded == false) {
                         for (var i in data) {
                             if (data[i].registeredTableName) {
                                 scope.dataTableChange(data[i].registeredTableName);
                             }
                         }
-                        // Scoring Total
-                        console.log("Internal 2 " + scope.scoringInternalSubTotal);
-                        scope.scoringInternalTotal = scope.reScale(scope.scoringInternalSubTotal, 4.05, 90.9);
-                        console.log("Internal 3 " + scope.scoringInternalTotal);
-                        scope.scoringExternalTotal = scope.reScale(scope.getRandomInt(300, 850), 850, 300);
-                        scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
-                            (scope.scoringExternalTotal * 0.8);
                         scope.datatableLoaded = true;
                     }
                 });
+            }
+
+            scope.calculateScoring = function () {
+                // Scoring Total
+                // scope.scoringInternalTotal = scope.reScale(scope.scoringInternalSubTotal, 4.05, 90.9);
+                console.log("scoringInternalTotal: 2 " + scope.scoringInternalTotal);
+                scope.scoringExternalTotal = scope.reScale(scope.getRandomInt(300, 850), 850, 300);
+                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
+                    (scope.scoringExternalTotal * 0.8);             
             }
 
             scope.dataTableChange = function (registeredTableName) {
@@ -741,66 +753,46 @@
                 resourceFactory.DataTablesResource.getTableDetails({
                     datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
-                }, function (data) {
+                }).$promise.then( function (data) {
                     var datatabledetail = data;
                     datatabledetail.registeredTableName = registeredTableName;
                     datatabledetail.isData = false;
                     if (data.data) {
                         datatabledetail.isData = data.data.length > 0 ? true : false;
                     }
-                    datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    const columnHeaders = datatabledetail.datatableData.columnHeaderData;
+                    datatabledetail.isMultirow = columnHeaders[0].columnName == "id" ? true : false;
                     datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
-                    datatabledetail.dataTableScoring = 0;
-                    if (datatabledetail.datatableData.isScoring) {
-                        for (var i in data.columnHeaders) {
-                            if (datatabledetail.columnHeaders[i].columnCode) {
-                                for (var j in datatabledetail.columnHeaders[i].columnValues) {
-                                    for (var k in data.data) {
-                                        if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
-                                            data.data[k].row[i] = {
-                                                value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                            }
-                                            if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                                datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        var scoringValue = 0;
-                        if (datatabledetail.dataTableScoring > 0 && datatabledetail.datatableData.scoringWeight > 0) {
-                            scoringValue = (datatabledetail.dataTableScoring * (datatabledetail.datatableData.scoringWeight / 100));
-                        }
-                        scope.scoringInternalSubTotal += scoringValue;
-                        scope.scoringDetails.push({
-                            table: datatabledetail.datatableData.description, 
-                            points: datatabledetail.dataTableScoring, 
-                            weight: (datatabledetail.datatableData.scoringWeight / 100),
-                            value: scoringValue
-                        });
-                    }
                     if (datatabledetail.isData) {
-                        for (var i in data.columnHeaders) {
+                        for (var i in columnHeaders) {
                             if (!datatabledetail.isMultirow) {
-                                if (data.columnHeaders[i].columnName != "client_id") {
+                                if (columnHeaders[i].columnName != "client_id") {
                                     var row = {};
-                                    row.key = data.columnHeaders[i].columnName;
-                                    row.value = data.data[0].row[i];
+                                    row.key = columnHeaders[i].columnName;
+                                    row.value = data.data[0].rows[i];
                                     datatabledetail.singleRow.push(row);
                                 }
                             }
                         }
                     }
+                    if (datatabledetail.datatableData.isScoring) {
+                        scope.scoringInternalSubTotal += datatabledetail.scoring;
+                        scope.scoringDetails.push({
+                            table: datatabledetail.datatableData.description, 
+                            points: datatabledetail.points, 
+                            weight: (datatabledetail.datatableData.scoringWeight / 100).toFixed(2),
+                            value: datatabledetail.scoring
+                        });
+                    }
+
                     scope.datatabledetails.push(datatabledetail);
                 });
             };
 
             scope.reScale = function (value, min, max) {
-                return ((value - min) / (max - min));
+                return ((value - min) / (max - min)).toFixed(2);
             }
 
             scope.getDataTableScoring = function () {

@@ -168,7 +168,7 @@
                         }
                     }
                     resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
-                        scope.reportData.columnHeaders = data.columnHeaders;
+                        scope.reportData.columnHeaders = data.datatableData.columnHeaderData;
                     });
                 }
             };

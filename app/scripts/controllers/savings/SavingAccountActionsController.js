@@ -33,14 +33,15 @@
                     _.each(scope.entityDatatableChecks,function(entitytable) {
                         resourceFactory.DataTablesResource.getTableDetails({datatablename:entitytable,entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
                             data.registeredTableName = entitytable;
-                            var colName = data.columnHeaders[0].columnName;
+                            const columnHeaders = data.datatableData.columnHeaderData;
+                            var colName = columnHeaders[0].columnName;
                             if (colName == 'id') {
-                                data.columnHeaders.splice(0, 1);
+                                data.datatableData.columnHeaderData.splice(0, 1);
                             }
 
-                            colName = data.columnHeaders[0].columnName;
+                            colName = columnHeaders[0].columnName;
                             if (colName == 'client_id' || colName == 'office_id' || colName == 'group_id' || colName == 'center_id' || colName == 'loan_id' || colName == 'savings_account_id') {
-                                data.columnHeaders.splice(0, 1);
+                                data.datatableData.columnHeaderData.splice(0, 1);
                                 scope.isCenter = (colName == 'center_id') ? true : false;
                             }
 
@@ -49,7 +50,7 @@
                                 scope.datatables.push(data);
                                 scope.entityformData.datatables[k] = {data:{}};
                                 submitStatus[k] = "save";
-                                _.each(data.columnHeaders,function(Header){
+                                _.each(data.datatableData.columnHeaderData,function(Header){
                                     if(Header.columnDisplayType == 'DATETIME'){
                                         scope.entityformData.datatables[k].data[Header.columnName] = {};
                                     }
