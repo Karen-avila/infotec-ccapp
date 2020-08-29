@@ -194,7 +194,11 @@
                 }
                 if (typeof data != "undefined") {
                     if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
-                        return data.value.value + ' (' + data.value.score + ')';
+                        if (typeof data.value.score != "undefined") {
+                            return data.value.value + ' (' + data.value.score + ')';
+                        } else {
+                            return data.value.value;
+                        }
                     } else {
                         if (typeof data.value != "undefined" && data.value != null) {
                             return data.value;
@@ -711,21 +715,25 @@
             };
 
             scope.getDataTablesAndScoring = function () {
+                scope.scoringDetails = [];
+                scope.scoringInternalSubTotal = 0;
+                scope.scoringExternalTotal = 0;
+                scope.scoringTotalTotal = 0;
                 scope.getDataTables();
-                scope.calculateScoring();
+                // scope.calculateScoring();
             }
 
             scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
                 console.log("scoringInternalSubTotal: " + newValue);
-                scope.scoringInternalTotal = scope.reScale(scope.scoringInternalSubTotal, 4.05, 90.9);
+                var scoringInternal = newValue;
+
+                console.log("scoringInternal: " + scoringInternal);
+                scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
                 console.log("scoringInternalTotal: " + scope.scoringInternalTotal);
+                scope.calculateScoring();
             });
 
             scope.getDataTables = function () {
-                scope.scoringInternalSubTotal = 0;
-                scope.scoringInternalSubTotal = 0;
-                scope.scoringExternalTotal = 0;
-                scope.scoringTotalTotal = 0;
                 resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }).$promise.then( function (data) {
                     scope.clientdatatables = data;
                     if (scope.datatableLoaded == false) {
@@ -749,7 +757,6 @@
             }
 
             scope.dataTableChange = function (registeredTableName) {
-                scope.scoringDetails = [];
                 resourceFactory.DataTablesResource.getTableDetails({
                     datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
