@@ -47,7 +47,8 @@
                         <strong>{{'datatable.' + tableName | translate}}</strong>
                     </fieldset>
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
-                        <label class="control-label col-sm-6">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
+                        <label
+                            class="control-label col-sm-6">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
                             <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
                         </label>
 
@@ -82,24 +83,25 @@
                                 <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                     data-ng-switch-when="CODELOOKUP" ng-model="formData[columnHeader.columnName]"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
-                                        {{columnValue.value}}
+                                    <md-option ng-repeat="columnValue in columnHeader.columnValues"
+                                        ng-value="columnValue.id">
+                                        {{columnValue.description}}
                                     </md-option>
                                 </md-select>
                                 <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                     data-ng-switch-when="CODEVALUE" ng-model="formData[columnHeader.columnName]"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
-                                        {{columnValue.value}}
+                                    <md-option ng-repeat="columnValue in columnHeader.columnValues"
+                                        ng-value="columnValue.id">
+                                        {{columnValue.description}}
                                     </md-option>
                                 </md-select>
                             </span>
                         </div>
-
                     </div>
                     <div class="col-md-12 center">
-                        <md-button id="cancel" class="md-raised"
-                            ng-click="cancel()">{{'label.button.cancel' | translate }}</md-button>
+                        <md-button id="cancel" class="md-raised" ng-click="cancel()">
+                            {{'label.button.cancel' | translate }}</md-button>
                         <md-button id="save" type="submit" has-permission='UPDATE_{{tableName}}'
                             class="md-raised md-primary">{{'label.button.save' | translate }}</md-button>
                     </div>

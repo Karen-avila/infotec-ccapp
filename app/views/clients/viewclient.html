@@ -792,7 +792,7 @@
                                                     ng-repeat="savingaccount in clientAccounts.savingsAccounts | orderBy:'id':true | filter:isSavingClosed">
                                                     <td class="pointer"
                                                         data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
-                                                        <i uib-tooltip="{{savingaccount.status.value}}"
+                                                        <i uib-tooltip="{{savingaccount.status.value | translate}}"
                                                             class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
                                                         {{savingaccount.accountNo}}
                                                     </td>

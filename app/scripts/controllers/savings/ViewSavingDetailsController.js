@@ -360,6 +360,10 @@
                   taskPermissionName: "CREATE_SAVINGSACCOUNTCHARGE",
                 },
                 {
+                  name: "button.blocksavings",
+                  taskPermissionName: "BLOCK_SAVINGSACCOUNTCHARGE",
+                },
+                {
                   name: "button.close",
                   taskPermissionName: "CLOSE_SAVINGSACCOUNT",
                 },
