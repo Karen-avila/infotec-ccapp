@@ -2407,6 +2407,7 @@
     "recurring.deposit.frequency.periodFrequencyType.weeks": "Semanas",
     "recurring.deposit.frequency.periodFrequencyType.months": "Meses",
     "recurring.deposit.frequency.periodFrequencyType.years": "Años",
+    "error.msg.saving.account.blocked.transaction.not.allowed": "Operaciòn no permitida, dado que la cuenta esta bloqueada",
     "error.msg.savingsaccount.unknown.data.integrity.issue": "Un problema inesperado ocurrió al crear/actualizar la cuenta de ahorros. Error al iniciar sesión en el servidor.",
     "validation.msg.savingsaccount.submittedOnDate.cannot.be.blank": "La Fecha de Solicitud es obligatoria",
     "validation.msg.savingsaccount.activationDate.cannot.be.blank": "La fecha de activación es obligatoria cuando se configura la cuenta como 'Activa'.",
