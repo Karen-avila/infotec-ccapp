@@ -24,7 +24,7 @@
                         for="postal_code">{{'label.input.postal_code' | translate }}</label>
                     <div class="col-sm-4">
                         <input type="text" id="postal_code" pattern="\d{5}" name="postal_code" maxlength="5" ng-model="formData.postalCode"
-                            class="form-control">
+                            class="form-control" allow-number>
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@
                         <md-select name="addressType" ng-model="formData.addressTypeId" 
                             placeholder="{{'label.menu.selectone' | translate}}" required>
                             <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
-                                {{addressType.name}}
+                                {{addressType.description}}
                             </md-option>  
                         </md-select>
                     </div>
@@ -143,7 +143,7 @@
                         <md-select id="countryOption" ng-model="formData.countryId"
                             placeholder="{{'label.menu.selectone' | translate}}">
                             <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
-                                {{countryOption.name}}
+                                {{countryOption.description}}
                             </md-option>  
                         </md-select>
                     </div>
@@ -157,7 +157,7 @@
                         <md-select ng-model="formData.stateProvinceId"
                             ng-change="filterMunicipality()" placeholder="{{'label.menu.selectone' | translate}}" required>
                             <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
-                                {{stateOption.name}}
+                                {{stateOption.description}}
                             </md-option>  
                         </md-select>
                     </div>
@@ -171,7 +171,7 @@
                         <md-select ng-model="formData.municipality" 
                             placeholder="{{'label.menu.selectone' | translate}}" required>
                             <md-option ng-repeat="municipalityOption in municipalityOptions" ng-value="municipalityOption.id">
-                                {{municipalityOption.name}}
+                                {{municipalityOption.description}}
                             </md-option>  
                         </md-select>
                     </div>

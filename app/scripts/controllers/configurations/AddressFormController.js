@@ -20,7 +20,7 @@
       entityname = "ADDRESS";
       $scope.editable = false;
       $scope.clientId = routeParams.id;
-      
+
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
         $scope.countryOptions = data.countryIdOptions;
@@ -82,6 +82,13 @@
       };
 
       $scope.submit = function () {
+        $scope.formData.street = $scope.formData.street.toUpperCase();
+        $scope.formData.addressLine1 = $scope.formData.addressLine1.toUpperCase();
+        $scope.formData.addressLine2 = $scope.formData.addressLine2.toUpperCase();
+        $scope.formData.addressLine3 = $scope.formData.addressLine3.toUpperCase();
+        $scope.formData.addressLine4 = $scope.formData.addressLine4.toUpperCase();
+        $scope.formData.addressLine5 = $scope.formData.addressLine5.toUpperCase();
+        $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
         resourceFactory.clientAddress.save(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
