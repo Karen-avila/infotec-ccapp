@@ -90,7 +90,7 @@
                 <span style="margin-left: 10px;font-size:24px">
                     <strong><i ng-show="savingaccountdetails.subStatus.id==0"
                             class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i><i
-                            ng-hide="savingaccountdetails.subStatus.id==0"
+                            ng-hide="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.status.value | translate}}"
                             class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}}
                         (#{{savingaccountdetails.accountNo}})</strong>
                 </span>
@@ -413,7 +413,8 @@
                         <tr>
                             <th>{{'label.heading.externalid' | translate}}</th>
                             <td><span>{{savingaccountdetails.externalId}}</span>
-                                <span ng-hide="savingaccountdetails.externalId">{{'label.heading.notprovided' | translate}}</span>
+                                <span
+                                    ng-hide="savingaccountdetails.externalId">{{'label.heading.notprovided' | translate}}</span>
                             </td>
                             </td>
                         </tr>
@@ -426,7 +427,8 @@
                         <tr>
                             <th class="table-bold-loan">{{'label.heading.interbankNo' | translate}}</th>
                             <td><span class="padded-td">{{savingaccountdetails.interbankNo}}</span>
-                                <span ng-hide="savingaccountdetails.interbankNo">{{'label.heading.notprovided' | translate}}</span>
+                                <span
+                                    ng-hide="savingaccountdetails.interbankNo">{{'label.heading.notprovided' | translate}}</span>
                             </td>
                         </tr>
                         <tr>
@@ -541,9 +543,9 @@
                                                 <i class="fa fa-file-text fa fa-large"></i>
                                             </span>
                                         </td>
-                                        <td md-cell class="pointer" ng-click="viewsavingtransactionjournalentries(transaction.id)">
-                                            <span
-                                                uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}"
+                                        <td md-cell class="pointer"
+                                            ng-click="viewsavingtransactionjournalentries(transaction.id)">
+                                            <span uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}"
                                                 tooltip-placement="left">
                                                 <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
                                             </span>
