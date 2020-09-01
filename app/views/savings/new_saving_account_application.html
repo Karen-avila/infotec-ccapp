@@ -103,6 +103,20 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-sm-3">{{'label.input.account.level' | translate}}
+                                        <span class="required">*</span>
+                                        <i class="fa fa-question-circle"
+                                            uib-tooltip="{{'label.tooltip.account.level' | translate}}"
+                                            tooltip-append-to-body="true"></i>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select id="accountLevel" 
+                                                ng-model="formData.accountLevel">
+                                            <md-option ng-value="level" ng-repeat="level in accountLevels">
+                                                {{'label.input.level' | translate}} {{level}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
                                     <label class="control-label col-sm-3">{{'label.input.nominalannualinterestrate' | translate }}
                                         <span class="required">*</span>
                                     </label>

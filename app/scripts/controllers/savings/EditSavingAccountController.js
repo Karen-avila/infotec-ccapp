@@ -7,6 +7,8 @@
             scope.accountId = routeParams.id;
             scope.charges = [];
             scope.restrictDate = new Date();
+            scope.accountLevels = [1,2,3,4];
+
             resourceFactory.savingsResource.get({accountId: scope.accountId, template: 'true', associations: 'charges',staffInSelectedOfficeOnly:'true'}, function (data) {
                 scope.data = data;
                 scope.charges = data.charges || [];
@@ -38,8 +40,7 @@
                 scope.products = data.productOptions;
                 if (data.fieldOfficerId != 0)scope.formData.fieldOfficerId = data.fieldOfficerId;
                 if (data.timeline) {
-                    var submittedOnDate = dateFilter(data.timeline.submittedOnDate, scope.df);
-                    scope.formData.submittedOnDate = new Date(submittedOnDate);
+                    scope.formData.submittedOnDate = new Date(data.timeline.submittedOnDate);
                 }
                 scope.formData.externalId = data.externalId;
                 scope.fieldOfficers = data.fieldOfficerOptions;
@@ -51,6 +52,7 @@
                 scope.formData.withdrawalFeeAmount = data.withdrawalFeeAmount;
                 scope.formData.withdrawalFeeForTransfers = data.withdrawalFeeForTransfers;
                 scope.formData.allowOverdraft = data.allowOverdraft;
+                scope.formData.accountLevel = data.accountLevel;
                 scope.formData.overdraftLimit = data.overdraftLimit;
                 scope.formData.nominalAnnualInterestRateOverdraft = data.nominalAnnualInterestRateOverdraft;
                 scope.formData.minOverdraftForInterestCalculation = data.minOverdraftForInterestCalculation;
@@ -64,7 +66,6 @@
                 if (data.interestCalculationDaysInYearType) scope.formData.interestCalculationDaysInYearType = data.interestCalculationDaysInYearType.id;
                 if (data.lockinPeriodFrequencyType) scope.formData.lockinPeriodFrequencyType = data.lockinPeriodFrequencyType.id;
                 if (data.withdrawalFeeType) scope.formData.withdrawalFeeType = data.withdrawalFeeType.id;
-
             });
 
             scope.changeProduct = function () {
