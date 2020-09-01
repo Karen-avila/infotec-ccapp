@@ -88,11 +88,11 @@
         <div ng-hide="report">
             <div class="span gray-head" style="margin-left:0%;">
                 <span style="margin-left: 10px;font-size:24px">
-                    <strong><i ng-show="savingaccountdetails.subStatus.id==0"
-                            class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i><i
-                            ng-hide="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.status.value | translate}}"
-                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>&nbsp;{{savingaccountdetails.savingsProductName}}
-                        (#{{savingaccountdetails.accountNo}})</strong>
+                    <strong><i ng-show="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.status.value | translate}}"
+                            class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i>
+                            <i ng-hide="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.subStatus.value | translate}}"
+                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>
+                        &nbsp;{{savingaccountdetails.savingsProductName}}&nbsp;(#{{savingaccountdetails.accountNo}})</strong>
                 </span>
             </div>
             <br>

@@ -778,7 +778,11 @@
                                 if (columnHeaders[i].columnName != "client_id") {
                                     var row = {};
                                     row.key = columnHeaders[i].columnName;
-                                    row.value = data.data[0].rows[i];
+                                    if (columnHeaders[i].columnDisplayType == "CODELOOKUP") {
+                                        data.data[0].rows[i];
+                                    } else {
+                                        row.value = data.data[0].rows[i];
+                                    }
                                     datatabledetail.singleRow.push(row);
                                 }
                             }

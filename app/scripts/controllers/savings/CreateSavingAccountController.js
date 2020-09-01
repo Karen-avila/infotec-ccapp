@@ -19,7 +19,8 @@
             scope.tf = "HH:mm";
             scope.tempDataTables = [];
             scope.disabled = true;
-            
+            scope.accountLevels = [1,2,3,4];
+
             scope.maxStep = 3;
             scope.selectedStep = 0;
             scope.stepProgress = 0;
@@ -121,7 +122,6 @@
                 // _.isUndefined(scope.datatables) ? scope.tempDataTables = [] : scope.tempDataTables = scope.datatables;
                 scope.inparams.productId = scope.formData.productId;
                 resourceFactory.savingsTemplateResource.get(scope.inparams, function (data) {
-
                     scope.data = data;
                     scope.charges = data.charges;
 
@@ -135,6 +135,7 @@
                     scope.formData.nominalAnnualInterestRate = data.nominalAnnualInterestRate;
                     scope.formData.minRequiredOpeningBalance = data.minRequiredOpeningBalance;
                     scope.formData.lockinPeriodFrequency = data.lockinPeriodFrequency;
+                    scope.formData.accountLevel = data.accountLevel;
                     /* FIX-ME: uncomment annualFeeAmount when datepicker avialable, because it depends on the date field 'annualFeeOnMonthDay'*/
                     //scope.formData.annualFeeAmount = data.annualFeeAmount;
                     scope.formData.withdrawalFeeAmount = data.withdrawalFeeAmount;

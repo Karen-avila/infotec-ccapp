@@ -342,7 +342,7 @@
                           resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
                               //clear the csvData array for each request
                               scope.csvData = [];
-                              scope.reportData.columnHeaders = data.datatableData.columnHeaderData;
+                              scope.reportData.columnHeaders = data.columnHeaderData;
                               scope.reportData.data = data.data;
                               for (var i in data.datatableData.columnHeaderData) {
                                   scope.row.push(data.datatableData.columnHeaderData[i].columnName);
@@ -385,7 +385,7 @@
                           scope.hideChart = false;
                           scope.formData.reportSource = scope.reportName;
                           resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
-                              scope.reportData.columnHeaders = data.datatableData.columnHeaderData;
+                              scope.reportData.columnHeaders = data.columnHeaderData;
                               scope.reportData.data = data.data;
                               scope.chartData = [];
                               scope.barData = [];
