@@ -1,38 +1,38 @@
 <div class="content-container">
-    <ul class="breadcrumb">
-        <li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
-        <li><a href="#!/codes">{{'label.anchor.managecodes' | translate}}</a></li>
-        <li class="active">{{'label.anchor.addcode' | translate}}</li>
-    </ul>
-    <div class="card">
-    	<div class="content">
-    		<div class="toolbar">
-    			<h4>{{'label.heading.addcode' | translate}}</h4>
-    		</div>
-    		<br/>
-    		<form name="addcodeform" novalidate="" class="form-horizontal form-extra" 
-    			ng-controller="AddCodeController"
-    		      ng-submit="submit()">
-    		    <api-validate></api-validate>
-    		    <fieldset>
-    		        <div class="form-group">
-    		            <label class="control-label col-sm-3" for="codename">{{'label.input.codename' | translate}}<span
-    		                    class="required">*</span></label>
-    		
-    		            <div class="col-sm-4">
-							<input type="text" id="codename" name="codename uppercase" ng-model="formData.name" class="form-control" 
-								maxlength="45" required late-Validate/>
-    		                <form-validate valattributeform="addcodeform" valattribute="codename"/>
-    		            </div>
-    		        </div>
-    		        <div class="form-group">
-    		            <label class="control-label col-sm-3" for="codename">{{'label.input.description' | translate}}<span
-    		                    class="required">*</span></label>
-    		
-    		            <div class="col-sm-9">
+	<ul class="breadcrumb">
+		<li><a href="#!/system">{{'label.anchor.system' | translate}}</a></li>
+		<li><a href="#!/codes">{{'label.anchor.managecodes' | translate}}</a></li>
+		<li class="active">{{'label.anchor.addcode' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="toolbar">
+				<h4>{{'label.heading.addcode' | translate}}</h4>
+			</div>
+			<br />
+			<form name="addcodeform" novalidate="" class="form-horizontal form-extra" ng-controller="AddCodeController"
+				ng-submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="codename">{{'label.input.codename' | translate}}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-4">
+							<input type="text" id="codename" name="codename uppercase" ng-model="formData.name"
+								class="form-control" maxlength="45" required late-Validate />
+							<form-validate valattributeform="addcodeform" valattribute="codename" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3"
+							for="codename">{{'label.input.description' | translate}}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-9">
 							<textarea type="text" id="description" ng-model="formData.description" rows="3"
-							class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="500" />
-    		                <form-validate valattributeform="addcodeform" valattribute="description"/>
+								class="form-control" ng-pattern="/(^[A-z])[A-z.'-]*/" required maxlength="500" />
+							<form-validate valattributeform="addcodeform" valattribute="description"/>
     		            </div>
     		        </div>
     		        <br>
