@@ -235,6 +235,20 @@
                     scope.showNoteField = false;
                     scope.taskPermissionName = 'APPLYANNUALFEE_SAVINGSACCOUNT';
                     break;
+                case "block":
+                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (accountData) {
+                        scope.blockReasons = accountData.codeValues;
+                    });
+
+                    scope.title = 'label.heading.closesavingaccount';
+                    scope.labelName = 'label.input.closedon';
+                    scope.showDateField = false;
+                    scope.showNoteField = true;
+                    scope.withdrawBalance = false;
+                    scope.postInterestValidationOnClosure = false;
+                    scope.formData.postInterestValidationOnClosure = true;
+                    scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNT';
+                    break;
                 case "close":
                     resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
@@ -332,10 +346,6 @@
                     scope.waiveCharge = true;
                     scope.taskPermissionName = 'WAIVE_SAVINGSACCOUNTCHARGE';
                     break;
-                case "block":
-                    scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNTCHARGE';
-                    scope.fetchEntities('m_savings_account','BLOCK');
-                    break;
             }
 
             scope.cancel = function () {
@@ -361,7 +371,6 @@
                     this.formData.locale = scope.optlang.code;
                     this.formData.dateFormat = scope.setTransactionDate(this.formData[scope.modelName], scope.modelName);
                 }
-                console.log(this.formData.transactionDate);
                 if (scope.action == "deposit" || scope.action == "withdrawal" || scope.action == "modifytransaction" || scope.action=="postInterestAsOn") {
                     if (scope.action == "withdrawal") {
                         if (this.formData.transactionDate) {
@@ -442,8 +451,9 @@
                     } else if (scope.action == "close") {
                         if (this.formData.closedOnDate) {
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
-
                         }
+                    } else if (scope.action == "block") {
+                        this.formData = {};
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {

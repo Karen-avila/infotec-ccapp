@@ -188,6 +188,9 @@
           case "close":
             location.path("/savingaccount/" + accountId + "/close");
             break;
+          case "blocksavings":
+              location.path("/savingaccount/" + accountId + "/block");
+              break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
