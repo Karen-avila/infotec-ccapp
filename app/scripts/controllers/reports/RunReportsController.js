@@ -344,8 +344,8 @@
                               scope.csvData = [];
                               scope.reportData.columnHeaders = data.columnHeaderData;
                               scope.reportData.data = data.data;
-                              for (var i in data.datatableData.columnHeaderData) {
-                                  scope.row.push(data.datatableData.columnHeaderData[i].columnName);
+                              for (var i in data.columnHeaders) {
+                                  scope.row.push(data.columnHeaders[i].columnName);
                               }
                               scope.csvData.push(scope.row);
                               for (var k in data.data) {
