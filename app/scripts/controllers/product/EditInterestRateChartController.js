@@ -27,17 +27,25 @@
             //get a interestrate chart
             resourceFactory.interestRateChartResource.get({chartId: routeParams.chartId, productId: routeParams.productId, template: true, associations: 'chartSlabs'}, function (data) {
                 scope.chart = data;
+                
+                console.log(scope.chart.chartSlabs);
+                if(scope.chart.chartSlabs == undefined)
+                    scope.chart.chartSlabs = [];
+
                 _.each(scope.chart.chartSlabs, function (chartSlab) {
                     _.each(chartSlab.incentives, function (incentive){
                         incentive.attributeValue = parseInt(incentive.attributeValue);
                     })
-                })
+                });    
+
+                scope.chart.chartSlabs.sort((a, b) => (a.amountRangeFrom > b.amountRangeFrom) ? 1 : -1)
 
                 //format date values
                 if (scope.chart.fromDate) {
                     var fromDate = dateFilter(scope.chart.fromDate, scope.df);
                     scope.fromDate.date = new Date(fromDate);
                 }
+
                 if (scope.chart.endDate) {
                     var endDate = dateFilter(scope.chart.endDate, scope.df);
                     scope.endDate.date = new Date(endDate);
@@ -51,7 +59,9 @@
             scope.addNewRow = function () {
                 var fromPeriod = '';
                 var amountRangeFrom = '';
-                var periodType = '';
+                var periodType = {
+                    id : 0
+                };
                 var toPeriod = '';
                 var amountRangeTo = '';
                 if (_.isNull(scope.chart.chartSlabs) || _.isUndefined(scope.chart.chartSlabs)) {
