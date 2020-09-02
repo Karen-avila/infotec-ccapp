@@ -58,7 +58,7 @@
         <div ng-hide="report">
             <div class="span gray-head" style="margin-left:0%;">
                 <span style="margin-left: 10px;font-size:24px">
-                    <strong> <i ng-hide="loandetails.inArrears"
+                    <strong> <i ng-hide="loandetails.inArrears" uib-tooltip="{{loandetails.status.value | translate}}"
                                 class="fa fa-circle {{loandetails.status.code | StatusLookup}}"></i>
                         <i ng-show="loandetails.inArrears"
                             class="fa fa-circle {{loandetails.status.code | StatusLookup}}overdue"></i> {{loandetails.loanProductName}} (#{{loandetails.accountNo}})</strong>

@@ -331,9 +331,9 @@
                     entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
                     scope.datatabledetails = data;
                     scope.datatabledetails.isData = data.data.length > 0 ? true : false;
-                    scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    scope.datatabledetails.isMultirow = data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
                     scope.singleRow = [];
-                    for (var i in data.columnHeaders) {
+                    for (var i in data.datatableData.columnHeaderData) {
                         if (scope.datatabledetails.columnHeaders[i].columnCode) {
                             for (var j in scope.datatabledetails.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
@@ -345,10 +345,10 @@
                         }
                     }
                     if (scope.datatabledetails.isData) {
-                        for (var i in data.columnHeaders) {
+                        for (var i in data.datatableData.columnHeaderData) {
                             if (!scope.datatabledetails.isMultirow) {
                                 var row = {};
-                                row.key = data.columnHeaders[i].columnName;
+                                row.key = data.datatableData.columnHeaderData[i].columnName;
                                 row.value = data.data[0].row[i];
                                 scope.singleRow.push(row);
                             }

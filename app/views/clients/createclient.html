@@ -213,8 +213,8 @@
                      <label class="control-label col-sm-3">{{'label.input.incorpValidityTillDate' | translate}}</label>
                      <div class="col-sm-3">
                         <md-datepicker id="incorpValidityTillDate" ng-model="first.incorpValidityTillDate"
-                           md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
-                           max="'2030-06-22'">
+                           md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+                           md-max-date="'2030-06-22'">
                         </md-datepicker>
                      </div>
                   </div>
@@ -343,7 +343,7 @@
                 <div class="col-sm-3">
                   <md-datepicker id="submittedon" ng-model="first.submittedon" 
                      md-placeholder="{{'label.selecttodate' | translate}}"
-                     min="'2000-01-01'" max="restrictDate">
+                     md-min-date="'2000-01-01'" md-max-date="restrictDate">
                   </md-datepicker>
                 </div>
             </div>
@@ -360,7 +360,7 @@
                      <div class="col-sm-3">
                         <md-datepicker id="activationDate" ng-model="first.date" 
                               md-placeholder="{{'label.selecttodate' | translate}}"
-                              min="'2000-01-01'" max="restrictDate">
+                              md-min-date="'2000-01-01'" md-max-date="restrictDate">
                         </md-datepicker>
                      </div>
                   </div>

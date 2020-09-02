@@ -792,7 +792,7 @@
                                                     ng-repeat="savingaccount in clientAccounts.savingsAccounts | orderBy:'id':true | filter:isSavingClosed">
                                                     <td class="pointer"
                                                         data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
-                                                        <i uib-tooltip="{{savingaccount.status.value}}"
+                                                        <i uib-tooltip="{{savingaccount.status.value | translate}}"
                                                             class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
                                                         {{savingaccount.accountNo}}
                                                     </td>
@@ -1340,7 +1340,7 @@
                         </md-tab-body>
                     </md-tab>
 
-                    <md-tab md-on-select="getDataTables()">
+                    <md-tab md-on-select="getDataTablesAndScoring()">
                         <md-tab-label>{{'label.heading.datatables' | translate}}</md-tab-label>
                         <md-tab-body>
                             <div class="row" ng-if="datatabledetails.length > 0">
@@ -1363,11 +1363,11 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="2"><strong>{{'label.input.scoring.internal' | translate}}</strong></td>
-                                                                    <td class="amount">{{scoringInternalTotal | FormatNumber}}</td>
+                                                                    <td class="amount">{{scoringInternalPoints | FormatNumber}} / {{scoringInternalTotal | FormatNumber}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="2"><strong>{{'label.input.scoring.external' | translate}}</strong></td>
-                                                                    <td class="amount">{{scoringExternalTotal | FormatNumber}}</td>
+                                                                    <td class="amount">{{scoringExternalPoints | FormatNumber}} / {{scoringExternalTotal | FormatNumber}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="2"><strong>{{'label.input.scoring.total' | translate}}</strong></td>
@@ -1415,18 +1415,18 @@
                                                                 <tr ng-repeat="value in datatabledetail.singleRow"
                                                                     data-ng-hide="datatabledetail.isMultirow">
                                                                     <th style="width: 50%;" class="table-font-nav">
-                                                                        <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.key) | translate}}</strong>
+                                                                        <strong>{{getDatatableColumn(datatabledetail.registeredTableName, value.name) | translate}}</strong>
                                                                     </th>
                                                                     <td style="width: 50%; padding-left: 10px;"><span
                                                                             class="padded-td">{{getDatatableValue(value)}}</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr class="graybg"
-                                                                    data-ng-show="datatabledetail.isData">
+                                                                    data-ng-show="datatabledetail.scoring">
                                                                     <th class="graybg table-font-nav">
                                                                         {{'label.heading.score' | translate}}</th>
                                                                     <td><span
-                                                                            class="padded-td">{{datatabledetail.dataTableScoring}}</span>
+                                                                            class="padded-td">{{datatabledetail.points}} / {{datatabledetail.scoring}}</span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

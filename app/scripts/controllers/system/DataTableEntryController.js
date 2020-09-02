@@ -35,25 +35,26 @@
             }
             
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
-                for (var i in data.columnHeaders) {
-                    if (data.columnHeaders[i].columnCode) {
+                const columnHeaderData = data.datatableData.columnHeaderData;
+                for (var i in columnHeaderData) {
+                    if (columnHeaderData[i].columnCode) {
                         //logic for display codeValue instead of codeId in view datatable details
-                        for (var j in data.columnHeaders[i].columnValues) {
-                            if (data.columnHeaders[i].columnDisplayType == 'CODELOOKUP') {
-                                if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].id) {
-                                    data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
+                        for (var j in columnHeaderData[i].columnValues) {
+                            if (columnHeaderData[i].columnDisplayType == 'CODELOOKUP') {
+                                if (data.data[0].rows[i] == columnHeaderData[i].columnValues[j].id) {
+                                    columnHeaderData[i].value = columnHeaderData[i].columnValues[j].value;
                                 }
-                            } else if (data.columnHeaders[i].columnDisplayType == 'CODEVALUE') {
-                                if (data.data[0].row[i] == data.columnHeaders[i].columnValues[j].value) {
-                                    data.columnHeaders[i].value = data.columnHeaders[i].columnValues[j].value;
+                            } else if (columnHeaderData[i].columnDisplayType == 'CODEVALUE') {
+                                if (data.data[0].rows[i] == columnHeaderData[i].columnValues[j].value) {
+                                    columnHeaderData[i].value = columnHeaderData[i].columnValues[j].value;
                                 }
                             }
                         }
                     } else {
-                        data.columnHeaders[i].value = data.data[0].row[i];
+                        columnHeaderData[i].value = data.data[0].rows[i];
                     }
                 }
-                scope.columnHeaders = data.columnHeaders;
+                scope.columnHeaders = columnHeaderData;
                 if (routeParams.mode && routeParams.mode == 'edit') {
                     scope.editDatatableEntry();
                 }

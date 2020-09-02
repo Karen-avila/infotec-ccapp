@@ -7,6 +7,9 @@
             scope.clientdocuments = [];
             scope.datatabledetails = [];
             scope.scoringDetails = [];
+            scope.scoringInternalPoints = 0;
+            scope.scoringExternalPoints = 0;
+            scope.scoringInternalSubTotal = 0;
             scope.scoringInternalTotal = 0;
             scope.scoringExternalTotal = 0;
             scope.scoringTotalTotal = 0;
@@ -184,7 +187,6 @@
                     columnName = temp[1];
                 }
                 return tableName + '.' + columnName;
-                // return columnName;
             }
 
             scope.getDatatableValue = function (data) {
@@ -192,13 +194,11 @@
                     return '';
                 }
                 if (typeof data != "undefined") {
-                    if (typeof data.value != "undefined" && data.value != null && typeof data.value.value != "undefined") {
-                        return data.value.value + ' (' + data.value.score + ')';
-                    } else {
-                        if (typeof data.value != "undefined" && data.value != null) {
-                            return data.value;
+                    if (typeof data.value != "undefined") {
+                        if (typeof data.score != "undefined") {
+                            return data.value + ' (' + data.score + ')';
                         } else {
-                            return '';
+                            return data.value;
                         }
                     }
                 } else {
@@ -709,8 +709,24 @@
                 });
             };
 
+            scope.getDataTablesAndScoring = function () {
+                scope.scoringDetails = [];
+                scope.scoringInternalSubTotal = 0;
+                scope.scoringInternalPoints = 0;
+                scope.scoringExternalPoints = 0;
+                scope.scoringExternalTotal = 0;
+                scope.scoringTotalTotal = 0;
+                scope.getDataTables();
+            }
+
+            scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
+                var scoringInternal = newValue;
+                scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
+                scope.calculateScoring();
+            });
+
             scope.getDataTables = function () {
-                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }, function (data) {
+                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }).$promise.then( function (data) {
                     scope.clientdatatables = data;
                     if (scope.datatableLoaded == false) {
                         for (var i in data) {
@@ -723,72 +739,57 @@
                 });
             }
 
+            scope.calculateScoring = function () {
+                // Scoring Total
+                scope.scoringExternalPoints = scope.getRandomInt(300, 850);
+                scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 850, 300);
+                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
+                    (scope.scoringExternalTotal * 0.8);             
+            }
+
             scope.dataTableChange = function (registeredTableName) {
-                scope.scoringDetails = [];
                 resourceFactory.DataTablesResource.getTableDetails({
                     datatablename: registeredTableName,
                     entityId: routeParams.id, genericResultSet: 'true'
-                }, function (data) {
+                }).$promise.then( function (data) {
                     var datatabledetail = data;
                     datatabledetail.registeredTableName = registeredTableName;
                     datatabledetail.isData = false;
                     if (data.data) {
                         datatabledetail.isData = data.data.length > 0 ? true : false;
                     }
-                    datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    const columnHeaders = datatabledetail.datatableData.columnHeaderData;
+                    datatabledetail.isMultirow = columnHeaders[0].columnName == "id" ? true : false;
                     datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
-                    datatabledetail.dataTableScoring = 0;
-                    if (datatabledetail.datatableData.isScoring) {
-                        for (var i in data.columnHeaders) {
-                            if (datatabledetail.columnHeaders[i].columnCode) {
-                                for (var j in datatabledetail.columnHeaders[i].columnValues) {
-                                    for (var k in data.data) {
-                                        if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
-                                            data.data[k].row[i] = {
-                                                value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                            }
-                                            if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                                datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
-                                            }
-                                        }
-                                    }
+                    if (datatabledetail.isData) {
+                        for (var i in columnHeaders) {
+                            if (!datatabledetail.isMultirow) {
+                                if (columnHeaders[i].columnName != "client_id") {
+                                    datatabledetail.singleRow.push(data.data[0].rows[i]);
                                 }
                             }
                         }
-                        var scoringValue = 0;
-                        if (datatabledetail.dataTableScoring > 0 && datatabledetail.datatableData.scoringWeight > 0) {
-                            scoringValue = (datatabledetail.dataTableScoring * (datatabledetail.datatableData.scoringWeight / 100));
-                        }
-                        scope.scoringInternalTotal += scoringValue;
+                    }
+                    if (datatabledetail.datatableData.isScoring) {
+                        scope.scoringInternalPoints += datatabledetail.points;
+                        scope.scoringInternalSubTotal += datatabledetail.scoring;
                         scope.scoringDetails.push({
                             table: datatabledetail.datatableData.description, 
-                            points: datatabledetail.dataTableScoring, 
-                            weight: (datatabledetail.datatableData.scoringWeight / 100),
-                            value: scoringValue
+                            points: datatabledetail.points, 
+                            weight: (datatabledetail.datatableData.scoringWeight / 100).toFixed(2),
+                            value: datatabledetail.scoring
                         });
                     }
-                    if (datatabledetail.isData) {
-                        for (var i in data.columnHeaders) {
-                            if (!datatabledetail.isMultirow) {
-                                if (data.columnHeaders[i].columnName != "client_id") {
-                                    var row = {};
-                                    row.key = data.columnHeaders[i].columnName;
-                                    row.value = data.data[0].row[i];
-                                    datatabledetail.singleRow.push(row);
-                                }
-                            }
-                        }
-                    }
+
                     scope.datatabledetails.push(datatabledetail);
                 });
-
-                // Scoring Total
-                scope.scoringExternalTotal = scope.getRandomInt(250, 500);
-                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + (scope.scoringExternalTotal + 0.8);
             };
+
+            scope.reScale = function (value, min, max) {
+                return ((value - min) / (max - min)).toFixed(2);
+            }
 
             scope.getDataTableScoring = function () {
                 if (scope.dataTableScoring == 0) return "";
