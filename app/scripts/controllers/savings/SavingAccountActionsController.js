@@ -332,6 +332,10 @@
                     scope.waiveCharge = true;
                     scope.taskPermissionName = 'WAIVE_SAVINGSACCOUNTCHARGE';
                     break;
+                case "block":
+                    scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNTCHARGE';
+                    scope.fetchEntities('m_savings_account','BLOCK');
+                    break;
             }
 
             scope.cancel = function () {

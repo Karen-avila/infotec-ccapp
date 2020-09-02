@@ -340,6 +340,9 @@
                     holidayTemplateResource: defineResource(apiVer + "/holidays/template", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
+                    savingsAccountBlock: defineResource(apiVer + "/savingsaccounts/:savingsId", {accountId: '@accountId',command: '@command' }, {
+                        block:{method: 'POST', params: {command:'block'} }
+                    }),
                     savingsTemplateResource: defineResource(apiVer + "/savingsaccounts/template", {}, {
                         get: { method: 'GET', params: {} }
                     }),

@@ -221,6 +221,9 @@
           case "postInterestAsOn":
             location.path("/savingaccount/" + accountId + "/postInterestAsOn");
             break;
+          case "block":
+            location.path("/savingaccount/" + accountId + "/block");
+            break;
         }
       };
 
