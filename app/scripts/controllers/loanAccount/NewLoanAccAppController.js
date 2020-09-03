@@ -25,9 +25,6 @@
             scope.date.first = new Date();
             scope.date.second = new Date();
 
-            scope.date.third = new Date();
-            scope.date.fourth = new Date();
-
             scope.minDatePicker = new Date(MIN_DATEPICKER);
             scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
