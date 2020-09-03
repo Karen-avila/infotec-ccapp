@@ -7,6 +7,7 @@
             scope.restrictDate = new Date();
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
+          
             if (routeParams.centerEntity) {
                 scope.centerEntity = true;
             }
@@ -40,6 +41,7 @@
             });
 
             scope.changeProduct = function () {
+              
                 scope.inparams.productId = scope.formData.productId;
                 resourceFactory.fixedDepositAccountTemplateResource.get(scope.inparams, function (data) {
 
