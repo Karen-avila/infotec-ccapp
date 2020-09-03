@@ -191,6 +191,9 @@
           case "block":
               location.path("/savingaccount/" + accountId + "/block");
               break;
+          case "unblock":
+              location.path("/savingaccount/" + accountId + "/unblock");
+              break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
@@ -363,15 +366,26 @@
                   taskPermissionName: "CREATE_SAVINGSACCOUNTCHARGE",
                 },
                 {
-                  name: "button.block",
-                  taskPermissionName: "BLOCK_SAVINGSACCOUNT",
-                },
-                {
                   name: "button.close",
                   taskPermissionName: "CLOSE_SAVINGSACCOUNT",
                 },
               ],
             };
+
+            console.log(data.subStatus.value);
+            console.log((data.subStatus.value == "Block"));
+            if (data.subStatus.value == "Block") {
+              scope.buttons.options.splice(2, 0, {
+                name: "button.unblock",
+                taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
+              });
+            } else {
+              scope.buttons.options.splice(2, 0, {
+                name: "button.block",
+                taskPermissionName: "BLOCK_SAVINGSACCOUNT",
+              });
+            }
+
             if (data.clientId) {
               scope.buttons.options.push({
                 name: "button.transferFunds",
@@ -403,6 +417,7 @@
               }
             }
           }
+
           if (data.annualFee) {
             var annualdueDate = [];
             annualdueDate = data.annualFee.feeOnMonthDay;

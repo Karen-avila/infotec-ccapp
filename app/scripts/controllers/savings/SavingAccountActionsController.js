@@ -367,10 +367,9 @@
             }
 
             scope.submit = function () {
-                console.log(scope.action);
                 var params = {command: scope.action};
 
-                if (scope.action != "undoapproval") {
+                if (scope.action != "undoapproval" && scope.action != "block") {
                     this.formData.locale = scope.optlang.code;
                     this.formData.dateFormat = scope.setTransactionDate(this.formData[scope.modelName], scope.modelName);
                 }
@@ -456,7 +455,7 @@
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "block") {
-                        params = {accountId: routeParams.id, command:'block'};
+                        params = {accountId: routeParams.id, command: 'block'};
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
