@@ -5934,5 +5934,6 @@
     "datatable.datos_socioeconomicos":"Datos Socioeconómicos",
     "datatable.direccion":"Dirección",
     "datatable.reputacion":"Reputación",
+    "label.account..total.withdrawals": "Retiros hasta la fecha",
     "----End---": "---Fin del archivo---"
 }
