@@ -194,6 +194,9 @@
           case "unblock":
               location.path("/savingaccount/" + accountId + "/unblock");
               break;
+          case "unblock":
+              location.path("/savingaccount/" + accountId + "/unblock");
+              break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
