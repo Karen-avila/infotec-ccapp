@@ -22,10 +22,10 @@
                             <span class="required">*</span>:&nbsp;</label>
                     </td>
                     <td class="width36 paddedbottom20">
-                        <select id="productId" ng-model="formData.productId" ng-options="product.id as product.name for product in products" value="{{product.id}}"
-                            ng-change="changeProduct()" class="form-control width170px" required="required">
-                            <option style="display:none" value="">{{'label.selectrecurringdepositproduct' | translate}}</option>
-                        </select>
+                         <md-select id="productId" ng-model="formData.productId" ng-change="changeProduct()"
+                       class="form-control width170px" placeholder="{{'label.selectrecurringdepositproduct' | translate}}" required="required">
+                       <md-option value="{{product.id}}" ng-repeat="product in products">{{product.name}}</md-option>
+                   </md-select>
                     </td>
                     <td class="width14">
                         <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate }}&nbsp;
@@ -33,9 +33,8 @@
                         </label>
                     </td>
                     <td class="width36 paddedbottom20">
-                        <input ng-show="formData.productId" id="submittedOnDate" sort type="text" name="submittedOnDate" datepicker-pop="dd MMMM yyyy"
-                            ng-model="date.submittedOnDate" is-open="opened" min="minDate" max="restrictDate" class="form-control"
-                            required late-validate>
+                        <md-datepicker ng-show="formData.productId" id="submittedOnDate" name="submittedOnDate" ng-model="date.submittedOnDate" is-open="opened" md-min-date="minDate" md-max-date="restrictDate" required>
+                        </md-datepicker>
                         <form-validate valattributeform="newsavingccountform" valattribute="submittedOnDate">
                     </td>
                 </tr>
@@ -44,10 +43,9 @@
                         <label>{{'label.input.fieldofficer' | translate }}:&nbsp;</label>
                     </td>
                     <td class="width36 paddedbottom20">
-                        <select id="fieldOfficerId" ng-model="formData.fieldOfficerId" class="form-control width170px" ng-options="fieldOfficer.id as fieldOfficer.displayName for fieldOfficer in fieldOfficers"
-                            value="{{fieldOfficer.id}}" class="form-control">
-                            <option value="">{{'label.selectfieldofficer' | translate}}</option>
-                        </select>
+                        <md-select id="fieldOfficerId" ng-model="formData.fieldOfficerId" class="form-control width170px" placeholder="{{'label.selectfieldofficer' | translate}}" class="form-control">
+                        <md-option ng-repeat="fieldOfficer in fieldOfficers"  value="{{fieldOfficer.id}}"> {{fieldOfficer.displayName}}</md-option>
+                    </md-select>
                     </td>
                 </tr>
             </table>
@@ -81,8 +79,9 @@
                             </label>
                         </td>
                         <td class="width36 paddedbottom20">
-                            <select id="interestCompoundingPeriodType" ng-model="formData.interestCompoundingPeriodType" ng-options="type.id as type.value for type in data.interestCompoundingPeriodTypeOptions"
-                                value="{{type.id}}" class="form-control width170px"></select>
+                            <md-select id="interestCompoundingPeriodType" ng-model="formData.interestCompoundingPeriodType" class="form-control width170px">
+                                <md-option ng-repeat="type in data.interestCompoundingPeriodTypeOptions"  value="{{type.id}}"> {{type.value}}</md-option>
+                            </md-select>
                         </td>
                         <td class="width14">
                             <label class="control-label">{{'label.input.interestpostingperiod' | translate }}&nbsp;
@@ -90,9 +89,9 @@
                             </label>
                         </td>
                         <td class="width36 paddedbottom20">
-                            <select id="interestPostingPeriodType" ng-model="formData.interestPostingPeriodType" ng-options="type.id as type.value for type in data.interestPostingPeriodTypeOptions"
-                                value="{{type.id}}" class="form-control width170px">
-                            </select>
+                            <md-select id="interestPostingPeriodType" ng-model="formData.interestPostingPeriodType" class="form-control width170px">
+                                <md-option ng-repeat="type in data.interestPostingPeriodTypeOptions"  value="{{type.id}}"> {{type.value}}</md-option>
+                            </md-select>
                         </td>
                     </tr>
                     <tr>
@@ -102,9 +101,9 @@
                             </label>
                         </td>
                         <td class="width36 paddedbottom20">
-                            <select id="interestCalculationType" ng-model="formData.interestCalculationType" class="form-control width170px" ng-options="type.id as type.value for type in data.interestCalculationTypeOptions"
-                                value="{{type.id}}">
-                            </select>
+                            <md-select id="interestCalculationType" ng-model="formData.interestCalculationType" class="form-control width170px">
+                                <md-option ng-repeat="type in data.interestCalculationTypeOptions"  value="{{type.id}}"> {{type.value}}</md-option>
+                            </md-select>
                         </td>
                         <td class="width14">
                             <label class="control-label">{{'label.input.daysinyears' | translate }}&nbsp;
@@ -113,9 +112,9 @@
                         </td>
 
                         <td class="width36 paddedbottom20">
-                            <select id="interestCalculationDaysInYearType" ng-model="formData.interestCalculationDaysInYearType" ng-options="type.id as type.value for type in data.interestCalculationDaysInYearTypeOptions"
-                                value="{{type.id}}" class="form-control width170px">
-                            </select>
+                            <md-select id="interestCalculationDaysInYearType" ng-model="formData.interestCalculationDaysInYearType" class="form-control width170px">
+                                <md-option ng-repeat="type in data.interestCalculationDaysInYearTypeOptions"  value="{{type.id}}"> {{type.value}}</md-option>
+                            </md-select>
                         </td>
                     </tr>
                     <tr>
@@ -125,10 +124,9 @@
                         <td class="width36 paddedbottom20">
                             <div class="form-inline">
                                 <input id="lockinPeriodFrequency" type="text" class="form-control" ng-model="formData.lockinPeriodFrequency">&nbsp;
-                                <select id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType" class="form-control width170px" ng-options="type.id as type.value for type in data.lockinPeriodFrequencyTypeOptions"
-                                    value="{{type.id}}">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
+                                <md-select id="lockinPeriodFrequencyType" ng-model="formData.lockinPeriodFrequencyType" class="form-control width170px">
+                                    <md-option ng-repeat="type in data.lockinPeriodFrequencyTypeOptions" value="{{type.id}}">{{type.value}}</md-option>
+                                </md-select>
                             </div>
                         </td>
                         <td class="width14"></td>
@@ -169,10 +167,9 @@
                         <td class="width36 paddedbottom20">
                             <div class="form-inline">
                                 <input id="depositPeriod" class="form-control" type="text" ng-model="formData.depositPeriod">
-                                <select id="depositPeriodFrequencyId" ng-model="formData.depositPeriodFrequencyId" class="form-control width170px" ng-options="type.id as type.value for type in data.periodFrequencyTypeOptions"
-                                    value="{{type.id}}">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
+                                <md-select id="depositPeriodFrequencyId" ng-model="formData.depositPeriodFrequencyId" placeholder="{{'label.selectone' | translate}}" class="form-control width170px">
+                                    <md-option ng-repeat="type in data.periodFrequencyTypeOptions" value="{{type.id}}">{{type.value}}</md-option>
+                               </md-select>
                             </div>
                         </td>
                     </tr>
@@ -203,10 +200,10 @@
                                 <input id="recurringFrequency" class="form-control" type="text" name="recurringFrequency" ng-model="formData.recurringFrequency"
                                     required late-validate>
 
-                                <select id="recurringFrequencyType" ng-model="formData.recurringFrequencyType" class="form-control width170px" ng-options="type.id as type.value for type in data.periodFrequencyTypeOptions"
-                                    value="{{type.id}}">
-                                    <option value="">{{'label.selectone' | translate}}</option>
-                                </select>
+                                <md-select id="recurringFrequencyType" ng-model="formData.recurringFrequencyType" class="form-control width170px">
+                                    <md-option ng-repeat="type in data.periodFrequencyTypeOptions" value="{{type.id}}">{{type.value}}</md-option>
+                                   <md-option value=""></md-option>
+                               </md-select>
                                 <div class="col-sm-3">
                                     <form-validate valattributeform="newsavingccountform" valattribute="recurringFrequency" />
                                 </div>
@@ -310,10 +307,10 @@
                 <hr/>
                 <h3 class="control-label">{{'label.heading.charges' | translate }}</h3>
                 <br>
-                <select ng-model="chargeId" ng-options="charge.id as (charge.name + ',' + charge.currency.displaySymbol) for charge in chargeOptions|filter:data.currency.code:strict"
-                    value="{{charge.id}}" class="form-control width170px">
-                    <option class="displaynone" value="">{{'label.selectcharge' | translate}}</option>
-                </select>
+                <md-select ng-model="chargeId" class="form-control width170px" placeholder="{{'label.selectcharge' | translate}}">
+                    <md-option ng-repeat="charge in chargeOptions|filter:data.currency.code:strict" value="{{charge.id}}" >{{charge.name + ',' + charge.currency.displaySymbol}}</md-option>
+                    <md-option class="displaynone" value=""></md-option>
+                </md-select>
                 <a class="btn btn-sm btn-primary" ng-click="addCharge(chargeId)">
                     <i class="fa fa-plus "></i>&nbsp;Add</a>
                 <span ng-show="errorchargeevent">
@@ -345,8 +342,8 @@
                                 is-open="opened" />
                         </td>
                         <td ng-show="charge.chargeTimeType.value=='Specified due date'">
-                            <input id="charges[{{$index}}].dueDate" class="date-disable form-control" type="text" datepicker-pop="dd MMMM yyyy" ng-model="charge.dueDate"
-                                is-open="opened" />
+                            <md-datepicker  id="charges[{{$index}}].dueDate"  ng-model="charge.dueDate" is-open="opened" >
+                                </md-datepicker>
                         </td>
                         <td ng-show="charge.chargeTimeType.value=='Monthly Fee'">
                             <input class="date-disable form-control" type="text" datepicker-pop="dd MMMM" ng-model="charge.feeOnMonthDay" is-open="opened"
