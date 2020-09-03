@@ -11,12 +11,23 @@
             }
             scope.filterText = scope.searchCriteria.rdp || '';
 
+            scope.totalReports = 0;
+            scope.query = {
+                order: 'name',
+                limit: 15,
+                page: 1
+            };
+
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+            };
+
             scope.onFilter = function () {
                 scope.searchCriteria.rdp = scope.filterText;
                 scope.saveSC();
             };
 
-            scope.RecurringDepositsPerPage =15;
             resourceFactory.recurringDepositProductResource.getAllRecurringDepositProducts(function (data) {
                 scope.depositproducts = data;
             });

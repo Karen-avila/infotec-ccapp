@@ -5937,5 +5937,17 @@
     "datatable.datos_socioeconomicos":"Datos Socioeconómicos",
     "datatable.direccion":"Dirección",
     "datatable.reputacion":"Reputación",
-    "----End---": "---Fin del archivo---"
+    "----End---": "---Fin del archivo---",
+    "validation.msg.recurringdeposit.name.cannot.be.blank":"El nombre no puede estar vacío.",
+    "validation.msg.recurringdeposit.shortName.cannot.be.blank":"El nombre corto no puede estar vacío.",
+    "validation.msg.recurringdeposit.description.cannot.be.blank":"La descripcion no puede estar vacío.",
+    "validation.msg.recurringdeposit.minDepositTerm.cannot.be.blank": "Frecuencia mínima de depósito a plazo",
+    "validation.msg.recurringdeposit.fromDate.cannot.be.blank": "Desde la Fecha",
+    "validation.msg.recurringdeposit.depositAmount.cannot.be.blank":  "Monto del depósito",
+    "validation.msg.fixeddeposit.name.cannot.be.blank":"El nombre no puede estar vacío.",
+    "validation.msg.fixeddeposit.shortName.cannot.be.blank":"El nombre corto no puede estar vacío.",
+    "validation.msg.fixeddeposit.description.cannot.be.blank":"La descripcion no puede estar vacío.",
+    "validation.msg.fixeddeposit.minDepositTerm.cannot.be.blank": "Frecuencia mínima de depósito a plazo",
+    "validation.msg.fixeddeposit.fromDate.cannot.be.blank": "Desde la Fecha",
+    "validation.msg.fixeddeposit.depositAmount.cannot.be.blank":  "Monto del depósito"
 }

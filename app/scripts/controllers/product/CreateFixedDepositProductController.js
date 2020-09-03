@@ -10,6 +10,12 @@
             scope.penaltySpecificIncomeaccounts = [];
             scope.configureFundOption = {};
             scope.isClicked = false;
+            scope.maxStep = 7;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
+            scope.frFlag = false;
+            scope.fiFlag = false;
+            scope.piFlag = false;
 
             //interest rate details
             scope.chart = {};
@@ -17,6 +23,7 @@
             scope.fromDate = {}; //required for date formatting
             scope.endDate = {};//required for date formatting
             scope.isPrimaryGroupingByAmount = false;
+            scope.accountLevels = [1,2,3,4];
 
             resourceFactory.fixedDepositProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
@@ -27,8 +34,7 @@
                 scope.expenseAccountOptions = scope.product.accountingMappingOptions.expenseAccountOptions || [];
 
                 scope.formData.currencyCode = data.currencyOptions[0].code;
-                scope.formData.digitsAfterDecimal = '2';
-                scope.formData.inMultiplesOf = '0';
+                scope.formData.digitsAfterDecimal = data.currencyOptions[0].decimalPlaces;
                 scope.formData.interestCompoundingPeriodType = data.interestCompoundingPeriodType.id;
                 scope.formData.interestPostingPeriodType = data.interestPostingPeriodType.id;
                 scope.formData.interestCalculationType = data.interestCalculationType.id;
@@ -208,6 +214,10 @@
                     vm.stepProgress = vm.stepProgress + 1;
                 }
                 vm.selectedStep = vm.selectedStep + 1;
+
+                if(vm.selectedStep + 1 == scope.maxStep) {
+                    scope.isClicked = true;
+                }
             }
             /**
              * Go to previus step
