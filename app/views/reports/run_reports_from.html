@@ -156,10 +156,10 @@
                         </thead>
                         <tbody md-body>
                             <tr md-row id="{{$index}}" ng-repeat="row in reportData.data track by $index">
-                                <td md-cell ng-repeat="col in row.row track by $index">
+                                <td md-cell ng-repeat="item in row.rows track by $index">
                                     <span ng-show="isDecimal($index)"
-                                        class="amount">{{col | FormatNumber:decimalsChoice}}</span>
-                                    <span ng-hide="isDecimal($index)">{{col}}</span>
+                                        class="amount">{{item.value | FormatNumber:decimalsChoice}}</span>
+                                    <span ng-hide="isDecimal($index)">{{item.value}}</span>
                                 </td>
                             </tr>
                         </tbody>

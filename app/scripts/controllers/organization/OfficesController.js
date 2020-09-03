@@ -7,7 +7,7 @@
 
             scope.query = {
                 order: "name",
-                limit: 5,
+                limit: 25,
                 page: 1,
             };
 

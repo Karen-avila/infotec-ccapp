@@ -56,17 +56,18 @@
           resourceFactory.runReportsResource.getReport({reportSource: 'FullParameterList', parameterType: true, 
             R_reportListing: "'" + routeParams.name + "'"}, function (data) {
               for (var i in data.data) {
+                  console.log(JSON.stringify(data.data[i].rows));
                   var temp = {
-                      name: data.data[i].row[0],
-                      variable: data.data[i].row[1],
-                      label: data.data[i].row[2],
-                      displayType: data.data[i].row[3],
-                      formatType: data.data[i].row[4],
-                      defaultVal: data.data[i].row[5],
-                      selectOne: data.data[i].row[6],
-                      selectAll: data.data[i].row[7],
-                      parentParameterName: data.data[i].row[8],
-                      inputName: "R_" + data.data[i].row[1] //model name
+                      name: data.data[i].rows[0].value,
+                      variable: data.data[i].rows[1].value,
+                      label: data.data[i].rows[2].value,
+                      displayType: data.data[i].rows[3].value,
+                      formatType: data.data[i].rows[4].value,
+                      defaultVal: data.data[i].rows[5].value,
+                      selectOne: data.data[i].rows[6].value,
+                      selectAll: data.data[i].rows[7].value,
+                      parentParameterName: data.data[i].rows[8].value,
+                      inputName: "R_" + data.data[i].rows[1].value //model name
                   };
                   scope.reqFields.push(temp);
                   if (temp.displayType == 'select') {
@@ -87,12 +88,11 @@
           }
     
           function getSuccuessFunction(paramData) {
-              var tempDataObj = new Object();
               var successFunction = function (data) {
                   var selectData = [];
                   var isExistedRecord = false;
                   for (var i in data.data) {
-                      selectData.push({id: data.data[i].row[0], name: data.data[i].row[1]});
+                      selectData.push({id: data.data[i].rows[0], name: data.data[i].rows[1]});
                   }
                   for (var j in scope.reportParams) {
                       if (scope.reportParams[j].name == paramData.name) {
@@ -342,14 +342,19 @@
                           resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
                               //clear the csvData array for each request
                               scope.csvData = [];
-                              scope.reportData.columnHeaders = data.columnHeaderData;
+                              scope.reportData.columnHeaders = data.columnHeaders;
                               scope.reportData.data = data.data;
                               for (var i in data.columnHeaders) {
                                   scope.row.push(data.columnHeaders[i].columnName);
                               }
                               scope.csvData.push(scope.row);
                               for (var k in data.data) {
-                                  scope.csvData.push(data.data[k].row);
+                                  const rows = data.data[k].rows;
+                                  var items = [];
+                                  for (var l in rows) {
+                                      items.push(rows[l].value);
+                                  }
+                                  scope.csvData.push(items.join(scope.delimiterChoice));
                               }
                           });
                           break;
@@ -392,15 +397,15 @@
                               var l = data.data.length;
                               for (var i = 0; i < l; i++) {
                                   scope.row = {};
-                                  scope.row.key = data.data[i].row[0];
-                                  scope.row.values = data.data[i].row[1];
+                                  scope.row.key = data.data[i].rows[0];
+                                  scope.row.values = data.data[i].rows[1];
                                   scope.chartData.push(scope.row);
                               }
                               var x = {};
                               x.key = "summary";
                               x.values = [];
                               for (var m = 0; m < l; m++) {
-                                  var inner = [data.data[m].row[0], data.data[m].row[1]];
+                                  var inner = [data.data[m].rows[0], data.data[m].rows[1]];
                                   x.values.push(inner);
                               }
                               scope.barData.push(x);

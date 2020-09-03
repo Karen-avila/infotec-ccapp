@@ -2,8 +2,9 @@
   mifosX.controllers = _.extend(module, {
     ReportsController: function (scope, resourceFactory, location) {
       scope.reports = [];
-
       scope.totalReports = 0;
+      scope.selected;
+
       scope.query = {
         order: "displayName",
         limit: 25,
@@ -12,8 +13,13 @@
 
       scope.options = {
         boundaryLinks: true,
-        rowSelection: true,
+        rowSelection: true
       };
+
+      resourceFactory.reportsResource.getReport(function (data) {
+        scope.reports = data;
+        scope.totalReports = scope.reports.length;
+      });
 
       scope.routeTo = function (id) {
         location.path("/system/viewreport/" + id);
@@ -29,11 +35,6 @@
         scope.searchCriteria.manrep = scope.filterText;
         scope.saveSC();
       };
-
-      resourceFactory.reportsResource.getReport(function (data) {
-        scope.reports = data;
-        scope.totalReports = data.length;
-      });
 
       scope.filters = [];
       scope.$watch("filter.search", function (newValue, oldValue) {
