@@ -188,7 +188,7 @@
           case "close":
             location.path("/savingaccount/" + accountId + "/close");
             break;
-          case "blocksavings":
+          case "block":
               location.path("/savingaccount/" + accountId + "/block");
               break;
           case "assignSavingsOfficer":
@@ -223,9 +223,6 @@
             break;
           case "postInterestAsOn":
             location.path("/savingaccount/" + accountId + "/postInterestAsOn");
-            break;
-          case "block":
-            location.path("/savingaccount/" + accountId + "/block");
             break;
         }
       };
@@ -366,8 +363,8 @@
                   taskPermissionName: "CREATE_SAVINGSACCOUNTCHARGE",
                 },
                 {
-                  name: "button.blocksavings",
-                  taskPermissionName: "BLOCK_SAVINGSACCOUNTCHARGE",
+                  name: "button.block",
+                  taskPermissionName: "BLOCK_SAVINGSACCOUNT",
                 },
                 {
                   name: "button.close",

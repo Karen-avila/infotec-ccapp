@@ -236,10 +236,11 @@
                     scope.taskPermissionName = 'APPLYANNUALFEE_SAVINGSACCOUNT';
                     break;
                 case "block":
-                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (accountData) {
-                        scope.blockReasons = accountData.codeValues;
+                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (data) {
+                        scope.blockReasons = data.codeValues;
                     });
 
+                    resourceFactory.savingsResource.get({accountId: routeParams.id});
                     scope.title = 'label.heading.closesavingaccount';
                     scope.labelName = 'label.input.closedon';
                     scope.showDateField = false;
@@ -248,6 +249,7 @@
                     scope.postInterestValidationOnClosure = false;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNT';
+                    scope.fetchEntities('m_savings_account','BLOCK');
                     break;
                 case "close":
                     resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
@@ -365,6 +367,7 @@
             }
 
             scope.submit = function () {
+                console.log(scope.action);
                 var params = {command: scope.action};
 
                 if (scope.action != "undoapproval") {
@@ -453,7 +456,7 @@
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "block") {
-                        this.formData = {};
+                        params = {accountId: routeParams.id, command:'block'};
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
