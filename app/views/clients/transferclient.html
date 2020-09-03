@@ -22,8 +22,8 @@
                         class=
                         "required">*</span></label>
                 <div class="col-sm-3">
-                        <input id="transferDate" type="text" name="transferDate" datepicker-pop="dd MMMM yyyy"
-                               class="form-control paddedbottom10 paddedtop" ng-model="formData.transferDate" is-open="opened" min="'2000-01-01'" max="restrictDate" autocomplete="off"/>
+                               <md-datepicker id="transferDate" name="transferDate"  class="form-control paddedbottom10 paddedtop" is-open="opened" ng-model="formData.transferDate" autocomplete="off" md-min-date="'2000-01-01'" md-max-date="restrictDate" ng-change="calculateAge(date.dateofbirth)">
+                            </md-datepicker>
                 </div>
             </div>
             <div class="form-group">

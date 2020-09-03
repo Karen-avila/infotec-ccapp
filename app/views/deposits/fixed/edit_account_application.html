@@ -27,10 +27,9 @@
                     <label ng-show="formData.productId" class="control-label">{{'label.input.submittedon' | translate
                         }}&nbsp;<span class="required">*</span></label>
                 </td>
-                <td class="width36 paddedbottom10">
-                    <input ng-show="formData.productId" id="submittedOnDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-                           ng-model="formData.submittedOnDate" is-open="opened" min="minDate" max="restrictDate"
-                           class="form-control"/>
+                <td class="width36 paddedbottom10">                 
+                           <md-datepicker ng-show="formData.productId" id="submittedOnDate"  is-open="opened" ng-model="formData.submittedOnDate" md-min-date="minDate" md-max-date="restrictDate">
+                        </md-datepicker>
                 </td>
             </tr>
             <tr ng-show="formData.productId">
@@ -285,8 +284,9 @@
                            type="text" datepicker-pop="dd MMMM" ng-model="charge.feeOnMonthDay" is-open="opened"/>
                 </td>
                 <td ng-show="charge.chargeTimeType.value=='Specified due date'">
-                    <input id="charges[{{$index}}].dueDate" class="date-disable form-control"
-                           type="text" datepicker-pop="dd MMMM yyyy" ng-model="charge.dueDate" is-open="opened"/>
+
+                    <md-datepicker id="charges[{{$index}}].dueDate" class="date-disable"  name="transactiondate"  is-open="opened" ng-model="charge.dueDate">
+                        </md-datepicker>
                 </td>
                 <td ng-show="charge.chargeTimeType.value=='Monthly Fee'">
                     <input class="date-disable form-control" type="text" datepicker-pop="dd MMMM"

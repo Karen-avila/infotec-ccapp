@@ -59,7 +59,7 @@
     </div>
     <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate }}<span class="required">*</span></label>
     <div class="col-sm-2">
-        <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+        <input type="text" id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
                ng-model="formData.digitsAfterDecimal" required late-validate/>
     </div>
     <div class="col-sm-2">

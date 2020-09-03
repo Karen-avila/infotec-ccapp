@@ -137,7 +137,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="number"
+                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="text" only-number
                                ng-model="formData.feeInterval" late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="feeIntervalLoan"/>
                     </div>
@@ -147,7 +147,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="number"
+                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="text" only-number
                                ng-model="formData.feeInterval" ng-required="repeatEvery" late-Validate/>
                     </div>
                     <div class="col-sm-4 paddingleft0px">
@@ -160,7 +160,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input id="amount" name="amount" type="number" ng-model="formData.amount" class="form-control" required late-Validate/>
+                        <input id="amount" name="amount" type="text" only-number ng-model="formData.amount" class="form-control" required late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="amount"/>
                     </div>
                 </div>

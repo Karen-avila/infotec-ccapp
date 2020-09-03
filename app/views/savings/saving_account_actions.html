@@ -51,7 +51,7 @@
                     translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="number" class="form-control" ng-model="accountBalance" readonly />
+                            <input type="text" only-number class="form-control" ng-model="accountBalance" readonly />
                         </div>
                     </div>
                     <div ng-show="isTransaction">
@@ -60,7 +60,7 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <input id="transactionAmount" type="number" name="transactionAmount"
+                                <input id="transactionAmount" type="text" only-number name="transactionAmount"
                                     ng-model="formData.transactionAmount" class="form-control" required
                                     late-Validate />
                             </div>
@@ -146,7 +146,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="amoun" type="number" name="amount" ng-model="formData.amount" required />
+                            <input id="amoun" type="text" only-number name="amount" ng-model="formData.amount" required />
                             <span ng-show="savingccountactionform.amoun.$invalid">
                                 <small class="error">
                                     {{'label.requiredfield' | translate}}
@@ -167,7 +167,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="number" id="amount" ng-model="formData.amount" class="form-control" />
+                            <input type="text" only-number id="amount" ng-model="formData.amount" class="form-control" />
                         </div>
                     </div>
 
