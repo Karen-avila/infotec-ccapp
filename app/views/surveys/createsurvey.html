@@ -124,7 +124,7 @@
                                                       <label class="control-label col-sm-2" for="name">{{'label.heading.value' | translate}}<span
                                                       class="required">*</span></label>
                                                       <div class="col-sm-3">
-                                                          <input type="number" id="text" name="value" onKeyPress="if(this.value.length>3) return false;"  ng-model="option.value" class="form-control"
+                                                          <input type="text" only-number id="text" name="value" onKeyPress="if(this.value.length>3) return false;"  ng-model="option.value" class="form-control"
                                                           required late-Validate/>
                                                       </div>
                                                       <div class="col-sm-1">

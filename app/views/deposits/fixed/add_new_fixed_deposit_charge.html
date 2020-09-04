@@ -65,8 +65,8 @@
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
-				                    <input class="form-control" id="feeOnAnnualMonthDay" sort type="text" datepicker-pop="dd MMMM yyyy"
-				                           ng-model="date.specificduedate" is-open="opened"/>
+										   <md-datepicker id="feeOnAnnualMonthDay"  is-open="opened" ng-model="date.specificduedate">
+										</md-datepicker>
 				                </div>
 				            </div>
 				            <div class="form-group" ng-show="!withDrawCharge && chargeTimeTypeAnnualOrMonth">

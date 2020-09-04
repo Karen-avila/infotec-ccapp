@@ -86,10 +86,10 @@
 						<div class="col-sm-3">
 							<table>
 								<tr>
-									<td><input id="hourStartTime" type="number" class="input-smaller" min="00" max="23"
+									<td><input id="hourStartTime" type="text" only-number class="input-smaller" min="00" max="23"
 											placeholder="HH" ng-model="formData.hourStartTime"></td>
 									<td><span>:</span></td>
-									<td><input id="minStartTime" type="number" class="input-smaller" min="00" max="59"
+									<td><input id="minStartTime" type="text" only-number class="input-smaller" min="00" max="59"
 											placeholder="mm" ng-model="formData.minStartTime"></td>
 								</tr>
 							</table>
@@ -101,10 +101,10 @@
 						<div class="col-sm-3">
 							<table>
 								<tr>
-									<td><input id="hourEndTime" type="number" class="input-smaller" min="0" max="24"
+									<td><input id="hourEndTime" type="text" only-number class="input-smaller" min="0" max="24"
 											placeholder="HH" ng-model="formData.hourEndTime"></td>
 									<td>:</td>
-									<td><input id="minEndTime" type="number" class="input-smaller" min="0" max="60"
+									<td><input id="minEndTime" type="text" only-number class="input-smaller" min="0" max="60"
 											placeholder="mm" ng-model="formData.minEndTime"></td>
 								</tr>
 							</table>

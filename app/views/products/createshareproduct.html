@@ -84,8 +84,8 @@
                             <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductdecimalplaces' | translate}}" tooltip-append-to-body="true"></i>
                         </label>
                         <div class="col-sm-2">
-                            <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
-                                   ng-model="formData.digitsAfterDecimal" required late-validate number=true />
+                            <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
+                                   ng-model="formData.digitsAfterDecimal" required late-validate  />
                         </div>
                         <div class="col-sm-2">
                             <form-validate valattributeform="Currency" valattribute="decimalplace"/>

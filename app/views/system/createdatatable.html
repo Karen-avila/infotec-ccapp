@@ -80,7 +80,7 @@
 									class="required"> *</span></label>
 						</div>
 						<div class="col-sm-2" ng-show="formData.scoring">
-							<input id="scoringWeight" type="number" name="scoringWeight"
+							<input id="scoringWeight" type="text" only-number name="scoringWeight"
 								ng-model="formData.scoringWeight" class="form-control" required min="0" max="100" late-Validate />
 							<form-validate valattributeform="createdatatableweight" valattribute="scoringWeight" />
 						</div>
