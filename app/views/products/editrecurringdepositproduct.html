@@ -288,6 +288,15 @@
     </div>
 </div>
 <h3>{{'label.heading.interestchart' | translate }}</h3>
+<tr>
+    <td colspan="4">
+        <div class="pull-right">
+            <a href="#!/interestratecharts/{{product.id}}/{{product.name}}/recurringdepositproduct">{{'label.anchor.interestratechartviewedit'
+                | translate}}</a>
+        </div>
+    </td>
+</tr>
+<br>
 <hr>
 <!--<tr>
        <td>
@@ -331,8 +340,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="control-label col-sm-2" for="name">{{'label.input.interestratechart.primary.grouping.amount' |
-        translate }}</label>
+    <label class="control-label col-sm-2" for="name">{{'label.input.interestratechart.primary.grouping.amount' | translate }}</label>
     <div class="col-sm-2">
         <label class="checkbox">
             <input id="isPrimaryGroupingByAmount" type="checkbox" ng-model="isPrimaryGroupingByAmount">
