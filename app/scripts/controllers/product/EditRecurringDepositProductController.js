@@ -16,10 +16,12 @@
             scope.endDate = {};//required for date formatting
             scope.deletedincentives = [];
             scope.isPrimaryGroupingByAmount = false;
+            scope.applyCurrentInterestRateChart = false;
 
             resourceFactory.recurringDepositProductResource.get({productId: routeParams.productId, template: 'true'}, function (data) {
                 scope.product = data;
                 scope.charges = data.charges;
+                scope.applyCurrentInterestRateChart = data.applyCurrentInterestRateChart;
                 scope.assetAccountOptions = scope.product.accountingMappingOptions.assetAccountOptions || [];
                 scope.liabilityAccountOptions = scope.product.accountingMappingOptions.liabilityAccountOptions || [];
                 scope.incomeAccountOptions = scope.product.accountingMappingOptions.incomeAccountOptions || [];
@@ -248,8 +250,9 @@
                 this.formData.penaltyToIncomeAccountMappings = scope.penaltyToIncomeAccountMappings;
                 this.formData.charges = scope.chargesSelected;
                 this.formData.locale = scope.optlang.code;
-                this.formData.charts = [];//declare charts array
-                this.formData.charts.push(copyChartData(scope.chart));//add chart details
+                this.formData.charts = []; //declare charts array
+                this.formData.charts.push(copyChartData(scope.chart)); //add chart details
+                this.formData.applyCurrentInterestRateChart = scope.applyCurrentInterestRateChart;
                 this.formData = removeEmptyValues(this.formData);
                 resourceFactory.recurringDepositProductResource.update({productId: routeParams.productId}, this.formData, function (data) {
                     location.path('/viewrecurringdepositproduct/' + data.resourceId);

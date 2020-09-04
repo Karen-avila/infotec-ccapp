@@ -4,7 +4,7 @@
         <li><a href="#!/fixeddepositproducts">{{'label.anchor.fixeddepositproducts' | translate}}</a></li>
         <li class="active">{{'label.anchor.createfixeddepositproduct' | translate}}</li>
     </ul>
-    isClicked : {{isClicked}}
+    
     <md-content flex="nogrow" style="margin: 40px auto">
         <md-card>
             <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always"
@@ -605,9 +605,7 @@
                                 <hr>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.from'
-                            |
-                            translate }}<span class="required">*</span>
+                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.from' | translate }}<span class="required">*</span>
                                     </label>
                                     <div class="col-sm-3">
                                         <md-datepicker id="fromDate" ng-model="fromDate.date" min="minDate" max="restrictDate" required></md-datepicker>
@@ -619,8 +617,7 @@
                                         <form-validate valattributeform="interestchart" valattribute="fromDate" />
 
                                     </div>
-                                    <label class="control-label col-sm-3" for="name">{{
-                            'label.input.interestratechart.valid.to' | translate }}</label>
+                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.to' | translate }}</label>
                                     <div class="col-sm-3">
                                         <md-datepicker id="endDate" ng-model="endDate.date" min="minDate" max="restrictDate" required></md-datepicker>
                                         <!--
@@ -632,16 +629,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="name">{{
-                            'label.input.interestratechart.primary.grouping.amount' |
-                            translate }}</label>
-                                    <div class="col-sm-3">
-                                        <label class="checkbox">
-                                            <input id="isPrimaryGroupingByAmount" type="checkbox"
-                                                ng-model="isPrimaryGroupingByAmount">
-
-                                        </label>
+                                    <div class="col-sm-2 right">
+                                        <md-checkbox id="isPrimaryGroupingByAmount" ng-model="isPrimaryGroupingByAmount" ng-true-value="true" ng-false-value="false"></md-checkbox>
                                     </div>
+                                    <label class="control-label col-sm-9 left">{{'label.input.interestratechart.primary.grouping.amount' | translate }}
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-2 right">
+                                        <md-checkbox id="applyCurrentInterestRateChart" ng-model="applyCurrentInterestRateChart" ng-true-value="true" ng-false-value="false"></md-checkbox>
+                                    </div>
+                                    <label class="control-label col-sm-9 left">{{'label.input.interestratechart.current.apply.chart' | translate }}
+                                    </label>
                                 </div>
 
                                 <div class="col-md-12">

@@ -3398,6 +3398,7 @@
     "label.input.interestratechart.valid.from": "Válido Desde la Fecha",
     "label.input.interestratechart.valid.to": "Fecha de Finalización",
     "label.input.interestratechart.primary.grouping.amount": "Es Agrupación Primaria por Cantidad",
+    "label.input.interestratechart.current.apply.chart": "Aplicar gráfico de tasas  de interes actual",
     "label.checkbox.interestfreeperiodapplicable": "Período cuando no se pagarán intereses",
     "label.checkbox.applypreclosurepenalinterest": "Aplicar Sanción de Intereses (Menos)",
     "label.input.recurringdepositamount": "Importe del Depósito",
