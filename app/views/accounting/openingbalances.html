@@ -80,9 +80,9 @@
                                 </span>
                             </td>
                             <td md-cell>{{gl.glAccountCode}} {{gl.glAccountName}}</td>
-                            <td md-cell><input type="number" name="debits{{$index}}" ng-model="gl.debit"
+                            <td md-cell><input type="text" only-number name="debits{{$index}}" ng-model="gl.debit"
                                     class="form-control" ng-change="keyPress()" /></td>
-                            <td md-cell><input type="number" name="credits{{$index}}" ng-model="gl.credit"
+                            <td md-cell><input type="text" only-number name="credits{{$index}}" ng-model="gl.credit"
                                     class="form-control" ng-change="keyPress()" /></td>
                         </tr>
                     </tbody>

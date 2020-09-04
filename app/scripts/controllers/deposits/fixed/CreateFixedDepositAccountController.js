@@ -5,8 +5,12 @@
             scope.fieldOfficers = [];
             scope.formData = {};
             scope.restrictDate = new Date();
+            scope.date = {};
+            scope.date.submittedOnDate = new Date();
+
             scope.clientId = routeParams.clientId;
             scope.groupId = routeParams.groupId;
+          
             if (routeParams.centerEntity) {
                 scope.centerEntity = true;
             }
@@ -15,7 +19,6 @@
             scope.chart = {};
             scope.fromDate = {}; //required for date formatting
             scope.endDate = {};//required for date formatting
-
             scope.charges = [];
             scope.inparams = {};
             if (scope.clientId) {
@@ -40,6 +43,7 @@
             });
 
             scope.changeProduct = function () {
+              
                 scope.inparams.productId = scope.formData.productId;
                 resourceFactory.fixedDepositAccountTemplateResource.get(scope.inparams, function (data) {
 

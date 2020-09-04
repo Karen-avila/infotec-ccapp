@@ -199,10 +199,9 @@
                                 </div>
                                 <div class="modal-body modal-big">
                                     <api-validate></api-validate>
-                                    <br>
-                                    <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.actDate"
-                                           is-open="opened" md-min-date="restrictDate"
-                                           max="restrictDate"/>
+                                    <br>                                  
+                                           <md-datepicker  ng-model="date.actDate" md-min-date="restrictDate"  md-max-date="restrictDate">
+                                        </md-datepicker>
                                 </div>
                                 <div class="modal-footer">
                                     <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
@@ -414,8 +413,10 @@
                                                 <tr>                            
                                                     <td><label>{{'label.input.disbursedondate' | translate }}: </label></td>
                                                     <td>
-                                                        <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="disbursedondate"
-                                                        is-open="opened" md-min-date="restrictDate" max="restrictDate" class="form-control width170px"/>        
+                                                    
+                                                        <md-datepicker  is-open="opened" ng-model="disbursedondate" md-min-date="restrictDate"  md-max-date="restrictDate" class="form-control width170px">
+                                                        </md-datepicker>
+                                                        
                                                     </td>
                                                 </tr>
                                                 <tr>                            

@@ -65,7 +65,7 @@
                             <td>{{provisioningcategory.categoryName}}</td>
                             <td>
                                 <ng-form name="minage{{$index}}">
-                                    <input id="minAge" name="minAge" class="form-control" type="number"
+                                    <input id="minAge" name="minAge" class="form-control" type="text" only-number
                                         ng-model="provisioningcategory.minAge"
                                         placeholder="{{'label.input.indays' | translate}}" required
                                         ng-focus="doFocus($index)" ng-blur="doBlur($index)" />
@@ -76,7 +76,7 @@
 
                             <td>
                                 <ng-form name="maxage{{$index}}">
-                                    <input id="maxAge" name="maxAge" class="form-control" type="number"
+                                    <input id="maxAge" name="maxAge" class="form-control" type="text" only-number
                                         ng-model="provisioningcategory.maxAge"
                                         placeholder="{{'label.input.indays' | translate}}" required />
                                     <span class="error"
@@ -86,7 +86,7 @@
 
                             <td>
                                 <ng-form name="percentage{{$index}}">
-                                    <input id="percentage" name="percentage" class="form-control" type="number"
+                                    <input id="percentage" name="percentage" class="form-control" type="text" only-number
                                         ng-model="provisioningcategory.provisioningPercentage"
                                         placeholder="{{'label.input.amount' | translate}}" required />
                                     <span class="error"
