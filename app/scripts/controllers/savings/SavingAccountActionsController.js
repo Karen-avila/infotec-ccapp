@@ -235,6 +235,36 @@
                     scope.showNoteField = false;
                     scope.taskPermissionName = 'APPLYANNUALFEE_SAVINGSACCOUNT';
                     break;
+                case "block":
+                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (data) {
+                        scope.blockReasons = data.codeValues;
+                    });
+
+                    resourceFactory.savingsResource.get({accountId: routeParams.id});
+                    scope.title = 'label.heading.block';
+                    scope.labelName = 'label.input.block';
+                    scope.showNoteField = false;
+                    scope.withdrawBalance = false;
+                    scope.postInterestValidationOnClosure = false;
+                    scope.formData.postInterestValidationOnClosure = true;
+                    scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNT';
+                    scope.fetchEntities('m_savings_account','BLOCK');
+                    break;
+                case "unblock":
+                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (data) {
+                        scope.blockReasons = data.codeValues;
+                    });
+
+                    resourceFactory.savingsResource.get({accountId: routeParams.id});
+                    scope.title = 'label.heading.unblock';
+                    scope.labelName = 'label.input.unblock';
+                    scope.showNoteField = false;
+                    scope.withdrawBalance = false;
+                    scope.postInterestValidationOnClosure = false;
+                    scope.formData.postInterestValidationOnClosure = true;
+                    scope.taskPermissionName = 'UNBLOCK_SAVINGSACCOUNT';
+                    scope.fetchEntities('m_savings_account','UNBLOCK');
+                    break;   
                 case "close":
                     resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
@@ -353,7 +383,7 @@
             scope.submit = function () {
                 var params = {command: scope.action};
 
-                if (scope.action != "undoapproval") {
+                if (scope.action != "undoapproval" && scope.action != "block" && scope.action != "unblock") {
                     this.formData.locale = scope.optlang.code;
                     this.formData.dateFormat = scope.setTransactionDate(this.formData[scope.modelName], scope.modelName);
                 }
@@ -437,8 +467,11 @@
                     } else if (scope.action == "close") {
                         if (this.formData.closedOnDate) {
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
-
                         }
+                    } else if (scope.action == "block") {
+                        params = {accountId: routeParams.id, command: 'block'};
+                    }else if (scope.action == "unblock") {
+                        params = {accountId: routeParams.id, command: 'unblock'};
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
