@@ -344,16 +344,6 @@
                   taskPermissionName: "POSTINTEREST_SAVINGSACCOUNT",
                 },
                 {
-                  name: "button.deposit",
-                  icon: "fa fa-arrow-up",
-                  taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                },
-                {
-                  name: "button.withdraw",
-                  icon: "fa fa-arrow-down",
-                  taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                },
-                {
                   name: "button.calculateInterest",
                   icon: "fa fa-table",
                   taskPermissionName: "CALCULATEINTEREST_SAVINGSACCOUNT",
@@ -374,15 +364,23 @@
                 },
               ],
             };
-
-            console.log(data.subStatus.value);
-            console.log((data.subStatus.value == "Block"));
+            
             if (data.subStatus.value == "Block") {
               scope.buttons.options.splice(2, 0, {
                 name: "button.unblock",
                 taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
               });
             } else {
+              scope.buttons.singlebuttons.splice(1, 0, {
+                name: "button.deposit",
+                icon: "fa fa-arrow-up",
+                taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+              });
+              scope.buttons.singlebuttons.splice(2, 0, {
+                name: "button.withdraw",
+                icon: "fa fa-arrow-down",
+                taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+              });
               scope.buttons.options.splice(2, 0, {
                 name: "button.block",
                 taskPermissionName: "BLOCK_SAVINGSACCOUNT",
