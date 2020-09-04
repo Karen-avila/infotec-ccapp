@@ -4,7 +4,7 @@
         <li><a href="#!/fixeddepositproducts">{{'label.anchor.fixeddepositproducts' | translate}}</a></li>
         <li class="active">{{'label.anchor.createfixeddepositproduct' | translate}}</li>
     </ul>
-    isClicked : {{isClicked}}
+
     <md-content flex="nogrow" style="margin: 40px auto">
         <md-card>
             <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always"
@@ -116,7 +116,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="text" only-number maxlength="2" id="digitsAfterDecimal" name="decimalplace"
+                                        <input type="number" id="digitsAfterDecimal" name="decimalplace"
                                             class="form-control" ng-model="formData.digitsAfterDecimal" required
                                             late-validate />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
@@ -142,7 +142,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
+                                        <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof"
                                             ng-model="formData.inMultiplesOf" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
@@ -196,7 +196,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="depositAmount" name="depositAmount" class="form-control"
+                                        <input type="number" id="depositAmount" name="depositAmount" class="form-control"
                                              ng-model="formData.depositAmount" required late-validate
                                             decimal-number=true />
                                     </div>
@@ -219,7 +219,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="minDepositAmount" name="minDepositAmount"
+                                        <input type="number" id="minDepositAmount" name="minDepositAmount"
                                             class="form-control"  ng-model="formData.minDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="minDepositAmount" />
@@ -230,7 +230,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="maxDepositAmount" name="maxDepositAmount"
+                                        <input type="number" id="maxDepositAmount" name="maxDepositAmount"
                                             class="form-control"  ng-model="formData.maxDepositAmount"
                                             late-validate decimal-number=true />
                                         <form-validate valattributeform="Terms" valattribute="maxDepositAmount" />
@@ -366,7 +366,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="lockinPeriodFrequency" type="text" only-number name="lockinPeriodFrequency"
+                                        <input id="lockinPeriodFrequency" type="number" name="lockinPeriodFrequency"
                                             class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate
                                             number=true>
                                         <form-validate valattributeform="Settings"
@@ -401,7 +401,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="minimumDepositTerm" type="text" only-number name="minimumDepositTerm"
+                                        <input id="minimumDepositTerm" type="number" name="minimumDepositTerm"
                                             class="form-control" ng-model="formData.minDepositTerm" required
                                             late-validate number=true>
                                         <form-validate valattributeform="Settings" valattribute="minimumDepositTerm" />
@@ -435,7 +435,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="inMultiplesOfDepositTerm" type="text" only-number name="inMultiplesOfDepositTerm"
+                                        <input id="inMultiplesOfDepositTerm" type="number" name="inMultiplesOfDepositTerm"
                                             class="form-control" ng-model="formData.inMultiplesOfDepositTerm"
                                             late-validate number=true>
                                         <form-validate valattributeform="Settings"
@@ -468,7 +468,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-1">
-                                        <input id="maximumDepositTerm" type="text" only-number name="maximumDepositTerm"
+                                        <input id="maximumDepositTerm" type="number" name="maximumDepositTerm"
                                             class="form-control" ng-model="formData.maxDepositTerm" late-validate
                                             number=true />
                                         <form-validate valattributeform="Settings" valattribute="maximumDepositTerm" />
@@ -513,7 +513,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="preClosurePenalInterest" name="preClosurePenalInterest" type="text" only-number
+                                        <input id="preClosurePenalInterest" name="preClosurePenalInterest" type="number"
                                             class="form-control" ng-model="formData.preClosurePenalInterest"
                                             late-validate decimal-number=true />
                                         <span
