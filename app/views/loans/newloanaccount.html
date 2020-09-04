@@ -244,7 +244,7 @@
                                         <td class="width25">
                                             <div class="col-md-6">
                                                 <input id="loanTermFrequency" class="form-control" name="loanterm"
-                                                    type="number" ng-model="formData.loanTermFrequency" required />
+                                                    type="text" only-number ng-model="formData.loanTermFrequency" required />
                                             </div>
                                             <div class="col-md-6">
                                                 <md-select
@@ -272,7 +272,7 @@
                                             ng-hide="loanAccount.isHiddenField.numberOfRepayments == true">
                                             <div class="col-md-6">
                                                 <input id="numberOfRepayments" class="form-control"
-                                                    name="numofrepayments" type="number"
+                                                    name="numofrepayments" type="text" only-number
                                                     ng-model="formData.numberOfRepayments" required>
                                             </div>
                                         </td>
@@ -286,7 +286,7 @@
                                         <td class="width25 paddedbottom20"
                                             ng-hide="loanAccount.isHiddenField.repaymentEvery == true">
                                             <div class="col-md-6">
-                                                <input id="repaymentEvery" class="form-control" type="number"
+                                                <input id="repaymentEvery" class="form-control" type="text" only-number
                                                     name="repaidevery" ng-model="formData.repaymentEvery"
                                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.repaymentEvery"
                                                     required />
@@ -376,7 +376,7 @@
                                         </td>
                                         <td class="width25">
                                             <div class="col-md-6">
-                                                <input id="interestRatePerPeriod" class="form-control" type="number"
+                                                <input id="interestRatePerPeriod" class="form-control" type="text" only-number
                                                     name="nominalinterestrate"
                                                     ng-model="formData.interestRatePerPeriod" />
                                             </div>
@@ -412,7 +412,7 @@
                                         </td>
                                         <td class="width25 paddedbottom20">
                                             <div class="col-md-6">
-                                                <input id="interestratedifferential" class="form-control" type="number"
+                                                <input id="interestratedifferential" class="form-control" type="text" only-number
                                                     name="interestratedifferential"
                                                     ng-model="formData.interestRateDifferential" />
                                             </div>
@@ -501,7 +501,7 @@
                                         <td class="width25 paddedbottom20"
                                             ng-hide="loanAccount.isHiddenField.inArrearsTolerance == true">
                                             <div class="col-md-6">
-                                                <input id="inArrearsTolerance" type="number"
+                                                <input id="inArrearsTolerance" type="text" only-number
                                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.inArrearsTolerance"
                                                     ng-model="formData.inArrearsTolerance" class="form-control" />
                                             </div>
@@ -538,7 +538,7 @@
                                             <div class="col-md-6">
                                                 <input
                                                     ng-hide="loanAccount.isHiddenField.graceOnPrincipalPayment == true"
-                                                    id="graceOnPrincipalPayment" type="number" class="form-control"
+                                                    id="graceOnPrincipalPayment" type="text" only-number class="form-control"
                                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnPrincipalAndInterestPayment"
                                                     ng-model="formData.graceOnPrincipalPayment" />
                                             </div>
@@ -551,7 +551,7 @@
                                             <div class="col-md-6">
                                                 <input
                                                     ng-hide="loanAccount.isHiddenField.graceOnInterestPayment == true"
-                                                    id="graceOnInterestPayment" type="number" class="form-control"
+                                                    id="graceOnInterestPayment" type="text" only-number class="form-control"
                                                     ng-disabled="!loanaccountinfo.product.allowAttributeOverrides.graceOnInterestPayment"
                                                     ng-model="formData.graceOnInterestPayment" />
                                             </div>
@@ -560,7 +560,7 @@
                                     <tr data-ng-show="loanaccountinfo.canDefineInstallmentAmount">
                                         <td colspan=2>
                                             <label>{{'label.input.fixedemiamount' | translate }}:</label>&nbsp;
-                                            <input id="fixedEmiAmount" type="number" ng-model="formData.fixedEmiAmount"
+                                            <input id="fixedEmiAmount" type="text" only-number ng-model="formData.fixedEmiAmount"
                                                 class="form-control" />
                                         </td>
                                     </tr>
@@ -745,7 +745,7 @@
                                                     </label>
                                                 </td>
                                                 <td class="width25 paddedbottom20">
-                                                    <input id="maxOutstandingLoanBalance" type="number"
+                                                    <input id="maxOutstandingLoanBalance" type="text" only-number
                                                         ng-model="formData.maxOutstandingLoanBalance"
                                                         class="form-control" />&nbsp;
                                                     <a title="{{'label.button.addtranch' | translate }}"
@@ -775,7 +775,7 @@
                                                     </td>
                                                     <td>
                                                         <input id="{{disbursementDetail[$index].principal}}"
-                                                            class="input-sm form-control" type="number"
+                                                            class="input-sm form-control" type="text" only-number
                                                             ng-model="disbursementDetail.principal"
                                                             placeholder="{{'label.input.principal' | translate}}">
                                                     </td>
@@ -844,7 +844,7 @@
                                             <td>{{"charge.type." + charge.chargeCalculationType.value | translate}}</td>
                                             <td>
                                                 <input id="{{charges[$index].amount}}" class="form-control"
-                                                    type="number" ng-model="charge.amount"
+                                                    type="text" only-number ng-model="charge.amount"
                                                     placeholder="{{'label.input.amount' | translate}}">
                                             </td>
                                             <td>{{charge.chargeTimeType.value | translate}}</td>
@@ -903,7 +903,7 @@
                                                     </md-select>
                                                 </td>
                                                 <td>
-                                                    <input class="form-control" type="number"
+                                                    <input class="form-control" type="text" only-number
                                                         ng-model="collateralFormData.collateralValueTemplate"
                                                         placeholder="{{'label.input.value' | translate}}">
                                                 </td>
@@ -937,7 +937,7 @@
                                                         ng-model="collateral.name" readonly>
                                                 </td>
                                                 <td>
-                                                    <input id="{{collaterals[$index].value}}" type="number"
+                                                    <input id="{{collaterals[$index].value}}" type="text" only-number
                                                         class="form-control" ng-model="collateral.value">
                                                 </td>
                                                 <td>

@@ -201,49 +201,165 @@
                                     </label>
                                     <div class="col-sm-3">
 
-                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestCompoundingPeriodTypeOptions" ng-model="formData.interestCompoundingPeriodType"
-                                        ng-change="depositproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)">
-                                            <md-option ng-repeat="type in product.interestCompoundingPeriodTypeOptions" ng-value="type.id">
-                                                {{type.value | translate}}
-                                            </md-option>
-                                        </md-select>
-                                    </div>
-                                    <label class="control-label col-sm-3">{{'label.input.interestpostingperiod' | translate }}<span class="required">*</span>
-                                        <i class="fa fa-question-circle"
-                                            uib-tooltip="{{'label.tooltip.fixeddepositproduct.postingperiod' | translate}}"
-                                            tooltip-append-to-body="true"></i>
-                                    </label>
-                                    <div class="col-sm-3">
-
-                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestPostingPeriodTypeOptions" ng-model="formData.interestPostingPeriodType"
-                                        ng-change="depositproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)">
-                                            <md-option ng-repeat="type in product.interestPostingPeriodTypeOptions" ng-value="type.id">
-                                                {{type.value | translate}}
-                                            </md-option>
-                                        </md-select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3">{{'label.input.interestcalculatedusing' | translate }}<span class="required">*</span>
-                                        <i class="fa fa-question-circle"
-                                            uib-tooltip="{{'label.tooltip.fixeddepositproduct.calcmethod' | translate}}"
-                                            tooltip-append-to-body="true"></i>
-                                    </label>
-                                    <div class="col-sm-3">
-                                        
-                                        <md-select placeholder="{{'label.selectone' | translate}}" id="interestCalculationType" ng-model="formData.interestCalculationType"
-                                        ng-change="depositproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)">
-                                            <md-option ng-repeat="type in product.interestCalculationTypeOptions" ng-value="type.id">
-                                                {{type.value | translate}}
-                                            </md-option>
-                                        </md-select>
-                                    </div>
-                                    <label class="control-label col-sm-3">{{'label.input.daysinyears' | translate }}<span class="required">*</span>
-                                        <i class="fa fa-question-circle"
-                                            uib-tooltip="{{'label.tooltip.fixeddepositproduct.daysinyear' | translate}}"
-                                            tooltip-append-to-body="true"></i>
-                                    </label>
-                                    <div class="col-sm-3">
+                            <!--
+                            <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
+                                    ng-options="currency.code as currency.name for currency in product.currencyOptions"
+                                    ng-change="depositproduct.currency.name = formValue(product.currencyOptions,formData.currencyCode,'code','name')"
+                                    value="{{currency.code}}"></select>
+                            -->
+                        </div>
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate
+                            }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
+                                   ng-model="formData.digitsAfterDecimal" required late-validate number=true />
+                        </div>
+                        <div class="col-sm-2">
+                            <form-validate valattributFeform="Currency"
+                                           valattribute="decimalplace"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.input.multiplesof' | translate }}<span
+                                class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof" number-format
+                                   ng-model="formData.inMultiplesOf"
+                                   required late-validate number=true/>
+                        </div>
+                        <div class="col-sm-2">
+                            <form-validate valattributeform="Currency"
+                                           valattribute="multiplesof"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <md-button class="btn-default btn-sm pull-left" wz-previous>&nbsp;&nbsp;<i class="fa fa-arrow-left"></i>{{'label.button.previous' | translate}}
+                    </md-button>
+                    <md-button class="btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>
+                    </md-button>
+                </fieldset>
+            </form>
+        </wz-step>
+        <wz-step wz-title="{{'label.heading.terms' | translate}}">
+            <form name="Terms" novalidate="" ng-submit="goNext(Terms)" class="form-horizontal form-extra">
+                <fieldset>
+                    <api-validate></api-validate>
+                    <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.input.default.deposit.amount' | translate
+                            }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <input type="text" only-number id="depositAmount" name="depositAmount" class="form-control"
+                                    ng-model="formData.depositAmount" required late-validate/>
+                        </div>
+                        <div class="col-sm-2">
+                            <form-validate valattributeform="Terms" valattribute="depositAmount"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.input.minDepositAmount' | translate }}</label>
+                        <div class="col-sm-2">
+                            <input type="text" id="minDepositAmount" name="minDepositAmount" class="form-control"
+                                    ng-model="formData.minDepositAmount" late-validate/>
+                            <form-validate valattributeform="Terms" valattribute="minDepositAmount"/>
+                        </div>
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.maxDepositAmount' |
+                            translate }}</label>
+                        <div class="col-sm-2">
+                            <input type="text" id="maxDepositAmount" name="maxDepositAmount" class="form-control"
+                                    ng-model="formData.maxDepositAmount" late-validate/>
+                            <form-validate valattributeform="Terms" valattribute="maxDepositAmount"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.input.interestcompoundingperiod' | translate
+                            }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <select id="interestCompoundingPeriodTypeOptions"
+                                    ng-model="formData.interestCompoundingPeriodType" class="form-control"
+                                    ng-options="type.id as type.value for type in product.interestCompoundingPeriodTypeOptions"
+                                    ng-change="depositproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)"
+                                    value="{{type.id}}">
+                            </select>
+                        </div>
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.interestpostingperiod' |
+                            translate }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <select id="interestPostingPeriodTypeOptions" ng-model="formData.interestPostingPeriodType"
+                                    class="form-control"
+                                    ng-options="type.id as type.value for type in product.interestPostingPeriodTypeOptions"
+                                    ng-change="depositproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)"
+                                    value="{{type.id}}">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.input.interestcalculatedusing' | translate
+                            }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <select id="interestCalculationType" ng-model="formData.interestCalculationType"
+                                    class="form-control"
+                                    ng-options="type.id as type.value for type in product.interestCalculationTypeOptions"
+                                    ng-change="depositproduct.interestCalculationOption.value = formValue(product.interestCalculationTypeOptions,formData.interestCalculationType)"
+                                    value="{{type.id}}">
+                            </select>
+                        </div>
+                        <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.daysinyears' | translate
+                            }}<span class="required">*</span></label>
+                        <div class="col-sm-2">
+                            <select id="interestCalculationDaysInYearType"
+                                    ng-model="formData.interestCalculationDaysInYearType" class="form-control"
+                                    ng-options="type.id as type.value for type in product.interestCalculationDaysInYearTypeOptions"
+                                    ng-change="depositproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)"
+                                    value="{{type.id}}">
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <md-button class="btn-default btn-sm pull-left" wz-previous>&nbsp;&nbsp;<i class="fa fa-arrow-left"></i>{{'label.button.previous' | translate}}
+                    </md-button>
+                    <md-button class="btn-default btn-sm pull-right" type="submit">{{'label.button.next' | translate}}&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>
+                    </md-button>
+                </fieldset>
+            </form>
+        </wz-step>
+        <wz-step wz-title="{{'label.heading.settings' | translate}}">
+            <form name="Settings" novalidate="" ng-submit="goNext(Settings)" class="form-horizontal form-extra">
+                <fieldset>
+                    <api-validate></api-validate>
+                    <!--<h3>{{'label.heading.settings' | translate }}</h3>-->
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.checkbox.ismandatory.deposit' | translate }}
+                            <i class="fa fa-question-circle"
+                               uib-tooltip="{{'label.tooltip.recurringdepositproduct.ismandatory' | translate}}"
+                               tooltip-append-to-body="true"></i>
+                        </label>
+                        <div class="col-sm-1">
+                            <input id="isMandatoryDeposit" type="checkbox" ng-model="formData.isMandatoryDeposit">
+                        </div>
+                        <label class="control-label col-sm-4 col-sm-offset-1">{{
+                            'label.checkbox.adjustAdvanceTowardsFuturePayments' | translate }}
+                            <i class="fa fa-question-circle"
+                               uib-tooltip="{{'label.tooltip.recurringdepositproduct.adjustadvance' | translate}}"
+                               tooltip-append-to-body="true"></i>
+                        </label>
+                        <div class="col-sm-1">
+                            <input id="adjustAdvanceTowardsFuturePayments" type="checkbox"
+                                   ng-model="formData.adjustAdvanceTowardsFuturePayments">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">{{'label.checkbox.allowWithdrawal' | translate }}
+                            <i class="fa fa-question-circle"
+                               uib-tooltip="{{'label.tooltip.recurringdepositproduct.allowwithdraw' | translate}}"
+                               tooltip-append-to-body="true"></i>
+                        </label>
+                        <div class="col-sm-1">
+                            <input id="allowWithdrawal" type="checkbox" ng-model="formData.allowWithdrawal">
+                        </div>
+                    </div>
 
                                         <md-select placeholder="{{'label.selectone' | translate}}" id="interestCalculationDaysInYearType" ng-model="formData.interestCalculationDaysInYearType"
                                         ng-change="depositproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)">
