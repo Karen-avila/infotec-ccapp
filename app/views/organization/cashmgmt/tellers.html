@@ -11,11 +11,11 @@
             <md-divider></md-divider>
             <div ng-hide="isTreeView">
                 <api-validate></api-validate>
-                <md-table-container ng-show="tellers.length > 0" class="noscroll-x">
+                <md-table-container class="noscroll-x">
                     <div class="row">
                         <div class="col-md-7">
                             <md-input-container class="full-width">
-                                <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                                <label>{{'label.input.filterbyname' | translate}}</label>
                                 <input ng-model="filter.search">
                             </md-input-container>
                         </div>

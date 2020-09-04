@@ -64,8 +64,9 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-4">
-							<input id="openingDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-								is-open="opened" min="minDate" max="restrictDate" class="form-control" />
+							<md-datepicker id="openingDate" ng-model="first.date" md-min-date="minDate"
+								md-max-date="restrictDate" required>
+							</md-datepicker>
 						</div>
 					</div>
 					<div class="form-group">
@@ -77,7 +78,7 @@
 						</div>
 					</div>
 
-					<blockquote style="border-left: 6px solid#285c4d;">
+					<blockquote class="divider">
                         {{'label.input.address' | translate }}
 					</blockquote>
                     <div class="col-sm-8 col-md-8">
@@ -86,7 +87,7 @@
 								class="required">*</span></label>
 						<div class="col-sm-6">
 							<input id="postal_code" type="text" name="postal_code" ng-model="address.postalCode"
-								pattern="[0-9]{5}" class="form-control" />
+								pattern="[0-9]{5}" class="form-control" only-number maxlength="5" />
 						</div>
 					</div>
 					<div class="form-group">

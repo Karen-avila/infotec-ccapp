@@ -6,25 +6,19 @@
     </ul>
     <div class="card">
         <div class="content">
-            {{'label.heading.cashmgmt.officeName' | translate}} : {{cashiersForTeller.officeName}} |
-            {{'label.heading.cashmgmt.tellerName' | translate }} : {{cashiersForTeller.tellerName}}
             <div class="row">
-                <div class="col-sm-6">
-                    <input ng-autofocus="true" ng-model="filterText" type="text"
-                        class="form-control span marginbottom0px"
-                        placeholder="{{'label.input.filterbynameexternalid' | translate}}"></div>
-                <div class="col-sm-6">
-
-                </div>
+                {{'label.heading.cashmgmt.officeName' | translate}} : <strong>{{cashiersForTeller.officeName}}</strong>
+                <br>
+                {{'label.heading.cashmgmt.tellerName' | translate }} : <strong>{{cashiersForTeller.tellerName}}</strong>
             </div>
             <md-divider></md-divider>
             <div ng-hide="isTreeView">
                 <api-validate></api-validate>
-                <md-table-container ng-show="cashiers.length > 0" class="noscroll-x">
+                <md-table-container class="noscroll-x">
                     <div class="row">
                         <div class="col-md-7">
                             <md-input-container class="full-width">
-                                <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                                <label>{{'label.input.filterbyname' | translate}}</label>
                                 <input ng-model="filter.search">
                             </md-input-container>
                         </div>
