@@ -39,9 +39,6 @@
                 transclude: true,
                 scope: { data: '&ngCsv', filename: '@filename', header: '&csvHeader'},
                 controller: ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
-                    console.log("=============");
-                    console.log($scope);
-                    console.log("=============");
                     const delimiter = ",";
                     $scope.csv = "";
                     $scope.$watch($scope.data, function (newValue, oldValue) {
@@ -70,21 +67,7 @@
 
                         // Process the data
                         angular.forEach(data, function (row, index) {
-                            var dataString, infoArray;
-
-                            /*
-                            if (angular.isArray(row)) {
-                                infoArray = row;
-                            } else {
-                                infoArray = [];
-                                angular.forEach(row, function (field, key) {
-                                    this.push(field);
-                                }, infoArray);
-                            }
-
-                            dataString = '\"' + infoArray.join('\"' + delimiter + '\"') + '\"';
-                            */
-                            dataString = row;
+                            var dataString = row;
                             csvContent += index < data.length ? dataString + "\n" : dataString;
                         });
 
