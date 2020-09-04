@@ -8,7 +8,8 @@
         <div class="content">
             <div class="toolbar"></div>
             <br />
-            <form name="editreportrform" novalidate="" class="" ng-controller="EditReportController" ng-submit="submit()">
+            <form name="editreportrform" novalidate="" class="" ng-controller="EditReportController"
+                ng-submit="submit()">
                 <api-validate></api-validate>
                 <div class="form-group">
                     <table class="width100">
@@ -39,26 +40,28 @@
                                                 class="control-label">{{'label.input.reporttype' | translate }}&nbsp;<span
                                                     class="required">*</span></label>
                                             <div class="form-inline">
-                                                <select id="reportType" ng-model="reportdetail.reportType"
-                                                    class="form-control width170px"
-                                                    ng-options="reportType for reportType in reportdetail.allowedReportTypes"
-                                                    ng-disabled="disableFields" value="">
-                                                </select>
+                                                <md-select id="reportType" ng-model="reportdetail.reportType"                                                    
+                                                    ng-disabled="disableFields">
+                                                    <md-option ng-repeat="reportType in reportdetail.allowedReportTypes">
+                                                        {{reportType | translate}}
+                                                    </md-option>
+                                                </md-select>
                                             </div>
                                         </td>
                                         <td class="width20 paddedbottom10">
                                             <label
                                                 class="control-label">{{'label.input.reportsubtype' | translate }}&nbsp;</label>
-                                            <select ng-model="reportdetail.reportSubType"
-                                                class="form-control width170px"
-                                                ng-options="reportSubType for reportSubType in reportdetail.allowedReportSubTypes"
-                                                ng-disabled="disableFields" value="">
-                                                <option value="">{{'label.selectone' | translate}}</option>
-                                            </select>
+                                            <md-select ng-model="reportdetail.reportSubType"
+                                                ng-disabled="disableFields" placeholder="{{'label.selectone' | translate}}">
+                                                <md-option ng-repeat="reportSubType in reportdetail.allowedReportSubTypes"
+                                                    ng-value="reportSubType">
+                                                    {{reportSubType}}
+                                                </md-option>
+                                            </md-select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="width30 paddedbottom10">
+                                        <td colspan="2" class="paddedbottom10">
                                             <label class="control-label">{{'label.input.reportcategory' | translate
                                                 }}&nbsp;</label>
                                             <div class="form-inline">
@@ -66,19 +69,17 @@
                                                     ng-model="reportdetail.reportCategory" ng-disabled="disableFields">
                                             </div>
                                         </td>
-                                        <td class="width20 paddedbottom10">
-                                        </td>
-                                        <td class="width20 paddedbottom10">
-                                            <label
-                                                class="control-label">{{'label.input.userreportui' | translate }}</label>
+
+                                        <td class="paddedbottom10">
                                             <div class="form-inline">
-                                                <input type="checkbox" ng-model="reportdetail.useReport"
-                                                    class="margintopminustenpx">
+                                                <md-checkbox ng-model="reportdetail.useReport">
+                                                    {{'label.input.userreportui' | translate }}
+                                                </md-checkbox>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="width30">
+                                        <td colspan="3">
                                             <label
                                                 class="control-label">{{'label.input.description' | translate }}</label>
 
@@ -87,10 +88,6 @@
                                                     ng-model="reportdetail.description"
                                                     ng-disabled="disableFields"></textarea>
                                             </div>
-                                        </td>
-                                        <td class="width20">
-                                        </td>
-                                        <td class="width20">
                                         </td>
                                     </tr>
                                 </table>
@@ -113,26 +110,24 @@
                             </td>
                             <td class="width86">
                                 <div data-ng-switch on="formData.reportType">
-                                    <div data-ng-switch-when="Pentaho">
-
-                                    </div>
+                                    <div data-ng-switch-when="Pentaho"></div>
                                     <div data-ng-switch-when="Jasper"></div>
                                     <div data-ng-switch-default>
                                         <div class="blockquoteresult">
-                                            <table class="width100">
-                                                <tr>
-                                                    <td>
-                                                        <label
-                                                            class="control-label">{{'label.input.sql' | translate }}<span
-                                                                class="required">*</span></label>
-                                                        <textarea id="reportSql" class="form-control width100" rows="4"
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label
+                                                        class="control-label">{{'label.input.sql' | translate }}<span
+                                                            class="required">*</span></label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                        <textarea id="reportSql" class="form-control width100" rows="20"
                                                             name="sql" ng-model="reportdetail.reportSql" required
                                                             ng-disabled="disableFields"></textarea>
                                                         <form-validate valattributeform="createreportrform"
                                                             valattribute="sql" />
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +184,7 @@
                 </div>
                 <div class="col-md-12 center">
                     <md-button href="#!/system/viewreport/{{reportdetail.id}}" type="reset" class="md-raised">
-                            {{'label.button.cancel' | translate }}</md-button>
+                        {{'label.button.cancel' | translate }}</md-button>
                     <md-button id="save" type="submit" ng-click="submit()" class="md-raised md-primary"
                         has-permission='UPDATE_REPORT'>{{'label.button.save' | translate}}</md-button>
                 </div>
