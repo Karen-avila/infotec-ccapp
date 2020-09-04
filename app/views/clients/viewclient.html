@@ -727,12 +727,12 @@
                                                         data-ng-click="routeToSaving(savingaccount.id, savingaccount.depositType.code)">
                                                         <i uib-tooltip-placement="right"
                                                             ng-show="savingaccount.subStatus.id==0"
-                                                            uib-tooltip="{{savingaccount.status.value}}"
+                                                            uib-tooltip="{{savingaccount.status.value | translate}}"
                                                             class="fa fa-circle {{savingaccount.status.code | StatusLookup}}"></i>
                                                         <i uib-tooltip-placement="right"
                                                             ng-hide="savingaccount.subStatus.id==0"
-                                                            uib-tooltip="{{savingaccount.status.value+':'+savingaccount.subStatus.value}}"
-                                                            class="fa fa-circle {{savingaccount.status.code+savingaccount.subStatus.value | StatusLookup}}"></i>
+                                                            uib-tooltip="{{savingaccount.status.value | translate}} : {{savingaccount.subStatus.value | translate}}"
+                                                            class="fa fa-circle {{savingaccount.subStatus.value | StatusLookup}}"></i>
                                                         {{savingaccount.accountNo}}
                                                     </td>
                                                     <td class="pointer"

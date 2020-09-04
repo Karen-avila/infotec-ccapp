@@ -9,6 +9,7 @@
                     "Enabled": "statusactive",
                     "Disabled": "statusrejected",
                     "Active": "statusactive",
+                    "Block": "statusrejected",
                     "Standby": "statuspending",
                     "success": "statusactive",
                     "loanStatusType.submitted.and.pending.approval": "statuspending",

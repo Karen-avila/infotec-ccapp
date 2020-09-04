@@ -30,11 +30,12 @@
 						class="control-label col-sm-3">{{'label.heading.cashmgmt.tellerCashiers.cashierName' | translate}}<span
 							class="required">*</span></label>
 					<div class="col-sm-3">
-						<select chosen="cashier.staffOptions" id="staffId" name="staffId" ng-model="formData.staffId"
-							class="form-control"
-							ng-options="staff.id as staff.displayName for staff in cashier.staffOptions"
-							value="{{staff.id}}" required late-validate>
-						</select>
+						<md-select id="staffId" name="staffId" ng-model="formData.staffId" required
+							placeholder="{{'label.selectone' | translate}}">
+							<md-option ng-repeat="staff in cashier.staffOptions" ng-value="staff.id">
+								{{staff.displayName}}
+							</md-option>
+						</md-select>
 						<form-validate valattributeform="createcashierform" valattribute="staffId" />
 					</div>
 				</div>
@@ -51,9 +52,10 @@
 					<label class="control-label col-sm-3">{{'label.input.teller.cashier.startDate' | translate }}<span
 							class="required">*</span></label>
 					<div class="col-sm-3">
-						<input id="startDate" name="startDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-							ng-model="first.date" class="form-control" is-open="opened" min="minDate" max="restrictDate"
-							required />
+						<md-datepicker id="startDate" ng-model="first.date" 
+							md-placeholder="{{'label.input.startDate' | translate}}"
+							md-min-date="minDate" md-max-date="restrictDate" required>
+						</md-datepicker>
 						<form-validate valattributeform="createcashierform" valattribute="startDate" />
 					</div>
 				</div>
@@ -62,17 +64,19 @@
 					<label class="control-label col-sm-3"> {{'label.input.teller.cashier.endDate' | translate }}<span
 							class="required">*</span></label>
 					<div class="col-sm-3">
-						<input id="endDate" name="endDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-							ng-model="formData.endDate" class="form-control" is-open="opened" min="minDate" required />
+						<md-datepicker id="endDate" ng-model="formData.endDate" 
+							md-placeholder="{{'label.input.endDate' | translate}}"
+							md-min-date="first.date" md-max-date="restrictDate" required>
+						</md-datepicker>
 						<form-validate valattributeform="createcashierform" valattribute="endDate" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3 right">
-						<input id="fullDayCheckbox" type="checkbox" data-ng-change="setChoice()" checked="true"
-							ng-model="formData.isFullDay" />
+						<md-checkbox id="fullDayCheckbox" ng-model="formData.isFullDay" ng-change="setChoice()">
+							{{'label.input.teller.cashier.fullDay' | translate }}
+						</md-checkbox>
 					</div>
-					<label class="control-label col-sm-3 left">{{'label.input.teller.cashier.fullDay' | translate }}</label>
 				</div>
 
 				<div ng-show="formData.isFullDay==false">
@@ -108,14 +112,13 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-md-12 center">
-						<a id="cancel" href="#!/tellers/{{cashier.tellerId}}/cashiers">
-							<button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-						</a>
-						<button id="save" type="submit" class="btn btn-sm btn-primary"
-							has-permission='UPDATECASHIERALLOCATION_TELLER'>{{'label.button.save' | translate}}</button>
-					</div>
+				<div class="col-md-12 center">
+					<a id="cancel" href="#!/tellers/{{cashier.tellerId}}/cashiers">
+						<button type="reset"
+							class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
+					</a>
+					<button id="save" type="submit" class="btn btn-sm btn-primary"
+						has-permission='UPDATECASHIERALLOCATION_TELLER'>{{'label.button.save' | translate}}</button>
 				</div>
 			</form>
 		</div>

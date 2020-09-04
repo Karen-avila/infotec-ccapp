@@ -7,59 +7,84 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input ng-autofocus="true" ng-model="filterText" type="text" class="form-control col-md-6"
-                            placeholder="{{'label.input.filterbynameexternalid' | translate}}">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="pull-right">
-                            <a href="#!/createTeller" class="btn btn-sm btn-primary" has-permission='CREATE_TELLER'><i
-                                    class="fa fa-plus "></i>&nbsp;{{'label.button.createteller' | translate}}</a>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="clear"></div>
+            <md-divider></md-divider>
             <div ng-hide="isTreeView">
                 <api-validate></api-validate>
-                <table class="table">
-                    <thead>
-                        <tr class="graybg">
-                            <th>{{'label.heading.cashmgmt.officeName' | translate}}</th>
-                            <th>{{'label.heading.cashmgmt.tellerName' | translate}}</th>
-                            <th>{{'label.heading.cashmgmt.tellerStatus' | translate}}</th>
-                            <th>{{'label.heading.cashmgmt.tellerStartDate' | translate}}</th>
-                            <th colspan="3">{{'label.heading.cashmgmt.teller.actions' | translate}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer-main"
-                            dir-paginate="teller in tellers | orderBy:'teller.officeName'  | filter:filterText |  itemsPerPage: TellersPerPage">
-                            <td class="pointer" data-ng-click="routeToCashiers(teller.id)">{{teller.officeName}}</td>
-                            <td class="pointer" data-ng-click="routeToCashiers(teller.id)">{{teller.name}}</td>
-                            <td class="pointer" data-ng-click="routeToCashiers(teller.id)">{{teller.status | translate}}</td>
-                            <td class="pointer" data-ng-click="routeToCashiers(teller.id)">
-                                {{teller.startDate | DateFormat}}</td>
-                            <td>
-                                <a class="btn btm-sm btn-primary" data-ng-click="routeTo(teller.id)" has-permission='UPDATE_TELLER'><i
-                                        class="fa fa-eye"></i>&nbsp;{{'label.button.view' | translate}}</a>
-                            </td>
-                            <td>
-                                <a href="#!/editteller/{{teller.id}}" class="btn btn-sm btn-primary"
-                                    has-permission='UPDATE_TELLER'><i class="fa fa-edit "></i>&nbsp;{{'label.button.edit' | translate }}</a>
-                            </td>
-                            <td>
-                                <a class="btn btm-sm btn-danger" has-permission='DELETE_TELLER'
-                                    data-ng-click="routeToDelete(teller.id)"><i
-                                        class="fa fa-trash-o"></i>&nbsp;{{'label.button.delete' | translate}}</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <dir-pagination-controls boundary-links="true"
-                    template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html">
-                </dir-pagination-controls>
+                <md-table-container ng-show="tellers.length > 0" class="noscroll-x">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <md-input-container class="full-width">
+                                <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                                <input ng-model="filter.search">
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <md-button md-no-ink href="#!/createTeller" class="md-raised md-primary"
+                                    has-permission='CREATE_TELLER'><i
+                                        class="fa fa-plus "></i>&nbsp;{{'label.button.createteller' | translate}}
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                    </div>
+                    <div class="row">
+                        <div clas="col-sm-12">
+                            <table md-table class="table">
+                                <thead md-head>
+                                    <tr md-row class="graybg">
+                                        <th md-column>{{'label.heading.cashmgmt.officeName' | translate}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.tellerName' | translate}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.tellerStatus' | translate}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.tellerStartDate' | translate}}</th>
+                                        <th>{{'label.heading.cashmgmt.teller.actions' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row ng-click="routeToCashiers(teller.id)"
+                                        dir-paginate="teller in tellers | orderBy:'teller.officeName'  | filter:filterText |  itemsPerPage: TellersPerPage">
+                                        <td md-cell>{{teller.officeName}}</td>
+                                        <td md-cell>{{teller.name}}</td>
+                                        <td md-cell>{{teller.status | translate}}</td>
+                                        <td md-cell>{{teller.startDate | DateFormat}}</td>
+                                        <td md-cell>
+                                            <md-menu>
+                                                <md-button aria-label="Teller actions" class="md-icon-button"
+                                                    ng-click="$mdMenu.open($event)">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </md-button>
+                                                <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
+                                                    <md-menu-item has-permission='UPDATE_TELLER'>
+                                                        <md-button ng-click="routeTo(teller.id)">
+                                                            {{'label.button.view' | translate}}
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                    <md-menu-item has-permission='UPDATE_TELLER'>
+                                                        <md-button href="#!/editteller/{{teller.id}}">
+                                                            {{'label.button.edit' | translate}}
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                    <md-menu-item has-permission='DELETE_TELLER'>
+                                                        <md-button ng-click="routeToDelete(teller.id)">
+                                                            {{'label.button.delete' | translate}}
+                                                        </md-button>
+                                                    </md-menu-item>
+                                                </md-menu-content>
+                                            </md-menu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-table-container>
+                <md-table-pagination ng-show="tellers.length > query.limit" md-limit="query.limit"
+                    md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                    md-boundary-links="options.boundaryLinks" md-total="{{tellers.length}}" md-page="query.page"
+                    md-on-paginate="search" md-page-select>
+                </md-table-pagination>
             </div>
         </div>
     </div>
+</div>
