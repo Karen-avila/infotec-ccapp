@@ -91,7 +91,7 @@
                     <strong><i ng-show="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.status.value | translate}}"
                             class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i>
                             <i ng-hide="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.subStatus.value | translate}}"
-                            class="fa fa-circle {{savingaccountdetails.status.code+savingaccountdetails.subStatus.value | StatusLookup}}"></i>
+                            class="fa fa-circle {{savingaccountdetails.subStatus.value | StatusLookup}}"></i>
                         &nbsp;{{savingaccountdetails.savingsProductName}}&nbsp;(#{{savingaccountdetails.accountNo}})</strong>
                 </span>
             </div>

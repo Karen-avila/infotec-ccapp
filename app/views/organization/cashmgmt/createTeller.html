@@ -7,7 +7,7 @@
 	<div class="card">
 		<div class="content">
 			<form name="createtellerform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="CreateTellerController" submit="submit()">
+				ng-controller="CreateTellerController" ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
 					<legend>{{'label.heading.cashmgmt.createTeller' | translate}}</legend>
@@ -16,7 +16,7 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<md-select chosen="offices" id="officeId" ng-model="formData.officeId" 
+							<md-select id="officeId" ng-model="formData.officeId" 
                                 placeholder="{{'label.selectone' | translate}}">
                                 <md-option ng-repeat="office in offices" ng-value="office.id">
                                     {{office.name}}
@@ -52,7 +52,7 @@
 						<div class="col-sm-3">
 							<md-datepicker id="startDate" ng-model="first.date" 
 								md-placeholder="{{'label.input.startDate' | translate}}"
-								md-min-date="minDate" md-max-date="restrictDate">
+								md-min-date="minDate" md-max-date="restrictDate" required>
 							</md-datepicker>
 						</div>
 					</div>
