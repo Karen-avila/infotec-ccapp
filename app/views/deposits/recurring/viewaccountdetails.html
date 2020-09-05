@@ -125,7 +125,7 @@
                         <th class="active fontnormal">{{'label.noofdaysinyear' | translate}}
                         </th>
                         <td><span
-                                class="padded-td">{{savingaccountdetails.interestCalculationDaysInYearType.value}}</span>
+                                class="padded-td">{{savingaccountdetails.interestCalculationDaysInYearType.value | translate}}</span>
                         </td>
                     </tr>
                     <tr ng-show="savingaccountdetails.preClosurePenalApplicable">
@@ -532,14 +532,14 @@
                             <td>
                                 <a href="#">{{charge.name}}</a>
                             </td>
-                            <td ng-show="'charge.penalty'==true">{{"penalty"}}</td>
-                            <td ng-hide="'charge.penalty'==true">{{"fee"}}</td>
+                            <td ng-show="'charge.penalty'==true">{{ "penalty" }}</td>
+                            <td ng-hide="'charge.penalty'==true">{{ "fee" | translate }}</td>
                             <td></td>
-                            <td>{{charge.chargeTimeType.value}}</td>
+                            <td>{{ charge.chargeTimeType.value | translate }}</td>
                             <td></td>
-                            <td>{{charge.dueDate | DateFormat}}</td>
-                            <td>{{charge.feeOnMonthDay | DayMonthFormat}}</td>
-                            <td>{{charge.chargeCalculationType.value}}</td>
+                            <td>{{ charge.dueDate | DateFormat }}</td>
+                            <td>{{ charge.feeOnMonthDay | DayMonthFormat }}</td>
+                            <td>{{ charge.chargeCalculationType.value | translate }}</td>
                             <td></td>
                             <td>{{charge.currency.displaySymbol}}{{charge.amount | FormatNumber}}</td>
                             <td>{{charge.currency.displaySymbol}}{{charge.amountPaid | FormatNumber}}</td>

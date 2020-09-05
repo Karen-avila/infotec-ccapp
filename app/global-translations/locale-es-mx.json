@@ -5956,5 +5956,8 @@
     "validation.msg.fixeddeposit.minDepositTerm.cannot.be.blank": "Frecuencia mínima de depósito a plazo",
     "validation.msg.fixeddeposit.fromDate.cannot.be.blank": "Desde la Fecha",
     "validation.msg.fixeddeposit.depositAmount.cannot.be.blank":  "Monto del depósito",
-    "----End---": "---Fin del archivo---"
+    "----End---": "---Fin del archivo---",
+    "Withdrawal":"Retiro",
+    "Deposit":"Deposito",
+    "Interest posting":"Interes"
 }
