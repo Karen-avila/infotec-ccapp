@@ -77,6 +77,7 @@
                                         <md-datepicker id="closeDate" ng-model="date.second" min="minDate" max="'2030-06-22'"></md-datepicker>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <label class="control-label">{{'label.input.fundsource' | translate }}
@@ -95,19 +96,32 @@
                                             </md-option>
                                         </md-select>
                                     </div>
+                                </div>
 
-                                    <div class="col-sm-1">
+                                <div class="form-group">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-4">
                                         <div class="right">
-                                                <md-checkbox aria-label="includeInBorrowerCycle" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
-                                                ng-false-value="false"></md-checkbox>
+                                            <md-checkbox aria-label="includeInBorrowerCycle" ng-model="formData.includeInBorrowerCycle" ng-true-value="true"
+                                                ng-false-value="false">
+                                                {{'label.input.includeinborrowerloancounter' | translate }}
+                                                <i class="fa fa-question-circle "
+                                                    uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
+                                                    tooltip-append-to-body="true"></i>
+                                            </md-checkbox>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <label class="control-label left">{{'label.input.includeinborrowerloancounter' | translate }}
-                                            <i class="fa fa-question-circle "
-                                                uib-tooltip="{{'label.tooltip.loanproduct.includeborrower' | translate}}"
-                                                tooltip-append-to-body="true"></i>
-                                        </label>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-4">
+                                        <div class="right">
+                                            <md-checkbox aria-label="oneLoanAccountAtTime" ng-model="formData.oneAtTime" ng-true-value="true"
+                                                ng-false-value="false">
+                                                {{'label.input.oneloanaccountattime' | translate }}
+                                                <i class="fa fa-question-circle "
+                                                    uib-tooltip="{{'label.tooltip.loanproduct.oneloanaccountattime' | translate}}"
+                                                    tooltip-append-to-body="true"></i>
+                                            </md-checkbox>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -154,7 +168,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="number" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+                                        <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
                                             ng-model="formData.digitsAfterDecimal" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
                                     </div>
@@ -168,7 +182,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="number" id="inMultiplesOf" class="form-control" name="multiplesof"
+                                        <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
                                             ng-model="formData.inMultiplesOf" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
@@ -183,7 +197,7 @@
                                         </label>
 
                                     <div class="col-sm-3">
-                                        <input type="number" id="installmentAmountInMultiplesOf" class="form-control"
+                                        <input type="text" only-number id="installmentAmountInMultiplesOf" class="form-control"
                                             name="installmentAmountInMultiplesOf" ng-model="formData.installmentAmountInMultiplesOf"
                                             required late-validate number=true />
                                         <form-validate valattributeform="Currency" valattribute="installmentAmountInMultiplesOf" />
@@ -230,16 +244,16 @@
                                     </label>
 
                                     <div class="col-sm-2">
-                                        <input id="minPrincipal" placeholder="{{'label.input.minimum' | translate}}" type="number"
+                                        <input id="minPrincipal" placeholder="{{'label.input.minimum' | translate}}" type="text" only-number
                                             class="form-control" ng-model="formData.minPrincipal">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="number" placeholder="{{'label.input.default' | translate}}" id="principal"
+                                        <input type="text" only-number placeholder="{{'label.input.default' | translate}}" id="principal"
                                             name="principal" class="form-control" ng-model="formData.principal"
                                             required late-validate />
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="number" placeholder="{{'label.input.maximum' | translate}}" id="maxPrincipal"
+                                        <input type="text" only-number placeholder="{{'label.input.maximum' | translate}}" id="maxPrincipal"
                                             class="form-control" ng-model="formData.maxPrincipal">
                                         <form-validate valattributeform="Terms" valattribute="principal" />
                                     </div>
@@ -276,22 +290,22 @@
                                                     </md-select>
 
                                                 </td>
-                                                <td><input id="principalCycleNumber{{$index}}" type="number" class="form-control"
+                                                <td><input id="principalCycleNumber{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                                 </td>
                                                 <td>
                                                     <input type="hidden" id="principalborrowerCycleId{{$index}}"
                                                         class="form-control" ng-model="borrowerCycleVariation.id" />
-                                                    <input type="number" id="minPrincipalPerCycle{{$index}}" class="form-control"
+                                                    <input type="text" only-number id="minPrincipalPerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.minValue" />
                                                 </td>
                                                 <td>
-                                                    <input id="principalPerCycle{{$index}}" type="number" class="form-control"
+                                                    <input id="principalPerCycle{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.defaultValue"
                                                         name="principalPerCycle{{$index}}" />
 
                                                 </td>
-                                                <td><input type="number" id="maxPrincipalPerCycle{{$index}}" class="form-control"
+                                                <td><input type="text" only-number id="maxPrincipalPerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.maxValue" /></td>
                                                 <td><md-button ng-click="deletePrincipalVariation($index)"><i class="fa fa-remove "></i></md-button>
 
@@ -310,15 +324,15 @@
 
                                     <div class="col-sm-2">
                                         <input id="minNumberOfRepayments" placeholder="{{'label.input.minimum' | translate}}"
-                                            type="number" class="form-control" ng-model="formData.minNumberOfRepayments">
+                                            type="text" only-number class="form-control" ng-model="formData.minNumberOfRepayments">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="number" placeholder="{{'label.input.default' | translate}}"
+                                        <input type="text" only-number placeholder="{{'label.input.default' | translate}}"
                                             id="numberOfRepayments" name="numofrepayments" class="form-control"
                                             ng-model="formData.numberOfRepayments" required late-validate number=true />
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="number" placeholder="{{'label.input.maximum' | translate}}"
+                                        <input type="text" only-number placeholder="{{'label.input.maximum' | translate}}"
                                             id="maxNumberOfRepayments" class="form-control"
                                             ng-model="formData.maxNumberOfRepayments">
                                         <form-validate valattributeform="Terms" valattribute="numofrepayments" />
@@ -360,21 +374,21 @@
                                                     </md-select>
 
                                                 </td>
-                                                <td><input id="repaymentCycleNumber{{$index}}" type="number" class="form-control"
+                                                <td><input id="repaymentCycleNumber{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                                 </td>
                                                 <td>
                                                     <input type="hidden" id="repaymentborrowerCycleId{{$index}}"
                                                         class="form-control" ng-model="borrowerCycleVariation.id" />
-                                                    <input type="number" id="minrepaymentPerCycle{{$index}}" class="form-control"
+                                                    <input type="text" only-number id="minrepaymentPerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.minValue" />
                                                 </td>
                                                 <td>
-                                                    <input id="repaymentPerCycle{{$index}}" type="number" class="form-control"
+                                                    <input id="repaymentPerCycle{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.defaultValue" />
 
                                                 </td>
-                                                <td><input type="number" id="maxrepaymentPerCycle{{$index}}" class="form-control"
+                                                <td><input type="text" only-number id="maxrepaymentPerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.maxValue" /></td>
                                                 <td><md-button ng-click="deleterepaymentVariation($index)"><i class="fa fa-remove "></i></md-button>
 
@@ -417,7 +431,7 @@
 
                                     <div class="col-sm-3">
                                         <input id="differentialinterest" name="differentialinterest" class="form-control"
-                                            type="number" ng-model="formData.interestRateDifferential"
+                                            type="text" only-number ng-model="formData.interestRateDifferential"
                                             placeholder="{{'label.input.differentialrate' | translate}}" />
                                     </div>
 
@@ -440,17 +454,17 @@
                                     </label>
 
                                     <div class="col-sm-2">
-                                        <input id="minValue" name="minValue" class="form-control" type="number"
+                                        <input id="minValue" name="minValue" class="form-control" type="text" only-number
                                             ng-model="formData.minDifferentialLendingRate"
                                             placeholder="{{'label.input.minfloatinginterestrate' | translate}}" />
                                     </div>
                                     <div class="col-sm-2">
-                                        <input id="default" name="default" class="form-control" type="number"
+                                        <input id="default" name="default" class="form-control" type="text" only-number
                                             ng-model="formData.defaultDifferentialLendingRate"
                                             placeholder="{{'label.input.defaultfloatinginterestrate' | translate}}" />
                                     </div>
                                     <div class="col-sm-2">
-                                        <input id="maxValue" name="maxValue" class="form-control" type="number"
+                                        <input id="maxValue" name="maxValue" class="form-control" type="text" only-number
                                             ng-model="formData.maxDifferentialLendingRate"
                                             placeholder="{{'label.input.maxfloatinginterestrate' | translate}}" />
                                     </div>
@@ -465,17 +479,17 @@
 
                                     <div class="col-sm-2">
                                         <input id="minInterestRatePerPeriod" placeholder="{{'label.input.minimum' | translate}}"
-                                            type="number" class="form-control" ng-model="formData.minInterestRatePerPeriod">
+                                            type="text" only-number class="form-control" ng-model="formData.minInterestRatePerPeriod">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="number" id="interestRatePerPeriod"
+                                        <input type="text" only-number id="interestRatePerPeriod"
                                             placeholder="{{'label.input.default' | translate}}" name="interestRatePerPeriod"
                                             class="form-control" ng-model="formData.interestRatePerPeriod" required late-validate
                                             decimals />
                                     </div>
                                     <div class="col-sm-2">
                                         <input id="maxInterestRatePerPeriod" placeholder="{{'label.input.maximum' | translate}}"
-                                            type="number" class="form-control" ng-model="formData.maxInterestRatePerPeriod">
+                                            type="text" only-number class="form-control" ng-model="formData.maxInterestRatePerPeriod">
                                     </div>
                                     <div class="col-sm-2">
                                         <md-select aria-label="interestRateFrequencyType" id="interestRateFrequencyType" ng-model="formData.interestRateFrequencyType" 
@@ -522,22 +536,22 @@
                                                     </md-select>
                                                 
                                                 </td>
-                                                <td><input id="interestRateCycleNumber{{$index}}" type="number" class="form-control"
+                                                <td><input id="interestRateCycleNumber{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.borrowerCycleNumber" />
                                                 </td>
                                                 <td>
                                                     <input type="hidden" id="interestRateborrowerCycleId{{$index}}"
                                                         class="input-small" ng-model="borrowerCycleVariation.id" />
-                                                    <input type="number" id="mininterestRatePerCycle{{$index}}" class="form-control"
+                                                    <input type="text" only-number id="mininterestRatePerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.minValue" />
                                                 </td>
                                                 <td>
-                                                    <input id="interestRatePerCycle{{$index}}" type="number" class="form-control"
+                                                    <input id="interestRatePerCycle{{$index}}" type="text" only-number class="form-control"
                                                         ng-model="borrowerCycleVariation.defaultValue"
                                                         name="principalPerCycle{{$index}}" />
 
                                                 </td>
-                                                <td><input type="number" id="maxInterestRatePerCycle{{$index}}" class="form-control"
+                                                <td><input type="text" only-number id="maxInterestRatePerCycle{{$index}}" class="form-control"
                                                         ng-model="borrowerCycleVariation.maxValue" /></td>
                                                 <td><md-button ng-click="deleteInterestRateVariation($index)"><i
                                                             class="fa fa-remove "></i></md-button>
@@ -555,7 +569,7 @@
                                     </label>
 
                                     <div class="col-sm-2">
-                                        <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="number"
+                                        <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="text" only-number
                                             ng-model="formData.repaymentEvery" required late-validate number=true />
                                     </div>
                                     <div class="col-sm-2">
@@ -577,7 +591,7 @@
                                 tooltip-append-to-body="true"></i></label>
 
                                     <div class="col-sm-2">
-                                        <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="number"
+                                        <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="text" only-number
                                             ng-model="formData.minimumDaysBetweenDisbursalAndFirstRepayment" late-validate
                                             number=true>
                                     </div>
@@ -633,7 +647,6 @@
                                                 {{interestType.value | translate}}
                                             </md-option>
                                         </md-select>
-
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -703,13 +716,13 @@
 
                                     <div class="col-sm-3">
                                         <input id="graceOnPrincipalPayment" class="form-control" name="graceOnPrincipalPayment"
-                                            placeholder="{{'label.input.onprincipalpayment' | translate}}" type="number"
+                                            placeholder="{{'label.input.onprincipalpayment' | translate}}" type="text" only-number
                                             ng-model="formData.graceOnPrincipalPayment" late-validate number=true>
                                         <form-validate valattributeform="Settings" valattribute="graceOnPrincipalPayment" />
                                     </div>
                                     <div class="col-sm-3">
                                         <input id="graceOnInterestPayment"
-                                            placeholder="{{'label.input.oninterestpayment' | translate}}" type="number"
+                                            placeholder="{{'label.input.oninterestpayment' | translate}}" type="text" only-number
                                             name="graceOnInterestPayment" class="form-control"
                                             ng-model="formData.graceOnInterestPayment" late-validate number=true>
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestPayment" />
@@ -724,7 +737,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input id="graceOnInterestCharged" type="number" name="graceOnInterestCharged"
+                                        <input id="graceOnInterestCharged" type="text" only-number name="graceOnInterestCharged"
                                             class="form-control" ng-model="formData.graceOnInterestCharged" late-validate
                                             number=true>
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestCharged" />
@@ -737,7 +750,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input id="inArrearsTolerance" type="number" name="inArrearsTolerance" class="form-control"
+                                        <input id="inArrearsTolerance" type="text" only-number name="inArrearsTolerance" class="form-control"
                                             ng-model="formData.inArrearsTolerance" late-validate number=true>
                                         <form-validate valattributeform="Settings" valattribute="inArrearsTolerance" />
                                     </div>
@@ -865,7 +878,7 @@
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <input id="maximumgap" name="maximumgap" class="form-control" type="number"
+                                        <input id="maximumgap" name="maximumgap" class="form-control" type="text" only-number
                                             ng-model="formData.maximumGap" placeholder="{{'label.input.maximumgap' | translate}}"/>
                                     </div>
                                 </div>
@@ -1011,7 +1024,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="recalculationCompoundingFrequencyInterval" type="number" class="form-control"
+                                        <input id="recalculationCompoundingFrequencyInterval" type="text" only-number class="form-control"
                                             ng-model="formData.recalculationCompoundingFrequencyInterval">
                                     </div>
                                 </div>
@@ -1070,7 +1083,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="recalculationRestFrequencyInterval" type="number" class="form-control"
+                                        <input id="recalculationRestFrequencyInterval" type="text" only-number class="form-control"
                                             ng-model="formData.recalculationRestFrequencyInterval">
                                     </div>
                                 </div>
@@ -1108,7 +1121,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input id="mandatoryGuarantee" type="number" class="form-control"
+                                        <input id="mandatoryGuarantee" type="text" only-number class="form-control"
                                             ng-model="formData.mandatoryGuarantee" />
                                     </div>
                                 </div>
@@ -1121,7 +1134,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input id="minimumGuaranteeFromOwnFunds" type="number" class="form-control"
+                                        <input id="minimumGuaranteeFromOwnFunds" type="text" only-number class="form-control"
                                             ng-model="formData.minimumGuaranteeFromOwnFunds" />
                                     </div>
                                     <label class="control-label col-sm-3">{{'label.input.minimum.guarantee.from.guarantor'
@@ -1131,7 +1144,7 @@
                                         tooltip-append-to-body="true"></i>
                                     </label>
 
-                                    <div class="col-sm-3"><input id="minimumGuaranteeFromGuarantor" type="number" class="form-control"
+                                    <div class="col-sm-3"><input id="minimumGuaranteeFromGuarantor" type="text" only-number class="form-control"
                                             ng-model="formData.minimumGuaranteeFromGuarantor" />
                                     </div>
                                 </div>
@@ -1155,7 +1168,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="number" class="form-control" id="maxTrancheCount" name="maxTrancheCount"
+                                        <input type="text" only-number class="form-control" id="maxTrancheCount" name="maxTrancheCount"
                                             ng-model="formData.maxTrancheCount" />
                                     </div>
                                     <label class="control-label col-sm-3">{{'label.input.outstandingloanbalance' |
@@ -1166,7 +1179,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <input type="number" class="form-control" id="outstandingLoanBalance"
+                                        <input type="text" only-number class="form-control" id="outstandingLoanBalance"
                                             name="outstandingLoanBalance" ng-model="formData.outstandingLoanBalance" />
                                     </div>
                                 </div>
@@ -1917,6 +1930,10 @@
                                     <tr ng-show="date.second">
                                         <td>{{'label.heading.closedate' | translate}}:</td>
                                         <td colspan="3">{{date.second | DateFormat}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'label.heading.oneloanaccountattime' | translate}} :</td>
+                                        <td colspan="3">{{loanproduct.oneAtTime | translate}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{'label.heading.includeborrowercycle' | translate}} :</td>

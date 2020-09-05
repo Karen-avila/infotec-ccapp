@@ -1,9 +1,9 @@
 <div class="content-container" ng-controller="TransactionClientController">
-        <ul class="breadcrumb">
-            <li><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
-            <li><a href="#!/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
-            <li class="active">{{'label.anchor.transferclient' | translate}}</li>
-        </ul>
+    <ul class="breadcrumb">
+        <li><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
+        <li><a href="#!/viewclient/{{clientId}}">{{'label.anchor.viewclient' | translate}}</a></li>
+        <li class="active">{{'label.anchor.transferclient' | translate}}</li>
+    </ul>
     <api-validate></api-validate>
     <form class="card form-horizontal well" ng-submit="submit()">
         <br>
@@ -13,17 +13,22 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <select id="destinationOfficeId" ng-model="formData.destinationOfficeId" class="form-control"
-                            ng-options="office.id as office.name for office in offices" value="{{office.id}}"></select>
+                    <md-select id="destinationOfficeId" ng-model="formData.destinationOfficeId"
+                        placeholder="{{'label.selectone' | translate}}">
+                        <md-option ng-repeat="office in offices" ng-value="office.id">
+                            {{office.name}}
+                        </md-option>
+                    </md-select>
                 </div>
             </div>
-            <div class = "form-group">
+            <div class="form-group">
                 <label class="control-label col-sm-2">{{'label.input.transfer.date' | translate }}:<span
-                        class=
-                        "required">*</span></label>
+                        class="required">*</span></label>
                 <div class="col-sm-3">
-                        <input id="transferDate" type="text" name="transferDate" datepicker-pop="dd MMMM yyyy"
-                               class="form-control paddedbottom10 paddedtop" ng-model="formData.transferDate" is-open="opened" min="'2000-01-01'" max="restrictDate" autocomplete="off"/>
+                    <md-datepicker id="transferDate" ng-model="formData.transferDate" 
+                        md-placeholder="{{'label.input.startDate' | translate}}"
+                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                    </md-datepicker>
                 </div>
             </div>
             <div class="form-group">
@@ -34,10 +39,11 @@
                 </div>
             </div>
             <div class="col-md-12 center">
-                <a href='#!/viewclient/{{clientId}}' class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</a>
-                <button id="save" type="submit" has-permission='PROPOSETRANSFER_CLIENT' class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
+                <md-button href='#!/viewclient/{{clientId}}'
+                    class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+                <md-button id="save" type="submit" has-permission='PROPOSETRANSFER_CLIENT'
+                    class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
             </div>
-
         </fieldset>
     </form>
 </div>

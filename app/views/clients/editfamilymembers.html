@@ -63,9 +63,8 @@
                     class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <input id="dateofbirth" type="text" name="dateofbirth" datepicker-pop="dd MMMM yyyy"
-                        ng-model="date.dateOfBirth" min="minDate" max="restrictDate"
-                        ng-change="calculateAge(date.dateofbirth)" class="form-control" />
+                        <md-datepicker id="dateofbirth" name="dateofbirth" ng-model="date.dateOfBirth"  md-min-date="minDate" md-max-date="restrictDate" ng-change="calculateAge(date.dateofbirth)">
+                        </md-datepicker>
                 </div>
             </div>
 
