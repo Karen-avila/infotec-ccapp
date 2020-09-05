@@ -237,7 +237,7 @@
                                     <label class="control-label">{{'label.input.nominalannualinterestrateoverdraft' | translate
                             }}&nbsp;</label></td>
                                 <td class="width31 paddedbottom10">
-                                    <input id="nominalAnnualInterestRateOverdraft" type="number"
+                                    <input id="nominalAnnualInterestRateOverdraft" type="text" only-number
                                         ng-model="formData.nominalAnnualInterestRateOverdraft">
                                 </td>
                                 <td class="width19">
@@ -315,7 +315,7 @@
                             <tr ng-repeat="charge in charges">
                                 <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                 <td>{{charge.chargeCalculationType.value}}</td>
-                                <td><input id="charges[{{$index}}].amount" class="input-sm form-control" type="number"
+                                <td><input id="charges[{{$index}}].amount" class="input-sm form-control" type="text" only-number
                                         ng-model="charge.amount"
                                         placeholder="{{'label.placeholder.amount' | translate}}" /></td>
                                 <td>{{charge.chargeTimeType.value}}</td>

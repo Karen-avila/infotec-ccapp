@@ -188,6 +188,15 @@
           case "close":
             location.path("/savingaccount/" + accountId + "/close");
             break;
+          case "block":
+              location.path("/savingaccount/" + accountId + "/block");
+              break;
+          case "unblock":
+              location.path("/savingaccount/" + accountId + "/unblock");
+              break;
+          case "unblock":
+              location.path("/savingaccount/" + accountId + "/unblock");
+              break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
@@ -335,16 +344,6 @@
                   taskPermissionName: "POSTINTEREST_SAVINGSACCOUNT",
                 },
                 {
-                  name: "button.deposit",
-                  icon: "fa fa-arrow-up",
-                  taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                },
-                {
-                  name: "button.withdraw",
-                  icon: "fa fa-arrow-down",
-                  taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                },
-                {
                   name: "button.calculateInterest",
                   icon: "fa fa-table",
                   taskPermissionName: "CALCULATEINTEREST_SAVINGSACCOUNT",
@@ -360,15 +359,34 @@
                   taskPermissionName: "CREATE_SAVINGSACCOUNTCHARGE",
                 },
                 {
-                  name: "button.blocksavings",
-                  taskPermissionName: "BLOCK_SAVINGSACCOUNTCHARGE",
-                },
-                {
                   name: "button.close",
                   taskPermissionName: "CLOSE_SAVINGSACCOUNT",
                 },
               ],
             };
+            
+            if (data.subStatus.value == "Block") {
+              scope.buttons.options.splice(2, 0, {
+                name: "button.unblock",
+                taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
+              });
+            } else {
+              scope.buttons.singlebuttons.splice(1, 0, {
+                name: "button.deposit",
+                icon: "fa fa-arrow-up",
+                taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+              });
+              scope.buttons.singlebuttons.splice(2, 0, {
+                name: "button.withdraw",
+                icon: "fa fa-arrow-down",
+                taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+              });
+              scope.buttons.options.splice(2, 0, {
+                name: "button.block",
+                taskPermissionName: "BLOCK_SAVINGSACCOUNT",
+              });
+            }
+
             if (data.clientId) {
               scope.buttons.options.push({
                 name: "button.transferFunds",
@@ -400,6 +418,7 @@
               }
             }
           }
+
           if (data.annualFee) {
             var annualdueDate = [];
             annualdueDate = data.annualFee.feeOnMonthDay;

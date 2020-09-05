@@ -16,7 +16,12 @@
                 scope.saveSC();
             };
 
-            scope.FixedDepositsPerPage = 15;
+            scope.query = {
+                order: 'name',
+                limit: 15,
+                page: 1
+            };
+            
             resourceFactory.fixedDepositProductResource.getAllFixedDepositProducts(function (data) {
                 scope.depositproducts = data;
             });

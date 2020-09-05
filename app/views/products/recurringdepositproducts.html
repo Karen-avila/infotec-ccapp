@@ -7,12 +7,12 @@
     <div class="card well">
 
         <div class="row">
-            <div class="col-md-8 col-sm-8">
+            <div class="col-md-9 col-sm-9">
                 <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control"
                     placeholder="{{'label.input.filterbynameshortname' | translate}}">
             </div>
 
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-3 col-sm-5">
                 <md-button md-no-ink class="md-primary" href="#!/createrecurringdepositproduct" has-permission='CREATE_RECURRINGDEPOSITPRODUCT'>
                     <i class="fa fa-plus "></i> {{'label.button.createrecurringdepositproduct' | translate}}</md-button>
             </div>
@@ -28,8 +28,8 @@
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row ng-repeat="product in depositproducts | orderBy:'name':reverse  | filter:filterText |  itemsPerPage: RecurringDepositsPerPage"
-                        data-ng-click="routeTo(product.id)" md-select="product" md-select-id="name" >
+                    <tr md-row ng-repeat="product in depositproducts | filter:filterText"
+                        data-ng-click="routeTo(product.id)" md-select="product" md-select-id="name">
                         <td md-cell>{{product.name}}</td>
                         <td md-cell>{{product.shortName}}</td>
                     </tr>
@@ -37,6 +37,6 @@
             </table>
         </md-table-container>
 
-        <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[1, 10, 15]" md-page="query.page" md-total="{{depositproducts.count}}" md-page-select></md-table-pagination>    
     </div>
 </div>

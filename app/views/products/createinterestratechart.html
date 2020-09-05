@@ -3,8 +3,7 @@
         <li><a href="#!/products">{{'label.anchor.products' | translate}}</a></li>
         <li><a href="{{'#!/' + productsLink }}">{{'label.anchor.' + productsLink | translate}}</a> </li>
         <li><a href="#!/{{viewProductLink}}/{{productId}}">{{productName}}</a></li>
-        <li><a href="#!/interestratecharts/{{productId}}/{{productName}}/{{productType}}">{{'label.anchor.interestratecharts'
-                    | translate}}</a></li>
+        <li><a href="#!/interestratecharts/{{productId}}/{{productName}}/{{productType}}">{{'label.anchor.interestratecharts' | translate}}</a></li>
         <li class="active">{{'label.anchor.createinterestratechart' | translate}}</li>
     </ul>
 
@@ -12,7 +11,7 @@
         <api-validate></api-validate>
         <div class="row-fluid">
             <legend>{{'label.heading.createinterestratechart' | translate}}</legend>
-            <table>
+            <table class="width100">
                 <!--<tr>
                     <td>
                         <div class="control-group">
@@ -42,45 +41,25 @@
                 </tr>-->
                 <tr>
                     <td>
-                        <div class="control-group">
-                            <label class="control-label" for="name">{{'label.input.interestratechart.valid.from' |
-                                translate }}<span
-                                        class="required">*</span></label>
-
-                            <div class="controls">
-                                <input id="fromDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-                                       ng-model="fromDate.date"
-                                       is-open="opened" min="minDate" max="restrictDate" class="form-control" />
-                            </div>
+                        <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.from' | translate }}<span class="required">*</span>
+                        </label>
+                        <div class="col-sm-3">
+                            <md-datepicker id="fromDate" ng-model="fromDate.date" min="minDate" max="restrictDate" required></md-datepicker>
+                            <form-validate valattributeform="interestchart" valattribute="fromDate" />
                         </div>
                     </td>
                     <td>
-                        <div class="control-group paddedleft0">
-                            <label class="control-label" for="name">{{'label.input.interestratechart.valid.to' |
-                                translate }}</label>
-
-                            <div class="controls">
-                                <input id="endDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-                                       ng-model="endDate.date"
-                                       is-open="opened" min="minDate" max="restrictDate" class="form-control" />
-                            </div>
+                        <label class="control-label col-sm-3" for="name">{{ 'label.input.interestratechart.valid.to' | translate }}</label>
+                        <div class="col-sm-3">
+                            <md-datepicker id="endDate" ng-model="endDate.date" min="minDate" max="restrictDate" required></md-datepicker>
                         </div>
                     </td>
                     <td>
-                        <div class="control-group">
-                            <label class="control-label" for="name">{{
-                                'label.input.interestratechart.primary.grouping.amount' |
-                                translate }}</label>
-
-                            <div class="controls checkbox paddedleft0">
-                                <label>
-                                    <input id="isPrimaryGroupingByAmount" type="checkbox"
-                                           ng-model="isPrimaryGroupingByAmount">
-
-                                </label>
-                            </div>
+                        <div class="col-sm-2 right">
+                            <md-checkbox id="isPrimaryGroupingByAmount" ng-model="isPrimaryGroupingByAmount" ng-true-value="true" ng-false-value="false"></md-checkbox>
                         </div>
-
+                        <label class="control-label col-sm-9 left">{{'label.input.interestratechart.primary.grouping.amount' | translate }}
+                        </label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -96,8 +75,7 @@
                                 <td>{{'label.heading.interestratedetails.description' | translate}}</td>
                                 <td>&nbsp;
                                     <div class="controls" ng-show="chart.chartSlabs.length < 1">
-                                        <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row'
-                                            | translate}}</a>
+                                        <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row' | translate}}</a>
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>
@@ -105,25 +83,31 @@
 
                             <tr ng-repeat="chartSlab in chart.chartSlabs">
                                 <td ng-show="isPrimaryGroupingByAmount">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <input id="amountRangeFrom1" name="amountRangeFrom" type="text" class="input-mini"
-                                                        ng-model="chartSlab.amountRangeFrom"/>
-                                            </td>
-                                            <td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
-                                            <td>
-                                                <input id="amountRangeTo1" name="amountRangeTo" type="text" class="input-mini"
-                                                       ng-model="chartSlab.amountRangeTo"/>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <input id="amountRangeFrom1" name="amountRangeFrom1" type="text"
+                                        class="input-mini" ng-model="chartSlab.amountRangeFrom"
+                                        late-validate decimal-number=true />
+                                    <span
+                                        ng-show="interestchart.amountRangeFrom1.$invalid && interestchart.amountRangeFrom1.$dirty">
+                                        <small class="required error">
+                                            {{'label.mustbenumeric' | translate}}
+                                        </small>
+                                    </span> -
+                                    <input id="amountRangeTo1" name="amountRangeTo1" type="text"
+                                        class="input-mini" ng-model="chartSlab.amountRangeTo" late-validate
+                                        decimal-number=true />
+                                    <span
+                                        ng-show="interestchart.amountRangeTo1.$invalid && interestchart.amountRangeTo1.$dirty">
+                                        <small class="required error">
+                                            {{'label.mustbenumeric' | translate}}
+                                        </small>
+                                    </span>
                                 </td>
                                 <td class="width15">
-                                    <select class="form-control width170px" id="periodType" ng-model="chartSlab.periodType.id"
-                                            ng-options="type.id as type.value for type in chart.periodTypes"
-                                            value="{{chartSlab.periodType.id}}">
-                                    </select>
+                                    <md-select placeholder="{{'label.selectone' | translate}}" id="periodType" ng-model="chartSlab.periodType">
+                                        <md-option ng-repeat="type in chart.periodTypes" ng-value="type" >
+                                            {{type.value | translate}}
+                                        </md-option>
+                                    </md-select>
                                 </td>
                                 <td>
                                     <table>
@@ -141,37 +125,42 @@
                                     </table>
                                 </td>
                                 <td ng-hide="isPrimaryGroupingByAmount">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <input id="amountRangeFrom" name="amountRangeFrom" type="text" class="input-mini"
-                                                       ng-model="chartSlab.amountRangeFrom"/>
-                                            </td>
-                                            <td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
-                                            <td>
-                                                <input id="amountRangeTo" name="amountRangeTo" type="text" class="input-mini"
-                                                        ng-model="chartSlab.amountRangeTo"/>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <input id="amountRangeFrom" name="amountRangeFrom" type="text"
+                                        class="input-mini" ng-model="chartSlab.amountRangeFrom"
+                                        late-validate decimal-number=true />
+                                    <span
+                                        ng-show="interestchart.amountRangeFrom.$invalid && interestchart.amountRangeFrom.$dirty">
+                                        <small class="required error">
+                                            {{'label.mustbenumeric' | translate}}
+                                        </small>
+                                    </span> -
+                                    <input id="amountRangeTo" name="amountRangeTo" type="text"
+                                        class="input-mini" ng-model="chartSlab.amountRangeTo" late-validate
+                                        decimal-number=true />
+
+                                    <span
+                                        ng-show="interestchart.amountRangeTo.$invalid && interestchart.amountRangeTo.$dirty">
+                                        <small class="required error">
+                                            {{'label.mustbenumeric' | translate}}
+                                        </small>
+                                    </span>
+
                                 </td>
                                 <td><input id="annualInterestRate" name="annualInterestRate" type="text"
                                            class="form-control"
                                            ng-model="chartSlab.annualInterestRate"/></td>
-                                <td><input id="description" name="description" type="text"
-                                           ng-model="chartSlab.description"/></td>
+                                <td class="width20"><input name="description" type="text"
+                                            class="form-control" ng-model="chartSlab.description" /></td>
                                 <td>
                                     <a ng-click="removeRow($index)"><i class="fa fa-minus-sign "></i>{{'label.remove.row'
                                         | translate}}</a>
 
                                     <div class="controls" ng-show="$last">
-                                        <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row'
-                                            | translate}}</a>
+                                        <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row' | translate}}</a>
                                     </div>
                                 </td>
                                 <td>
-                                    <a ng-click="incentives($index)"><i class=""></i>{{'label.incentive.row'
-                                        | translate}}</a>
+                                    <a ng-click="incentives($index)"><i class=""></i>{{'label.incentive.row' | translate}}</a>
                                 </td>
                             </tr>
                         </table>
@@ -179,11 +168,9 @@
                 </tr>
             </table>
         </div>
-        <div class="offset4 paddedtop">
-            <button id="cancel" type="reset" class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' |
-                translate}}
-            </button>
-            <button id="save" type="submit" class="btn btn-sm btn-primary">{{'label.button.save' | translate}}</button>
+        <div class="col-md-offset-10 paddedtop">
+            <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()"> {{'label.button.cancel' | translate }}</button>
+            <button id="save" type="submit" class="btn btn-sm btn-primary" ng-click="submitInterestRateChartForm()">{{'label.button.save' | translate}}</button>
         </div>
         <script type="text/ng-template" id="incentive.html">
             <div class="modal-header silver">
@@ -198,8 +185,7 @@
                         <td class="width15">{{'label.heading.interestratedetails.incentive.amount' | translate}}</td>
                         <td>
                             <div ng-show="chartSlab.incentives.length < 1">
-                                <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row'
-                                    | translate}}</a>
+                                <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row' | translate}}</a>
                             </div>
                         </td>
                         <td>&nbsp;</td>
@@ -240,7 +226,6 @@
                                     value="{{type.id}}">
                             </select>
                         </td>
-
                         <td>
                             <input id="amount" name="amount" type="text"
                                    class="form-control"
@@ -251,15 +236,11 @@
                                 | translate}}</a>
 
                             <div ng-show="$last">
-                                <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row'
-                                    | translate}}</a>
+                                <a ng-click="addNewRow()"><i class="fa fa-plus-sign "></i>{{'label.add.row' | translate}}</a>
                             </div>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-warning" ng-click="cancel()">{{'label.button.close' | translate}}</button>
             </div>
         </script>
     </form>

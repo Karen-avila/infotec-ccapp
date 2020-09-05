@@ -27,8 +27,7 @@
                   </a>
                   <ul class="dropdown dropdown-menu">
                       <li class="fa {{button.icon}}" ng-repeat="button in buttons.options">
-                          <a ng-click="clickEvent(button.name.replace('button.',''), savingaccountdetails.id)">{{'label.'+button.name
-                              | translate}}</a>
+                          <a ng-click="clickEvent(button.name.replace('button.',''), savingaccountdetails.id)">{{'label.'+button.name | translate}}</a>
                       </li>
                   </ul>
               </span>
@@ -72,7 +71,7 @@
                     <tr>
                         <th class="active fontnormal">{{'label.account.deposit.period' | translate}}
                         </th>
-                        <td><span class="padded-td">{{savingaccountdetails.depositPeriod}}&nbsp;{{savingaccountdetails.depositPeriodFrequency.value}}</span>
+                        <td><span class="padded-td">{{savingaccountdetails.depositPeriod}}&nbsp;{{savingaccountdetails.depositPeriodFrequency.value | translate}}</span>
                         </td>
                     </tr>
                     <tr>
@@ -82,10 +81,9 @@
                         </td>
                     </tr>
                     <tr ng-show="savingaccountdetails.minBalanceForInterestCalculation">
-                        <th class="active fontnormal"> {{'label.heading.minbalanceforinterestcalculation' |
-                            translate}}
+                        <th class="active fontnormal"> {{'label.heading.minbalanceforinterestcalculation' | translate}}
                         </th>
-                        <td><span class="padded-td">{{savingaccountdetails.minBalanceForInterestCalculation | FormatNumber}}</span>
+                        <td><span class="padded-td"> {{savingaccountdetails.currency.displaySymbol}} {{savingaccountdetails.minBalanceForInterestCalculation | FormatNumber}}</span>
                         </td>
                     </tr>
                     <tr data-ng-show="savingaccountdetails.withHoldTax">
@@ -101,29 +99,26 @@
                     <tr>
                         <th class="table-bold-acc fontnormal">{{'label.interestrate' | translate}}</th>
                         <td><span
-                                class="padded-td">{{savingaccountdetails.nominalAnnualInterestRate}}%</span>
+                                class="padded-td">{{savingaccountdetails.nominalAnnualInterestRate}} %</span>
                         </td>
                     </tr>
                     <tr>
-                        <th class="active fontnormal col-md-3">{{'label.interestcompoundingperiod' |
-                            translate}}
+                        <th class="active fontnormal col-md-3">{{'label.interestcompoundingperiod' | translate}}
                         </th>
                         <td class="col-md-3"><span
-                                class="padded-td">{{savingaccountdetails.interestCompoundingPeriodType.value}}</span>
+                                class="padded-td">{{savingaccountdetails.interestCompoundingPeriodType.value | translate}}</span>
                         </td>
                     </tr>
                     <tr>
-                        <th class="active fontnormal col-md-3">{{'label.interestpostingperiod' |
-                            translate}}
+                        <th class="active fontnormal col-md-3">{{'label.interestpostingperiod' | translate}}
                         </th>
-                        <td class="col-md-3"><span class="padded-td">{{savingaccountdetails.interestPostingPeriodType.value}}</span>
+                        <td class="col-md-3"><span class="padded-td">{{savingaccountdetails.interestPostingPeriodType.value | translate}}</span>
                         </td>
                     </tr>
                     <tr>
-                        <th class="active fontnormal">{{'label.interestcalculatedusing' |
-                            translate}}
+                        <th class="active fontnormal">{{'label.interestcalculatedusing' | translate}}
                         </th>
-                        <td><span class="padded-td">{{savingaccountdetails.interestCalculationType.value}}</span>
+                        <td><span class="padded-td">{{savingaccountdetails.interestCalculationType.value | translate}}</span>
                         </td>
                     </tr>
                     <tr>
@@ -217,7 +212,7 @@
                                 <tr>
                                     <td class="active fontnormal">{{'label.account.deposit.period' | translate}}
                                     </td>
-                                    <td><span class="padded-td">{{savingaccountdetails.depositPeriod}} &nbsp; {{savingaccountdetails.depositPeriodFrequency.value}}</span>
+                                    <td><span class="padded-td">{{savingaccountdetails.depositPeriod}} &nbsp; {{savingaccountdetails.depositPeriodFrequency.value | translate}}</span>
                                     </td>
                                     <td class="active fontnormal">{{'label.account.rate.of.interest' | translate}}
                                     </td>
@@ -309,24 +304,24 @@
                                         translate}}
                                     </td>
                                     <td class="col-md-3"><span
-                                            class="padded-td">{{savingaccountdetails.interestCompoundingPeriodType.value}}</span>
+                                            class="padded-td">{{savingaccountdetails.interestCompoundingPeriodType.value | translate}}</span>
                                     </td>
                                     <td class="active fontnormal col-md-3">{{'label.interestpostingperiod' |
                                         translate}}
                                     </td>
-                                    <td class="col-md-3"><span class="padded-td">{{savingaccountdetails.interestPostingPeriodType.value}}</span>
+                                    <td class="col-md-3"><span class="padded-td">{{savingaccountdetails.interestPostingPeriodType.value | translate}}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="active fontnormal">{{'label.interestcalculatedusing' |
                                         translate}}
                                     </td>
-                                    <td><span class="padded-td">{{savingaccountdetails.interestCalculationType.value}}</span>
+                                    <td><span class="padded-td">{{savingaccountdetails.interestCalculationType.value | translate}}</span>
                                     </td>
                                     <td class="active fontnormal">{{'label.noofdaysinyear' | translate}}
                                     </td>
                                     <td><span
-                                            class="padded-td">{{savingaccountdetails.interestCalculationDaysInYearType.value}}</span>
+                                            class="padded-td">{{savingaccountdetails.interestCalculationDaysInYearType.value | translate}}</span>
                                     </td>
                                 </tr>
                                 <tr ng-show="savingaccountdetails.preClosurePenalApplicable">
@@ -355,14 +350,13 @@
 
                                 <tr ng-repeat="chartSlab in savingaccountdetails.accountChart.chartSlabs">
                                     <td ng-show="savingaccountdetails.accountChart.isPrimaryGroupingByAmount">{{chartSlab.amountRangeFrom}} - {{chartSlab.amountRangeTo}}</td>
-                                    <td>{{chartSlab.periodType.value}}</td>
+                                    <td>{{chartSlab.periodType.value | translate}}</td>
                                     <td>{{chartSlab.fromPeriod}}-{{chartSlab.toPeriod}}</td>
                                     <td ng-hide="savingaccountdetails.accountChart.isPrimaryGroupingByAmount">{{chartSlab.amountRangeFrom}} - {{chartSlab.amountRangeTo}}</td>
                                     <td>{{chartSlab.annualInterestRate}}</td>
                                     <td>{{chartSlab.description}}</td>
                                     <td>
-                                        <a ng-click="incentives($index)"  ><i class=""></i>{{'label.incentive.row'
-                                            | translate}}</a>
+                                        <a ng-click="incentives($index)"  ><i class=""></i>{{'label.incentive.row' | translate}}</a>
                                     </td>
                                 </tr>
                             </table>
@@ -374,20 +368,19 @@
                         <colgroup span="4"></colgroup>
                         <thead>
                         <tr>
-                            <th class="pointer" ng-click="changeTransactionSort('id')">{{'label.heading.id' |
-                                translate}}
+                            <th class="pointer" ng-click="changeTransactionSort('id')">{{'label.heading.id' | translate }}
                             </th>
                             <th class="pointer" ng-click="changeTransactionSort('date')">
-                                {{'label.heading.transactiondate' | translate}}
+                                {{'label.heading.transactiondate' | translate }}
                             </th>
                             <th class="pointer" ng-click="changeTransactionSort('transactionType.value')">
-                                {{'label.heading.transactiontype' | translate}}
+                                {{'label.heading.transactiontype' | translate }}
                             </th>
-                            <th class="pointer" ng-click="changeTransactionSort('amount')">{{'label.heading.debit' |
-                                translate}}
+                            <th class="pointer" ng-click="changeTransactionSort('amount')">
+                                {{'label.heading.debit' | translate}}
                             </th>
-                            <th class="pointer" ng-click="changeTransactionSort('amount')">{{'label.heading.credit' |
-                                translate}}
+                            <th class="pointer" ng-click="changeTransactionSort('amount')">
+                                {{'label.heading.credit' | translate}}
                             </th>
                             <th class="pointer" ng-click="changeTransactionSort('runningBalance')">
                                 {{'label.heading.balance' | translate}}
@@ -407,7 +400,7 @@
                             </td>
                             <td class="pointer"
                                 data-ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)">
-                                {{transaction.transactionType.value}}
+                                {{transaction.transactionType.value | translate }}
                             </td>
                             <td class="pointer"
                                 data-ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)">

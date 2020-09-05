@@ -10,6 +10,12 @@
             scope.penaltySpecificIncomeaccounts = [];
             scope.configureFundOption = {};
             scope.isClicked = false;
+            scope.maxStep = 7;
+            scope.selectedStep = 0;
+            scope.stepProgress = 0;
+            scope.frFlag = false;
+            scope.fiFlag = false;
+            scope.piFlag = false;
 
             //interest rate details
             scope.chart = {};
@@ -17,6 +23,7 @@
             scope.fromDate = {}; //required for date formatting
             scope.endDate = {};//required for date formatting
             scope.isPrimaryGroupingByAmount = false;
+            scope.accountLevels = [1,2,3,4];
 
             resourceFactory.recurringDepositProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
@@ -38,6 +45,7 @@
                 //set chart template
                 scope.chart = scope.product.chartTemplate;
                 scope.chart.chartSlabs = [];
+                scope.chartSlab = {};
                 scope.formData.accountingRule = '1';
                 scope.depositproduct = angular.copy(scope.formData);
 
@@ -45,6 +53,31 @@
             scope.$watch('formData',function(newVal){
                 scope.depositproduct = angular.extend(scope.depositproduct,newVal);
             },true);
+
+            scope.goNextStep = function() {
+                var vm = scope;
+                //do not exceed into max step
+                if (vm.selectedStep >= vm.maxStep) {
+                    return;
+                }
+                //do not increment vm.stepProgress when submitting from previously completed step
+                if (vm.selectedStep === vm.stepProgress - 1) {
+                    vm.stepProgress = vm.stepProgress + 1;
+                }
+                vm.selectedStep = vm.selectedStep + 1;
+
+                if(vm.selectedStep + 1 == scope.maxStep) {
+                    scope.isClicked = true;
+                }
+            }
+
+            scope.moveToPreviousStep = function() {
+                var vm = scope;
+                if (vm.selectedStep > 0) {
+                    vm.selectedStep = vm.selectedStep - 1;
+                }
+            }
+
             scope.formValue = function(array,model,findattr,retAttr){
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
@@ -52,6 +85,9 @@
                     return obj[findattr] === model;
                 })[retAttr];
             };
+
+
+
             //advanced accounting rule
             scope.showOrHide = function (showOrHideValue) {
 

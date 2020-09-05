@@ -6,94 +6,110 @@
     </ul>
     <div class="card">
         <div class="content">
-            <div class="">
+            <div class="row">
                 <table class="table table-striped table-condensed">
-                    <tr class="col-xs-14">
-                        <td class="col-md-5">{{'label.heading.cashmgmt.officeName' | translate}} :
-                            {{cashierSummaryAndTxns.officeName}} |
+                    <tr>
+                        <td>{{'label.heading.cashmgmt.officeName' | translate}} :
+                            {{cashierSummaryAndTxns.officeName}}
+                            <br>
                             {{'label.heading.cashmgmt.tellerName' | translate }} : {{cashierSummaryAndTxns.tellerName}}
-                            |
+                            <br>
                             {{'label.heading.cashmgmt.cashierName' | translate }} :
-                            {{cashierSummaryAndTxns.cashierName}}</td>
-                        <td class="col-md-2">
-                            <select id="currencyCode" name="currency" ng-model="formData.currencyCode"
-                                class="form-control"
-                                ng-options="currency.code as (currency.name+' ('+ currency.displaySymbol +')') for currency in currencyOptions"
-                                value="{{currency.code}}" required>
-                                <option value=""> {{'label.selectcurrency' | translate}} </option>
-                            </select>
+                            {{cashierSummaryAndTxns.cashierName}}
+                            <br>
+                            <span ng-if="cashierSummaryAndTxns.netCash" class="h4">{{'label.heading.cashmgmt.cashier.netAmount' | translate}}:
+                                {{cashierSummaryAndTxns.netCash | FormatNumber}}</span>
                         </td>
                         <td>
-                            <a ng-click="routeToTxn()"
-                                class="btn btn-sm btn-primary">{{'label.button.cashier.showtxn' | translate}} </a>
+                            <md-select id="currencyCode" ng-model="formData.currencyCode" required
+                                placeholder="{{'label.selectcurrency' | translate}}">
+								<md-option ng-repeat="currency in currencyOptions"
+									ng-value="currency.code">
+									{{currency.code}} {{currency.name}}
+								</md-option>
+                            </md-select>
                         </td>
+                        <td>
+                            <md-button ng-click="routeToTxn()"
+                                class="md-raised md-primary">{{'label.button.cashier.showtxn' | translate}}
+                            </md-button>
 
-                        <td><span class="h4">{{'label.heading.cashmgmt.cashier.netAmount' | translate}}:
-                                {{cashierSummaryAndTxns.netCash | FormatNumber}}</span></td>
-                        <td><button id="allocate" type="submit" class="btn btn-sm btn-primary pull-right"
-                                has-permission='ALLOCATECASHIER_TELLER' data-ng-click="routeToAllocate()">
+                            <md-button id="allocate" type="submit" class="md-raised md-primary"
+                                has-permission='ALLOCATECASHIER_TELLER' ng-click="routeToAllocate()">
                                 <i class="fa fa-level-down "></i>{{'label.button.cashier.allocatefunds' | translate}}
-                            </button>
+                            </md-button>
 
-                            <button id="settle" type="submit" class="btn btn-sm btn-primary pull-right"
-                                has-permission='SETTLECASHFROMCASHIER_TELLER' data-ng-click="routeToSettle()">
+                            <md-button id="settle" type="submit" class="md-raised md-primary"
+                                has-permission='SETTLECASHFROMCASHIER_TELLER' ng-click="routeToSettle()">
                                 <i class="fa fa-level-up "></i>{{'label.button.cashier.settlefunds' | translate}}
-                            </button>
+                            </md-button>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="clear"></div>
+            <md-divider></md-divider>
             <div ng-hide="isTreeView">
-                <input ng-autofocus="true" ng-model="filterText" type="text" class="form-control span marginbottom0px"
-                    placeholder="{{'label.input.filterbynameexternalid' | translate}}">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr class="graybg">
-                            <th align="center">{{'label.date' | translate}}</th>
-                            <th align="center">{{'label.heading.transactions' | translate}}</th>
-                            <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountAlloc' | translate}}:
-                                {{cashierSummaryAndTxns.sumCashAllocation | FormatNumber}}</th>
-                            <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountCashIn' | translate}}:
-                                {{cashierSummaryAndTxns.sumInwardCash | FormatNumber}}</th>
-                            <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountCashOut' | translate}}:
-                                {{cashierSummaryAndTxns.sumOutwardCash | FormatNumber}}</th>
-                            <th align="center">{{'label.heading.cashmgmt.cashier.txnAmountSettle' | translate}}:
-                                {{cashierSummaryAndTxns.sumCashSettlement | FormatNumber}}</th>
-                            <th></th>
+                <md-table-container class="noscroll-x">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <md-input-container class="full-width">
+                                <label>{{'label.input.filterbynameexternalid' | translate}}</label>
+                                <input ng-model="filter.search">
+                            </md-input-container>
+                        </div>
+                        <md-divider></md-divider>
+                    </div>
+                    <div class="row">
+                        <div clas="col-sm-12">
+                            <table md-table class="table">
+                                <thead md-head>
+                                    <tr md-row>
+                                        <th md-column>{{'label.date' | translate}}</th>
+                                        <th md-column>{{'label.heading.transactions' | translate}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.cashier.txnAmountAlloc' | translate}}:
+                                            {{cashierSummaryAndTxns.sumCashAllocation | FormatNumber}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.cashier.txnAmountCashIn' | translate}}:
+                                            {{cashierSummaryAndTxns.sumInwardCash | FormatNumber}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.cashier.txnAmountCashOut' | translate}}:
+                                            {{cashierSummaryAndTxns.sumOutwardCash | FormatNumber}}</th>
+                                        <th md-column>{{'label.heading.cashmgmt.cashier.txnAmountSettle' | translate}}:
+                                            {{cashierSummaryAndTxns.sumCashSettlement | FormatNumber}}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row dir-paginate="txn in cashierTransactions | orderBy:'txn.txnDate' | filter:filterText | itemsPerPage: txnPerPage"
+                                        total-items="totaltxn">
+                                        <td md-cell>{{txn.txnDate | DateFormat}}</td>
+                                        <td md-cell>{{txn.txnType.value | translate}}</td>
+                                        <td md-cell>
+                                            <span
+                                                ng-if="txn.txnType.value == 'Allocate Cash'">{{txn.txnAmount | FormatNumber}}</span>
+                                        </td>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <tr ng-repeat="txn in cashierSummaryAndTxns.cashierTransactions| orderBy:'txn.txnDate' | orderBy:'createdDate'  | filter:filterText ">-->
-                        <tr dir-paginate="txn in cashierTransactions | orderBy:'txn.txnDate' | filter:filterText | itemsPerPage: txnPerPage"
-                            total-items="totaltxn">
-                            <td>{{txn.txnDate | DateFormat}}</td>
+                                        <td md-cell>
+                                            <span ng-if="txn.txnType.value == 'Cash In'">{{txn.txnAmount | FormatNumber}}</span>
+                                        </td>
 
-                            <td>{{txn.txnType.value}}</td>
+                                        <td md-cell>
+                                            <span ng-if="txn.txnType.value == 'Cash Out'">{{txn.txnAmount | FormatNumber}}</span>
+                                        </td>
 
-                            <td>
-                                <span ng-if="txn.txnType.value == 'Allocate Cash'">{{txn.txnAmount | FormatNumber}}</span>
-                            </td>
-
-                            <td>
-                                <span ng-if="txn.txnType.value == 'Cash In'">{{txn.txnAmount | FormatNumber}}</span>
-                            </td>
-
-                            <td>
-                                <span ng-if="txn.txnType.value == 'Cash Out'">{{txn.txnAmount | FormatNumber}}</span>
-                            </td>
-
-                            <td>
-                                <span ng-if="txn.txnType.value == 'Settle Cash'">{{txn.txnAmount | FormatNumber}}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                        <td md-cell>
+                                            <span ng-if="txn.txnType.value == 'Settle Cash'">{{txn.txnAmount | FormatNumber}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-table-container>
+                <md-table-pagination ng-show="cashierTransactions.length > query.limit" md-limit="query.limit"
+                    md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                    md-boundary-links="options.boundaryLinks" md-total="{{cashierTransactions.length}}" md-page="query.page"
+                    md-on-paginate="search" md-page-select>
+                </md-table-pagination>
             </div>
         </div>
     </div>
-    <dir-pagination-controls boundary-links="true"
-        template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"
-        on-page-change="getResultsPage(newPageNumber)"></dir-pagination-controls>
 </div>

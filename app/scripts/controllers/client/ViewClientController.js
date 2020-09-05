@@ -710,17 +710,21 @@
             };
 
             scope.getDataTablesAndScoring = function () {
-                scope.scoringDetails = [];
-                scope.scoringInternalSubTotal = 0;
-                scope.scoringInternalPoints = 0;
-                scope.scoringExternalPoints = 0;
-                scope.scoringExternalTotal = 0;
-                scope.scoringTotalTotal = 0;
-                scope.getDataTables();
+                if (scope.datatableLoaded == false) {
+                    scope.scoringDetails = [];
+                    scope.scoringInternalSubTotal = 0;
+                    scope.scoringInternalPoints = 0;
+                    scope.scoringExternalPoints = scope.getRandomInt(300, 850);
+                    scope.scoringTotalTotal = 0;
+                    scope.getDataTables();
+                }
             }
 
             scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
                 var scoringInternal = newValue;
+                console.log("external");
+                scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 300, 850);
+                console.log("internal");
                 scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
                 scope.calculateScoring();
             });
@@ -741,8 +745,6 @@
 
             scope.calculateScoring = function () {
                 // Scoring Total
-                scope.scoringExternalPoints = scope.getRandomInt(300, 850);
-                scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 850, 300);
                 scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
                     (scope.scoringExternalTotal * 0.8);             
             }
@@ -788,6 +790,10 @@
             };
 
             scope.reScale = function (value, min, max) {
+                console.log("A: " + (value - min));
+                console.log("B: " + (max - min));
+                console.log("C: " + ((value - min) / (max - min)));
+                console.log("D: " + ((value - min) / (max - min)).toFixed(2));
                 return ((value - min) / (max - min)).toFixed(2);
             }
 

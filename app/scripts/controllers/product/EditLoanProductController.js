@@ -75,6 +75,7 @@
                     principal: scope.product.principal,
                     minPrincipal: scope.product.minPrincipal,
                     maxPrincipal: scope.product.maxPrincipal,
+                    oneAtTime: scope.product.oneAtTime,
                     numberOfRepayments: scope.product.numberOfRepayments,
                     minNumberOfRepayments: scope.product.minNumberOfRepayments,
                     maxNumberOfRepayments: scope.product.maxNumberOfRepayments,
