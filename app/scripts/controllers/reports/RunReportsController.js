@@ -91,7 +91,7 @@
                   var selectData = [];
                   var isExistedRecord = false;
                   for (var i in data.data) {
-                      selectData.push({id: data.data[i].rows[0], name: data.data[i].rows[1]});
+                      selectData.push({id: data.data[i].rows[0].value, name: data.data[i].rows[1].value});
                   }
                   for (var j in scope.reportParams) {
                       if (scope.reportParams[j].name == paramData.name) {
