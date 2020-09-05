@@ -790,10 +790,6 @@
             };
 
             scope.reScale = function (value, min, max) {
-                console.log("A: " + (value - min));
-                console.log("B: " + (max - min));
-                console.log("C: " + ((value - min) / (max - min)));
-                console.log("D: " + ((value - min) / (max - min)).toFixed(2));
                 return ((value - min) / (max - min)).toFixed(2);
             }
 
