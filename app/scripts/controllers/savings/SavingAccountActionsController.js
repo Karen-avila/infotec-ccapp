@@ -244,8 +244,6 @@
                     scope.title = 'label.heading.block';
                     scope.labelName = 'label.input.block';
                     scope.showNoteField = false;
-                    scope.withdrawBalance = false;
-                    scope.postInterestValidationOnClosure = false;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNT';
                     scope.fetchEntities('m_savings_account','BLOCK');
@@ -259,8 +257,6 @@
                     scope.title = 'label.heading.unblock';
                     scope.labelName = 'label.input.unblock';
                     scope.showNoteField = false;
-                    scope.withdrawBalance = false;
-                    scope.postInterestValidationOnClosure = false;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'UNBLOCK_SAVINGSACCOUNT';
                     scope.fetchEntities('m_savings_account','UNBLOCK');

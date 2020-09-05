@@ -56,7 +56,6 @@
           resourceFactory.runReportsResource.getReport({reportSource: 'FullParameterList', parameterType: true, 
             R_reportListing: "'" + routeParams.name + "'"}, function (data) {
               for (var i in data.data) {
-                  console.log(JSON.stringify(data.data[i].rows));
                   var temp = {
                       name: data.data[i].rows[0].value,
                       variable: data.data[i].rows[1].value,
