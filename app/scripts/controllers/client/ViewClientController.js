@@ -722,9 +722,7 @@
 
             scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
                 var scoringInternal = newValue;
-                console.log("external");
                 scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 300, 850);
-                console.log("internal");
                 scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
                 scope.calculateScoring();
             });

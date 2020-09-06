@@ -83,12 +83,25 @@
 
       $scope.submit = function () {
         $scope.formData.street = $scope.formData.street.toUpperCase();
-        $scope.formData.addressLine1 = $scope.formData.addressLine1.toUpperCase();
-        $scope.formData.addressLine2 = $scope.formData.addressLine2.toUpperCase();
-        $scope.formData.addressLine3 = $scope.formData.addressLine3.toUpperCase();
-        $scope.formData.addressLine4 = $scope.formData.addressLine4.toUpperCase();
-        $scope.formData.addressLine5 = $scope.formData.addressLine5.toUpperCase();
-        $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
+        if (typeof $scope.formData.addressLine1 != "undefined") {
+          $scope.formData.addressLine1 = $scope.formData.addressLine1.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine2 != "undefined") {
+          $scope.formData.addressLine2 = $scope.formData.addressLine2.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine3 != "undefined") {
+          $scope.formData.addressLine3 = $scope.formData.addressLine3.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine4 != "undefined") {
+          $scope.formData.addressLine4 = $scope.formData.addressLine4.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine5 != "undefined") {
+          $scope.formData.addressLine5 = $scope.formData.addressLine5.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine6 != "undefined") {
+          $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
+        }
+
         resourceFactory.clientAddress.save(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
