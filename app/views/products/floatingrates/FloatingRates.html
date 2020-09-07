@@ -5,7 +5,6 @@
     </ul>
 
     <div class="card well">
-
         <div class="row">
             <div class="col-md-9 col-sm-9">
                 <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control"
@@ -34,8 +33,8 @@
                         data-ng-click="routeTo(floatingrate.id)" md-select="product" md-select-id="name" >
                         <td md-cell>{{floatingrate.name}}</td>
                         <td md-cell>{{floatingrate.createdBy}}</td>
-                        <td md-cell>{{floatingrate.isBaseLendingRate}}</td>
-                        <td md-cell>{{floatingrate.isActive}}</td>
+                        <td md-cell>{{floatingrate.isBaseLendingRate | translate}}</td>
+                        <td md-cell>{{floatingrate.isActive | translate}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,5 +42,4 @@
 
         <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
-
 </div>
