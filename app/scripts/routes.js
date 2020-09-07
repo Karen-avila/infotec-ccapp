@@ -931,7 +931,7 @@
             .when('/address/:id', {
                 templateUrl: 'views/administration/AddressForm.html'
             })
-            .when('/editAddress/:addrType/:addrId/:clientId', {
+            .when('/editAddress/:clientId/:addrType/:addressId', {
                 templateUrl: 'views/administration/EditAddress.html'
             })
             .when('/smscampaigns', {

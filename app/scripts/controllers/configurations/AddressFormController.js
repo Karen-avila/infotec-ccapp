@@ -44,7 +44,7 @@
       };
 
       $scope.isEditRequired = function (addType) {
-        resourceFactory.clientAddress.get(
+        resourceFactory.clientAddresses.get(
           { type: addType, clientId: routeParams.id, status: true },
           function (data) {
             if (data[0]) {
@@ -72,7 +72,7 @@
       };
 
       $scope.updateaddress = function () {
-        resourceFactory.clientAddress.put(
+        resourceFactory.clientAddresses.put(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
           function (data) {
@@ -102,7 +102,7 @@
           $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
         }
 
-        resourceFactory.clientAddress.save(
+        resourceFactory.clientAddresses.save(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
           function (data) {

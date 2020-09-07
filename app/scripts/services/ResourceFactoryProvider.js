@@ -576,10 +576,13 @@
                     addresssFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
-                    clientAddress: defineResource(apiVer + "/client/:clientId/addresses", {}, {
+                    clientAddresses: defineResource(apiVer + "/client/:clientId/addresses", {}, {
                         post: { method: 'POST', params: { type: '@type' } },
                         get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
                         put: { method: 'PUT', params: {} }
+                    }),
+                    clientAddress: defineResource(apiVer + "/client/:clientId/addresses/:addressId", {}, {
+                        get: { method: 'GET', params: {}},
                     }),
                     familyMember: defineResource(apiVer + "/clients/:clientId/familymembers/:clientFamilyMemberId", {}, {
                         get: { method: 'GET', params: {} },
