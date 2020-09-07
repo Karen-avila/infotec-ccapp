@@ -12,114 +12,107 @@
                 <div class="col-sm-3">
                     <label class="control-label" for="name">{{'label.input.floatingratename' | translate}}<span
                             class="required">*</span> &nbsp;
-                        <i class="fa fa-question-circle"
-                        uib-tooltip="{{'label.tooltip.floatingratename' | translate}}"
-                        tooltip-append-to-body="true"></i>
+                        <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingratename' | translate}}"
+                            tooltip-append-to-body="true"></i>
                     </label>
                 </div>
                 <div class="col-sm-2">
-                    <input name="name" type="text" id="name" ng-model="formData.name" class="form-control"
-                           required late-Validate/>
+                    <input name="name" type="text" id="name" ng-model="formData.name" class="form-control" required
+                        late-Validate />
                 </div>
                 <div class="col-sm-2">
-                    <form-validate valattributeform="newfloatingrateform" valattribute="name"/>
+                    <form-validate valattributeform="newfloatingrateform" valattribute="name" />
                 </div>
                 <div class="col-sm-3">
-                  <input type="checkbox" name="name1" ng-model="formData.isBaseLendingRate"/>
-                  <label class="control-label" >{{'label.input.isbaselendingrate' | translate}}
-                  &nbsp;    <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.isBaseLendingRate' | translate}}"
-                        tooltip-append-to-body="true"></i>
-                  </label>
+                    <md-checkbox id="isBaseLendingRate" ng-model="formData.isBaseLendingRate">
+                        <label class="control-label">{{'label.input.isbaselendingrate' | translate}}
+                            &nbsp;<i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.isBaseLendingRate' | translate}}"
+                                tooltip-append-to-body="true"></i>
+                        </label>
+                    </md-checkbox>
                 </div>
 
                 <div class="col-sm-2">
-                    <input type="checkbox" name="name1" ng-model="formData.isActive"/>
-                    <label class="control-label" >{{'label.input.active' | translate}}
-                    &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.isActive' | translate}}"></i>
-                    </label>
+                    <md-checkbox id="isActive" ng-model="formData.isActive">
+                        <label class="control-label">{{'label.input.active' | translate}}
+                            &nbsp;<i class="fa fa-question-circle"
+                                uib-tooltip="{{'label.tooltip.isActive' | translate}}"></i>
+                        </label>
+                    </md-checkbox>
                 </div>
             </div>
 
-            <hr/>
+            <hr />
 
             <div class="form-group">
                 <div class="col-sm-3">
-                    <label class="bolder" >{{'label.heading.rateperiods' | translate}}
+                    <label class="bolder">{{'label.heading.rateperiods' | translate}}
                         &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.rateperiods' | translate}}"
-                         tooltip-append-to-body="true"></i>
+                            tooltip-append-to-body="true"></i>
                     </label>
                 </div>
                 <div class="col-sm-1">
                     <md-button id="add" ng-click="addRatePeriod()" name="add"><i
-                        class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
+                            class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}
                     </md-button>
-                    <!--
-                    <button id="add" data-ng-click="addRatePeriod()" class="btn btn-sm btn-primary" name="add"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{'label.button.add' | translate}}</button>
-                    -->
                 </div>
             </div>
             <BR>
-            <table class="table width80" ng-show="formData.ratePeriods.length>0" >
+            <table class="table width80" ng-show="formData.ratePeriods.length>0">
                 <tr class="graybg" class="width50">
                     <th>{{'label.heading.fromdate' | translate}}
                         <span class="required">*</span>
-                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingfromdate' | translate}}"></i></th>
+                        &nbsp;<i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.floatingfromdate' | translate}}"></i></th>
                     <th>{{'label.heading.interestrate' | translate}}
                         <span class="required">*</span>
-                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatigannualinterest' | translate}}"></i></th>
+                        &nbsp;<i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.floatigannualinterest' | translate}}"></i></th>
                     <th>{{'label.heading.isdifferentaialtobaselendingrate' | translate}}
-                        &nbsp;<i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingisdifferential' | translate}}"></i></th>
+                        &nbsp;<i class="fa fa-question-circle"
+                            uib-tooltip="{{'label.tooltip.floatingisdifferential' | translate}}"></i></th>
                     <th> {{'label.heading.actions' | translate}}</th>
                 </tr>
                 <tr ng-repeat="rateperiod in formData.ratePeriods">
                     <td>
                         <ng-form name="fromDate{{$index}}">
                             <md-datepicker id="fromDate{{$index}}" ng-model="rateperiod.fromDate"
-                                md-placeholder="{{'label.selecttodate' | translate}}" required
-                                min="minDate" max="restrictDate">
+                                md-placeholder="{{'label.selecttodate' | translate}}" required min="minDate"
+                                max="restrictDate">
                             </md-datepicker>
-                    <!--
-                        <input type="text" id="fromDate{{$index}}" name="fromDate" datepicker-pop="dd MMMM yyyy"
-                               ng-model="rateperiod.fromDate" is-open="opened" min="'2000-01-01'" max="restrictDate"
-                               class="form-control" required/>
-                    -->
-                            <span class="error" ng-show="visitValidation&&fromDate{{$index}}.fromDate.$error.required">{{'label.requirefield' | translate }}</span>
+
+                            <span class="error"
+                                ng-show="visitValidation&&fromDate{{$index}}.fromDate.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>
                     </td>
                     <td>
                         <ng-form name="interestRate{{$index}}">
-                           <input id="interestRate{{$index}}" name="interestRate" class="form-control" type="text"
-                                   ng-model="rateperiod.interestRate"  required/>
-                            <span class="error" ng-show="visitValidation&&interestRate{{$index}}.interestRate.$error.required">{{'label.requirefield' | translate }}</span>
+                            <input id="interestRate{{$index}}" name="interestRate" class="form-control" type="text"
+                                ng-model="rateperiod.interestRate" only-number maxlength="10" required/>
+                            <span class="error"
+                                ng-show="visitValidation&&interestRate{{$index}}.interestRate.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>
                     </td>
                     <td>
-                       <input id="isDifferentialToBaseLendingRate" name="isDifferentialToBaseLendingRate"  type="checkbox"
-                                      ng-model="rateperiod.isDifferentialToBaseLendingRate"/>
+                        <md-checkbox id="isDifferentialToBaseLendingRate"
+                            ng-model="rateperiod.isDifferentialToBaseLendingRate">
+                        </md-checkbox>
                     </td>
                     <td>
                         <a ng-click="deleteRatePeriod($index)"><i class="fa fa-times-circle fa-2x"></i></a>
                     </td>
-                   </tr>
+                </tr>
             </table>
-            <!--
-            <div class="col-md-offset-4">
-                <a id="cancel" href="#!/floatingrates">
-                    <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-                </a>
-                <button id="save" type="submit" ng-click="visitValidation=true" class="btn btn-sm btn-primary"
-                        has-permission='CREATE_FLOATINGRATE'>{{'label.button.save' | translate}}
-                </button>
-            </div>
-            -->
+
             <div class="col-md-12 center">
-				<md-button id="cancel" href="#!/floatingrates" class="md-raised" type="reset">{{'label.button.cancel' | translate }}
-				</md-button>
-				<md-button id="save" type="submit" ng-click="visitValidation=true" class="md-raised md-primary" has-permission='CREATE_FLOATINGRATE'>{{'label.button.save' | translate }}
+                <md-button id="cancel" href="#!/floatingrates" class="md-raised" type="reset">
+                    {{'label.button.cancel' | translate }}
+                </md-button>
+                <md-button id="save" type="submit" ng-click="visitValidation=true" class="md-raised md-primary"
+                    has-permission='CREATE_FLOATINGRATE'>{{'label.button.save' | translate }}
                 </md-button>
             </div>
-            
         </fieldset>
     </form>
-
 </div>

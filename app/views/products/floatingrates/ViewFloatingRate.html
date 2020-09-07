@@ -8,7 +8,6 @@
     <form name="newfloatingrateform" novalidate="" class="card form-horizontal well">
         <api-validate></api-validate>
         <fieldset>
-
             <div class="form-group pull-right">
                 <md-button md-no-ink class="md-primary" href="#!/editfloatingrate/{{id}}" has-permission='UPDATE_FLOATINGRATE'>
                     <i class="fa fa-edit "></i> {{'label.button.edit' | translate}}
@@ -25,12 +24,14 @@
                     <label class="control-label">{{name}}</label>
                 </div>
                 <div class="col-sm-3">
-                    <input type="checkbox" name="name1" ng-model="isBaseLendingRate" disabled/>
-                    <label class="control-label" >{{'label.input.isbaselendingrate' | translate}}</label>
+                    <md-checkbox id="isBaseLendingRate" ng-model="isBaseLendingRate" disabled>
+                        {{'label.input.isbaselendingrate' | translate }}
+                    </md-checkbox>
                 </div>
                 <div class="col-sm-2">
-                    <input type="checkbox" name="name1" ng-model="isActive" disabled/>
-                    <label class="control-label" >{{'label.input.active' | translate}}</label>
+                    <md-checkbox id="isActive" ng-model="isActive" disabled>
+                        {{'label.input.active' | translate }}
+                    </md-checkbox>
                 </div>
             </div>
             <hr/>
@@ -56,12 +57,11 @@
                         <label class="control-label">{{rateperiod.interestRate | FormatNumber}}</label>
                     </td>
                     <td>
-                        <input id="isDifferentialToBaseLendingRate" name="isDifferentialToBaseLendingRate"  type="checkbox"
-                               ng-model="rateperiod.isDifferentialToBaseLendingRate" disabled/>
+                        <md-checkbox id="isDifferentialToBaseLendingRate" ng-model="rateperiod.isDifferentialToBaseLendingRate" disabled>
+                        </md-checkbox>
                     </td>
                 </tr>
             </table>
         </fieldset>
     </form>
-
 </div>

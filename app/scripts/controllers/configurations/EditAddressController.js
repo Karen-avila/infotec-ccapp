@@ -15,10 +15,10 @@
             $scope.addStatus = "";
             $scope.editable = false;
             $scope.clientId = routeParams.clientId;
-            addresstypid = routeParams.addrType;
+            $scope.addresstypid = routeParams.addrType;
+            $scope.addressId = routeParams.addressId;
 
             isActive = {};
-            var addressId = routeParams.addrId;
           
             resourceFactory.clientaddressFields.get(function (data) {
                 $scope.addressTypes = data.addressTypeIdOptions;
@@ -27,8 +27,6 @@
                 $scope.allMunicipalityOptions = data.municipalityIdOptions;
                 $scope.stateOptions = data.stateProvinceIdOptions;
             })
-
-            
 
             resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
                 for (var i = 0; i < data.length; i++) {
@@ -41,67 +39,65 @@
                 location.path('/viewclient/' + $scope.clientId);
             }
 
-            resourceFactory.clientAddress.get({ type: addresstypid, clientId: $scope.clientId }, function (data) {
+            resourceFactory.clientAddress.get({ clientId: $scope.clientId, addressId: $scope.addressId }, function (data) {
                 $scope.editable = true;
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].addressId == addressId) {
-                        if (data[i].street && $scope.street) {
-                            $scope.formData.street = data[i].street;
-                        }
-                        if (data[i].addressTypeId && $scope.addressTypeId) {
-                            $scope.formData.addressTypeId = data[i].addressTypeId;
-                        }
-                        if (data[i].addressLine1 && $scope.addressLine1) {
-                            $scope.formData.addressLine1 = data[i].addressLine1;
-                        }
-                        if (data[i].addressLine2 && $scope.addressLine2) {
-                            $scope.formData.addressLine2 = data[i].addressLine2;
-                        }
-                        if (data[i].addressLine3 && $scope.addressLine3) {
-                            $scope.formData.addressLine3 = data[i].addressLine3;
-                        }
-                        if (data[i].addressLine4 && $scope.addressLine4) {
-                            $scope.formData.addressLine4 = data[i].addressLine4;
-                        }
-                        if (data[i].addressLine5 && $scope.addressLine5) {
-                            $scope.formData.addressLine5 = data[i].addressLine5;
-                        }
-                        if (data[i].addressLine6 && $scope.addressLine6) {
-                            $scope.formData.addressLine6 = data[i].addressLine6;
-                        }
-                        if (data[i].townVillage && $scope.townVillage) {
-                            $scope.formData.townVillage = data[i].townVillage;
-                        }
-                        if (data[i].city && $scope.city) {
-                            $scope.formData.city = data[i].city;
-                        }
-                        if (data[i].countyDistrict && $scope.countyDistrict) {
-                            $scope.formData.countyDistrict = data[i].countyDistrict;
-                        }
-                        if (data[i].municipalityId && $scope.municipalityId) {
-                            $scope.formData.municipalityId = data[i].municipalityId;
-                        }
-                        if (data[i].antiquity && $scope.antiquity) {
-                            $scope.formData.antiquity = data[i].antiquity;
-                        }
-                        if (data[i].stateProvinceId && $scope.stateProvinceId) {
-                            $scope.formData.stateProvinceId = data[i].stateProvinceId;
-                        }
-                        if (data[i].countryId && $scope.countryId) {
-                            $scope.formData.countryId = data[i].countryId;
-                        }
-                        if (data[i].postalCode && $scope.postalCode) {
-                            $scope.formData.postalCode = data[i].postalCode;
-                        }
-                        if (data[i].latitude && $scope.latitue) {
-                            $scope.formData.latitude = data[i].latitude;
-                        }
-                        if (data[i].longitude && $scope.longitude) {
-                            $scope.formData.longitude = data[i].longitude;
-                        }
-                        if (data[i].isActive && $scope.isActive) {
-                            isActive = data[i].isActive;
-                        }
+                if (data.addressId == $scope.addressId) {
+                    if (data.street) {
+                        $scope.formData.street = data.street;
+                    }
+                    if (data.addressTypeId) {
+                        $scope.formData.addressTypeId = data.addressTypeId;
+                    }
+                    if (data.addressLine1) {
+                        $scope.formData.addressLine1 = data.addressLine1;
+                    }
+                    if (data.addressLine2) {
+                        $scope.formData.addressLine2 = data.addressLine2;
+                    }
+                    if (data.addressLine3) {
+                        $scope.formData.addressLine3 = data.addressLine3;
+                    }
+                    if (data.addressLine4) {
+                        $scope.formData.addressLine4 = data.addressLine4;
+                    }
+                    if (data.addressLine5) {
+                        $scope.formData.addressLine5 = data.addressLine5;
+                    }
+                    if (data.addressLine6) {
+                        $scope.formData.addressLine6 = data.addressLine6;
+                    }
+                    if (data.townVillage) {
+                        $scope.formData.townVillage = data.townVillage;
+                    }
+                    if (data.city) {
+                        $scope.formData.city = data.city;
+                    }
+                    if (data.countyDistrict) {
+                        $scope.formData.countyDistrict = data.countyDistrict;
+                    }
+                    if (data.municipalityId) {
+                        $scope.formData.municipalityId = data.municipalityId;
+                    }
+                    if (data.antiquity) {
+                        $scope.formData.antiquity = data.antiquity;
+                    }
+                    if (data.stateProvinceId) {
+                        $scope.formData.stateProvinceId = data.stateProvinceId;
+                    }
+                    if (data.countryId) {
+                        $scope.formData.countryId = data.countryId;
+                    }
+                    if (data.postalCode) {
+                        $scope.formData.postalCode = data.postalCode;
+                    }
+                    if (data.latitude) {
+                        $scope.formData.latitude = data.latitude;
+                    }
+                    if (data.longitude) {
+                        $scope.formData.longitude = data.longitude;
+                    }
+                    if (data.isActive) {
+                        $scope.formData.isActive = data.isActive;
                     }
                 }
             });
@@ -120,13 +116,32 @@
 
             $scope.updateaddress = function () {
                 $scope.formData.locale = "en";
-                $scope.formData.addressId = addressId;
-                resourceFactory.clientAddress.put({ 'clientId': $scope.clientId }, $scope.formData, function (data) {
+                $scope.formData.addressId = $scope.addressId;
+                $scope.formData.street = $scope.formData.street.toUpperCase();
+                if (typeof $scope.formData.addressLine1 != "undefined") {
+                  $scope.formData.addressLine1 = $scope.formData.addressLine1.toUpperCase();
+                }
+                if (typeof $scope.formData.addressLine2 != "undefined") {
+                  $scope.formData.addressLine2 = $scope.formData.addressLine2.toUpperCase();
+                }
+                if (typeof $scope.formData.addressLine3 != "undefined") {
+                  $scope.formData.addressLine3 = $scope.formData.addressLine3.toUpperCase();
+                }
+                if (typeof $scope.formData.addressLine4 != "undefined") {
+                  $scope.formData.addressLine4 = $scope.formData.addressLine4.toUpperCase();
+                }
+                if (typeof $scope.formData.addressLine5 != "undefined") {
+                  $scope.formData.addressLine5 = $scope.formData.addressLine5.toUpperCase();
+                }
+                if (typeof $scope.formData.addressLine6 != "undefined") {
+                  $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
+                }
+                
+                resourceFactory.clientAddresses.put({ 'clientId': $scope.clientId }, $scope.formData, function (data) {
                     location.path('/viewclient/' + $scope.clientId);
                 });
             }
         }
-
 
     });
     mifosX.ng.application.controller('EditAddressController', ['$scope', 'ResourceFactory', '$routeParams', '$location', mifosX.controllers.EditAddressController]).run(function ($log) {
