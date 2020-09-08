@@ -473,7 +473,7 @@
                 </div>
             </div>
             <md-divider></md-divider>
-            <div class="paddedleft" style="margin-left:-1px;margin-top: -20px; margin-right: 1px; padding: 10px;">
+            <div class="paddedleft" style="padding: 10px;">
                 <md-content class="no-padding">
                     <md-tabs md-dynamic-height md-border-bottom class="full-width">
                         <md-tab class="scroll-y" ng-show="savingaccountdetails.transactions" select="convertDateArrayToObject('date')">
@@ -492,30 +492,29 @@
                                 <table md-table class="table width100">
                                     <thead md-head md-order="query.order">
                                         <tr md-row>
-                                            <th md-column class="pointer" md-order-by="id">{{'label.heading.id' |
-                                        translate}}
+                                            <th md-column md-order-by="id">
+                                                {{'label.heading.id' | translate}}
                                             </th>
-                                            <th md-column class="pointer" md-order-by="date">
+                                            <th md-column md-order-by="date">
                                                 {{'label.heading.transactiondate' | translate}}
                                             </th>
-                                            <th md-column class="pointer" md-order-by="date">
+                                            <th md-column md-order-by="date">
                                                 {{'label.heading.transactionId' | translate}}
                                             </th>
-                                            <th md-column class="pointer"
-                                                ng-click="changeTransactionSort('transactionType.value')">
+                                            <th md-column ng-click="changeTransactionSort('transactionType.value')">
                                                 {{'label.heading.transactiontype' | translate}}
                                             </th>
-                                            <th md-column class="pointer amount" md-order-by="amount">{{'label.heading.debit' |
+                                            <th md-column class="amount" md-order-by="amount">{{'label.heading.debit' |
                                         translate}}
                                             </th>
-                                            <th md-column class="pointer amount" md-order-by="amount">{{'label.heading.credit'
+                                            <th md-column class="amount" md-order-by="amount">{{'label.heading.credit'
                                         | translate}}
                                             </th>
-                                            <th md-column class="pointer amount">
+                                            <th md-column class="amount">
                                                 {{'label.heading.balance' | translate}}
                                             </th>
-                                            <th md-column class="pointer">
-                                                {{'label.heading.viewreceipts' | translate}}
+                                            <th md-column>
+                                                {{'label.heading.actions' | translate}}
                                             </th>
                                             <th></th>
                                         </tr>
@@ -549,16 +548,25 @@
                                             <td md-cell class="pointer amount">
                                                 {{transaction.runningBalance| FormatNumber}}
                                             </td>
-                                            <td md-cell><span ng-if=" transaction.reversed!=true">
-                                                    <i class="fa fa-file-text fa fa-large"></i>
-                                                </span>
-                                            </td>
-                                            <td md-cell class="pointer"
-                                                ng-click="viewsavingtransactionjournalentries(transaction.id)">
-                                                <span uib-tooltip="{{'label.anchor.viewjournalentries' | translate}}"
-                                                    tooltip-placement="left">
-                                                    <i class="fa fa-arrow-circle-right fa fa-large coll"></i>
-                                                </span>
+                                            <td md-cell>
+                                                <md-menu>
+                                                    <md-button aria-label="Teller actions" class="md-icon-button"
+                                                        ng-click="$mdMenu.open($event)">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </md-button>
+                                                    <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
+                                                        <md-menu-item>
+                                                            <md-button ng-click="viewSavingsTransactionReceipts(transaction.id)">
+                                                                {{'label.heading.viewreceipts' | translate}}
+                                                            </md-button>
+                                                        </md-menu-item>
+                                                        <md-menu-item>
+                                                            <md-button ng-click="viewsavingtransactionjournalentries(transaction.id)">
+                                                                {{'label.heading.viewjournalentry' | translate}}
+                                                            </md-button>
+                                                        </md-menu-item>
+                                                    </md-menu-content>
+                                                </md-menu>
                                             </td>
                                         </tr>
                                     </tbody>

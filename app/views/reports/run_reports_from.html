@@ -27,7 +27,7 @@
 
                 <div class="form-group info" ng-repeat="reportParam in reportParams">
                     <label class="control-label col-sm-2"
-                        for="{{reportParam.variable}}">{{ reportParam.label | translate}}</label>
+                        for="{{reportParam.variable}}">{{reportParam.label | translate}}</label>
 
                     <div class="col-sm-3">
                         <md-select id="{{reportParam.inputName}}" ng-model="formData[reportParam.inputName]"

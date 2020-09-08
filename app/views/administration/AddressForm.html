@@ -2,7 +2,7 @@
     <div ng-controller="AddressFormController">
         <ul class="breadcrumb">
             <li ng-if="clientId"><a href="#!/clients">{{'label.anchor.clients' | translate}}</a></li>
-            <li ng-show="groupName">
+            <li ng-show="groupId">
                 <a href="#!/viewgroup/{{groupId}}">
                     <strong>{{groupName}}</strong>
                 </a>
@@ -18,207 +18,216 @@
             <fieldset>
                 <legend>{{'label.heading.createaddress' | translate}}</legend>
                 <div class="col-sm-8 col-md-8">
-                <div class="form-group" ng-show="postalCode">
-                    <label class="control-label col-md-4">
-                        {{'label.input.postal_code' | translate }}
-                        <span class="required">*</span></label>
-                    <div class="col-md-4">
-                        <input type="text" id="postal_code" pattern="\d{5}" only-number name="postal_code" maxlength="5" ng-model="formData.postalCode"
-                            class="form-control">
+                    <div class="form-group" ng-show="postalCode">
+                        <label class="control-label col-md-4">
+                            {{'label.input.postal_code' | translate }}
+                            <span class="required">*</span></label>
+                        <div class="col-md-4">
+                            <input type="text" id="postal_code" only-number allow-decimal="false" allow-negative="false" decimal-upto="0" 
+                                name="postal_code" minlength="5" maxlength="5" ng-model="formData.postalCode" class="form-control">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" >
-                    <div class="control-label col-md-4">
-                    <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
+                    <div class="form-group">
+                        <div class="control-label col-md-4">
+                            <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
+                        </div>
+                        <div class="col-md-4">
+                            <md-select name="addressType" ng-model="formData.addressTypeId"
+                                placeholder="{{'label.menu.selectone' | translate}}" required>
+                                <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
+                                    {{addressType.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <md-select name="addressType" ng-model="formData.addressTypeId" 
-                            placeholder="{{'label.menu.selectone' | translate}}" required>
-                            <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
-                                {{addressType.description}}
-                            </md-option>  
-                        </md-select>
+
+                    <div class="form-group" ng-show="street">
+                        <label class="control-label col-md-4" for="street">{{'label.input.street' | translate }}<span
+                                class="required">*</span></label>
+
+                        <div class="col-md-4">
+                            <input type="text" id="street" name="street" ng-model="formData.street"
+                                class="form-control uppercase" required late-validate>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="street">
-                    <label class="control-label col-md-4" for="street">{{'label.input.street' | translate }}<span class="required">*</span></label>
-
-                    <div class="col-md-4">
-                        <input type="text" id="street" name="street" ng-model="formData.street" class="form-control uppercase" required late-validate>
+                    <div class="form-group" ng-show="addressLine1">
+                        <label class="control-label col-md-4"
+                            for="addressline1">{{'label.input.addressline1' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" id="addressline1" name="addressline1" ng-model="formData.addressLine1"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine1">
-                    <label class="control-label col-md-4"
-                        for="addressline1">{{'label.input.addressline1' | translate }}</label>
-                    <div class="col-md-4">
-                        <input type="text" id="addressline1" name="addressline1" ng-model="formData.addressLine1"
-                            class="form-control uppercase">
+                    <div class="form-group" ng-show="addressLine2">
+                        <label class="control-label col-md-4"
+                            for="addressline2">{{'label.input.addressline2' | translate }}</label>
+
+                        <div class="col-md-4">
+                            <input type="text" id="addressline2" name="addressline2" ng-model="formData.addressLine2"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine2">
-                    <label class="control-label col-md-4"
-                        for="addressline2">{{'label.input.addressline2' | translate }}</label>
+                    <div class="form-group" ng-show="addressLine3">
+                        <label class="control-label col-md-4"
+                            for="addressline3">{{'label.input.addressline3' | translate }}</label>
 
-                    <div class="col-md-4">
-                        <input type="text" id="addressline2" name="addressline2" ng-model="formData.addressLine2"
-                            class="form-control uppercase">
+                        <div class="col-md-4">
+                            <input type="text" id="addressline3" name="addressline3" ng-model="formData.addressLine3"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine3">
-                    <label class="control-label col-md-4"
-                        for="addressline3">{{'label.input.addressline3' | translate }}</label>
+                    <div class="form-group" ng-show="addressLine4">
+                        <label class="control-label col-md-4"
+                            for="addressLine4">{{'label.input.addressline4' | translate }}</label>
 
-                    <div class="col-md-4">
-                        <input type="text" id="addressline3" name="addressline3" ng-model="formData.addressLine3"
-                            class="form-control uppercase">
+                        <div class="col-md-4">
+                            <input type="text" id="addressline4" name="addressline4" ng-model="formData.addressLine4"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine4">
-                    <label class="control-label col-md-4"
-                        for="addressLine4">{{'label.input.addressline4' | translate }}</label>
+                    <div class="form-group" ng-show="addressLine5">
+                        <label class="control-label col-md-4"
+                            for="addressLine5">{{'label.input.addressline5' | translate }}</label>
 
-                    <div class="col-md-4">
-                        <input type="text" id="addressline4" name="addressline4" ng-model="formData.addressLine4"
-                            class="form-control uppercase">
+                        <div class="col-md-4">
+                            <input type="text" id="addressline5" name="addressline5" ng-model="formData.addressLine5"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine5">
-                    <label class="control-label col-md-4"
-                        for="addressLine5">{{'label.input.addressline5' | translate }}</label>
+                    <div class="form-group" ng-show="addressLine6">
+                        <label class="control-label col-md-4"
+                            for="addressLine6">{{'label.input.addressline6' | translate }}</label>
 
-                    <div class="col-md-4">
-                        <input type="text" id="addressline5" name="addressline5" ng-model="formData.addressLine5"
-                            class="form-control uppercase">
+                        <div class="col-md-4">
+                            <input type="text" id="addressline6" name="addressline6" ng-model="formData.addressLine6"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="addressLine6">
-                    <label class="control-label col-md-4"
-                        for="addressLine6">{{'label.input.addressline6' | translate }}</label>
+                    <div class="form-group" ng-show="city">
+                        <label class="control-label col-md-4" for="city">{{'label.input.city' | translate }}</label>
 
-                    <div class="col-md-4">
-                        <input type="text" id="addressline6" name="addressline6" ng-model="formData.addressLine6"
-                            class="form-control uppercase">
+                        <div class="col-md-4">
+                            <input type="text" id="city" name="city" ng-model="formData.city"
+                                class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="city">
-                    <label class="control-label col-md-4" for="city">{{'label.input.city' | translate }}</label>
+                    <div class="form-group" ng-show="townVillage">
+                        <label class="control-label col-md-4"
+                            for="town_village">{{'label.input.town_village' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" id="town_village" name="town_village" ng-model="formData.townVillage"
+                                class="form-control uppercase">
+                        </div>
+                    </div>
 
-                    <div class="col-md-4">
-                        <input type="text" id="city" name="city" ng-model="formData.city" class="form-control uppercase">
+                    <div class="form-group" ng-show="countyDistrict">
+                        <label class="control-label col-md-4"
+                            for="county_district">{{'label.input.county_district' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" id="county_district" name="county_district"
+                                ng-model="formData.countyDistrict" class="form-control uppercase">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="townVillage">
-                    <label class="control-label col-md-4"
-                        for="town_village">{{'label.input.town_village' | translate }}</label>
-                    <div class="col-md-4">
-                        <input type="text" id="town_village" name="town_village" ng-model="formData.townVillage"
-                            class="form-control uppercase">
+                    <div class="form-group" ng-show="countryId">
+                        <div class="control-label col-md-4">
+                            <label>{{'label.input.country' | translate }}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <md-select id="countryOption" ng-model="formData.countryId"
+                                placeholder="{{'label.menu.selectone' | translate}}">
+                                <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
+                                    {{countryOption.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="countyDistrict">
-                    <label class="control-label col-md-4"
-                        for="county_district">{{'label.input.county_district' | translate }}</label>
-                    <div class="col-md-4">
-                        <input type="text" id="county_district" name="county_district" ng-model="formData.countyDistrict"
-                            class="form-control uppercase">
+                    <div class="form-group" ng-show="stateProvinceId">
+                        <div class="control-label col-md-4">
+                            <label>{{'label.input.state_province' | translate }}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <md-select ng-model="formData.stateProvinceId" ng-change="filterMunicipality()"
+                                placeholder="{{'label.menu.selectone' | translate}}" required>
+                                <md-option ng-repeat="stateOption in stateOptions | orderBy: 'name'"
+                                    ng-value="stateOption.id">
+                                    {{stateOption.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="countryId">
-                    <div class="control-label col-md-4">
-                        <label>{{'label.input.country' | translate }}</label>
+                    <div class="form-group" ng-show="municipality">
+                        <div class="control-label col-md-4">
+                            <label>{{'label.input.municipality' | translate }}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <md-select ng-model="formData.municipality"
+                                placeholder="{{'label.menu.selectone' | translate}}" required>
+                                <md-option ng-repeat="municipalityOption in municipalityOptions"
+                                    ng-value="municipalityOption.id">
+                                    {{municipalityOption.description}}
+                                </md-option>
+                            </md-select>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <md-select id="countryOption" ng-model="formData.countryId"
-                            placeholder="{{'label.menu.selectone' | translate}}">
-                            <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
-                                {{countryOption.description}}
-                            </md-option>  
-                        </md-select>
-                    </div>
-                </div>
 
-                <div class="form-group" ng-show="stateProvinceId">
-                    <div class="control-label col-md-4">
-                    <label>{{'label.input.state_province' | translate }}</label>
+                    <div class="form-group" ng-show="antiquity">
+                        <label class="control-label col-md-4">{{'label.input.antiquity' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" only-number name="antiquity" maxlength="2"
+                                oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="formData.antiquity"
+                                class="form-control">
+                        </div>
                     </div>
-                    <div class="col-md-4" >
-                        <md-select ng-model="formData.stateProvinceId"
-                            ng-change="filterMunicipality()" placeholder="{{'label.menu.selectone' | translate}}" required>
-                            <md-option ng-repeat="stateOption in stateOptions | orderBy: 'name'" ng-value="stateOption.id">
-                                {{stateOption.description}}
-                            </md-option>  
-                        </md-select>
-                    </div>
-                </div>
 
-                <div class="form-group" ng-show="municipality">
-                    <div class="control-label col-md-4">
-                    <label>{{'label.input.municipality' | translate }}</label>
+                    <div class="form-group" ng-show="latitude">
+                        <label class="control-label col-md-4">{{'label.input.latitude' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" only-number allow-decimal="true" allow-negative="true" decimal-upto="7"
+                                name="latitude" ng-model="formData.latitude" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-md-4" >
-                        <md-select ng-model="formData.municipality" 
-                            placeholder="{{'label.menu.selectone' | translate}}" required>
-                            <md-option ng-repeat="municipalityOption in municipalityOptions" ng-value="municipalityOption.id">
-                                {{municipalityOption.description}}
-                            </md-option>  
-                        </md-select>
-                    </div>
-                </div>
 
-                <div class="form-group" ng-show="antiquity">
-                    <label class="control-label col-md-4" >{{'label.input.antiquity' | translate }}</label>
-                    <div class="col-md-4">
-                    <input type="text" only-number name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="formData.antiquity"  class="form-control">
+                    <div class="form-group" ng-show="longitude">
+                        <label class="control-label col-md-4">{{'label.input.longitude' | translate }}</label>
+                        <div class="col-md-4">
+                            <input type="text" only-number allow-decimal="true" allow-negative="true" decimal-upto="7" 
+                                name="longitude" ng-model="formData.longitude" class="form-control">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="latitude">
-                    <label class="control-label col-md-4" >{{'label.input.latitude' | translate }}</label>
-                    <div class="col-md-4">
-                    <input type="text" only-number  name="latitude" ng-model="formData.latitude"  class="form-control">
+                    <div class="form-group" ng-show="isActive">
+                        <div class="col-md-offset-4">
+                            <md-checkbox id="isActive" ng-model="formData.isActive">
+                                {{'label.input.active' | translate }}
+                            </md-checkbox>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" ng-show="longitude">
-                    <label class="control-label col-md-4" >{{'label.input.longitude' | translate }}</label>
-                    <div class="col-md-4">
-                    <input type="text" only-number  name="longitude" ng-model="formData.longitude"  class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group" ng-show="isActive">
-                    <div class="col-md-offset-4">
-                        <md-checkbox id="isActive" ng-model="formData.isActive">
-                            {{'label.input.active' | translate }}
-                        </md-checkbox>
-                    </div>
-                </div>
-
-                <div class="col-md-12 center" ng-model="editable">
-                    <md-button id="cancel" ng-click="routeTo()" class="md-raised">{{
+                    <div class="col-md-12 center" ng-model="editable">
+                        <md-button id="cancel" ng-click="routeTo()" class="md-raised">{{
                         'label.button.cancel' | translate }}
-                    </md-button>
-                    <md-button id="save" type="submit" ng-disabled="editable" ng-click="submit()" class="md-raised md-primary">{{
+                        </md-button>
+                        <md-button id="save" type="submit" ng-disabled="editable" ng-click="submit()"
+                            class="md-raised md-primary">{{
                         'label.button.save' | translate }}
-                    </md-button>
+                        </md-button>
+                    </div>
                 </div>
+                <div class="col-sm-4 col-md-4" ng-if="(formData.longitude<0 || formData.longitude>0) && (formData.latitude<0 || formData.latitude>0)">
+                    <leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
                 </div>
-                <div class= "col-sm-4 col-md-4">
-					<leaflet lf-center="center" width="400px" height="580px" ng-show="center.lat"></leaflet>
-				   </div>
-
             </fieldset>
         </form>
     </div>
