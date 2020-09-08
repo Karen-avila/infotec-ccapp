@@ -3234,6 +3234,7 @@
     "label.heading.errorlog": "Registro de errores",
     "label.heading.product": "Producto",
     "label.heading.interestchart": "Gráfico de Tasa de Interés",
+    "label.heading.interestchart.active": "Actual",
     "label.heading.interestratechart.valid.from": "Válido Desde la Fecha",
     "label.heading.interestratechart.valid.to": "Fecha de Finalización",
     "label.heading.interestratecharts": "Gráficos de tasa de interés",

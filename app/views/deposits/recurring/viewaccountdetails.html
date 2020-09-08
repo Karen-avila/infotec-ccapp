@@ -300,9 +300,7 @@
                             </table>
                             <table class="table table-bordered view-table" ng-if="savingaccountdetails.status.rejected || savingaccountdetails.status.submittedAndPendingApproval">
                                 <tr>
-                                    <td class="active fontnormal col-md-3">{{'label.interestcompoundingperiod' |
-                                        translate}}
-                                    </td>
+                                    <td class="active fontnormal col-md-3">{{'label.interestcompoundingperiod' | translate}} </td>
                                     <td class="col-md-3"><span
                                             class="padded-td">{{savingaccountdetails.interestCompoundingPeriodType.value | translate}}</span>
                                     </td>
@@ -336,7 +334,7 @@
                                 </tr>
                             </table>
                         <hr class="marginbottom"/>
-                        <label><strong>{{'label.heading.interestchart' | translate }}</strong></label>
+                        <label><strong><span ng-show"applyCurrentInterestRateChart">{{'label.heading.interestchart.active' | translate}}</span> {{'label.heading.interestchart' | translate }} </strong></label>
                             <table class="table table-bordered view-table">
                                 <tr class="graybg">
                                     <td ng-show="savingaccountdetails.accountChart.isPrimaryGroupingByAmount">{{'label.heading.interestratedetails.amount.range' | translate}}</td>
