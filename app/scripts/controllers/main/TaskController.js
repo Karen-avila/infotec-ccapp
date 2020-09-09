@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate) {
+        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -16,6 +16,8 @@
             scope.isCollapsed = true;
             scope.approveData = {};
             scope.restrictDate = new Date();
+            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
             scope.date.to = new Date();
             scope.date.from = new Date();
             scope.showLoanApprovalDetail = [];
@@ -589,6 +591,105 @@
                 });
             };
 
+            scope.searchCredit = function () {
+                console.log("searching..")
+                scope.isCollapsed = true;
+                var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
+                var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
+                var params = {};
+                // if (scope.formData.action) {
+                //     params.actionName = scope.formData.action;
+                // }
+
+                // if (scope.formData.entity) {
+                //     params.entityName = scope.formData.entity;
+                // }
+
+                if (scope.formData.status) {
+                    params.status = scope.formData.status;
+                }
+
+                if (scope.date.from) {
+                    params.makerDateTimeFrom = reqFromDate;
+                }
+
+                if (scope.date.to) {
+                    params.makerDateTimeto = reqToDate;
+                }
+
+                resourceFactory.loansDashboard.search(params, function (data) {
+                    console.log(data.pageItems);
+                    console.log(reqFromDate);
+                    console.log(scope.date.from);
+                    scope.searchedLoansFiltered = data.pageItems;
+
+                    if (scope.date.from) {
+                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
+                            return new Date(item.submittedDate) >= reqFromDate; 
+                        }); 
+                    }
+    
+                    if (scope.date.to) {
+                        params.makerDateTimeto = reqToDate;
+                    }
+
+                    if (scope.formData.status) {
+                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) { 
+                            return item.status.id == scope.formData.status; 
+                        }); 
+                    }
+                    
+                    // scope.searchData = data;
+                    // if (scope.userTypeahead) {
+                    //     scope.formData.user = '';
+                    //     scope.userTypeahead = false;
+                    //     scope.user = '';
+                    // }
+                });
+            };
+
+            scope.searchSocialBank = function () {
+                scope.isCollapsed = true;
+                var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
+                var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
+                var params = {};
+                // if (scope.formData.action) {
+                //     params.actionName = scope.formData.action;
+                // }
+
+                if (scope.formData.entity) {
+                    params.entityName = scope.formData.entity;
+                }
+
+                if (scope.formData.status) {
+                    params.status = scope.formData.status;
+                }
+                // if (scope.formData.resourceId) {
+                //     params.resourceId = scope.formData.resourceId;
+                // }
+
+                // if (scope.formData.user) {
+                //     params.makerId = scope.formData.user;
+                // }
+
+                if (scope.date.from) {
+                    params.makerDateTimeFrom = reqFromDate;
+                }
+
+                if (scope.date.to) {
+                    params.makerDateTimeto = reqToDate;
+                }
+
+                resourceFactory.socialDashboard.search(params, function (data) {
+                    scope.searchData = data;
+                    if (scope.userTypeahead) {
+                        scope.formData.user = '';
+                        scope.userTypeahead = false;
+                        scope.user = '';
+                    }
+                });
+            };
+
             scope.approveLoan = function () {
                 var selectedAccounts = 0;
                 _.each(scope.loanTemplate, function (value, id) {
@@ -861,7 +962,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));
