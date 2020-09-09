@@ -738,7 +738,7 @@
                 scope.baseURL = $rootScope.hostUrl + API_VERSION + "/runreports/" + encodeURIComponent("saldos_y_movimientos");
                 scope.baseURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier+"&locale="+scope.optlang.code;
                 var reportParams = "";
-                paramName = "R_selectAccount";
+                paramName = "R_accountNo";
                 reportParams += encodeURIComponent(paramName) + "=" + encodeURIComponent(scope.accountNo);
                 if (reportParams.length > 0) {
                     scope.baseURL += "&" + reportParams;
