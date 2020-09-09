@@ -53,6 +53,9 @@
             <div class="col-md-13 center" ng-show="viewTransactionReport">
                 <button ng-click="viewLoanDetails()" class="btn btn-default ng-binding">{{'label.button.back' | translate}} </button>
             </div>
+            <div class="col-md-13 center" ng-show="viewBalanceTransactionReport">
+                <button ng-click="viewLoanDetails()" class="btn btn-default ng-binding">{{'label.button.back' | translate}} </button>
+            </div>
         </div>
         <br>
         <div ng-hide="report">
@@ -513,6 +516,7 @@
                                     <md-tab class="scroll-y" ng-if="loandetails.transactions" select="convertDateArrayToObject('date')">
                                         <md-tab-label>{{'label.heading.transactions' | translate}}</md-tab-label>
                                         <md-tab-body>
+                                        <md-button class="md-primary pull-right" ng-show="checkStatus()" ng-click="viewBalanceTransactionReport()">{{'label.balancetransaction' | translate}}</md-button>
                                         <md-button class="md-primary pull-right" ng-show="checkStatus()" ng-click="export()">{{'label.button.export.statement' | translate}}</md-button>
                                         <md-button class="md-primary pull-right" ng-show="checkStatus()" ng-click="viewJournalEntries()" style="margin-right: 8px;">{{'label.button.viewjournalentries' | translate}}</md-button>
                                         <div class="pull-right">
