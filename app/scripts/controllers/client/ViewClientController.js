@@ -857,9 +857,9 @@
 
                         var file = new Blob([response.data], { type: scope.fileType });
                         var fileContent = URL.createObjectURL(file);
-                        
+
                         // Pass the form data to the iframe as a data url.
-                        scope.iframeURL = $sce.trustAsResourceUrl(fileContent);
+                        scope.iframeURL = $sce.trustAsResourceUrl(fileContent + "#toolbar=0");
 
                         scope.clientdocuments[index].visited = true;
                         scope.preview = true;

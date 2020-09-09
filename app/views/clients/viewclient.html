@@ -29,7 +29,7 @@
 		</div>
 	</script>
     <script type="text/ng-template" id="reporte.html">
-	<div data-ng-include="'views/reports/run_reports_from.html'"></div>  
+	<div data-ng-include="'views/reports/run_reports_from.html'"></div>
 	<div class="modal-body ">
 	<md-button class= "md-raised md-warn" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
 	</div>
@@ -1134,12 +1134,8 @@
                                                     <td>{{clientdocument.description}}</td>
                                                     <td>{{clientdocument.fileName}}</td>
                                                     <td>
-                                                        <a href="{{hostUrl}}{{clientdocument.docUrl}}"><i
-                                                                class="fa fa-cloud-download"></i></a>&nbsp;
-                                                        <!-- <a ng-show="clientdocument.fileIsImage" -->
-                                                        <a 
-                                                                ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id)"><i
-                                                                class="fa fa-eye"></i></a>
+                                                        <a ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id)"><i
+                                                            class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
