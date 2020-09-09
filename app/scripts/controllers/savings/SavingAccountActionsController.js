@@ -466,8 +466,10 @@
                         }
                     } else if (scope.action == "block") {
                         params = {accountId: routeParams.id, command: 'block'};
+                        
                     }else if (scope.action == "unblock") {
                         params = {accountId: routeParams.id, command: 'unblock'};
+                        
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
