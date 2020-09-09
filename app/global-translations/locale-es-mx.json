@@ -499,6 +499,7 @@
     "label.button.dividends": "Dividendos",
     "label.button.postdividends": "Post Dividendos",
     "label.button.proceed": "Continuar",
+    "label.balancetransaction": "Saldos y Movimientos",
     "label.uniquelyidentifiedwithid": "Exclusivamente identificado con Id",
     "label.belongsto": "Pertenece a",
     "label.memberof": "Miembro de",
@@ -3073,6 +3074,7 @@
     "label.accountNumberPreferences": "Preferencias para la generación de números de cuenta para clientes, créditos y cuentas de ahorro",
     "label.menu.selectAccountType": "Seleccionar el tipo de cuenta",
     "label.menu.selectPrefixField": "Seleccionar el campo de prefijo",
+    "label.close": "Cerrar",
     "No.Data.Found": "No se encontraron resultados.",
     "validation.msg.datatable.name.mandatory": "El nombre de la tabla de datos es obligatorio",
     "error.msg.datatable.registered": "La tabla de datos `{{params[0].value}}` ya está registrada contra una tabla de aplicación.",
@@ -3236,6 +3238,7 @@
     "label.heading.errorlog": "Registro de errores",
     "label.heading.product": "Producto",
     "label.heading.interestchart": "Gráfico de Tasa de Interés",
+    "label.heading.interestchart.active": "Actual",
     "label.heading.interestratechart.valid.from": "Válido Desde la Fecha",
     "label.heading.interestratechart.valid.to": "Fecha de Finalización",
     "label.heading.interestratecharts": "Gráficos de tasa de interés",
@@ -3409,6 +3412,7 @@
     "label.input.interestratechart.valid.from": "Válido Desde la Fecha",
     "label.input.interestratechart.valid.to": "Fecha de Finalización",
     "label.input.interestratechart.primary.grouping.amount": "Es Agrupación Primaria por Cantidad",
+    "label.input.interestratechart.current.apply.chart": "Aplicar gráfico de tasas  de interes actual",
     "label.checkbox.interestfreeperiodapplicable": "Período cuando no se pagarán intereses",
     "label.checkbox.applypreclosurepenalinterest": "Aplicar Sanción de Intereses (Menos)",
     "label.input.recurringdepositamount": "Importe del Depósito",
@@ -5961,5 +5965,9 @@
     "validation.msg.fixeddeposit.minDepositTerm.cannot.be.blank": "Frecuencia mínima de depósito a plazo",
     "validation.msg.fixeddeposit.fromDate.cannot.be.blank": "Desde la Fecha",
     "validation.msg.fixeddeposit.depositAmount.cannot.be.blank":  "Monto del depósito",
-    "----End---": "---Fin del archivo---"
+    "----End---": "---Fin del archivo---",
+    "Withdrawal":"Retiro",
+    "Deposit":"Deposito",
+    "Interest posting":"Interes",
+    "Saving No Activity Fee":"Cuenta sin actividad"
 }

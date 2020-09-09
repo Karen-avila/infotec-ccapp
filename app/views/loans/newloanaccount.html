@@ -83,10 +83,10 @@
                                             <label>{{'label.input.fund' | translate }}:&nbsp;</label>
                                         </td>
                                         <td class="paddedbottom20 " ng-hide="loanAccount.isHiddenField.fundId == true">
-                                            <md-select id="fundId" ng-model="formData.fundId"
+                                            <md-select class="uppercase" id="fundId" ng-model="formData.fundId"
                                                 ng-change="loandetails.fundName = formValue(loanaccountinfo.fundOptions,formData.fundId,'id','name')"
                                                 placeholder="{{'label.selectfund' | translate}}">
-                                                <md-option ng-repeat="fund in loanaccountinfo.fundOptions"
+                                                <md-option class="uppercase" ng-repeat="fund in loanaccountinfo.fundOptions"
                                                     ng-value="fund.id">
                                                     {{fund.name}}
                                                 </md-option>
