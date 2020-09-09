@@ -4,7 +4,7 @@
         <li><a href="#!/fixeddepositproducts">{{'label.anchor.fixeddepositproducts' | translate}}</a></li>
         <li class="active">{{'label.anchor.createfixeddepositproduct' | translate}}</li>
     </ul>
-
+    
     <md-content flex="nogrow" style="margin: 40px auto">
         <md-card>
             <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always"
@@ -605,9 +605,7 @@
                                 <hr>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.from'
-                            |
-                            translate }}<span class="required">*</span>
+                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.from' | translate }}<span class="required">*</span>
                                     </label>
                                     <div class="col-sm-3">
                                         <md-datepicker id="fromDate" ng-model="fromDate.date" min="minDate" max="restrictDate" required></md-datepicker>
@@ -619,8 +617,7 @@
                                         <form-validate valattributeform="interestchart" valattribute="fromDate" />
 
                                     </div>
-                                    <label class="control-label col-sm-3" for="name">{{
-                            'label.input.interestratechart.valid.to' | translate }}</label>
+                                    <label class="control-label col-sm-3" for="name">{{'label.input.interestratechart.valid.to' | translate }}</label>
                                     <div class="col-sm-3">
                                         <md-datepicker id="endDate" ng-model="endDate.date" min="minDate" max="restrictDate" required></md-datepicker>
                                         <!--
@@ -632,16 +629,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="name">{{
-                            'label.input.interestratechart.primary.grouping.amount' |
-                            translate }}</label>
-                                    <div class="col-sm-3">
-                                        <label class="checkbox">
-                                            <input id="isPrimaryGroupingByAmount" type="checkbox"
-                                                ng-model="isPrimaryGroupingByAmount">
-
-                                        </label>
+                                    <div class="col-sm-2 right">
+                                        <md-checkbox id="isPrimaryGroupingByAmount" ng-model="isPrimaryGroupingByAmount" ng-true-value="true" ng-false-value="false"></md-checkbox>
                                     </div>
+                                    <label class="control-label col-sm-9 left">{{'label.input.interestratechart.primary.grouping.amount' | translate }}
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-2 right">
+                                        <md-checkbox id="applyCurrentInterestRateChart" ng-model="applyCurrentInterestRateChart" ng-true-value="true" ng-false-value="false"></md-checkbox>
+                                    </div>
+                                    <label class="control-label col-sm-9 left">{{'label.input.interestratechart.current.apply.chart' | translate }}
+                                    </label>
                                 </div>
 
                                 <div class="col-md-12">
@@ -858,14 +858,12 @@
                                 <div class="form-group">
                                     <div class="radio-inline">
                                         <label class="control-label col-sm-3">
-                                            <input type="radio" ng-model="formData.accountingRule" value="1">{{'label.input.none'
-                                                |translate}}
+                                            <input type="radio" ng-model="formData.accountingRule" value="1">{{'label.input.none' |translate}}
                                         </label>
                                     </div>
                                     <div class="radio-inline">
                                         <label class="control-label col-sm-3">
-                                            <input type="radio" ng-model="formData.accountingRule" value="2">{{'label.input.cash'
-                                                |translate}}
+                                            <input type="radio" ng-model="formData.accountingRule" value="2">{{'label.input.cash' |translate}}
                                         </label>
                                     </div>
                                 </div>
@@ -885,7 +883,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="savingsReferenceAccountId" ng-model="formData.savingsReferenceAccountId"
                                             ng-change="depositproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')">
                                                 <md-option ng-repeat="assetAccount in assetAccountOptions" ng-value="assetAccount.id">
-                                                    {{assetAccount.name}}
+                                                    {{assetAccount.glCode}} - {{assetAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -912,7 +910,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="savingsControlAccountId" ng-model="formData.savingsControlAccountId"
                                             ng-change="depositproduct.accountingMappings.savingsControlAccount.name = formValue(liabilityAccountOptions,formData.savingsControlAccountId,'id','name')">
                                                 <md-option ng-repeat="liabilityAccount in liabilityAccountOptions" ng-value="liabilityAccount.id">
-                                                    {{liabilityAccount.name}}
+                                                    {{liabilityAccount.glCode}} - {{liabilityAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -925,8 +923,7 @@
                                             </select>
                                             -->
                                         </div>
-                                        <label class="control-label col-sm-2">{{'label.input.savingstransfersinsuspenpense' |
-                                translate }}
+                                        <label class="control-label col-sm-2">{{'label.input.savingstransfersinsuspenpense' | translate }}
                                             <i class="fa fa-question-circle"
                                                 uib-tooltip="{{'label.tooltip.savingsuspense' | translate}}"
                                                 tooltip-append-to-body="true"></i>
@@ -935,7 +932,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="transfersInSuspenseAccountId" ng-model="formData.transfersInSuspenseAccountId"
                                             ng-change="depositproduct.accountingMappings.transfersInSuspenseAccount.name = formValue(liabilityAccountOptions,formData.transfersInSuspenseAccountId,'id','name')">
                                                 <md-option ng-repeat="liabilityAccount in liabilityAccountOptions" ng-value="liabilityAccount.id">
-                                                    {{liabilityAccount.name}}
+                                                    {{liabilityAccount.glCode}} - {{liabilityAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -962,7 +959,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="interestOnSavingsAccountId" ng-model="formData.interestOnSavingsAccountId"
                                             ng-change="depositproduct.accountingMappings.interestOnSavingsAccount.name = formValue(expenseAccountOptions,formData.interestOnSavingsAccountId,'id','name')">
                                                 <md-option ng-repeat="expenseAccount in expenseAccountOptions" ng-value="expenseAccount.id">
-                                                    {{expenseAccount.name}}
+                                                    {{expenseAccount.glCode}} - {{expenseAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -990,7 +987,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="incomeFromFeeAccountId" ng-model="formData.incomeFromFeeAccountId"
                                             ng-change="depositproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')">
                                                 <md-option ng-repeat="incomeAccount in incomeAccountOptions" ng-value="incomeAccount.id">
-                                                    {{incomeAccount.name}}
+                                                    {{incomeAccount.glCode}} - {{incomeAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -1012,7 +1009,7 @@
                                             <md-select placeholder="{{'label.selectone' | translate}}" id="incomeFromPenaltyAccountId" ng-model="formData.incomeFromPenaltyAccountId"
                                             ng-change="depositproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')">
                                                 <md-option ng-repeat="incomeAccount in incomeAccountOptions" ng-value="incomeAccount.id">
-                                                    {{incomeAccount.name}}
+                                                    {{incomeAccount.glCode}} - {{incomeAccount.name}}
                                                 </md-option>
                                             </md-select>
                                             <!--
@@ -1030,8 +1027,7 @@
                                     <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
                                             ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]</h4>
                                     <div class="col-md-12" ng-show="showOrHideValue == 'hide'">
-                                        <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' |
-                                translate}}
+                                        <div class="col-md-8">{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}
                                         </div>
                                         <div class="col-md-4">
                                             <md-button ng-click="addConfigureFundSource()"><i
@@ -1069,7 +1065,7 @@
                                                     <md-select placeholder="{{'label.selectone' | translate}}" id="configureFundOptions[{{$index}}].fundSourceAccountId" ng-model="configureFundOption.fundSourceAccountId"
                                                     ng-change="depositproduct.paymentChannelToFundSourceMappings[$index].fundSourceAccount.name = formValue(configureFundOption.assetAccountOptions,configureFundOption.fundSourceAccountId,'id','name')">
                                                         <md-option ng-repeat="assetAccount in configureFundOption.assetAccountOptions" ng-value="assetAccount.id">
-                                                            {{assetAccount.name}}
+                                                            {{assetAccount.glCode}} - {{assetAccount.name}}
                                                         </md-option>
                                                     </md-select>
                                                     <!--
@@ -1083,15 +1079,13 @@
                                                     -->
                                                 </td>
                                                 <td></td>
-                                                <td class="width30"><a ng-click="deleteFund($index)"><i
-                                                            class="fa fa-times-circle fa-2x"></i></a></td>
+                                                <td class="width30"><a ng-click="deleteFund($index)"><i class="fa fa-times-circle fa-2x"></i></a></td>
                                             </tr>
                                         </table>
                                         <div class="col-md-8">{{'label.heading.mapfeestoincomeaccounts' | translate}}
                                         </div>
                                         <div class="col-md-4">
-                                            <md-button ng-click="mapFees()"><i
-                                                    class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}</md-button>
+                                            <md-button ng-click="mapFees()"><i class="fa fa-plus"></i>&nbsp;{{'label.button.add' | translate }}</md-button>
                                         </div>
                                         <table class="table">
                                             <tr class="graybg">
@@ -1123,7 +1117,7 @@
                                                     <md-select placeholder="{{'label.selectone' | translate}}" id="specificIncomeaccounts[{{$index}}].incomeAccountId" ng-model="specificIncomeaccount.incomeAccountId"
                                                     ng-change="depositproduct.feeToIncomeAccountMappings[$index].incomeAccount.name = formValue(specificIncomeaccount.incomeAccountOptions,specificIncomeaccount.incomeAccountId,'id','name')">
                                                         <md-option ng-repeat="assetAccount in specificIncomeaccount.incomeAccountOptions" ng-value="assetAccount.id">
-                                                            {{assetAccount.name}}
+                                                            {{assetAccount.glCode}} - {{assetAccount.name}}
                                                         </md-option>
                                                     </md-select>
                                                     <!--
@@ -1180,7 +1174,7 @@
                                                     <md-select placeholder="{{'label.selectone' | translate}}" id="penaltySpecificIncomeaccounts[{{$index}}].incomeAccountId" ng-model="penaltySpecificIncomeaccount.incomeAccountId"
                                                     ng-change="depositproduct.penaltyToIncomeAccountMappings[$index].incomeAccount.name = formValue(penaltySpecificIncomeaccount.incomeAccountOptions,penaltySpecificIncomeaccount.incomeAccountId,'id','name')">
                                                         <md-option ng-repeat="assetAccount in penaltySpecificIncomeaccount.incomeAccountOptions" ng-value="assetAccount.id">
-                                                            {{assetAccount.name}}
+                                                            {{assetAccount.glCode}} - {{assetAccount.name}}
                                                         </md-option>
                                                     </md-select>
                                                     <!--
