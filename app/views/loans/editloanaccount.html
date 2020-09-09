@@ -56,9 +56,9 @@
                     <label>{{'label.input.fund' | translate }}:</label></td>
                 <td class="paddedbottom10"
                     ng-hide="response.uiDisplayConfigurations.loanAccount.isHiddenField.fundId == true">
-                    <md-select id="fundId" ng-model="formData.fundId">
-                        <md-option><em>{{'label.selectfund' | translate}}</em></md-option>
-                        <md-option ng-repeat="fund in loanaccountinfo.fundOptions" ng-value="fund.id"
+                    <md-select class="uppercase" id="fundId" ng-model="formData.fundId">
+                        <md-option class="uppercase"><em>{{'label.selectfund' | translate}}</em></md-option>
+                        <md-option class="uppercase" ng-repeat="fund in loanaccountinfo.fundOptions" ng-value="fund.id"
                             ng-disabled="$index === 1">
                             {{fund.name | translate}}
                         </md-option>

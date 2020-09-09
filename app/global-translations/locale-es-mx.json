@@ -3073,6 +3073,7 @@
     "label.accountNumberPreferences": "Preferencias para la generación de números de cuenta para clientes, créditos y cuentas de ahorro",
     "label.menu.selectAccountType": "Seleccionar el tipo de cuenta",
     "label.menu.selectPrefixField": "Seleccionar el campo de prefijo",
+    "label.close": "Cerrar",
     "No.Data.Found": "No se encontraron resultados.",
     "validation.msg.datatable.name.mandatory": "El nombre de la tabla de datos es obligatorio",
     "error.msg.datatable.registered": "La tabla de datos `{{params[0].value}}` ya está registrada contra una tabla de aplicación.",
