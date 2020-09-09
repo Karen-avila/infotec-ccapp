@@ -5966,5 +5966,6 @@
     "----End---": "---Fin del archivo---",
     "Withdrawal":"Retiro",
     "Deposit":"Deposito",
-    "Interest posting":"Interes"
+    "Interest posting":"Interes",
+    "Saving No Activity Fee":"Cuenta sin actividad"
 }
