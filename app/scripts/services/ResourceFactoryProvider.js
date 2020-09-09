@@ -735,7 +735,13 @@
                     twoFactorConfigResource: defineResource(apiVer + "/twofactor/configure", {}, {
                         getAllConfigs: { method: 'GET', params: {} },
                         put: { method: 'PUT', params: {} }
-                    })
+                    }),
+                    getPreviewDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/preview", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
+                    getBinaryDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/attachment", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', responseType: 'arraybuffer' }
+                    }),
                 };
             }];
         }
