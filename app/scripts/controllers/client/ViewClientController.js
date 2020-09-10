@@ -728,6 +728,9 @@
                         if (data.data[0].rows[i].name == 'regimen') {
                             scope.regimenfiscal = data.data[0].rows[i].value;
                         }
+                        if (data.data[0].rows[i].name == 'giro') {
+                            scope.giro = data.data[0].rows[i].value;
+                        }
                     }
                 })
             }

@@ -421,6 +421,7 @@
     "label.input.no.decimalplaces": "Decimales",
     "label.input.gender": "Sexo",
     "label.input.regimenfiscal": "Régimen Fiscal",
+    "label.input.giro": "Giro",
     "label.input.birthplace": "Entidad de Nacimiento",
     "label.input.claveelector": "Clave de Elector",
     "label.input.clabe": "CLABE",
