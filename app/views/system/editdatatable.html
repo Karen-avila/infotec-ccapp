@@ -131,12 +131,12 @@
                                                     </md-option>
                                                 </md-select>
                                             </td>
-                                            <td md-cell align="center" class="paddedleft0">
+                                            <td md-cell class="paddedleft0 center">
                                                 <md-checkbox ng-model="column.mandatory"></md-checkbox>
                                             </td>
                                             <td md-cell>
                                                 <input ng-show="column.type == 'string'" ng-model="column.length"
-                                                    type="text" class="input-sm form-control" />
+                                                    type="text" only-number allow-decimal="false" maxlength="3" class="input-sm form-control" />
                                             </td>
                                             <td md-cell>
                                                 <md-select ng-show="column.type == 'dropdown'" ng-model="column.code"

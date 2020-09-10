@@ -9,7 +9,7 @@
         <fieldset>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="firstName">{{'label.input.firstname' | translate }}<span
-                    class="required">*</span></label>
+                        class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <input type="text" id="firstName" name="firstName" ng-model="formData.firstName"
@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="lastName">{{'label.input.lastname' | translate }}<span
-                    class="required">*</span></label>
+                        class="required">*</span></label>
 
                 <div class="col-sm-3">
                     <input type="text" id="lastName" name="lastName" ng-model="formData.lastName"
@@ -41,7 +41,7 @@
                     for="qualification">{{'label.input.qualification' | translate }}</label>
 
                 <div class="col-sm-3">
-                    <input type="text" id="qualification" only-number maxlength="3" name="qualification"
+                    <input type="text" id="qualification" only-number allow-decimal="false" maxlength="3" name="qualification"
                         ng-model="formData.qualification" class="form-control">
                 </div>
             </div>
@@ -49,22 +49,21 @@
             <div class="form-group">
                 <label class="control-label col-sm-2"
                     for="mobileNumber">{{'label.input.mobileNumber' | translate }}<span
-                    class="required">*</span></label>
+                        class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <input type="text" maxlength="10" only-number id="mobileNumber" ng-pattern="/^[0-9]{10}$/"
+                    <input type="text" maxlength="10" only-number allow-decimal="false" id="mobileNumber" ng-pattern="/^[0-9]{10}$/"
                         name="mobileNumber" ng-model="formData.mobileNumber" class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2"
-                    for="dateofbirth">{{'label.input.dateofbirth' | translate }}<span
-                    class="required">*</span></label>
+                <label class="control-label col-sm-2" for="dateofbirth">{{'label.input.dateofbirth' | translate }}</label>
 
                 <div class="col-sm-3">
-                        <md-datepicker id="dateofbirth" name="dateofbirth" ng-model="date.dateOfBirth"  md-min-date="minDate" md-max-date="restrictDate" ng-change="calculateAge(date.dateofbirth)">
-                        </md-datepicker>
+                    <md-datepicker id="dateofbirth" name="dateofbirth" ng-model="date.dateOfBirth" md-min-date="minDate"
+                        md-max-date="restrictDate" ng-change="calculateAge(date.dateofbirth)">
+                    </md-datepicker>
                 </div>
             </div>
 
@@ -72,9 +71,9 @@
                 <label class="control-label col-sm-2" for="age">{{'label.input.age' | translate }}</label>
 
                 <div class="col-sm-3">
-                    <input type="text" id="age" name="age" ng-model="formData.age" class="form-control">
+                    <input type="text" id="age" name="age" only-number allow-decimal="false" ng-model="formData.age"
+                        class="form-control">
                 </div>
-
             </div>
 
             <div class="form-group">
@@ -88,7 +87,7 @@
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.relationship' | translate }}</label>
+                    <label>{{'label.input.relationship' | translate }}<span class="required">*</span></label>
                 </div>
                 <div class="col-sm-3">
                     <md-select required class="uppercase" placeholder="{{'label.selectone' | translate}}"
@@ -105,12 +104,10 @@
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.gender' | translate }}<span
-                        class="required">*</span><span
-                        class="required">*</span></label>
+                    <label>{{'label.input.gender' | translate }}</label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select required class="uppercase" placeholder="{{'label.selectone' | translate}}"
+                    <md-select class="uppercase" placeholder="{{'label.selectone' | translate}}"
                         id="genderIdOption" name="genderIdOption" ng-model="formData.genderId">
                         <md-option class="uppercase" ng-repeat="genderIdOption in genderIdOptions | orderBy: name"
                             ng-value="genderIdOption.id">
@@ -123,11 +120,10 @@
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.profession' | translate }}<span
-                        class="required">*</span></label>
+                    <label>{{'label.input.profession' | translate }}</label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select required class="uppercase" placeholder="{{'label.selectone' | translate}}"
+                    <md-select class="uppercase" placeholder="{{'label.selectone' | translate}}"
                         id="professionIdOption" name="professionIdOption" ng-model="formData.professionId">
                         <md-option class="uppercase"
                             ng-repeat="professionIdOption in professionIdOptions | orderBy: name"
@@ -141,11 +137,10 @@
 
             <div class="form-group">
                 <div class="control-label col-sm-2">
-                    <label>{{'label.input.maritalstatus' | translate }}<span
-                        class="required">*</span></label>
+                    <label>{{'label.input.maritalstatus' | translate }}</label>
                 </div>
                 <div class="col-sm-3">
-                    <md-select required class="uppercase" placeholder="{{'label.selectone' | translate}}"
+                    <md-select class="uppercase" placeholder="{{'label.selectone' | translate}}"
                         id="maritalStatusId" name="relationshipIdOption" ng-model="formData.maritalStatusId">
                         <md-option class="uppercase"
                             ng-repeat="maritalStatusIdOption in maritalStatusIdOptions | orderBy: name"
