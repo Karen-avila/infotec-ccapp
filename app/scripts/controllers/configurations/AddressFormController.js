@@ -23,6 +23,7 @@
 
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
+        console.log(data.addressTypeIdOptions);
         $scope.countryOptions = data.countryIdOptions;
         $scope.municipalityOptions = data.municipalityIdOptions;
         $scope.allMunicipalityOptions = data.municipalityIdOptions;
