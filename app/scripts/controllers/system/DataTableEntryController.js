@@ -29,11 +29,11 @@
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
-                }               
+                }
                 return tableName + '.' + columnName;
                 // return columnName;
             }
-            
+
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
                 const columnHeaderData = data.datatableData.columnHeaderData;
                 for (var i in columnHeaderData) {
@@ -51,7 +51,7 @@
                             }
                         }
                     } else {
-                        columnHeaderData[i].value = data.data[0].rows[i];
+                        columnHeaderData[i].value = data.data[0].rows[i].value;
                     }
                 }
                 scope.columnHeaders = columnHeaderData;
@@ -102,7 +102,6 @@
                 }
 
                 for (var i in scope.columnHeaders) {
-
                     if (scope.columnHeaders[i].columnDisplayType == 'DATE') {
                         scope.formDat[scope.columnHeaders[i].columnName] = scope.columnHeaders[i].value;
                     } else if (scope.columnHeaders[i].columnDisplayType == 'DATETIME') {

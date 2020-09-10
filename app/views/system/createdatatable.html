@@ -16,8 +16,8 @@
 					<div class="form-group">
 						<div class="col-sm-2">
 							<label class="control-label"
-								for="apptableName">{{'label.input.apptablename' | translate }}<span
-									class="required"> *</span></label>
+								for="apptableName">{{'label.input.apptablename' | translate }}<span class="required">
+									*</span></label>
 						</div>
 						<div class="col-sm-3">
 							<md-select id="apptableName" ng-model="formData.apptableName" name="apptable"
@@ -37,8 +37,8 @@
 					<div class="form-group">
 						<div class="col-sm-2">
 							<label class="control-label"
-								for="datatableName">{{'label.input.datatablename' | translate }}<span
-									class="required"> *</span></label>
+								for="datatableName">{{'label.input.datatablename' | translate }}<span class="required">
+									*</span></label>
 						</div>
 						<div class="col-sm-6">
 							<input id="datatableName" type="text" name="datatableName" ng-model="formData.datatableName"
@@ -53,8 +53,8 @@
 									class="required"> *</span></label>
 						</div>
 						<div class="col-sm-6">
-							<input id="description" type="text" name="description"
-								ng-model="formData.description" class="form-control" maxlength="250" required late-Validate />
+							<input id="description" type="text" name="description" ng-model="formData.description"
+								class="form-control" maxlength="250" required late-Validate />
 							<form-validate valattributeform="createdatatableform" valattribute="description" />
 						</div>
 					</div>
@@ -81,7 +81,8 @@
 						</div>
 						<div class="col-sm-2" ng-show="formData.scoring">
 							<input id="scoringWeight" type="text" only-number name="scoringWeight"
-								ng-model="formData.scoringWeight" class="form-control" required min="0" max="100" late-Validate />
+								ng-model="formData.scoringWeight" class="form-control" required min="0" max="100"
+								late-Validate />
 							<form-validate valattributeform="createdatatableweight" valattribute="scoringWeight" />
 						</div>
 					</div>
@@ -173,7 +174,7 @@
 											</td>
 											<td md-cell>
 												<input ng-show="column.type == 'String'" ng-model="column.length"
-													type="text" only-number maxlength="4"
+													type="text" only-number allow-decimal="false" maxlength="4"
 													class="input-sm form-control" />
 											</td>
 											<td md-cell>
