@@ -200,7 +200,7 @@
                      class="required">*</span></label>
                <div class="col-sm-3">
                   <input type="text" id="mobileNo" name="mobileNo" required ng-model="formData.mobileNo"
-                     ng-pattern="\d{50}" class="form-control" maxlength="50" />
+                     ng-pattern="\d{50}" class="form-control" maxlength="10" />
                   <span ng-show="createclientform.mobileNo.$invalid && createclientform.mobileNo.$dirty">
                      <small class="required" ng-show="createclientform.mobileNo.$error.pattern">
                         {{'label.mustbenumeric' | translate}}

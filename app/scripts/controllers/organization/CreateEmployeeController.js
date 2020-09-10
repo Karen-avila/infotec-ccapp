@@ -25,7 +25,11 @@
                 this.formData.dateFormat = scope.df;
                 const joiningDate = dateFilter(scope.formData.joiningDate, scope.df);
                 this.formData.joiningDate = joiningDate;
-                console.log(JSON.stringify(this.formData));
+                this.formData.firstname = this.formData.firstname.toUpperCase();
+                this.formData.lastname = this.formData.lastname.toUpperCase();
+                if (typeof this.formData.surname != "undefined") {
+                    this.formData.surname = this.formData.surname.toUpperCase();
+                }
                 resourceFactory.employeeResource.save(this.formData, function (data) {
                     location.path('/viewemployee/' + data.resourceId);
                 });

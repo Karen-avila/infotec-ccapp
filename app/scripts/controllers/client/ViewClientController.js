@@ -561,8 +561,9 @@
             };
 
             var ClientValidateCtrl = function ($scope, $uibModalInstance) {
+                $scope.note = "";
                 $scope.validateClient = function (isValidated) {
-                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated }, function (data) {
+                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated, "notes": $scope.note }, function (data) {
                         $uibModalInstance.close('validate');
                         route.reload();
                     });
@@ -727,6 +728,9 @@
                         }
                         if (data.data[0].rows[i].name == 'regimen') {
                             scope.regimenfiscal = data.data[0].rows[i].value;
+                        }
+                        if (data.data[0].rows[i].name == 'giro') {
+                            scope.giro = data.data[0].rows[i].value;
                         }
                     }
                 })
