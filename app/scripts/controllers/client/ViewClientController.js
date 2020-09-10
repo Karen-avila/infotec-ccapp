@@ -101,7 +101,6 @@
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddresses.get({ clientId: scope.clientId }, function (data) {
-                    console.log(data);
                     scope.addresses = data;
                 })
             }
@@ -210,7 +209,6 @@
             scope.haveFile = [];
             resourceFactory.clientResource.get({ clientId: scope.clientId }, function (data) {
                 scope.client = data;
-                console.log("cliente", scope.client);
                 scope.isClosedClient = scope.client.status.value == 'Closed';
                 scope.staffData.staffId = data.staffId;
                 if (data.imagePresent) {
@@ -689,12 +687,17 @@
                 scope.getClientDocuments();
                 scope.getFamilyMembers();
                 scope.getAddresses();
+                scope.getClabe();
             }
 
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: scope.clientId, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
                     for (var i = 0; i < scope.identitydocuments.length; i++) {
+                        // 2 es INE en pruebas - tenemos que usar el correspondiente a Clave Elector
+                        if (scope.identitydocuments[i].documentType.id == 2) {
+                            scope.identityClaveElector = scope.identitydocuments[i].documentKey;
+                        }
                         resourceFactory.clientIdentifierResource.get({ clientIdentityId: scope.identitydocuments[i].id }, function (data) {
                             for (var j = 0; j < scope.identitydocuments.length; j++) {
                                 if (data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId) {
@@ -711,6 +714,24 @@
                     }
                 });
             };
+
+            scope.getClabe = function () {
+                resourceFactory.DataTablesResource.getTableDetails({
+                    datatablename: 'cs_extra_data',
+                    entityId: scope.clientId,
+                    genericResultSet: 'true'
+                }, function (data) {
+                    for (var i = 0; i < data.data[0].rows.length; ++i) {
+                        if (data.data[0].rows[i].name == 'clabe') {
+                            scope.clabe = data.data[0].rows[i].value;
+                        }
+                        if (data.data[0].rows[i].name == 'regimen') {
+                            scope.regimenfiscal = data.data[0].rows[i].value;
+                        }
+                    }
+                })
+            }
+
 
             scope.getDataTablesAndScoring = function () {
                 if (scope.datatableLoaded == false) {
@@ -866,14 +887,16 @@
 
                         scope.clientdocuments[index].visited = true;
                         scope.preview = true;
-                        scope.clientDocumentName = name;
-                        console.log("filename", scope.clientDocumentName);
+                        if (name) {
+                            scope.highlight = name.toLowerCase();
+                        }
                     });
 
             };
 
             scope.closeDocumentPreview = function () {
                 scope.preview = false;
+                scope.highlight = "";
             };
 
             scope.viewDataTable = function (registeredTableName, data) {
