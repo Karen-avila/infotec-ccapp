@@ -948,6 +948,209 @@
                                         </span>
                                         <table class="table small-font">
                                             <tbody>
+
+                                                <!-- inicio tabla -->
+
+                                                <tr>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.firstname' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.firstname}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.middlename' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.middlename}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.lastname' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.lastname}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.surname' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.surname}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
+                                                    <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.uniqueId}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
+                                                    <th class="table-bold">{{'label.input.gender' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.gender.name}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr data-ng-show="client.rfc">
+                                                    <th class="table-bold">{{'label.input.rfc' | translate }}</th>
+                                                    <td><span class="padded-td">{{client.rfc}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr data-ng-show="client.dateOfBirth">
+                                                    <th ng-hide="isLegalEntity()" class="table-bold">
+                                                        {{'label.input.dateofbirth' | translate }}</th>
+                                                    <th ng-show="isLegalEntity()" class="table-bold">
+                                                        {{'label.input.incorporationdate' | translate }}</th>
+                                                    <td><span
+                                                            class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
+                                                    <th class="table-bold">{{'label.input.birthplace' | translate }}
+                                                    </th>
+                                                    <td><span class="padded-td">{{client.birthplace.name}}</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="whitebg" colspan="2">
+                                                </tr>
+                                                <table class="table" ng-repeat="address in addresses"
+                                                    class="table table-condensed">
+                                                    <tr ng-show="view.street">
+                                                        <th>
+                                                            {{'label.input.street' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.street}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine1">
+                                                        <th>
+                                                            {{'label.input.addressline1' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine1}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine2">
+                                                        <th>
+                                                            {{'label.input.addressline2' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine2}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine3">
+                                                        <th>
+                                                            {{'label.input.addressline3' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine3}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine4">
+                                                        <th>
+                                                            {{'label.input.addressline4' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine4}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine5">
+                                                        <th>
+                                                            {{'label.input.addressline5' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine5}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.addressLine6">
+                                                        <th>
+                                                            {{'label.input.addressline6' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.addressLine6}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.city">
+                                                        <th>
+                                                            {{'label.input.city' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.city}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.townVillage">
+                                                        <th>
+                                                            {{'label.input.town_village' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.townVillage}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.countyDistrict">
+                                                        <th>
+                                                            {{'label.input.county_district' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.countyDistrict}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.countryId">
+                                                        <th>
+                                                            {{'label.input.country' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.countryName}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.stateProvinceId">
+                                                        <th>
+                                                            {{'label.input.state_province' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.stateName}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.municipality">
+                                                        <th>
+                                                            {{'label.input.municipality' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.municipalityName}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.postalCode">
+                                                        <th>
+                                                            {{'label.input.postal_code' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.postalCode}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.latitude">
+                                                        <th>
+                                                            {{'label.input.latitude' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.latitude}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr ng-show="view.longitude">
+                                                        <th>
+                                                            {{'label.input.longitude' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.longitude}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="view.antiquity">
+                                                        <th>
+                                                            {{'label.input.antiquity.address' | translate }}
+                                                        </th>
+                                                        <td>
+                                                            {{address.antiquity}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- fin tabla -->
+                                                <!--
                                                 <tr>
                                                     <th class="table-bold" style="width: 50%;">
                                                         {{'label.input.submittedOnDate' | translate }}</th>
@@ -1092,7 +1295,7 @@
                                                     <td><span
                                                             class="padded-td">{{client.ClientSummary.activeSavings}}</span>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                             </tbody>
                                         </table>
                                     </div>
@@ -1129,27 +1332,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr ng-repeat="clientdocument in clientdocuments" ng-style="{ 'color' : (clientdocument.visited) ? '#235B4E' : '' }">
+                                                <tr ng-repeat="clientdocument in clientdocuments"
+                                                    ng-style="{ 'color' : (clientdocument.visited) ? '#235B4E' : '', 'font-weight' : (clientdocument.visited) ? 'bold' : '' }">
                                                     <td>{{clientdocument.name}}</td>
                                                     <td>{{clientdocument.description}}</td>
                                                     <td>{{clientdocument.fileName}}</td>
                                                     <td>
-                                                        <a ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id)"><i
-                                                            class="fa fa-eye"></i></a>
+                                                        <a
+                                                            ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id, clientdocument.name)"><i
+                                                                class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div style="padding-left: 25%;" ng-show="preview">
-                                            <div class="modal" style="display: inline-table; margin: 0 auto; margin-left: 35%;">
+                                            <div class="modal"
+                                                style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
-                                                        <iframe style="min-height: 500px; min-width: 700px;" ng-src="{{iframeURL}}" height="100%" width="100%"></iframe>
-                                                        <div class="text-center">
-                                                            <md-button md-no-ink class="md-primary"
+                                                    <iframe style="min-height: 500px; min-width: 700px;"
+                                                        ng-src="{{iframeURL}}" height="100%" width="100%"></iframe>
+                                                    <div class="text-center">
+                                                        <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i
                                                                 class="fa fa-close"></i>{{'label.close' | translate}}
                                                         </md-button>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

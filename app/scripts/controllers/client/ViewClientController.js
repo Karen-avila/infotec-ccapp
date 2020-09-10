@@ -101,6 +101,7 @@
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddresses.get({ clientId: scope.clientId }, function (data) {
+                    console.log(data);
                     scope.addresses = data;
                 })
             }
@@ -209,6 +210,7 @@
             scope.haveFile = [];
             resourceFactory.clientResource.get({ clientId: scope.clientId }, function (data) {
                 scope.client = data;
+                console.log("cliente", scope.client);
                 scope.isClosedClient = scope.client.status.value == 'Closed';
                 scope.staffData.staffId = data.staffId;
                 if (data.imagePresent) {
@@ -686,6 +688,7 @@
                 scope.getClientIdentityDocuments();
                 scope.getClientDocuments();
                 scope.getFamilyMembers();
+                scope.getAddresses();
             }
 
             scope.getClientIdentityDocuments = function () {
@@ -838,7 +841,7 @@
                 });
             };
 
-            scope.previewDocument = function (url, fileName, index, resourceId) {
+            scope.previewDocument = function (url, fileName, index, resourceId, name) {
 
                 var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/attachment";
 
@@ -863,6 +866,8 @@
 
                         scope.clientdocuments[index].visited = true;
                         scope.preview = true;
+                        scope.clientDocumentName = name;
+                        console.log("filename", scope.clientDocumentName);
                     });
 
             };

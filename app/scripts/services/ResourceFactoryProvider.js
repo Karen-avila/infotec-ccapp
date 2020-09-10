@@ -485,6 +485,10 @@
                         get: { method: 'GET', params: {} },
                         search: { method: 'GET', params: {}, isArray: true }
                     }),
+                    loansDashboard: defineResource(apiVer + "/loans/dashboard", {}, {
+                        get: { method: 'GET', params: {} },
+                        search: { method: 'GET', params: {} }
+                    }),
                     officeToGLAccountMappingResource: defineResource(apiVer + "/financialactivityaccounts/:mappingId", { mappingId: '@mappingId' }, {
                         get: { method: 'GET', params: { mappingId: '@mappingId' } },
                         getAll: { method: 'GET', params: {}, isArray: true },
