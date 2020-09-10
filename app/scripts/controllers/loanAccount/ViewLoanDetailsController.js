@@ -659,17 +659,15 @@
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
-                    for (var i in data.datatableData.columnHeaderData) {
-                        if (datatabledetail.columnHeaders[i].columnCode) {
-                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
+                    var columnHeaderData = data.datatableData.columnHeaderData;
+                    for (var i in columnHeaderData) {
+                        if (columnHeaderData[i].columnCode) {
+                            for (var j in columnHeaderData[i].columnValues) {
                                 for (var k in data.data) {
-                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
+                                    if (data.data[k].row[i] == columnHeaderData[i].columnValues[j].id) {
                                         data.data[k].row[i] = {
-                                        		value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                        }
-                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                                        		value: columnHeaderData[i].columnValues[j].value,
+                                                score: columnHeaderData[i].columnValues[j].score
                                         }
                                     }
                                 }
@@ -680,10 +678,7 @@
                         for (var i in data.datatableData.columnHeaderData) {
                             if (!datatabledetail.isMultirow) {
                             	if (data.datatableData.columnHeaderData[i].columnName != "loan_id") {
-                            		var row = {};
-                            		row.key = data.datatableData.columnHeaderData[i].columnName;
-                            		row.value = data.data[0].row[i];
-                            		datatabledetail.singleRow.push(row);                            		
+                                    datatabledetail.singleRow.push(data.data[0].rows[i]);                         		
                             	}
                             }
                         }
@@ -693,6 +688,7 @@
             };
             
             scope.getDatatableColumn = function (tableName, columnName) {
+                console.log("data " + tableName + " : " + columnName);
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];

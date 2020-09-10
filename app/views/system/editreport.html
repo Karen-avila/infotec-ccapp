@@ -22,7 +22,7 @@
                             <td class="blockquoteresult width86">
                                 <table>
                                     <tr>
-                                        <td class="width30 paddedbottom10">
+                                        <td class="width25 paddedbottom10">
                                             <label
                                                 class="control-label">{{'label.input.reportname' | translate }}&nbsp;<span
                                                     class="required">*</span></label>
@@ -35,20 +35,20 @@
                                                     valattribute="reportName" />
                                             </div>
                                         </td>
-                                        <td class="width20 paddedbottom10">
+                                        <td class="width25 paddedbottom10">
                                             <label
                                                 class="control-label">{{'label.input.reporttype' | translate }}&nbsp;<span
                                                     class="required">*</span></label>
                                             <div class="form-inline">
                                                 <md-select id="reportType" ng-model="reportdetail.reportType"                                                    
                                                     ng-disabled="disableFields">
-                                                    <md-option ng-repeat="reportType in reportdetail.allowedReportTypes">
+                                                    <md-option ng-repeat="reportType in reportdetail.allowedReportTypes" ng-value="reportType">
                                                         {{reportType | translate}}
                                                     </md-option>
                                                 </md-select>
                                             </div>
                                         </td>
-                                        <td class="width20 paddedbottom10">
+                                        <td class="width25 paddedbottom10">
                                             <label
                                                 class="control-label">{{'label.input.reportsubtype' | translate }}&nbsp;</label>
                                             <md-select ng-model="reportdetail.reportSubType"
@@ -59,6 +59,11 @@
                                                 </md-option>
                                             </md-select>
                                         </td>
+                                        <td class="width25 paddedbottom10">
+                                            <md-checkbox ng-model="reportdetail.useReport">
+                                                {{'label.input.userreportui' | translate }}
+                                            </md-checkbox>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="paddedbottom10">
@@ -67,14 +72,6 @@
                                             <div class="form-inline">
                                                 <input type="text" class="form-control"
                                                     ng-model="reportdetail.reportCategory" ng-disabled="disableFields">
-                                            </div>
-                                        </td>
-
-                                        <td class="paddedbottom10">
-                                            <div class="form-inline">
-                                                <md-checkbox ng-model="reportdetail.useReport">
-                                                    {{'label.input.userreportui' | translate }}
-                                                </md-checkbox>
                                             </div>
                                         </td>
                                     </tr>

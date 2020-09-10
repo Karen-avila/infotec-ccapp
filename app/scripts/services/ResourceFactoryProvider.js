@@ -71,6 +71,9 @@
                     clientDocumentsResource: defineResource(apiVer + "/clients/:clientId/documents/:documentId", { clientId: '@clientId', documentId: '@documentId' }, {
                         getAllClientDocuments: { method: 'GET', params: {}, isArray: true }
                     }),
+                    clientDocumentResource: defineResource(apiVer + "/clients/:clientId/documents/:documentId/preview", { clientId: '@clientId', documentId: '@documentId' }, {
+                        getClientDocument: { method: 'GET', params: {} }
+                    }),
                     clientAccountResource: defineResource(apiVer + "/clients/:clientId/accounts", { clientId: '@clientId' }, {
                         getAllClients: { method: 'GET', params: {} }
                     }),
