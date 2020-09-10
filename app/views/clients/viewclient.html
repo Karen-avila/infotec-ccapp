@@ -1011,6 +1011,11 @@
                                                     <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{regimenfiscal}}</span>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th class="table-bold">{{'label.input.giro' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{giro}}</span>
+                                                    </td>
+                                                </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
                                                     <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
                                                     <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.uniqueId}}</span>
