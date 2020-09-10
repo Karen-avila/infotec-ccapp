@@ -657,17 +657,15 @@
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
-                    for (var i in data.datatableData.columnHeaderData) {
-                        if (datatabledetail.columnHeaders[i].columnCode) {
-                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
+                    var columnHeaderData = data.datatableData.columnHeaderData;
+                    for (var i in columnHeaderData) {
+                        if (columnHeaderData.columnHeaders[i].columnCode) {
+                            for (var j in columnHeaderData.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
-                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
+                                    if (data.data[k].row[i] == columnHeaderData.columnHeaders[i].columnValues[j].id) {
                                         data.data[k].row[i] = {
-                                        		value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                        }
-                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                                        		value: columnHeaderData.columnHeaders[i].columnValues[j].value,
+                                                score: columnHeaderData.columnHeaders[i].columnValues[j].score
                                         }
                                     }
                                 }
