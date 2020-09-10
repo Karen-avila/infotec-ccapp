@@ -13,13 +13,15 @@
             scope.chart = {};
             scope.restrictDate = new Date();
             scope.fromDate = {}; //required for date formatting
-            scope.endDate = {};//required for date formatting
+            scope.endDate = {}; //required for date formatting
             scope.deletedincentives = [];
             scope.isPrimaryGroupingByAmount = false;
+            scope.applyCurrentInterestRateChart = false;
 
             resourceFactory.fixedDepositProductResource.get({productId: routeParams.productId, template: 'true'}, function (data) {
                 scope.product = data;
                 scope.charges = data.charges;
+                scope.applyCurrentInterestRateChart = data.applyCurrentInterestRateChart;
                 scope.assetAccountOptions = scope.product.accountingMappingOptions.assetAccountOptions || [];
                 scope.liabilityAccountOptions = scope.product.accountingMappingOptions.liabilityAccountOptions || [];
                 scope.incomeAccountOptions = scope.product.accountingMappingOptions.incomeAccountOptions || [];
@@ -250,6 +252,7 @@
                 this.formData.locale = scope.optlang.code;
                 this.formData.charts = [];//declare charts array
                 this.formData.charts.push(copyChartData(scope.chart));//add chart details
+                this.formData.applyCurrentInterestRateChart = scope.applyCurrentInterestRateChart;
                 this.formData = removeEmptyValues(this.formData);
                 resourceFactory.fixedDepositProductResource.update({productId: routeParams.productId}, this.formData, function (data) {
                     location.path('/viewfixeddepositproduct/' + data.resourceId);

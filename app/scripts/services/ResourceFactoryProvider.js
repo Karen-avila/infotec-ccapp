@@ -488,6 +488,10 @@
                         get: { method: 'GET', params: {} },
                         search: { method: 'GET', params: {}, isArray: true }
                     }),
+                    loansDashboard: defineResource(apiVer + "/loans/dashboard", {}, {
+                        get: { method: 'GET', params: {} },
+                        search: { method: 'GET', params: {} }
+                    }),
                     officeToGLAccountMappingResource: defineResource(apiVer + "/financialactivityaccounts/:mappingId", { mappingId: '@mappingId' }, {
                         get: { method: 'GET', params: { mappingId: '@mappingId' } },
                         getAll: { method: 'GET', params: {}, isArray: true },
@@ -738,7 +742,13 @@
                     twoFactorConfigResource: defineResource(apiVer + "/twofactor/configure", {}, {
                         getAllConfigs: { method: 'GET', params: {} },
                         put: { method: 'PUT', params: {} }
-                    })
+                    }),
+                    getPreviewDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/preview", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
+                    getBinaryDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/attachment", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', responseType: 'arraybuffer' }
+                    }),
                 };
             }];
         }

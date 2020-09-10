@@ -23,6 +23,7 @@
             scope.fromDate = {}; //required for date formatting
             scope.endDate = {};//required for date formatting
             scope.isPrimaryGroupingByAmount = false;
+            scope.applyCurrentInterestRateChart = false;
             scope.accountLevels = [1,2,3,4];
 
             resourceFactory.fixedDepositProductResource.get({resourceType: 'template'}, function (data) {
@@ -195,7 +196,7 @@
                 this.formData.locale = scope.optlang.code;
                 this.formData.charts = [];//declare charts array
                 this.formData.charts.push(copyChartData(scope.chart));//add chart details
-
+                this.formData.applyCurrentInterestRateChart = scope.applyCurrentInterestRateChart;
                 resourceFactory.fixedDepositProductResource.save(this.formData, function (data) {
                     location.path('/viewfixeddepositproduct/' + data.resourceId);
                 });

@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewClientController: function (scope, $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, Upload) {
+        ViewClientController: function (scope, $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, $sce, Upload) {
             scope.client = [];
             scope.identitydocuments = [];
             scope.buttons = [];
@@ -101,6 +101,7 @@
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddresses.get({ clientId: scope.clientId }, function (data) {
+                    console.log(data);
                     scope.addresses = data;
                 })
             }
@@ -209,6 +210,7 @@
             scope.haveFile = [];
             resourceFactory.clientResource.get({ clientId: scope.clientId }, function (data) {
                 scope.client = data;
+                console.log("cliente", scope.client);
                 scope.isClosedClient = scope.client.status.value == 'Closed';
                 scope.staffData.staffId = data.staffId;
                 if (data.imagePresent) {
@@ -478,7 +480,7 @@
             scope.refresh = function () {
                 route.reload();
             };
-            
+
             var UploadSigCtrl = function ($scope, $uibModalInstance) {
                 $scope.upload = function (file) {
                     if (file) {
@@ -562,7 +564,7 @@
 
             var ClientValidateCtrl = function ($scope, $uibModalInstance) {
                 $scope.validateClient = function (isValidated) {
-                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, {"isValidated": isValidated}, function (data) {
+                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated }, function (data) {
                         $uibModalInstance.close('validate');
                         route.reload();
                     });
@@ -686,6 +688,7 @@
                 scope.getClientIdentityDocuments();
                 scope.getClientDocuments();
                 scope.getFamilyMembers();
+                scope.getAddresses();
             }
 
             scope.getClientIdentityDocuments = function () {
@@ -728,7 +731,7 @@
             });
 
             scope.getDataTables = function () {
-                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }).$promise.then( function (data) {
+                resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_client' }).$promise.then(function (data) {
                     scope.clientdatatables = data;
                     if (scope.datatableLoaded == false) {
                         for (var i in data) {
@@ -743,15 +746,15 @@
 
             scope.calculateScoring = function () {
                 // Scoring Total
-                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) + 
-                    (scope.scoringExternalTotal * 0.8);             
+                scope.scoringTotalTotal = (scope.scoringInternalTotal * 0.2) +
+                    (scope.scoringExternalTotal * 0.8);
             }
 
             scope.dataTableChange = function (registeredTableName) {
                 resourceFactory.DataTablesResource.getTableDetails({
                     datatablename: registeredTableName,
                     entityId: scope.clientId, genericResultSet: 'true'
-                }).$promise.then( function (data) {
+                }).$promise.then(function (data) {
                     var datatabledetail = data;
                     datatabledetail.registeredTableName = registeredTableName;
                     datatabledetail.isData = false;
@@ -776,8 +779,8 @@
                         scope.scoringInternalPoints += datatabledetail.points;
                         scope.scoringInternalSubTotal += datatabledetail.scoring;
                         scope.scoringDetails.push({
-                            table: datatabledetail.datatableData.description, 
-                            points: datatabledetail.points, 
+                            table: datatabledetail.datatableData.description,
+                            points: datatabledetail.points,
                             weight: (datatabledetail.datatableData.scoringWeight / 100).toFixed(2),
                             value: datatabledetail.scoring
                         });
@@ -796,7 +799,7 @@
                 return scope.dataTableScoring;
             }
 
-            scope.getRandomInt = function(min, max) {
+            scope.getRandomInt = function (min, max) {
                 min = Math.ceil(min);
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -838,15 +841,39 @@
                 });
             };
 
-            scope.previewDocument = function (url, fileName) {
-                scope.preview = true;
-                scope.fileUrl = scope.hostUrl + url;
-                if (fileName.toLowerCase().indexOf('.png') != -1)
-                    scope.fileType = 'image/png';
-                else if (fileName.toLowerCase().indexOf('.jpg') != -1)
-                    scope.fileType = 'image/jpg';
-                else if (fileName.toLowerCase().indexOf('.jpeg') != -1)
-                    scope.fileType = 'image/jpeg';
+            scope.previewDocument = function (url, fileName, index, resourceId, name) {
+
+                var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/attachment";
+
+                var config = { responseType: 'blob' };
+                http.get(documentURL, config).
+                    then(function onSuccess(response) {
+
+                        if (fileName.toLowerCase().indexOf('.png') != -1)
+                            scope.fileType = 'image/png';
+                        else if (fileName.toLowerCase().indexOf('.jpg') != -1)
+                            scope.fileType = 'image/jpg';
+                        else if (fileName.toLowerCase().indexOf('.jpeg') != -1)
+                            scope.fileType = 'image/jpeg';
+                        else if (fileName.toLowerCase().indexOf('.pdf') != -1)
+                            scope.fileType = 'application/pdf';
+
+                        var file = new Blob([response.data], { type: scope.fileType });
+                        var fileContent = URL.createObjectURL(file);
+
+                        // Pass the form data to the iframe as a data url.
+                        scope.iframeURL = $sce.trustAsResourceUrl(fileContent + "#toolbar=0");
+
+                        scope.clientdocuments[index].visited = true;
+                        scope.preview = true;
+                        scope.clientDocumentName = name;
+                        console.log("filename", scope.clientDocumentName);
+                    });
+
+            };
+
+            scope.closeDocumentPreview = function () {
+                scope.preview = false;
             };
 
             scope.viewDataTable = function (registeredTableName, data) {
@@ -1072,7 +1099,7 @@
         }
     });
 
-    mifosX.ng.application.controller('ViewClientController', ['$scope', '$mdDialog', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', 'Upload', mifosX.controllers.ViewClientController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewClientController', ['$scope', '$mdDialog', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', '$sce', 'Upload', mifosX.controllers.ViewClientController]).run(function ($log) {
         $log.info("ViewClientController initialized");
     });
 }(mifosX.controllers || {}));
