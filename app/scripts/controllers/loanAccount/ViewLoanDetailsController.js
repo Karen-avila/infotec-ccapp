@@ -13,6 +13,7 @@
             scope.hideAccrualTransactions = false;
             scope.isHideAccrualsCheckboxChecked = true;
             scope.loandetails = [];
+            scope.accountNo;
             scope.payments = {
                 total: 0,
                 paid: 0,
@@ -267,6 +268,7 @@
                 scope.status = data.status.value;
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
+                scope.accountNo = data.accountNo;
 
                 scope.freePeriods = data.graceOnPrincipalPayment;
 
@@ -724,6 +726,25 @@
                 scope.viewReport = false;
                 scope.viewLoanReport = true;
                 scope.viewTransactionReport = false;
+            };
+
+            scope.viewBalanceTransactionReport = function () {
+                scope.report = true;
+                scope.printbtn = true;
+                scope.viewReport = true;
+                scope.viewBalanceTransactionReport = true;
+                scope.hidePentahoReport = true;
+                scope.formData.outputType = 'PDF';
+                scope.baseURL = $rootScope.hostUrl + API_VERSION + "/runreports/" + encodeURIComponent("saldos_y_movimientos");
+                scope.baseURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier+"&locale="+scope.optlang.code;
+                var reportParams = "";
+                paramName = "R_accountNo";
+                reportParams += encodeURIComponent(paramName) + "=" + encodeURIComponent(scope.accountNo);
+                if (reportParams.length > 0) {
+                    scope.baseURL += "&" + reportParams;
+                }
+              // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
+              scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
             };
 
             scope.viewJournalEntries = function(){
