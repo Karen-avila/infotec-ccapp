@@ -19,7 +19,7 @@
             scope.minDatePicker = new Date(MIN_DATEPICKER);
             scope.maxDatePicker = new Date(MAX_DATEPICKER);
             scope.date.to = new Date();
-            scope.date.from = new Date();
+            scope.date.from = new Date('2018-01-02');
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
@@ -597,13 +597,54 @@
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
                 var params = {};
-                // if (scope.formData.action) {
-                //     params.actionName = scope.formData.action;
-                // }
 
-                // if (scope.formData.entity) {
-                //     params.entityName = scope.formData.entity;
-                // }
+                if (scope.formData.status) {
+                    params.status = scope.formData.status;
+                }
+
+                if (scope.date.from) {
+                    params.makerDateTimeFrom = reqFromDate;
+                }
+
+                if (scope.date.to) {
+                    params.makerDateTimeto = reqToDate;
+                }
+
+                resourceFactory.loansDashboard.search(params, function (data) {
+                    scope.searchedLoansFiltered = data.pageItems;
+
+                    if (scope.date.from) {
+                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
+                            return new Date(item.submittedDate).getTime() >= new Date(reqFromDate).getTime();
+                        });
+                    }
+
+                    if (scope.date.to) {
+                        params.makerDateTimeto = reqToDate;
+
+                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
+                            return new Date(item.submittedDate).getTime() <= new Date(reqToDate).getTime();
+                        });
+                    }
+
+                    if (scope.formData.status) {
+                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
+                            return item.loanStatus.id == scope.formData.status;
+                        });
+                    }
+                    console.log(scope.searchedLoansFiltered);
+                });
+            };
+
+            scope.searchSocialBank = function () {
+                scope.isCollapsed = true;
+                var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
+                var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
+                var params = {};
+
+                if (scope.formData.entity) {
+                    params.entityName = scope.formData.entity;
+                }
 
                 if (scope.formData.status) {
                     params.status = scope.formData.status;
@@ -619,73 +660,32 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     console.log(data.pageItems);
-                    console.log(reqFromDate);
-                    console.log(scope.date.from);
-                    scope.searchedLoansFiltered = data.pageItems;
+                    scope.searchedSocialBanks = data.pageItems;
 
                     if (scope.date.from) {
-                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
-                            return new Date(item.submittedDate) >= reqFromDate; 
-                        }); 
+                        scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
+                            return new Date(item.submittedDate).getTime() >= new Date(reqFromDate).getTime();
+                        });
                     }
-    
+
                     if (scope.date.to) {
                         params.makerDateTimeto = reqToDate;
+
+                        scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
+                            return new Date(item.submittedDate).getTime() <= new Date(reqToDate).getTime();
+                        });
                     }
 
                     if (scope.formData.status) {
-                        scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) { 
-                            return item.status.id == scope.formData.status; 
-                        }); 
+                        scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
+                            return item.clientStatus.id == scope.formData.status;
+                        });
                     }
-                    
-                    // scope.searchData = data;
-                    // if (scope.userTypeahead) {
-                    //     scope.formData.user = '';
-                    //     scope.userTypeahead = false;
-                    //     scope.user = '';
-                    // }
-                });
-            };
 
-            scope.searchSocialBank = function () {
-                scope.isCollapsed = true;
-                var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
-                var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {};
-                // if (scope.formData.action) {
-                //     params.actionName = scope.formData.action;
-                // }
-
-                if (scope.formData.entity) {
-                    params.entityName = scope.formData.entity;
-                }
-
-                if (scope.formData.status) {
-                    params.status = scope.formData.status;
-                }
-                // if (scope.formData.resourceId) {
-                //     params.resourceId = scope.formData.resourceId;
-                // }
-
-                // if (scope.formData.user) {
-                //     params.makerId = scope.formData.user;
-                // }
-
-                if (scope.date.from) {
-                    params.makerDateTimeFrom = reqFromDate;
-                }
-
-                if (scope.date.to) {
-                    params.makerDateTimeto = reqToDate;
-                }
-
-                resourceFactory.socialDashboard.search(params, function (data) {
-                    scope.searchData = data;
-                    if (scope.userTypeahead) {
-                        scope.formData.user = '';
-                        scope.userTypeahead = false;
-                        scope.user = '';
+                    if (scope.formData.entity) {
+                        scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
+                            return item.city == scope.formData.entity.toUpperCase();
+                        });
                     }
                 });
             };
