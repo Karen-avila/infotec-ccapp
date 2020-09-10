@@ -689,6 +689,7 @@
                 scope.getFamilyMembers();
                 scope.getAddresses();
                 scope.getClabe();
+                scope.getLastNote();
             }
 
             scope.getClientIdentityDocuments = function () {
@@ -715,6 +716,12 @@
                     }
                 });
             };
+
+            scope.getLastNote = function () {
+                resourceFactory.clientLastNote.get({ clientId: scope.clientId }, function (data) {
+                    scope.lastNote = data.note;
+                })
+            }
 
             scope.getClabe = function () {
                 resourceFactory.DataTablesResource.getTableDetails({
