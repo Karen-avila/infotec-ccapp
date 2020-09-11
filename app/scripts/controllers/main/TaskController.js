@@ -614,7 +614,7 @@
 
                     if (scope.date.from) {
                         scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
-                            return new Date(item.submittedDate).getTime() >= new Date(reqFromDate).getTime();
+                            return new Date(item.validationDate).getTime() >= new Date(reqFromDate).getTime();
                         });
                     }
 
@@ -622,7 +622,7 @@
                         params.makerDateTimeto = reqToDate;
 
                         scope.searchedLoansFiltered = scope.searchedLoansFiltered.filter(function (item) {
-                            return new Date(item.submittedDate).getTime() <= new Date(reqToDate).getTime();
+                            return new Date(item.validationDate).getTime() <= new Date(reqToDate).getTime();
                         });
                     }
 
