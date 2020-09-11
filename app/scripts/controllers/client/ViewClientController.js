@@ -100,7 +100,7 @@
             scope.getClientTemplate();
 
             scope.getAddresses = function () {
-                resourceFactory.clientAddresses.get({ clientId: scope.clientId }, function (data) {
+                resourceFactory.clientAddresses.getAll({ clientId: scope.clientId }, function (data) {
                     scope.addresses = data;
                 })
             }

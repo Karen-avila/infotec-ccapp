@@ -589,6 +589,7 @@
                     clientAddresses: defineResource(apiVer + "/client/:clientId/addresses", {}, {
                         post: { method: 'POST', params: { type: '@type' } },
                         get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
+                        getAll: { method: 'GET', params: {}, isArray: true },
                         put: { method: 'PUT', params: {} }
                     }),
                     clientAddress: defineResource(apiVer + "/client/:clientId/addresses/:addressId", {}, {
