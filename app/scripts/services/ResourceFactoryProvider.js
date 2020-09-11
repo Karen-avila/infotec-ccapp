@@ -246,11 +246,7 @@
                         update: { method: 'PUT' }
                     }),
                     globalSearch: defineResource(apiVer + "/search", { query: '@query', resource: '@resource' }, {
-                        search: {
-                            method: 'GET',
-                            params: { query: '@query', resource: '@resource' },
-                            isArray: true
-                        }
+                        search: { method: 'GET', params: { query: '@query', resource: '@resource' }, isArray: true }
                     }),
                     globalSearchTemplateResource: defineResource(apiVer + "/search/template", {}, {
                         get: { method: 'GET', params: {} }
@@ -581,12 +577,11 @@
                     }),
                     clientaddressFields: defineResource(apiVer + "/client/addresses/template", {}, {
                         get: { method: 'GET', params: {} }
-                    }
-                    ),
+                    }),
                     addresssFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
-                    clientAddresses: defineResource(apiVer + "/client/:clientId/addresses", {}, {
+                    clientAddresses: defineResource(apiVer + "/client/:clientId/addresses", {clientId: '@clientId'}, {
                         post: { method: 'POST', params: { type: '@type' } },
                         get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
                         getAll: { method: 'GET', params: {}, isArray: true },
