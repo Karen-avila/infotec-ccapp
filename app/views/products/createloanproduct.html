@@ -701,7 +701,7 @@
                                     <div class="col-sm-3">
                                         <md-select aria-label="transactionProcessingStrategyId" id="transactionProcessingStrategyId" ng-model="formData.transactionProcessingStrategyId" 
                                             ng-change="loanproduct.transactionProcessingStrategy.name = formValue(product.transactionProcessingStrategyOptions,formData.transactionProcessingStrategyId,'id','name')">
-                                            <md-option ng-value="transactionProcessingStrategy.id" ng-repeat="transactionProcessingStrategy in product.transactionProcessingStrategyOptions">
+                                            <md-option ng-value="transactionProcessingStrategy.id" ng-repeat="transactionProcessingStrategy in product.transactionProcessingStrategyOptions | orderBy: 'name | translate'">
                                                 {{transactionProcessingStrategy.name | translate}}
                                             </md-option>
                                         </md-select>

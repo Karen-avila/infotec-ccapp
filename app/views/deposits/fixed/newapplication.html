@@ -242,7 +242,7 @@
                         <td>
                             <md-select id="linkAccountId" ng-model="formData.linkAccountId"
                                 class="form-control width170px" placeholder="{{'label.menu.selectone' | translate}}">
-                                <md-option ng-repeat="savingaccount in savingsAccounts" value="{{savingaccount.id}}">
+                                <md-option class="uppercase" ng-repeat="savingaccount in savingsAccounts" value="{{savingaccount.id}}">
                                     {{savingaccount.savingsProductName}}</md-option>
                             </md-select>
                         </td>

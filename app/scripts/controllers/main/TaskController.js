@@ -592,7 +592,6 @@
             };
 
             scope.searchCredit = function () {
-                console.log("searching..")
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
@@ -632,7 +631,6 @@
                             return item.loanStatus.id == scope.formData.status;
                         });
                     }
-                    console.log(scope.searchedLoansFiltered);
                 });
             };
 
@@ -659,7 +657,6 @@
                 }
 
                 resourceFactory.loansDashboard.search(params, function (data) {
-                    console.log(data.pageItems);
                     scope.searchedSocialBanks = data.pageItems;
 
                     if (scope.date.from) {
