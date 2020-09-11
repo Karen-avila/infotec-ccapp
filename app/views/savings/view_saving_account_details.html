@@ -525,7 +525,7 @@
                                     </thead>
                                     <tbody md-body>
                                         <tr md-row ng-hide="transaction.reversed"
-                                            data-ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)"
+                                            ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)"
                                             ng-repeat="transaction in savingaccountdetails.transactions | orderBy: query.order">
                                             <td md-cell>
                                                 {{transaction.id}}
