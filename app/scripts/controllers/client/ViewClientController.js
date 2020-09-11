@@ -729,15 +729,17 @@
                     entityId: scope.clientId,
                     genericResultSet: 'true'
                 }, function (data) {
-                    for (var i = 0; i < data.data[0].rows.length; ++i) {
-                        if (data.data[0].rows[i].name == 'clabe') {
-                            scope.clabe = data.data[0].rows[i].value;
-                        }
-                        if (data.data[0].rows[i].name == 'regimen') {
-                            scope.regimenfiscal = data.data[0].rows[i].value;
-                        }
-                        if (data.data[0].rows[i].name == 'giro') {
-                            scope.giro = data.data[0].rows[i].value;
+                    if (typeof data.data[0] != "undefined" ) {
+                        for (var i = 0; i < data.data[0].rows.length; ++i) {
+                            if (data.data[0].rows[i].name == 'clabe') {
+                                scope.clabe = data.data[0].rows[i].value;
+                            }
+                            if (data.data[0].rows[i].name == 'regimen') {
+                                scope.regimenfiscal = data.data[0].rows[i].value;
+                            }
+                            if (data.data[0].rows[i].name == 'giro') {
+                                scope.giro = data.data[0].rows[i].value;
+                            }
                         }
                     }
                 })
