@@ -165,6 +165,7 @@
                                             <th md-column>{{'label.heading.status' | translate}}</th>
                                             <th md-column>{{'label.heading.user' | translate}}</th>
                                             <th md-column>{{'label.heading.municipality' | translate}}</th>
+                                            <th md-column>{{'label.heading.note' | translate}}</th>
                                         </tr>
                                     </thead>
                                     <tbody mdbody>
@@ -176,6 +177,7 @@
                                             <td md-cell>{{data.clientStatus.code | translate}}</td>
                                             <td md-cell>{{data.clientName}}</td>
                                             <td md-cell>{{data.city}}</td>
+                                            <td md-cell>{{data.note}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -305,7 +307,7 @@
                                     <thead md-head>
                                         <tr md-row class="graybg">
                                             <th md-column>{{'label.heading.id' | translate}}</th>
-                                            <th md-column>{{'label.heading.applicationdate' | translate}}</th>
+                                            <th md-column>{{'label.heading.validationdate' | translate}}</th>
                                             <th md-column>{{'label.heading.status' | translate}}</th>
                                             <th md-column>{{'label.heading.user' | translate}}</th>
                                         </tr>
@@ -315,7 +317,7 @@
                                             dir-paginate="data in searchedLoansFiltered | itemsPerPage: itemsPerPage"
                                             pagination-id="inbox">
                                             <td md-cell>{{data.loanId}}</td>
-                                            <td md-cell>{{data.submittedDate | DateFormat}}</td>
+                                            <td md-cell>{{data.validationDate | DateFormat}}</td>
                                             <td md-cell>{{data.loanStatus.code | translate}}</td>
                                             <td md-cell>{{data.clientName}}</td>
                                         </tr>
