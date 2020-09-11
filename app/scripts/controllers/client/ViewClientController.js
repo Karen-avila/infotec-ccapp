@@ -21,8 +21,9 @@
             scope.updateDefaultSavings = false;
             scope.charges = [];
             scope.datatableLoaded = false;
-            scope.clientId = routeParams.id;
-
+            scope.clientId = routeParams.id;//.split("?", 1);
+            scope.selectedIndex = 1;
+           
             // address
             scope.addresses = [];
             scope.view = {};
@@ -31,6 +32,7 @@
             var entityname = "ADDRESS";
             formdata = {};
 
+            
             scope.showMap = function (ev) {
                 $mdDialog.show({
                     controller: ViewMapController,
@@ -81,6 +83,8 @@
                         });
                     }
                 })
+
+               
             };
 
             scope.getClientTemplate = function () {
@@ -565,7 +569,8 @@
                 $scope.validateClient = function (isValidated) {
                     resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated, "notes": $scope.note }, function (data) {
                         $uibModalInstance.close('validate');
-                        route.reload();
+                        //route.reload();
+                        window.history.back();
                     });
                 };
                 $scope.cancel = function () {
@@ -654,6 +659,7 @@
                     return false;
                 }
             };
+
             scope.setLoan = function () {
                 if (scope.openLoan) {
                     scope.openLoan = false
@@ -661,6 +667,7 @@
                     scope.openLoan = true;
                 }
             };
+
             scope.setSaving = function () {
                 if (scope.openSaving) {
                     scope.openSaving = false;
@@ -691,6 +698,9 @@
                 scope.getClabe();
                 scope.getLastNote();
             }
+
+            
+
 
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: scope.clientId, anotherresource: 'identifiers' }, function (data) {
@@ -1067,6 +1077,8 @@
                     size: "lg"
                 });
             };
+
+            
 
             var ViewClientWithoutSignature = function ($scope, $uibModalInstance) {
                 $scope.cancel = function () {
