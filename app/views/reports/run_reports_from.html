@@ -89,7 +89,7 @@
                     <div class="col-sm-3">
                         <md-select id="delimiterChoice" ng-model="delimiterChoice"
                             placeholder="{{'label.selectone' | translate}}">
-                            <md-option ng-repeat="delimiter in delimiters" ng-value="delimiter.value">
+                            <md-option ng-repeat="delimiter in delimiters" ng-value="delimiter.char">
                                 {{'label.input.delimiter.' + delimiter.label | translate}}
                             </md-option>
                         </md-select>

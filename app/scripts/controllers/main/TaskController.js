@@ -607,7 +607,7 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {};
+                var params = {limit: 200};
 
                 if (scope.formData.status) {
                     params.status = scope.formData.status;
@@ -630,7 +630,7 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {};
+                var params = {limit: 200};
 
                 if (scope.date.from) {
                     params.fromDate = reqFromDate;
