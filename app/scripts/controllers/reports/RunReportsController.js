@@ -26,9 +26,9 @@
           scope.type = "pie";
           scope.decimals = [0, 1, 2, 3, 4];
           scope.delimiters = [
-            { value: "colon", label: "colon" },
-            { value: "semicolon", label: "semicolon" },
-            { value: "pipe", label: "pipe" },
+            { value: "colon", label: "colon", char: "," },
+            { value: "semicolon", label: "semicolon", char: ";" },
+            { value: "pipe", label: "pipe", char: "|" },
           ];
           scope.delimiterChoice = ",";
           scope.formats = [
@@ -314,6 +314,16 @@
               }
               return false;
           };
+
+          scope.getDelimiter = function(delChar) {
+            for (var delimiter in scope.delimiters) {
+                if (delimiter.char == delChar) {
+                    return delimiter.value;
+                }
+            }
+            return ",";
+          }
+
           scope.runReport = function () {
               //clear the previous errors
               scope.errorDetails = [];
@@ -337,7 +347,7 @@
                           scope.hidePentahoReport = true;
                           scope.hideChart = true;
                           scope.formData.reportSource = scope.reportName;
-                          scope.formData['R_delimiter'] = scope.delimiterChoice;
+                          scope.formData['R_delimiter'] = scope.getDelimiter(scope.delimiterChoice);
                           resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
                               //clear the csvData array for each request
                               scope.csvData = [];
