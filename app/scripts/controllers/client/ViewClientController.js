@@ -890,6 +890,7 @@
                 resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
                     scope.fileType = data.contentType;
                     scope.preview = true;
+                    scope.clientdocuments[index].visited = true;
                     scope.fileData = "data:" + scope.fileType + ";base64," + data.data;
                     if (name) {
                         scope.highlight = name.toLowerCase();
