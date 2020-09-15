@@ -1166,8 +1166,7 @@
                                             <div class="modal"
                                                 style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
-                                                    <iframe style="min-height: 500px; min-width: 700px;"
-                                                        ng-src="{{iframeURL}}" height="100%" width="100%"></iframe>
+                                                    <object style="min-height: 500px; min-width: 700px;" ng-show="preview" data="{{fileData}}" type="{{fileType}}"></object>
                                                     <div class="text-center">
                                                         <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i

@@ -99,7 +99,6 @@
                         })
                     }
                 });
-
             }
             scope.getClientTemplate();
 
@@ -887,34 +886,15 @@
 
             scope.previewDocument = function (url, fileName, index, resourceId, name) {
 
-                var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/attachment";
-
-                var config = { responseType: 'blob' };
-                http.get(documentURL, config).
-                    then(function onSuccess(response) {
-
-                        if (fileName.toLowerCase().indexOf('.png') != -1)
-                            scope.fileType = 'image/png';
-                        else if (fileName.toLowerCase().indexOf('.jpg') != -1)
-                            scope.fileType = 'image/jpg';
-                        else if (fileName.toLowerCase().indexOf('.jpeg') != -1)
-                            scope.fileType = 'image/jpeg';
-                        else if (fileName.toLowerCase().indexOf('.pdf') != -1)
-                            scope.fileType = 'application/pdf';
-
-                        var file = new Blob([response.data], { type: scope.fileType });
-                        var fileContent = URL.createObjectURL(file);
-
-                        // Pass the form data to the iframe as a data url.
-                        scope.iframeURL = $sce.trustAsResourceUrl(fileContent + "#toolbar=0");
-
-                        scope.clientdocuments[index].visited = true;
-                        scope.preview = true;
-                        if (name) {
-                            scope.highlight = name.toLowerCase();
-                        }
-                    });
-
+                var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/preview";
+                resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
+                    scope.fileType = data.contentType;
+                    scope.preview = true;
+                    scope.fileData = "data:" + scope.fileType + ";base64," + data.data;
+                    if (name) {
+                        scope.highlight = name.toLowerCase();
+                    }
+                });
             };
 
             scope.closeDocumentPreview = function () {
