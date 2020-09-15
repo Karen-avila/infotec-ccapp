@@ -16,9 +16,10 @@
             scope.isCollapsed = true;
             scope.approveData = {};
             scope.restrictDate = new Date();
-            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.minDatePicker = new Date('2020-01-02');
             scope.maxDatePicker = new Date();
-            scope.date.from = new Date(MIN_DATEPICKER);
+            scope.date.from = new Date('2020-01-02');
+            scope.date.to = new Date();
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
@@ -609,7 +610,7 @@
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
                 var params = {limit: 200};
 
-                if (scope.formData.status) {
+                if (scope.formData.status > 0) {
                     params.status = scope.formData.status;
                 }
 
@@ -623,6 +624,14 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data.pageItems;
+                    console.log(scope.searchedLoansFiltered);
+                    for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
+                        if(scope.searchedLoansFiltered[i].validationdate) {
+                            scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
+                        } else {
+                            scope.searchedLoansFiltered[i].orderDate = "";
+                        }
+                    }
                 });
             };
 
@@ -642,13 +651,18 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedSocialBanks = data.pageItems;
-                    if (scope.formData.clientStatus) {
+
+                    for (var i = 0; i < scope.searchedSocialBanks.length; i++) {
+                        scope.searchedSocialBanks[i].orderDate = new Date(scope.searchedSocialBanks[i].submittedDate);
+                    }
+
+                    if (scope.formData.clientStatus > 0) {
                         scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
                             return item.clientStatus.id == scope.formData.clientStatus;
                         });
                     }
                     
-                    if (scope.formData.entity) {
+                    if (scope.formData.entity > 0) {
                         scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
                             return item.city == scope.formData.entity.toUpperCase();
                         });
