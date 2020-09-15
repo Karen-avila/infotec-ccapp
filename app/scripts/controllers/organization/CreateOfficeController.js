@@ -97,9 +97,6 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
-                    console.log(JSON.stringify(newAddress));
-
-                    debugger;
 
                     resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
                         location.path('/viewoffice/' + data.resourceId)
