@@ -21,6 +21,7 @@
       scope.staffData = {};
       scope.fieldOfficers = [];
       scope.savingaccountdetails = [];
+      scope.savingNotes = [];
 
       scope.query = {
         order: "date",
@@ -468,10 +469,10 @@
       );
 
       scope.saveNote = function () {
-        resourceFactory.loanResource.save({ loanId: routeParams.id, resourceType: 'notes' }, this.formData, function (data) {
+        resourceFactory.savingsNotesResource.save({ savingsId: routeParams.id }, this.formData, function (data) {
           var today = new Date();
           temp = { id: data.resourceId, note: scope.formData.note, createdByUsername: "test", createdOn: today };
-          scope.loanNotes.push(temp);
+          scope.savingNotes.push(temp);
           scope.formData.note = "";
           scope.predicate = '-id';
         });
@@ -667,7 +668,7 @@
       };
 
       scope.getNotes = function () {
-        resourceFactory.savingsResource.getAllNotes({ accountId: routeParams.id, resourceType: 'notes' }, function (data) {
+        resourceFactory.savingsNotesResource.get({ savingsId: routeParams.id }, function (data) {
           scope.savingNotes = data;
         });
       }

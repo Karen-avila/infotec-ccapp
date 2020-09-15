@@ -360,6 +360,9 @@
                     savingsTrxnsTemplateResource: defineResource(apiVer + "/savingsaccounts/:savingsId/transactions/template", { savingsId: '@savingsId' }, {
                         get: { method: 'GET', params: { savingsId: '@savingsId' } }
                     }),
+                    savingsNotesResource: defineResource(apiVer + "/savingsAccounts/:savingsId/notes", { savingsId: '@savingsId' }, {
+                        get: { method: 'GET', params: { savingsId: '@savingsId' }, isArray: true }
+                    }),
                     savingsTrxnsResource: defineResource(apiVer + "/savingsaccounts/:savingsId/transactions/:transactionId", { savingsId: '@savingsId', transactionId: '@transactionId' }, {
                         get: { method: 'GET', params: { savingsId: '@savingsId', transactionId: '@transactionId' } }
                     }),
