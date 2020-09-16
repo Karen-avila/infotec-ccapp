@@ -1156,7 +1156,7 @@
                                                     <td>{{clientdocument.fileName}}</td>
                                                     <td>
                                                         <a ng-style="{ 'color' : (clientdocument.visited) ? '#235B4E' : 'red' }"
-                                                            ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id, clientdocument.name)"><i
+                                                            ng-click="previewDocument($index, clientdocument.id, clientdocument.name)"><i
                                                                 class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
@@ -1166,7 +1166,7 @@
                                             <div class="modal"
                                                 style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
-                                                    <object style="min-height: 500px; min-width: 700px;" ng-show="preview" data="{{fileData}}" type="{{fileType}}"></object>
+                                                    <iframe style="min-height: 500px; min-width: 700px;" ng-show="preview" src="{{fileData}}"></iframe>
                                                     <div class="text-center">
                                                         <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i
