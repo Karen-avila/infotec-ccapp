@@ -30,6 +30,18 @@
                     controller: UserBlockCtrl
                 });
             };
+            scope.enableUser = function () {
+                $uibModal.open({
+                    templateUrl: 'enableuser.html',
+                    controller: UserEnableCtrl
+                });
+            };
+            scope.disableUser = function () {
+                $uibModal.open({
+                    templateUrl: 'disableuser.html',
+                    controller: UserDisableCtrl
+                });
+            };
 
             var ModalInstanceCtrl = function ($scope, $uibModalInstance) {
                 $scope.save = function (staffId) {
@@ -63,7 +75,7 @@
 
             var UserUnblockCtrl = function ($scope, $uibModalInstance) {
                 $scope.unblock = function () {
-                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'block'  }, {}, function (data) {
+                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'unblock'  }, {}, function (data) {
                         $uibModalInstance.close('unblock');
                         location.path('/users');
                     });
@@ -77,6 +89,30 @@
                 $scope.block = function () {
                     resourceFactory.userListResource.update({ userId: routeParams.id, command: 'block' }, {}, function (data) {
                         $uibModalInstance.close('block');
+                        location.path('/users');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
+            var UserDisableCtrl = function ($scope, $uibModalInstance) {
+                $scope.disable = function () {
+                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'disable'  }, {}, function (data) {
+                        $uibModalInstance.close('disable');
+                        location.path('/users');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
+            var UserEnableCtrl = function ($scope, $uibModalInstance) {
+                $scope.enable = function () {
+                    resourceFactory.userListResource.update({ userId: routeParams.id, command: 'enable' }, {}, function (data) {
+                        $uibModalInstance.close('enable');
                         location.path('/users');
                     });
                 };

@@ -6001,5 +6001,12 @@
     "Deposit":"Deposito",
     "Interest posting":"Interes",
     "Saving No Activity Fee":"Cuenta sin actividad",
-    "----End---": "---Fin del archivo---"
+    "----End---": "---Fin del archivo---",
+    "ACTIVE":"ACTIVO",
+    "DISABLE":"INACTIVO",
+    "LOCKED":"BLOQUEADO",
+    "label.heading.confirm.enable" : "¿Desea activar este usuario?",
+    "label.heading.confirm.disable" : "¿Desea desactivar este usuario?"
+
+
 }
