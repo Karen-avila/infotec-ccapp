@@ -91,7 +91,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3"> 
-                                        <input type="text" only-number maxlength="2" id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
+                                        <input type="text" only-number maxlength="2" allow-decimal="false" allow-negative="false" id="digitsAfterDecimal" name="decimalplace" class="form-control"
                                             ng-model="formData.digitsAfterDecimal" required late-validate number=true />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
                                     </div>
@@ -103,7 +103,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
+                                        <input type="text" only-number allow-decimal="false" allow-negative="false" id="inMultiplesOf" class="form-control" name="multiplesof"
                                             ng-model="formData.inMultiplesOf" required late-validate number=true />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
@@ -152,9 +152,9 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" only-number
-                                            class="form-control" ng-model="formData.nominalAnnualInterestRate" required
-                                            late-validate decimals />
+                                        <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" only-number decimals-upto="2"
+                                            class="form-control" ng-model="formData.nominalAnnualInterestRate" required allow-decimal="true" allow-negative="false" 
+                                            late-validate />
                                         <form-validate valattributeform="Terms" valattribute="nominalAnnualInterestRate" />
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="minRequiredOpeningBalance" type="text" only-number name="minRequiredOpeningBalance"
+                                        <input id="minRequiredOpeningBalance" type="text" only-number allow-decimal="true" allow-negative="false" name="minRequiredOpeningBalance"
                                             class="form-control" ng-model="formData.minRequiredOpeningBalance"
                                             late-validate>
                                         <form-validate valattributeform="Settings" valattribute="minRequiredOpeningBalance" />
@@ -264,7 +264,7 @@
                                     </label>
                                     <div class="col-sm-2">
                                         <input id="lockinPeriodFrequency" type="text" only-number name="lockinPeriodFrequency"
-                                            class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate
+                                            class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate allow-decimal="false" allow-negative="false" 
                                             number=true>
                                         <form-validate valattributeform="Settings" valattribute="lockinPeriodFrequency" />
                                     </div>
@@ -296,7 +296,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="minBalanceForInterestCalculation" type="text" only-number class="form-control" 
-                                            ng-model="formData.minBalanceForInterestCalculation">
+                                            ng-model="formData.minBalanceForInterestCalculation" allow-decimal="false" allow-negative="false" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -315,7 +315,7 @@
                                     </label>
                                     <div class="col-sm-3" ng-show="formData.enforceMinRequiredBalance">
                                         <input id="minRequiredBalance" type="text" only-number class="form-control" 
-                                            ng-model="formData.minRequiredBalance" />
+                                            ng-model="formData.minRequiredBalance" allow-decimal="false" allow-negative="false" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -335,7 +335,7 @@
                                         </label>
                                         <div class="col-sm-3">
                                             <input id="overdraftLimit" type="text" only-number class="form-control"
-                                                ng-model="formData.overdraftLimit">
+                                                ng-model="formData.overdraftLimit" allow-decimal="false" allow-negative="false" >
                                         </div>
                                     </div>
                                 </div>
@@ -348,7 +348,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="nominalAnnualInterestRateOverdraft" type="text" only-number class="form-control"
-                                            ng-model="formData.nominalAnnualInterestRateOverdraft">
+                                            ng-model="formData.nominalAnnualInterestRateOverdraft" allow-decimal="true" allow-negative="false" decimal-upto="2" >
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.minoverdraftforinterestcalculation' | translate}}
@@ -358,7 +358,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="minOverdraftForInterestCalculation" type="text" only-number class="form-control"
-                                            ng-model="formData.minOverdraftForInterestCalculation">
+                                            ng-model="formData.minOverdraftForInterestCalculation" allow-decimal="false" allow-negative="false" >
                                     </div>
                                 </div>
 
@@ -404,7 +404,7 @@
                                         </label>
                                         <div class="col-sm-3">
                                             <input id="daysToInactive" type="text" only-number class="form-control"
-                                                ng-model="formData.daysToInactive">
+                                                ng-model="formData.daysToInactive" allow-decimal="false" allow-negative="false" >
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +416,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="daysToDormancy" type="text" only-number class="form-control"
-                                            ng-model="formData.daysToDormancy">
+                                            ng-model="formData.daysToDormancy" allow-decimal="false" allow-negative="false" >
                                     </div>
 
                                     <label class="control-label col-sm-3">{{'label.input.daysToEscheat' | translate}}
