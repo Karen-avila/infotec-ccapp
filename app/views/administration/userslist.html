@@ -52,8 +52,15 @@
                                     data-ng-click="routeTo(user.id)" md-select="user" md-select-id="name"
                                 >
                                     <td md-cell>
-                                        <i ng-show="user.status.code == 'ACTIVE'" class="fa fa-circle"></i>
-                                        <i ng-show="user.status.code == 'LOCKED'" class="fa fa-lock"></i>
+                                        <i ng-show="user.status.code == 'ACTIVE'" class="fa fa-circle text-primary"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
+                                        <i ng-show="user.status.code == 'LOCKED'" class="fa fa-lock text-primary"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
+                                        <i ng-show="user.status.code == 'DISABLE'" class="fa fa-circle text-danger"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
                                     </td>
                                     <td md-cell>{{user.displayName}}</td>
                                     <td md-cell>{{user.accountNo}}</td>

@@ -1091,6 +1091,10 @@
                             <td><span class="padded-td">{{loandetails.externalId}}</span><span ng-hide="loandetails.externalId">{{'label.heading.notprovided' | translate}}</span></td>
                         </tr>
                         <tr>
+                            <th class="table-bold-loan">{{'label.heading.interbankNo' | translate}}</th>
+                            <td><span class="padded-td">{{loandetails.interbankNo}}</span><span ng-hide="loandetails.interbankNo">{{'label.heading.notprovided' | translate}}</span></td>
+                        </tr>
+                        <tr>
                             <th class="table-bold-loan">{{'label.heading.proposedamount' | translate}}</th>
                             <td class="amount"><span class="padded-td">{{loandetails.proposedPrincipal | FormatNumber}}</span></td>
                         </tr>
