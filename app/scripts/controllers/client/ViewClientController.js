@@ -21,8 +21,9 @@
             scope.updateDefaultSavings = false;
             scope.charges = [];
             scope.datatableLoaded = false;
-            scope.clientId = routeParams.id;//.split("?", 1);
+            scope.clientId = routeParams.id;
             scope.selectedIndex = 1;
+            scope.fileData = null;
            
             // address
             scope.addresses = [];
@@ -884,14 +885,12 @@
                 });
             };
 
-            scope.previewDocument = function (url, fileName, index, resourceId, name) {
-
-                var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/preview";
+            scope.previewDocument = function (index, resourceId, name) {
                 resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
                     scope.fileType = data.contentType;
                     scope.preview = true;
                     scope.clientdocuments[index].visited = true;
-                    scope.fileData = "data:" + scope.fileType + ";base64," + data.data;
+                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
                     if (name) {
                         scope.highlight = name.toLowerCase();
                     }
@@ -900,6 +899,7 @@
 
             scope.closeDocumentPreview = function () {
                 scope.preview = false;
+                scope.fileData = null;
                 scope.highlight = "";
             };
 
