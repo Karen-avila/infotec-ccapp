@@ -1,7 +1,10 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         CreateSavingProductController: function (scope, $rootScope, resourceFactory, location , WizardHandler) {
-            scope.formData = {};
+            scope.formData = {
+                nominalAnnualInterestRate: 0,
+                daysToEscheat: 0
+            };
             scope.savingproduct = {};
             scope.charges = [];
             scope.showOrHideValue = "show";

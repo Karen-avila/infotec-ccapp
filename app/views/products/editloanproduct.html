@@ -9,7 +9,7 @@
 		<api-validate></api-validate>
 		<fieldset>
 			<h3>{{'label.heading.details' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<label class="control-label col-sm-2">{{'label.input.productname' | translate }}<span
 						class="required">*</span>
@@ -92,7 +92,7 @@
 				</label>
 			</div>
 			<h3>{{'label.heading.currency' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<label class="control-label col-sm-2">{{'label.input.currency' | translate }}<span
 						class="required">*</span>
@@ -136,7 +136,7 @@
 				</div>
 			</div>
 			<h3>{{'label.heading.terms' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="checkbox col-sm-2 right">
 					<input type="checkbox" ng-model="formData.useborrowerloancounter" ng-true-value="true"
@@ -458,7 +458,7 @@
 				</div>
 			</div>
 			<h3>{{'label.heading.settings' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<label class="control-label col-sm-2">{{'label.input.amortization' | translate }}<span
 						class="required">*</span></label>
@@ -645,7 +645,7 @@
 			</div>
 
 			<h3>{{'label.heading.interestRecalculation' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="col-sm-2 right">
                     <input type="checkbox" ng-model="formData.isInterestRecalculationEnabled" />
@@ -800,7 +800,7 @@
             | translate }}<span class="required">*</span></label>
 			</div>
 			<h3>{{'label.heading.gauranteeRequirements' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="col-sm-2 right">
                     <input type="checkbox" ng-model="formData.holdGuaranteeFunds" />
@@ -836,7 +836,7 @@
 			</div>
 
 			<h3>{{'label.heading.tranchedetails' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="checkbox col-sm-2 right">
 					<label>
@@ -864,7 +864,7 @@
 				</div>
 			</div>
 			<h3>{{'label.heading.configurableAttributes' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="checkbox col-sm-2 right">
                     <input type="checkbox" ng-model="allowAttributeConfiguration"
@@ -915,7 +915,7 @@
 					class="control-label col-sm-4 left">{{'label.input.no.of.overdue.days.to.move.loan.into.arrears' | translate }}</label>
 			</div>
 			<h3>{{'label.heading.charges' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="col-sm-4">
 					<select id="chargeId" ng-model="chargeId" class="form-control"
@@ -959,7 +959,7 @@
 				</table>
 			</div>
 			<h3>{{'label.heading.overduepenalitycharge' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="col-sm-4">
 					<select id="penalityId" ng-model="penalityId" class="form-control"
@@ -1003,7 +1003,7 @@
 				</table>
 			</div>
 			<h3>{{'label.heading.taxesoninterest' | translate }}</h3>
-			<hr>
+			<md-divider></md-divider>
 			<div class="form-group">
 				<div class="col-sm-4">
 					<select id="taxGroupId" ng-model="taxGroupId" class="form-control"
@@ -1034,34 +1034,20 @@
 					</tr>
 				</table>
 			</div>
-			<hr>
+			<md-divider></md-divider>
 			<h3>{{'label.heading.accounting' | translate }}</h3>
-			<hr>
-			<div class="radio-inline">
-				<label>
-					<input type="radio" ng-model="formData.accountingRule"
-						ng-value="1" />{{'label.input.none' | translate}}
-				</label>
-			</div>
-			<div class="radio-inline">
-				<label>
-					<input type="radio" ng-model="formData.accountingRule"
-						ng-value="2" />{{'label.input.cash' | translate}}
-				</label>
-			</div>
-			<div class="radio-inline">
-				<label>
-					<input type="radio" ng-model="formData.accountingRule"
-						ng-value="3" />{{'label.input.periodicaccrual' | translate}}
-				</label>
-			</div>
-			<div class="radio-inline">
-				<label>
-					<input type="radio" ng-model="formData.accountingRule"
-						ng-value="4" />{{'label.input.upfrontaccrual' | translate}}
-				</label>
-			</div>
-			<hr>
+			<md-divider></md-divider>
+			<md-radio-group ng-model="formData.accountingRule" layout="row">
+				<md-radio-button class="md-primary"
+					value="1">{{'label.input.accounting.none' | translate}}</md-radio-button>
+				<md-radio-button 
+					value="2" class="md-primary">{{'label.input.accounting.cash' | translate}}</md-radio-button>
+				<md-radio-button value="3" class="md-primary">
+					{{'label.input.accounting.periodicaccrual' | translate}}</md-radio-button>
+				<md-radio-button value="4" class="md-primary">
+					{{'label.input.accounting.upfrontaccrual' | translate}}</md-radio-button>
+			</md-radio-group>
+			<md-divider></md-divider>
             <div class="col-md-12" ng-show="isAccountingEnabled()">
                 <div class="form-group">
                     <h4>{{"label.heading.assets" | translate}}</h4>
@@ -1092,7 +1078,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
 					<label class="control-label col-sm-2">{{'label.input.accounting.assets.ordinary.interest' | translate }}
                         <i class="fa fa-question-circle"
@@ -1121,7 +1107,7 @@
                         </select>
                     </div>					
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <label class="control-label col-sm-2">{{'label.input.accounting.assets.overdue.interest' | translate }}
                         <i class="fa fa-question-circle"
@@ -1193,7 +1179,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <h4>{{"label.heading.liabilities" | translate}}</h4>
                     <label class="control-label col-sm-2">{{'label.input.fundsource'| translate }}
@@ -1223,7 +1209,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <h4>{{"label.heading.income" | translate}}</h4>
                     <label class="control-label col-sm-2">{{'label.input.incomefrominterest' | translate }}
@@ -1253,7 +1239,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <label class="control-label col-sm-2">{{'label.input.incomefrompenalties' | translate }}
                         <i class="fa fa-question-circle"
@@ -1282,7 +1268,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <h4>{{"label.heading.expenses" | translate}}</h4>
                     <label class="control-label col-sm-2">{{'label.input.loseswrittenoff' | translate }}
@@ -1299,13 +1285,13 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group">
                     <div class="col-sm-3 right">
                         <input type="checkbox" ng-model="includeOrderAccounts" />
                     </div>
                     <label class="control-label left col-sm-6">{{'label.input.includeOrderAccounts' | translate }}</label>
-                    <hr>
+                    <md-divider></md-divider>
                     <h4 ng-show="includeOrderAccounts">{{'label.heading.debit.order' | translate}}</h4>
                     <div ng-show="includeOrderAccounts">
                         <label class="control-label col-sm-2">{{'label.input.accounting.debit.order.not.performed' | translate }}
@@ -1364,7 +1350,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <div class="form-group" ng-show="includeOrderAccounts">
                     <h4>{{'label.heading.credit.order' | translate}}</h4>
                 </div>
@@ -1424,7 +1410,7 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <md-divider></md-divider>
                 <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
                         ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                 </h4>
@@ -1547,7 +1533,7 @@
                     </table>
                 </div>
             </div>
-            <hr>
+            <md-divider></md-divider>
 			<div class="col-md-offset-5 paddedtop">
 				<a id="cancel" href="#!/viewloanproduct/{{product.id}}" type="reset" class="btn btn-sm btn-default"
 					ng-click="cancel()">{{'label.button.cancel' | translate}}</a>

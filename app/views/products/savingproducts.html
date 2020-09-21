@@ -7,27 +7,44 @@
     <div class="card well">
         <div class="row">
             <div class="col-md-9">
-                <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control" placeholder="{{'label.input.filterbynameshortname' | translate}}">
+                <md-input-container class="full-width">
+                    <label>{{'label.input.filterbynameshortname' | translate}}</label>
+                    <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()">
+                </md-input-container>
             </div>
             <div class="col-md-3 paddedbottom20">
-                <md-button md-no-ink class="md-primary" href="#!/createsavingproduct" class="btn btn-primary pull-right" has-permission='CREATE_SAVINGSPRODUCT'>
+                <md-button md-no-ink class="md-raised md-primary pull-right" href="#!/createsavingproduct" has-permission='CREATE_SAVINGSPRODUCT'>
                     <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createsavingproduct' | translate}}</md-button>
             </div>
         </div>
-        <table class="table">
-            <thead>
-            <tr class="graybg">
-                <th>{{'label.heading.name' | translate}}</th>
-                <th>{{'label.heading.shortname' | translate}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="pointer-main" dir-paginate="savingproduct in savingproducts | orderBy:'name':reverse  | filter:filterText |  itemsPerPage: SavingsProductsPerPage">
-                <td class="pointer" data-ng-click="routeTo(savingproduct.id)">{{savingproduct.name}}</td>
-                <td class="pointer" data-ng-click="routeTo(savingproduct.id)">{{savingproduct.shortName}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        <md-divider></md-divider>
+        <md-table-container>
+            <table md-table ng-model="savingproducts" md-progress="promise">
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column md-order-by="name">{{'label.heading.name' | translate}}</th>
+                        <th md-column md-order-by="shortName">{{'label.heading.shortname' | translate}}</th>
+                        <th md-column>{{'label.heading.currency' | translate}}</th>
+                        <th md-column>{{'label.heading.description' | translate}}</th>
+                        <th md-column md-order-by="accountLevel">{{'label.heading.accountLevel' | translate}}</th>
+                        <th md-column md-order-by="nominalAnnualInterestRate">{{'label.heading.nominalAnnualInterestRate' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-click="routeTo(savingproduct.id)" 
+                        ng-repeat="savingproduct in savingproducts | orderBy: query.order | filter:filterText | limitTo: query.limit : (query.page -1) * query.limit">
+                        <td md-cell>{{savingproduct.name}}</td>
+                        <td md-cell>{{savingproduct.shortName}}</td>
+                        <td md-cell>{{savingproduct.currency.name | translate}}</td>
+                        <td md-cell>{{savingproduct.description}}</td>
+                        <td md-cell>{{savingproduct.accountLevel}}</td>
+                        <td md-cell>{{savingproduct.nominalAnnualInterestRate}} %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-page="query.page"
+            md-total="{{savingproducts.length}}" md-on-paginate="getResultsPage" md-page-select>
+        </md-table-pagination>
     </div>
 </div>

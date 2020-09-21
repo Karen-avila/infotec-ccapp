@@ -13,11 +13,12 @@
                 limit: 15,
                 page: 1
             };
+
             scope.options = {
                 boundaryLinks: true,
                 rowSelection: true,
                 pageSelector: true,
-              };
+            };
 
             if (!scope.searchCriteria.loanP) {
                 scope.searchCriteria.loanP = null;
