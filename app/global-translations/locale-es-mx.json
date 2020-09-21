@@ -2733,7 +2733,7 @@
     "validation.msg.office.externalId.exceeds.max.length": "El identificador externo excede la longitud máxima de {{params[0].value}} caracteres alfanuméricos - {{params[1].value}}.",
     "validation.msg.office.city.exceeds.max.length": "Cantidad máxima de caracteres para la plaza",
     "error.msg.office.duplicate.name": "Una oficina con el nombre `{{params[0].value}}` ya existe.",
-    "error.msg.loan.client.is.not.validated": "El Préstamo del Cliente no esta Validado",
+    "error.msg.loan.client.is.not.validated": "El Cliente no ha sido Validado",
     "error.msg.office.duplicate.externalId": "Una oficina con el identificador externo `{{params[0].value}}` ya existe.",
     "error.msg.office.unknown.data.integrity.issue": "Se produjo un problema de integridad de datos desconocidos.",
     "validation.msg.fund.name.cannot.be.blank": "El nombre es obligatorio.",
