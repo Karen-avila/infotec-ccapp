@@ -3,6 +3,18 @@
         SavingProductController: function (scope, resourceFactory, location) {
             scope.products = [];
 
+            scope.query = {
+                order: 'name',
+                limit: 15,
+                page: 1
+            };
+
+            scope.options = {
+                boundaryLinks: true,
+                rowSelection: true,
+                pageSelector: true,
+            };
+
             scope.routeTo = function (id) {
                 location.path('/viewsavingproduct/' + id);
             };
