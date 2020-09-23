@@ -787,7 +787,7 @@
 				<label class="control-label col-sm-2">{{'label.input.frequenc.interval.for.recalculte.outstanding.principal'
             | translate }}<span class="required">*</span></label>
 				<div class="col-sm-4">
-					<input id="recalculationRestFrequencyInterval" type="text" class="form-control"
+					<input id="recalculationRestFrequencyInterval" only-number allow-decimal="false" allow-negative="false" type="text" class="form-control"
 						ng-model="formData.recalculationRestFrequencyInterval">
 				</div>
 			</div>
