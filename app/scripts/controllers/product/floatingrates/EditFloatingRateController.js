@@ -39,7 +39,7 @@
 
 
             scope.submit = function () {
-
+                this.formData.name = this.formData.name.toUpperCase();
                 var i = 0 ;
                 var length = this.formData.ratePeriods.length;
                 for(i = 0 ; i < length; i++) {
