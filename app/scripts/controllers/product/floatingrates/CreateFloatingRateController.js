@@ -18,6 +18,7 @@
             scope.submit = function () {
                 var i = 0 ;
                 var length = this.formData.ratePeriods.length;
+                this.formData.name = this.formData.name.toUpperCase();
                 for(i = 0 ; i < length; i++) {
                     this.formData.ratePeriods[i].locale = scope.optlang.code;
                     this.formData.ratePeriods[i].dateFormat =  scope.df;
