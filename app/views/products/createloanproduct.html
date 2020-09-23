@@ -169,7 +169,7 @@
 
                                     <div class="col-sm-3">
                                         <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
-                                            ng-model="formData.digitsAfterDecimal" required late-validate />
+                                            ng-model="formData.digitsAfterDecimal" required late-validate allow-decimal="false" allow-negative="false" />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
 
                                     <div class="col-sm-3">
                                         <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
-                                            ng-model="formData.inMultiplesOf" required late-validate />
+                                            ng-model="formData.inMultiplesOf" allow-decimal="false" allow-negative="false" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
                                 </div>
@@ -197,9 +197,9 @@
                                         </label>
 
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="installmentAmountInMultiplesOf" class="form-control"
+                                        <input type="text" only-number allow-decimal="false" allow-negative="false" id="installmentAmountInMultiplesOf" class="form-control"
                                             name="installmentAmountInMultiplesOf" ng-model="formData.installmentAmountInMultiplesOf"
-                                            required late-validate number=true />
+                                            required late-validate allow-decimal="false" allow-negative="false" />
                                         <form-validate valattributeform="Currency" valattribute="installmentAmountInMultiplesOf" />
                                     </div>
                                 </div>
@@ -324,16 +324,16 @@
 
                                     <div class="col-sm-2">
                                         <input id="minNumberOfRepayments" placeholder="{{'label.input.minimum' | translate}}"
-                                            type="text" only-number class="form-control" ng-model="formData.minNumberOfRepayments">
+                                            type="text" only-number class="form-control"  allow-decimal="false" allow-negative="false" ng-model="formData.minNumberOfRepayments">
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" only-number placeholder="{{'label.input.default' | translate}}"
-                                            id="numberOfRepayments" name="numofrepayments" class="form-control"
-                                            ng-model="formData.numberOfRepayments" required late-validate number=true />
+                                            id="numberOfRepayments" name="numofrepayments" class="form-control" allow-decimal="false" allow-negative="false"
+                                            ng-model="formData.numberOfRepayments" required late-validate  />
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" only-number placeholder="{{'label.input.maximum' | translate}}"
-                                            id="maxNumberOfRepayments" class="form-control"
+                                            id="maxNumberOfRepayments" class="form-control" allow-decimal="false" allow-negative="false"
                                             ng-model="formData.maxNumberOfRepayments">
                                         <form-validate valattributeform="Terms" valattribute="numofrepayments" />
                                     </div>
@@ -381,15 +381,15 @@
                                                     <input type="hidden" id="repaymentborrowerCycleId{{$index}}"
                                                         class="form-control" ng-model="borrowerCycleVariation.id" />
                                                     <input type="text" only-number id="minrepaymentPerCycle{{$index}}" class="form-control"
-                                                        ng-model="borrowerCycleVariation.minValue" />
+                                                        ng-model="borrowerCycleVariation.minValue" allow-decimal="false" allow-negative="false" />
                                                 </td>
                                                 <td>
                                                     <input id="repaymentPerCycle{{$index}}" type="text" only-number class="form-control"
-                                                        ng-model="borrowerCycleVariation.defaultValue" />
+                                                        ng-model="borrowerCycleVariation.defaultValue"  allow-decimal="false" allow-negative="false"/>
 
                                                 </td>
                                                 <td><input type="text" only-number id="maxrepaymentPerCycle{{$index}}" class="form-control"
-                                                        ng-model="borrowerCycleVariation.maxValue" /></td>
+                                                        ng-model="borrowerCycleVariation.maxValue" allow-decimal="false" allow-negative="false"/></td>
                                                 <td><md-button ng-click="deleterepaymentVariation($index)"><i class="fa fa-remove "></i></md-button>
 
                                                 </td>
@@ -570,7 +570,7 @@
 
                                     <div class="col-sm-2">
                                         <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="text" only-number
-                                            ng-model="formData.repaymentEvery" required late-validate number=true />
+                                            ng-model="formData.repaymentEvery" allow-decimal="false" allow-negative="false" required late-validate />
                                     </div>
                                     <div class="col-sm-2">
                                         <md-select aria-label="repaymentFrequencyType id="repaymentFrequencyType" ng-model="formData.repaymentFrequencyType" 
@@ -593,7 +593,7 @@
                                     <div class="col-sm-2">
                                         <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="text" only-number
                                             ng-model="formData.minimumDaysBetweenDisbursalAndFirstRepayment" late-validate
-                                            number=true>
+                                           >
                                     </div>
                                 </div>
                             </fieldset>
@@ -717,14 +717,14 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnPrincipalPayment" class="form-control" name="graceOnPrincipalPayment"
                                             placeholder="{{'label.input.onprincipalpayment' | translate}}" type="text" only-number
-                                            ng-model="formData.graceOnPrincipalPayment" late-validate number=true>
+                                            ng-model="formData.graceOnPrincipalPayment"  allow-decimal="false" allow-negative="false" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnPrincipalPayment" />
                                     </div>
                                     <div class="col-sm-3">
                                         <input id="graceOnInterestPayment"
                                             placeholder="{{'label.input.oninterestpayment' | translate}}" type="text" only-number
-                                            name="graceOnInterestPayment" class="form-control"
-                                            ng-model="formData.graceOnInterestPayment" late-validate number=true>
+                                            name="graceOnInterestPayment" class="form-control"  allow-decimal="false" allow-negative="false"
+                                            ng-model="formData.graceOnInterestPayment" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestPayment" />
                                     </div>
                                 </div>
@@ -739,7 +739,7 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnInterestCharged" type="text" only-number name="graceOnInterestCharged"
                                             class="form-control" ng-model="formData.graceOnInterestCharged" late-validate
-                                            number=true>
+                                           >
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestCharged" />
                                     </div> -->
                                     <label
@@ -751,7 +751,7 @@
 
                                     <div class="col-sm-3">
                                         <input id="inArrearsTolerance" type="text" only-number name="inArrearsTolerance" class="form-control"
-                                            ng-model="formData.inArrearsTolerance" late-validate number=true>
+                                            ng-model="formData.inArrearsTolerance" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="inArrearsTolerance" />
                                     </div>
                                 </div>
@@ -809,7 +809,7 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnArrearsAgeing" class="form-control" name="graceOnArrearsAgeing"
                                             placeholder="{{'label.input.onduedate' | translate}}" type="numbe"
-                                            ng-model="formData.graceOnArrearsAgeing" late-validate number=true>
+                                            ng-model="formData.graceOnArrearsAgeing" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnArrearsAgeing" />
                                     </div>
                                 </div>
@@ -824,7 +824,7 @@
                                     <div class="col-sm-3">
                                         <input id="overdueDaysForNPA" class="form-control" name="overdueDaysForNPA"
                                             placeholder="{{'label.input.overduedaysfornpa' | translate}}" type="numbe"
-                                            ng-model="formData.overdueDaysForNPA" late-validate number=true>
+                                            ng-model="formData.overdueDaysForNPA" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="overdueDaysForNPA" />
                                     </div>
                                 </div>
@@ -851,7 +851,7 @@
                                     <div class="col-sm-3">
                                         <input id="principalThresholdForLastInstallment" type="numbe"
                                             name="principalThresholdForLastInstallment" class="form-control"
-                                            ng-model="formData.principalThresholdForLastInstallment" late-validate number=true>
+                                            ng-model="formData.principalThresholdForLastInstallment" late-validate>
                                         <form-validate valattributeform="Settings"
                                             valattribute="principalThresholdForLastInstallment" />
                                     </div>
@@ -1083,7 +1083,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="recalculationRestFrequencyInterval" type="text" only-number class="form-control"
+                                        <input id="recalculationRestFrequencyInterval" allow-decimal="false" allow-negative="false" type="text" only-number class="form-control"
                                             ng-model="formData.recalculationRestFrequencyInterval">
                                     </div>
                                 </div>

@@ -2,7 +2,10 @@
     mifosX.controllers = _.extend(module, {
         CreateLoanProductController: function (scope, $rootScope, resourceFactory, location, dateFilter, WizardHandler) {
             scope.restrictDate = new Date();
-            scope.formData = {};
+            scope.formData = {
+                oneAtTime: false,
+                digitsAfterDecimal: 2
+            };
             scope.loanproduct = {};
             scope.charges = [];
             scope.accountingOptions = ['None', 'Cash', 'Accrual(Periodic)', 'Accrual(Upfront)'];
@@ -37,7 +40,6 @@
             scope.selectedStep = 0;
             scope.stepProgress = 0;
 
-            
             for (var i = 1; i <= 28; i++) {
                 scope.interestRecalculationOnDayTypeOptions.push(i);
             }
@@ -67,10 +69,10 @@
                     }
                 }
                 scope.formData.currencyCode = scope.product.currencyOptions[0].code;
-                scope.formData.includeInBorrowerCycle = 'false';
+                scope.formData.includeInBorrowerCycle = false;
                 scope.formData.useBorrowerCycle = false;
-                scope.formData.digitsAfterDecimal = '2';
-                scope.formData.inMultiplesOf = '0';
+                scope.formData.digitsAfterDecimal = 2;
+                scope.formData.inMultiplesOf = 0;
                 scope.formData.repaymentFrequencyType = scope.product.repaymentFrequencyType.id;
                 scope.formData.interestRateFrequencyType = scope.product.interestRateFrequencyType.id;
                 scope.formData.amortizationType = scope.product.amortizationType.id;
@@ -81,7 +83,7 @@
                 scope.formData.interestRateVariationsForBorrowerCycle = scope.product.interestRateVariationsForBorrowerCycle;
                 scope.formData.numberOfRepaymentVariationsForBorrowerCycle = scope.product.numberOfRepaymentVariationsForBorrowerCycle;
                 scope.formData.multiDisburseLoan = false;
-                scope.formData.accountingRule = '1';
+                scope.formData.accountingRule = 1;
                 scope.formData.daysInYearType = scope.product.daysInYearType.id;
                 scope.formData.daysInMonthType = scope.product.daysInMonthType.id;
                 scope.formData.isInterestRecalculationEnabled = scope.product.isInterestRecalculationEnabled;
