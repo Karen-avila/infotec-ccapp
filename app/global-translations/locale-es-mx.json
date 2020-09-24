@@ -936,7 +936,7 @@
     "clientStatusType.validated": "Validado",
     "clientStatusType.closed": "Cerrado",
     "clientStatusType.invalid": "No válido",
-    "clientStatusType.invalid.plus.valid": "No válido (Activo)",
+    "clientStatusType.invalid.plus.valid": "No validado (Activo)",
     "clientStatusType.transfer.in.progress": "Transferencia en proceso",
     "clientStatusType.transfer.on.hold": "Transferencia en espera",
     "validation.msg.client.officeId.cannot.be.blank": "La oficina es obligatoria.",
