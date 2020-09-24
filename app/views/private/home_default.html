@@ -2,6 +2,11 @@
     <div class="well" id="expertsearch" data-ng-controller="ExpertSearchController">
         <div class="toolbar">
             <h3 class="paddedleft"><strong>{{'label.heading.welcome' | translate}}</strong>
+                <div class="btn-group pull-right" has-permission='READ_DASHBOARD_OPTIONS'>
+                    <label class="btn btn-sm btn-primary" ng-click="switch('/')"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
+                    <label class="btn btn-sm btn-primary" has-permission='READ_DASHBOARD_TASKS' ng-click="switch('/tasks')"><i class="fa fa-tasks"></i>&nbsp;&nbsp;{{'label.heading.tasks' | translate}}</label>
+                    <label class="btn btn-sm btn-primary" has-permission='READ_DASHBOARD_RICH' ng-click="switch('/richdashboard')"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
+                </div>
             </h3>
         </div>
         <hr/>
