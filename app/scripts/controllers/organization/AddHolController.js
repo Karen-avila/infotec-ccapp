@@ -153,7 +153,7 @@
                     newholiday.name = this.formData.name;
                     newholiday.fromDate = reqFirstDate;
                     newholiday.toDate = reqSecondDate;                    
-                    newholiday.reschedulingType = scope.reschedulingType.id;
+                    newholiday.reschedulingType = scope.reschedulingType;
                     if(scope.reschedulingType.id == scope.specificRescheduleType){
                         reqThirdDate = dateFilter(scope.date.third, scope.df);
                         newholiday.repaymentsRescheduledTo = reqThirdDate;
