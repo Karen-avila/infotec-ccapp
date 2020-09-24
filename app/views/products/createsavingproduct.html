@@ -13,7 +13,7 @@
                             <api-validate></api-validate>
                             <fieldset>
                                 <!--<h3>{{'label.heading.details' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.productname' | translate }}
                                         <span class="required">*</span>
@@ -67,7 +67,7 @@
                             <api-validate></api-validate>
                             <fieldset>
                                 <!--<h3>{{'label.heading.currency' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.currency' | translate }}
                                         <span class="required">*</span>
@@ -91,7 +91,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3"> 
-                                        <input type="text" only-number maxlength="2" id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
+                                        <input type="text" only-number maxlength="2" allow-decimal="false" allow-negative="false" id="digitsAfterDecimal" name="decimalplace" class="form-control"
                                             ng-model="formData.digitsAfterDecimal" required late-validate number=true />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
                                     </div>
@@ -103,7 +103,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
+                                        <input type="text" only-number allow-decimal="false" allow-negative="false" id="inMultiplesOf" class="form-control" name="multiplesof"
                                             ng-model="formData.inMultiplesOf" required late-validate number=true />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
@@ -129,7 +129,7 @@
                             <api-validate></api-validate>
                             <fieldset>
                                 <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.account.level' | translate}}
                                         <span class="required">*</span>
@@ -152,9 +152,9 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" only-number
-                                            class="form-control" ng-model="formData.nominalAnnualInterestRate" required
-                                            late-validate decimals />
+                                        <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" only-number decimals-upto="2"
+                                            class="form-control" ng-model="formData.nominalAnnualInterestRate" required allow-decimal="true" allow-negative="false" 
+                                            late-validate />
                                         <form-validate valattributeform="Terms" valattribute="nominalAnnualInterestRate" />
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                            <md-select id="interestCompoundingPeriodTypeOptions" 
+                                        <md-select id="interestCompoundingPeriodTypeOptions" 
                                             ng-model="formData.interestCompoundingPeriodType"
                                             ng-change="savingproduct.interestCompoundingPeriodOption.value = formValue(product.interestCompoundingPeriodTypeOptions,formData.interestCompoundingPeriodType)">
                                             <md-option ng-value="type.id" ng-repeat="type in product.interestCompoundingPeriodTypeOptions">
@@ -182,13 +182,13 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                            <md-select id="interestPostingPeriodTypeOptions"
+                                        <md-select id="interestPostingPeriodTypeOptions"
                                             ng-model="formData.interestPostingPeriodType"
                                             ng-change="savingproduct.interestPostingPeriodOption.value = formValue(product.interestPostingPeriodTypeOptions,formData.interestPostingPeriodType)">
                                             <md-option ng-value="type.id" ng-repeat="type in product.interestPostingPeriodTypeOptions">
                                              {{type.value | translate}}
                                             </md-option>
-                                            </md-select>
+                                        </md-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -215,11 +215,11 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <md-select id="interestCalculationDaysInYearType" 
-                                        ng-model="formData.interestCalculationDaysInYearType"
-                                        ng-change="savingproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)">
-                                        <md-option ng-value="type.id" ng-repeat="type in product.interestCalculationDaysInYearTypeOptions">
-                                            {{type.value | translate}}
-                                        </md-option>
+                                            ng-model="formData.interestCalculationDaysInYearType"
+                                            ng-change="savingproduct.interestCalculationDaysInYearOption.value = formValue(product.interestCalculationDaysInYearTypeOptions,formData.interestCalculationDaysInYearType)">
+                                            <md-option ng-value="type.id" ng-repeat="type in product.interestCalculationDaysInYearTypeOptions">
+                                                {{type.value | translate}}
+                                            </md-option>
                                         </md-select>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@
                             <api-validate></api-validate>
                             <fieldset>
                                 <!--<h3>{{'label.heading.settings' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.minimumopeningbalance' | translate }}
                                         <i class="fa fa-question-circle"
@@ -252,7 +252,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="minRequiredOpeningBalance" type="text" only-number name="minRequiredOpeningBalance"
+                                        <input id="minRequiredOpeningBalance" type="text" only-number allow-decimal="true" allow-negative="false" name="minRequiredOpeningBalance"
                                             class="form-control" ng-model="formData.minRequiredOpeningBalance"
                                             late-validate>
                                         <form-validate valattributeform="Settings" valattribute="minRequiredOpeningBalance" />
@@ -264,7 +264,7 @@
                                     </label>
                                     <div class="col-sm-2">
                                         <input id="lockinPeriodFrequency" type="text" only-number name="lockinPeriodFrequency"
-                                            class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate
+                                            class="form-control" ng-model="formData.lockinPeriodFrequency" late-validate allow-decimal="false" allow-negative="false" 
                                             number=true>
                                         <form-validate valattributeform="Settings" valattribute="lockinPeriodFrequency" />
                                     </div>
@@ -280,9 +280,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
-                                                <md-checkbox id="withdrawalFeeForTransfers" aria-label="withdrawalFeeForTransfers"
-                                                ng-model="formData.withdrawalFeeForTransfers" ng-true-value="true"
-                                                ng-false-value="false"></md-checkbox>    
+                                        <md-checkbox id="withdrawalFeeForTransfers" aria-label="withdrawalFeeForTransfers"
+                                            ng-model="formData.withdrawalFeeForTransfers" ng-true-value="true"
+                                            ng-false-value="false"></md-checkbox>    
                                     </div>
                                     <label class="control-label col-sm-3 left">{{'label.input.withdrawalfeefortransfers' | translate }}
                                         <i class="fa fa-question-circle"
@@ -296,7 +296,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="minBalanceForInterestCalculation" type="text" only-number class="form-control" 
-                                            ng-model="formData.minBalanceForInterestCalculation">
+                                            ng-model="formData.minBalanceForInterestCalculation" allow-decimal="false" allow-negative="false" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -315,7 +315,7 @@
                                     </label>
                                     <div class="col-sm-3" ng-show="formData.enforceMinRequiredBalance">
                                         <input id="minRequiredBalance" type="text" only-number class="form-control" 
-                                            ng-model="formData.minRequiredBalance" />
+                                            ng-model="formData.minRequiredBalance" allow-decimal="false" allow-negative="false" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -335,7 +335,7 @@
                                         </label>
                                         <div class="col-sm-3">
                                             <input id="overdraftLimit" type="text" only-number class="form-control"
-                                                ng-model="formData.overdraftLimit">
+                                                ng-model="formData.overdraftLimit" allow-decimal="false" allow-negative="false" >
                                         </div>
                                     </div>
                                 </div>
@@ -348,7 +348,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="nominalAnnualInterestRateOverdraft" type="text" only-number class="form-control"
-                                            ng-model="formData.nominalAnnualInterestRateOverdraft">
+                                            ng-model="formData.nominalAnnualInterestRateOverdraft" allow-decimal="true" allow-negative="false" decimal-upto="2" >
                                     </div>
                                     <label
                                         class="control-label col-sm-3">{{'label.input.minoverdraftforinterestcalculation' | translate}}
@@ -358,7 +358,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="minOverdraftForInterestCalculation" type="text" only-number class="form-control"
-                                            ng-model="formData.minOverdraftForInterestCalculation">
+                                            ng-model="formData.minOverdraftForInterestCalculation" allow-decimal="false" allow-negative="false" >
                                     </div>
                                 </div>
 
@@ -404,7 +404,7 @@
                                         </label>
                                         <div class="col-sm-3">
                                             <input id="daysToInactive" type="text" only-number class="form-control"
-                                                ng-model="formData.daysToInactive">
+                                                ng-model="formData.daysToInactive" allow-decimal="false" allow-negative="false" >
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +416,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input id="daysToDormancy" type="text" only-number class="form-control"
-                                            ng-model="formData.daysToDormancy">
+                                            ng-model="formData.daysToDormancy" allow-decimal="false" allow-negative="false" >
                                     </div>
 
                                     <label class="control-label col-sm-3">{{'label.input.daysToEscheat' | translate}}
@@ -424,7 +424,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="daysToEscheat" type="text" only-number class="form-control"
+                                        <input id="daysToEscheat" type="text" only-number allow-decimal="false" allow-negative="false" class="form-control"
                                             ng-model="formData.daysToEscheat">
                                     </div>
                                 </div>
@@ -449,7 +449,7 @@
                             <fieldset>
                                 <api-validate></api-validate>
                                 <h3>{{'label.heading.charges' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3">                    
                                         <md-select id="chargeId" ng-model="chargeId">
@@ -511,20 +511,12 @@
                             <api-validate></api-validate>
                             <fieldset>
                                 <!--<h3>{{'label.heading.accounting' | translate }}</h3>-->
-                                <hr>
-                                <div class="radio-inline">
-                                    <label>
-                                        <input type="radio" ng-model="formData.accountingRule" value="1">{{'label.input.accounting.none'
-                                        |translate}}
-                                    </label>
-                                </div>
-                                <div class="radio-inline">
-                                    <label>
-                                        <input type="radio" ng-model="formData.accountingRule" value="2">{{'label.input.cash'
-                                        |translate}}
-                                    </label>
-                                </div>
-                                <hr>
+                                <md-divider></md-divider>
+                                <md-radio-group ng-model="formData.accountingRule" layout="row">
+                                    <md-radio-button value=1 class="md-primary">{{'label.input.accounting.none' | translate}}</md-radio-button>
+                                    <md-radio-button value=2 class="md-primary">{{'label.input.accounting.cash' | translate}}</md-radio-button>
+                                </md-radio-group>
+                                <md-divider></md-divider>
                                 <div class="col-md-12" ng-show="formData.accountingRule==2">
                                     <div class="form-group">
                                         <h4>{{"label.heading.assets" | translate}}</h4>
@@ -559,7 +551,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.liabilities" | translate}}</h4>
                                         <label class="control-label col-sm-3">{{'label.input.savingcontrol' | translate }}
@@ -616,7 +608,7 @@
                                             </md-select>                                            
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.expenses" | translate}}</h4>
                                         <label class="control-label col-sm-3">{{'label.input.interestonsavings' | translate }}
@@ -648,7 +640,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.income" | translate}}</h4>
                                         <label class="control-label col-sm-3">{{'label.input.incomefromfees' | translate }}
@@ -696,7 +688,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
                                             ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                                     </h4>
@@ -798,21 +790,21 @@
                                             </tr>
                                             <tr ng-repeat="penaltySpecificIncomeaccount in penaltySpecificIncomeaccounts">
                                                 <td class="width30">
-                                                    <select id="penaltySpecificIncomeaccounts[{{$index}}].chargeId"
-                                                        class="form-control" ng-model="penaltySpecificIncomeaccount.chargeId"
-                                                        ng-options="charge.id as charge.name for charge in penaltySpecificIncomeaccount.penaltyOptions"
-                                                        ng-change="savingproduct.penaltyToIncomeAccountMappings[$index].charge.name = formValue(penaltySpecificIncomeaccount.penaltyOptions,penaltySpecificIncomeaccount.chargeId,'id','name')"
-                                                        value="{{charge.id}}">
-                                                    </select>
+                                                    <md-select id="penaltySpecificIncomeaccounts[{{$index}}].chargeId"
+                                                        ng-model="penaltySpecificIncomeaccount.chargeId">
+                                                        <md-option ng-value="charge.id" ng-repeat="charge in penaltySpecificIncomeaccount.penaltyOptions">
+                                                            {{charge.name | translate}}
+                                                        </md-option>
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
                                                 <td class="width30">
-                                                    <select id="penaltySpecificIncomeaccounts[{{$index}}].incomeAccountId"
-                                                        class="form-control" ng-model="penaltySpecificIncomeaccount.incomeAccountId"
-                                                        ng-options="assetAccount.id as assetAccount.name for assetAccount in penaltySpecificIncomeaccount.incomeAccountOptions"
-                                                        ng-change="savingproduct.penaltyToIncomeAccountMappings[$index].incomeAccount.name = formValue(penaltySpecificIncomeaccount.incomeAccountOptions,penaltySpecificIncomeaccount.incomeAccountId,'id','name')"
-                                                        value="{{assetAccount.id}}">
-                                                    </select>
+                                                    <md-select id="penaltySpecificIncomeaccounts[{{$index}}].incomeAccountId"
+                                                        ng-model="penaltySpecificIncomeaccount.incomeAccountId">
+                                                        <md-option ng-value="assetAccount.id" ng-repeat="assetAccount in penaltySpecificIncomeaccount.incomeAccountOptions">
+                                                            {{assetAccount.name | translate}}
+                                                        </md-option>
+                                                    </md-select>
                                                 </td>
                                                 <td></td>
                                                 <td class="width30"><a ng-click="deletePenalty($index)"><i
@@ -845,7 +837,7 @@
                                 <br>
                                 <br>
                                 <h3>{{savingproduct.name}}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <table width="100%">
                                     <tr class="bottomborder">
                                         <td colspan="4">
@@ -1146,12 +1138,12 @@
                                 <br>
                                 <br>
                                 <div class="col-md-offset-5 paddedtop">
-                                    <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">
+                                    <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">
                                         {{'label.button.cancel' | translate}}
-                                    </button>
-                                    <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='CREATE_SAVINGSPRODUCT'>{{'label.button.createsavingproduct'
-                                        | translate}}
-                                    </button>
+                                    </md-button>
+                                    <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_SAVINGSPRODUCT'>
+                                        {{'label.button.createsavingproduct' | translate}}
+                                    </md-button>
                                 </div>
                             </fieldset>
                         </form>

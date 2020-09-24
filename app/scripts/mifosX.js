@@ -8,7 +8,6 @@ var mifosX = (function (module) {
       "webStorageModule",
       "ui.bootstrap",
       "pascalprecht.translate",
-      "nvd3ChartDirectives",
       "notificationWidget",
       "ngFileUpload",
       "modified.datepicker",

@@ -31,8 +31,8 @@
 
 							<div class="col-sm-3">
 								<md-datepicker id="fromDate" ng-model="date.first"
-									md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
-									max="maxDatePicker" required>
+									md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+									md-max-date="maxDatePicker" required>
 								</md-datepicker>
 								<span class="error"
 									ng-if="firstError">{{'validation.msg.holiday.date.cannot.be.past.date' | translate }}</span>
@@ -45,8 +45,8 @@
 
 							<div class="col-sm-3">
 								<md-datepicker id="toDate" ng-model="date.second"
-									md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
-									max="maxDatePicker" required>
+									md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="date.first"
+									md-max-date="maxDatePicker" required>
 								</md-datepicker>
 
 								<span class="error"

@@ -12,7 +12,7 @@
                         <form name="Details" novalidate="" class="form-horizontal">
                             <fieldset>
                                 <api-validate></api-validate>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <label class="control-label">{{'label.input.productname' | translate }}<span
@@ -141,7 +141,7 @@
                         <form name="Currency" novalidate="" class="form-horizontal">
                             <fieldset>
                                 <api-validate></api-validate>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.currency' | translate }}<span
                                             class="required">*</span>
@@ -169,7 +169,7 @@
 
                                     <div class="col-sm-3">
                                         <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
-                                            ng-model="formData.digitsAfterDecimal" required late-validate />
+                                            ng-model="formData.digitsAfterDecimal" required late-validate allow-decimal="false" allow-negative="false" />
                                         <form-validate valattributeform="Currency" valattribute="decimalplace" />
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
 
                                     <div class="col-sm-3">
                                         <input type="text" only-number id="inMultiplesOf" class="form-control" name="multiplesof"
-                                            ng-model="formData.inMultiplesOf" required late-validate />
+                                            ng-model="formData.inMultiplesOf" allow-decimal="false" allow-negative="false" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
                                 </div>
@@ -197,9 +197,9 @@
                                         </label>
 
                                     <div class="col-sm-3">
-                                        <input type="text" only-number id="installmentAmountInMultiplesOf" class="form-control"
+                                        <input type="text" only-number allow-decimal="false" allow-negative="false" id="installmentAmountInMultiplesOf" class="form-control"
                                             name="installmentAmountInMultiplesOf" ng-model="formData.installmentAmountInMultiplesOf"
-                                            required late-validate number=true />
+                                            required late-validate allow-decimal="false" allow-negative="false" />
                                         <form-validate valattributeform="Currency" valattribute="installmentAmountInMultiplesOf" />
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
                             <fieldset>
                                 <api-validate></api-validate>
                                 <!--<h3>{{'label.heading.terms' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <md-checkbox aria-label="useBorrowerCycle" ng-model="formData.useBorrowerCycle"></md-checkbox>
@@ -324,16 +324,16 @@
 
                                     <div class="col-sm-2">
                                         <input id="minNumberOfRepayments" placeholder="{{'label.input.minimum' | translate}}"
-                                            type="text" only-number class="form-control" ng-model="formData.minNumberOfRepayments">
+                                            type="text" only-number class="form-control"  allow-decimal="false" allow-negative="false" ng-model="formData.minNumberOfRepayments">
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" only-number placeholder="{{'label.input.default' | translate}}"
-                                            id="numberOfRepayments" name="numofrepayments" class="form-control"
-                                            ng-model="formData.numberOfRepayments" required late-validate number=true />
+                                            id="numberOfRepayments" name="numofrepayments" class="form-control" allow-decimal="false" allow-negative="false"
+                                            ng-model="formData.numberOfRepayments" required late-validate  />
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" only-number placeholder="{{'label.input.maximum' | translate}}"
-                                            id="maxNumberOfRepayments" class="form-control"
+                                            id="maxNumberOfRepayments" class="form-control" allow-decimal="false" allow-negative="false"
                                             ng-model="formData.maxNumberOfRepayments">
                                         <form-validate valattributeform="Terms" valattribute="numofrepayments" />
                                     </div>
@@ -381,15 +381,15 @@
                                                     <input type="hidden" id="repaymentborrowerCycleId{{$index}}"
                                                         class="form-control" ng-model="borrowerCycleVariation.id" />
                                                     <input type="text" only-number id="minrepaymentPerCycle{{$index}}" class="form-control"
-                                                        ng-model="borrowerCycleVariation.minValue" />
+                                                        ng-model="borrowerCycleVariation.minValue" allow-decimal="false" allow-negative="false" />
                                                 </td>
                                                 <td>
                                                     <input id="repaymentPerCycle{{$index}}" type="text" only-number class="form-control"
-                                                        ng-model="borrowerCycleVariation.defaultValue" />
+                                                        ng-model="borrowerCycleVariation.defaultValue"  allow-decimal="false" allow-negative="false"/>
 
                                                 </td>
                                                 <td><input type="text" only-number id="maxrepaymentPerCycle{{$index}}" class="form-control"
-                                                        ng-model="borrowerCycleVariation.maxValue" /></td>
+                                                        ng-model="borrowerCycleVariation.maxValue" allow-decimal="false" allow-negative="false"/></td>
                                                 <td><md-button ng-click="deleterepaymentVariation($index)"><i class="fa fa-remove "></i></md-button>
 
                                                 </td>
@@ -570,7 +570,7 @@
 
                                     <div class="col-sm-2">
                                         <input id="repaymentEvery" name="repaymentEvery" class="form-control" type="text" only-number
-                                            ng-model="formData.repaymentEvery" required late-validate number=true />
+                                            ng-model="formData.repaymentEvery" allow-decimal="false" allow-negative="false" required late-validate />
                                     </div>
                                     <div class="col-sm-2">
                                         <md-select aria-label="repaymentFrequencyType id="repaymentFrequencyType" ng-model="formData.repaymentFrequencyType" 
@@ -593,7 +593,7 @@
                                     <div class="col-sm-2">
                                         <input id="minimumDaysBetweenDisbursalAndFirstRepayment" class="form-control" type="text" only-number
                                             ng-model="formData.minimumDaysBetweenDisbursalAndFirstRepayment" late-validate
-                                            number=true>
+                                           >
                                     </div>
                                 </div>
                             </fieldset>
@@ -617,7 +617,7 @@
                             <fieldset>
                                 <api-validate></api-validate>
                                 <!--<h3>{{'label.heading.settings' | translate }}</h3>-->
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">{{'label.input.amortization' | translate }}<span
                                             class="required">*</span>
@@ -717,14 +717,14 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnPrincipalPayment" class="form-control" name="graceOnPrincipalPayment"
                                             placeholder="{{'label.input.onprincipalpayment' | translate}}" type="text" only-number
-                                            ng-model="formData.graceOnPrincipalPayment" late-validate number=true>
+                                            ng-model="formData.graceOnPrincipalPayment"  allow-decimal="false" allow-negative="false" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnPrincipalPayment" />
                                     </div>
                                     <div class="col-sm-3">
                                         <input id="graceOnInterestPayment"
                                             placeholder="{{'label.input.oninterestpayment' | translate}}" type="text" only-number
-                                            name="graceOnInterestPayment" class="form-control"
-                                            ng-model="formData.graceOnInterestPayment" late-validate number=true>
+                                            name="graceOnInterestPayment" class="form-control"  allow-decimal="false" allow-negative="false"
+                                            ng-model="formData.graceOnInterestPayment" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestPayment" />
                                     </div>
                                 </div>
@@ -739,7 +739,7 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnInterestCharged" type="text" only-number name="graceOnInterestCharged"
                                             class="form-control" ng-model="formData.graceOnInterestCharged" late-validate
-                                            number=true>
+                                           >
                                         <form-validate valattributeform="Settings" valattribute="graceOnInterestCharged" />
                                     </div> -->
                                     <label
@@ -751,7 +751,7 @@
 
                                     <div class="col-sm-3">
                                         <input id="inArrearsTolerance" type="text" only-number name="inArrearsTolerance" class="form-control"
-                                            ng-model="formData.inArrearsTolerance" late-validate number=true>
+                                            ng-model="formData.inArrearsTolerance" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="inArrearsTolerance" />
                                     </div>
                                 </div>
@@ -809,7 +809,7 @@
                                     <div class="col-sm-3">
                                         <input id="graceOnArrearsAgeing" class="form-control" name="graceOnArrearsAgeing"
                                             placeholder="{{'label.input.onduedate' | translate}}" type="numbe"
-                                            ng-model="formData.graceOnArrearsAgeing" late-validate number=true>
+                                            ng-model="formData.graceOnArrearsAgeing" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="graceOnArrearsAgeing" />
                                     </div>
                                 </div>
@@ -824,7 +824,7 @@
                                     <div class="col-sm-3">
                                         <input id="overdueDaysForNPA" class="form-control" name="overdueDaysForNPA"
                                             placeholder="{{'label.input.overduedaysfornpa' | translate}}" type="numbe"
-                                            ng-model="formData.overdueDaysForNPA" late-validate number=true>
+                                            ng-model="formData.overdueDaysForNPA" late-validate>
                                         <form-validate valattributeform="Settings" valattribute="overdueDaysForNPA" />
                                     </div>
                                 </div>
@@ -851,7 +851,7 @@
                                     <div class="col-sm-3">
                                         <input id="principalThresholdForLastInstallment" type="numbe"
                                             name="principalThresholdForLastInstallment" class="form-control"
-                                            ng-model="formData.principalThresholdForLastInstallment" late-validate number=true>
+                                            ng-model="formData.principalThresholdForLastInstallment" late-validate>
                                         <form-validate valattributeform="Settings"
                                             valattribute="principalThresholdForLastInstallment" />
                                     </div>
@@ -896,7 +896,7 @@
                                 </div>
 
                                 <h3>{{'label.heading.interestRecalculation' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <md-checkbox ng-model="formData.isInterestRecalculationEnabled"></md-checkbox>
@@ -1083,7 +1083,7 @@
                                             tooltip-append-to-body="true"></i>
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="recalculationRestFrequencyInterval" type="text" only-number class="form-control"
+                                        <input id="recalculationRestFrequencyInterval" allow-decimal="false" allow-negative="false" type="text" only-number class="form-control"
                                             ng-model="formData.recalculationRestFrequencyInterval">
                                     </div>
                                 </div>
@@ -1101,7 +1101,7 @@
                                     </label>
                                 </div>
                                 <h3>{{'label.heading.gauranteeRequirements' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <md-checkbox ng-model="formData.holdGuaranteeFunds" ></md-checkbox>
@@ -1149,7 +1149,7 @@
                                     </div>
                                 </div>
                                 <h3>{{'label.heading.tranchedetails' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <md-checkbox ng-model="formData.multiDisburseLoan" ></md-checkbox>
@@ -1184,7 +1184,7 @@
                                     </div>
                                 </div>
                                 <h3>{{'label.heading.configurableAttributes' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3 right">
                                         <md-checkbox ng-model="allowAttributeConfiguration"
@@ -1261,7 +1261,7 @@
                             <fieldset>
                                 <api-validate></api-validate>
                                 <h3>{{'label.heading.charges' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <md-select id="chargeId" ng-model="chargeId">
@@ -1306,7 +1306,7 @@
                                     </table>
                                 </div>
                                 <h3>{{'label.heading.overduepenalitycharge' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <md-select id="penalityId" ng-model="penalityId" ng-change="">
@@ -1351,7 +1351,7 @@
                                     </table>
                                 </div>
                                 <h3>{{'label.heading.taxesoninterest' | translate }}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <md-select id="taxGroupId" ng-model="taxGroupId">
@@ -1405,34 +1405,18 @@
                             <fieldset>
                                 <api-validate></api-validate>
                                 <!--<h3>{{'label.heading.accounting' | translate }}</h3>-->
-                                <hr>
-                                <md-radio-group ng-model="formData.accountingRule">
-                                    <div class="radio-inline">
-                                        <label>
-                                            <md-radio-button class="md-primary"
-                                                value="1">{{'label.input.accounting.none' | translate}}</md-radio-button>
-                                        </label>
-                                    </div>
-                                    <div class="radio-inline">
-                                        <label>
-                                            <md-radio-button class="md-primary"
-                                                value="2" >{{'label.input.cash' | translate}}</md-radio-button>
-                                        </label>
-                                    </div>
-                                    <div class="radio-inline">
-                                        <label>
-                                            <md-radio-button class="md-primary" value="3">{{'label.input.periodicaccrual' |
-                                    translate}}</md-radio-button>
-                                        </label>
-                                    </div>
-                                    <div class="radio-inline">
-                                        <label>
-                                            <md-radio-button class="md-primary" value="4">{{'label.input.upfrontaccrual' |
-                                    translate}}</md-radio-button>
-                                        </label>
-                                    </div>
+                                <md-divider></md-divider>
+                                <md-radio-group ng-model="formData.accountingRule" layout="row">
+                                    <md-radio-button class="md-primary"
+                                        value="1">{{'label.input.accounting.none' | translate}}</md-radio-button>
+                                    <md-radio-button 
+                                        value="2" class="md-primary">{{'label.input.accounting.cash' | translate}}</md-radio-button>
+                                    <md-radio-button value="3" class="md-primary">
+                                        {{'label.input.accounting.periodicaccrual' | translate}}</md-radio-button>
+                                    <md-radio-button value="4" class="md-primary">
+                                        {{'label.input.accounting.upfrontaccrual' | translate}}</md-radio-button>
                                 </md-radio-group>
-                                <hr>
+                                <md-divider></md-divider>
                                 <div class="col-md-12" ng-show="isAccountingEnabled()">
                                     <div class="form-group">
                                         <h4>{{"label.heading.assets" | translate}}</h4>
@@ -1461,7 +1445,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2">{{'label.input.accounting.assets.npa.loan.portfolio' | translate }}
                                             <i class="fa fa-question-circle"
@@ -1488,7 +1472,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2">{{'label.input.accounting.assets.overdue.interest' | translate }}
                                             <i class="fa fa-question-circle"
@@ -1543,7 +1527,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.liabilities" | translate}}</h4>
                                         <label class="control-label col-sm-2">{{'label.input.fundsource'| translate }}
@@ -1571,7 +1555,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.income" | translate}}</h4>
                                         <label class="control-label col-sm-2">{{'label.input.incomefrominterest' | translate }}
@@ -1599,7 +1583,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2">{{'label.input.incomefrompenalties' | translate }}
                                             <i class="fa fa-question-circle"
@@ -1626,7 +1610,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <h4>{{"label.heading.expenses" | translate}}</h4>
                                         <label class="control-label col-sm-2">{{'label.input.loseswrittenoff' | translate }}
@@ -1642,13 +1626,13 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group">
                                         <div class="col-sm-3 right">
                                             <md-checkbox ng-model="includeOrderAccounts" ></md-checkbox>
                                         </div>
                                         <label class="control-label left col-sm-6">{{'label.input.includeOrderAccounts' | translate }}</label>
-                                        <hr>
+                                        <md-divider></md-divider>
                                         <h4 ng-show="includeOrderAccounts">{{'label.heading.debit.order' | translate}}</h4>
                                         <div ng-show="includeOrderAccounts">
                                             <label class="control-label col-sm-2">{{'label.input.accounting.debit.order.not.performed' | translate }}
@@ -1703,7 +1687,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <div class="form-group" ng-show="includeOrderAccounts">
                                         <h4>{{'label.heading.credit.order' | translate}}</h4>
                                     </div>
@@ -1759,7 +1743,7 @@
                                             </md-select>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <md-divider></md-divider>
                                     <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a
                                             ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
                                     </h4>
@@ -1899,7 +1883,7 @@
                                 <br>
                                 <br>
                                 <h3>{{loanproduct.name}}</h3>
-                                <hr>
+                                <md-divider></md-divider>
                                 <table width="100%">
                                     <tr>
                                         <td>
