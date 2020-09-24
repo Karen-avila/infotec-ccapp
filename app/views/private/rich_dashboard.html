@@ -1,9 +1,15 @@
 <div class="content-container">
 	<div id="expertsearch" class="card well" data-ng-controller="RichDashboard">
 		<h3 class="paddedleft"><strong>{{'label.heading.dashboard' | translate}}</strong>
-			<div class="btn-group pull-right">
+			<!-- <div class="btn-group pull-right">
 				<label class="btn btn-sm btn-primary" ng-click="switch('/home')" ng-model="dashModel" btn-radio="'dashboard'"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
 				<label class="btn btn-sm btn-primary" ng-click="switch('/tasks')" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.tasks' | translate}}</label>
+				<label class="btn btn-sm btn-primary" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
+			</div> -->
+
+			<div class="btn-group pull-right" has-permission='READ_HOME_OPTIONS'>
+				<label class="btn btn-sm btn-primary" ng-click="switch('/home')"><i class="fa fa-home"></i>&nbsp;&nbsp;{{'label.heading.home' | translate}}</label>
+				<label class="btn btn-sm btn-primary" has-permission='READ_HOME_TASKS' ng-click="switch('/tasks')"><i class="fa fa-tasks"></i>&nbsp;&nbsp;{{'label.heading.tasks' | translate}}</label>
 				<label class="btn btn-sm btn-primary" ng-model="dashModel" btn-radio="'rich-dashboard'"><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{'label.heading.dashboard' | translate}}</label>
 			</div>
 		</h3>
