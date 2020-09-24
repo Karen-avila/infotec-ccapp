@@ -8,6 +8,7 @@
             scope.specificIncomeaccounts = [];
             scope.penaltySpecificIncomeaccounts = [];
             scope.configureFundOption = {};
+            scope.accountLevels = [1,2,3,4];
 
             resourceFactory.savingProductResource.get({savingProductId: routeParams.id, template: 'true'}, function (data) {
                 scope.product = data;
@@ -23,6 +24,7 @@
                     currencyCode: data.currency.code,
                     digitsAfterDecimal: data.currency.decimalPlaces,
                     inMultiplesOf: data.currency.inMultiplesOf,
+                    accountLevel: data.accountLevel,
                     nominalAnnualInterestRate: data.nominalAnnualInterestRate,
                     minRequiredOpeningBalance: data.minRequiredOpeningBalance,
                     lockinPeriodFrequency: data.lockinPeriodFrequency,

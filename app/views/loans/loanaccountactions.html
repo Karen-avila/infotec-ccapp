@@ -36,7 +36,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="{{modelName}}" ng-model="formData[modelName]" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="maxDate">
+                                min="minDate" max="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="col-sm-6">
                             <md-datepicker id="expectedDisbursementDate" ng-model="form.expectedDisbursementDate" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="maxDate">
+                                min="minDate" max="maxDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <label class="control-label col-sm-3">{{'label.heading.approvedamount' |
                     translate}}</label>
                         <div class="col-sm-6">
-                            <input id="approvedAmt" type="number" name="amount" ng-model="formData.approvedLoanAmount"
+                            <input id="approvedAmt" type="text" only-number name="amount" ng-model="formData.approvedLoanAmount"
                                 class="form-control" required late-Validate>
                         </div>
                     </div>
@@ -82,11 +82,11 @@
                                     <td>
                                         <md-datepicker id="details[{{$index}}].expectedDisbursementDate" ng-model="details.expectedDisbursementDate" 
                                             md-placeholder="{{'label.selecttodate' | translate}}"
-                                            md-min-date="minDate" md-max-date="'2030-06-22'">
+                                            min="minDate" max="'2030-06-22'">
                                         </md-datepicker>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" id="details[{{$index}}].principal"
+                                        <input type="text" only-number class="form-control" id="details[{{$index}}].principal"
                                             ng-change="addTrancheAmounts()" ng-model="details.principal">
                                     </td>
                                     <td>
@@ -108,7 +108,7 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
-                                <input id="approvedAmount" type="number" name="amount"
+                                <input id="approvedAmount" type="text" only-number name="amount"
                                     ng-model="formData.approvedLoanAmount" class="form-control" required
                                     late-Validate>
                                 <form-validate valattributeform="loanactionform" valattribute="amount" />
@@ -119,7 +119,7 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
-                                <input id="transactionAmount" type="number" name="amount"
+                                <input id="transactionAmount" type="text" only-number name="amount"
                                     ng-model="formData.transactionAmount" class="form-control" required
                                     late-Validate>
                                 <form-validate valattributeform="loanactionform" valattribute="amount" />
@@ -153,7 +153,7 @@
                         translate}}</label>
 
                             <div class="col-sm-6">
-                                <input id="writeOffAmount" type="number" name="amount" ng-model="writeOffAmount"
+                                <input id="writeOffAmount" type="text" only-number name="amount" ng-model="writeOffAmount"
                                     class="form-control" readonly>
                             </div>
                         </div>
@@ -168,18 +168,18 @@
                         translate}}</label>
 
                             <div class="col-sm-6">
-                                <input id="fixedEmiAmount" type="number" class="form-control" name="amount"
+                                <input id="fixedEmiAmount" type="text" only-number class="form-control" name="amount"
                                     ng-model="formData.fixedEmiAmount">
                             </div>
                         </div>
                     </div>
                     <div ng-show="isTransaction">
                         <div class="form-group" ng-show="action == 'disburse'">
-                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}<span class="required">*</span></label>
+                            <label class="control-label col-sm-3" for="fundId">{{'label.input.fundsource' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="fundId" ng-model="formData.fundId" required 
+                                <md-select class="uppercase" id="fundId" ng-model="formData.fundId" 
                                     placeholder="{{'label.selectfund' | translate}}">
-                                    <md-option ng-repeat="fund in funds" ng-value="fund.id">
+                                    <md-option class="uppercase" ng-repeat="fund in funds" ng-value="fund.id">
                                         {{fund.name}}
                                     </md-option>
                                 </md-select>
@@ -188,9 +188,9 @@
                         <div class="form-group" ng-show="action == 'repayment' || action == 'prepayloan'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.currency' | translate}}<span class="required">*</span></label>
                             <div class="col-sm-3">
-                                <md-select id="currencyCode" ng-model="formData.currencyCode" required
+                                <md-select class="uppercase" id="currencyCode" ng-model="formData.currencyCode" required
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="currency in currencyOptions" ng-value="currency.id">
+                                    <md-option class="uppercase" ng-repeat="currency in currencyOptions" ng-value="currency.id">
                                         {{currency.code}} {{currency.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -200,9 +200,9 @@
                             <label class="control-label col-sm-3"
                                 for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="paymentTypeId" ng-model="formData.paymentTypeId" 
+                                <md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId" 
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+                                    <md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
                                         {{'payment.type.' + paymentType.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -211,22 +211,22 @@
                         <div class="form-group" ng-show="action == 'repayment'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.idRecord' | translate}}</label>
                             <div class="col-sm-3">
-                                <input id="idRecord" type="number" class="form-control" ng-model="formData.idRecord">
+                                <input id="idRecord" type="text" only-numberclass="form-control" ng-model="formData.idRecord">
                             </div>
                         </div>
                         <div class="form-group" ng-show="action == 'repayment'">
                             <label class="control-label col-sm-3">{{'label.input.repayment.bankRecord' | translate}}</label>
                             <div class="col-sm-3">
-                                <input id="bankRecord" type="number" class="form-control" ng-model="formData.bankRecord">
+                                <input id="bankRecord" type="text" only-number class="form-control" ng-model="formData.bankRecord">
                              </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"
                                 for="channelId">{{'label.input.channel' | translate}}</label>
                             <div class="col-sm-6">
-                                <md-select id="channelId" ng-model="formData.channelId" 
+                                <md-select class="uppercase" id="channelId" ng-model="formData.channelId" 
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="channel in channelOptions" ng-value="channel.id">
+                                    <md-option class="uppercase" ng-repeat="channel in channelOptions" ng-value="channel.id">
                                         {{channel.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -272,7 +272,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" id="amount" ng-model="formData.amount">
+                            <input type="text" only-number class="form-control" id="amount" ng-model="formData.amount">
                         </div>
                     </div>
                     <div class="form-group" ng-show="showEditChargeDueDate">
@@ -299,7 +299,7 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-6">
-                                <input id="principal" type="number" name="amount" ng-model="formData.updatedPrincipal"
+                                <input id="principal" type="text" only-number name="amount" ng-model="formData.updatedPrincipal"
                                     class="form-control" required late-Validate>
                             </div>
                         </div>
@@ -319,13 +319,13 @@
                                     <md-datepicker id="disbursementDetail[{{$index}}].expectedDisbursementDate" 
                                         ng-model="disbursementDetail.expectedDisbursementDate" 
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        min="minDate" max="'2030-06-22'"
                                         >
                                     </md-datepicker>
                                 </td>
                                 <td ng-hide="disbursementDetail.id">
                                     <input id="{{disbursementDetail[$index].principal}}" class="form-control"
-                                        type="number" ng-model="disbursementDetail.principal"
+                                        type="text" only-number ng-model="disbursementDetail.principal"
                                         placeholder="{{'label.input.principal' | translate}}">
                                 </td>
                                 <td ng-hide="disbursementDetail.id"><a ng-click="deleteTranches($index)"><i
@@ -348,13 +348,13 @@
                                         ng-model="disbursementDetail.expectedDisbursementDate" 
                                         md-placeholder="{{'label.input.expecteddisbursementon' | translate}}"
                                         ng-show="disbursementDetail.actualDisbursementDate == null"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'"
+                                        min="minDate" max="'2030-06-22'"
                                         >
                                     </md-datepicker>
                                 </td>
                                 <td>
                                     <input id="{{disbursementDetail[$index].principal}}" class="form-control"
-                                        type="number" ng-model="disbursementDetail.principal"
+                                        type="text" only-number ng-model="disbursementDetail.principal"
                                         ng-show="disbursementDetail.actualDisbursementDate == null"
                                         placeholder="{{'label.input.principal' | translate}}" ng-disabled="true">
                                 </td>

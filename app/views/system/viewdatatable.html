@@ -7,21 +7,29 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{datatable.registeredTableName}}</h4>
+                <h4>{{datatable.registeredTableName}}</h4> {{datatable.description}}
             </div>
             <br>
             <div class="row">
-                <div class="col-md-6">
-                    <strong>{{'label.heading.associatedwith' | translate}}</strong>&nbsp;&nbsp;{{datatable.applicationTableName}}
+                <div class="col-md-9">
+                    <div class="col-md-3">
+                        <strong>{{'label.heading.associatedwith' | translate}}: </strong>{{datatable.applicationTableName | translate}}
+                    </div>
+                    <div class="col-md-6">
+                        
+                    </div>
+                    <div class="col-md-3">
+                        {{'label.heading.scoringWeight' | translate}} {{datatable.scoringWeight | FormatNumber}} %
+                    </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="pull-right">
                         <div class="form-group">
-                            <a href="#!/editdatatable/{{datatable.registeredTableName}}" class="btn btn-sm btn-primary" has-permission='UPDATE_DATATABLE'><i
-                                    class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</a>
-                            <button type="button" class="btn btn-danger" ng-click="deleteTable()" has-permission='DELETE_DATATABLE'><i
-                                    class="fa fa-trash-o "></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}
-                            </button>
+                            <md-button href="#!/editdatatable/{{datatable.registeredTableName}}" class="md-raised md-primary" has-permission='UPDATE_DATATABLE'><i
+                                    class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.edit' | translate}}</md-button>
+                            <md-button type="button" class="md-warn" ng-click="deleteTable()" has-permission='DELETE_DATATABLE'><i
+                                    class="fa fa-trash-o "></i> {{'label.button.delete' | translate}}
+                            </md-button>
                         </div>
                     </div>
                 </div>
@@ -51,13 +59,13 @@
             
         <script type="text/ng-template" id="deletetable.html">
                 <div class="modal-header silver">
-                    <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+                    <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
                 </div>
                 <div class="modal-body ">
                     <api-validate></api-validate>
                     <br>
-                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-                    <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+                    <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
                 </div>
         </script>
     </div>

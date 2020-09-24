@@ -17,45 +17,34 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <input name="codevalue" ng-model="newEle.name" placeholder="{{'label.input.codevalue' | translate }}"
-                               type="text" class="form-control"/>
+                               type="text" class="form-control uppercase" maxlength="45" />
                     </div>
-                    <div class="col-sm-6">
-                        <textarea name="description" ng-model="newEle.description" placeholder="{{'label.input.description' | translate }}"
-                               type="text" class="form-control"/>
+                    <div class="col-sm-2">
+                        <input name="position" ng-model="newEle.position" placeholder="{{'label.input.position' | translate }}"
+                               type="text" only-number class="form-control"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <input name="score" ng-model="newEle.score" placeholder="{{'label.input.score' | translate }}"
+                               type="text" only-number class="form-control"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <md-checkbox ng-model="newEle.isActive">
+                            {{'label.input.active' | translate }}
+                        </md-checkbox>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
-                        <input name="position" ng-model="newEle.position" placeholder="{{'label.input.position' | translate }}"
-                               type="number" class="form-control"/>
+                    <div class="col-sm-9">
+                        <textarea name="description" ng-model="newEle.description" placeholder="{{'label.input.description' | translate }}"
+                               type="text" class="form-control"/>
                     </div>
                     <div class="col-sm-3">
-                        <input name="score" ng-model="newEle.score" placeholder="{{'label.input.score' | translate }}"
-                               type="number" class="form-control"/>
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="control-label col-sm-2">{{'label.input.active' | translate}}</label>
-                        <div class="col-sm-3">
-                            <input id="activeCheckbox" type="checkbox" ng-model="newEle.isActive">
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <a data-ng-click="addCv()" class="btn btn-sm btn-primary" has-permission='CREATE_CODEVALUE'><i
+                        <md-button ng-click="addCv()" class="md-raised md-primary" has-permission='CREATE_CODEVALUE'><i
                                 class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.add' |
-                            translate }}</a>
+                            translate }}</md-button>
                     </div>
                 </div>
             </form>
-            <div data-ng-repeat="codevalue in codevalues">
-                <input disabled="" placeholder={{codevalue.name}} type="text"/>&nbsp;&nbsp;
-                <input disabled="" placeholder={{codevalue.description}} type="text"/>&nbsp;&nbsp;
-                <input disabled="" placeholder={{codevalue.position}} type="number"/>&nbsp;&nbsp;
-                <input disabled="" placeholder={{codevalue.score}} type="number"/>&nbsp;&nbsp;
-                <a ng-click='deleteCv(codevalue.id)' has-permission='DELETE_CODEVALUE'><i class="fa fa-times-circle fa-2x"></i></a>
-            </div>
-            <div class="pull-right" data-ng-show="stat">
-                <p>{{'label.systemdefinedcodedeletefailed' | translate }}</p>
-            </div>
         </div>
     </div>
 </form>

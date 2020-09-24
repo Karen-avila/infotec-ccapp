@@ -65,6 +65,28 @@
             <md-button class="md-raised md-primary" ng-click="block()">{{'label.button.block' | translate}}</md-button>
         </div>
     </script>
+    <script type="text/ng-template" id="enableuser.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.heading.confirm.enable' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="enable()">{{'label.button.enable' | translate}}</md-button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="disableuser.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.heading.confirm.disable' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="disable()">{{'label.button.disable' | translate}}</md-button>
+        </div>
+    </script>
     <div class="card well">
         <div class="pull-right">
             <div class="form-group">
@@ -74,11 +96,17 @@
                 <md-button type="button" ng-click="deleteuser()" class="md-raised md-danger" has-permission='DELETE_USER'>
                     <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
                 </md-button>
-                <md-button ng-if="!user.enabled" type="button" ng-click="unblockUser()" class="md-raised" has-permission='UPDATE_USER'>
+                <md-button ng-if="!user.isAccountNonLocked" type="button" ng-click="unblockUser()" class="md-raised" has-permission='UPDATE_USER'>
                     <i class="fa fa-trash-o"></i> {{'label.button.unblock' | translate}}
                 </md-button>
-                <md-button ng-if="user.enabled" type="button" ng-click="blockUser()" class="md-raised" has-permission='UPDATE_USER'>
+                <md-button ng-if="user.isAccountNonLocked" type="button" ng-click="blockUser()" class="md-raised" has-permission='UPDATE_USER'>
                     <i class="fa fa-trash-o"></i> {{'label.button.block' | translate}}
+                </md-button>
+                <md-button ng-if="!user.enabled" type="button" ng-click="enableUser()" class="md-raised" has-permission='UPDATE_USER'>
+                    <i class="fa fa-check"></i> {{'label.button.enable' | translate}}
+                </md-button>
+                <md-button ng-if="user.enabled" type="button" ng-click="disableUser()" class="md-raised" has-permission='UPDATE_USER'>
+                    <i class="fa fa-times"></i> {{'label.button.disable' | translate}}
                 </md-button>
                 <md-button type="button" class="md-raised" data-ng-click="open()"
                     has-permission='UPDATE_USER'><i class="fa fa-cog "></i>

@@ -16,8 +16,8 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="{{modelName}}" type="text" sort datepicker-pop="dd MMMM yyyy" class="form-control"
-                                   ng-model="formData[modelName]" is-open="opened" min="minDate" max="restrictDate"/>
+                                   <md-datepicker id="{{modelName}}"  name="transactiondate"  is-open="opened" ng-model="formData[modelName]"  md-min-date="minDate" md-max-date="restrictDate">
+								</md-datepicker>
                         </div>
                     </div>
                     <div class="form-group" ng-show="action=='activate' && activationChargeAmount>0">
@@ -38,7 +38,7 @@
 
                         <div class="col-sm-3">
                             <input id="transactionAmount" type="text" name="transactionAmount" class="form-control"
-                                   number-format ng-model="formData.transactionAmount"/>
+                                    ng-model="formData.transactionAmount"/>
                         </div>
                     </div>
                     <div ng-show="isAccountClose">
@@ -161,7 +161,7 @@
                         <label class="control-label col-sm-2">{{'label.input.amount' | translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="amount" number-format class="form-control" ng-model="formData.amount">
+                            <input type="text" id="amount"  class="form-control" ng-model="formData.amount">
                         </div>
                     </div>
 
@@ -170,8 +170,9 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="{{modelName}}" type="text" sort datepicker-pop="dd MMMM yyyy" class="form-control"
-                                   ng-model="formData[modelName]" is-open="opened"/>
+                                   <md-datepicker id="{{modelName}}"    is-open="opened" ng-model="formData[modelName]">
+								</md-datepicker>
+                                   
                         </div>
                     </div>
 

@@ -11,7 +11,7 @@
 			</div>
 			<br>
 			<form name="addholidayform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="AddHolController" rc-submit="submit()">
+				ng-controller="AddHolController" ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
 					<div class="form-group">
@@ -45,7 +45,7 @@
 
 							<div class="col-sm-3">
 								<md-datepicker id="toDate" ng-model="date.second"
-									md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
+									md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="date.first"
 									md-max-date="maxDatePicker" required>
 								</md-datepicker>
 
@@ -76,8 +76,8 @@
 
 						<div class="col-sm-3" ng-show="reschedulingType == specificRescheduleType">
 							<md-datepicker id="toDate" ng-model="date.third"
-								md-placeholder="{{'label.selecttodate' | translate}}" md-min-date="minDate"
-								md-max-date="maxDatePicker">
+								md-placeholder="{{'label.selecttodate' | translate}}" min="minDate"
+								max="maxDatePicker">
 							</md-datepicker>
 							<span class="error"
 								ng-if="thirdError">{{'validation.msg.holiday.date.cannot.be.past.date' | translate }}</span>

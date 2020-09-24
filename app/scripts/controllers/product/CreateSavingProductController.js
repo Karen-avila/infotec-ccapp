@@ -1,7 +1,10 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         CreateSavingProductController: function (scope, $rootScope, resourceFactory, location , WizardHandler) {
-            scope.formData = {};
+            scope.formData = {
+                nominalAnnualInterestRate: 0,
+                daysToEscheat: 0
+            };
             scope.savingproduct = {};
             scope.charges = [];
             scope.showOrHideValue = "show";
@@ -16,6 +19,7 @@
             scope.frFlag = false;
             scope.fiFlag = false;
             scope.piFlag = false;
+            scope.accountLevels = [1,2,3,4];
 
             resourceFactory.savingProductResource.get({resourceType: 'template'}, function (data) {
                 scope.product = data;
@@ -51,6 +55,10 @@
                     vm.stepProgress = vm.stepProgress + 1;
                 }
                 vm.selectedStep = vm.selectedStep + 1;
+
+                if(vm.selectedStep + 1 == scope.maxStep) {
+                    scope.isClicked = true;
+                }
             }
         
             scope.moveToPreviousStep = function() {

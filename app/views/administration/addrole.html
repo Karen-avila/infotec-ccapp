@@ -4,7 +4,7 @@
             <li><a href="#!/admin/roles">{{'label.anchor.viewroles' | translate}}</a></li>
             <li class="active">{{'label.anchor.addrole' | translate}}</li>
         </ul>
-    <form name="addroleform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
+    <form name="addroleform" novalidate="" class="card form-horizontal well" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <legend>{{'label.heading.addrole' | translate}}</legend>

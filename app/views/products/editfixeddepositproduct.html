@@ -5,7 +5,7 @@
     <li><a href="#!/viewfixeddepositproduct/{{product.id}}">{{product.name}}</a></li>
     <li class="active">{{'label.anchor.editfixeddepositproduct' | translate}}</li>
 </ul>
-<form name="editfixeddepositproductform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
+<form name="editfixeddepositproductform" novalidate="" class="card form-horizontal well" ng-submit="submit()">
 <api-validate></api-validate>
 <fieldset>
 <h3>{{'label.heading.details' | translate }}</h3>
@@ -51,15 +51,11 @@
                 {{currency.name | translate}}
             </md-option>
         </md-select>
-        <!--
-        <select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-                ng-options="currency.code as currency.name for currency in product.currencyOptions"
-                value="{{currency.code}}"/>
-            -->
+
     </div>
     <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.decimalplaces' | translate }}<span class="required">*</span></label>
     <div class="col-sm-2">
-        <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+        <input type="text" id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
                ng-model="formData.digitsAfterDecimal" required late-validate/>
     </div>
     <div class="col-sm-2">
@@ -85,7 +81,7 @@
     </label>
     <div class="col-sm-2">
         <input type="text" id="depositAmount" name="depositAmount" class="form-control"
-               number-format ng-model="formData.depositAmount" required late-validate/>
+                ng-model="formData.depositAmount" required late-validate/>
     </div>
     <div class="col-sm-2">
         <form-validate valattributeform="editfixeddepositproductform" valattribute="depositAmount"/>
@@ -98,7 +94,7 @@
     </label>
     <div class="col-sm-2">
         <input type="text" id="minDepositAmount" name="minDepositAmount" class="form-control"
-               number-format ng-model="formData.minDepositAmount" />
+                ng-model="formData.minDepositAmount" />
     </div>
     <label class="control-label col-sm-2 col-sm-offset-2">{{'label.input.maxDepositAmount' | translate }}
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.fixeddepositproduct.maximumamount' | translate}}"
@@ -106,7 +102,7 @@
     </label>
     <div class="col-sm-2">
         <input type="text" id="maxDepositAmount" name="maxDepositAmount" class="form-control"
-               number-format ng-model="formData.maxDepositAmount" />
+                ng-model="formData.maxDepositAmount" />
     </div>
 </div>
 <div class="form-group">
@@ -201,7 +197,7 @@
     </label>
     <div class="col-sm-2">
         <input id="inMultiplesOfDepositTerm" type="text" class="form-control"
-               number-format ng-model="formData.inMultiplesOfDepositTerm">
+                ng-model="formData.inMultiplesOfDepositTerm">
     </div>
     <div class="col-sm-2">
         <select id="inMultiplesOfDepositTermTypeId" ng-model="formData.inMultiplesOfDepositTermTypeId"
@@ -240,7 +236,7 @@
     </div>
     <div class="col-sm-2">
         <input id="preClosurePenalInterest" name="preClosurePenalInterest" type="text"
-               number-format class="form-control" ng-model="formData.preClosurePenalInterest"/>
+                class="form-control" ng-model="formData.preClosurePenalInterest"/>
     </div>
     <div class="col-sm-1 col-sm-offset-1">
         {{'label.on' | translate }}
@@ -299,6 +295,15 @@
     <div class="col-sm-2">
         <label class="checkbox">
             <input id="isPrimaryGroupingByAmount" type="checkbox" ng-model="isPrimaryGroupingByAmount">
+
+        </label>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2" for="name">{{'label.input.interestratechart.current.apply.chart' | translate }}</label>
+    <div class="col-sm-2">
+        <label class="checkbox">
+            <input id="applyCurrentInterestRateChart" type="checkbox" ng-model="applyCurrentInterestRateChart">
 
         </label>
     </div>

@@ -1,55 +1,71 @@
 <div class="content-container" ng-controller="UserListController">
-    <ul class="breadcrumb">
-        <li class="active">{{'label.anchor.systemusers' | translate}}</li>
-    </ul>
-    <api-validate></api-validate>
-
     <div class="card">
-        <div class="toolbar">
-            <h4>{{'label.anchor.systemusers' | translate}}</h4>
-        </div>
         <div class="content">
-            <md-table-container ng-show="users.length > 0" class="noscroll-x">
-                <div class="row">
-                    <div class="col-md-7">
-                        <md-input-container class="full-width">
-                            <label>{{'label.input.user.search' | translate}}</label>
-                            <input ng-model="filter.search"> 
-                        </md-input-container>
-                    </div>
-                    <div class="col-sm-5">
-                        <md-button md-no-ink href="#!/createuser" class="md-primary pull-right" has-permission='CREATE_USER'>
-                            <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createuser' | translate}}
-                        </md-button>
-                    </div>
+            <div class="toolbar">
+                <h5>{{'label.anchor.systemusers' | translate}}</h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <md-whiteframe class="md-whiteframe-1dp" flex-sm="100" layout layout-align="center center">
+                        <div class="col-md-4" style="padding-right:0px;">
+                            <md-input-container class="full-width">
+                                <label>{{'label.input.searchUserByNameUserList' | translate}}</label>
+                                <input data-ng-model="searchText" type="text"
+                                    ng-keyup="searchText.length > 4 && $event.keyCode == 13 && search()" />
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6" style="padding-left:0px;">
+                            <div class="col-md-4">
+                                <md-button aria-label="btn-search" class="md-raised md-primary md-icon-button search"
+                                    ng-click="search()">
+                                    <i class="fa fa-search "></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                                <md-button md-no-ink href="#!/createuser" class="md-primary pull-right" has-permission='CREATE_USER'>
+                                    <i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createuser' | translate}}
+                                </md-button>
+                        </div>
+                    </md-whiteframe>
                 </div>
-                <md-divider></md-divider>
+            </div>
+            <md-divider></md-divider>
+            <br>
+            <md-table-container ng-show="users.length > 0" class="noscroll-x">
                 <div class="row">
                     <div clas="col-sm-12">
                         <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
                             <thead md-head md-order="query.order">
                                 <tr md-row>
-                                    <th md-column md-order-by="id">{{'label.heading.id' | translate}}</th>
-                                    <th md-column md-order-by="username">{{'label.heading.username' | translate}}</th>
-                                    <th md-column md-order-by="email">{{'label.heading.email' | translate}}</th>
-                                    <th md-column md-order-by="firstname">{{'label.heading.firstname' | translate}}</th>
-                                    <th md-column md-order-by="lastname">{{'label.heading.lastname' | translate}}</th>
-                                    <th md-column md-order-by="surname">{{'label.heading.surname' | translate}}</th>
-                                    <th md-column md-order-by="office">{{'label.heading.office' | translate}}</th>
+                                    <th md-column></th>
+                                    <th md-column md-order-by="displayName">{{'label.heading.name' | translate}}</th>
+                                    <th md-column md-order-by="accountNo">{{'label.heading.username' | translate}}</th>
+                                    <th md-column md-order-by="externalId">{{'label.heading.email' | translate}}</th>
+                                    <th md-column md-order-by="externalId">{{'label.heading.phone' | translate}}</th>
+                                    <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody md-body>
-                                <tr md-row ng-repeat="user in users | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
-                                    ng-click="routeTo(user.id)">
+                                <tr md-row
+                                    ng-repeat="user in users | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                    data-ng-click="routeTo(user.id)" md-select="user" md-select-id="name"
+                                >
                                     <td md-cell>
-                                        <i class="fa fa-circle {{getUserStatus(user.enabled) | StatusLookup}}"></i> 
-                                        {{user.id}}
+                                        <i ng-show="user.status.code == 'ACTIVE'" class="fa fa-circle text-primary"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
+                                        <i ng-show="user.status.code == 'LOCKED'" class="fa fa-lock text-primary"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
+                                        <i ng-show="user.status.code == 'DISABLE'" class="fa fa-circle text-danger"
+                                        uib-tooltip="{{ user.status.code | translate }}" uib-tooltip-placement="top"
+                                        ></i>
                                     </td>
-                                    <td md-cell>{{user.username}}</td>
-                                    <td md-cell><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                                    <td md-cell>{{user.firstname}}</td>
-                                    <td md-cell>{{user.lastname}}</td>
-                                    <td md-cell>{{user.surname}}</td>
+                                    <td md-cell>{{user.displayName}}</td>
+                                    <td md-cell>{{user.accountNo}}</td>
+                                    <td md-cell>{{user.externalId}}</td>
+                                    <td md-cell>{{user.phoneNumber}}</td>
                                     <td md-cell>{{user.officeName}}</td>
                                 </tr>
                             </tbody>
@@ -57,10 +73,8 @@
                     </div>
                 </div>
             </md-table-container>
-
-            <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-page="query.page" md-total="{{totalUsers}}" md-on-paginate="getResultsPage" md-page-select>
-            </md-table-pagination>
+            <md-table-pagination ng-show="users.length > query.limit" md-limit="query.limit" md-limit-options="[10,25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                md-boundary-links="options.boundaryLinks" md-total="{{users.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
         </div>
     </div>
 </div>

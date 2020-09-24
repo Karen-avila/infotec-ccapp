@@ -1,11 +1,13 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateTellerController: function (scope, resourceFactory, location, dateFilter) {
+        CreateTellerController: function (scope, resourceFactory, location, dateFilter, MIN_DATEPICKER) {
             scope.offices = [];
-            scope.tellerStatuses = [ {"id":300, "code":"300", "value":"Active"}, {"id":400, "code":"400", "value":"Inactive"}];
+            scope.tellerStatuses = [{ "id": 300, "code": "300", "value": "Active" }, { "id": 400, "code": "400", "value": "Inactive" }];
             scope.first = {};
             scope.first.date = new Date();
+            scope.minDate = new Date(MIN_DATEPICKER);
             scope.restrictDate = new Date();
+
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
                 scope.formData = {
@@ -17,17 +19,17 @@
                 this.formData.locale = scope.optlang.code;
                 var reqDate = dateFilter(scope.first.date, scope.df);
                 var endDate = dateFilter(scope.formData.endDate, scope.df);
+                this.formData.name = this.formData.name.toUpperCase();
                 this.formData.dateFormat = scope.df;
                 this.formData.startDate = reqDate;
                 this.formData.endDate = endDate;
                 resourceFactory.tellerResource.save(this.formData, function (data) {
                     location.path('/viewtellers/' + data.resourceId);
-
                 });
             };
         }
     });
-    mifosX.ng.application.controller('CreateTellerController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateTellerController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateTellerController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', 'MIN_DATEPICKER', mifosX.controllers.CreateTellerController]).run(function ($log) {
         $log.info("CreateTellerController initialized");
     });
 }(mifosX.controllers || {}));

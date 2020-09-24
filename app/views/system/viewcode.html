@@ -8,19 +8,31 @@
     <div class="card">
         <div class="content">
             <div class="toolbar">
-                <h4>{{code.name | translate}}</h4>
+                <h4>{{code.name | translate}} - {{code.description}}</h4>
             </div>
-            <br/>
+            <br />
             <div class="form-horizontal form-extra">
                 <div class="row">
-                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbyname' | translate}}</label>
+                            <input ng-model="filter.search">
+                        </md-input-container>
+                    </div>
                     <div class="col-md-6">
                         <div class="pull-right">
-                            <button type="button" data-ng-hide="code.systemDefined" data-ng-click="showEditCode()" class="btn btn-sm btn-primary" has-permission='UPDATE_CODE'><i class="fa fa-edit "></i>&nbsp;&nbsp;{{'label.button.editcode' | translate}}
-                            </button>
-                            <a href="#!/editcode/{{code.id}}" class="btn btn-sm btn-primary"  has-permission='CREATE_CODEVALUE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.addcodevalues' | translate}}</a>
-                            <a data-ng-click="delCode()" class="btn btn-danger" has-permission='DELETE_CODE' ng-show="code.systemDefined == false"><i
-                            class="fa fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</a>
+                            <md-button type="button" data-ng-hide="code.systemDefined" data-ng-click="showEditCode()"
+                                class="md-raised md-primary" has-permission='UPDATE_CODE'>
+                                <i class="fa fa-edit "></i> {{'label.button.editcode' | translate}}
+                            </md-button>
+                            <md-button href="#!/editcode/{{code.id}}" class="md-raised md-primary"
+                                has-permission='CREATE_CODEVALUE'><i class="fa fa-plus ">
+                                </i> {{'label.button.addcodevalues' | translate}}
+                            </md-button>
+                            <md-button ng-click="delCode()" class="md-raised btn-danger" has-permission='DELETE_CODE'
+                                ng-show="code.systemDefined == false"><i class="fa fa fa-trash-o"></i>
+                                {{'label.button.delete' | translate}}
+                            </md-button>
                         </div>
                     </div>
                 </div>
@@ -28,98 +40,115 @@
                 <br>
                 <div data-ng-show="newcode.edit">
                     <api-validate></api-validate>
-                    <div class="col-sm-3">
-                        <input type="text" data-ng-model="codename.name" class="form-control"/>
+                    <div class="col-sm-4">
+                        <input type="text" data-ng-model="codename.name" class="form-control" maxlength="45"
+                            ng-disabled="code.systemDefined" />
                     </div>
-                    <button type="button" class="btn btn-sm btn-default" data-ng-click="showEditCode(1)">{{'label.button.cancel' | translate}}
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary" data-ng-click="updateCode()" has-permission='UPDATE_CODE'>{{'label.button.save' |
-                        translate}}
-                    </button>
-                    <hr/>
+                    <div class="col-sm-5">
+                        <input type="text" data-ng-model="codename.description" class="form-control" maxlength="500" />
+                    </div>
+                    <div class="col-sm-2 center">
+                        <md-button type="button" class="md-raised md-primary" ng-click="updateCode()"
+                            has-permission='UPDATE_CODE'>{{'label.button.save' | translate}}
+                        </md-button>
+                        <md-button type="button" class="md-raised" ng-click="showEditCode(1)">
+                            {{'label.button.cancel' | translate}}
+                        </md-button>
+                    </div>
+                    <hr />
                 </div>
                 <div>
-                    <table class="table" ui:sortable>
-                        <thead>
-                        <tr>
-                            <th>{{'label.heading.name' | translate }}</th>
-                            <th>{{'label.heading.description' | translate }}</th>
-                            <th>{{'label.heading.score' | translate }}</th>
-                            <th>{{'label.heading.position' | translate }}</th>
-                            <th>{{'label.heading.active' | translate}}</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr data-ng-repeat="codevalue in codevalues">
-                            <td>
-                                <span data-ng-hide="codevalue.edit">{{codevalue.name}}</span>
-                                <input data-ng-show="codevalue.edit" name="codevalue" ng-model="formData[codevalue.id].name"
-                                       type="text" class="form-control" required/>
-                            </td>
-                            <td>
-                                <span data-ng-hide="codevalue.edit">{{codevalue.description}}</span>
-                                <textarea data-ng-show="codevalue.edit" name="description" ng-model="formData[codevalue.id].description"
-                                       type="text" class="form-control"/>
-                            </td>
-                            <td>
-                                <span data-ng-hide="codevalue.edit">{{codevalue.score}}</span>
-                                <input data-ng-show="codevalue.edit" name="score" ng-model="formData[codevalue.id].score"
-                                       type="number" class="form-control"/>
-                            </td>
-                            <td>
-                                <span data-ng-hide="codevalue.edit">{{codevalue.position}}</span>
-                                <input data-ng-show="codevalue.edit" name="position" ng-model="formData[codevalue.id].position"
-                                       type="number" class="form-control"/>
-                            </td>
-                            <td>
-                                <span data-ng-hide="codevalue.edit">{{codevalue.active}}</span>
-                                <input data-ng-show="codevalue.edit" id="activeCheckbox" name="isActive" ng-model="formData[codevalue.id].isActive"
-                                        type="checkbox" data-ng-change="setChoice()" class="form-control"/>
-                            </td>
-                            <td>
-                                <button data-ng-hide="codevalue.edit" class="btn btn-sm btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
-                                        data-ng-click="showEdit(codevalue.id,codevalue.name,codevalue.description,codevalue.position,codevalue,codevalue.active,codevalue.score)"><i
-                                        class="fa fa-edit "></i></button>
-                                <button data-ng-show="codevalue.edit" class="btn btn-sm btn-primary" type="button" has-permission='UPDATE_CODEVALUE'
-                                        data-ng-click="editCodeValue(codevalue.id,codevalue)">{{'label.button.save' |
-                                    translate}}
-                                </button>
-                                <button data-ng-hide="codevalue.edit" class="btn btn-danger" type="button" has-permission='DELETE_CODEVALUE'
-                                        data-ng-click="deleteCodeValue(codevalue.id)"><i class="fa fa-trash-o "></i>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                    <md-table-container ng-show="codevalues.length > 0" class="noscroll-x">
+                        <div class="row">
+                            <div clas="col-sm-12">
+                                <table md-table class="table">
+                                    <thead md-head md-order="query.order">
+                                        <tr md-row>
+                                            <th md-column md-order-by="name">{{'label.heading.name' | translate }}</th>
+                                            <th md-column md-order-by="description">
+                                                {{'label.heading.description' | translate }}</th>
+                                            <th md-column md-order-by="score">{{'label.heading.score' | translate }}
+                                            </th>
+                                            <th md-column md-order-by="position">
+                                                {{'label.heading.position' | translate }}</th>
+                                            <th md-column>{{'label.heading.active' | translate}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row
+                                            data-ng-repeat="codevalue in codevalues | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"">
+                                    <td md-cell>
+                                        <span data-ng-hide=" codevalue.edit">{{codevalue.name}}</span>
+                                            <input data-ng-show="codevalue.edit" name="codevalue"
+                                                ng-model="formData[codevalue.id].name" type="text" class="form-control"
+                                                required />
+                                            </td>
+                                            <td md-cell>
+                                                <span data-ng-hide="codevalue.edit">{{codevalue.description}}</span>
+                                                <textarea data-ng-show="codevalue.edit" name="description"
+                                                    ng-model="formData[codevalue.id].description" type="text"
+                                                    class="form-control" />
+                                                </td>
+                                    <td md-cell>
+                                        <span data-ng-hide="codevalue.edit">{{codevalue.score}}</span>
+                                        <input data-ng-show="codevalue.edit" name="score" ng-model="formData[codevalue.id].score"
+                                            type="text" only-number class="form-control"/>
+                                    </td>
+                                    <td md-cell>
+                                        <span data-ng-hide="codevalue.edit">{{codevalue.position}}</span>
+                                        <input data-ng-show="codevalue.edit" name="position" ng-model="formData[codevalue.id].position"
+                                            type="text" only-number class="form-control"/>
+                                    </td>
+                                    <td md-cell>
+                                        <span data-ng-hide="codevalue.edit">{{codevalue.active | translate}}</span>
+                                        <md-checkbox data-ng-show="codevalue.edit" id="activeCheckbox" data-ng-change="setChoice()" 
+                                            name="isActive" ng-model="formData[codevalue.id].isActive">
+                                            {{'label.input.active' | translate }}
+                                        </md-checkbox>
+                                    </td>
+                                    <td md-cell>
+                                        <md-button data-ng-hide="codevalue.edit" class="md-raised md-primary" type="button" has-permission='UPDATE_CODEVALUE'
+                                                data-ng-click="showEdit(codevalue.id,codevalue.name,codevalue.description,codevalue.position,codevalue,codevalue.active,codevalue.score)"><i
+                                                class="fa fa-edit "></i></md-button>
+                                        <md-button data-ng-show="codevalue.edit" class="md-raised md-primary" type="button" has-permission='UPDATE_CODEVALUE'
+                                                data-ng-click="editCodeValue(codevalue.id,codevalue)">{{'label.button.save' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button data-ng-hide="codevalue.edit" class="md-raised btn-danger" type="button" has-permission='DELETE_CODEVALUE'
+                                                data-ng-click="deleteCodeValue(codevalue.id)"><i class="fa fa-trash-o "></i>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </md-table-container>
+                    <md-table-pagination ng-show="codevalues.length > query.limit" md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                        md-boundary-links="options.boundaryLinks" md-total="{{codevalues.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
                 </div>
             </div>
         </div>
     </div>
     <script type="text/ng-template" id="deletecode.html">
         <div class="modal-header silver">
-            <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+            <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
         </div>
-        <div class="modal-body ">
-
+        <div class="modal-body">
             <br>
-            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
         </div>
     </script>
     <script type="text/ng-template" id="deletecodevalue.html">
         <div class="modal-header silver">
-            <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+            <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
         </div>
-        <div class="modal-body ">
-
+        <div class="modal-body">
             <br>
-            <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</button>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
         </div>
     </script>
-
 </div>
-
-

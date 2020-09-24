@@ -6,7 +6,7 @@
     <div class="card">
         <div class="content">
                 <api-validate></api-validate>
-                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" rc-submit="submit()">
+                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" ng-submit="submit()">
                     <fieldset>
                         <legend>{{'label.heading.liststandinginstruction' | translate }}</legend>
                          <div ng-hide="isCollapsed" width="100%" >
@@ -15,7 +15,7 @@
 
                             <div class="col-sm-3">
                                 <select class="form-control" id="transferType" ng-model="formData.transferType" name="transferType"
-                                    ng-options="transferType.id as transferType.value for transferType in standinginstruction.transferTypeOptions" value="{{transferType.id}}" >
+                                ng-options="transferType.id as transferType.value | translate for transferType in standinginstruction.transferTypeOptions |  orderBy:'value | translate' " value="{{transferType.id}}" >
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
                                 <form-validate valattributeform="standinginstructionform" valattribute="transferType"/>

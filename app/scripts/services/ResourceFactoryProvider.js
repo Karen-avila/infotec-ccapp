@@ -65,8 +65,14 @@
                     clientIdentifierResource: defineResource(apiVer + "/client_identifiers/:clientIdentityId/documents", { clientIdentityId: '@clientIdentityId' }, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
+                    clientLastNote: defineResource(apiVer + "/clients/:clientId/notes/last", { clientId: '@clientId' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
                     clientDocumentsResource: defineResource(apiVer + "/clients/:clientId/documents/:documentId", { clientId: '@clientId', documentId: '@documentId' }, {
                         getAllClientDocuments: { method: 'GET', params: {}, isArray: true }
+                    }),
+                    clientDocumentResource: defineResource(apiVer + "/clients/:clientId/documents/:documentId/preview", { clientId: '@clientId', documentId: '@documentId' }, {
+                        getClientDocument: { method: 'GET', params: {} }
                     }),
                     clientAccountResource: defineResource(apiVer + "/clients/:clientId/accounts", { clientId: '@clientId' }, {
                         getAllClients: { method: 'GET', params: {} }
@@ -240,11 +246,7 @@
                         update: { method: 'PUT' }
                     }),
                     globalSearch: defineResource(apiVer + "/search", { query: '@query', resource: '@resource' }, {
-                        search: {
-                            method: 'GET',
-                            params: { query: '@query', resource: '@resource' },
-                            isArray: true
-                        }
+                        search: { method: 'GET', params: { query: '@query', resource: '@resource' }, isArray: true }
                     }),
                     globalSearchTemplateResource: defineResource(apiVer + "/search/template", {}, {
                         get: { method: 'GET', params: {} }
@@ -357,6 +359,9 @@
                     }),
                     savingsTrxnsTemplateResource: defineResource(apiVer + "/savingsaccounts/:savingsId/transactions/template", { savingsId: '@savingsId' }, {
                         get: { method: 'GET', params: { savingsId: '@savingsId' } }
+                    }),
+                    savingsNotesResource: defineResource(apiVer + "/savingsAccounts/:savingsId/notes", { savingsId: '@savingsId' }, {
+                        get: { method: 'GET', params: { savingsId: '@savingsId' }, isArray: true }
                     }),
                     savingsTrxnsResource: defineResource(apiVer + "/savingsaccounts/:savingsId/transactions/:transactionId", { savingsId: '@savingsId', transactionId: '@transactionId' }, {
                         get: { method: 'GET', params: { savingsId: '@savingsId', transactionId: '@transactionId' } }
@@ -485,6 +490,10 @@
                         get: { method: 'GET', params: {} },
                         search: { method: 'GET', params: {}, isArray: true }
                     }),
+                    loansDashboard: defineResource(apiVer + "/loans/dashboard", {}, {
+                        get: { method: 'GET', params: {} },
+                        search: { method: 'GET', params: {} }
+                    }),
                     officeToGLAccountMappingResource: defineResource(apiVer + "/financialactivityaccounts/:mappingId", { mappingId: '@mappingId' }, {
                         get: { method: 'GET', params: { mappingId: '@mappingId' } },
                         getAll: { method: 'GET', params: {}, isArray: true },
@@ -571,15 +580,18 @@
                     }),
                     clientaddressFields: defineResource(apiVer + "/client/addresses/template", {}, {
                         get: { method: 'GET', params: {} }
-                    }
-                    ),
+                    }),
                     addresssFieldConfiguration: defineResource(apiVer + "/fieldconfiguration/:entity", {}, {
                         get: { method: 'GET', params: {}, isArray: true }
                     }),
-                    clientAddress: defineResource(apiVer + "/client/:clientId/addresses", {}, {
+                    clientAddresses: defineResource(apiVer + "/client/:clientId/addresses", {clientId: '@clientId'}, {
                         post: { method: 'POST', params: { type: '@type' } },
                         get: { method: 'GET', params: { type: '@type', status: '@status' }, isArray: true },
+                        getAll: { method: 'GET', params: {}, isArray: true },
                         put: { method: 'PUT', params: {} }
+                    }),
+                    clientAddress: defineResource(apiVer + "/client/:clientId/addresses/:addressId", {}, {
+                        get: { method: 'GET', params: {}},
                     }),
                     familyMember: defineResource(apiVer + "/clients/:clientId/familymembers/:clientFamilyMemberId", {}, {
                         get: { method: 'GET', params: {} },
@@ -732,7 +744,13 @@
                     twoFactorConfigResource: defineResource(apiVer + "/twofactor/configure", {}, {
                         getAllConfigs: { method: 'GET', params: {} },
                         put: { method: 'PUT', params: {} }
-                    })
+                    }),
+                    getPreviewDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/preview", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
+                    getBinaryDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/attachment", { clientId: '@clientId', resourceId: '@resourceId' }, {
+                        get: { method: 'GET', responseType: 'arraybuffer' }
+                    }),
                 };
             }];
         }

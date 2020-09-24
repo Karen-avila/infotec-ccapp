@@ -34,8 +34,9 @@
 				                class="required">*</span></label>
 
 				        <div class="col-sm-3">
-				            <input type="text" id="transactionDate" name="transactiondate" datepicker-pop="dd MMMM yyyy"
-				                   ng-model="date.transactionDate" is-open="opened" class="form-control"/>
+				           
+								   <md-datepicker id="transactionDate"  name="transactiondate"  is-open="opened" ng-model="date.transactionDate">
+								</md-datepicker>
 				        </div>
 				    </div>
 
@@ -152,7 +153,7 @@
 														<span ng-hide="loan.chargesDue" ng-init="loan.chargesDue = 0">
 														</span>
 				                                        <div class="col-md-5 padd">
-				                                            <input type="text" class="input-sm form-control" number-format ng-model="loan.chargesDue"
+				                                            <input type="text" class="input-sm form-control"  ng-model="loan.chargesDue"
 																   ng-change="sumTotalDueCollection()">
 				                                        </div>
 													</span>
@@ -161,7 +162,7 @@
 				                                <span ng-repeat="savings in client.savings"
 													  ng-show="savingsproduct.id === savings.productId">
 				                                    <div class="col-md-7">
-				                                        <input id="dueAmount" number-format type="text" class="input-sm form-control" number-format
+				                                        <input id="dueAmount"  type="text" class="input-sm form-control" number-format
 															   ng-model="savings.dueAmount"
 															   ng-change="sumTotalDueCollection()">
 				                                    </div>
@@ -183,14 +184,14 @@
 								                  <span ng-repeat="grouptotal in loanGroupsTotal"
 														ng-show="grouptotal.groupId === group.groupId && loanproduct.id === grouptotal.productId">
 								                      <input type="text" class="input-sm form-control"
-															 number-format ng-model="grouptotal.dueAmount" disabled="disabled">
+															  ng-model="grouptotal.dueAmount" disabled="disabled">
 								                  </span>
 									</td>
 									<td ng-repeat="savingsproduct in collectionsheetdata.savingsProducts">
 								                  <span ng-repeat="grouptotal in savingsGroupsTotal"
 														ng-show="grouptotal.groupId === group.groupId && savingsproduct.id === grouptotal.productId">
 								                      <input type="text" class="input-sm form-control"
-															 number-format ng-model="grouptotal.dueAmount" disabled="disabled">
+															  ng-model="grouptotal.dueAmount" disabled="disabled">
 								                  </span>
 									</td>
 									<td></td>
@@ -203,13 +204,13 @@
 								</td>
 								<td style="height:30px" ng-repeat="loanproduct in collectionsheetdata.loanProducts">
 								                  <span ng-repeat="total in loansTotal" ng-show="loanproduct.id == total.productId">
-								                    <input type="text" class="input-sm form-control" number-format ng-model="total.dueAmount"
+								                    <input type="text" class="input-sm form-control"  ng-model="total.dueAmount"
 														   disabled="disabled">
 								                  </span>
 								</td>
 								<td style="height:30px" ng-repeat="savingsproduct in collectionsheetdata.savingsProducts">
 								                  <span ng-repeat="total in savingsTotal" ng-show="savingsproduct.id == total.productId">
-								                    <input type="text" class="input-sm form-control" number-format ng-model="total.dueAmount"
+								                    <input type="text" class="input-sm form-control"  ng-model="total.dueAmount"
 														   disabled="disabled">
 								                  </span>
 								</td>

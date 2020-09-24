@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es-MX">
   <head>
-    <meta charset="utf-8" />
+    <meta content="utf-8" http-equiv="encoding">
     <link rel="icon" type="image/png" href="./images/favicon.ico" />
     <title>{{ 'label.heading.company' | translate }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
   </head>
+  
   <body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" ng-controller="MainController">
     <!-- HTTP Bar Loader -->
     <div id="loading-bar"></div>
@@ -32,6 +34,7 @@
       <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" ng-show="currentSession.user != null">
         <div class="loader" ng-show="blockUI" ng-hide="!domReady">
         </div>
+      </div>
 
         <div id="mifos-reskin-ui-container" ng-hide="!domReady">
           <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>

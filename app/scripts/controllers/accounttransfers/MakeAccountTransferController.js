@@ -2,7 +2,7 @@
     mifosX.controllers = _.extend(module, {
         MakeAccountTransferController: function (scope, resourceFactory, location, routeParams, dateFilter) {
             scope.restrictDate = new Date();
-            var params = {fromAccountId: routeParams.accountId};
+            var params = { fromAccountId: routeParams.accountId };
             var accountType = routeParams.accountType || '';
             if (accountType == 'fromsavings') params.fromAccountType = 2;
             else if (accountType == 'fromloans') params.fromAccountType = 1;
@@ -17,7 +17,7 @@
                 window.history.back();
             };
 
-            scope.formData = {fromAccountId: params.fromAccountId, fromAccountType: params.fromAccountType};
+            scope.formData = { fromAccountId: params.fromAccountId, fromAccountType: params.fromAccountType, transferDate: new Date() };
             resourceFactory.accountTransfersTemplateResource.get(params, function (data) {
                 scope.transfer = data;
                 scope.toOffices = data.toOfficeOptions;

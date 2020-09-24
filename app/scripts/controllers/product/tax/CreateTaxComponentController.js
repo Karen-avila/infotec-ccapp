@@ -1,11 +1,11 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateTaxComponentController: function (scope, resourceFactory, location, dateFilter) {
+        CreateTaxComponentController: function (scope, resourceFactory, location, dateFilter, MAX_DATEPICKER) {
             scope.debitaccounts = [];
             scope.creditaccounts = [];
             scope.start = {};
             scope.start.date = new Date();
-            scope.restrictDate = new Date('2025-06-22');
+            scope.restrictDate = new Date(MAX_DATEPICKER);
             scope.formData = {};
             scope.tempAccounts = [];
             resourceFactory.taxcomponenttemplate.get(function (data) {
@@ -59,7 +59,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('CreateTaxComponentController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateTaxComponentController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateTaxComponentController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', 'MAX_DATEPICKER', mifosX.controllers.CreateTaxComponentController]).run(function ($log) {
         $log.info("CreateTaxComponentController initialized");
     });
 }(mifosX.controllers || {}));

@@ -11,7 +11,7 @@
                 <h4>{{'label.heading.editemployee' | translate}}</h4>
             </div>
             <hr>
-            <form name="editemployeeform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+            <form name="editemployeeform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -32,7 +32,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" class="form-control" required
+                            <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" class="form-control uppercase" required
                                    late-Validate/>
                         </div>
                         <div class="col-sm-3">
@@ -45,7 +45,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" class="form-control" required
+                            <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" class="form-control uppercase" required
                                    late-Validate/>
                         </div>
                         <div class="col-sm-3">
@@ -57,7 +57,7 @@
                         <label class="control-label col-sm-2" for="surname">{{'label.input.surname' | translate }}</label>
 
                         <div class="col-sm-3">
-                            <input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control">
+                            <input type="text" id="surname" name="surname" ng-model="formData.surname" class="form-control uppercase">
                         </div>
                         <div class="col-sm-3">
                             <form-validate valattributeform="editemployeeform" valattribute="surname"/>
@@ -76,7 +76,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="mobileNo">{{'label.input.mobileNo' | translate }}</label>
                         <div class="col-sm-3">
-                            <input type="text" id="mobileNo" class="form-control" ng-model="formData.mobileNo">
+                            <input type="text" id="mobileNo" only-number allow-decimal="false" maxlength="10" class="form-control" ng-model="formData.mobileNo">
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                         <div class="col-sm-3">
                             <md-datepicker id="joiningDate" ng-model="formData.joiningDate" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="restrictDate">
+                                min="minDate" max="restrictDate">
                             </md-datepicker>
                         </div>
                     </div>

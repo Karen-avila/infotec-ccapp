@@ -8,7 +8,7 @@
 	</ul>
 	<div class="card">
 		<div class="content">
-			<form name="cashiertxnform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+			<form name="cashiertxnform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
 				<api-validate></api-validate>
 				<table class="table">
 					<tr>
@@ -30,19 +30,19 @@
 						<td>{{'label.input.teller.cashiertxn.txnDate' | translate }}<span class="required">*</span>
 						</td>
 						<td>
-							<div class="col-sm-8">
-								<input id="txnDate" sort type="text" datepicker-pop="dd MMMM yyyy"
-									ng-model="formData.txnDate" class="form-control" is-open="opened" min="minDate"
-									max="restrictDate" />
-							</div>
+							<md-datepicker id="txnDate" ng-model="formData.txnDate" md-min-date="minDate"
+								md-max-date="restrictDate" required>
+							</md-datepicker>
 						</td>
 						<td>{{'label.input.currency' | translate }}<span class="required">*</span></td>
 						<td>
-							<div class="col-sm-2">
-								<select id="currencyCode" ng-model="formData.currencyCode" class="form-control"
-									ng-options="currency.code as currency.name | translate for currency in cashierTxnTemplate.currencyOptions"
-									value="{{currency.code}}" />
-							</div>
+							<md-select id="currencyCode" ng-model="formData.currencyCode"
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option ng-repeat="currency in cashierTxnTemplate.currencyOptions"
+									ng-value="currency.code">
+									{{currency.code}} {{currency.name}}
+								</md-option>
+							</md-select>
 						</td>
 					</tr>
 					<tr>
@@ -50,7 +50,7 @@
 						</td>
 						<td>
 							<div class="col-sm-8">
-								<input id="txnAmount" type="text" name="txnAmount" number-format
+								<input id="txnAmount" type="text" name="txnAmount" only-number maxlength="15"
 									ng-model="formData.txnAmount" class="form-control" required late-Validate />
 							</div>
 						</td>
@@ -63,26 +63,25 @@
 						</td>
 					</tr>
 
+					<tr>
+						<td colspan="4">
+							<div class="col-md-12 center">
+								<md-button id="cancel" type="reset" href="#!/tellers/{{tellersId}}/cashiers"
+									class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+								<md-button id="allocate" type="submit" class="md-raised md-primary"
+									has-permission='ALLOCATECASHIER_TELLER' data-ng-click="allocate()"
+									ng-show="ifAllocate()">
+									<i
+										class="fa fa-level-down "></i>{{'label.button.cashier.allocatefunds' | translate}}
+								</md-button>
+								<md-button id="settle" type="submit" class="md-raised md-primary"
+									has-permission='SETTLECASHFROMCASHIER_TELLER' data-ng-click="settle()"
+									ng-show="ifSettle()">
+									<i class="fa fa-level-up "></i>{{'label.button.cashier.settlefunds' | translate}}
+								</md-button>
+							</div>
+						</td>
 					</tr>
-					<td colspan="4">
-						<div class="col-md-12 center">
-							<a id="cancel" href="#!/tellers/{{tellersId}}/cashiers">
-								<button type="reset"
-									class="btn btn.sm btn-default">{{'label.button.cancel' | translate}}</button>
-							</a>
-							<button id="allocate" type="submit" class="btn btn.sm btn-success"
-								has-permission='ALLOCATECASHIER_TELLER' data-ng-click="allocate()"
-								ng-show="ifAllocate()">
-								<i class="fa fa-level-down "></i>{{'label.button.cashier.allocatefunds' | translate}}
-							</button>
-							<button id="settle" type="submit" class="btn btn.sm btn-warning"
-								has-permission='SETTLECASHFROMCASHIER_TELLER' data-ng-click="settle()"
-								ng-show="ifSettle()">
-								<i class="fa fa-level-up "></i>{{'label.button.cashier.settlefunds' | translate}}
-							</button>
-						</div>
-					</td>
-					</td>
 				</table>
 			</form>
 		</div>

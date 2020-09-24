@@ -9,7 +9,7 @@
                 <h4>{{'label.heading.frequentpostings' | translate }}</h4>
             </div>
             <br/>
-            <form name="freqpostingform" novalidate="" class="form-horizontal form-extra" ng-controller="AccFreqPostingController" rc-submit="submit()">
+            <form name="freqpostingform" novalidate="" class="form-horizontal form-extra" ng-controller="AccFreqPostingController" ng-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -24,9 +24,9 @@
                         <label class="control-label col-sm-2">{{'label.input.accountingrules' | translate }}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb(formData.rule)" 
+                            <md-select id="rule" name="rule" ng-model="formData.rule" ng-change="resetCrAndDb()" 
                                 placeholder="{{'label.selectone' | translate}}">
-                                <md-option ng-repeat="rule in rules" ng-value="rule.id">
+                                <md-option ng-repeat="rule in rules" ng-value="rule">
                                     {{rule.name}}
                                 </md-option>
                             </md-select>
@@ -48,34 +48,53 @@
                     <div class="form-group" data-ng-show="formData.rule">
                         <label class="control-label col-sm-2">{{'label.input.affectedglentries' | translate }}<span
                                 class="required">*</span></label>
-                        <div class="col-sm-6">
-                            <h4><strong>{{'label.input.debit' | translate }}</strong>&nbsp;
-                                <a ng-click="addDebitAccount()" ng-show="allowDebitEntries">&nbsp;<i class="fa fa-plus "></i></a>
-                            </h4>
-                            <div ng-repeat="dbAccount in formData.dbAccounts" class="form-inline paddedbottom10">
-                                <md-select ng-init="dbAccount.select = rule.debitAccounts[0]" ng-model="dbAccount.select" 
-                                    placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="debitAccount in rule.debitAccounts" ng-value="debitAccount.id">
-                                        {{debitAccount.glCode}} {{debitAccount.name}}
-                                    </md-option>
-                                </md-select>
-
-                                <input id="debits[{{$index}}]" type="number" name="debits" class="input-sm form-control" ng-model="dbAccount.debitAmount" required late-validate>
-                                <a ng-click="removeDebitAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-12">
+                                <h4><strong>{{'label.input.debit' | translate }}</strong>&nbsp;
+                                    <a ng-click="addDebitAccount()" ng-show="allowDebitEntries">&nbsp;<i class="fa fa-plus "></i></a>
+                                </h4>
                             </div>
-                            <h4><strong>{{'label.input.credit' | translate }}</strong>&nbsp;
+                            <div class="col-sm-12">
+                                <div ng-repeat="dbAccount in formData.dbAccounts" class="form-inline paddedbottom10">
+                                <div class="col-md-8">
+                                    <md-select ng-init="dbAccount.select = rule.debitAccounts[0]" ng-model="dbAccount.select" 
+                                        placeholder="{{'label.selectone' | translate}}">
+                                        <md-option ng-repeat="debitAccount in rule.debitAccounts" ng-value="debitAccount.id">
+                                            {{debitAccount.glCode}} {{debitAccount.name}}
+                                        </md-option>
+                                    </md-select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="debits[{{$index}}]" type="text" name="debits" maxlength="15" only-number class="input-sm form-control" ng-model="dbAccount.debitAmount" required late-validate>
+                                </div>
+                                <div class="col-md-2">
+                                    <a ng-click="removeDebitAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <h4><strong>{{'label.input.credit' | translate }}</strong>&nbsp;
                                 <a ng-click="addCrAccount()" ng-show="allowCreditEntries">&nbsp;<i class="fa fa-plus "></i></a>
-                            </h4>
-                            <div ng-repeat="crAccount in formData.crAccounts" class="form-inline paddedbottom10">
-                                <md-select ng-init="crAccount.select = rule.creditAccounts[0]"  ng-model="crAccount.select" 
-                                    placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="creditAccount in formData.rule.creditAccounts" ng-value="creditAccount.id">
-                                        {{creditAccount.glCode}} {{creditAccount.name}}
-                                    </md-option>
-                                </md-select>
-
-                                <input id="credits[{{$index}}]" type="number" name="credits" class="input-sm form-control" ng-model="crAccount.crAmount" required late-validate>
-                                <a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times "></i></a> &nbsp;&nbsp;&nbsp;
+                                </h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <div ng-repeat="crAccount in formData.crAccounts" class="form-inline paddedbottom10">
+                                    <div class="col-md-8">
+                                        <md-select ng-init="crAccount.select = rule.creditAccounts[0]"  ng-model="crAccount.select" 
+                                        placeholder="{{'label.selectone' | translate}}">
+                                            <md-option ng-repeat="creditAccount in rule.creditAccounts" ng-value="creditAccount.id">
+                                                {{creditAccount.glCode}} {{creditAccount.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input id="credits[{{$index}}]" type="text" name="credits" maxlength="15" only-number class="input-sm form-control" ng-model="crAccount.crAmount" required late-validate>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a ng-click="removeCrAccount($index)">&nbsp;<i class="fa fa-times-circle fa-2x"></i></a>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,17 +106,17 @@
                         </div>
                         <label class="control-label col-sm-2">{{'label.input.transactiondate' | translate }}<span class="required">*</span></label>
                         <div class="col-sm-3">
-                            <md-datepicker id="transactionDate" ng-model="first.date" min="'2000-01-01'" max="restrictDate"></md-datepicker>
+                            <md-datepicker id="transactionDate" ng-model="first.date" md-min-date="'2000-01-01'" md-max-date="restrictDate"></md-datepicker>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">{{'label.anchor.showpaymentdetails' | translate}}</label>
 
                         <div class="col-sm-3">
-                            <a id="clickToShow" class="btn btn-sm btn-primary" ng-click="showPaymentDetails=!showPaymentDetails">
+                            <md-button id="clickToShow" class="md-raised md-primary" ng-click="showPaymentDetails=!showPaymentDetails">
                                 <i ng-show="showPaymentDetails" class="fa fa-minus "></i>
                                 <i ng-show="!showPaymentDetails" class="fa fa-plus "></i>
-                            </a>
+                            </md-button>
                         </div>
                     </div>
                     <div class="form-group" uib-collapse="!showPaymentDetails">
@@ -109,7 +128,7 @@
                             <div class="col-sm-3">
                                 <md-select id="paymentTypeId" ng-model="formData.paymentTypeId"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="paymentType in paymentTypes" ng-value="paymentType.id">
+                                    <md-option ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
                                         {{'payment.type.' + paymentType.name | translate}}
                                     </md-option>
                                 </md-select>
@@ -153,7 +172,7 @@
                     </div>
                     <div class="col-md-12 center">
                         <md-button id="cancel" href="#!/accounting" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
-                        <md-button id="save" type="submit" class="md-raised md-primary" has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</md-button>
+                        <md-button id="save" type="submit" ng-click="submit()" class="md-raised md-primary" has-permission='CREATE_JOURNALENTRY'>{{'label.button.save' | translate }}</md-button>
                     </div>
                 </fieldset>
             </form>

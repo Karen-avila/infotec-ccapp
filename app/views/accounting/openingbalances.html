@@ -52,7 +52,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <md-datepicker ng-model="first.date" min="'2000-01-01'" max="restrictDate"> </md-datepicker>
+                        <md-datepicker ng-model="first.date" md-min-date="'2000-01-01'" md-max-date="restrictDate"> </md-datepicker>
                     </div>
                 </div>
 
@@ -80,9 +80,9 @@
                                 </span>
                             </td>
                             <td md-cell>{{gl.glAccountCode}} {{gl.glAccountName}}</td>
-                            <td md-cell><input type="number" name="debits{{$index}}" ng-model="gl.debit"
+                            <td md-cell><input type="text" only-number name="debits{{$index}}" ng-model="gl.debit"
                                     class="form-control" ng-change="keyPress()" /></td>
-                            <td md-cell><input type="number" name="credits{{$index}}" ng-model="gl.credit"
+                            <td md-cell><input type="text" only-number name="credits{{$index}}" ng-model="gl.credit"
                                     class="form-control" ng-change="keyPress()" /></td>
                         </tr>
                     </tbody>

@@ -6,7 +6,7 @@
     <api-validate></api-validate>
     <div class="card">
         <div class="content">
-                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" rc-submit="submit()">
+                <form class="form-horizontal form-extra" name="standinginstructionform" novalidate="" ng-submit="submit()">
                     <fieldset>
                         <legend>{{'label.heading.createstandinginstruction' | translate }}</legend>
                         <div class="form-group">
@@ -39,7 +39,7 @@
 
                             <div class="col-sm-4">
                                 <select id="transferType" ng-model="formData.transferType" name="transferType"
-                                    ng-options="transferType.id as transferType.value for transferType in standinginstruction.transferTypeOptions" value="{{transferType.id}}" ng-change="changeEvent()" class="form-control" required>
+                                    ng-options="transferType.id as transferType.value | translate for transferType in standinginstruction.transferTypeOptions" value="{{transferType.id}}" ng-change="changeEvent()" class="form-control" required>
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
                             </div>
@@ -53,7 +53,7 @@
                             </label>
                             <div class="col-sm-4">
                                <select id="priority" ng-model="formData.priority" name="priority"
-                                    ng-options="priority.id as priority.value for priority in standinginstruction.priorityOptions" value="{{priority.id}}" class="form-control" required>
+                                    ng-options="priority.id as priority.value | translate for priority in standinginstruction.priorityOptions" value="{{priority.id}}" class="form-control" required>
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
                             </div>
@@ -69,7 +69,7 @@
 
                             <div class="col-sm-4">
                                <select id="status" ng-model="formData.status" name="status"
-                                    ng-options="status.id as status.value for status in standinginstruction.statusOptions" value="{{status.id}}" class="form-control" required>
+                                    ng-options="status.id as status.value | translate for status in standinginstruction.statusOptions" value="{{status.id}}" class="form-control" required>
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
                             </div>
@@ -115,12 +115,12 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="destination" >{{'label.heading.destination' | translate }}<span
                                     class="required">*</span>
-                                <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.destination' | translate}}"></i> 
+                                <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.destination'}}"></i> 
                             </label>
 
                             <div class="col-sm-4">
                                 <select id="destination" ng-model="destination" name="destination"
-                                                ng-options="destination.id as destination.name for destination in destinationOptions"
+                                                ng-options="destination.id as destination.name | translate for destination in destinationOptions"
                                                 ng-change="changedestination()" value="{{destination.id}}" class="form-control" required late-validate>
                                             <option value="">{{'label.selectone' | translate}}</option>
                                         </select>
@@ -182,7 +182,7 @@
 
                             <div class="col-sm-4">
                                 <select id="toAccountType" ng-model="formData.toAccountType" name="account"
-                                        ng-options="toAccountType.id as toAccountType.value for toAccountType in standinginstruction.toAccountTypeOptions"
+                                        ng-options="toAccountType.id as toAccountType.value | translate for toAccountType in standinginstruction.toAccountTypeOptions"
                                         ng-change="changeEvent()" value="{{toAccountType.id}}" class="form-control"
                                         required>
                                     <option value="">{{'label.selectone' | translate}}</option>
@@ -217,7 +217,7 @@
 
                             <div class="col-sm-4">
                                 <select id="instructionType" ng-model="formData.instructionType" name="instructionType"
-                                        ng-options="instructionType.id as (instructionType.value) for instructionType in standinginstruction.instructionTypeOptions"
+                                        ng-options="instructionType.id as (instructionType.value) | translate for instructionType in standinginstruction.instructionTypeOptions"
                                         value="{{instructionType.id}}" class="form-control" required>
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
@@ -231,7 +231,7 @@
                                 <i class="fa fa-question-circle" tooltip-append-to-body="true" uib-tooltip="{{'label.tooltip.csi.amount' | translate}}"></i>  
                             </label>
                             <div class="col-sm-4">
-                                <input type="text" id="transferAmount" name="transferAmount" number-format ng-model="formData.amount" class="form-control"/>
+                                <input type="text" id="transferAmount" name="transferAmount"  ng-model="formData.amount" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -241,14 +241,14 @@
                             </label>
 
                             <div class="col-sm-4">
-                                <input type="text" id="validFrom" datepicker-pop="dd MMMM yyyy" ng-model="formData.validFrom"
-                                       is-open="opened" min="restrictDate" name="validFrom" class="form-control"/>
+                                <md-datepicker id="validFrom" ng-model="formData.validFrom" md-min-date="restrictDate" 
+                                    md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
                             </div>
                              <label class="control-label col-sm-1" for="validTill">{{'label.heading.to' | translate }}</label>
 
                             <div class="col-sm-4">
-                                <input type="text" id="validTill" datepicker-pop="dd MMMM yyyy" ng-model="formData.validTill"
-                                       is-open="opened" min="restrictDate" class="form-control"/>
+                                <md-datepicker id="validTill" ng-model="formData.validTill" md-min-date="restrictDate" 
+                                    md-placeholder="{{'label.input.todate' | translate }}"></md-datepicker>
                             </div>
                         </div>
                         <div class="form-group">
@@ -258,7 +258,7 @@
                             </label>
                             <div class="col-sm-4">
                                 <select id="recurrenceType" ng-model="formData.recurrenceType" name="recurrenceType"
-                                        ng-options="recurrenceType.id as (recurrenceType.value) for recurrenceType in standinginstruction.recurrenceTypeOptions"
+                                        ng-options="recurrenceType.id as (recurrenceType.value) | translate for recurrenceType in standinginstruction.recurrenceTypeOptions"
                                         value="{{recurrenceType.id}}" class="form-control" required>
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>
@@ -282,7 +282,7 @@
                             </label>
                             <div class="col-sm-4">
                                 <select id="recurrenceFrequency" ng-model="formData.recurrenceFrequency" name="recurrenceFrequency"
-                                        ng-options="recurrenceFrequency.id as (recurrenceFrequency.value) for recurrenceFrequency in standinginstruction.recurrenceFrequencyOptions"
+                                        ng-options="recurrenceFrequency.id as (recurrenceFrequency.value) | translate for recurrenceFrequency in standinginstruction.recurrenceFrequencyOptions"
                                         value="{{recurrenceFrequency.id}}" class="form-control">
                                     <option value="">{{'label.selectone' | translate}}</option>
                                 </select>

@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="SavingAccountActionsController">
     <ul class="breadcrumb">
         <li><a href="#!/viewsavingaccount/{{accountId}}">{{'label.anchor.viewsavingaccount' | translate}}</a></li>
-        <li class="active">{{action | translate}}</li>
+        <li class="active">{{'label.button.' + action | translate}}</li>
     </ul>
     <wizard current-step="step" on-finish="submitDatatable()" class="card well">
         <wz-step wz-title="{{title | translate}}">
@@ -20,7 +20,7 @@
                         <div class="col-sm-3">
                             <md-datepicker id="{{modelName}}" ng-model="formData[modelName]" 
                                 md-placeholder="{{'label.selecttodate' | translate}}"
-                                md-min-date="minDate" md-max-date="restrictDate">
+                                min="minDate" max="restrictDate">
                             </md-datepicker>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     translate}}<span class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="number" class="form-control" ng-model="accountBalance" readonly />
+                            <input type="text" only-number class="form-control" ng-model="accountBalance" readonly />
                         </div>
                     </div>
                     <div ng-show="isTransaction">
@@ -60,7 +60,7 @@
                         translate}}<span class="required">*</span></label>
 
                             <div class="col-sm-3">
-                                <input id="transactionAmount" type="number" name="transactionAmount"
+                                <input id="transactionAmount" type="text" only-number name="transactionAmount"
                                     ng-model="formData.transactionAmount" class="form-control" required
                                     late-Validate />
                             </div>
@@ -146,7 +146,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="amoun" type="number" name="amount" ng-model="formData.amount" required />
+                            <input id="amoun" type="text" only-number name="amount" ng-model="formData.amount" required />
                             <span ng-show="savingccountactionform.amoun.$invalid">
                                 <small class="error">
                                     {{'label.requiredfield' | translate}}
@@ -154,6 +154,21 @@
                             </span>
                         </div>
                     </div>
+
+                    <div class="form-group" >
+                        <label ng-show="action == 'block'" class="control-label col-sm-3">{{'label.input.block.reason' | translate}}</label>
+                        <label ng-show="action == 'unblock'" class="control-label col-sm-3">{{'label.input.unblock.reason' | translate}}</label>
+
+                        <div class="col-sm-3">
+                            <md-select id="blockReasonId" ng-model="formData.blockReason"
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option ng-repeat="blockReason in blockReasons" ng-value="blockReason.name">
+                                    {{blockReason.name | translate}}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+
                     <div class="form-group" ng-show="showNoteField">
                         <label class="control-label col-sm-3" for="note">{{'label.input.note' | translate}}</label>
 
@@ -167,7 +182,7 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input type="number" id="amount" ng-model="formData.amount" class="form-control" />
+                            <input type="text" only-number id="amount" ng-model="formData.amount" class="form-control" />
                         </div>
                     </div>
 
@@ -183,25 +198,25 @@
                         </div>
                     </div>
                     <div class="">
-                        <button id="save1" wz-next class="btn btn-sm btn-primary pull-right" ng-show="isEntityDatatables">
+                        <md-button id="save1" wz-next class="md-raised md-primary pull-right" ng-show="isEntityDatatables">
                             {{'label.button.proceed' | translate}}
-                        </button>
+                        </md-button>
                         <div ng-hide="isEntityDatatables">
                             <div class="form-group" ng-show="showDelete || waiveCharge || inactivateCharge">
                                 <label class="control-label col-sm-3">{{'label.areyousure' | translate }}</label>
                             </div>
                             <div class="col-md-12 center" ng-show="showDelete">
-                                <button type="reset" ng-click="submit()" has-permission='{{taskPermissionName}}'
-                                    class="btn btn-sm btn-primary">{{'label.button.confirm' | translate }}</button>
-                                <button type="submit" ng-click="cancel()"
-                                    class="btn btn-sm btn-primary">{{'label.button.cancel' | translate }}</button>
+                                <md-button type="reset" ng-click="submit()" has-permission='{{taskPermissionName}}'
+                                    class="md-raised md-primary">{{'label.button.confirm' | translate }}</md-button>
+                                <md-button type="submit" ng-click="cancel()"
+                                    class="md-raised">{{'label.button.cancel' | translate }}</md-button>
                             </div>
 
                             <div class="col-md-12 center" ng-hide="showDelete">
-                                <button id="cancel" ng-click="cancel()"
-                                    class="btn btn-sm btn-primary">{{'label.button.cancel' | translate }}</button>
-                                <button id="save" type="submit" has-permission='{{taskPermissionName}}'
-                                    class="btn btn-sm btn-primary">{{'label.button.save' | translate }}</button>
+                                <md-button id="cancel" ng-click="cancel()"
+                                    class="md-raised">{{'label.button.cancel' | translate }}</md-button>
+                                <md-button id="save" type="submit" has-permission='{{taskPermissionName}}'
+                                    class="md-raised md-primary">{{'label.button.save' | translate }}</md-button>
                             </div>
                         </div>
                     </div>
@@ -284,23 +299,20 @@
                             </div>
                         </div>
                         <div class="pull-right" ng-if="!$last">
-                            <button id="save4" type="submit" class="btn btn-sm btn-primary" wz-next>
+                            <md-button id="save4" type="submit" class="md-raised md-primary" wz-next>
                                 {{'label.button.proceed' | translate}}
-                            </button>
+                            </md-button>
                         </div>
                         <div class="col-md-offset-5" ng-if="$last">
                             <div class="form-group" ng-show="showDelete || showwaiveforspecicficduedate">
                                 <label class="control-label col-sm-3">{{'label.areyousure' | translate}}</label>
                             </div>
                             <div class="col-md-offset-2" ng-show="showDelete || showwaiveforspecicficduedate">
-                                <button type="reset" ng-click="cancel()" class="btn btn-sm btn-primary">{{'label.button.cancel' |
-                                    translate}}
-                                </button>
-                                <button type="submit" has-permission='{{taskPermissionName}}' wz-next
-                                    class="btn btn-sm btn-primary">{{
-                                    'label.button.confirm' |
-                                    translate}}
-                                </button>
+                                <md-button type="reset" ng-click="cancel()" class="md-raised">{{'label.button.cancel' | translate}}
+                                </md-button>
+                                <md-button type="submit" has-permission='{{taskPermissionName}}' class="md-raised md-primary" wz-next
+                                    class="btn btn-sm btn-primary">{{'label.button.confirm' | translate}}
+                                </md-button>
                             </div>
                             <div class="col-md-offset-2" ng-hide="showDelete || showwaiveforspecicficduedate">
                                 <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">{{'label.button.cancel' |

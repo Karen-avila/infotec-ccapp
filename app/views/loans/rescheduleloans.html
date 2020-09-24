@@ -5,7 +5,7 @@
             <li class="active">{{'label.anchor.rescheduleLoan' | translate}}</li>
         </ul>
     </div>
-    <form name="createloanrescheduleform" novalidate="" class="form-horizontal well" rc-submit="submit()">
+    <form name="createloanrescheduleform" novalidate="" class="form-horizontal well" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <legend>{{'label.heading.rescheduleloan' | translate}}</legend>
@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                     <md-datepicker id="rescheduleFromDate" ng-model="formData.rescheduleFromDate" 
                         md-placeholder="{{'label.selecttodate' | translate}}"
-                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                        min="'2000-01-01'" max="restrictDate">
                     </md-datepicker>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="col-sm-6">
                     <md-datepicker id="submittedOnDate" ng-model="formData.submittedOnDate" 
                         md-placeholder="{{'label.selecttodate' | translate}}"
-                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                        min="'2000-01-01'" max="restrictDate">
                     </md-datepicker>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <div class="col-sm-6">
                     <md-datepicker id="adjustedDueDate" ng-show="changeRepaymentDate" ng-model="formData.adjustedDueDate"  name="adjustedDueDate"
                         md-placeholder="{{'label.selecttodate' | translate}}"
-                        md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                        min="'2000-01-01'" max="restrictDate">
                     </md-datepicker>
                 </div>
             </div>

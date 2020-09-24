@@ -45,7 +45,7 @@
                                     <div class="col-sm-3" style="position: relative;">
                                         <md-datepicker id="submittedOnDate" ng-show="formData.productId" ng-model="date.submittedOnDate"" 
                                             md-placeholder="{{'label.selecttodate' | translate}}"
-                                            md-min-date="'2000-01-01'" md-max-date="restrictDate">
+                                            min="'2000-01-01'" max="restrictDate">
                                         </md-datepicker>
                                     </div>
                                 </div>
@@ -103,11 +103,25 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-sm-3">{{'label.input.account.level' | translate}}
+                                        <span class="required">*</span>
+                                        <i class="fa fa-question-circle"
+                                            uib-tooltip="{{'label.tooltip.account.level' | translate}}"
+                                            tooltip-append-to-body="true"></i>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select id="accountLevel" 
+                                                ng-model="formData.accountLevel">
+                                            <md-option ng-value="level" ng-repeat="level in accountLevels">
+                                                {{'label.input.level' | translate}} {{level}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
                                     <label class="control-label col-sm-3">{{'label.input.nominalannualinterestrate' | translate }}
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="nominalAnnualInterestRate" type="number" name="nominalannualinterestrate"
+                                        <input id="nominalAnnualInterestRate" type="text" only-number name="nominalannualinterestrate"
                                             ng-model="formData.nominalAnnualInterestRate" class="form-control" required />
                                     </div>
                                 </div>
@@ -169,14 +183,14 @@
                                     <label
                                         class="control-label col-sm-3">{{'label.input.minimumopeningbalance' | translate }}</label>
                                     <div class="col-sm-2">
-                                        <input id="minRequiredOpeningBalance" type="number"
+                                        <input id="minRequiredOpeningBalance" type="text" only-number
                                             ng-model="formData.minRequiredOpeningBalance" class="form-control" >
                                     </div>
                                     <label
                                         class="control-label col-sm-2">{{'label.input.lockinPeriodFrequency' | translate }}</label>
 
                                     <div class="col-sm-2">
-                                        <input id="lockinPeriodFrequency" type="number" class="form-control"
+                                        <input id="lockinPeriodFrequency" type="text" only-number class="form-control"
                                             ng-model="formData.lockinPeriodFrequency">
                                     </div>
                                     <div class="col-sm-2">
@@ -207,20 +221,20 @@
                                     <label class="control-label col-sm-2">{{'label.input.overdraftlimit' | translate }}
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="overdraftLimit" type="number" class="form-control" ng-model="formData.overdraftLimit">
+                                        <input id="overdraftLimit" type="text" only-number class="form-control" ng-model="formData.overdraftLimit">
                                     </div>
                                     <label
                                         class="control-label col-sm-2">{{'label.input.nominalannualinterestrateoverdraft' | translate }}
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="nominalAnnualInterestRateOverdraft" type="number"
+                                        <input id="nominalAnnualInterestRateOverdraft" type="text" only-number
                                             ng-model="formData.nominalAnnualInterestRateOverdraft" class="form-control">
                                     </div>
                                     <label
                                         class="control-label col-sm-2">{{'label.input.minoverdraftforinterestcalculation' | translate }}
                                     </label>
                                     <div class="col-sm-2">
-                                        <input id="minOverdraftForInterestCalculation" type="number"
+                                        <input id="minOverdraftForInterestCalculation" type="text" only-number
                                             ng-model="formData.minOverdraftForInterestCalculation" class="form-control" >
                                     </div>
                                 </div>
@@ -235,7 +249,7 @@
                                     <label class="control-label col-sm-3" >{{'label.input.minRequiredBalance' | translate }}
                                     </label>
                                     <div class="col-sm-3">
-                                        <input id="minRequiredBalance" type="number" class="form-control"
+                                        <input id="minRequiredBalance" type="text" only-number class="form-control"
                                             ng-model="formData.minRequiredBalance" >
                                     </div>
                                 </div>
@@ -309,7 +323,7 @@
                                         <td>{{charge.name}},{{charge.currency.displaySymbol}}</td>
                                         <td>{{charge.chargeCalculationType.value | translate}}</td>
                                         <td>
-                                            <input id="charges[{{$index}}].amount" class="input-sm form-control" type="number"
+                                            <input id="charges[{{$index}}].amount" class="input-sm form-control" type="text" only-number
                                                 ng-model="charge.amount" placeholder="{{'label.input.amount' | translate}}" />
                                         </td>
                                         <td>{{charge.chargeTimeType.value | translate}}</td>
@@ -336,9 +350,9 @@
                                             </md-datepicker>
                                         </td>
                                         <td ng-switch on="charge.chargeTimeType.value">
-                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
+                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="text" only-number
                                                 ng-model="charge.feeInterval" ng-switch-when='Monthly Fee' />
-                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="number"
+                                            <input id="charges[{{$index}}].feeInterval" class="input-sm form-control" type="text" only-number
                                                 ng-model="charge.feeInterval" ng-switch-when='Weekly Fee' />
                                         </td>
                                         <td>

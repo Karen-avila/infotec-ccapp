@@ -12,24 +12,25 @@
             <api-validate></api-validate>
             <form class="form-horizontal form-extra" ng-controller="MakeDataTableEntryController" ng-submit="submit()">
                 <fieldset>
-                    <h3>{{'datatable.' + tableName | translate}}</h3>
+                    <h3 ng-show="tableDescription==''">{{'datatable.' + tableName | translate}}</h3>
+                    <h3 ng-show="tableDescription!=''">{{tableDescription}}</h3>
                     <hr />
                     <div class="form-group" ng-repeat="columnHeader in columnHeaders">
-                        <label class="control-label col-md-5">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
+                        <label
+                            class="control-label col-md-5">{{ getDatatableColumn(tableName, columnHeader.columnName) | translate }}
                             <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
                         </label>
 
                         <div class="col-md-7">
                             <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text"
                                 ng-model="formData[columnHeader.columnName]" class="form-control" />
-                            <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text"
-                                datepicker-pop="dd MMMM yyyy" ng-model="formDat[columnHeader.columnName]"
-                                is-open="opened{{$index}}" class="form-control" />
+                            <md-datepicker ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" 
+                                ng-model="formDat[columnHeader.columnName]">
+                            </md-datepicker>
                             <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'" class="form-inline">
                                 <div class="form-group">
-                                    <input type="text" datepicker-pop="dd MMMM yyyy"
-                                        ng-model="formDat[columnHeader.columnName].date" is-open="opened{{$index}}"
-                                        class="form-control" />
+                                    <md-datepicker ng-model="formDat[columnHeader.columnName].date">
+                                    </md-datepicker>
                                 </div>
                                 <div class="form-group">
                                     <input type="time" placeholder="HH:MM:SS"
@@ -50,23 +51,25 @@
                                 <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                     data-ng-switch-when="CODELOOKUP" ng-model="formData[columnHeader.columnName]"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
-                                        {{columnValue.value}}
+                                    <md-option ng-repeat="columnValue in columnHeader.columnValues"
+                                        ng-value="columnValue.id">
+                                        {{columnValue.description}}
                                     </md-option>
                                 </md-select>
                                 <md-select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'"
                                     data-ng-switch-when="CODEVALUE" ng-model="formData[columnHeader.columnName]"
                                     placeholder="{{'label.selectone' | translate}}">
-                                    <md-option ng-repeat="columnValue in columnHeader.columnValues" ng-value="columnValue.id">
-                                        {{columnValue.value}}
+                                    <md-option ng-repeat="columnValue in columnHeader.columnValues"
+                                        ng-value="columnValue.id">
+                                        {{columnValue.description}}
                                     </md-option>
                                 </md-select>
                             </span>
                         </div>
                     </div>
                     <div class="col-md-12 center">
-                        <md-button id="cancel" class="md-raised"
-                            ng-click="cancel()">{{'label.button.cancel' | translate }}</md-button>
+                        <md-button id="cancel" class="md-raised" ng-click="cancel()">
+                            {{'label.button.cancel' | translate }}</md-button>
                         <md-button id="save" type="submit" class="md-raised md-primary"
                             has-permission='CREATE_{{tableName}}'>{{'label.button.save' | translate }}</md-button>
                     </div>

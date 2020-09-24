@@ -1,21 +1,21 @@
 <div class="card" ng-controller="RunReportsController">
     <div class="content">
         <div class="toolbar">
-            <h5>{{'label.reports.name.' + reportName | translate}}</h5>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            <h5>{{'label.reports.name.' + reportName | translate}}</h5>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-12">
                 <span style="margin-left: 10px;font-size:20px;">
                     <md-button md-no-ink class="md-primary pull-right" ng-show="checkStatus()"
-                            ng-click="isCollapsed=!isCollapsed">
+                        ng-click="isCollapsed=!isCollapsed">
                         <i class="fa fa-chevron-down"></i>{{'label.button.parameters' | translate }}
                     </md-button>
                     <md-button data-ng-hide="hideChart" md-no-ink class="md-primary pull-right" ng-click="setTypePie()">
                         {{'label.input.piechart' | translate }}
                     </md-button>
                     <md-button data-ng-hide="hideChart" md-no-ink class="md-primary pull-right" ng-click="setTypeBar()">
-                        <i class="fa fa-bar-chart-o"></i>  {{'label.input.barchart' | translate }}
+                        <i class="fa fa-bar-chart-o"></i> {{'label.input.barchart' | translate }}
                     </md-button>
                 </span>
             </div>
@@ -24,44 +24,45 @@
         <div class="row">
             <div ng-hide="isCollapsed" class="alert-block form-horizontal">
                 <br>
-        
+
                 <div class="form-group info" ng-repeat="reportParam in reportParams">
-                    <label class="control-label col-sm-2" for="{{reportParam.variable}}">{{ reportParam.label | translate}}</label>
-        
+                    <label class="control-label col-sm-2"
+                        for="{{reportParam.variable}}">{{reportParam.label | translate}}</label>
+
                     <div class="col-sm-3">
                         <md-select id="{{reportParam.inputName}}" ng-model="formData[reportParam.inputName]"
-                                ng-change="getDependencies(reportParam)" required
-                                placeholder="{{'label.selectone' | translate}}">
-                                <md-option ng-repeat="selectOption in reportParam.selectOptions"
-                                    ng-value="selectOption.id">
-                                    {{selectOption.name | translate}}
-                                </md-option>
+                            ng-change="getDependencies(reportParam)" required
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="selectOption in reportParam.selectOptions" ng-value="selectOption.id">
+                                {{selectOption.name | translate}}
+                            </md-option>
                         </md-select>
                     </div>
                 </div>
                 <div class="form-group info" ng-repeat="reportTextParam in reportTextParams">
                     <label class="control-label col-sm-2" for="{{reportTextParam.variable}}">{{ reportTextParam.label |
                         translate}}</label>
-        
+
                     <div class="col-sm-3">
-                        <input style="width: 257px" id="{{reportTextParam.inputName}}" type="text" ng-model="formData[reportTextParam.inputName]"
-                            class="form-control" required late-Validate/>
+                        <input style="width: 257px" id="{{reportTextParam.inputName}}" type="text"
+                            ng-model="formData[reportTextParam.inputName]" class="form-control" required
+                            late-Validate />
                     </div>
                 </div>
                 <div class="form-group info" ng-repeat="reportDateParam in reportDateParams">
                     <label class="control-label col-sm-2" for="{{reportDateParam.variable}}">{{ reportDateParam.label |
                         translate}}</label>
-        
+
                     <div class="col-sm-3">
                         <md-datepicker id="{{reportDateParam.inputName}}" ng-model="formData[reportDateParam.inputName]"
-                            md-placeholder="{{'label.selecttodate' | translate}}" required
-                            md-min-date="minDate" md-max-date="maxDate">
+                            md-placeholder="{{'label.selecttodate' | translate}}" required min="minDate" max="maxDate">
                         </md-datepicker>
                     </div>
                 </div>
                 <div class="form-group info" ng-show="reportType == 'Pentaho' || reportType == 'Jasper' ">
-                    <label class="control-label col-sm-2" for="outputType">{{'label.input.outputtype' | translate }}</label>
-        
+                    <label class="control-label col-sm-2"
+                        for="outputType">{{'label.input.outputtype' | translate }}</label>
+
                     <div class="col-sm-3">
                         <md-select ng-model="formData.outputType" placeholder="{{'label.selectone' | translate}}">
                             <md-option ng-repeat="format in formats" ng-value="format.value">
@@ -71,12 +72,25 @@
                     </div>
                 </div>
                 <div class="form-group info">
-                    <label class="control-label col-sm-2" for="decimalsChoice">{{'label.input.decimalplace' | translate }}</label>
+                    <label class="control-label col-sm-2"
+                        for="decimalsChoice">{{'label.input.decimalplace' | translate }}</label>
                     <div class="col-sm-3">
                         <md-select id="decimalsChoice" ng-model="decimalsChoice"
                             placeholder="{{'label.selectone' | translate}}">
                             <md-option ng-repeat="decimal in decimals" ng-value="decimal">
                                 {{decimal}}
+                            </md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div class="form-group info">
+                    <label class="control-label col-sm-2"
+                        for="decimalsChoice">{{'label.input.delimiter' | translate }}</label>
+                    <div class="col-sm-3">
+                        <md-select id="delimiterChoice" ng-model="delimiterChoice"
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option ng-repeat="delimiter in delimiters" ng-value="delimiter.char">
+                                {{'label.input.delimiter.' + delimiter.label | translate}}
                             </md-option>
                         </md-select>
                     </div>
@@ -93,13 +107,10 @@
                     <tr>
                         <td width="30%"></td>
                         <td>
-                            <md-radio-group
-                            ng-model="type"
-                            class="md-primary"
-                            >
+                            <md-radio-group ng-model="type" class="md-primary">
                                 <div flex>
-                                <md-radio-button flex value="pie">{{'label.input.pie' | translate}}
-                                </md-radio-button>
+                                    <md-radio-button flex value="pie">{{'label.input.pie' | translate}}
+                                    </md-radio-button>
                                 </div>
                                 <div flex>
                                     <md-radio-button flex value="bar">{{'label.input.bar' | translate}}
@@ -114,57 +125,43 @@
             <div style="margin-left:-45px;overflow:auto">
                 <div data-ng-hide="hideChart">
                     <div data-ng-show="type=='pie'">
-                        <nvd3-pie-chart
-                                data="chartData"
-                                id="pie"
-                                width="1100"
-                                height="900"
-                                x="xFunction()"
-                                y="yFunction()"
-                                tooltips="true"
-                                showLegend="true"
-                                showLabels="true"
-                                labelType="percent">
+                        <nvd3-pie-chart data="chartData" id="pie" width="1100" height="900" x="xFunction()"
+                            y="yFunction()" tooltips="true" showLegend="true" showLabels="true" labelType="percent">
                             <svg height="1300"></svg>
                         </nvd3-pie-chart>
                     </div>
                     <div style="margin-left: 100px" data-ng-show="type=='bar'">
-                        <nvd3-multi-bar-chart
-                                data="barData"
-                                id="barchart"
-                                width="1000"
-                                height="600"
-                                showValues="true"
-                                tooltips="true"
-                                rotateLabels="90">
+                        <nvd3-multi-bar-chart data="barData" id="barchart" width="1000" height="600" showValues="true"
+                            tooltips="true" rotateLabels="90">
                             <svg></svg>
                         </nvd3-multi-bar-chart>
                     </div>
                 </div>
             </div>
-            
+
             <div ng-hide="hideTable">
-                
                 <div class="pull-right" ng-show="reportType == 'Table'">
-                    <button class="btn btn-s btn-primary" ng-csv="csvData">
+                    <button class="btn btn-sm" ng-csv="csvData">
                         <i class="fa fa-file "></i> {{'label.button.exportcsv' | translate }}
                     </button>
                 </div>
-            
+
                 <div scroll>
-                    <table style="width: 1200px;white-space:nowrap" class="table table-bordered" data-anchor>
-                        <thead>
-                        <tr class="graybg">
-                            <th ng-repeat="columnHeader in reportData.columnHeaders">{{columnHeader.columnName}}</th>
-                        </tr>
+                    <table md-table style="width: 1200px;white-space:nowrap" class="table table-bordered" data-anchor>
+                        <thead md-head>
+                            <tr md-row class="graybg">
+                                <th md-column ng-repeat="columnHeader in reportData.columnHeaders">{{columnHeader.columnName}}
+                                </th>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr id="{{$index}}" ng-repeat="row in reportData.data track by $index">
-                            <td ng-repeat="col in row.row track by $index">
-                                <span ng-show="isDecimal($index)" class="amount">{{col | FormatNumber:decimalsChoice}}</span>
-                                <span ng-hide="isDecimal($index)">{{col}}</span>
-                            </td>
-                        </tr>
+                        <tbody md-body>
+                            <tr md-row id="{{$index}}" ng-repeat="row in reportData.data track by $index">
+                                <td md-cell ng-repeat="item in row.rows track by $index">
+                                    <span ng-show="isDecimal($index)"
+                                        class="amount">{{item.value | FormatNumber:decimalsChoice}}</span>
+                                    <span ng-hide="isDecimal($index)">{{item.value}}</span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -172,8 +169,9 @@
 
             <div uib-collapse="hidePentahoReport" class="row alert-block span tab-content" style="padding-top: 0px;">
                 <br>
-                <iframe id="rptLoadingFrame" ng-src="{{baseURL}}" type="{{contentType}}" frameborder="0" width="100%" height="800px"></iframe>
-            </div> 
+                <iframe id="rptLoadingFrame" ng-src="{{baseURL}}" type="{{contentType}}" frameborder="0" width="100%"
+                    height="800px"></iframe>
+            </div>
         </div>
     </div>
 </div>

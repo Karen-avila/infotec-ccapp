@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewRecurringDepositAccountDetailsController: function (scope, routeParams, resourceFactory, paginatorService, location, route, dateFilter,$uibModal) {
+        ViewRecurringDepositAccountDetailsController: function (scope, routeParams, resourceFactory, paginatorService, location, route, dateFilter,$uibModal,$sce,$rootScope,API_VERSION) {
             scope.isDebit = function (savingsTransactionType) {
                 return savingsTransactionType.withdrawal == true || savingsTransactionType.feeDeduction == true || savingsTransactionType.withholdTax == true;
             };
@@ -15,6 +15,8 @@
                     scope.savingaccountdetails.transactions[i][dateFieldName] = new Date(scope.savingaccountdetails.transactions[i].date);
                 }
             };
+            scope.viewRevertTransactions = false;
+            scope.formData = {};
             scope.clickEvent = function (eventName, accountId) {
                 eventName = eventName || "";
                 switch (eventName) {
@@ -102,6 +104,7 @@
                 scope.chartSlabs = scope.savingaccountdetails.accountChart.chartSlabs;
                 scope.isprematureAllowed = data.maturityDate != null;
                 scope.status = data.status.value;
+                scope.applyCurrentInterestRateChart = data.applyCurrentInterestRateChart;
                 scope.heading = (!scope.savingaccountdetails.status.rejected && !scope.savingaccountdetails.status.submittedAndPendingApproval)?'label.heading.interestchart':'label.heading.summary';
                 if (scope.status == "Submitted and pending approval" || scope.status == "Active" || scope.status == "Approved") {
                     scope.choice = true;
@@ -182,8 +185,9 @@
                     };
 
                     if (data.allowWithdrawal == true) {
-                        scope.buttons.options.push({
-                            name: "button.withdraw"
+                        scope.buttons.singlebuttons.push({
+                            name: "button.withdraw",
+                            icon: "fa fa-arrow-left"
                         });
                     }
                     if (data.charges) {
@@ -198,10 +202,10 @@
                     }
 
                     if(!scope.isprematureAllowed){
-                        scope.buttons.singlebuttons[1] = {
+                        scope.buttons.singlebuttons.push({
                             name: "button.close",
                             icon: "fa fa-arrow-right"
-                        };
+                        });
                     }
 
                     if(data.taxGroup){
@@ -331,9 +335,9 @@
                     entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
                     scope.datatabledetails = data;
                     scope.datatabledetails.isData = data.data.length > 0 ? true : false;
-                    scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                    scope.datatabledetails.isMultirow = data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
                     scope.singleRow = [];
-                    for (var i in data.columnHeaders) {
+                    for (var i in data.datatableData.columnHeaderData) {
                         if (scope.datatabledetails.columnHeaders[i].columnCode) {
                             for (var j in scope.datatabledetails.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
@@ -345,10 +349,10 @@
                         }
                     }
                     if (scope.datatabledetails.isData) {
-                        for (var i in data.columnHeaders) {
+                        for (var i in data.datatableData.columnHeaderData) {
                             if (!scope.datatabledetails.isMultirow) {
                                 var row = {};
-                                row.key = data.columnHeaders[i].columnName;
+                                row.key = data.datatableData.columnHeaderData[i].columnName;
                                 row.value = data.data[0].row[i];
                                 scope.singleRow.push(row);
                             }
@@ -405,9 +409,82 @@
                 }
             };
 
+
+            scope.viewsavingtransactionjournalentries = function (transactionId) {
+                var transactionId = "S" + transactionId;
+                if (
+                  scope.savingaccountdetails.clientId != null &&
+                  scope.savingaccountdetails.clientId != ""
+                ) {
+                  location
+                    .path("/viewtransactions/" + transactionId)
+                    .search({
+                      productName: scope.savingaccountdetails.savingsProductName,
+                      savingId: scope.savingaccountdetails.id,
+                      accountNo: scope.savingaccountdetails.accountNo,
+                    });
+                } else {
+                  location
+                    .path("/viewtransactions/" + transactionId)
+                    .search({
+                      productName: scope.savingaccountdetails.loanProductName,
+                      loanId: scope.savingaccountdetails.id,
+                      accountNo: scope.savingaccountdetails.accountNo,
+                      groupId: scope.savingaccountdetails.group.id,
+                      groupName: scope.savingaccountdetails.group.name,
+                    });
+                }
+              };
+
+              scope.viewSavingsTransactionReceipts = function (transactionId) {
+                scope.report = true;
+                scope.viewTransactionReport = true;
+                scope.viewSavingReport = false;
+                scope.printbtn = false;
+                scope.viewReport = true;
+                scope.hidePentahoReport = true;
+                scope.formData.outputType = "PDF";
+                scope.baseURL =
+                  $rootScope.hostUrl +
+                  API_VERSION +
+                  "/runreports/" +
+                  encodeURIComponent("Savings Transaction Receipt");
+                scope.baseURL +=
+                  "?output-type=" +
+                  encodeURIComponent(scope.formData.outputType) +
+                  "&tenantIdentifier=" +
+                  $rootScope.tenantIdentifier +
+                  "&locale=" +
+                  scope.optlang.code;
+        
+                var reportParams = "";
+                var paramName = "R_transactionId";
+                reportParams +=
+                  encodeURIComponent(paramName) +
+                  "=" +
+                  encodeURIComponent(transactionId);
+                if (reportParams > "") {
+                  scope.baseURL += "&" + reportParams;
+                }
+                // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
+                scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
+              };
+        
+
         }
     });
-    mifosX.ng.application.controller('ViewRecurringDepositAccountDetailsController', ['$scope', '$routeParams', 'ResourceFactory', 'PaginatorService', '$location', '$route', 'dateFilter','$uibModal', mifosX.controllers.ViewRecurringDepositAccountDetailsController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewRecurringDepositAccountDetailsController', [
+        '$scope',
+        '$routeParams',
+        'ResourceFactory',
+        'PaginatorService',
+        '$location',
+        '$uibModal',
+        '$route',
+        'dateFilter',
+        "$sce",
+        "$rootScope",
+        "API_VERSION", mifosX.controllers.ViewRecurringDepositAccountDetailsController]).run(function ($log) {
         $log.info("ViewRecurringDepositAccountDetailsController initialized");
     });
 }(mifosX.controllers || {}));

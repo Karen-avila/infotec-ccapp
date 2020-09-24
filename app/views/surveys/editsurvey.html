@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-            <div class="card well"  novalidate="" rc-submit="updateSurvey()" ng-show="showQuestions">
+            <div class="card well"  novalidate="" submit="updateSurvey()" ng-show="showQuestions">
                 <div class="card-content">
                     <legend>{{'label.heading.questions' | translate}}</legend>
                     <div class="content">                        
@@ -122,7 +122,7 @@
                                                       <label class="control-label col-sm-2" for="name">{{'label.heading.value' | translate}}<span
                                                       class="required">*</span></label>
                                                       <div class="col-sm-3">
-                                                          <input type="number" id="text" name="value" onKeyPress="if(this.value.length>3) return false;"  ng-model="option.value" class="form-control"
+                                                          <input type="text" only-number id="text" name="value" onKeyPress="if(this.value.length>3) return false;"  ng-model="option.value" class="form-control"
                                                           required late-Validate/>
                                                       </div>
                                                       <div class="col-sm-1">

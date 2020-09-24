@@ -9,7 +9,7 @@
                 <h4>{{ title | translate}}</h4>
             </div>
             <br>
-            <form name="shareccountactionform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+            <form name="shareccountactionform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group" ng-show="showPendingShares">
@@ -60,7 +60,7 @@
 
                             <div class="col-sm-3">
                                 <input id="requestedShares" type="text" name="requestedShares"
-                                       ng-model="formData.requestedShares" class="form-control" number-format required late-Validate/>
+                                       ng-model="formData.requestedShares" class="form-control"  required late-Validate/>
                             </div>
                             <div class="col-sm-3">
                                 <form-validate valattributeform="shareccountactionform" valattribute="requestedShares"/>
@@ -72,7 +72,7 @@
 
                             <div class="col-sm-3">
                                 <input id="unitprice" type="text" name="unitprice" disabled
-                                       ng-model="formData.unitPrice" class="form-control" number-format required late-Validate/>
+                                       ng-model="formData.unitPrice" class="form-control"  required late-Validate/>
                             </div>
                             <div class="col-sm-3">
                                 <form-validate valattributeform="shareccountactionform" valattribute="unitprice"/>

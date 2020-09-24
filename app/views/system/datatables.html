@@ -7,30 +7,53 @@
         <div class="content">
             <div class="toolbar"></div>
             <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" ng-model="filterText" ng-keyup="onFilter()" class="form-control" placeholder="{{'label.input.filterbyname' | translate}}">
+            <md-table-container ng-show="datatables.length > 0" class="noscroll-x">
+                <div class="row">
+                    <div class="col-md-7">
+                        <md-input-container class="full-width">
+                            <label>{{'label.input.filterbynameaccno' | translate}}</label>
+                            <input ng-model="filter.search">
+                        </md-input-container>
+                    </div>
+                    <div class="col-md-3">
+                        <md-button href="#!/createdatatable" class="btn pull-right" has-permission='CREATE_DATATABLE'><i
+                                class="fa fa-plus "></i> {{'label.button.createdatatable' | translate}}</md-button>
+                    </div>
+                    <md-divider></md-divider>
                 </div>
-                <div class="col-md-6">
-                    <md-button href="#!/createdatatable" class="btn pull-right" has-permission='CREATE_DATATABLE'><i class="fa fa-plus "></i>&nbsp;&nbsp;{{'label.button.createdatatable' | translate}}</md-button>
+                <div class="row">
+                    <div clas="col-sm-12">
+                        <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order">
+                                <tr md-row class="graybg">
+                                    <th md-column md-order-by="registeredTableName">{{'label.heading.datatablename' | translate}}</th>
+                                    <th md-column md-order-by="description">{{'label.heading.description' | translate}}</th>
+                                    <th md-column>{{'label.heading.scoring' | translate}}</th>
+                                    <th md-column md-order-by="scoringWeight">{{'label.heading.scoringWeight' | translate}}</th>
+                                    <th md-column md-order-by="applicationTableName">{{'label.heading.associatedwith' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row class="pointer" data-ng-click="routeTo(datatable.registeredTableName)" md-select="client" md-select-id="name"
+                                    ng-repeat="datatable in datatables | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                    <td md-cell>
+                                        {{datatable.registeredTableName}}</td>
+                                    <td md-cell >
+                                        {{datatable.description}}</td>
+                                    <td md-cell >
+                                        {{datatable.isScoring | translate}}</td>
+                                    <td md-cell >
+                                        {{datatable.scoringWeight | FormatNumber}}</td>
+                                    <td md-cell >
+                                        {{datatable.applicationTableName | translate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-            <table class="table">
-                <thead>
-                <tr class="graybg">
-                    <th>{{'label.heading.datatablename' | translate}}</th>
-                    <th>{{'label.heading.associatedwith' | translate}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="pointer-main" dir-paginate="datatable in datatables | orderBy:'registeredTableName':reverse | filter:filterText |  itemsPerPage: DataTablesPerPage">
-                    <td class="pointer" data-ng-click="routeTo(datatable.registeredTableName)">{{datatable.registeredTableName}}</td>
-                    <td class="pointer" data-ng-click="routeTo(datatable.registeredTableName)">{{datatable.applicationTableName}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+            </md-table-container>
+            <md-table-pagination ng-show="datatables.length > query.limit" md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                md-boundary-links="options.boundaryLinks" md-total="{{datatables.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>    
         </div>
     </div>
 </div>

@@ -91,7 +91,7 @@
 						</div>
 					</div>
 				
-					<blockquote style="border-left: 6px solid#285c4d;">
+					<blockquote class="divider">
                         {{'label.input.address' | translate }}
 					</blockquote>
 					<div class="col-sm-8 col-md-8">
@@ -218,15 +218,12 @@
 									<input type="text" name="longitude" ng-model="address.longitude" class="form-control">
 								</div>
 							</div>
-								
-		
 							<div class="form-group row" ng-show="isActive">
 								<label class="control-label col-sm-3">{{'label.input.active' | translate}} </label>
 								<div class="col-sm-6">
 									<input class="input-mini-small" type="checkbox" ng-model="address.isActive">
 								</div>
-							</div> 
-							
+							</div> 	
 				</div>
                      <div class= "col-sm-4 col-md-4">
 						<div id= 'map'></div>

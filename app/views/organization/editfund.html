@@ -11,7 +11,7 @@
 			</div>
 			<br />
 			<form name="editfundform" novalidate="" class="form-horizontal form-extra"
-				ng-controller="EditFundController" rc-submit="submit()">
+				ng-controller="EditFundController" ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
 					<div class="form-group">
@@ -39,7 +39,7 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<input id="amount" type="number" name="amount" ng-model="formData.amount"
+							<input id="amount" type="text" only-number name="amount" ng-model="formData.amount"
 								class="form-control" required late-Validate />
 							<form-validate valattributeform="editfundform" valattribute="amount" />
 						</div>

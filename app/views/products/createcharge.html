@@ -4,7 +4,7 @@
         <li><a href="#!/charges">{{'label.anchor.charges' | translate}}</a></li>
         <li class="active">{{'label.anchor.createcharge' | translate}}</li>
     </ul>
-    <form name="createchargeform" novalidate="" class="card form-horizontal well" rc-submit="submit()">
+    <form name="createchargeform" novalidate="" class="card form-horizontal well" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <div class="form-group">
@@ -107,7 +107,7 @@
                     <div class="col-sm-4">
                         <md-datepicker id="duedate" ng-model="first.date"" 
                             md-placeholder="{{'label.selecttodate' | translate}}"
-                            md-min-date="minDate" md-max-date="'2030-06-22'">
+                            min="minDate" max="'2030-06-22'">
                         </md-datepicker>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="number"
+                        <input class="input-sm form-control" id="feeIntervalLoan" name="feeIntervalLoan" type="text" only-number
                                ng-model="formData.feeInterval" late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="feeIntervalLoan"/>
                     </div>
@@ -147,7 +147,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="number"
+                        <input class="input-sm form-control" id="feeInterval" name="feeInterval" type="text" only-number
                                ng-model="formData.feeInterval" ng-required="repeatEvery" late-Validate/>
                     </div>
                     <div class="col-sm-4 paddingleft0px">
@@ -160,7 +160,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-4">
-                        <input id="amount" name="amount" type="number" ng-model="formData.amount" class="form-control" required late-Validate/>
+                        <input id="amount" name="amount" type="text" only-number ng-model="formData.amount" class="form-control" required late-Validate/>
                         <form-validate valattributeform="createchargeform" valattribute="amount"/>
                     </div>
                 </div>

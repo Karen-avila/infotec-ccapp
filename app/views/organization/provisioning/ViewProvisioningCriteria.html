@@ -6,7 +6,7 @@
     </ul>
     <div class="card">
         <div class="content">
-        <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+        <form name="createprovisioningcriteriaform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
             <fieldset>
                 <!-- Start -->
                 <div class="row">
@@ -25,7 +25,7 @@
                 <hr />
                 <script type="text/ng-template" id="deletech.html">
                     <div class="modal-header silver">
-                        <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
+                        <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
                     </div>
                     <div class="modal-body ">
                         <api-validate></api-validate>

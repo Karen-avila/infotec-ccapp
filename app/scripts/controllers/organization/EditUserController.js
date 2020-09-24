@@ -16,7 +16,9 @@
                 scope.formData.username = data.username;
                 scope.formData.firstname = data.firstname;
                 scope.formData.lastname = data.lastname;
+                scope.formData.surname = data.surname;
                 scope.formData.email = data.email;
+                scope.formData.phone = data.phone;
                 scope.formData.officeId = data.officeId;
                 scope.getOfficeStaff();
                 if(data.staff){
@@ -38,6 +40,9 @@
             };
 
             scope.addRole = function () {
+                console.log(this.available);
+                console.log(scope.availableRoles);
+
                 for (var i in this.available) {
                     for (var j in scope.availableRoles) {
                         if (scope.availableRoles[j].id == this.available[i]) {
@@ -59,7 +64,11 @@
                     }
                 }
             };
+
             scope.removeRole = function () {
+                console.log(this.selected);
+                console.log(scope.selectedRoles);
+
                 for (var i in this.selected) {
                     for (var j in scope.selectedRoles) {
                         if (scope.selectedRoles[j].id == this.selected[i]) {

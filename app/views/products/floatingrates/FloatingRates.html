@@ -5,7 +5,6 @@
     </ul>
 
     <div class="card well">
-
         <div class="row">
             <div class="col-md-9 col-sm-9">
                 <input ng-autofocus="true" ng-model="filterText" type="text" ng-keyup="onFilter()" class="form-control"
@@ -24,18 +23,20 @@
                 <thead md-head md-order="query.order">
                     <tr md-row>
                         <th md-column>{{'label.heading.name' | translate}}</th>
-                        <th md-column>{{'label.heading.createdby' | translate}}</th>
+                        <th md-column>{{'label.heading.description' | translate}}</th>
                         <th md-column>{{'label.heading.isbaselendingrate' | translate}}</th>
                         <th md-column>{{'label.heading.active' | translate}}</th>
+                        <th md-column>{{'label.heading.createdby' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row ng-repeat="floatingrate in floatingrates |orderBy:'name' | filter:filterText"
-                        data-ng-click="routeTo(floatingrate.id)" md-select="product" md-select-id="name" >
+                    <tr md-row ng-repeat="floatingrate in floatingrates | orderBy:'name' | filter:filterText"
+                        ng-click="routeTo(floatingrate.id)" md-select="product" md-select-id="name" >
                         <td md-cell>{{floatingrate.name}}</td>
+                        <td md-cell>{{floatingrate.description}}</td>
+                        <td md-cell>{{floatingrate.isBaseLendingRate | translate}}</td>
+                        <td md-cell>{{floatingrate.isActive | translate}}</td>
                         <td md-cell>{{floatingrate.createdBy}}</td>
-                        <td md-cell>{{floatingrate.isBaseLendingRate}}</td>
-                        <td md-cell>{{floatingrate.isActive}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,5 +44,4 @@
 
         <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
-
 </div>

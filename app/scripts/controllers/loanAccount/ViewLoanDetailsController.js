@@ -13,6 +13,7 @@
             scope.hideAccrualTransactions = false;
             scope.isHideAccrualsCheckboxChecked = true;
             scope.loandetails = [];
+            scope.accountNo;
             scope.payments = {
                 total: 0,
                 paid: 0,
@@ -267,6 +268,7 @@
                 scope.status = data.status.value;
                 scope.chargeAction = data.status.value == "Submitted and pending approval" ? true : false;
                 scope.decimals = data.currency.decimalPlaces;
+                scope.accountNo = data.accountNo;
 
                 scope.freePeriods = data.graceOnPrincipalPayment;
 
@@ -652,22 +654,20 @@
                 	if (data.data) {
                         datatabledetail.isData = data.data.length > 0 ? true : false;
                     }
-                	datatabledetail.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
+                	datatabledetail.isMultirow = data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
                     datatabledetail.showDataTableAddButton = !datatabledetail.isData || datatabledetail.isMultirow;
                     datatabledetail.showDataTableEditButton = datatabledetail.isData && !datatabledetail.isMultirow;
                     datatabledetail.singleRow = [];
                     datatabledetail.dataTableScoring = 0;
-                    for (var i in data.columnHeaders) {
-                        if (datatabledetail.columnHeaders[i].columnCode) {
-                            for (var j in datatabledetail.columnHeaders[i].columnValues) {
+                    var columnHeaderData = data.datatableData.columnHeaderData;
+                    for (var i in columnHeaderData) {
+                        if (columnHeaderData[i].columnCode) {
+                            for (var j in columnHeaderData[i].columnValues) {
                                 for (var k in data.data) {
-                                    if (data.data[k].row[i] == datatabledetail.columnHeaders[i].columnValues[j].id) {
+                                    if (data.data[k].row[i] == columnHeaderData[i].columnValues[j].id) {
                                         data.data[k].row[i] = {
-                                        		value: datatabledetail.columnHeaders[i].columnValues[j].value,
-                                                score: datatabledetail.columnHeaders[i].columnValues[j].score
-                                        }
-                                        if (datatabledetail.columnHeaders[i].columnValues[j].score) {
-                                            datatabledetail.dataTableScoring += datatabledetail.columnHeaders[i].columnValues[j].score;
+                                        		value: columnHeaderData[i].columnValues[j].value,
+                                                score: columnHeaderData[i].columnValues[j].score
                                         }
                                     }
                                 }
@@ -675,13 +675,10 @@
                         }
                     }
                     if (datatabledetail.isData) {
-                        for (var i in data.columnHeaders) {
+                        for (var i in data.datatableData.columnHeaderData) {
                             if (!datatabledetail.isMultirow) {
-                            	if (data.columnHeaders[i].columnName != "loan_id") {
-                            		var row = {};
-                            		row.key = data.columnHeaders[i].columnName;
-                            		row.value = data.data[0].row[i];
-                            		datatabledetail.singleRow.push(row);                            		
+                            	if (data.datatableData.columnHeaderData[i].columnName != "loan_id") {
+                                    datatabledetail.singleRow.push(data.data[0].rows[i]);                         		
                             	}
                             }
                         }
@@ -691,6 +688,7 @@
             };
             
             scope.getDatatableColumn = function (tableName, columnName) {
+                console.log("data " + tableName + " : " + columnName);
                 var temp = columnName.split("_cd_");
                 if (temp[1] && temp[1] != "") {
                     columnName = temp[1];
@@ -724,6 +722,25 @@
                 scope.viewReport = false;
                 scope.viewLoanReport = true;
                 scope.viewTransactionReport = false;
+            };
+
+            scope.viewBalanceTransactionReport = function () {
+                scope.report = true;
+                scope.printbtn = true;
+                scope.viewReport = true;
+                scope.viewBalanceTransactionReport = true;
+                scope.hidePentahoReport = true;
+                scope.formData.outputType = 'PDF';
+                scope.baseURL = $rootScope.hostUrl + API_VERSION + "/runreports/" + encodeURIComponent("saldos_y_movimientos");
+                scope.baseURL += "?output-type=" + encodeURIComponent(scope.formData.outputType) + "&tenantIdentifier=" + $rootScope.tenantIdentifier+"&locale="+scope.optlang.code;
+                var reportParams = "";
+                paramName = "R_accountNo";
+                reportParams += encodeURIComponent(paramName) + "=" + encodeURIComponent(scope.accountNo);
+                if (reportParams.length > 0) {
+                    scope.baseURL += "&" + reportParams;
+                }
+              // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
+              scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
             };
 
             scope.viewJournalEntries = function(){

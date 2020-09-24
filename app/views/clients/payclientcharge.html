@@ -4,7 +4,7 @@
             <li class="active">{{'label.button.paycharge' | translate }}</li>
         </ul>
     <form name="payclientchargeform" novalidate="" class="card form-horizontal well"
-          rc-submit="submit()">
+          ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
 
@@ -14,7 +14,7 @@
 
                 <div class="col-sm-3">
                     <input id="amount" type="text" name="amount" ng-model="formData.amount" class="form-control"
-                           number-format required ng-late-Validate/>
+                            required ng-late-Validate/>
                     <form-validate valattributeform="payclientchargeform" valattribute="amount"/>
                 </div>
             </div>

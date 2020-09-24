@@ -19,12 +19,12 @@
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <md-datepicker id="accrueTill" sort ng-model="accrueTill" min="'2000-01-01'" max="restrictDate"/>
+                            <md-datepicker id="accrueTill" sort ng-model="accrueTill" md-min-date="'2000-01-01'" md-max-date="restrictDate"/>
                         </div>
                     </div>
                     <div class="col-md-12 center">
 
-                        <md-button id="cancel" href="#!/accounting" class="md-raised">{{'label.button.cancel' | translate }}</md-button>
+                        <md-button id="cancel" href="#!/accounting" class="md-raised">{{'label.button.goback' | translate }}</md-button>
                         <md-button id="save" type="submit" class="md-raised md-primary" has-permission='EXECUTE_PERIODICACCRUALACCOUNTING'><i class="fa fa-play"></i>&nbsp;&nbsp;{{'label.button.execute.periodic.accruals' | translate }}</md-button>
                     </div>
                 </fieldset>

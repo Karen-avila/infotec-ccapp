@@ -4,7 +4,7 @@
     <li><a href="#!/shareproducts">{{'label.anchor.shareproducts' | translate}}</a></li>
     <li class="active">{{'label.anchor.editshareproduct' | translate}}</li>
 </ul>
-<form name="createshareproductform" novalidate="" class="card form-horizontal well" ng-controller="EditShareProductController" rc-submit="submit()">
+<form name="createshareproductform" novalidate="" class="card form-horizontal well" ng-controller="EditShareProductController" ng-submit="submit()">
 <api-validate></api-validate>
 <fieldset>
 <h3>{{'label.heading.details' | translate }}</h3>
@@ -65,7 +65,7 @@
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.shareproductdecimalplaces' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
-        <input type="text" id="digitsAfterDecimal" name="decimalplace" class="form-control"
+        <input type="text" only-number id="digitsAfterDecimal" maxlength="2" name="decimalplace" class="form-control"
                ng-model="formData.digitsAfterDecimal" required late-validate/>
     </div>
     <div class="col-sm-2">
@@ -94,7 +94,7 @@
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.totalshares' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
-        <input id="totalnumberofshares" name="totalnumberofshares"  number-format class="form-control"
+        <input id="totalnumberofshares" name="totalnumberofshares"   class="form-control"
                ng-model="formData.totalShares" required late-validate/>
     </div>
     <div class="col-sm-2">
@@ -106,7 +106,7 @@
     </label>
     <div class="col-sm-2">
         <input type="text" id="totalsharestobeissued" name="totalsharestobeissued" ng-model="formData.sharesIssued"
-               number-format class="form-control"/>
+                class="form-control"/>
     </div>
 </div>
 
@@ -116,7 +116,7 @@
         <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.nominalprice' | translate}}" tooltip-append-to-body="true"></i>
     </label>
     <div class="col-sm-2">
-        <input id="nominalprice" name="nominalprice"  number-format class="form-control"
+        <input id="nominalprice" name="nominalprice"   class="form-control"
                ng-model="formData.unitPrice" required late-validate/>
     </div>
     <div class="col-sm-2">
@@ -164,7 +164,7 @@
     </label>
     <div class="col-sm-2">
         <input id="minimumactiveperiod" type="text" class="form-control"
-               number-format ng-model="formData.minimumActivePeriodForDividends">
+                ng-model="formData.minimumActivePeriodForDividends">
     </div>
 
     <div class="col-sm-2">
@@ -239,7 +239,7 @@
         <td>
             <ng-form name="shareValue{{$index}}">
                 <input id="shareValue" name="shareValue" class="form-control" type="text"
-                       ng-model="marketpriceperiod.shareValue" number-format required/>
+                       ng-model="marketpriceperiod.shareValue"  required/>
                 <span class="error" ng-show="visitValidation&&shareValue{{$index}}.shareValue.$error.required">{{'label.requirefield' | translate }}</span>
             </ng-form>
         </td>

@@ -6,8 +6,7 @@
         <li class="active">{{'label.anchor.edittaxcomponent' | translate}}</li>
     </ul>
     <form name="edittaxcomponentform" novalidate="" class="card form-horizontal well"
-          ng-controller="EditTaxComponentController"
-          rc-submit="submit()">
+        ng-controller="EditTaxComponentController" ng-submit="submit()">
         <api-validate></api-validate>
         <fieldset>
             <legend>{{'label.heading.edittaxcomponent' | translate}}</legend>
@@ -17,8 +16,7 @@
 
                 <div class="col-sm-4">
                     <input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
-                           class="form-control"
-                           required late-Validate/>
+                        class="form-control" required late-Validate />
                 </div>
             </div>
 
@@ -27,8 +25,8 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-4">
-                    <input id="percentage" type="number" name="percentage" ng-model="formData.percentage"
-                           class="form-control" required late-Validate/>
+                    <input id="percentage" type="text" only-number name="percentage" ng-model="formData.percentage"
+                        class="form-control" required late-Validate />
                 </div>
             </div>
 
@@ -69,16 +67,15 @@
 
                 <div class="col-sm-4">
                     <md-datepicker id="startDate" ng-model="start.date"
-                        md-placeholder="{{'label.selecttodate' | translate}}" required
-                        md-min-date="minDate" md-max-date="restrictDate">
+                        md-placeholder="{{'label.selecttodate' | translate}}" required min="minDate" max="restrictDate">
                     </md-datepicker>
                 </div>
             </div>
 
             <div class="col-md-12 center">
-                <a id="cancel" href="#!/viewtaxcomponent/{{taxComponent.id}}">
-                    <md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
-                </a>
+                <md-button id="cancel" href="#!/viewtaxcomponent/{{taxComponent.id}}" class="md-raised" type="reset">
+                    {{'label.button.cancel' | translate }}
+                </md-button>
                 <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_TAXCOMPONENT'>
                     {{'label.button.save' | translate}}
                 </md-button>

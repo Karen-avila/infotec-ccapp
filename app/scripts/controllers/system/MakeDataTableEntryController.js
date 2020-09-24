@@ -8,25 +8,28 @@
             scope.formData = {};
             scope.formDat = {};
             scope.tf = "HH:mm";
+            scope.tableDescription = '';
+
             resourceFactory.DataTablesResource.getTableDetails({ datatablename: scope.tableName, entityId: scope.entityId, genericResultSet: 'true' }, function (data) {
-
-                var colName = data.columnHeaders[0].columnName;
+                const columnHeaders = data.datatableData.columnHeaderData;
+                var colName = columnHeaders[0].columnName;
                 if (colName == 'id') {
-                    data.columnHeaders.splice(0, 1);
+                    data.datatableData.columnHeaderData.splice(0, 1);
                 }
+                scope.tableDescription = data.datatableData.description;
 
-                colName = data.columnHeaders[0].columnName;
+                colName = columnHeaders[0].columnName;
                 if (colName == 'client_id' || colName == 'office_id' || colName == 'group_id' || colName == 'center_id' || colName == 'loan_id' || colName == 'savings_account_id') {
-                    data.columnHeaders.splice(0, 1);
+                    data.datatableData.columnHeaderData.splice(0, 1);
                     scope.isCenter = colName == 'center_id' ? true : false;
                 }
 
-                for (var i in data.columnHeaders) {
-                    if (data.columnHeaders[i].columnDisplayType == 'DATETIME') {
-                        scope.formDat[data.columnHeaders[i].columnName] = {};
+                for (var i in data.datatableData.columnHeaderData) {
+                    if (data.datatableData.columnHeaderData[i].columnDisplayType == 'DATETIME') {
+                        scope.formDat[data.datatableData.columnHeaderData[i].columnName] = {};
                     }
                 }
-                scope.columnHeaders = data.columnHeaders;
+                scope.columnHeaders = data.datatableData.columnHeaderData;
             });
 
             scope.getDatatableColumn = function (tableName, columnName) {

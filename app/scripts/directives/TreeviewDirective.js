@@ -16,36 +16,36 @@
                     if (treeId === "holidaytreeview") {
                         template =
                             '<ul>' +
-                                '<div data-ng-show="' + treeId + '.showChangeStateAll(' + treeModel + ')">' +
-                                '<a data-ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', false)">{{\'label.button.expand.all\' | translate}}</a>' +
+                                '<div ng-show="' + treeId + '.showChangeStateAll(' + treeModel + ')">' +
+                                '<md-button  ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', false)">{{\'label.button.expand.all\' | translate}}</md-button>' +
                                 ' / ' +
-                                '<a data-ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', true)">{{\'label.button.collapse.all\' | translate}}</a>' +
+                                '<md-button  ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', true)">{{\'label.button.collapse.all\' | translate}}</md-button>' +
                                 '</div>' +
-                                '<li data-ng-repeat="node in ' + treeModel + '">' +
-                                '<input type="checkbox" data-ng-model="node.selectedCheckBox" data-ng-change="holidayApplyToOffice(node)"></input>' +
-                                '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-                                '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-                                '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-                                '<span ng-show="node.'+ nodeId + ' >= 0" data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node); $root.tempNodeID = node.'+ nodeId +'">({{node.'+ nodeglCode +'}}) {{node.' + nodeLabel + '}} </span>' +								
-								'<span ng-show="node.'+ nodeId + ' < 0" data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)" >{{node.' + nodeLabel + '}}</span>' +
-                                '<div data-ng-hide="node.collapsed"  data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id="' + nodeId + '" data-node-label="' + nodeLabel + '" data-node-children="' + nodeChildren + '"></div>' +
+                                '<li ng-repeat="node in ' + treeModel + '">' +
+                                '<input type="checkbox" ng-model="node.selectedCheckBox" ng-change="holidayApplyToOffice(node)"></input>' +
+                                '<i class="collapsed" ng-show="node.' + nodeChildren + '.length && node.collapsed" ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+                                '<i class="expanded" ng-show="node.' + nodeChildren + '.length && !node.collapsed" ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+                                '<i class="normal" ng-hide="node.' + nodeChildren + '.length"></i> ' +
+                                '<span ng-show="node.'+ nodeId + ' >= 0" data-ng-class="node.selected" ng-click="' + treeId + '.selectNodeLabel(node); $root.tempNodeID = node.'+ nodeId +'">({{node.'+ nodeglCode +'}}) {{node.' + nodeLabel + '}} </span>' +								
+								'<span ng-show="node.'+ nodeId + ' < 0" data-ng-class="node.selected" ng-click="' + treeId + '.selectNodeLabel(node)" >{{node.' + nodeLabel + '}}</span>' +
+                                '<div ng-hide="node.collapsed"  data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id="' + nodeId + '" data-node-label="' + nodeLabel + '" data-node-children="' + nodeChildren + '"></div>' +
                                 '</li>' +
                                 '</ul>';
                     } else {
 							template =
 							'<ul>' +
-                                '<div data-ng-show="' + treeId + '.showChangeStateAll(' + treeModel + ')">' +
-                                '<a data-ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', false)">{{\'label.button.expand.all\' | translate}}</a>' +
+                                '<div ng-show="' + treeId + '.showChangeStateAll(' + treeModel + ')">' +
+                                '<md-button ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', false)">{{\'label.button.expand.all\' | translate}}</md-button>' +
                                 ' / ' +
-                                '<a data-ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', true)">{{\'label.button.collapse.all\' | translate}}</a>' +
+                                '<md-button ng-click="' + treeId + '.setCollapsedRoot(' + treeModel + ', true)">{{\'label.button.collapse.all\' | translate}}</md-button>' +
                                 '</div>' +
-                                '<li data-ng-repeat="node in ' + treeModel + '">' +
-                                '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-                                '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-                                '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-                                '<span ng-show="node.'+ nodeId + ' >= 0" data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node); $root.tempNodeID = node.'+ nodeId +'">({{node.'+ nodeglCode +'}}) {{node.' + nodeLabel + '}} </span>' +								
-								'<span ng-show="node.'+ nodeId + ' < 0" data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)" >{{node.' + nodeLabel + '}}</span>' +								
-								'<div data-ng-hide="node.collapsed"  data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id="' + nodeId + '" data-node-label="' + nodeLabel + '" data-node-children="' + nodeChildren + '"></div>' +
+                                '<li ng-repeat="node in ' + treeModel + '">' +
+                                '<i class="collapsed" ng-show="node.' + nodeChildren + '.length && node.collapsed" ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+                                '<i class="expanded"  ng-show="node.' + nodeChildren + '.length && !node.collapsed" ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+                                '<i class="normal" ng-hide="node.' + nodeChildren + '.length"></i> ' +
+                                '<span ng-show="node.'+ nodeId + ' >= 0" data-ng-class="node.selected" ng-click="' + treeId + '.selectNodeLabel(node); $root.tempNodeID = node.'+ nodeId +'">({{node.'+ nodeglCode +'}}) {{node.' + nodeLabel + '}} </span>' +								
+								'<span ng-show="node.'+ nodeId + ' < 0" data-ng-class="node.selected"  ng-click="' + treeId + '.selectNodeLabel(node)" >{{node.' + nodeLabel + '}}</span>' +								
+								'<div ng-hide="node.collapsed"  data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id="' + nodeId + '" data-node-label="' + nodeLabel + '" data-node-children="' + nodeChildren + '"></div>' +
                                 '</li>' +
                             '</ul>';
 								
@@ -71,7 +71,7 @@
                             };
                             scope[treeId].setCollapsedAll = scope[treeId].setCollapsedAll || function (selectedNode, state) {
                                 selectedNode.collapsed = state;
-                                for(var i = 0; i < selectedNode[nodeChildren].length; i++) {
+                                for(let i = 0; i < selectedNode[nodeChildren].length; i++) {
                                     if(selectedNode[nodeChildren][i][nodeChildren].length > 0) {
                                         scope[treeId].setCollapsedAll(selectedNode[nodeChildren][i], state);
                                     }
@@ -88,7 +88,7 @@
                                 if(!treeModel) {
                                     return false;
                                 }
-                                for(var i = 0; i < treeModel.length; i++) {
+                                for(let i = 0; i < treeModel.length; i++) {
                                     if(treeModel[i][nodeChildren].length > 0 &&
                                         typeof treeModel[i][parentId] === "undefined") {
                                         return true;

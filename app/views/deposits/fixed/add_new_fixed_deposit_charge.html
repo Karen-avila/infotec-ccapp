@@ -7,7 +7,7 @@
 	<div class="content-container">
 		<div class="card">
 			<div class="content">
-				<form name="savingccountchargeform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+				<form name="savingccountchargeform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
 				    <api-validate></api-validate>
 				    <fieldset>
 				        <div class="form-group">
@@ -32,7 +32,7 @@
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
-				                    <input class="form-control" id="amount" type="text" number-format name="amount" ng-model="formData.amount" required ng-late-Validate/>
+				                    <input class="form-control" id="amount" type="text"  name="amount" ng-model="formData.amount" required ng-late-Validate/>
 				                </div>
 				                <div class="col-sm-3">
 				                    <form-validate valattributeform="savingccountchargeform" valattribute="amount"/>
@@ -65,8 +65,8 @@
 				                        class="required">*</span></label>
 				
 				                <div class="col-sm-3">
-				                    <input class="form-control" id="feeOnAnnualMonthDay" sort type="text" datepicker-pop="dd MMMM yyyy"
-				                           ng-model="date.specificduedate" is-open="opened"/>
+										   <md-datepicker id="feeOnAnnualMonthDay"  is-open="opened" ng-model="date.specificduedate">
+										</md-datepicker>
 				                </div>
 				            </div>
 				            <div class="form-group" ng-show="!withDrawCharge && chargeTimeTypeAnnualOrMonth">

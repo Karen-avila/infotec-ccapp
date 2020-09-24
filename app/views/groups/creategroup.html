@@ -7,7 +7,7 @@
 	</ul>
 	<wizard current-step="step" class="card well" on-finish="submit()">
 		<wz-step wz-title="{{'label.heading.creategroup' | translate}}">
-			<form name="creategroupform" novalidate="" class="form-horizontal form-extra" rc-submit="submit()">
+			<form name="creategroupform" novalidate="" class="form-horizontal form-extra" ng-submit="submit()">
 				<fieldset>
 					<api-validate></api-validate>
 					<hr>

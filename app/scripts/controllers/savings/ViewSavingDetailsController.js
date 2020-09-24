@@ -21,6 +21,7 @@
       scope.staffData = {};
       scope.fieldOfficers = [];
       scope.savingaccountdetails = [];
+      scope.savingNotes = [];
 
       scope.query = {
         order: "date",
@@ -188,6 +189,15 @@
           case "close":
             location.path("/savingaccount/" + accountId + "/close");
             break;
+          case "block":
+            location.path("/savingaccount/" + accountId + "/block");
+            break;
+          case "unblock":
+            location.path("/savingaccount/" + accountId + "/unblock");
+            break;
+          case "unblock":
+            location.path("/savingaccount/" + accountId + "/unblock");
+            break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
@@ -230,9 +240,9 @@
           scope.savingaccountdetails = data;
           scope.savingaccountdetails.availableBalance = scope
             .savingaccountdetails.enforceMinRequiredBalance
-            ? scope.savingaccountdetails.summary.accountBalance -
+            ? scope.savingaccountdetails.summary.availableBalance -
             scope.savingaccountdetails.minRequiredOpeningBalance
-            : scope.savingaccountdetails.summary.accountBalance;
+            : scope.savingaccountdetails.summary.availableBalance;
           scope.convertDateArrayToObject("date");
           if (scope.savingaccountdetails.groupId) {
             resourceFactory.groupResource.get(
@@ -335,16 +345,6 @@
                   taskPermissionName: "POSTINTEREST_SAVINGSACCOUNT",
                 },
                 {
-                  name: "button.deposit",
-                  icon: "fa fa-arrow-up",
-                  taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                },
-                {
-                  name: "button.withdraw",
-                  icon: "fa fa-arrow-down",
-                  taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                },
-                {
                   name: "button.calculateInterest",
                   icon: "fa fa-table",
                   taskPermissionName: "CALCULATEINTEREST_SAVINGSACCOUNT",
@@ -365,6 +365,29 @@
                 },
               ],
             };
+
+            if (data.subStatus.value == "Block") {
+              scope.buttons.options.splice(2, 0, {
+                name: "button.unblock",
+                taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
+              });
+            } else {
+              scope.buttons.singlebuttons.splice(1, 0, {
+                name: "button.deposit",
+                icon: "fa fa-arrow-up",
+                taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+              });
+              scope.buttons.singlebuttons.splice(2, 0, {
+                name: "button.withdraw",
+                icon: "fa fa-arrow-down",
+                taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+              });
+              scope.buttons.options.splice(2, 0, {
+                name: "button.block",
+                taskPermissionName: "BLOCK_SAVINGSACCOUNT",
+              });
+            }
+
             if (data.clientId) {
               scope.buttons.options.push({
                 name: "button.transferFunds",
@@ -396,6 +419,7 @@
               }
             }
           }
+
           if (data.annualFee) {
             var annualdueDate = [];
             annualdueDate = data.annualFee.feeOnMonthDay;
@@ -443,20 +467,16 @@
           scope.savingdatatables = data;
         }
       );
-      /*// Saving notes not yet implemented
-            resourceFactory.savingsResource.getAllNotes({accountId: routeParams.id,resourceType:'notes'}, function (data) {
-                scope.savingNotes = data;
-            });
 
-            scope.saveNote = function () {
-                resourceFactory.savingsResource.save({accountId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {
-                    var today = new Date();
-                    temp = { id: data.resourceId, note: scope.formData.note, createdByUsername: "test", createdOn: today };
-                    scope.savingNotes.push(temp);
-                    scope.formData.note = "";
-                    scope.predicate = '-id';
-                });
-            };*/
+      scope.saveNote = function () {
+        resourceFactory.savingsNotesResource.save({ savingsId: routeParams.id }, this.formData, function (data) {
+          var today = new Date();
+          temp = { id: data.resourceId, note: scope.formData.note, createdByUsername: "test", createdOn: today };
+          scope.savingNotes.push(temp);
+          scope.formData.note = "";
+          scope.predicate = '-id';
+        });
+      };
 
       scope.dataTableChange = function (datatable) {
         resourceFactory.DataTablesResource.getTableDetails(
@@ -469,7 +489,7 @@
             scope.datatabledetails = data;
             scope.datatabledetails.isData = data.data.length > 0 ? true : false;
             scope.datatabledetails.isMultirow =
-              data.columnHeaders[0].columnName == "id" ? true : false;
+              data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
             scope.showDataTableAddButton =
               !scope.datatabledetails.isData ||
               scope.datatabledetails.isMultirow;
@@ -477,7 +497,7 @@
               scope.datatabledetails.isData &&
               !scope.datatabledetails.isMultirow;
             scope.singleRow = [];
-            for (var i in data.columnHeaders) {
+            for (var i in data.datatableData.columnHeaderData) {
               if (scope.datatabledetails.columnHeaders[i].columnCode) {
                 for (var j in scope.datatabledetails.columnHeaders[i]
                   .columnValues) {
@@ -496,10 +516,10 @@
               }
             }
             if (scope.datatabledetails.isData) {
-              for (var i in data.columnHeaders) {
+              for (var i in data.datatableData.columnHeaderData) {
                 if (!scope.datatabledetails.isMultirow) {
                   var row = {};
-                  row.key = data.columnHeaders[i].columnName;
+                  row.key = data.datatableData.columnHeaderData[i].columnName;
                   row.value = data.data[0].row[i];
                   scope.singleRow.push(row);
                 }
@@ -520,7 +540,7 @@
       scope.refresh = function () {
         route.reload();
       };
-      
+
       scope.viewJournalEntries = function () {
         location
           .path("/searchtransaction/")
@@ -646,6 +666,12 @@
           },
         });
       };
+
+      scope.getNotes = function () {
+        resourceFactory.savingsNotesResource.get({ savingsId: routeParams.id }, function (data) {
+          scope.savingNotes = data;
+        });
+      }
 
       var DelInstructionCtrl = function ($scope, $uibModalInstance, ids) {
         $scope.delete = function () {

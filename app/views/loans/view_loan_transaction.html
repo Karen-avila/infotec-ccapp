@@ -11,8 +11,8 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
-            <button class="btn btn-sm btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
-            <button class="btn btn-sm btn-primary" ng-click="undoTransaction()">{{'label.button.undo' | translate}}</button>
+            <md-button class="md-raised btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="undoTransaction()">{{'label.button.undo' | translate}}</md-button>
         </div>
     </script>
     <div class="card">
@@ -20,12 +20,13 @@
             <div class="toolbar">
                 <h4>{{'label.heading.details' | translate}}</h4>
                 <div ng-hide="transaction.type.contra" class="btn-group pull-right">
-                    <a href="#!/loanaccount/{{transaction.accountId}}/modifytransaction?transactionId={{transaction.id}}"
-                        class="btn btn-sm btn-primary" has-permission='ADJUST_LOAN'><i
-                            class="fa fa-pencil "></i>{{'label.button.edit' | translate}}</a>
-                    <a ng-click="undo(transaction.accountId, transaction.id)" class="btn btn-danger"
-                        has-permission='ADJUST_LOAN'><i
-                            class="fa fa-trash "></i>{{'label.button.undo' | translate}}</a>
+                    <md-button
+                        href="#!/loanaccount/{{transaction.accountId}}/modifytransaction?transactionId={{transaction.id}}"
+                        class="md-raised md-primary" has-permission='ADJUST_LOAN'><i
+                            class="fa fa-pencil "></i>{{'label.button.edit' | translate}}</md-button>
+                    <md-button ng-click="undo(transaction.accountId, transaction.id)" class="md-raised btn-danger"
+                        has-permission='ADJUST_LOAN'><i class="fa fa-trash "></i>{{'label.button.undo' | translate}}
+                    </md-button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -36,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>{{'label.heading.type' | translate}}</th>
-                        <td>{{transaction.type.value | translate}}</td>
+                        <td>{{'transaction.type.' + transaction.type.value | translate}}</td>
                     </tr>
                     <tr>
                         <th>{{'label.heading.date' | translate}}</th>
@@ -44,7 +45,7 @@
                     </tr>
                     <tr>
                         <th>{{'label.heading.currency' | translate}}</th>
-                        <td>{{transaction.currency.name | translate}}</td>
+                        <td>{{transaction.currency.code}} {{transaction.currency.name | translate}}</td>
                     </tr>
                     <tr>
                         <th>{{'label.heading.amount' | translate}}</th>
@@ -59,7 +60,7 @@
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.paymentType">
                         <th>{{'label.heading.paymenttype' | translate}}</th>
-                        <td>{{transaction.paymentDetailData.paymentType.name}}</td>
+                        <td>{{'payment.type.' + transaction.paymentDetailData.paymentType.name | translate}}</td>
                     </tr>
                     <tr ng-show="transaction.paymentDetailData.accountNumber">
                         <th>{{'label.heading.accnum' | translate}}</th>

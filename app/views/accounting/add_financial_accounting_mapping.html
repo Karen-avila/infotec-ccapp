@@ -13,7 +13,7 @@
             </div>
             <br />
             <form name="createfinancialmappingform" novalidate="" class="form-horizontal form-extra"
-                ng-controller="AddFinancialMappingController" rc-submit="submit()">
+                ng-controller="AddFinancialMappingController" ng-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
@@ -24,7 +24,7 @@
                             <md-select id="financialActivityId" ng-model="formData.financialActivityId"
                                 ng-change="updateActivityOptions(formData.financialActivityId)"
                                 placeholder="{{'label.selectone'  | translate}}">
-                                <md-option ng-repeat="activityOption in financialActivityOptions"
+                                <md-option ng-repeat="activityOption in financialActivityOptions  | orderBy: 'id'"
                                     ng-value="{{activityOption.id}}">
                                     {{activityOption.id}} {{activityOption.name | translate }}
                                 </md-option>

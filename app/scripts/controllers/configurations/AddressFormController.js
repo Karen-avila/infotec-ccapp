@@ -20,9 +20,10 @@
       entityname = "ADDRESS";
       $scope.editable = false;
       $scope.clientId = routeParams.id;
-      
+
       resourceFactory.clientaddressFields.get(function (data) {
         $scope.addressTypes = data.addressTypeIdOptions;
+        console.log(data.addressTypeIdOptions);
         $scope.countryOptions = data.countryIdOptions;
         $scope.municipalityOptions = data.municipalityIdOptions;
         $scope.allMunicipalityOptions = data.municipalityIdOptions;
@@ -44,7 +45,7 @@
       };
 
       $scope.isEditRequired = function (addType) {
-        resourceFactory.clientAddress.get(
+        resourceFactory.clientAddresses.get(
           { type: addType, clientId: routeParams.id, status: true },
           function (data) {
             if (data[0]) {
@@ -72,7 +73,7 @@
       };
 
       $scope.updateaddress = function () {
-        resourceFactory.clientAddress.put(
+        resourceFactory.clientAddresses.put(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
           function (data) {
@@ -82,7 +83,27 @@
       };
 
       $scope.submit = function () {
-        resourceFactory.clientAddress.save(
+        $scope.formData.street = $scope.formData.street.toUpperCase();
+        if (typeof $scope.formData.addressLine1 != "undefined") {
+          $scope.formData.addressLine1 = $scope.formData.addressLine1.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine2 != "undefined") {
+          $scope.formData.addressLine2 = $scope.formData.addressLine2.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine3 != "undefined") {
+          $scope.formData.addressLine3 = $scope.formData.addressLine3.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine4 != "undefined") {
+          $scope.formData.addressLine4 = $scope.formData.addressLine4.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine5 != "undefined") {
+          $scope.formData.addressLine5 = $scope.formData.addressLine5.toUpperCase();
+        }
+        if (typeof $scope.formData.addressLine6 != "undefined") {
+          $scope.formData.addressLine6 = $scope.formData.addressLine6.toUpperCase();
+        }
+
+        resourceFactory.clientAddresses.save(
           { clientId: routeParams.id, type: $scope.formData.addressTypeId },
           $scope.formData,
           function (data) {
