@@ -471,7 +471,6 @@
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "block") {
-                        this.formData.note = this.formData.blockReason;
                         if (this.formData.blockType == 0) {
                             params = { accountId: routeParams.id, command: 'block' };
                         }
@@ -485,7 +484,6 @@
 
                     }
                     else if (scope.action == "unblock") {
-                        this.formData.note = this.formData.blockReason;
                         if (scope.substatus == "Block") {
                             params = { accountId: routeParams.id, command: 'unblock' };
                         }
