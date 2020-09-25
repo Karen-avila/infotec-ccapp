@@ -228,6 +228,9 @@
               }
             );
             break;
+          case "retainedBalance":
+            location.path("/retainedbalance/" + accountId);
+            break;
           case "postInterestAsOn":
             location.path("/savingaccount/" + accountId + "/postInterestAsOn");
             break;

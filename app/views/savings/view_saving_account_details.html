@@ -114,6 +114,10 @@
                         |
                         translate}}
                     </button>
+                    <button type="button" class="btn btn-sm btn-primary"
+                        ng-click="clickEvent('retainedBalance',savingaccountdetails.id)">
+                        <i class="fa fa-user "></i>{{"label.button.retainedbalance" | translate}}
+                    </button>
                     <button type="button" class="btn btn-sm btn-primary "
                         ng-click="clickEvent('unAssignSavingsOfficer',savingaccountdetails.id)"
                         data-ng-show="savingaccountdetails.fieldOfficerId"
