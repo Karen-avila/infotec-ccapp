@@ -73,6 +73,7 @@
             scope.submit = function () {
                 
                 const reqDate = dateFilter(scope.first.date, scope.df)
+                this.formData.officePhoneNumber = this.formData.officePhoneNumber
                 this.formData.locale = scope.optlang.code
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate
@@ -97,6 +98,9 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
+
+                    newAddress.latitude = newAddress.latitude  * 1;
+                    newAddress.longitude = newAddress.longitude  * 1;
                     console.log(JSON.stringify(newAddress));
 
                     debugger;

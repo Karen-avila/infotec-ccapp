@@ -8,9 +8,10 @@
 
             resourceFactory.officeResource.get({ officeId: routeParams.id }, function (data) {
                 scope.office = data;
+                scope.office.address = data.address[0];
                 var mainMarker = {
-                    lat: parseFloat(data.address.latitude),
-                    lng: parseFloat(data.address.longitude),
+                    lat: parseFloat(scope.office.address.latitude),
+                    lng: parseFloat(scope.office.address.longitude),
                     focus: true,
                     message: "Ubicación",
                     draggable: true
@@ -18,8 +19,8 @@
 
                 angular.extend(scope, {
                     center: {
-                        lat: parseFloat(data.address.latitude),
-                        lng: parseFloat(data.address.longitude),
+                        lat: parseFloat(scope.office.address.latitude),
+                        lng: parseFloat(scope.office.address.longitude),
 
                         zoom: 16
                     },
@@ -27,8 +28,8 @@
                         mainMarker: angular.copy(mainMarker)
                     },
                     position: {
-                        lat: parseFloat(data.address.latitude),
-                        lng: parseFloat(data.address.longitude),
+                        lat: parseFloat(scope.office.address.latitude),
+                        lng: parseFloat(scope.office.address.longitude),
                     },
                     events: { // or just {} //all events
                         markers: {
