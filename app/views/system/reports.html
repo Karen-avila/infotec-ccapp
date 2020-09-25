@@ -42,9 +42,9 @@
                                     ng-repeat="report in reports  | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
                                     md-select="report1" md-select-id="name" ng-click="routeTo(report.id)">
                                     <td md-cell>{{report.reportName | translate}}</td>
-                                    <td md-cell>{{report.reportType | translate}}</td>
+                                    <td md-cell>{{'label.reports.format.' + report.reportType | translate}}</td>
                                     <td md-cell>{{report.reportSubType | translate}}</td>
-                                    <td md-cell>{{report.reportCategory | translate}}</td>
+                                    <td md-cell>{{'label.reports.category.' + report.reportCategory | translate}}</td>
                                     <td md-cell>{{report.coreReport | translate}}</td>
                                     <td md-cell>{{report.useReport | translate}}</td>
                                 </tr>

@@ -11,20 +11,24 @@
             <div class="form-group">
                 <div class="col-sm-3">
                     <label class="control-label" for="name">{{'label.input.floatingratename' | translate}}<span
-                            class="required">*</span>
-                        &nbsp;
-                        <i class="fa fa-question-circle"
-                            uib-tooltip="{{'label.tooltip.floatingratename' | translate}}"></i>
+                            class="required">*</span> 
+                        <i class="fa fa-question-circle" uib-tooltip="{{'label.tooltip.floatingratename' | translate}}"
+                            tooltip-append-to-body="true"></i>
                     </label>
                 </div>
-                <div class="col-sm-2">
-                    <input name="name" type="text" id="name" ng-model="formData.name" class="form-control" required
-                        late-Validate />
-                </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
+                    <input name="name" type="text" id="name" maxlength="50" ng-model="formData.name" class="form-control uppercase" required
+                        late-Validate disabled/>
                     <form-validate valattributeform="newfloatingrateform" valattribute="name" />
                 </div>
-
+                <div class="col-sm-3">
+                    <label class="control-label" for="description">{{'label.input.description' | translate}}</label>
+                </div>
+                <div class="col-sm-3">
+                    <input name="name" type="text" maxlength="200" id="description" ng-model="formData.description" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-3">
                     <md-checkbox id="isBaseLendingRate" ng-model="formData.isBaseLendingRate">
                         <label class="control-label">{{'label.input.isbaselendingrate' | translate}}
@@ -90,7 +94,7 @@
                     <td>
                         <ng-form name="interestRate{{$index}}">
                             <input id="interestRate1{{$index}}" name="interestRate1" class="form-control" type="text"
-                                ng-model="rateperiod.interestRate" only-number maxlength="10" allow-decimal="true" allow-negative="false" required />
+                                ng-model="rateperiod.interestRate" only-number maxlength="10" allow-decimal="true" allow-negative="false" decimal-upto="8" required />
                             <span class="error"
                                 ng-show="visitValidation&&interestRate{{$index}}.interestRate1.$error.required">{{'label.requirefield' | translate }}</span>
                         </ng-form>

@@ -101,23 +101,25 @@
                 if (!_.isUndefined(scope.datatables) && scope.datatables.length > 0) {
                     scope.noOfTabs = scope.datatables.length + 1;
                     angular.forEach(scope.datatables, function (datatable, index) {
-                        scope.updateColumnHeaders(datatable.columnHeaderData);
-                        angular.forEach(datatable.columnHeaderData, function (colHeader, i) {
-                            if (_.isEmpty(scope.formDat.datatables[index])) {
-                                scope.formDat.datatables[index] = { data: {} };
-                            }
+                        if (!_.isUndefined(datatable) && datatable != null) {
+                            scope.updateColumnHeaders(datatable.columnHeaderData);
+                            angular.forEach(datatable.columnHeaderData, function (colHeader, i) {
+                                if (_.isEmpty(scope.formDat.datatables[index])) {
+                                    scope.formDat.datatables[index] = { data: {} };
+                                }
 
-                            if (_.isEmpty(scope.formData.datatables[index])) {
-                                scope.formData.datatables[index] = {
-                                    registeredTableName: datatable.registeredTableName,
-                                    data: { locale: scope.optlang.code }
-                                };
-                            }
+                                if (_.isEmpty(scope.formData.datatables[index])) {
+                                    scope.formData.datatables[index] = {
+                                        registeredTableName: datatable.registeredTableName,
+                                        data: { locale: scope.optlang.code }
+                                    };
+                                }
 
-                            if (datatable.columnHeaderData[i].columnDisplayType == 'DATETIME') {
-                                scope.formDat.datatables[index].data[datatable.columnHeaderData[i].columnName] = {};
-                            }
-                        });
+                                if (datatable.columnHeaderData[i].columnDisplayType == 'DATETIME') {
+                                    scope.formDat.datatables[index].data[datatable.columnHeaderData[i].columnName] = {};
+                                }
+                            });
+                        }
                     });
                 }
 

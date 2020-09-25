@@ -11,7 +11,260 @@
             <div class="">
                 <fieldset>
                     <api-validate></api-validate>
+
+                        <!-- Banca Social-->
+                        
+
                     <uib-tabset tabset-name="taskTabset">
+                        <uib-tab has-permission='ALL_FUNCTIONS_READ'  heading="{{'label.heading.task.promotion' | translate}}">
+                            <md-tab-body>
+                                <div class="blockoverlay" style="overflow-y: scroll">
+                                    <!-- <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll"> -->
+                                    <div class="form-group">
+                                        <md-datepicker id="date.from" ng-model="date.from"
+                                            md-placeholder="{{'label.input.fromdate' | translate}}"
+                                            md-min-date="minDatePicker" md-max-date="maxDatePicker">
+                                        </md-datepicker>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <md-datepicker id="date.todate" ng-model="date.to"
+                                                md-placeholder="{{'label.input.todate' | translate}}"
+                                                md-min-date="date.from" md-max-date="maxDatePicker">
+                                            </md-datepicker>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <md-select class="uppercase" ng-model="formData.clientStatus"
+                                                class="form-control" placeholder="{{'label.selectstatus' | translate}}">
+                                                <md-option class="uppercase" value="0">{{'label.all' | translate}}
+                                                </md-option>
+                                                <md-option class="uppercase" value="310">
+                                                    {{'clientStatusType.validated' | translate}}
+                                                </md-option>
+                                                <md-option class="uppercase" value="300">
+                                                    {{'clientStatusType.invalid.plus.valid'| translate}}
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <md-select class="uppercase" ng-model="formData.entity" class="form-control"
+                                                placeholder="{{'label.selectentity' | translate}}">
+                                                <md-option class="uppercase" value="0">{{'label.all' | translate}}
+                                                </md-option>
+
+                                                <md-option value="ACAPULCO DE JUAREZ">ACAPULCO DE JUAREZ</md-option>
+                                                <md-option value="BENITO JUAREZ">BENITO JUAREZ</md-option>
+                                                <md-option value="CENTRO">CENTRO</md-option>
+                                                <md-option value="CULIACAN">CULIACAN</md-option>
+                                                <md-option value="ECATEPEC DE MORELOS">ECATEPEC DE MORELOS</md-option>
+                                                <md-option value="GUADALAJARA">GUADALAJARA</md-option>
+                                                <md-option value="GUSTAVO A. MADERO">GUSTAVO A. MADERO</md-option>
+                                                <md-option value="LEON">LEON</md-option>
+                                                <md-option value="HERMOSILLO">HERMOSILLO</md-option>
+                                                <md-option value="IZTAPALAPA">IZTAPALAPA</md-option>
+                                                <md-option value="JUAREZ">JUAREZ</md-option>
+                                                <md-option value="LAZARO CARDENAS">LAZARO CARDENAS</md-option>
+                                                <md-option value="MERIDA">MERIDA</md-option>
+                                                <md-option value="MEXICALI">MEXICALI</md-option>
+                                                <md-option value="MONTERREY">MONTERREY</md-option>
+                                                <md-option value="NEZAHUALCOYOTL">NEZAHUALCOYOTL</md-option>
+                                                <md-option value="PUEBLA">PUEBLA</md-option>
+                                                <md-option value="TIJUANA">TIJUANA</md-option>
+                                                <md-option value="TUXTLA GUTIERREZ">TUXTLA GUTIERREZ</md-option>
+                                                <md-option value="VERACRUZ">VERACRUZ</md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                    <span><a ng-click="searchSocialBank()" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-search"></i>{{'label.button.advancesearch' | translate}}</a>
+                                        <br /><br />
+                                    </span>
+                                </div>
+                                <script type="text/ng-template" id="deletechecker.html">
+                                    <div class="modal-header silver">
+                                        <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <api-validate></api-validate>
+                                        <br>
+                                        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' |
+                                            translate}}
+                                        </md-button>
+                                    </div>
+                                </script>
+                                <script type="text/ng-template" id="approvechecker.html">
+                                    <div class="modal-header silver">
+                                        <h3 class="bolder">{{'label.heading.approve' | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <api-validate></api-validate>
+                                        <br>
+                                        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button class="md-raised md-primary" ng-click="approve()">{{'label.button.confirm' |
+                                            translate}}
+                                        </md-button>
+                                    </div>
+                                </script>
+                                <div ng-show="searchData">
+                                    <table md-table class="table">
+                                        <thead md-head md-order="query.order">
+                                            <tr md-row class="graybg">
+                                                <th md-column md-order-by="loanId">{{'label.heading.id' | translate}}
+                                                </th>
+                                                <th md-column md-order-by="orderDate">
+                                                    {{'label.heading.applicationdate' | translate}}</th>
+                                                <th md-column>{{'label.heading.status' | translate}}</th>
+                                                <th md-column md-order-by="clientName">
+                                                    {{'label.heading.client' | translate}}</th>
+                                                <th md-column md-order-by="city">
+                                                    {{'label.heading.municipality' | translate}}</th>
+                                                <th md-column md-order-by="note">{{'label.heading.note' | translate}}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row ng-click="routeToClient(data.clientId)"
+                                                ng-repeat="data in searchedSocialBanks | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell>{{data.loanId}}</td>
+                                                <td md-cell>{{data.submittedDate | DateFormat}}</td>
+                                                <td md-cell>{{data.clientStatus.code | translate}}</td>
+                                                <td md-cell>{{data.clientName}}</td>
+                                                <td md-cell>{{data.city}}</td>
+                                                <td md-cell>{{data.note}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                    <md-table-pagination ng-show="searchedSocialBanks.length > query.limit"
+                                        md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]"
+                                        md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                                        md-total="{{searchedSocialBanks.length}}" md-page="query.page"
+                                        md-on-paginate="search" md-page-select></md-table-pagination>
+                                </div>
+                            </md-tab-body>
+                        </uib-tab>
+
+                        <!-- Crédito -->
+                        <uib-tab has-permission='ALL_FUNCTIONS_READ' heading="{{'label.heading.task.credit' | translate}}">
+                            <md-tab-body>
+                                <div class="blockoverlay" style="overflow-y: scroll">
+                                    <!-- <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll"> -->
+                                    <div class="form-group">
+                                        <md-datepicker id="date.from" ng-model="date.from"
+                                            md-placeholder="{{'label.input.fromdate' | translate}}"
+                                            md-min-date="minDatePicker" md-max-date="maxDatePicker">
+                                        </md-datepicker>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <md-datepicker id="date.todate" ng-model="date.to"
+                                                md-placeholder="{{'label.input.todate' | translate}}"
+                                                md-min-date="date.from" md-max-date="maxDatePicker">
+                                            </md-datepicker>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <md-select class="uppercase" ng-model="formData.status" class="form-control"
+                                                placeholder="{{'label.selectstatus' | translate}}">
+                                                <md-option class="uppercase" value="0">{{'label.all' | translate}}
+                                                </md-option>
+                                                <md-option class="uppercase" value="100">
+                                                    {{ 'loanStatusType.pending.approval' | translate}}
+                                                </md-option>
+                                                <md-option class="uppercase" value="200">
+                                                    {{ 'loanStatusType.approved' | translate}}
+                                                </md-option>
+                                                <md-option class="uppercase" value="300">
+                                                    {{ 'loanStatusType.disbursed.and.active' | translate}}</md-option>
+                                                <md-option class="uppercase" value="400">
+                                                    {{ 'loanStatusType.rejected.by.applicant' | translate}}</md-option>
+                                                <md-option class="uppercase" value="500">
+                                                    {{ 'loanStatusType.rejected' | translate}}
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                    <span><a ng-click="searchCredit()" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-search"></i>{{'label.button.advancesearch' | translate}}</a>
+                                        <br /><br />
+                                    </span>
+                                </div>
+                                <script type="text/ng-template" id="deletechecker.html">
+                                    <div class="modal-header silver">
+                                        <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <api-validate></api-validate>
+                                        <br>
+                                        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' |
+                                            translate}}
+                                        </md-button>
+                                    </div>
+                                </script>
+                                <script type="text/ng-template" id="approvechecker.html">
+                                    <div class="modal-header silver">
+                                        <h3 class="bolder">{{'label.heading.approve' | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <api-validate></api-validate>
+                                        <br>
+                                        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button class="md-raised md-primary" ng-click="approve()">{{'label.button.confirm' |
+                                            translate}}
+                                        </md-button>
+                                    </div>
+                                </script>
+                                <div ng-show="searchedLoansFiltered.length > 0">
+                                    <table md-table class="table">
+                                        <thead md-head md-order="query.order">
+                                            <tr md-row class="graybg">
+                                                <th md-column md-order-by="loanId">{{'label.heading.id' | translate}}
+                                                </th>
+                                                <th md-column md-order-by="orderDate">
+                                                    {{'label.heading.validationdate' | translate}}</th>
+                                                <th md-column>{{'label.heading.status' | translate}}</th>
+                                                <th md-column md-order-by="clientName">
+                                                    {{'label.heading.client' | translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row ng-click="routeToClient(data.clientId)"
+                                                ng-repeat="data in searchedLoansFiltered | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell>{{data.loanId}}</td>
+                                                <td md-cell>{{data.validationdate | DateFormat}}</td>
+                                                <td md-cell>{{data.loanStatus.code | translate}}</td>
+                                                <td md-cell>{{data.clientName}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                    <md-table-pagination ng-show="searchedLoansFiltered.length > query.limit"
+                                        md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]"
+                                        md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                                        md-total="{{searchedLoansFiltered.length}}" md-page="query.page"
+                                        md-on-paginate="search" md-page-select></md-table-pagination>
+                                </div>
+                            </md-tab-body>
+                        </uib-tab>
+
                         <uib-tab heading="{{'label.heading.checkerinbox' | translate}}"
                             has-permission='ALL_FUNCTIONS_READ'>
                             <div class="head-affix">
@@ -28,24 +281,25 @@
                                                                 type="text" ng-model="user"
                                                                 uib-typeahead="users.username as users.username for users in checkerTemplate.appUsers | filter:$viewValue | limitTo:8"
                                                                 class="form-control">
-                                                            <md-button type="button" ng-click="isCollapsed = !isCollapsed"
-                                                                class="md-raised"><i class="fa fa-chevron-down"></i></md-button>
-                                                            <md-button type="button" ng-click="search()"
-                                                                class="md-raised md-primary"><i
-                                                                    class="fa fa-search"></i></md-button>
+                                                            <button type="button" ng-click="isCollapsed = !isCollapsed"
+                                                                class="btn control btn-sm btn-default"><i
+                                                                    class="fa fa-chevron-down"></i></button>
+                                                            <button type="button" ng-click="search()"
+                                                                class="btn btn-sm btn-primary btn-sm control"><i
+                                                                    class="fa fa-search"></i></button>
                                                         </span>
                                                     </div>
                                                     <div class="form-group">
                                                         <span>
-                                                            <md-button type="button" class="btn btn-sm btn-sm btn-success"
+                                                            <button type="button" class="btn btn-sm btn-sm btn-success"
                                                                 data-ng-click="approveOrRejectChecker('approve')"><i
-                                                                    class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve' | translate}}</md-button>
-                                                            <md-button type="button" class="btn btn-sm btn-sm btn-danger"
+                                                                    class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve' | translate}}</button>
+                                                            <button type="button" class="btn btn-sm btn-sm btn-danger"
                                                                 data-ng-click="deleteChecker()"><i
-                                                                    class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</md-button>
-                                                            <md-button type="button" class="btn btn-sm btn-sm btn-warning"
+                                                                    class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</button>
+                                                            <button type="button" class="btn btn-sm btn-sm btn-warning"
                                                                 data-ng-click="approveOrRejectChecker('reject')"><i
-                                                                    class="fa fa-times"></i>&nbsp;&nbsp;{{'label.button.reject' | translate}}</md-button>
+                                                                    class="fa fa-times"></i>&nbsp;&nbsp;{{'label.button.reject' | translate}}</button>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -56,39 +310,43 @@
                             </div>
                             <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll">
                                 <div class="form-group">
-                                    <md-datepicker id="date.from" ng-model="date.from"
-                                        md-placeholder="{{'label.input.fromdate' | translate}}"
-                                        md-min-date="minDate" md-max-date="'2030-06-22'">
-                                    </md-datepicker>
+                                    <input type="text" placeholder="{{'label.input.fromdate' | translate}}"
+                                        datepicker-pop="dd MMMM yyyy" ng-model="date.from" is-open="opened"
+                                        min="minDate" max="'2030-06-22'" date-disabled="disabled(date, mode)"
+                                        class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <md-datepicker id="date.todate" ng-model="date.to"
-                                            md-placeholder="{{'label.input.todate' | translate}}"
-                                            md-min-date="date.from" md-max-date="'2030-06-22'">
-                                        </md-datepicker>
+                                        <input type="text" placeholder="{{'label.input.todate' | translate}}"
+                                            datepicker-pop="dd MMMM yyyy" ng-model="date.to" is-open="opened1"
+                                            min="minDate" max="'2030-06-22'" date-disabled="disabled(date, mode)"
+                                            class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <md-select ng-model="formData.action" class="form-control" 
-                                            placeholder="{{'label.selectaction' | translate}}">
-                                            <md-option value="">{{'label.all' | translate}}</md-option>
-                                            <md-option ng-repeat="item in actionNames"
-                                                value="{{item.value}}">{{ item.text }}
-                                            </md-option>
-                                        </md-select>
+                                        <!-- ng-options="transferType.id as transferType.value | translate for transferType in standinginstruction.transferTypeOptions |  orderBy:'value | translate' " value="{{transferType.id}}" > -->
+                                        <select ng-model="formData.action"
+                                        ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.actionNames |  orderBy:'toString() | translate'"
+                                         class="form-control">
+                                            <option value="">{{'label.all' | translate}}</option>
+                                            <!--<option value="">{{'label.selectaction' | translate}}</option>
+                                            <option ng-repeat="action in checkerTemplate.actionNames"
+                                                value="{{action}}">{{ 'task.select.label.' + action | translate}} -->
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <md-select ng-model="formData.entity" class="form-control" 
-                                            placeholder="{{'label.selectentity' | translate}}">
-                                            <md-option value="">{{'label.all' | translate}}</md-option>
-                                            <md-option ng-repeat="item in entityNames"
-                                                value="{{item.value}}">{{ item.text | translate }}
-                                            </md-option>
-                                        </md-select>
+                                        <select ng-model="formData.entity" class="form-control"
+                                        ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.entityNames |  orderBy:'toString() | translate'">
+                                            <option value="">{{'label.all' | translate}}</option>
+                                            <!-- <option value="">{{'label.selectaction' | translate}}</option> -->
+                                            <option ng-repeat="entity in checkerTemplate.entityNames"
+                                                value="{{entity}}">{{ 'task.select.label.' + entity | translate}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -98,23 +356,24 @@
                                     </div>
                                 </div>
                                 <span><a ng-click="search()" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-search"></i>{{'label.button.advancesearch' | translate}}</a>
+                                            class="fa fa-search"></i>{{'label.button.advancesearch'
+				            | translate}}</a>
                                     <br /><br />
                                 </span>
                             </div>
                             <script type="text/ng-template" id="deletechecker.html">
                                 <div class="modal-header silver">
-                                    <h3 class="bolder">{{'label.heading.confirm.delete.value' | translate}}</h3>
+                                    <h3 class="bolder">{{'label.heading.delete' | translate}}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <api-validate></api-validate>
                                     <br>
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' |
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="delete()">{{'label.button.confirm' |
                                         translate}}
-                                    </md-button>
+                                    </button>
                                 </div>
                             </script>
                             <script type="text/ng-template" id="approvechecker.html">
@@ -124,44 +383,45 @@
                                 <div class="modal-body">
                                     <api-validate></api-validate>
                                     <br>
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="approve()">{{'label.button.confirm' |
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="approve()">{{'label.button.confirm' |
                                         translate}}
-                                    </md-button>
+                                    </button>
                                 </div>
                             </script>
                             <div ng-show="searchData">
-                                <table md-table class="table" style="margin-top: -20px;">
-                                    <thead md-head>
-                                        <tr md-row class="graybg">
-                                            <th md-column>
-                                                <md-checkbox ng-click="checkerInboxAllCheckBoxesClicked()"
-                                                    ng-checked="checkerInboxAllCheckBoxesMet()">
-                                                </md-checkbox>
-                                            </th>
-                                            <th md-column>{{'label.heading.id' | translate}}</th>
-                                            <th md-column>{{'label.heading.madeondate' | translate}}</th>
-                                            <th md-column>{{'label.heading.status' | translate}}</th>
-                                            <th md-column>{{'label.heading.user' | translate}}</th>
-                                            <th md-column>{{'label.heading.action' | translate}}</th>
-                                            <th md-column>{{'label.heading.entity' | translate}}</th>
+                                <table class="table" style="margin-top: -20px;">
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th><input type="checkbox" ng-click="checkerInboxAllCheckBoxesClicked()"
+                                                    ng-checked="checkerInboxAllCheckBoxesMet()" /></th>
+                                            <th>{{'label.heading.id' | translate}}</th>
+                                            <th>{{'label.heading.madeondate' | translate}}</th>
+                                            <th>{{'label.heading.status' | translate}}</th>
+                                            <th>{{'label.heading.user' | translate}}</th>
+                                            <th>{{'label.heading.action' | translate}}</th>
+                                            <th>{{'label.heading.entity' | translate}}</th>
                                         </tr>
                                     </thead>
-                                    <tbody mdbody>
-                                        <tr md-row class="pointer-main" ng-click="routeTo(data.id)"
+                                    <tbody>
+                                        <tr class="pointer-main"
                                             dir-paginate="data in searchData | itemsPerPage: itemsPerPage"
                                             pagination-id="inbox">
-                                            <td md-cell>
-                                                <md-checkbox ng-model="checkData[data.id]"></md-checkbox>
+                                            <td><input type="checkbox" data-ng-model="checkData[data.id]" /></td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">{{data.id}}</td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">{{data.madeOnDate |
+                                            DateFormat}}
                                             </td>
-                                            <td md-cell>{{data.id}}</td>
-                                            <td md-cell>{{data.madeOnDate | DateFormat}}</td>
-                                            <td md-cell>{{data.processingResult}}</td>
-                                            <td md-cell>{{data.maker}}</td>
-                                            <td md-cell>{{data.actionName}}</td>
-                                            <td md-cell>{{data.entityName}}</td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">
+                                                {{data.processingResult}}
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">{{data.maker}}</td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">{{data.actionName}}
+                                            </td>
+                                            <td class="pointer" data-ng-click="routeTo(data.id)">{{data.entityName}}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -183,10 +443,10 @@
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
                                             <th>
-                                                <md-button type="button" class="md-raised"
+                                                <button type="button" class="btn btn-sm btn-success"
                                                     data-ng-click="approveClient()" has-permission='ACTIVATE_CLIENT'><i
                                                         class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve' | translate}}
-                                                </md-button>
+                                                </button>
                                             </th>
                                         </tr>
                                     </thead>
@@ -199,17 +459,18 @@
                                 </div>
                                 <div class="modal-body modal-big">
                                     <api-validate></api-validate>
-                                    <br>                                  
-                                           <md-datepicker  ng-model="date.actDate" md-min-date="restrictDate"  md-max-date="restrictDate">
-                                        </md-datepicker>
+                                    <br>
+                                    <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.actDate"
+                                           is-open="opened" min="restrictDate"
+                                           max="restrictDate"/>
                                 </div>
                                 <div class="modal-footer">
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="approve(date.actDate)">
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="approve(date.actDate)">
                                         {{'label.button.confirm' | translate}}
-                                    </md-button>
+                                    </button>
                                 </div>
                             </script>
                             <table class="table condensed-table">
@@ -226,8 +487,7 @@
                                     <tr class="pointer-main"
                                         dir-paginate="client in pendingClientApproval | filter : {active: 'false', status: { value:'Pending'}} | filter:filterText | itemsPerPage: itemsPerPage"
                                         pagination-id="'_' + $index">
-                                        <td>
-                                            <md-checkbox ng-model="approveData[client.id]"></md-checkbox>
+                                        <td><input type="checkbox" data-ng-model="approveData[client.id]" />
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)"></td>
                                         {{client.officeId}}
@@ -264,11 +524,11 @@
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
                                             <th>
-                                                <md-button type="button" class="md-raised"
+                                                <button type="button" class="btn btn-sm btn-success"
                                                     data-ng-click="approveLoan()" has-permission='APPROVE_LOAN'><i
                                                         class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve'
                                                 | translate}}
-                                                </md-button>
+                                                </button>
                                             </th>
                                         </tr>
                                     </thead>
@@ -282,12 +542,10 @@
                                 <div class="modal-body">
                                     <api-validate></api-validate>
                                     <br>
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
-                                        translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="approve()">
-                                        {{'label.heading.approve' | translate}}
-                                    </md-button>
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="approve()">{{'label.heading.approve' | translate}}
+                                    </button>
                                 </div>
                             </script>
 
@@ -311,7 +569,7 @@
                                             data-toggle="collapse"
                                             data-target="#grp_a{{record.individual ? '' : record.client.id}}">
                                             <td>
-                                                <md-checkbox ng-model="loanTemplate[record.client.id]"></md-checkbox>
+                                                <input type="checkbox" ng-model="loanTemplate[record.client.id]">
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
                                             <td ng-if="!record.individual"
@@ -389,11 +647,11 @@
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
                                             <th>
-                                                <md-button type="button" class="md-raised md-primary"
+                                                <button type="button" class="btn btn-sm btn-success"
                                                     data-ng-click="disburseLoan()" has-permission='APPROVE_LOAN'><i
                                                         class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.disburse'
                                                 | translate}}
-                                                </md-button>
+                                                </button>
                                             </th>
                                         </tr>
                                     </thead>
@@ -413,10 +671,8 @@
                                                 <tr>                            
                                                     <td><label>{{'label.input.disbursedondate' | translate }}: </label></td>
                                                     <td>
-                                                    
-                                                        <md-datepicker  is-open="opened" ng-model="disbursedondate" md-min-date="restrictDate"  md-max-date="restrictDate" class="form-control width170px">
-                                                        </md-datepicker>
-                                                        
+                                                        <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="disbursedondate"
+                                                        is-open="opened" min="restrictDate" max="restrictDate" class="form-control width170px"/>        
                                                     </td>
                                                 </tr>
                                                 <tr>                            
@@ -442,12 +698,12 @@
                                             </table>                                           
                                         </div>
                                     </div>
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="disburse()">
-                                        {{'label.button.disburse' | translate}}
-                                    </md-button>
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="disburse()">{{'label.heading.disburse' |
+                                        translate}}
+                                    </button>
                                 </div>
                             </script>
                             <div>
@@ -469,7 +725,8 @@
                                             data-toggle="collapse"
                                             data-target="#grp_d{{record.individual ? '' : record.client.id}}">
                                             <td>
-                                                <md-checkbox ng-model="loanDisbursalTemplate[record.client.id]"></md-checkbox>
+                                                <input type="checkbox"
+                                                    ng-model="loanDisbursalTemplate[record.client.id]">
                                             </td>
                                             <td ng-if="record.individual">{{record.office.name}}</td>
                                             <td ng-if="!record.individual"
@@ -549,11 +806,11 @@
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
                                             <th>
-                                                <md-button type="button" class="md-raised md-primary"
+                                                <button type="button" class="btn btn-sm btn-success"
                                                     data-ng-click="approveBulkLoanReschedule()"
-                                                    has-permission='APPROVE_LOANRESCHEDULE'><i class="fa fa-check"></i> {{'label.button.approve'
+                                                    has-permission='APPROVE_LOANRESCHEDULE'><i class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve'
                                                 | translate}}
-                                                </md-button>
+                                                </button>
                                             </th>
                                         </tr>
                                     </thead>
@@ -566,22 +823,21 @@
                                 <div class="modal-body">
                                     <api-validate></api-validate>
                                     <br>
-                                    <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' |
                                         translate}}
-                                    </md-button>
-                                    <md-button class="md-raised md-primary" ng-click="approveLoanReschedule()">
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" ng-click="approveLoanReschedule()">
                                         {{'label.button.confirm' | translate}}
-                                    </md-button>
+                                    </button>
                                 </div>
                             </script>
                             <div>
                                 <table class="table condensed-table">
                                     <thead>
                                         <tr class="graybg">
-                                            <th>
-                                                <md-checkbox ng-click="checkerInboxAllCheckBoxesClickedForBulkLoanRescheduleApproval()"
-                                                ng-checked="checkerInboxAllCheckBoxesMetForBulkLoanRescheduleApproval()">
-                                                </md-checkbox>
+                                            <th><input type="checkbox"
+                                                    ng-click="checkerInboxAllCheckBoxesClickedForBulkLoanRescheduleApproval()"
+                                                    ng-checked="checkerInboxAllCheckBoxesMetForBulkLoanRescheduleApproval()" />
                                             </th>
                                             <th>{{'label.heading.client' | translate}}</th>
                                             <th>{{'label.heading.reschulerequest' | translate}}</th>
@@ -593,8 +849,8 @@
                                     <tbody>
                                         <tr dir-paginate="loanReschedule in loanRescheduleData | filter:filterText2 | itemsPerPage: itemsPerPage"
                                             pagination-id="rescheduleLoan">
-                                            <td>
-                                                <md-checkbox ng-model="checkForBulkLoanRescheduleApprovalData[loanReschedule.id]"></md-checkbox>
+                                            <td><input type="checkbox"
+                                                    data-ng-model="checkForBulkLoanRescheduleApprovalData[loanReschedule.id]" />
                                             </td>
                                             <td><a
                                                     href="#!/viewclient/{{loanReschedule.clientId}}">{{loanReschedule.clientName}}</a>

@@ -21,12 +21,21 @@
 			<h3 class="bolder">{{'label.heading.confirm.validate.client' | translate}}</h3>
 		</div>
 		<div class="modal-body">
-			<api-validate></api-validate>
-			<br>
+            <api-validate></api-validate>
+            <label class="control-label" for="note">{{'label.input.note' | translate}}
+                <span class="required"> * </span>
+            </label>
+            <br>
+            <textarea rows="2" class="form-control marginbottom0px" id="textarea" required
+                placeholder="{{'label.input.enternote' | translate}}" ng-model="note" 
+                style="min-width: 570px; max-width: 570px; ">
+            </textarea>
+        </div>
+        <div class="modal-footer">
 			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
 			<md-button class="md-raised md-primary" ng-click="validateClient(false)">{{'label.button.incomplete' | translate}}</md-button>
 			<md-button class="md-raised md-primary" ng-click="validateClient(true)">{{'label.button.complete' | translate}}</md-button>
-		</div>
+        </div>
 	</script>
     <script type="text/ng-template" id="reporte.html">
 	<div data-ng-include="'views/reports/run_reports_from.html'"></div>
@@ -243,7 +252,7 @@
                 </h3>
             </div>
             <md-content class="md-padding">
-                <md-tabs md-dynamic-height md-border-bottompersistent-tab class="full-width">
+                <md-tabs md-dynamic-height md-border-bottompersistent-tab class="full-width" md-selected="selectedIndex">
                     <md-tab>
                         <md-tab-label>{{'label.heading.general' | translate}}</md-tab-label>
                         <md-tab-body>
@@ -948,54 +957,31 @@
                                         </span>
                                         <table class="table small-font">
                                             <tbody>
+                                                <!-- inicio tabla -->
                                                 <tr>
                                                     <th class="table-bold" style="width: 50%;">
-                                                        {{'label.input.submittedOnDate' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.timeline.submittedOnDate | DateFormat}}</span>
+                                                        {{'label.input.firstname' | translate }}</th>
+                                                    <td
+                                                        ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}">
+                                                        <span class="padded-td">{{client.firstname}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-bold">{{'label.input.activationdate' | translate }}
-                                                    </th>
-                                                    <td><span
-                                                            class="padded-td">{{client.timeline.activatedOnDate | DateFormat}}<span
-                                                                data-ng-hide="client.timeline.activatedOnDate">{{'label.notactivated' | translate }}</span></span>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.middlename' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.middlename}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-bold">{{'label.input.legalForm' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.legalForm.value}}</span>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.lastname' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.lastname}}</span>
                                                     </td>
                                                 </tr>
-                                                <tr ng-hide="isLegalEntity()">
-                                                    <th class="table-bold">{{'label.heading.memberof' | translate }}
-                                                    </th>
-                                                    <td>
-                                                        <span class="padded-td"
-                                                            data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span>
-                                                        <span class="padded-td" ng-repeat="group in client.groups">
-                                                            <a class="list-group-item-text"
-                                                                href="#!/viewgroup/{{group.id}}">{{group.name}}</a>&nbsp;<span
-                                                                data-ng-hide="client.groups">{{'label.unassigned' | translate }}</span><span
-                                                                ng-show="!$last">|</span>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-hide="isLegalEntity()">
-                                                    <th class="table-bold">{{'label.input.isStaff' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.isStaff | translate}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr data-ng-show="client.officeName">
-                                                    <th class="table-bold">{{'label.input.office' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.officeName}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr data-ng-show="client.mobileNo">
-                                                    <th class="table-bold">{{'label.input.mobilenumber' | translate }}
-                                                    </th>
-                                                    <td><span class="padded-td">{{client.mobileNo}}</span>
+                                                <tr>
+                                                    <th class="table-bold" style="width: 50%;">
+                                                        {{'label.input.surname' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.surname}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
@@ -1003,96 +989,130 @@
                                                     <td><span class="padded-td">{{client.gender.name}}</span>
                                                     </td>
                                                 </tr>
-                                                <tr data-ng-show="client.dateOfBirth">
-                                                    <th ng-hide="isLegalEntity()" class="table-bold">
-                                                        {{'label.input.dateofbirth' | translate }}</th>
-                                                    <th ng-show="isLegalEntity()" class="table-bold">
-                                                        {{'label.input.incorporationdate' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.dateOfBirth | DateFormat}}</span>
-                                                    </td>
-                                                </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
                                                     <th class="table-bold">{{'label.input.birthplace' | translate }}
                                                     </th>
-                                                    <td><span class="padded-td">{{client.birthplace.name}}</span>
+                                                    <td ><span class="padded-td">{{client.birthplace.name}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr data-ng-show="client.rfc">
                                                     <th class="table-bold">{{'label.input.rfc' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.rfc}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.rfc}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="table-bold">{{'label.input.regimenfiscal' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{regimenfiscal}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="table-bold">{{'label.input.giro' | translate }}</th>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{giro}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
                                                     <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.uniqueId}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.uniqueId}}</span>
                                                     </td>
                                                 </tr>
-                                                <tr data-ng-show="client.externalId">
-                                                    <th class="table-bold">{{'label.input.externalid' | translate }}
+                                                <tr>
+                                                    <th class="table-bold">{{'label.input.clabe' | translate }}
                                                     </th>
-                                                    <td><span class="padded-td">{{client.externalId}}</span>
+                                                    <td ng-style="{ 'background-color' : highlight=='originacion_edocta' ? '#235B4E' : '', 'color' : highlight=='originacion_edocta' ? 'white' : ''}"><span class="padded-td">{{clabe}}</span>
                                                     </td>
                                                 </tr>
-                                                <tr data-ng-show="client.clientType.name">
-                                                    <th class="table-bold">{{'label.input.clienttype' | translate }}
+                                                <tr>
+                                                    <th class="table-bold">{{'label.input.claveelector' | translate }}
                                                     </th>
-                                                    <td><span class="padded-td">{{client.clientType.name}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2') ? 'white' : ''}"><span class="padded-td">{{identityClaveElector}}</span>
                                                     </td>
-                                                </tr>
-                                                <tr data-ng-show="client.clientClassification.name">
-                                                    <th class="table-bold">
-                                                        {{'label.input.clientclassification' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.clientClassification.name}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr data-ng-show="client.status.value=='Closed'">
-                                                    <th class="table-bold">{{'label.heading.closedate' | translate }}
-                                                    </th>
-                                                    <td><span
-                                                            class="padded-td">{{client.timeline.closedOnDate | DateFormat}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-hide="isLegalEntity()" data-ng-show="client.groupLoanCounter">
-                                                    <th class="table-bold">
-                                                        {{'label.input.groupLoanCounter' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.groupLoanCounter}}</span>
-                                                    </td>
-                                                </tr>
+                                                </tr>                                                
+
                                                 <tr>
                                                     <th class="whitebg" colspan="2">
-                                                        {{'label.heading.performancehistory' | translate }}</th>
                                                 </tr>
-                                                <tr>
-                                                    <th>{{'label.heading.numofloancycle' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.ClientSummary.loanCycle}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{'label.lastloanamount' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.ClientSummary.lastLoanAmount| FormatNumber}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{'label.numofactiveloans' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.ClientSummary.activeLoans}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-repeat="t in totalAllSavingsAccountsBalanceBasedOnCurrency">
-                                                    <th>{{'label.totalsavings' | translate }}({{t.code}})</th>
-                                                    <td><span class="padded-td">{{t.totalSavings| FormatNumber}}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{'label.numofactivesavings' | translate }}</th>
-                                                    <td><span
-                                                            class="padded-td">{{client.ClientSummary.activeSavings}}</span>
-                                                    </td>
-                                                </tr>
+                                                
+                                                <table class="table" ng-repeat="address in addresses"
+                                                    class="table table-condensed"
+                                                    ng-show="address.addressTypeId == 330040 || address.addressTypeId == 390037">
+                                                    <tr ng-show="view.street">
+                                                        <th ng-show="address.addressTypeId == 330040">
+                                                            {{'label.input.personaladdress' | translate }}
+                                                        </th>
+                                                        <th ng-show="address.addressTypeId == 390037">
+                                                            {{'label.input.businessaddress' | translate }}
+                                                        </th>
+                                                        <!-- decidi hacer 2 tablas y que se muestre la correspondiente porque address.addressTypeId no funciona dentro del ngstyle-->
+                                                        <td ng-show="address.addressTypeId == 330040" ng-style="{ 'background-color' : (highlight=='originacion_compr_dom') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_dom') ? 'white' : ''}" class="uppercase">
+                                                            <span ng-show="address.street">{{address.street}}</span>
+                                                            <span ng-show="address.addressLine1">,
+                                                                {{address.addressLine1}}</span>
+                                                            <span ng-show="address.addressLine2">,
+                                                                {{address.addressLine2}}</span>
+                                                            <span ng-show="address.addressLine3">,
+                                                                {{address.addressLine3}}</span>
+                                                            <span ng-show="address.addressLine4">,
+                                                                {{address.addressLine4}}</span>
+                                                            <span ng-show="address.addressLine5">,
+                                                                {{address.addressLine5}}</span>
+                                                            <span ng-show="address.addressLine6">,
+                                                                {{address.addressLine6}}</span>
+                                                            <span ng-show="address.city">, {{address.city}}</span>
+                                                            <span ng-show="address.townVillage">,
+                                                                {{address.townVillage}}</span>
+                                                            <span ng-show="address.countyDistrict">,
+                                                                {{address.countyDistrict}}</span>
+                                                            <span ng-show="address.countryName">,
+                                                                {{address.countryName}}</span>
+                                                            <span ng-show="address.stateName">,
+                                                                {{address.stateName}}</span>
+                                                            <span ng-show="address.municipalityName">,
+                                                                {{address.municipalityName}}</span>
+                                                            <span ng-show="address.postalCode">,
+                                                                {{address.postalCode}}</span>
+                                                            <span ng-show="address.latitude">,
+                                                                {{address.latitude}}</span>
+                                                            <span ng-show="address.longitude">,
+                                                                {{address.longitude}}</span>
+                                                            <span ng-show="address.antiquity">,
+                                                                {{address.antiquity}}</span>
+                                                        </td>
+                                                        <td ng-show="address.addressTypeId == 390037" ng-style="{ 'background-color' : (highlight=='originacion_compr_neg') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_neg') ? 'white' : ''}" class="uppercase">
+                                                            <span ng-show="address.street">{{address.street}}</span>
+                                                            <span ng-show="address.addressLine1">,
+                                                                {{address.addressLine1}}</span>
+                                                            <span ng-show="address.addressLine2">,
+                                                                {{address.addressLine2}}</span>
+                                                            <span ng-show="address.addressLine3">,
+                                                                {{address.addressLine3}}</span>
+                                                            <span ng-show="address.addressLine4">,
+                                                                {{address.addressLine4}}</span>
+                                                            <span ng-show="address.addressLine5">,
+                                                                {{address.addressLine5}}</span>
+                                                            <span ng-show="address.addressLine6">,
+                                                                {{address.addressLine6}}</span>
+                                                            <span ng-show="address.city">, {{address.city}}</span>
+                                                            <span ng-show="address.townVillage">,
+                                                                {{address.townVillage}}</span>
+                                                            <span ng-show="address.countyDistrict">,
+                                                                {{address.countyDistrict}}</span>
+                                                            <span ng-show="address.countryName">,
+                                                                {{address.countryName}}</span>
+                                                            <span ng-show="address.stateName">,
+                                                                {{address.stateName}}</span>
+                                                            <span ng-show="address.municipalityName">,
+                                                                {{address.municipalityName}}</span>
+                                                            <span ng-show="address.postalCode">,
+                                                                {{address.postalCode}}</span>
+                                                            <span ng-show="address.latitude">,
+                                                                {{address.latitude}}</span>
+                                                            <span ng-show="address.longitude">,
+                                                                {{address.longitude}}</span>
+                                                            <span ng-show="address.antiquity">,
+                                                                {{address.antiquity}}</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </tbody>
                                         </table>
                                     </div>
@@ -1100,9 +1120,9 @@
 
 
                                 <div class="col-sm-8 col-md-8">
-
+                                    <blockquote class="divider" style="font-size: 16px;" ng-show="lastNote">{{'label.input.note' | translate}}:&nbsp;{{lastNote}}</blockquote>
                                     <div has-permission='READ_DOCUMENT'>
-                                        <blockquote class="divider">
+                                        <blockquote class="divider" style="float: left">
                                             {{'label.heading.documents' | translate }}
                                         </blockquote>
                                         <div class="row">
@@ -1129,27 +1149,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr ng-repeat="clientdocument in clientdocuments" ng-style="{ 'color' : (clientdocument.visited) ? '#235B4E' : '' }">
+                                                <tr ng-repeat="clientdocument in clientdocuments"
+                                                    >
                                                     <td>{{clientdocument.name}}</td>
                                                     <td>{{clientdocument.description}}</td>
                                                     <td>{{clientdocument.fileName}}</td>
                                                     <td>
-                                                        <a ng-click="previewDocument(clientdocument.docUrl, clientdocument.fileName, $index, clientdocument.id)"><i
-                                                            class="fa fa-eye"></i></a>
+                                                        <a ng-style="{ 'color' : (clientdocument.visited) ? '#235B4E' : 'red' }"
+                                                            ng-click="previewDocument($index, clientdocument.id, clientdocument.name)"><i
+                                                                class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div style="padding-left: 25%;" ng-show="preview">
-                                            <div class="modal" style="display: inline-table; margin: 0 auto; margin-left: 35%;">
+                                            <div class="modal"
+                                                style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
-                                                        <iframe style="min-height: 500px; min-width: 700px;" ng-src="{{iframeURL}}" height="100%" width="100%"></iframe>
-                                                        <div class="text-center">
-                                                            <md-button md-no-ink class="md-primary"
+                                                    <iframe style="min-height: 500px; min-width: 700px;" ng-show="preview" src="{{fileData}}"></iframe>
+                                                    <div class="text-center">
+                                                        <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i
                                                                 class="fa fa-close"></i>{{'label.close' | translate}}
                                                         </md-button>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

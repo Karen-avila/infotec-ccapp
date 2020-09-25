@@ -22,7 +22,9 @@
             scope.charges = [];
             scope.datatableLoaded = false;
             scope.clientId = routeParams.id;
-
+            scope.selectedIndex = 1;
+            scope.fileData = null;
+           
             // address
             scope.addresses = [];
             scope.view = {};
@@ -31,6 +33,7 @@
             var entityname = "ADDRESS";
             formdata = {};
 
+            
             scope.showMap = function (ev) {
                 $mdDialog.show({
                     controller: ViewMapController,
@@ -81,6 +84,8 @@
                         });
                     }
                 })
+
+               
             };
 
             scope.getClientTemplate = function () {
@@ -95,12 +100,11 @@
                         })
                     }
                 });
-
             }
             scope.getClientTemplate();
 
             scope.getAddresses = function () {
-                resourceFactory.clientAddresses.get({ clientId: scope.clientId }, function (data) {
+                resourceFactory.clientAddresses.getAll({ clientId: scope.clientId }, function (data) {
                     scope.addresses = data;
                 })
             }
@@ -561,10 +565,12 @@
             };
 
             var ClientValidateCtrl = function ($scope, $uibModalInstance) {
+                $scope.note = "";
                 $scope.validateClient = function (isValidated) {
-                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated }, function (data) {
+                    resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated, "notes": $scope.note }, function (data) {
                         $uibModalInstance.close('validate');
-                        route.reload();
+                        //route.reload();
+                        window.history.back();
                     });
                 };
                 $scope.cancel = function () {
@@ -653,6 +659,7 @@
                     return false;
                 }
             };
+
             scope.setLoan = function () {
                 if (scope.openLoan) {
                     scope.openLoan = false
@@ -660,6 +667,7 @@
                     scope.openLoan = true;
                 }
             };
+
             scope.setSaving = function () {
                 if (scope.openSaving) {
                     scope.openSaving = false;
@@ -686,12 +694,22 @@
                 scope.getClientIdentityDocuments();
                 scope.getClientDocuments();
                 scope.getFamilyMembers();
+                scope.getAddresses();
+                scope.getClabe();
+                scope.getLastNote();
             }
+
+            
+
 
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: scope.clientId, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
                     for (var i = 0; i < scope.identitydocuments.length; i++) {
+                        // 2 es INE en pruebas - tenemos que usar el correspondiente a Clave Elector
+                        if (scope.identitydocuments[i].documentType.id == 2) {
+                            scope.identityClaveElector = scope.identitydocuments[i].documentKey;
+                        }
                         resourceFactory.clientIdentifierResource.get({ clientIdentityId: scope.identitydocuments[i].id }, function (data) {
                             for (var j = 0; j < scope.identitydocuments.length; j++) {
                                 if (data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId) {
@@ -708,6 +726,35 @@
                     }
                 });
             };
+
+            scope.getLastNote = function () {
+                resourceFactory.clientLastNote.get({ clientId: scope.clientId }, function (data) {
+                    scope.lastNote = data.note;
+                })
+            }
+
+            scope.getClabe = function () {
+                resourceFactory.DataTablesResource.getTableDetails({
+                    datatablename: 'cs_extra_data',
+                    entityId: scope.clientId,
+                    genericResultSet: 'true'
+                }, function (data) {
+                    if (typeof data.data[0] != "undefined" ) {
+                        for (var i = 0; i < data.data[0].rows.length; ++i) {
+                            if (data.data[0].rows[i].name == 'clabe') {
+                                scope.clabe = data.data[0].rows[i].value;
+                            }
+                            if (data.data[0].rows[i].name == 'regimen') {
+                                scope.regimenfiscal = data.data[0].rows[i].value;
+                            }
+                            if (data.data[0].rows[i].name == 'giro') {
+                                scope.giro = data.data[0].rows[i].value;
+                            }
+                        }
+                    }
+                })
+            }
+
 
             scope.getDataTablesAndScoring = function () {
                 if (scope.datatableLoaded == false) {
@@ -838,37 +885,22 @@
                 });
             };
 
-            scope.previewDocument = function (url, fileName, index, resourceId) {
-
-                var documentURL = $rootScope.hostUrl + API_VERSION + "/clients/" + scope.clientId + "/documents/" + resourceId + "/attachment";
-
-                var config = { responseType: 'blob' };
-                http.get(documentURL, config).
-                    then(function onSuccess(response) {
-
-                        if (fileName.toLowerCase().indexOf('.png') != -1)
-                            scope.fileType = 'image/png';
-                        else if (fileName.toLowerCase().indexOf('.jpg') != -1)
-                            scope.fileType = 'image/jpg';
-                        else if (fileName.toLowerCase().indexOf('.jpeg') != -1)
-                            scope.fileType = 'image/jpeg';
-                        else if (fileName.toLowerCase().indexOf('.pdf') != -1)
-                            scope.fileType = 'application/pdf';
-
-                        var file = new Blob([response.data], { type: scope.fileType });
-                        var fileContent = URL.createObjectURL(file);
-
-                        // Pass the form data to the iframe as a data url.
-                        scope.iframeURL = $sce.trustAsResourceUrl(fileContent + "#toolbar=0");
-
-                        scope.clientdocuments[index].visited = true;
-                        scope.preview = true;
-                    });
-
+            scope.previewDocument = function (index, resourceId, name) {
+                resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
+                    scope.fileType = data.contentType;
+                    scope.preview = true;
+                    scope.clientdocuments[index].visited = true;
+                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                    if (name) {
+                        scope.highlight = name.toLowerCase();
+                    }
+                });
             };
 
             scope.closeDocumentPreview = function () {
                 scope.preview = false;
+                scope.fileData = null;
+                scope.highlight = "";
             };
 
             scope.viewDataTable = function (registeredTableName, data) {
@@ -1026,6 +1058,8 @@
                     size: "lg"
                 });
             };
+
+            
 
             var ViewClientWithoutSignature = function ($scope, $uibModalInstance) {
                 $scope.cancel = function () {

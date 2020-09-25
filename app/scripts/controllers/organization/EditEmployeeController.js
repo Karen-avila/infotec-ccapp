@@ -26,6 +26,11 @@
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
                 var joiningDate = dateFilter(scope.formData.joiningDate, scope.df);
+                this.formData.firstname = this.formData.firstname.toUpperCase();
+                this.formData.lastname = this.formData.lastname.toUpperCase();
+                if (typeof this.formData.surname != "undefined") {
+                    this.formData.surname = this.formData.surname.toUpperCase();
+                }
                 this.formData.dateFormat = scope.df;
                 this.formData.joiningDate = joiningDate;
                 resourceFactory.employeeResource.update({'staffId': routeParams.id}, this.formData, function (data) {

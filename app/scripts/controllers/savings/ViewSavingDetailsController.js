@@ -21,6 +21,7 @@
       scope.staffData = {};
       scope.fieldOfficers = [];
       scope.savingaccountdetails = [];
+      scope.savingNotes = [];
 
       scope.query = {
         order: "date",
@@ -189,14 +190,14 @@
             location.path("/savingaccount/" + accountId + "/close");
             break;
           case "block":
-              location.path("/savingaccount/" + accountId + "/block");
-              break;
+            location.path("/savingaccount/" + accountId + "/block");
+            break;
           case "unblock":
-              location.path("/savingaccount/" + accountId + "/unblock");
-              break;
+            location.path("/savingaccount/" + accountId + "/unblock");
+            break;
           case "unblock":
-              location.path("/savingaccount/" + accountId + "/unblock");
-              break;
+            location.path("/savingaccount/" + accountId + "/unblock");
+            break;
           case "assignSavingsOfficer":
             location.path("/assignsavingsofficer/" + accountId);
             break;
@@ -364,7 +365,7 @@
                 },
               ],
             };
-            
+
             if (data.subStatus.value == "Block") {
               scope.buttons.options.splice(2, 0, {
                 name: "button.unblock",
@@ -466,20 +467,16 @@
           scope.savingdatatables = data;
         }
       );
-      /*// Saving notes not yet implemented
-            resourceFactory.savingsResource.getAllNotes({accountId: routeParams.id,resourceType:'notes'}, function (data) {
-                scope.savingNotes = data;
-            });
 
-            scope.saveNote = function () {
-                resourceFactory.savingsResource.save({accountId: routeParams.id, resourceType: 'notes'}, this.formData, function (data) {
-                    var today = new Date();
-                    temp = { id: data.resourceId, note: scope.formData.note, createdByUsername: "test", createdOn: today };
-                    scope.savingNotes.push(temp);
-                    scope.formData.note = "";
-                    scope.predicate = '-id';
-                });
-            };*/
+      scope.saveNote = function () {
+        resourceFactory.savingsNotesResource.save({ savingsId: routeParams.id }, this.formData, function (data) {
+          var today = new Date();
+          temp = { id: data.resourceId, note: scope.formData.note, createdByUsername: "test", createdOn: today };
+          scope.savingNotes.push(temp);
+          scope.formData.note = "";
+          scope.predicate = '-id';
+        });
+      };
 
       scope.dataTableChange = function (datatable) {
         resourceFactory.DataTablesResource.getTableDetails(
@@ -543,7 +540,7 @@
       scope.refresh = function () {
         route.reload();
       };
-      
+
       scope.viewJournalEntries = function () {
         location
           .path("/searchtransaction/")
@@ -669,6 +666,12 @@
           },
         });
       };
+
+      scope.getNotes = function () {
+        resourceFactory.savingsNotesResource.get({ savingsId: routeParams.id }, function (data) {
+          scope.savingNotes = data;
+        });
+      }
 
       var DelInstructionCtrl = function ($scope, $uibModalInstance, ids) {
         $scope.delete = function () {

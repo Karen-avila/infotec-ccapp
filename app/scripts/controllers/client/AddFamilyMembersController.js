@@ -5,9 +5,11 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         AddFamilyMembersController: function (scope, resourceFactory, routeParams, dateFilter, location) {
-            scope.formData = {};
+            scope.formData = {
+                age: null,
+                qualification: null
+            };
             scope.date = {};
-            scope.date.dateofbirth = new Date();
             scope.clientId = routeParams.clientId;
             scope.familyMemberId = routeParams.familyMemberId;
             scope.restrictDate = new Date();

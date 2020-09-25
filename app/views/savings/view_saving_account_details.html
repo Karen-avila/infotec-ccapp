@@ -88,9 +88,11 @@
         <div ng-hide="report">
             <div class="span gray-head" style="margin-left:0%;">
                 <span style="margin-left: 10px;font-size:24px">
-                    <strong><i ng-show="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.status.value | translate}}"
+                    <strong><i ng-show="savingaccountdetails.subStatus.id==0"
+                            uib-tooltip="{{savingaccountdetails.status.value | translate}}"
                             class="fa fa-circle {{savingaccountdetails.status.code | StatusLookup}}"></i>
-                            <i ng-hide="savingaccountdetails.subStatus.id==0" uib-tooltip="{{savingaccountdetails.subStatus.value | translate}}"
+                        <i ng-hide="savingaccountdetails.subStatus.id==0"
+                            uib-tooltip="{{savingaccountdetails.subStatus.value | translate}}"
                             class="fa fa-circle {{savingaccountdetails.subStatus.value | StatusLookup}}"></i>
                         &nbsp;{{savingaccountdetails.savingsProductName}}&nbsp;(#{{savingaccountdetails.accountNo}})</strong>
                 </span>
@@ -476,7 +478,8 @@
             <div class="paddedleft" style="padding: 10px;">
                 <md-content class="no-padding">
                     <md-tabs md-dynamic-height md-border-bottom class="full-width">
-                        <md-tab class="scroll-y" ng-show="savingaccountdetails.transactions" select="convertDateArrayToObject('date')">
+                        <md-tab class="scroll-y" ng-show="savingaccountdetails.transactions"
+                            select="convertDateArrayToObject('date')">
                             <md-tab-label>{{'label.heading.transactions' | translate}}</md-tab-label>
                             <md-tab-body>
                                 <br>
@@ -521,7 +524,7 @@
                                     </thead>
                                     <tbody md-body>
                                         <tr md-row ng-hide="transaction.reversed"
-                                            data-ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)"
+                                            ng-click="routeTo(transaction.accountId,transaction.id,transaction.transfer,transaction.transfer.id)"
                                             ng-repeat="transaction in savingaccountdetails.transactions | orderBy: query.order">
                                             <td md-cell>
                                                 {{transaction.id}}
@@ -556,12 +559,14 @@
                                                     </md-button>
                                                     <md-menu-content width="4" ng-mouseleave="$mdCloseMenu()">
                                                         <md-menu-item>
-                                                            <md-button ng-click="viewSavingsTransactionReceipts(transaction.id)">
+                                                            <md-button
+                                                                ng-click="viewSavingsTransactionReceipts(transaction.id)">
                                                                 {{'label.heading.viewreceipts' | translate}}
                                                             </md-button>
                                                         </md-menu-item>
                                                         <md-menu-item>
-                                                            <md-button ng-click="viewsavingtransactionjournalentries(transaction.id)">
+                                                            <md-button
+                                                                ng-click="viewsavingtransactionjournalentries(transaction.id)">
                                                                 {{'label.heading.viewjournalentry' | translate}}
                                                             </md-button>
                                                         </md-menu-item>
@@ -601,7 +606,8 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="instruction in instructions.currentPageItems">
-                                            <td>{{instruction.fromClient.displayName}}-{{instruction.fromClient.id}}</td>
+                                            <td>{{instruction.fromClient.displayName}}-{{instruction.fromClient.id}}
+                                            </td>
                                             <td>{{instruction.fromAccount.accountNo}}({{instruction.fromAccountType.value}})
                                             </td>
                                             <td>
@@ -689,7 +695,8 @@
                                     <table class="table table-bordered width450px"
                                         data-ng-hide="datatabledetails.isMultirow">
                                         <tr ng-repeat="value in singleRow">
-                                            <td class="graybg table-font-nav">{{value.key | prettifyDataTableColumn}}</td>
+                                            <td class="graybg table-font-nav">{{value.key | prettifyDataTableColumn}}
+                                            </td>
                                             <td><span class="padded-td">{{value.value}}</span></td>
                                         </tr>
                                     </table>
@@ -795,6 +802,44 @@
                                         <td></td>
                                     </tr>
                                 </table>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab class="scroll-y" md-on-select="getNotes()" has-permission='READ_SAVINGNOTE'>
+                            <md-tab-label>{{'label.heading.notes' | translate}}</md-tab-label>
+                            <md-tab-body>
+                                <br />
+                                <form>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12">
+                                            <textarea rows="1" class="form-control marginbottom0px" id="textarea"
+                                                placeholder="{{'label.input.enternote' | translate}}"
+                                                ng-model="formData.note"
+                                                style="min-width: 1050px; max-width: 1050px; "></textarea>
+                                            <br>
+                                            <div class="notewrapper col-sm-12 col-md-12">
+                                                <span class="pull-right noteaddbuttonwrapper">
+                                                    <md-button class="md-raised md-primary" type="submit"
+                                                        ng-click="saveNote()" has-permission='CREATE_SAVINGNOTE'>
+                                                        {{'label.button.add' | translate}}
+                                                    </md-button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="col-md-12">
+                                    <br />
+                                    <div ng-repeat="savingNote in savingNotes | orderBy:predicate:reverse">
+                                        <blockquote>
+                                            <p>{{savingNote.note}}</p>
+                                            {{savingNote.id}}
+                                            <small>{{'label.createdby' | translate}}
+                                                :&nbsp;{{savingNote.createdByUsername}}</small>
+                                            <small>{{'label.createdon' | translate}}
+                                                :&nbsp;{{savingNote.createdOn | DateFormat}}</small>
+                                        </blockquote>
+                                    </div>
+                                </div>
                             </md-tab-body>
                         </md-tab>
                     </md-tabs>
