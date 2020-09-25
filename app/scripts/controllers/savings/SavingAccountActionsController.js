@@ -18,20 +18,21 @@
             scope.dateFormat = scope.df;
             scope.dateTimeFormat = scope.df + " " + scope.tf;
             var submitStatus = [];
+            scope.substatus = '';
 
-            rootScope.RequestEntities = function(entity,status,productId){
-                resourceFactory.entityDatatableChecksResource.getAll({limit:-1},function (response) {
+            rootScope.RequestEntities = function (entity, status, productId) {
+                resourceFactory.entityDatatableChecksResource.getAll({ limit: -1 }, function (response) {
                     var _ = require('underscore');
-                    scope.entityDatatableChecks = _.filter(response.pageItems , function(datatable){
+                    scope.entityDatatableChecks = _.filter(response.pageItems, function (datatable) {
                         var specificProduct = (datatable.entity == entity && datatable.status.value == status && datatable.productId == productId);
                         var AllProducts = (datatable.entity == entity && datatable.status.value == status);
-                        return (datatable.productId?specificProduct:AllProducts);
+                        return (datatable.productId ? specificProduct : AllProducts);
                     });
-                    scope.entityDatatableChecks = _.pluck(scope.entityDatatableChecks,'datatableName');
+                    scope.entityDatatableChecks = _.pluck(scope.entityDatatableChecks, 'datatableName');
                     scope.datatables = [];
-                    var k=0;
-                    _.each(scope.entityDatatableChecks,function(entitytable) {
-                        resourceFactory.DataTablesResource.getTableDetails({datatablename:entitytable,entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
+                    var k = 0;
+                    _.each(scope.entityDatatableChecks, function (entitytable) {
+                        resourceFactory.DataTablesResource.getTableDetails({ datatablename: entitytable, entityId: routeParams.id, genericResultSet: 'true' }, function (data) {
                             data.registeredTableName = entitytable;
                             const columnHeaders = data.datatableData.columnHeaderData;
                             var colName = columnHeaders[0].columnName;
@@ -46,12 +47,12 @@
                             }
 
                             data.noData = (data.data.length == 0);
-                            if(data.noData){
+                            if (data.noData) {
                                 scope.datatables.push(data);
-                                scope.entityformData.datatables[k] = {data:{}};
+                                scope.entityformData.datatables[k] = { data: {} };
                                 submitStatus[k] = "save";
-                                _.each(data.datatableData.columnHeaderData,function(Header){
-                                    if(Header.columnDisplayType == 'DATETIME'){
+                                _.each(data.datatableData.columnHeaderData, function (Header) {
+                                    if (Header.columnDisplayType == 'DATETIME') {
                                         scope.entityformData.datatables[k].data[Header.columnName] = {};
                                     }
                                     else {
@@ -66,16 +67,18 @@
                 });
             };
 
-            scope.fetchEntities = function(entity,status,productId){
-                if(!productId){
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, associations: 'all'},
+            scope.fetchEntities = function (entity, status, productId) {
+                if (!productId) {
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id, associations: 'all' },
                         function (data) {
                             scope.productId = data.savingsProductId;
-                            rootScope.RequestEntities(entity,status,scope.productId);
+                            rootScope.RequestEntities(entity, status, scope.productId);
+                            scope.substatus = data.subStatus.value;
+
                         });
                 }
-                else{
-                    rootScope.RequestEntities(entity,status,productId);
+                else {
+                    rootScope.RequestEntities(entity, status, productId);
                 }
             };
 
@@ -83,7 +86,7 @@
                 var index = 0;
                 var done = false;
                 var loop = {
-                    next: function() {
+                    next: function () {
                         if (done) {
                             return;
                         }
@@ -98,11 +101,11 @@
                         }
                     },
 
-                    iteration: function() {
+                    iteration: function () {
                         return index - 1;
                     },
 
-                    break: function() {
+                    break: function () {
                         done = true;
                     }
                 };
@@ -137,7 +140,7 @@
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.taskPermissionName = 'APPROVE_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','APPROVE');
+                    scope.fetchEntities('m_savings_account', 'APPROVE');
                     break;
                 case "reject":
                     scope.title = 'label.heading.rejectsavingaccount';
@@ -147,7 +150,7 @@
                     scope.showDateField = true;
                     scope.showNoteField = true;
                     scope.taskPermissionName = 'REJECT_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','REJECT');
+                    scope.fetchEntities('m_savings_account', 'REJECT');
                     break;
                 case "withdrawnByApplicant":
                     scope.title = 'label.heading.withdrawsavingaccount';
@@ -172,10 +175,10 @@
                     scope.showDateField = true;
                     scope.showNoteField = false;
                     scope.taskPermissionName = 'ACTIVATE_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','ACTIVATE');
+                    scope.fetchEntities('m_savings_account', 'ACTIVATE');
                     break;
                 case "deposit":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
+                    resourceFactory.savingsTrxnsTemplateResource.get({ savingsId: scope.accountId }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                     });
                     scope.title = 'label.heading.depositmoneytosavingaccount';
@@ -190,18 +193,18 @@
                     scope.taskPermissionName = 'DEPOSIT_SAVINGSACCOUNT';
                     break;
                 case "postInterestAsOn":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
-                       scope.accountnumber=data.accountNo;
+                    resourceFactory.savingsTrxnsTemplateResource.get({ savingsId: scope.accountId }, function (data) {
+                        scope.accountnumber = data.accountNo;
                     });
                     scope.labelName = 'label.input.transactiondate';
                     scope.modelName = 'transactionDate';
                     scope.formData[scope.modelName] = new Date();
                     scope.showDateField = true;
-                    scope.showAccountNumber=true;
+                    scope.showAccountNumber = true;
                     scope.taskPermissionName = 'POSTINTEREST_SAVINGSACCOUNT';
                     break;
                 case "withdrawal":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
+                    resourceFactory.savingsTrxnsTemplateResource.get({ savingsId: scope.accountId }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                     });
                     scope.title = 'label.heading.withdrawmoneyfromsavingaccount';
@@ -214,10 +217,10 @@
                     scope.transactionAmountField = true;
                     scope.showPaymentDetails = false;
                     scope.taskPermissionName = 'WITHDRAWAL_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','WITHDRAWN');
+                    scope.fetchEntities('m_savings_account', 'WITHDRAWN');
                     break;
                 case "applyAnnualFees":
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId},
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId },
                         function (data) {
                             scope.formData.amount = data.amount;
                             if (data.dueDate) {
@@ -236,37 +239,37 @@
                     scope.taskPermissionName = 'APPLYANNUALFEE_SAVINGSACCOUNT';
                     break;
                 case "block":
-                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (data) {
+                    resourceFactory.codeOptionsResource.get({ codeName: 'savingsaccount_block_reason' }, function (data) {
                         scope.blockReasons = data.codeValues;
-                        console.log("data",data);
+                        console.log("data", data);
                     });
 
-                    resourceFactory.savingsResource.get({accountId: routeParams.id});
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id });
                     scope.title = 'label.heading.block';
                     scope.labelName = 'label.input.block';
                     scope.showNoteField = false;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'BLOCK_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','BLOCK');
+                    scope.fetchEntities('m_savings_account', 'BLOCK');
                     break;
                 case "unblock":
-                    resourceFactory.codeOptionsResource.get({codeName:'savingsaccount_block_reason'}, function (data) {
+                    resourceFactory.codeOptionsResource.get({ codeName: 'savingsaccount_block_reason' }, function (data) {
                         scope.blockReasons = data.codeValues;
                     });
 
-                    resourceFactory.savingsResource.get({accountId: routeParams.id});
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id });
                     scope.title = 'label.heading.unblock';
                     scope.labelName = 'label.input.unblock';
                     scope.showNoteField = false;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'UNBLOCK_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','UNBLOCK');
-                    break;   
+                    scope.fetchEntities('m_savings_account', 'UNBLOCK');
+                    break;
                 case "close":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
+                    resourceFactory.savingsTrxnsTemplateResource.get({ savingsId: scope.accountId }, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                     });
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, fields:'summary'}, function (accountData) {
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id, fields: 'summary' }, function (accountData) {
                         scope.accountBalance = accountData.summary.accountBalance;
                     });
                     scope.title = 'label.heading.closesavingaccount';
@@ -279,10 +282,10 @@
                     scope.postInterestValidationOnClosure = true;
                     scope.formData.postInterestValidationOnClosure = true;
                     scope.taskPermissionName = 'CLOSE_SAVINGSACCOUNT';
-                    scope.fetchEntities('m_savings_account','CLOSE');
+                    scope.fetchEntities('m_savings_account', 'CLOSE');
                     break;
                 case "modifytransaction":
-                    resourceFactory.savingsTrxnsResource.get({savingsId: scope.accountId, transactionId: routeParams.transactionId, template: 'true'},
+                    resourceFactory.savingsTrxnsResource.get({ savingsId: scope.accountId, transactionId: routeParams.transactionId, template: 'true' },
                         function (data) {
                             scope.title = 'label.heading.editsavingaccounttransaction';
                             scope.labelName = 'label.input.transactiondate';
@@ -309,7 +312,7 @@
                     scope.taskPermissionName = 'ADJUSTTRANSACTION_SAVINGSACCOUNT';
                     break;
                 case "editsavingcharge":
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId},
+                    resourceFactory.savingsResource.get({ accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId },
                         function (data) {
                             scope.formData.amount = data.amount;
                             if (data.feeOnMonthDay) {
@@ -341,8 +344,10 @@
                     break;
                 case "paycharge":
                     scope.formData.dueDate = new Date();
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId,
-                        command: 'paycharge'}, function (data) {
+                    resourceFactory.savingsResource.get({
+                        accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId,
+                        command: 'paycharge'
+                    }, function (data) {
                         scope.formData.amount = data.amountOutstanding;
                     });
                     scope.labelName = 'label.input.amount';
@@ -378,13 +383,13 @@
             }
 
             scope.submit = function () {
-                var params = {command: scope.action};
+                var params = { command: scope.action };
 
                 if (scope.action != "undoapproval" && scope.action != "block" && scope.action != "unblock") {
                     this.formData.locale = scope.optlang.code;
                     this.formData.dateFormat = scope.setTransactionDate(this.formData[scope.modelName], scope.modelName);
                 }
-                if (scope.action == "deposit" || scope.action == "withdrawal" || scope.action == "modifytransaction" || scope.action=="postInterestAsOn") {
+                if (scope.action == "deposit" || scope.action == "withdrawal" || scope.action == "modifytransaction" || scope.action == "postInterestAsOn") {
                     if (scope.action == "withdrawal") {
                         if (this.formData.transactionDate) {
                             this.formData.transactionDate = dateFilter(this.formData.transactionDate, this.formData.dateFormat);
@@ -401,11 +406,11 @@
                         }
                         params.transactionId = routeParams.transactionId;
                     }
-                    if(scope.action=="postInterestAsOn"){
+                    if (scope.action == "postInterestAsOn") {
                         if (this.formData.transactionDate) {
                             this.formData.transactionDate = dateFilter(this.formData.transactionDate, this.formData.dateFormat);
                         }
-                        this.formData.isPostInterestAsOn=true;
+                        this.formData.isPostInterestAsOn = true;
                     }
                     params.savingsId = scope.accountId;
 
@@ -419,20 +424,20 @@
                         this.formData.feeOnMonthDay = this.formData.feeOnMonthDay.substring(0, this.formData.feeOnMonthDay.length - 5);
                         delete this.formData.feeOnMonthDayFullDate;
                     }
-                    resourceFactory.savingsResource.update({accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, this.formData,
+                    resourceFactory.savingsResource.update({ accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, this.formData,
                         function (data) {
                             location.path('/viewsavingaccount/' + data.savingsId);
                         });
                 } else if (scope.action == "deletesavingcharge") {
-                    resourceFactory.savingsResource.delete({accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId}, this.formData,
+                    resourceFactory.savingsResource.delete({ accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId }, this.formData,
                         function (data) {
                             location.path('/viewsavingaccount/' + data.savingsId);
                         });
                 } else if (scope.action == "paycharge" || scope.action == "waive" || scope.action == "inactivate") {
-                    params = {accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: scope.action};
+                    params = { accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: scope.action };
                     if (this.formData.dueDate) {
                         this.formData.dueDate = dateFilter(this.formData.dueDate, scope.dateFormat);
-                    } else if(this.formData.inactivationOnDate){
+                    } else if (this.formData.inactivationOnDate) {
                         this.formData.inactivationOnDate = dateFilter(this.formData.inactivationOnDate, scope.dateFormat);
                     }
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
@@ -457,7 +462,7 @@
                             this.formData.activatedOnDate = dateFilter(this.formData.activatedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "applyAnnualFees" || scope.action == "paycharge" || scope.action == "waivecharge") {
-                        params = {accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: 'paycharge'};
+                        params = { accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: 'paycharge' };
                         if (this.formData.dueDate) {
                             this.formData.dueDate = dateFilter(this.formData.dueDate, scope.dateFormat);
                         }
@@ -466,11 +471,28 @@
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "block") {
-                        params = {accountId: routeParams.id, command: 'block'};
-                        
-                    }else if (scope.action == "unblock") {
-                        params = {accountId: routeParams.id, command: 'unblock'};
-                        
+                        if (this.formData.blockType == 0) {
+                            params = { accountId: routeParams.id, command: 'block' };
+                        }
+                        if (this.formData.blockType == 1) {
+                            params = { accountId: routeParams.id, command: 'blockDebit' };
+                        }
+                        if (this.formData.blockType == 2) {
+
+                            params = { accountId: routeParams.id, command: 'blockCredit' };
+                        }
+
+                    }
+                    else if (scope.action == "unblock") {
+                        if (scope.substatus == "Block") {
+                            params = { accountId: routeParams.id, command: 'unblock' };
+                        }
+                        else if (scope.substatus == "BlockDebit") {
+                            params = { accountId: routeParams.id, command: 'unblockDebit' };
+                        }
+                        else if (scope.substatus == "BlockCredit") {
+                            params = { accountId: routeParams.id, command: 'unblockCredit' };
+                        }
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
@@ -479,9 +501,9 @@
                 }
             };
 
-            scope.submitDatatable = function(){
-                if(scope.datatables) {
-                    asyncLoop(Object.keys(scope.entityformData.datatables).length,function(loop){
+            scope.submitDatatable = function () {
+                if (scope.datatables) {
+                    asyncLoop(Object.keys(scope.entityformData.datatables).length, function (loop) {
                         var cnt = loop.iteration();
                         var formData = scope.entityformData.datatables[cnt];
                         formData.registeredTableName = scope.datatables[cnt].registeredTableName;
@@ -492,7 +514,7 @@
                             genericResultSet: 'true'
                         };
 
-                        angular.extend(formData.data,{dateFormat: scope.dateFormat, locale: scope.optlang.code});
+                        angular.extend(formData.data, { dateFormat: scope.dateFormat, locale: scope.optlang.code });
 
                         _.each(formData.data, function (columnHeader) {
                             if (columnHeader.dateType) {
@@ -510,22 +532,22 @@
                             submitStatus[cnt] = "update";
                             scope.submittedDatatables.push(scope.datatables[cnt].registeredTableName);
                             loop.next();
-                        },function(){
-                            rootScope.errorDetails[0].push({datatable:scope.datatables[cnt].registeredTableName});
+                        }, function () {
+                            rootScope.errorDetails[0].push({ datatable: scope.datatables[cnt].registeredTableName });
                             loop.break();
                         });
 
-                    },function(){
+                    }, function () {
                         scope.submit();
                     });
                 }
-                else{
+                else {
                     scope.submit();
                 }
             };
         }
     });
-    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope','$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
+    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
         $log.info("SavingAccountActionsController initialized");
     });
 }(mifosX.controllers || {}));
