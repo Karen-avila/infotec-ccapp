@@ -18,6 +18,7 @@
             scope.dateFormat = scope.df;
             scope.dateTimeFormat = scope.df + " " + scope.tf;
             var submitStatus = [];
+            scope.substatus= '';
 
             rootScope.RequestEntities = function(entity,status,productId){
                 resourceFactory.entityDatatableChecksResource.getAll({limit:-1},function (response) {
@@ -72,6 +73,8 @@
                         function (data) {
                             scope.productId = data.savingsProductId;
                             rootScope.RequestEntities(entity,status,scope.productId);
+                            scope.substatus= data.subStatus.value;
+
                         });
                 }
                 else{
@@ -466,11 +469,29 @@
                             this.formData.closedOnDate = dateFilter(this.formData.closedOnDate, this.formData.dateFormat);
                         }
                     } else if (scope.action == "block") {
+                        if(this.formData.blockType==0){
                         params = {accountId: routeParams.id, command: 'block'};
+                        }
+                        if (this.formData.blockType==1){
+                            console.log("y ak tmb");
+                            params = {accountId: routeParams.id, command: 'blockDebit'};
+                        }
+                        if (this.formData.blockType==2){
+
+                            params = {accountId: routeParams.id, command: 'blockCredit'};
+                        }
                         
-                    }else if (scope.action == "unblock") {
+                    }
+                    else if (scope.action == "unblock") {
+                        if(scope.substatus=="Block"){
                         params = {accountId: routeParams.id, command: 'unblock'};
-                        
+                        }
+                        else if(scope.substatus=="BlockDebit"){
+                            params = {accountId: routeParams.id, command: 'unblockDebit'};
+                            }
+                            else if(scope.substatus=="BlockCredit"){
+                                params = {accountId: routeParams.id, command: 'unblockCredit'};
+                                }
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {

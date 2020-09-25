@@ -167,14 +167,19 @@
                                 </md-option>
                             </md-select>
                         </div>
-                        <div class="col-sm-10 clearfix"></div>
+                        <div ng-show="action == 'block'" class="col-sm-10 clearfix"></div>
                         <label ng-show="action == 'block'" class="control-label col-sm-3">{{'label.input.block.type' | translate}}</label>
-                        <label ng-show="action == 'unblock'" class="control-label col-sm-3">{{'label.input.unblock.type' | translate}}</label>
-                        <div class="col-sm-3">
-                            <md-select id="blockTypeId" ng-model="formData.blockType"
-                                placeholder="{{'label.selectone' | translate}}">
-                                <md-option ng-repeat="blockType in blockTypes" ng-value="blockType.name">
-                                    {{blockType.name | translate}}
+
+                        <div ng-show="action == 'block'" class="col-sm-3">
+                            <md-select id="blockTypeId" ng-model="formData.blockType" placeholder="{{'label.selectone' | translate}}">
+                                <md-option  ng-value="0">
+                                    {{'Total block'| translate}}
+                                </md-option>
+                                <md-option  ng-value="1">
+                                    {{'Partial block (debit)' | translate}}
+                                </md-option>
+                                <md-option  ng-value="2">
+                                    {{'Partial block (credit)' | translate}}
                                 </md-option>
                             </md-select>
                         </div>
