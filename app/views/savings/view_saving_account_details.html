@@ -114,6 +114,10 @@
                         |
                         translate}}
                     </button>
+                    <button type="button" class="btn btn-sm btn-primary"
+                        ng-click="clickEvent('retainedBalance',savingaccountdetails.id)">
+                        <i class="fa fa-user "></i>{{"label.button.retainedbalance" | translate}}
+                    </button>
                     <button type="button" class="btn btn-sm btn-primary "
                         ng-click="clickEvent('unAssignSavingsOfficer',savingaccountdetails.id)"
                         data-ng-show="savingaccountdetails.fieldOfficerId"
@@ -432,8 +436,7 @@
                         </tr>
                         <tr>
                             <th class="table-bold-loan">{{'label.input.account.level' | translate}}</th>
-                            <td><span class="padded-td">{{'label.input.level' | translate}}
-                                    {savingaccountdetails.accountLevel}}</span>
+                            <td><span class="padded-td">{{'label.input.level' | translate}} {{savingaccountdetails.accountLevel}}</span>
                             </td>
                         </tr>
                         <tr>

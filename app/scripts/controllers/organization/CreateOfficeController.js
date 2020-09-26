@@ -73,6 +73,7 @@
             scope.submit = function () {
                 
                 const reqDate = dateFilter(scope.first.date, scope.df)
+                this.formData.officePhoneNumber = this.formData.officePhoneNumber
                 this.formData.locale = scope.optlang.code
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate
@@ -98,10 +99,12 @@
                         locale: scope.optlang.code
                     };
 
+                    newAddress.latitude = newAddress.latitude  * 1;
+                    newAddress.longitude = newAddress.longitude  * 1;
+
                     resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
                         location.path('/viewoffice/' + data.resourceId)
                     });
-
                 });
             };
 
