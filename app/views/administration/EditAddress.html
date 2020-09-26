@@ -158,7 +158,7 @@
                         <div class="col-sm-4">
                             <md-select ng-model="formData.stateProvinceId" ng-change="filterMunicipality()"
                                 placeholder="{{'label.menu.selectone' | translate}}" required>
-                                <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+                                <md-option ng-repeat="stateOption in stateOptions | orderBy: 'name'" ng-value="stateOption.id">
                                     {{stateOption.name}}
                                 </md-option>
                             </md-select>

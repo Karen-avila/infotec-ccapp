@@ -61,11 +61,13 @@
 				<div class="col-sm-3">
 					<input id="name" type="text" name="name" ng-model="formData.name" class="form-control uppercase" required
 						late-Validate maxlength="45" ng-pattern="/^[a-zA-Z\s]+$/"/>
-						<span ng-show="createglaccountingform.name.$invalid && createglaccountingform.name.$dirty">
-							<small style="color:#d9534f;" class="required error" ng-show="createglaccountingform.name.$error.pattern">
-								{{'label.mustbeletter' | translate}}
-							</small>
-						</span>
+						<div>
+							<span ng-show="createglaccountingform.name.$invalid && createglaccountingform.name.$dirty">
+								<small style="color:#d9534f;" class="required error" ng-show="createglaccountingform.name.$error.pattern">
+									{{'label.mustbeletter' | translate}}
+								</small>
+							</span>
+						</div>
 					<form-validate style="color:#d9534f;" valattributeform="createglaccountingform" valattribute="name" />
 				</div>
 			</div>
