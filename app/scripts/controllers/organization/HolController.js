@@ -3,7 +3,9 @@
         HolController: function (scope, resourceFactory, location) {
             scope.holidays = [];
             scope.offices = [];
-            scope.formData = {};
+            scope.formData = {
+              officeId: 1
+            };
 
             scope.query = {
                 order: "name",

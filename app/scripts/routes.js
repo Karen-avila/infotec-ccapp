@@ -796,6 +796,9 @@
             .when('/unassignsavingsofficer/:id', {
                 templateUrl: 'views/savings/unassignsavingsofficer.html'
             })
+            .when('/retainedbalance/:id', {
+                templateUrl: 'views/savings/retainedbalance.html'
+            })
             .when('/tellers', {
                 templateUrl: 'views/organization/cashmgmt/tellers.html'
             })
