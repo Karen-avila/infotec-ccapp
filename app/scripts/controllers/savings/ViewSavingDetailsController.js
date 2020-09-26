@@ -228,6 +228,9 @@
               }
             );
             break;
+          case "retainedBalance":
+            location.path("/retainedbalance/" + accountId);
+            break;
           case "postInterestAsOn":
             location.path("/savingaccount/" + accountId + "/postInterestAsOn");
             break;
@@ -366,7 +369,7 @@
               ],
             };
 
-            if (data.subStatus.value == "Block") {
+            if (data.subStatus.value == "Block" ||data.subStatus.value == "BlockDebit" ||data.subStatus.value == "BlockCredit"  ) {
               scope.buttons.options.splice(2, 0, {
                 name: "button.unblock",
                 taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
