@@ -103,8 +103,8 @@
                                         <input type="text" only-number maxlength="2" allow-decimal="false"
                                             allow-negative="false" id="digitsAfterDecimal" name="decimalplace"
                                             class="form-control" ng-model="formData.digitsAfterDecimal" required
-                                            late-validate number=true />
-                                        <form-validate valattributeform="Currency" valattribute="decimalplace" />
+                                            late-validate />
+                                        <form-validate valattributeform="digitsAfterDecimal" valattribute="decimalplace" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -117,7 +117,7 @@
                                     <div class="col-sm-3">
                                         <input type="text" only-number allow-decimal="false" allow-negative="false"
                                             id="inMultiplesOf" class="form-control" name="multiplesof"
-                                            ng-model="formData.inMultiplesOf" required late-validate number=true />
+                                            ng-model="formData.inMultiplesOf" required late-validate />
                                         <form-validate valattributeform="Currency" valattribute="multiplesof" />
                                     </div>
                                 </div>
@@ -599,7 +599,7 @@
                                             <md-select id="savingsReferenceAccountId"
                                                 ng-model="formData.savingsReferenceAccountId"
                                                 ng-change="savingproduct.accountingMappings.savingsReferenceAccount.name = formValue(assetAccountOptions,formData.savingsReferenceAccountId,'id','name')">
-                                                <md-option value="assetAccount.id"
+                                                <md-option ng-value="assetAccount.id"
                                                     ng-repeat="assetAccount in assetAccountOptions">
                                                     {{(assetAccount.glCode + " " + assetAccount.name)}}
                                                 </md-option>

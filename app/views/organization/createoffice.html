@@ -25,8 +25,6 @@
 						<div class="col-sm-4">
 							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
 								class="form-control uppercase" required late-Validate />
-						</div>
-						<div class="col-sm-4">
 							<form-validate valattributeform="createofficeform" valattribute="name" />
 						</div>
 					</div>
@@ -52,7 +50,7 @@
 
 						<div class="col-sm-4">
 							<input id="city" ng-autofocus="true" type="text" name="city" ng-model="formData.city"
-								class="form-control uppercase" required late-Validate />
+								class="form-control uppercase" maxlength="3" required late-Validate />
 						</div>
 						<div class="col-sm-2">
 							<form-validate valattributeform="createofficeform" valattribute="city" />
@@ -82,30 +80,25 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-4">
-							<input id="openingDate" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date"
-								class="form-control" is-open="opened" min="minDat()" max="restrictDate" />
+                            <md-datepicker id="openingDate" name="openingDate" ng-model="first.date"
+                                md-placeholder="{{'label.selecttodate' | translate}}" required md-min-date="minDat()"
+                                md-max-date="restrictDate">
+                            </md-datepicker>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2"
+							for="officePhoneNumber">{{'label.input.mobileNumber' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-3">
+							<input type="text" id="officePhoneNumber" name="officePhoneNumber" required ng-model="formData.officePhoneNumber"
+								ng-pattern="\d{50}" class="form-control" maxlength="10" />
 						</div>
 					</div>
 					<blockquote class="divider">
 						{{'label.input.address' | translate }}
 					</blockquote>
 					<div class="col-sm-8 col-md-8">
-						<div class="form-group row">
-							<div class="control-label col-sm-3">
-								<label>{{'label.input.state_province' | translate}}<span
-										class="required">*</span></label>
-							</div>
-							<div class="col-sm-6">
-								<md-select class="form-control" id="stateOptions" ng-model="address.stateProvinceId">
-									<md-select-header>
-										<span> {{'label.input.state_province' | translate }} </span>
-									</md-select-header>
-									<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
-										{{stateOption.name}}
-									</md-option>
-								</md-select>
-							</div>
-						</div>
 						<div class="form-group row">
 							<label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}
 								<span class="required">*</span></label>
@@ -135,7 +128,6 @@
 								<form-validate valattributeform="createofficeform" valattribute="addressType" />
 							</div>
 						</div>
-
 						<div class="form-group row">
 							<div class="control-label col-sm-3">
 								<label>{{'label.input.street' | translate }}<span class="required">*</span></label>
@@ -181,6 +173,22 @@
 						</div>
 						<div class="form-group row">
 							<div class="control-label col-sm-3">
+								<label>{{'label.input.state_province' | translate}}<span
+										class="required">*</span></label>
+							</div>
+							<div class="col-sm-6">
+								<md-select class="form-control" id="stateOptions" ng-model="address.stateProvinceId">
+									<md-select-header>
+										<span> {{'label.input.state_province' | translate }} </span>
+									</md-select-header>
+									<md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+										{{stateOption.name}}
+									</md-option>
+								</md-select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-sm-3">
 								<label>{{'label.input.country' | translate}}<span class="required">*</span></label>
 							</div>
 							<div class="col-sm-6">
@@ -212,9 +220,11 @@
 							</div>
 						</div>
 						<div class="form-group row" ng-show="isActive">
-							<label class="control-label col-sm-3">{{'label.input.active' | translate}} </label>
-							<div class="col-sm-6">
-								<input class="input-mini-small" type="checkbox" ng-model="address.isActive">
+							<div class="col-sm-6 col-sm-offset-3">
+								<md-checkbox id="addressIsActive"
+									ng-model="address.isActive">
+									{{'label.input.active' | translate}}
+								</md-checkbox>
 							</div>
 						</div>
 					</div>

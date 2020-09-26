@@ -4,6 +4,17 @@
             resourceFactory.fundsResource.getFund({fundId: routeParams.id}, function (data) {
                 scope.formData = data;
                 delete scope.formData.id;
+                delete scope.formData.clientName;
+                resourceFactory.savingsFundResource.get(function (data) {
+                    scope.savings = data;
+                    for (var i = 0; i < scope.savings.length; i++) {
+                        var saving = scope.savings[i];
+                        if (saving.accountNo == scope.formData.accountNo) {
+                            scope.formData.savingsAccountId = saving.id;
+                            break;
+                        }
+                    }
+                });
             });
 
             scope.submit = function () {

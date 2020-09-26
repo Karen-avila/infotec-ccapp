@@ -101,14 +101,10 @@
 
                     newAddress.latitude = newAddress.latitude  * 1;
                     newAddress.longitude = newAddress.longitude  * 1;
-                    console.log(JSON.stringify(newAddress));
-
-                    debugger;
 
                     resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
                         location.path('/viewoffice/' + data.resourceId)
                     });
-
                 });
             };
 

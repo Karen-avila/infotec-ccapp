@@ -3,7 +3,9 @@
         CreateSavingProductController: function (scope, $rootScope, resourceFactory, location, WizardHandler) {
             scope.formData = {
                 nominalAnnualInterestRate: 0,
-                daysToEscheat: 0
+                daysToEscheat: 0,
+                inMultiplesOf: 1,
+                accountLevel: 0
             };
             scope.savingproduct = {};
             scope.charges = [];
@@ -87,6 +89,11 @@
                 if (showOrHideValue == "hide") {
                     scope.showOrHideValue = 'show';
                 }
+            }
+
+            scope.changeAccountLevel = function(accountLevel) {
+                scope.formData.accountLevel = accountLevel;
+                console.log(accountLevel);
             }
 
             scope.chargeSelected = function (chargeId) {
