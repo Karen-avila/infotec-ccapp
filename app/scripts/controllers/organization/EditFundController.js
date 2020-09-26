@@ -10,6 +10,7 @@
                     for (var i = 0; i < scope.savings.length; i++) {
                         var saving = scope.savings[i];
                         if (saving.accountNo == scope.formData.accountNo) {
+                            delete scope.formData.accountNo;
                             scope.formData.savingsAccountId = saving.id;
                             break;
                         }
