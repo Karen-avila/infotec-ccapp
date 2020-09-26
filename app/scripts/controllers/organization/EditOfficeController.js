@@ -29,6 +29,7 @@
 
             resourceFactory.officeResource.get({ officeId: routeParams.id, template: 'true' }, function (data) {
                 scope.offices = data.allowedParents;
+                scope.address = data.address[0];
                 scope.id = data.id;
                 if (data.openingDate) {
                     var editDate = dateFilter(data.openingDate, scope.df);
@@ -40,37 +41,30 @@
                     parentId: data.parentId,
                     city: data.city,
                     branch: data.branch,
-                    costCenter: data.costCenter
+                    costCenter: data.costCenter,
+                    officePhoneNumber: data.officePhoneNumber
                 }
 
-                scope.address = {
-                    addressLine1: data.address.addressLine1,
-                    addressLine2: data.address.addressLine2,
-                    addressLine3: data.address.addressLine3,
-                    city: data.address.city,
-                    isActive: data.address.isActive,
-                    latitude: data.address.latitude,
-                    longitude: data.address.longitude,
-                    postalCode: data.address.postalCode,
-                    stateProvinceId: data.address.stateProvinceId,
-                    street: data.address.street
-                }
+                console.log(JSON.stringify(scope.address));
 
                 // Country
                 for (let i=0; i<scope.countryOptions.length; i++) {
-                    if (scope.countryOptions[i].name === data.address.countryName) {
+                    if (scope.countryOptions[i].name === scope.address.countryName) {
                         scope.address.countryId = scope.countryOptions[i].id;
                         break;
                     }
                 }
                 for (let i=0; i<scope.stateOptions.length; i++) {
-                    if (scope.stateOptions[i].name === data.address.stateName) {
+                    console.log("1 " + scope.stateOptions[i].name);
+                    console.log("2 " + scope.address.stateName);
+                    console.log((scope.stateOptions[i].name === scope.address.stateName));
+                    if (scope.stateOptions[i].name === scope.address.stateName) {
                         scope.address.stateProvinceId = scope.stateOptions[i].id;
                         break;
                     }
                 }
                 for (let i=0; i<scope.addressTypes.length; i++) {
-                    if (scope.addressTypes[i].name === data.address.addressType) {
+                    if (scope.addressTypes[i].name === scope.address.addressType) {
                         scope.address.addressTypeId  = scope.addressTypes[i].id;
                         break;
                     }
