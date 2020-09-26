@@ -45,7 +45,6 @@
             scope.clientId = routeParams.clientId;
             scope.center = {};
 
-
             angular.extend(scope, {
                 center: {
                     lat: 23.634501,
@@ -318,9 +317,6 @@
                 scope.createCurpRfc();
             });
 
-
-
-
             scope.submit = function () {
                 var reqDate = dateFilter(scope.first.date, scope.df);
 
@@ -391,8 +387,10 @@
 
                 if (scope.enableAddress === true) {
                     scope.formData.address = [];
+
                     for (let i = 0; i < scope.addressArray.length; i++) {
                         var temp = new Object();
+                        temp.locale = scope.optlang.code;
                         if (scope.addressArray[i].addressTypeId) {
                             temp.addressTypeId = scope.addressArray[i].addressTypeId;
                         }

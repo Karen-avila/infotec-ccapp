@@ -936,7 +936,7 @@
     "clientStatusType.validated": "Validado",
     "clientStatusType.closed": "Cerrado",
     "clientStatusType.invalid": "No válido",
-    "clientStatusType.invalid.plus.valid": "No válido (Activo)",
+    "clientStatusType.invalid.plus.valid": "No validado (Activo)",
     "clientStatusType.transfer.in.progress": "Transferencia en proceso",
     "clientStatusType.transfer.on.hold": "Transferencia en espera",
     "validation.msg.client.officeId.cannot.be.blank": "La oficina es obligatoria.",
@@ -6008,7 +6008,10 @@
     "DISABLE":"INACTIVO",
     "LOCKED":"BLOQUEADO",
     "label.heading.confirm.enable" : "¿Desea activar este usuario?",
-    "label.heading.confirm.disable" : "¿Desea desactivar este usuario?"
-
+    "label.heading.confirm.disable" : "¿Desea desactivar este usuario?",
+    "Home" : "Inicio",
+    "READ HOME OPTIONS" : "Ver barra de opciones",
+    "READ HOME TASKS" : "Ver las tareas pendientes",
+    "READ HOME DASHBOARD" : "Ver el panel de control"
 
 }

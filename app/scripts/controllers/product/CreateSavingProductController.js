@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateSavingProductController: function (scope, $rootScope, resourceFactory, location , WizardHandler) {
+        CreateSavingProductController: function (scope, $rootScope, resourceFactory, location, WizardHandler) {
             scope.formData = {
                 nominalAnnualInterestRate: 0,
                 daysToEscheat: 0
@@ -19,9 +19,9 @@
             scope.frFlag = false;
             scope.fiFlag = false;
             scope.piFlag = false;
-            scope.accountLevels = [1,2,3,4];
+            scope.accountLevels = [1, 2, 3, 4];
 
-            resourceFactory.savingProductResource.get({resourceType: 'template'}, function (data) {
+            resourceFactory.savingProductResource.get({ resourceType: 'template' }, function (data) {
                 scope.product = data;
                 scope.product.chargeOptions = scope.product.chargeOptions || [];
                 scope.assetAccountOptions = scope.product.accountingMappingOptions.assetAccountOptions || [];
@@ -40,11 +40,11 @@
 
             });
 
-            scope.$watch('formData',function(newVal){
-                scope.savingproduct = angular.extend(scope.savingproduct,newVal);
-            },true);
+            scope.$watch('formData', function (newVal) {
+                scope.savingproduct = angular.extend(scope.savingproduct, newVal);
+            }, true);
 
-            scope.goNextStep = function() {
+            scope.goNextStep = function () {
                 var vm = scope;
                 //do not exceed into max step
                 if (vm.selectedStep >= vm.maxStep) {
@@ -56,19 +56,19 @@
                 }
                 vm.selectedStep = vm.selectedStep + 1;
 
-                if(vm.selectedStep + 1 == scope.maxStep) {
+                if (vm.selectedStep + 1 == scope.maxStep) {
                     scope.isClicked = true;
                 }
             }
-        
-            scope.moveToPreviousStep = function() {
+
+            scope.moveToPreviousStep = function () {
                 var vm = scope;
                 if (vm.selectedStep > 0) {
                     vm.selectedStep = vm.selectedStep - 1;
                 }
             }
 
-            scope.formValue = function(array,model,findattr,retAttr){
+            scope.formValue = function (array, model, findattr, retAttr) {
                 findattr = findattr ? findattr : 'id';
                 retAttr = retAttr ? retAttr : 'value';
                 return _.find(array, function (obj) {
@@ -91,7 +91,7 @@
 
             scope.chargeSelected = function (chargeId) {
                 if (chargeId) {
-                    resourceFactory.chargeResource.get({chargeId: chargeId, template: 'true'}, this.formData, function (data) {
+                    resourceFactory.chargeResource.get({ chargeId: chargeId, template: 'true' }, this.formData, function (data) {
                         data.chargeId = data.id;
                         scope.charges.push(data);
                         //to charge select box empty
@@ -212,7 +212,7 @@
             }
         }
     });
-    mifosX.ng.application.controller('CreateSavingProductController', ['$scope', '$rootScope', 'ResourceFactory', '$location','WizardHandler', mifosX.controllers.CreateSavingProductController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateSavingProductController', ['$scope', '$rootScope', 'ResourceFactory', '$location', 'WizardHandler', mifosX.controllers.CreateSavingProductController]).run(function ($log) {
         $log.info("CreateSavingProductController initialized");
     });
 }(mifosX.controllers || {}));
