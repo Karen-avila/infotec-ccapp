@@ -26,19 +26,11 @@
                 }
             });
 
-            //----------
-            resourceFactory.clientTemplateResource.get(function (data) {
-                scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
-                scope.countryOptions = data.address[0].countryIdOptions.sort(sortBy("name"));
-                scope.stateOptions = data.address[0].stateProvinceIdOptions.sort(sortBy("name"));
-                resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        data[i].field = 'scope.' + data[i].field;
-                        eval(data[i].field + "=" + data[i].is_enabled);
-                    }
-                })
-
-            });
+            resourceFactory.clientaddressFields.get(function (data) {
+                scope.addressTypes = data.addressTypeIdOptions;
+                scope.countryOptions = data.countryIdOptions;
+                scope.stateOptions = data.stateProvinceIdOptions;
+            })
 
             scope.minDat = function () {
                 for (var i = 0; i < scope.offices.length; i++) {
@@ -81,6 +73,7 @@
                 this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
                 this.formData.branch = this.formData.branch ? this.formData.branch.padStart(6, "0") : undefined
                 resourceFactory.officeResource.save(this.formData, data => {
+                    const resourceId = data.resourceId;
                     const address = scope.address;
 
                     const newAddress = {
@@ -102,9 +95,13 @@
                     newAddress.latitude = newAddress.latitude  * 1;
                     newAddress.longitude = newAddress.longitude  * 1;
 
-                    resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
-                        location.path('/viewoffice/' + data.resourceId)
-                    });
+                    if (newAddress.street != null && newAddress.street != "") { 
+                        resourceFactory.officeAddress.save({ officeId: data.officeId }, newAddress, function (dataaddress) {
+                            location.path('/viewoffice/' + resourceId)
+                        });
+                    } else {
+                        location.path('/viewoffice/' + resourceId)                        
+                    }
                 });
             };
 

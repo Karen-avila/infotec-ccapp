@@ -84,8 +84,7 @@
 								class="required">*</span></label>
 						<div class="col-sm-3">
 							<input type="text" id="officePhoneNumber" name="officePhoneNumber" required ng-model="formData.officePhoneNumber"
-								ng-pattern="\d{20}" class="form-control" maxlength="20" />
-
+								ng-pattern="\d{50}" class="form-control" maxlength="10" />
 						</div>
 					</div>
 
@@ -97,8 +96,9 @@
 						<label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}<span
 								class="required">*</span></label>
 						<div class="col-sm-6">
-							<input id="postal_code" type="text" name="postal_code" ng-model="address.postalCode"
-								pattern="[0-9]{5}" class="form-control" only-number maxlength="5" />
+							<input type="text" id="postal_code" only-number allow-decimal="false"
+							allow-negative="false" decimal-upto="0" name="postal_code" minlength="5"
+							maxlength="5" ng-model="address.postalCode" class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
@@ -181,18 +181,21 @@
 							</md-select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-3">{{'label.input.latitude' | translate}}<span
-								class="required">*</span></label>
+					<div class="form-group row">
+						<label class="control-label col-sm-3">{{'label.input.latitude' | translate}}
+							<span class="required">*</span>
+						</label>
 						<div class="col-sm-6">
-							<input type="text" only-number name="latitude" ng-model="address.latitude" class="form-control" />
+							<input type="text" name="latitude" ng-model="address.latitude" class="form-control">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-3">{{'label.input.longitude' | translate}}<span
-								class="required">*</span></label>
+
+					<div class="form-group row">
+						<label class="control-label col-sm-3">{{'label.input.longitude' | translate}}
+							<span class="required">*</span>
+						</label>
 						<div class="col-sm-6">
-							<input type="text" only-number name="longitude" ng-model="address.longitude" class="form-control">
+							<input type="text" name="longitude" ng-model="address.longitude" class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
