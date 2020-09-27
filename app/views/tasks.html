@@ -16,7 +16,8 @@
                         
 
                     <uib-tabset tabset-name="taskTabset">
-                        <uib-tab has-permission='ALL_FUNCTIONS_READ'  heading="{{'label.heading.task.promotion' | translate}}">
+                        <!-- Promotion -->
+                        <uib-tab heading="{{'label.heading.task.promotion' | translate}}" has-permission='READ_CHECKER_TASK_PROMOTION'>
                             <md-tab-body>
                                 <div class="blockoverlay" style="overflow-y: scroll">
                                     <!-- <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll"> -->
@@ -154,9 +155,8 @@
                                 </div>
                             </md-tab-body>
                         </uib-tab>
-
                         <!-- Crédito -->
-                        <uib-tab has-permission='ALL_FUNCTIONS_READ' heading="{{'label.heading.task.credit' | translate}}">
+                        <uib-tab heading="{{'label.heading.task.credit' | translate}}" has-permission='READ_CHECKER_TASK_CREDIT'>
                             <md-tab-body>
                                 <div class="blockoverlay" style="overflow-y: scroll">
                                     <!-- <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll"> -->
@@ -264,9 +264,8 @@
                                 </div>
                             </md-tab-body>
                         </uib-tab>
-
-                        <uib-tab heading="{{'label.heading.checkerinbox' | translate}}"
-                            has-permission='ALL_FUNCTIONS_READ'>
+                        <!-- Checker -->
+                        <uib-tab heading="{{'label.heading.checkerinbox' | translate}}" has-permission='READ_CHECKER_TASK_INBOX'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
@@ -432,7 +431,7 @@
                             </div>
                         </uib-tab>
                         <!-- CLIENT APPROVAL -->
-                        <uib-tab heading="{{'label.heading.clientapproval' | translate}}" has-permission='READ_CLIENT'>
+                        <uib-tab heading="{{'label.heading.clientapproval' | translate}}" has-permission='ACTIVATE_CLIENT_CHECKER'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
@@ -513,7 +512,7 @@
                             </div>
                         </uib-tab>
                         <!-- LOAN APPROVAL -->
-                        <uib-tab heading="{{'label.heading.loanapproval' | translate}}" has-permission='READ_LOAN'>
+                        <uib-tab heading="{{'label.heading.loanapproval' | translate}}" has-permission='APPROVE_LOAN_CHECKER'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
@@ -636,7 +635,7 @@
                             </div>
                         </uib-tab>
                         <!-- LOAN DISBURSAL -->
-                        <uib-tab heading="{{'label.heading.loandisbursal' | translate}}" has-permission='READ_LOAN'>
+                        <uib-tab heading="{{'label.heading.loandisbursal' | translate}}" has-permission='DISBURSALUNDO_LOAN_CHECKER'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
@@ -793,9 +792,7 @@
                                     template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
                             </div>
                         </uib-tab>
-
-                        <uib-tab heading="{{'label.heading.rescheduleloan' | translate}}"
-                            has-permission='RESCHEDULE_LOAN'>
+                        <uib-tab heading="{{'label.heading.rescheduleloan' | translate}}" has-permission='RESCHEDULE_LOAN'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
