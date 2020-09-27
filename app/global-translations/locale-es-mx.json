@@ -2049,6 +2049,7 @@
     "label.heading.savingsDetails": "Detalles de la cuenta de ahorro",
     "label.heading.savings.currentBalance": "Saldo Actual",
     "label.heading.currentBalance": "Saldo Actual",
+    "label.button.withdrawal":"Retiros",
     "label.heading.maturedBalance": "Saldo Vencido",
     "label.heading.availableBalance": "Saldo Disponible",
     "label.heading.approvesavingaccount": "Aprobar cuenta de ahorro",
