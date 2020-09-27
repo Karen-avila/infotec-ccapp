@@ -97,10 +97,10 @@
                     <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
                 </md-button>
                 <md-button ng-if="!user.isAccountNonLocked" type="button" ng-click="unblockUser()" class="md-raised" has-permission='UPDATE_USER'>
-                    <i class="fa fa-trash-o"></i> {{'label.button.unblock' | translate}}
+                    <i class="fa fa-unlock"></i> {{'label.button.unblock' | translate}}
                 </md-button>
                 <md-button ng-if="user.isAccountNonLocked" type="button" ng-click="blockUser()" class="md-raised" has-permission='UPDATE_USER'>
-                    <i class="fa fa-trash-o"></i> {{'label.button.block' | translate}}
+                    <i class="fa fa-lock"></i> {{'label.button.block' | translate}}
                 </md-button>
                 <md-button ng-if="!user.enabled" type="button" ng-click="enableUser()" class="md-raised" has-permission='UPDATE_USER'>
                     <i class="fa fa-check"></i> {{'label.button.enable' | translate}}

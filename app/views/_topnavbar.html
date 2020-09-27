@@ -18,12 +18,12 @@
                         <i class="fa fa-calculator"></i> {{'label.anchor.accounting' | translate }}
                     </md-button>
                     <!-- oficinas -->
-                    <md-button ng-href="#!/branchoffice" class="automargin">
+                    <md-button ng-href="#!/branchoffice" has-permission='READ_BRANCH_OFFICE' class="automargin">
                         <i class="fa fa-building fa fa-large"></i> Sucursales
                     </md-button>
                     <!--  -->
                     <md-menu>
-                        <md-button aria-label="Reports menu" ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
+                        <md-button aria-label="Reports menu" has-permission='READ_REPORT' ng-mouseenter="$mdMenu.open()" ng-click="$mdMenu.open()">
                             <i class="fa fa-bar-chart-o"></i> {{'label.anchor.reports' | translate }}
                         </md-button>
                         <md-menu-content width="6" ng-mouseleave="$mdCloseMenu()">
