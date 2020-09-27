@@ -4659,6 +4659,7 @@
     "analisis_de_negocio.campo_31": "Monto por Crédito de proveedores.",
     "analisis_de_negocio.campo_32": "Monto por Recursos de inversionistas privados.",
     "analisis_de_negocio.campo_33": "Monto por Otras.",
+    "label.input.concept":"Concepto",
     "analisis_de_negocio.campo_34": "¿Cuánto debe al día de hoy por los conceptos siguientes o indique sino contó con alguno?",
     "analisis_de_negocio.campo_35": "Monto por recursos propios (dueños, herencia, familia y amigos) o utilidades reinvertidas. ? ",
     "analisis_de_negocio.campo_36": "Monto por préstamos de familiares y amigos que no tienen participación en la empresa. ",
