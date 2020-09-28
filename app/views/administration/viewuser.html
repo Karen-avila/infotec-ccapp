@@ -1,7 +1,7 @@
 <div class="content-container" ng-controller="ViewUserController">
     <ul class="breadcrumb">
         <li><a href="#!/users">{{'label.anchor.users' | translate}}</a></li>
-        <li class="active">{{user.firstname}}&nbsp;{{user.lastname}}</li>
+        <li class="active">{{user.firstname}}&nbsp;{{user.lastname}}&nbsp;{{user.surname}}</li>
     </ul>
     <script type="text/ng-template" id="password.html">
         <div class="modal-header silver">
@@ -114,7 +114,7 @@
                 </md-button>
             </div>
         </div>
-        <h3 class="bolder">{{user.firstname}}&nbsp;{{user.lastname}}</h3>
+        <h3 class="bolder">{{user.firstname}}&nbsp;{{user.lastname}}&nbsp;{{user.surname}}</h3>
         <div class="row">
             <div class="col-md-5">
                 <table class="table table-bordered table-striped">

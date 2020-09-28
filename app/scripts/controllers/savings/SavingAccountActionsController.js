@@ -241,7 +241,6 @@
                 case "block":
                     resourceFactory.codeOptionsResource.get({ codeName: 'savingsaccount_block_reason' }, function (data) {
                         scope.blockReasons = data.codeValues;
-                        console.log("data", data);
                     });
 
                     resourceFactory.savingsResource.get({ accountId: routeParams.id });
