@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateOfficeController: function (scope, resourceFactory, location, dateFilter) {
+        CreateOfficeController: function (scope, resourceFactory, location, dateFilter, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.offices = [];
             scope.first = {};
             scope.first.date = new Date();
@@ -18,6 +18,9 @@
             scope.addressArray = [];
             scope.formData.address = [];
             scope.addressresult = [];
+
+            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
@@ -126,7 +129,7 @@
 
         }
     });
-    mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateOfficeController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateOfficeController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.CreateOfficeController]).run(function ($log) {
         $log.info("CreateOfficeController initialized");
     });
 }(mifosX.controllers || {}));
