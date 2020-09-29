@@ -88,20 +88,12 @@
                
             };
 
-            scope.getClientTemplate = function () {
-                resourceFactory.clientTemplateResource.get(function (data) {
-                    scope.enableAddress = data.isAddressEnabled;
-                    if (scope.enableAddress === true) {
-                        resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
-                            for (var i = 0; i < data.length; i++) {
-                                data[i].field = 'scope.view.' + data[i].field;
-                                eval(data[i].field + "=" + data[i].is_enabled);
-                            }
-                        })
-                    }
-                });
-            }
-            scope.getClientTemplate();
+            resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].field = 'scope.view.' + data[i].field;
+                    eval(data[i].field + "=" + data[i].is_enabled);
+                }
+            });
 
             scope.getAddresses = function () {
                 resourceFactory.clientAddresses.getAll({ clientId: scope.clientId }, function (data) {
