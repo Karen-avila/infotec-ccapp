@@ -26,8 +26,6 @@
                 }
                 scope.selectedRoles=data.selectedRoles;
                 scope.availableRoles = data.availableRoles ;
-
-
                 scope.userId = data.id;
                 scope.offices = data.allowedOffices;
                 //scope.availableRoles = data.availableRoles.concat(data.selectedRoles);
@@ -40,9 +38,6 @@
             };
 
             scope.addRole = function () {
-                console.log(this.available);
-                console.log(scope.availableRoles);
-
                 for (var i in this.available) {
                     for (var j in scope.availableRoles) {
                         if (scope.availableRoles[j].id == this.available[i]) {
@@ -66,9 +61,6 @@
             };
 
             scope.removeRole = function () {
-                console.log(this.selected);
-                console.log(scope.selectedRoles);
-
                 for (var i in this.selected) {
                     for (var j in scope.selectedRoles) {
                         if (scope.selectedRoles[j].id == this.selected[i]) {
