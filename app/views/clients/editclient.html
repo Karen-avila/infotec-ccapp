@@ -337,12 +337,9 @@
 	            </div>
 	        </div>
 	        <div class="col-md-12 center">
-	            <a id="cancel" href="#!/viewclient/{{clientId}}">
-	                <button type="reset" class="btn btn-sm btn-default">{{'label.button.cancel' | translate}}</button>
-	            </a>
-	            <button id="save" type="submit" class="btn btn-sm btn-primary" has-permission='UPDATE_CLIENT' >{{'label.button.save' | translate}}</button>
+				<md-button id="cancel" href="#!/viewclient/{{clientId}}" type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+	            <md-button id="save" type="submit" class="md-raised md-primary" has-permission='UPDATE_CLIENT' >{{'label.button.save' | translate}}</md-button>
 	        </div>
-	
 	    </fieldset>
 	</div>
 </form>
