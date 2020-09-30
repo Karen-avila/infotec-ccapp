@@ -58,7 +58,6 @@
                 scope.address.city = item.address.county ? item.address.county : scope.address.city;
                 
                 scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
-                console.log(item);
             }
 
             scope.direccion_buscador = () => {

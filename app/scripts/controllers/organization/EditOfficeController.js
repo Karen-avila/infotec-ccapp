@@ -29,7 +29,6 @@
 
             resourceFactory.codeOptionsResource.get({ codeName: 'place_office' }, function (data) {
                 scope.placeOffices = data.codeValues;
-                console.log("data-placeOffices", data);
             });
 
             resourceFactory.officeResource.get({ officeId: routeParams.id, template: 'true' }, function (data) {
@@ -50,8 +49,6 @@
                     officePhoneNumber: data.officePhoneNumber
                 }
 
-                console.log(JSON.stringify(scope.address));
-
                 // Country
                 for (let i=0; i<scope.countryOptions.length; i++) {
                     if (scope.countryOptions[i].name === scope.address.countryName) {
@@ -60,9 +57,6 @@
                     }
                 }
                 for (let i=0; i<scope.stateOptions.length; i++) {
-                    console.log("1 " + scope.stateOptions[i].name);
-                    console.log("2 " + scope.address.stateName);
-                    console.log((scope.stateOptions[i].name === scope.address.stateName));
                     if (scope.stateOptions[i].name === scope.address.stateName) {
                         scope.address.stateProvinceId = scope.stateOptions[i].id;
                         break;
@@ -101,7 +95,7 @@
                 this.formData.openingDate = reqDate;
                 this.formData.name = this.formData.name.toUpperCase();
                 this.formData.city = this.formData.city ? this.formData.city : '',
-                this.formData.branch = this.formData.branch.padStart(6, "0");
+                this.formData.branch = this.formData.branch
                 resourceFactory.officeResource.update({ 'officeId': routeParams.id }, this.formData, data => {
 
                     const address = scope.address;
@@ -121,7 +115,6 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
-
                     resourceFactory.officeAddress.put({ officeId: data.officeId }, newAddress, function (dataaddress) {
                         location.path('/viewoffice/' + data.resourceId)
                     });
