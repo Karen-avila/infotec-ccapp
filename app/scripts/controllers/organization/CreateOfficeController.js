@@ -18,6 +18,7 @@
             scope.addressArray = [];
             scope.formData.address = [];
             scope.addressresult = [];
+            
 
             resourceFactory.officeResource.getAllOffices(function (data) {
                 scope.offices = data;
@@ -31,6 +32,11 @@
                 scope.countryOptions = data.countryIdOptions;
                 scope.stateOptions = data.stateProvinceIdOptions;
             })
+
+            resourceFactory.codeOptionsResource.get({ codeName: 'place_office' }, function (data) {
+                scope.placeOffices = data.codeValues;
+                console.log("data-placeOffices", data);
+            });
 
             scope.minDat = function () {
                 for (var i = 0; i < scope.offices.length; i++) {
@@ -70,8 +76,10 @@
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate
                 this.formData.name = this.formData.name ? this.formData.name.toUpperCase() : undefined
-                this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
-                this.formData.branch = this.formData.branch ? this.formData.branch.padStart(6, "0") : undefined
+                //this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
+                this.formData.city = this.formData.city ? this.formData.city : '',
+                console.log("Plaza:" +this.formData.city);
+                this.formData.branch = this.formData.branch 
                 resourceFactory.officeResource.save(this.formData, data => {
                     const resourceId = data.resourceId;
                     const address = scope.address;
@@ -91,7 +99,8 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
-
+                    console.log("Plaza------2"+newAddress.city);
+                    console.log("Branch"+newAddress.branch);
                     newAddress.latitude = newAddress.latitude  * 1;
                     newAddress.longitude = newAddress.longitude  * 1;
 

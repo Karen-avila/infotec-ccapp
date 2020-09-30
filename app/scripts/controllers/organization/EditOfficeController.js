@@ -27,6 +27,11 @@
                 scope.parentId = data[0].id;
             });
 
+            resourceFactory.codeOptionsResource.get({ codeName: 'place_office' }, function (data) {
+                scope.placeOffices = data.codeValues;
+                console.log("data-placeOffices", data);
+            });
+
             resourceFactory.officeResource.get({ officeId: routeParams.id, template: 'true' }, function (data) {
                 scope.offices = data.allowedParents;
                 scope.address = data.address[0];
@@ -95,7 +100,8 @@
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate;
                 this.formData.name = this.formData.name.toUpperCase();
-                this.formData.city = this.formData.city.padStart(3, "0");
+                //this.formData.city = this.formData.city.padStart(3, "0");
+                this.formData.city = this.formData.city ? this.formData.city : '',
                 this.formData.branch = this.formData.branch.padStart(6, "0");
                 resourceFactory.officeResource.update({ 'officeId': routeParams.id }, this.formData, data => {
 
