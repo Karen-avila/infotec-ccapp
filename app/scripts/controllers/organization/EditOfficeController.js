@@ -100,7 +100,6 @@
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate;
                 this.formData.name = this.formData.name.toUpperCase();
-                //this.formData.city = this.formData.city.padStart(3, "0");
                 this.formData.city = this.formData.city ? this.formData.city : '',
                 this.formData.branch = this.formData.branch.padStart(6, "0");
                 resourceFactory.officeResource.update({ 'officeId': routeParams.id }, this.formData, data => {
