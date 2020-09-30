@@ -241,12 +241,6 @@
                         scope.formData.creditOrderOverdueInterestAccountId = scope.product.accountingMappings.creditOrderOverdueInterestAccount.id;
                     }
 
-                    scope.showAdvanceAccounting = (
-                        (scope.product.paymentChannelToFundSourceMappings.length > 0)
-                        || (scope.product.feeToIncomeAccountMappings.length > 0)
-                        || (scope.product.penaltyToIncomeAccountMappings.length > 0)
-                    );
-
                     _.each(scope.product.paymentChannelToFundSourceMappings, function (fundSource) {
                         scope.configureFundOptions.push({
                             paymentTypeId: fundSource.paymentType.id,
