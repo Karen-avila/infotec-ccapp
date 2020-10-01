@@ -4456,7 +4456,7 @@
     "day.saturday": "Sábado",
     "day.sunday": "Domingo",
     "payment.type.INTERBANK_TRANSFER": "Transferencia Interbancaria",
-    "payment.type.PAYMENT_ORDER": "Orde de Pago",
+    "payment.type.PAYMENT_ORDER": "Orden de Pago",
     "payment.type.CASH": "Efectivo",
     "payment.type.DEBIT_CARD": "Tarjeta de Débito",
     "RepaymentRescheduleType.same.day": "mismo día",
