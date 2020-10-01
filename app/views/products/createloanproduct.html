@@ -87,10 +87,9 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <md-select aria-label="fundId" id="fundId" ng-model="formData.fundId" ng-change="loanproduct.fundName = formValue(product.fundOptions,formData.fundId,'id','name')">
-                                            <md-select-header>
-                                                {{'label.selectfund' | translate}}
-                                            </md-select-header>
+                                        <md-select aria-label="fundId" id="fundId" ng-model="formData.fundId" 
+                                            ng-change="loanproduct.fundName = formValue(product.fundOptions,formData.fundId,'id','name')"
+                                            placeHolder="{{'label.selectfund' | translate}}">
                                             <md-option ng-repeat="fund in product.fundOptions" ng-value="fund.id">
                                                 {{fund.name}}
                                             </md-option>
@@ -426,7 +425,6 @@
                                                 {{floatingrateoption.name | translate}}
                                             </md-option>
                                         </md-select>
-                                    
                                     </div>
 
                                     <div class="col-sm-3">
@@ -641,7 +639,7 @@
                                     </label>
 
                                     <div class="col-sm-3">
-                                        <md-select aria-label="interestType id="interestType" ng-model="formData.interestType" 
+                                        <md-select aria-label="interestType" id="interestType" ng-model="formData.interestType" 
                                             ng-change="loanproduct.interestOption.value = formValue(product.interestTypeOptions,formData.interestType)">
                                             <md-option ng-value="interestType.id" ng-repeat="interestType in product.interestTypeOptions">
                                                 {{interestType.value | translate}}
@@ -977,7 +975,6 @@
                                                 {{type.value | translate}}
                                             </md-option>
                                         </md-select>
-
                                     </div>
 
                                     <div>
@@ -1052,7 +1049,6 @@
                                                     {{recalculationRestFrequencyNthDayType.value | translate}}
                                                 </md-option>
                                             </md-select>
-                                            &nbsp;
                                         </div>
                                         <div class="col-sm-3"
                                             data-ng-show="(formData.recalculationRestFrequencyType == 4 && formData.recalculationRestFrequencyNthDayType != -2) || formData.recalculationRestFrequencyType == 3">
@@ -1061,7 +1057,6 @@
                                                     {{recalculationRestFrequencyDayOfWeekType.value | translate}}
                                                 </md-option>
                                             </md-select>
-                                        &nbsp;
                                         </div>
                                         <div class="col-sm-3"
                                             data-ng-show="formData.recalculationRestFrequencyType == 4 && formData.recalculationRestFrequencyNthDayType == -2">
@@ -1070,7 +1065,6 @@
                                                     {{recalculationRestFrequencyOnDayType.value | translate}}
                                                 </md-option>
                                             </md-select>
-                                            &nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -1768,7 +1762,7 @@
                                                 <td class="width30">
                                                     <md-select id="configureFundOptions[{{$index}}].paymentTypeId" ng-model="configureFundOption.paymentTypeId" ng-change="loanproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')">
                                                         <md-option ng-value="paymentType.id" ng-repeat="paymentType in configureFundOption.paymentTypeOptions">
-                                                            {{paymentType.name | translate}}
+                                                            {{'payment.type.' + paymentType.name | translate}}
                                                         </md-option>
                                                     </md-select>
                                                 </td>

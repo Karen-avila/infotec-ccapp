@@ -4456,7 +4456,7 @@
     "day.saturday": "Sábado",
     "day.sunday": "Domingo",
     "payment.type.INTERBANK_TRANSFER": "Transferencia Interbancaria",
-    "payment.type.PAYMENT_ORDER": "Orde de Pago",
+    "payment.type.PAYMENT_ORDER": "Orden de Pago",
     "payment.type.CASH": "Efectivo",
     "payment.type.DEBIT_CARD": "Tarjeta de Débito",
     "RepaymentRescheduleType.same.day": "mismo día",
@@ -6198,5 +6198,9 @@
     "Monthly on day 28": "Mensualmente el día 28",
     "Monthly on day 29": "Mensualmente el día 29",
     "Monthly on day 30": "Mensualmente el día 30",
-    "Monthly on day 31": "Mensualmente el día 31"
+    "Monthly on day 31": "Mensualmente el día 31",
+    "label.heading.loanautorize":"Autorización de crédito",
+    "label.button.authorize":"Autorizar",
+    "label.heading.authorize":"Autorizar",
+    "label.heading.confirm.authorize":"¿Desea autorizar los siguientes créditos?"
 }
