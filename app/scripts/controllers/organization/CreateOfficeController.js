@@ -95,6 +95,7 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
+
                     newAddress.latitude = newAddress.latitude  * 1;
                     newAddress.longitude = newAddress.longitude  * 1;
 
