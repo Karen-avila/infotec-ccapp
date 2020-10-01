@@ -35,7 +35,6 @@
 
             resourceFactory.codeOptionsResource.get({ codeName: 'place_office' }, function (data) {
                 scope.placeOffices = data.codeValues;
-                console.log("data-placeOffices", data);
             });
 
             scope.minDat = function () {
@@ -59,7 +58,6 @@
                 scope.address.city = item.address.county ? item.address.county : scope.address.city;
                 
                 scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
-                console.log(item);
             }
 
             scope.direccion_buscador = () => {
@@ -76,9 +74,7 @@
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate
                 this.formData.name = this.formData.name ? this.formData.name.toUpperCase() : undefined
-                //this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
                 this.formData.city = this.formData.city ? this.formData.city : '',
-                console.log("Plaza:" +this.formData.city);
                 this.formData.branch = this.formData.branch 
                 resourceFactory.officeResource.save(this.formData, data => {
                     const resourceId = data.resourceId;
@@ -99,8 +95,7 @@
                         isActive: address.isActive ? address.isActive : false,
                         locale: scope.optlang.code
                     };
-                    console.log("Plaza------2"+newAddress.city);
-                    console.log("Branch"+newAddress.branch);
+
                     newAddress.latitude = newAddress.latitude  * 1;
                     newAddress.longitude = newAddress.longitude  * 1;
 
