@@ -819,10 +819,8 @@
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
                     scope.bulkAuthorize($scope.authorizeKey);
-                    if(scope.errorSignature.length == 0){
-                        route.reload();
-                        $uibModalInstance.close('authorize');
-                    }
+                    route.reload();
+                    $uibModalInstance.close('authorize');
                 };
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss('cancel');
@@ -848,20 +846,12 @@
 
                 scope.batchRequests = [];
                 scope.requestIdentifier = "loanId";
-                scope.errorSignature = [];
-                var signatureURL = SIGNATUREURL;
                 var reqId = 1;
                 _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
                         _.each(scope.pendingToAuthorize, function (item) {
                             if (id == item.client.id) {
-                                $http({
-                                    method: 'POST',
-                                    //headers: {'X-Gravitee-Api-Key': 'a63b5947-07d0-451b-b330-8ae0e3498914'},
-                                    url: signatureURL,
-                                    data: {clave : authorizeKey, loanid : item.loan.id }
-                                }).then(function (data) {
-                                    scope.formData.nota = data.textoFirmado;
+                                    scope.formData.signedKey = authorizeKey;
                                     if (item.individual == true) {
                                         scope.batchRequests.push({
                                             requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=authorize",
@@ -875,13 +865,6 @@
                                             });
                                         });
                                     }
-                                }, function (response) {
-                                    scope.errorSignature.push({
-                                        name : item.client.name,
-                                        loanId : item.loan.id,
-                                        message : response.data.message
-                                    });                                    
-                                });
                             }
                         });
                     }
