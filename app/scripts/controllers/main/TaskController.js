@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER,SIGNATUREURL, $http) {
+        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -18,8 +18,8 @@
             scope.isCollapsed = true;
             scope.approveData = {};
             scope.restrictDate = new Date();
-            scope.minDatePicker = new Date('2020-01-02');
-            scope.maxDatePicker = new Date();
+            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
             scope.date.from = new Date('2020-01-02');
             scope.date.to = new Date();
             scope.showLoanApprovalDetail = [];
@@ -1063,7 +1063,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER','SIGNATUREURL','$http', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));
