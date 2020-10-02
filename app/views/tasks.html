@@ -355,8 +355,7 @@
                                     </div>
                                 </div>
                                 <span><a ng-click="search()" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-search"></i>{{'label.button.advancesearch'
-				            | translate}}</a>
+                                            class="fa fa-search"></i>{{'label.button.advancesearch' | translate}}</a>
                                     <br /><br />
                                 </span>
                             </div>
@@ -518,7 +517,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input ng-autofocus="true" ng-model="filterText1" type="text"
+                                                <input ng-autofocus="true" ng-model="filterPendingToApproval" type="text"
                                                     class="input-sm form-control"
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
@@ -563,7 +562,135 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat-start="record in pendingApproval | filter:filterText1"
+                                        <tr ng-repeat-start="record in pendingApproval | filter:filterPendingToApproval"
+                                            class="{{record.individual ? '' : 'accordion-toggle'}}"
+                                            data-toggle="collapse"
+                                            data-target="#grp_a{{record.individual ? '' : record.client.id}}">
+                                            <td>
+                                                <input type="checkbox" ng-model="loanTemplate[record.client.id]">
+                                            </td>
+                                            <td ng-if="record.individual">{{record.office.name}}</td>
+                                            <td ng-if="!record.individual"
+                                                data-ng-click="showGroupDetail(record.client.id, 'a')">
+                                                {{record.office.name}}</td>
+                                            <td ng-if="!record.individual" class="pointer"
+                                                data-ng-click="showGroupDetail(record.client.id, 'a')">
+                                                <i class="fa fa-users"></i>&nbsp;<a
+                                                    href='#!/viewgroup/{{record.client.id}}'>{{record.client.name}}</a>
+                                            </td>
+                                            <td ng-if="record.individual" class="pointer">
+                                                <i class="fa fa-user"></i>&nbsp;<a
+                                                    href='#!/viewclient/{{record.client.id}}'>{{record.client.name}}</a>
+                                            </td>
+                                            <td class="pointer">{{record.client.loanCounter}}</td>
+                                            <td class="pointer">{{record.loan.productName}} </td>
+                                            <td ng-if="!record.individual"
+                                                data-ng-click="showGroupDetail(record.client.id, 'a')"></td>
+                                            <td ng-if="record.individual" class="pointer"><a
+                                                    href='#!/viewloanaccount/{{record.loan.id}}'>{{record.loan.accountNo}}</a>
+                                            </td>
+                                            <td ng-if="!record.individual"
+                                                data-ng-click="showGroupDetail(record.client.id, 'a')">
+                                                {{record.loan.amount | FormatNumber}} ({{record.loans.length}})</td>
+                                            <td ng-if="record.individual">{{record.loan.amount | FormatNumber}}</td>
+                                            <td class="pointer">{{record.client.staffName}}</td>
+                                        </tr>
+                                        <tr ng-repeat-end ng-if="!record.individual">
+                                            <td colspan="7" ng-if="!record.individual" class="accordion-body collapse"
+                                                id="grp_a{{record.client.id}}">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="graybg">
+                                                            <th></th>
+                                                            <th>{{'label.heading.office' | translate}}</th>
+                                                            <th colspan="2">
+                                                                {{'label.heading.grouporclient' | translate}}</th>
+                                                            <th>{{'label.heading.loan' | translate}}</th>
+                                                            <th>{{'label.heading.amount' | translate}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="loan in record.loans">
+                                                            <td colspan="2">{{record.office.name}}</td>
+                                                            <td colspan="2" class="pointer">
+                                                                <a
+                                                                    href='#!/viewclient/{{loan.client.id}}'>{{loan.client.name}}</a>
+                                                            </td>
+                                                            <td class="pointer"><a
+                                                                    href='#!/viewloanaccount/{{loan.id}}'>{{loan.accountNo}}</a>
+                                                            </td>
+                                                            <td class="pointer">{{loan.amount | FormatNumber}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center">
+                                    <dir-pagination-controls pagination-id="'__' + $index" boundary-links="true"
+                                        template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <!-- LOAN APPROVAL TO AUTHORIZE -->
+                        <uib-tab heading="{{'label.heading.loanautorize' | translate}}" has-permission='AUTORIZE_LOAN_CHECKER'>
+                            <div class="head-affix">
+                                <table class="table condensed-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input ng-autofocus="true" ng-model="filterPendingToAuthorize" type="text"
+                                                    class="input-sm form-control"
+                                                    placeholder="{{'label.input.filterbyname' | translate}}">
+                                            </th>
+                                            <th>
+                                                <button type="button" class="btn btn-sm btn-success"
+                                                    data-ng-click="authorizeLoan()" has-permission='AUTORIZE_LOAN'><i
+                                                        class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.authorize'| translate}}
+                                                </button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <script type="text/ng-template" id="authorizeloan.html">
+                                <div class="modal-header silver">
+                                    <h3 class="bolder">{{'label.heading.confirm.authorize' | translate}}</h3>
+                                </div>
+                                <div class="modal-body form-horizontal">
+                                    <api-validate></api-validate>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="password">{{'label.input.password' | translate }}</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" id="password" ng-model="authorizeKey" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="modal-footer silver">
+                                    <button class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
+                                    <button class="btn btn-sm btn-primary" ng-click="authorize()">{{'label.heading.authorize' | translate}}</button>
+                                </div>
+                            </script>
+
+                            <div>
+                                <table class="table condensed-table">
+                                    <thead>
+                                        <tr class="graybg">
+                                            <th></th>
+                                            <th>{{'label.heading.office' | translate}}</th>
+                                            <th>{{'label.heading.grouporclient' | translate}}</th>
+                                            <th>{{'label.heading.numofloancycle' | translate}}</th>
+                                            <th>{{'label.heading.product' | translate}}</th>
+                                            <th>{{'label.heading.loan' | translate}}</th>
+                                            <th>{{'label.heading.amount' | translate}}</th>
+                                            <th>{{'label.heading.staff' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="record in pendingToAuthorize | filter:filterPendingToAuthorize"
                                             class="{{record.individual ? '' : 'accordion-toggle'}}"
                                             data-toggle="collapse"
                                             data-target="#grp_a{{record.individual ? '' : record.client.id}}">
@@ -641,7 +768,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input ng-autofocus="true" ng-model="filterText2" type="text"
+                                                <input ng-autofocus="true" ng-model="filterPendingToDisbursal" type="text"
                                                     class="input-sm form-control"
                                                     placeholder="{{'label.input.filterbyname' | translate}}">
                                             </th>
@@ -719,7 +846,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat-start="record in pendingDisburse | filter:filterText1"
+                                        <tr ng-repeat-start="record in pendingDisburse | filter:filterPendingToDisbursal"
                                             class="{{record.individual ? '' : 'accordion-toggle'}}"
                                             data-toggle="collapse"
                                             data-target="#grp_d{{record.individual ? '' : record.client.id}}">

@@ -5,104 +5,147 @@
     </ul>
     <div class="card">
         <div class="content">
-                <div class="" data-ng-show="isCollapsed">
-                    <div class="row">
-                        <div class="col-md-10 col-sm-10">
-                            <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user" class="form-control" uib-uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue |  limitTo:8"/>
-                        </div>
-                        <div class="col-md-1 col-sm-1">
-                            <button ng-click="isCollapsed = !isCollapsed" class="btn btn-sm btn-default"><i class="fa fa-chevron-down"></i></button>
-                        </div>
-                        <div class="col-md-1 col-sm-1">
-                            <button ng-click="searchAudit()" class="btn btn-primary control" has-permission='READ_AUDIT'><i class="fa fa-search "></i></button>
-                        </div>
+            <div class="" data-ng-show="isCollapsed">
+                <div class="row">
+                    <div class="col-md-10 col-sm-10">
+                        <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)"
+                            placeholder="{{'label.input.searchbyuser' | translate}}" type="text"
+                            ng-model="formData.user" class="form-control"
+                            uib-uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue |  limitTo:8" />
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <md-button ng-click="isCollapsed = !isCollapsed" class="md-raised"><i
+                                class="fa fa-chevron-down"></i></md-button>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <md-button ng-click="searchAudit()" class="md-raised md-primary control" has-permission='READ_AUDIT'><i
+                                class="fa fa-search "></i></md-button>
                     </div>
                 </div>
+            </div>
 
-                <div data-ng-hide="isCollapsed">
-                    <div class="form-inline">
-                        <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)" placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user" class="form-control" uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue | limitTo:8"/>
-                        <input type="text" sort placeholder="{{'label.input.fromdate' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.first" is-open="opened" min="minDate" max="'2030-06-22'" class="form-control"/>
-                        <input type="text" sort placeholder="{{'label.input.checkedfrom' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.third" is-open="opened2" min="minDate" max="'2030-06-22'" class="form-control"/>
-                        <select value="{{status.id}}" ng-model="formData.status" class="form-control width170px" data-ng-options="status.id as status.processingResult | translate for status in template.processingResults">
-                            <option value="">{{'label.selectstatus' | translate}}</option>
-                        </select>
-                        <select ng-model="formData.action" class="form-control width170px">
-                            <option value="">{{'label.selectaction' | translate}}</option>
-                            <option selected="selected" value="">{{'label.all' | translate}}</option>
-                            <option ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</option>
-                        </select>
-                        <a ng-click="clearFilters()" class="btn btn-primary pull-right"><i class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reset' | translate}}</a>
-                    </div>
+            <div data-ng-hide="isCollapsed">
+                <div class="form-inline">
+                    <input ng-autofocus="true" autocomplete="off" typeahead-on-select="viewUser($item)"
+                        placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user"
+                        class="form-control"
+                        uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue | limitTo:8" />
+                    
+                    <md-datepicker id="fromdate" ng-model="date.first" md-min-date="minDate" 
+                        placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
+                    </md-datepicker>
 
-                    <div class="form-inline">
-                        <input type="text" placeholder="{{'label.input.resourceid' | translate}}" ng-model="formData.resourceId" class="form-control">
-                        <input type="text" sort placeholder="{{'label.input.todate' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.second" is-open="opened1" min="minDate" max="'2030-06-22'" class="form-control"/>
-                        <input type="text" sort placeholder="{{'label.input.checkedto' | translate}}" datepicker-pop="dd MMMM yyyy" ng-model="date.fourth" is-open="opened3" min="minDate" max="'2030-06-22'" class="form-control"/>
-                        <select ng-model="formData.entity" class="form-control width170px">
-                            <option value="">{{'label.selectentity' | translate}}</option>
-                            <option selected="selected" value="">{{'label.all' | translate}}</option>
-                            <option ng-repeat="entity in template.entityNames" value="{{entity}}">{{entity}}</option>
-                        </select>
-                        <select ng-model="formData.checkedBy" class="form-control width170px">
-                            <option value="">{{'label.selectchecker' | translate}}</option>
-                            <option selected="selected" value="">{{'label.all' | translate}}</option>
-                            <option ng-repeat="user in template.appUsers" value="{{user.id}}">{{user.username}}</option>
-                        </select>
-                        <span><a ng-click="searchAudit()" class="btn btn-primary pull-right" has-permission='READ_AUDIT'><i class="fa fa-search "></i>&nbsp;&nbsp;{{'label.button.advancesearch' | translate}}</a></span>
-                    </div>
+                    <md-datepicker id="checkedfrom" ng-model="date.third" md-min-date="minDate" 
+                        placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
+                    </md-datepicker>
+
+                    <md-select ng-model="formData.status" class="width170px"
+                        placeHolder="{{'label.selectstatus' | translate}}">
+                        <md-option ng-value="status.id" ng-repeat="status in template.processingResults">
+                            {{(status.processingResult | translate)}}
+                        </md-option>
+                    </md-select>
+
+                    <md-select ng-model="formData.action" class="form-control width170px">
+                        <md-option value="">{{'label.selectaction' | translate}}</md-option>
+                        <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
+                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</md-option>
+                    </md-select>
+                    <md-button ng-click="clearFilters()" class="md-raised md-primary pull-right"><i
+                            class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reset' | translate}}</md-button>
                 </div>
 
-                <div ng-show="displayResults">
+                <div class="form-inline">
+                    <input type="text" placeholder="{{'label.input.resourceid' | translate}}"
+                        ng-model="formData.resourceId" class="form-control">
+
+                    <md-datepicker id="fromdate" ng-model="date.second" md-min-date="minDate" 
+                        placeholder="{{'label.input.second' | translate}}" md-max-date="'2030-06-22'">
+                    </md-datepicker>
+
+                    <md-datepicker id="checkedto" ng-model="date.fourth" md-min-date="minDate" 
+                        placeholder="{{'label.input.checkedto' | translate}}" md-max-date="'2030-06-22'">
+                    </md-datepicker>
+
+                    <md-select ng-model="formData.entity" class="form-control width170px"
+                        placeHolde="{{'label.selectentity' | translate}}">
+                        <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
+                        <md-option ng-value="entity" ng-repeat="entity in template.entityNames">
+                            {{(entity | translate)}}
+                        </md-option>
+                    </md-select>
+
+                    <md-select ng-model="formData.entity" class="width170px"
+                        placeHolde="{{'label.selectentity' | translate}}">
+                        <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
+                        <md-option ng-value="entity" ng-repeat="entity in template.entityNames">
+                            {{(entity | translate)}}
+                        </md-option>
+                    </md-select>
+
+                    <md-select ng-model="formData.checkedBy" class="width170px"
+                        placeHolde="{{'label.selectchecker' | translate}}">
+                        <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
+                        <md-option ng-value="user.id" ng-repeat="user in template.appUsers">
+                            {{(user.username | translate)}}
+                        </md-option>
+                    </md-select>
+                    <span><md-button ng-click="searchAudit()" class="md-raised md-primary pull-right" has-permission='READ_AUDIT'><i
+                                class="fa fa-search "></i>&nbsp;&nbsp;{{'label.button.advancesearch' | translate}}</md-button></span>
+                </div>
+            </div>
+            
+            <md-table-container ng-show="displayResults" class="noscroll-x">
+
                 <br>
-                    <div data-ng-show="flag" class="pull-right">
-                        <button type="button" class="btn btn-sm btn-primary" ng-csv="csvData"><i class="fa fa-file "></i>&nbsp;&nbsp;{{'label.button.exportcsv' | translate }}</button>
-                    </div>
-                    <br> 
-                    <div data-ng-show="flag">
-                        <table class="table table-bordered width1200px" data-anchor>
-                            <thead>
-                            <tr class="graybg">
-                                <th>{{'label.heading.id' | translate}}</th>
-                                <th>{{'label.heading.resourceid' | translate}}</th>
-                                <th>{{'label.heading.status' | translate}}</th>
-                                <th>{{'label.heading.madeby' | translate}}</th>
-                                <th>{{'label.heading.action' | translate}}</th>
-                                <th>{{'label.heading.entity' | translate}}</th>
-                                <th>{{'label.heading.office' | translate}}</th>
-                                <th>{{'label.heading.madedate' | translate}}</th>
-                                <th>{{'label.heading.checker' | translate}}</th>
-                                <th>{{'label.heading.checkeddate' | translate}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="pointer-main" data-ng-click="routeTo(data.id)" ng-repeat="data in searchData.pageItems">
-                                <td>{{data.id}}</td>
-                                <td>{{data.resourceId}}</td>
-                                <td>{{data.processingResult | translate}}</td>
-                                <td>{{data.maker}}</td>
-                                <td>{{data.actionName}}</td>
-                                <td>{{data.entityName}}</td>
-                                <td>{{data.officeName}}</td>
-                                <td>{{data.madeOnDate | date:'d MMM y h:mm:ss'}}</td>
-                                <td>{{data.checker}}</td>
-                                <td>{{data.checkedOnDate | date:'d MMM y h:mm:ss'}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <ul class="pager">
-                        <li class="previous">
-                            <a id="prev" ng-click="audit.previous()" href="" ng-disabled="!audit.hasPrevious()">&larr; {{'label.button.previous' | translate}}</a>
-                        </li>
-                        <li class="next">
-                            <a id="next" ng-click="audit.next()" href="" ng-disabled="!audit.hasNext()">{{'label.button.next' | translate}} &rarr;</a>
-                        </li>
-                    </ul>
-
-                    <h3 data-ng-show="!flag" class="auditnodata"><strong>{{'label.nodata' | translate }}</strong></h3>
+                <div data-ng-show="flag" class="pull-right">
+                    <button class="btn btn-sm" ng-csv="csvData">
+                        <i class="fa fa-file "></i> {{'label.button.exportcsv' | translate }}
+                    </button>
                 </div>
+                <br>
+    
+                <div data-ng-show="flag">
+                    <div class="row">
+                        <div clas="col-sm-12">
+                            <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                                <thead md-head md-order="query.order">
+                                    <tr md-row>
+                                        <th>{{'label.heading.id' | translate}}</th>
+                                        <th>{{'label.heading.resourceid' | translate}}</th>
+                                        <th>{{'label.heading.status' | translate}}</th>
+                                        <th>{{'label.heading.madeby' | translate}}</th>
+                                        <th>{{'label.heading.action' | translate}}</th>
+                                        <th>{{'label.heading.entity' | translate}}</th>
+                                        <th>{{'label.heading.office' | translate}}</th>
+                                        <th>{{'label.heading.madedate' | translate}}</th>
+                                        <th>{{'label.heading.checker' | translate}}</th>
+                                        <th>{{'label.heading.checkeddate' | translate}}</th>
+                                    </tr>
+                                </thead>
+                        <tbody md-body>
+                            <tr md-row class="pointer-main" ng-click="routeTo(data.id)"
+                                ng-repeat="data in searchData.pageItems">
+                                <td md-cell>{{data.id}}</td>
+                                <td md-cell>{{data.resourceId}}</td>
+                                <td md-cell>{{data.processingResult | translate}}</td>
+                                <td md-cell>{{data.maker}}</td>
+                                <td md-cell>{{data.actionName | translate}}</td>
+                                <td md-cell>{{data.entityName | translate}}</td>
+                                <td md-cell>{{data.officeName}}</td>
+                                <td md-cell>{{data.madeOnDate | date:'d MMM y h:mm:ss'}}</td>
+                                <td md-cell>{{data.checker}}</td>
+                                <td md-cell>{{data.checkedOnDate | date:'d MMM y h:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <md-table-pagination ng-show="searchData.pageItems.length > query.limit" md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                    md-boundary-links="options.boundaryLinks" md-total="{{searchData.pageItems.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
+
+                <h3 data-ng-show="!flag" class="auditnodata"><strong>{{'label.nodata' | translate }}</strong></h3>
+            </md-table-container>
         </div>
     </div>
 </div>

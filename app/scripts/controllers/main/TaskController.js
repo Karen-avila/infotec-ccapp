@@ -1,11 +1,13 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
+        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER,SIGNATUREURL, $http) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
             scope.pendingApproval = [];
+            scope.pendingToAuthorize = [];
             scope.pendingDisburse = [];
+            scope.errorSignature = [];
             var idToNodeMap = {};
             scope.formData = {};
             scope.loanTemplate = {};
@@ -369,10 +371,12 @@
                     data[i].loans = [];
                     idToNodeMap[data[i].id] = data[i];
                 }
+
                 scope.loanResource = function () {
                     resourceFactory.loanResource.getAllLoans({ limit: '1000', sqlSearch: 'l.loan_status_id in (100,200)' }, function (loanData) {
                         scope.loans = loanData.pageItems;
                         scope.pendingApproval = [];
+                        scope.pendingToAuthorize = [];
                         for (var i in scope.loans) {
                             if (scope.loans[i].status.pendingApproval) {
                                 var tempOffice = undefined;
@@ -519,23 +523,43 @@
                                 } else if (scope.loans[i].clientOfficeId) {
                                     tempOffice = idToNodeMap[scope.loans[i].clientOfficeId];
                                     tempOffice.loans.push(scope.loans[i]);
-                                    scope.pendingDisburse.push({
-                                        office: tempOffice,
-                                        individual: true,
-                                        client: {
-                                            id: scope.loans[i].clientId,
-                                            name: scope.loans[i].clientName,
-                                            loanCounter: scope.loans[i].groupLoanCounter,
-                                            staffName: scope.loans[i].loanOfficerName,
-                                        },
-                                        loan: {
-                                            id: scope.loans[i].id,
-                                            accountNo: scope.loans[i].accountNo,
-                                            productName: scope.loans[i].loanProductName,
-                                            amount: scope.loans[i].principal,
-                                            loanPurposeName: scope.loans[i].loanPurposeName
-                                        }
-                                    });
+                                    if(scope.loans[i].subStatus != undefined && scope.loans[i].subStatus.value == "Authorized"){
+                                        scope.pendingDisburse.push({
+                                            office: tempOffice,
+                                            individual: true,
+                                            client: {
+                                                id: scope.loans[i].clientId,
+                                                name: scope.loans[i].clientName,
+                                                loanCounter: scope.loans[i].groupLoanCounter,
+                                                staffName: scope.loans[i].loanOfficerName,
+                                            },
+                                            loan: {
+                                                id: scope.loans[i].id,
+                                                accountNo: scope.loans[i].accountNo,
+                                                productName: scope.loans[i].loanProductName,
+                                                amount: scope.loans[i].principal,
+                                                loanPurposeName: scope.loans[i].loanPurposeName
+                                            }
+                                        });
+                                    }else if(scope.loans[i].subStatus != undefined && scope.loans[i].subStatus.value == "Waiting for authorization"){
+                                        scope.pendingToAuthorize.push({
+                                            office: tempOffice,
+                                            individual: true,
+                                            client: {
+                                                id: scope.loans[i].clientId,
+                                                name: scope.loans[i].clientName,
+                                                loanCounter: scope.loans[i].groupLoanCounter,
+                                                staffName: scope.loans[i].loanOfficerName,
+                                            },
+                                            loan: {
+                                                id: scope.loans[i].id,
+                                                accountNo: scope.loans[i].accountNo,
+                                                productName: scope.loans[i].loanProductName,
+                                                amount: scope.loans[i].principal,
+                                                loanPurposeName: scope.loans[i].loanPurposeName
+                                            }
+                                        });
+                                    }
                                 }
                             }
                         }
@@ -549,6 +573,7 @@
                         scope.offices = finalArray;
                     });
                 };
+
                 scope.loanResource();
             });
 
@@ -767,6 +792,99 @@
                 });
             };
 
+            scope.authorizeLoan = function () {
+                var selectedAccounts = 0;
+                _.each(scope.loanTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingToAuthorize, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
+                        });
+                    }
+                });
+                // console.log("Loans for approval selected: " + selectedAccounts);
+                if (selectedAccounts > 0) {
+                    $uibModal.open({
+                        templateUrl: 'authorizeloan.html',
+                        controller: authorizeLoanCtrl
+                    });
+                }
+            };
+
+            var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
+                $scope.authorize = function () {
+                    scope.bulkAuthorize($scope.authorizeKey);
+                    route.reload();
+                    $uibModalInstance.close('authorize');
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            }
+
+            scope.bulkAuthorize = function (authorizeKey) {
+                var selectedAccounts = 0;
+                var approvedAccounts = 0;
+                _.each(scope.loanTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingToAuthorize, function (item) {
+                            if (id == item.client.id) {
+                                if (item.individual == true) {
+                                    selectedAccounts++;
+                                } else {
+                                    selectedAccounts += item.loans.length;
+                                }
+                            }
+                        });
+                    }
+                });
+
+                scope.batchRequests = [];
+                scope.requestIdentifier = "loanId";
+                var reqId = 1;
+                _.each(scope.loanTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.pendingToAuthorize, function (item) {
+                            if (id == item.client.id) {
+                                    scope.formData.signedKey = authorizeKey;
+                                    if (item.individual == true) {
+                                        scope.batchRequests.push({
+                                            requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=authorize",
+                                            method: "POST", body: JSON.stringify(scope.formData)
+                                        });
+                                    } else {
+                                        _.each(item.loans, function (loan) {
+                                            scope.batchRequests.push({
+                                                requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=authorize",
+                                                method: "POST", body: JSON.stringify(scope.formData)
+                                            });
+                                        });
+                                    }
+                            }
+                        });
+                    }
+                });  
+
+                // console.log("Loans to be approved batch: " + scope.batchRequests.length);
+                resourceFactory.batchResource.post(scope.batchRequests, function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].statusCode = '200') {
+                            approvedAccounts++;
+                            data[i].body = JSON.parse(data[i].body);
+                            scope.loanTemplate[data[i].body.loanId] = false;
+                            if (selectedAccounts == approvedAccounts) {
+                                scope.loanResource();
+                            }
+                        }
+                    }
+                });
+            };
+
             scope.disburseLoan = function () {
                 var selectedAccounts = 0;
                 _.each(scope.loanDisbursalTemplate, function (value, id) {
@@ -868,6 +986,7 @@
                     }
                 });
             };
+
             scope.approveBulkLoanReschedule = function () {
                 if (scope.checkForBulkLoanRescheduleApprovalData) {
                     $uibModal.open({
@@ -896,6 +1015,7 @@
                     };
                 }
             }
+
             scope.checkerInboxAllCheckBoxesMetForBulkLoanRescheduleApproval = function () {
                 var checkBoxesMet = 0;
                 if (!angular.isUndefined(scope.loanRescheduleData)) {
@@ -909,6 +1029,7 @@
                     return (checkBoxesMet === scope.loanRescheduleData.length);
                 }
             }
+
             scope.bulkLoanRescheduleApproval = function () {
                 scope.formData.approvedOnDate = dateFilter(new Date(), scope.df);
                 scope.formData.dateFormat = scope.df;
@@ -942,7 +1063,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER','SIGNATUREURL','$http', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));

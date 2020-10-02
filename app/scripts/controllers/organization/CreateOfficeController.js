@@ -18,6 +18,7 @@
             scope.addressArray = [];
             scope.formData.address = [];
             scope.addressresult = [];
+            
 
             scope.minDatePicker = new Date(MIN_DATEPICKER);
             scope.maxDatePicker = new Date(MAX_DATEPICKER);
@@ -34,6 +35,10 @@
                 scope.countryOptions = data.countryIdOptions;
                 scope.stateOptions = data.stateProvinceIdOptions;
             })
+
+            resourceFactory.codeOptionsResource.get({ codeName: 'place_office' }, function (data) {
+                scope.placeOffices = data.codeValues;
+            });
 
             scope.minDat = function () {
                 for (var i = 0; i < scope.offices.length; i++) {
@@ -56,7 +61,6 @@
                 scope.address.city = item.address.county ? item.address.county : scope.address.city;
                 
                 scope.addressTypes = data.address[0].addressTypeIdOptions.sort(sortBy("name"));
-                console.log(item);
             }
 
             scope.direccion_buscador = () => {
@@ -73,8 +77,8 @@
                 this.formData.dateFormat = scope.df
                 this.formData.openingDate = reqDate
                 this.formData.name = this.formData.name ? this.formData.name.toUpperCase() : undefined
-                this.formData.city = this.formData.city ? this.formData.city.padStart(3, "0") : undefined
-                this.formData.branch = this.formData.branch ? this.formData.branch.padStart(6, "0") : undefined
+                this.formData.city = this.formData.city ? this.formData.city : '',
+                this.formData.branch = this.formData.branch 
                 resourceFactory.officeResource.save(this.formData, data => {
                     const resourceId = data.resourceId;
                     const address = scope.address;
