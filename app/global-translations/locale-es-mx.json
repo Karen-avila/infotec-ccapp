@@ -321,6 +321,8 @@
     "label.input.differentialrate": "Tasa de Interés diferencial",
     "label.heading.sharesaccoverview": "Resumen de cuenta de ahorros",
     "label.heading.shareaccount": "Cuenta de participación",
+    "BlockCredit": "Crédito Bloqueado",
+    "BlockDebit": "Débito Bloqueado",
     "label.heading.approvedshares": "Participaciones Aprobadas",
     "label.heading.pendingforapproval": "Pendiente de la Aprobación de Acciones",
     "label.heading.purchasedsharesoverview": "Resumen De Transacciones",
