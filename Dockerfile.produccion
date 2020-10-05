@@ -135,7 +135,7 @@ RUN mv /usr/local/lsws/Example /usr/local/lsws/Mifos
 
 COPY --from=builder /usr/src/app/dist/community-app /usr/local/lsws/Mifos/html
 
-COPY ./httpd_config.conf /usr/local/lsws/conf/httpd_config.conf
+COPY ./httpd_config.conf /usr/local/lsws/conf/httpd_config_prod.conf
 
 COPY ./vhconf.conf /usr/local/lsws/conf/vhosts/Mifos/vhconf.conf 
 

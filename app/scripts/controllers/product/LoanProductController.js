@@ -33,7 +33,7 @@
 
             scope.LoanProductsPerPage = 15;
             scope.$broadcast('LoanProductDataLoadingStartEvent');
-            resourceFactory.loanProductResource.getAllLoanProducts(function (data) {
+            resourceFactory.loanProductResource.getAllLoanProducts({withDetails: false}, function (data) {
                 scope.loanproducts = data;
                 scope.totalLoanProducts = data.length;
                 scope.$broadcast('LoanProductDataLoadingCompleteEvent');
