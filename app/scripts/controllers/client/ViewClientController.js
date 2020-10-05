@@ -254,13 +254,15 @@
                             name: "button.deposit",
                             type: "100",
                             icon: "fa fa-arrow-up",
-                            taskPermissionName: "DEPOSIT_SAVINGSACCOUNT"
+                            taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+                            check:"BlockDebit"
                         },
                         {
                             name: "button.withdraw",
                             type: "100",
                             icon: "fa fa-arrow-down",
-                            taskPermissionName: "WITHDRAW_SAVINGSACCOUNT"
+                            taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+                            check:"BlockCredit"
                         },
                         {
                             name: "button.deposit",
@@ -691,9 +693,6 @@
                 scope.getLastNote();
             }
 
-            
-
-
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: scope.clientId, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
@@ -747,20 +746,40 @@
                 })
             }
 
-
             scope.getDataTablesAndScoring = function () {
                 if (scope.datatableLoaded == false) {
                     scope.scoringDetails = [];
                     scope.scoringInternalSubTotal = 0;
                     scope.scoringInternalPoints = 0;
-                    scope.scoringExternalPoints = scope.getRandomInt(300, 850);
+                    scope.scoringExternalPoints = 0; //scope.getRandomInt(300, 850);
+                    scope.getExternalScoring();
                     scope.scoringTotalTotal = 0;
                     scope.getDataTables();
                 }
             }
 
+            scope.getExternalScoring = function () {
+                resourceFactory.DataTablesResource.getTableDetails({
+                    datatablename: "VALIDACION",
+                    entityId: scope.clientId, genericResultSet: 'true'
+                }).$promise.then(function (data) {
+                    var rows = data.data[0].rows;
+                    for (var i=0; i<rows.length; i++) {
+                        const row = rows[i];
+                        if (row.name == "CREDTO" || row.name == "CREDITO") {
+                            const rowValue = JSON.parse(row.value.replace("(0)", "").trim());
+                            if (typeof rowValue !== 'undefined' && typeof rowValue.scores !== 'undefined' && typeof rowValue.scores[0] !== 'undefined') {
+                                scope.scoringExternalPoints = rowValue.scores[0].valor * 1;
+                                scope.calculateScoring();
+                            }
+                        }
+                    }
+                });
+            }
+
             scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
                 var scoringInternal = newValue;
+                scope.getExternalScoring();
                 scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 300, 850);
                 scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
                 scope.calculateScoring();

@@ -374,7 +374,24 @@
                 name: "button.unblock",
                 taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
               });
-            } else {
+            }
+              if(data.subStatus.value == "BlockDebit" ) {
+              scope.buttons.singlebuttons.splice(2, 0, {
+                name: "button.withdraw",
+                icon: "fa fa-arrow-down",
+                taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+              });
+          
+            }
+            else if (data.subStatus.value == "BlockCredit"){
+              scope.buttons.singlebuttons.splice(1, 0, {
+                name: "button.deposit",
+                icon: "fa fa-arrow-up",
+                taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+              });
+            
+            }
+            else{
               scope.buttons.singlebuttons.splice(1, 0, {
                 name: "button.deposit",
                 icon: "fa fa-arrow-up",
