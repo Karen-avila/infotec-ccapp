@@ -254,13 +254,15 @@
                             name: "button.deposit",
                             type: "100",
                             icon: "fa fa-arrow-up",
-                            taskPermissionName: "DEPOSIT_SAVINGSACCOUNT"
+                            taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
+                            check:"BlockDebit"
                         },
                         {
                             name: "button.withdraw",
                             type: "100",
                             icon: "fa fa-arrow-down",
-                            taskPermissionName: "WITHDRAW_SAVINGSACCOUNT"
+                            taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
+                            check:"BlockCredit"
                         },
                         {
                             name: "button.deposit",

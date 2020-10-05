@@ -757,7 +757,7 @@
                                                     <td class="pointer" ng-if="savingaccount.status.active">
                                                         <span ng-repeat="button in savingsActionbuttons">
                                                             <a uib-tooltip="{{'label.'+button.name | translate}}"
-                                                                ng-show="button.name"
+                                                                ng-show="button.name" ng-hide="{{savingaccount.subStatus.value==button.check || savingaccount.subStatus.value=='Block'}}"
                                                                 has-permission='{{button.taskPermissionName}}'
                                                                 ng-click="navigateToSavingsOrDepositAccount(button.name.replace('button.',''), savingaccount.id, savingaccount.depositType.id)"
                                                                 class="btn btn-sm btn-primary ng-binding"
@@ -850,7 +850,7 @@
                                                     <td class="pointer"
                                                         data-ng-click="routeToShareAccount(shareaccount.id)">
                                                         <i uib-tooltip-placement="right"
-                                                            uib-tooltip="{{shareaccount.status.value}}"
+                                                            uib-tooltip="{{shareaccount.status.value | translate}}"
                                                             class="fa fa-circle {{shareaccount.status.code | StatusLookup}}"></i>
                                                         {{shareaccount.accountNo}}
                                                     </td>

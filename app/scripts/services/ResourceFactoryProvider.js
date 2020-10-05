@@ -351,7 +351,9 @@
                     savingsResource: defineResource(apiVer + "/savingsaccounts/:accountId/:resourceType/:chargeId", { accountId: '@accountId', resourceType: '@resourceType', chargeId: '@chargeId' }, {
                         get: { method: 'GET', params: {} },
                         getAllNotes: { method: 'GET', params: {}, isArray: true },
-                        update: { method: 'PUT' }
+                        update: { method: 'PUT' },
+                        post: { method: 'POST' }
+
                     }),
                     savingsChargeResource: defineResource(apiVer + "/savingsaccounts/:accountId/charges/:resourceType", { accountId: '@accountId', resourceType: '@resourceType' }, {
                         get: { method: 'GET', params: {} },

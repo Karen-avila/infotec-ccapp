@@ -4,32 +4,23 @@
 
             scope.loanOfficers = [];
             scope.formData = {};
+           scope.formData.transactionDate= new Date();
             scope.staffData = {};
             scope.paramData = {};
             scope.accountNo = routeParams.id;
-
-
-            resourceFactory.savingsResource.get({accountId: routeParams.id, template: 'true'}, function (data) {
-                if(data.fieldOfficerOptions) {
-                    scope.fieldOfficers = data.fieldOfficerOptions;
-                    scope.formData.toSavingsOfficerId = data.fieldOfficerOptions[0].id;
-                }
-                scope.data = data;
-            });
-
-
-            scope.cancel = function () {
-                location.path('/viewsavingaccount/' + scope.data.accountNo);
+            
+            scope.cancel = function () { 
+                location.path('/viewsavingaccount/' + scope.accountNo);
             };
 
             scope.submit = function () {
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
-                this.formData.fromSavingsOfficerId = scope.data.fieldOfficerId || "";
-                this.formData.assignmentDate = dateFilter(this.formData.assignmentDate, scope.df);
-                resourceFactory.savingsResource.save({accountId: routeParams.id, command: 'assignSavingsOfficer'}, this.formData, function (data) {
-                    location.path('/viewsavingaccount/' + scope.data.accountNo);
-                });
+                this.formData.transactionDate = dateFilter(this.formData.transactionDate, scope.df);
+                console.log(this.formData);
+                 resourceFactory.savingsResource.post({accountId: routeParams.id, resourceType: 'transactions', command:'holdAmount'}, this.formData, function (data) {
+                    location.path('/viewsavingaccount/' + scope.accountNo);
+               });
             };
 
         }
@@ -37,5 +28,6 @@
     mifosX.ng.application.controller('RetainedBalanceController', ['$scope', 'ResourceFactory', '$routeParams', '$location', 'dateFilter', mifosX.controllers.RetainedBalanceController]).run(function ($log) {
         $log.info("RetainedBalanceController initialized");
     });
+    
 }(mifosX.controllers || {}));
 
