@@ -612,7 +612,7 @@
                                 <tr class="toppadding">
                                     <td class="control-label" colspan="4"><b>{{'label.heading.debit.order' | translate}}</b></td>
                                 </tr>
-                                <tr class="toppadding" ng-show="includeOrderAccounts">
+                                <tr class="toppadding" ng-show="includeOrderAccounts && loanproduct.accountingMappings.orderNotPerformedAccount">
                                     <td>{{'label.input.accounting.debit.order.not.performed' | translate}}:</td>
                                     <td colspan="3">{{loanproduct.accountingMappings.orderNotPerformedAccount.name}}
                                         ({{loanproduct.accountingMappings.orderNotPerformedAccount.glCode}})
@@ -639,7 +639,7 @@
                                 <tr class="toppadding">
                                     <td class="control-label" colspan="4"><b>{{'label.heading.credit.order' | translate}}</b></td>
                                 </tr>
-                                <tr class="toppadding" ng-show="includeOrderAccounts">
+                                <tr class="toppadding" ng-show="includeOrderAccounts && loanproduct.accountingMappings.creditOrderNotPerformedAccount">
                                     <td>{{'label.input.accounting.credit.order.not.performed' | translate}}:</td>
                                     <td colspan="3">{{loanproduct.accountingMappings.creditOrderNotPerformedAccount.name}}
                                         ({{loanproduct.accountingMappings.creditOrderNotPerformedAccount.glCode}})
