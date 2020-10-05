@@ -181,7 +181,6 @@
 
             //advanced accounting rule
             scope.showOrHide = function (showOrHideValue) {
-
                 if (showOrHideValue == "show") {
                     scope.showOrHideValue = 'hide';
                 }

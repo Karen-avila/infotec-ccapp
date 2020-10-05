@@ -231,11 +231,15 @@
                     scope.formData.writeOffAccountId = scope.product.accountingMappings.writeOffAccount.id;
                     scope.includeOrderAccounts = scope.product.useOrderAccounts;
                     if (scope.product.useOrderAccounts) {
-                        scope.formData.orderNotPerformedAccountId = scope.product.accountingMappings.orderNotPerformedAccount.id;
+                        if (scope.product.accountingMappings.orderNotPerformedAccount) {
+                            scope.formData.orderNotPerformedAccountId = scope.product.accountingMappings.orderNotPerformedAccount.id;
+                        }
                         scope.formData.orderPerformedAccountId = scope.product.accountingMappings.orderPerformedAccount.id;
                         scope.formData.orderInterestAccountId = scope.product.accountingMappings.orderInterestAccount.id;
                         scope.formData.orderOverdueInterestAccountId = scope.product.accountingMappings.orderOverdueInterestAccount.id;
-                        scope.formData.creditOrderNotPerformedAccountId = scope.product.accountingMappings.creditOrderNotPerformedAccount.id;
+                        if (scope.product.accountingMappings.creditOrderNotPerformedAccount) {
+                            scope.formData.creditOrderNotPerformedAccountId = scope.product.accountingMappings.creditOrderNotPerformedAccount.id;
+                        }
                         scope.formData.creditCommitmentsAccountId = scope.product.accountingMappings.creditCommitmentsAccount.id;
                         scope.formData.creditOrderInterestAccountId = scope.product.accountingMappings.creditOrderInterestAccount.id;
                         scope.formData.creditOrderOverdueInterestAccountId = scope.product.accountingMappings.creditOrderOverdueInterestAccount.id;
@@ -544,7 +548,6 @@
                     delete scope.formData.minDifferentialLendingRate;
                     delete scope.formData.defaultDifferentialLendingRate;
                     delete scope.formData.maxDifferentialLendingRate;
-
                 }
 
                 //If Variable Installments is not allowed for this product, remove the corresponding formData
@@ -583,7 +586,7 @@
 
                 // Order Accounts
                 this.formData.includeOrderAccounts = scope.includeOrderAccounts;
-                if (! this.formData.includeOrderAccounts) {
+                if (!this.formData.includeOrderAccounts) {
                     delete this.formData.orderNotPerformedAccountId;
                     delete this.formData.orderPerformedAccountId;
                     delete this.formData.orderInterestAccountId;
@@ -592,6 +595,13 @@
                     delete this.formData.creditOrderInterestAccountId;
                     delete this.formData.creditOrderNotPerformedAccountId;
                     delete this.formData.creditOrderOverdueInterestAccountId;
+                } else {
+                    if (this.formData.orderNotPerformedAccountId == "") {
+                        delete this.formData.orderNotPerformedAccountId;
+                    }
+                    if (this.formData.creditOrderNotPerformedAccountId == "") {
+                        delete this.formData.creditOrderNotPerformedAccountId;
+                    }
                 }
                 
                 resourceFactory.loanProductResource.put({ loanProductId: routeParams.id }, this.formData, function (data) {
