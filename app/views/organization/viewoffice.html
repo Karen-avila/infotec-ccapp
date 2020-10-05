@@ -68,10 +68,10 @@
                   <th>{{'label.heading.zip' | translate }}</th>
                   <td>{{office.address.postalCode}}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th>{{'label.input.addressType' | translate }}</th>
                   <td>{{office.address.addressType}}</td>
-                </tr>
+                </tr> -->
                 <tr>
                   <th>{{'label.input.street' | translate }}</th>
                   <td>{{office.address.street}}</td>
@@ -110,7 +110,7 @@
                 </tr>
                 <tr>
                   <th>{{'label.input.is_active' | translate}}</th>
-                  <td></td>
+                  <td>{{office.address.isActive | translate}}</td>
                 </tr>
               </table>
                </div>
