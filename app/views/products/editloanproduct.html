@@ -1119,6 +1119,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="loanPortfolioAccountId" ng-model="formData.loanPortfolioAccountId" ng-change="loanproduct.accountingMappings.loanPortfolioAccount.name = formValue(assetAccountOptions,formData.loanPortfolioAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1132,6 +1133,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="assetNPALoanPortfolioAccountId" ng-model="formData.assetNPALoanPortfolioAccountId" ng-change="loanproduct.accountingMappings.assetNPALoanPortfolioAccount.name = formValue(assetAccountOptions,formData.assetNPALoanPortfolioAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1148,6 +1150,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="assetOrdinaryInterestAccountId" ng-model="formData.assetOrdinaryInterestAccountId" ng-change="loanproduct.accountingMappings.assetOrdinaryInterestAccount.name = formValue(assetAccountOptions,formData.assetOrdinaryInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1160,6 +1163,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="assetNPAInterestAccountId" ng-model="formData.assetNPAInterestAccountId" ng-change="loanproduct.accountingMappings.assetNPAInterestAccount.name = formValue(assetAccountOptions,formData.assetNPAInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1176,6 +1180,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="assetOverdueInterestAccountId" ng-model="formData.assetOverdueInterestAccountId" ng-change="loanproduct.accountingMappings.assetOverdueInterestAccount.name = formValue(assetAccountOptions,formData.assetOverdueInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1189,6 +1194,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="assetNPAOverdueInterestAccountId" ng-model="formData.assetNPAOverdueInterestAccountId" ng-change="loanproduct.accountingMappings.assetNPAOverdueInterestAccount.name = formValue(assetAccountOptions,formData.assetNPAOverdueInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1203,6 +1209,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="receivableInterestAccountId" ng-model="formData.receivableInterestAccountId" ng-change="loanproduct.accountingMappings.receivableInterestAccount.name = formValue(assetAccountOptions,formData.receivableInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1214,6 +1221,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="receivableFeeAccountId" ng-model="formData.receivableFeeAccountId" ng-change="loanproduct.accountingMappings.receivableFeeAccount.name = formValue(assetAccountOptions,formData.receivableFeeAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1228,6 +1236,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="receivablePenaltyAccountId" ng-model="formData.receivablePenaltyAccountId" ng-change="loanproduct.accountingMappings.receivablePenaltyAccount.name = formValue(assetAccountOptions,formData.receivablePenaltyAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="assetAccount.id" ng-repeat="assetAccount in assetAccountOptions">
 								{{(assetAccount.glCode + " " + assetAccount.name)}}
 							</md-option>
@@ -1243,6 +1252,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="fundSourceAccountId" ng-model="formData.fundSourceAccountId" ng-change="loanproduct.accountingMappings.fundSourceAccount.name = formValue(liabilityAccountOptions,formData.fundSourceAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
 								{{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
 							</md-option>
@@ -1255,6 +1265,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="overpaymentLiabilityAccountId" ng-model="formData.overpaymentLiabilityAccountId" ng-change="loanproduct.accountingMappings.overpaymentLiabilityAccount.name = formValue(liabilityAccountOptions,formData.overpaymentLiabilityAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="liabilityAccount.id" ng-repeat="liabilityAccount in liabilityAccountOptions">
 								{{(liabilityAccount.glCode + " " + liabilityAccount.name)}}
 							</md-option>
@@ -1271,6 +1282,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="interestOnLoanAccountId" ng-model="formData.interestOnLoanAccountId" ng-change="loanproduct.accountingMappings.interestOnLoanAccount.name = formValue(incomeAccountOptions,formData.interestOnLoanAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
 								{{(incomeAccount.glCode + " " + incomeAccount.name)}}
 							</md-option>
@@ -1282,6 +1294,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="incomeFromFeeAccountId" ng-model="formData.incomeFromFeeAccountId" ng-change="loanproduct.accountingMappings.incomeFromFeeAccount.name = formValue(incomeAccountOptions,formData.incomeFromFeeAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
 								{{(incomeAccount.glCode + " " + incomeAccount.name)}}
 							</md-option>
@@ -1297,6 +1310,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="incomeFromPenaltyAccountId" ng-model="formData.incomeFromPenaltyAccountId" ng-change="loanproduct.accountingMappings.incomeFromPenaltyAccount.name = formValue(incomeAccountOptions,formData.incomeFromPenaltyAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
 								{{(incomeAccount.glCode + " " + incomeAccount.name)}}
 							</md-option>
@@ -1308,6 +1322,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="incomeFromOverdueInterestAccountId" ng-model="formData.incomeFromOverdueInterestAccountId" ng-change="loanproduct.accountingMappings.incomeFromOverdueInterestAccount.name = formValue(incomeAccountOptions,formData.incomeFromOverdueInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="incomeAccount.id" ng-repeat="incomeAccount in incomeAccountOptions">
 								{{(incomeAccount.glCode + " " + incomeAccount.name)}}
 							</md-option>
@@ -1323,6 +1338,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="writeOffAccountId" ng-model="formData.writeOffAccountId" ng-change="loanproduct.accountingMappings.writeOffAccount.name = formValue(expenseAccountOptions,formData.writeOffAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="expenseAccount.id" ng-repeat="expenseAccount in expenseAccountOptions">
 								{{(expenseAccount.glCode + " " + expenseAccount.name)}}
 							</md-option>
@@ -1348,6 +1364,7 @@
 						</label>
 						<div class="col-sm-4">
 							<md-select id="orderNotPerformedAccountId" ng-model="formData.orderNotPerformedAccountId" ng-change="loanproduct.accountingMappings.orderNotPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderNotPerformedAccountId,'id','name')">
+								<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 								<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in debitOrderAccountOptions">
 									{{(orderAccount.glCode + " " + orderAccount.name)}}
 								</md-option>
@@ -1361,6 +1378,7 @@
 						</label>
 						<div class="col-sm-4">
 							<md-select id="orderPerformedAccountId" ng-model="formData.orderPerformedAccountId" ng-change="loanproduct.accountingMappings.orderPerfomedAccount.name = formValue(debitOrderAccountOptions,formData.orderPerformedAccountId,'id','name')">
+								<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 								<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in debitOrderAccountOptions">
 									{{(orderAccount.glCode + " " + orderAccount.name)}}
 								</md-option>
@@ -1376,6 +1394,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="orderInterestAccountId" ng-model="formData.orderInterestAccountId" ng-change="loanproduct.accountingMappings.orderInterestAccount.name = formValue(debitOrderAccountOptions,formData.orderInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in debitOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
@@ -1389,6 +1408,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="orderOverdueInterestAccountId" ng-model="formData.orderOverdueInterestAccountId" ng-change="loanproduct.accountingMappings.orderOverdueInterestAccount.name = formValue(debitOrderAccountOptions,formData.orderOverdueInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in debitOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
@@ -1408,6 +1428,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="creditOrderNotPerformedAccountId" ng-model="formData.creditOrderNotPerformedAccountId" ng-change="loanproduct.accountingMappings.creditOrderNotPerformedAccount.name = formValue(creditOrderAccountOptions,formData.creditOrderNotPerformedAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in creditOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
@@ -1421,6 +1442,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="creditCommitmentsAccountId" ng-model="formData.creditCommitmentsAccountId" ng-change="loanproduct.accountingMappings.creditCommitmentsAccount.name = formValue(creditOrderAccountOptions,formData.creditCommitmentsAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in creditOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
@@ -1436,6 +1458,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="creditOrderInterestAccountId" ng-model="formData.creditOrderInterestAccountId" ng-change="loanproduct.accountingMappings.creditOrderInterestAccount.name = formValue(creditOrderAccountOptions,formData.creditOrderInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in creditOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
@@ -1449,6 +1472,7 @@
 					</label>
 					<div class="col-sm-4">
 						<md-select id="creditOrderOverdueInterestAccountId" ng-model="formData.creditOrderOverdueInterestAccountId" ng-change="loanproduct.accountingMappings.creditOrderOverdueInterestAccount.name = formValue(creditOrderAccountOptions,formData.creditOrderOverdueInterestAccountId,'id','name')">
+							<md-option value="">{{'label.accounting.select.one' | translate}}</md-option>
 							<md-option ng-value="orderAccount.id" ng-repeat="orderAccount in creditOrderAccountOptions">
 								{{(orderAccount.glCode + " " + orderAccount.name)}}
 							</md-option>
