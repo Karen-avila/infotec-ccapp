@@ -298,12 +298,13 @@
                 scope.buttonsArray.singlebuttons = scope.buttons;
             });
 
-            scope.getClientReports = function () {
-                resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: scope.clientId }, function (data) {
-                    scope.clientReports = data;
-                });
-            }
-            scope.getClientReports();
+            // scope.getClientReports = function () {
+            //     resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: scope.clientId }, function (data) {
+            //         scope.clientReports = data;
+            //     });
+            // }
+
+            // scope.getClientReports();
 
             scope.deleteClient = function () {
                 $uibModal.open({
