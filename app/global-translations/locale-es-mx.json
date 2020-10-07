@@ -91,7 +91,7 @@
     "label.input.level": "Nivel",
     "label.input.block.type":"Tipo de bloqueo",
     "Total block":"Bloqueo total",
-    "Partial block (debit)":"Bloqueo parcial de debito",
+    "Partial block (debit)":"Bloqueo parcial de débito",
     "Partial block (credit)":"Bloqueo parcial de crédito",
     "label.input.block.reason": "Razón de bloqueo de cuenta",
     "label.input.unblock.reason": "Razón de desbloqueo de cuenta",
