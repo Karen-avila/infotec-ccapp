@@ -375,7 +375,7 @@
                 taskPermissionName: "UNBLOCK_SAVINGSACCOUNT",
               });
             }
-              if(data.subStatus.value == "BlockDebit" ) {
+              if(data.subStatus.value == "BlockCredit" ) {
               scope.buttons.singlebuttons.splice(2, 0, {
                 name: "button.withdraw",
                 icon: "fa fa-arrow-down",
@@ -383,7 +383,7 @@
               });
           
             }
-            else if (data.subStatus.value == "BlockCredit"){
+            else if (data.subStatus.value == "BlockDebit"){
               scope.buttons.singlebuttons.splice(1, 0, {
                 name: "button.deposit",
                 icon: "fa fa-arrow-up",

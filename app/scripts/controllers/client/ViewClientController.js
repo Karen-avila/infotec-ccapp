@@ -255,14 +255,14 @@
                             type: "100",
                             icon: "fa fa-arrow-up",
                             taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                            check:"BlockDebit"
+                            check:"BlockCredit"
                         },
                         {
                             name: "button.withdraw",
                             type: "100",
                             icon: "fa fa-arrow-down",
                             taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                            check:"BlockCredit"
+                            check:"BlockDebit"
                         },
                         {
                             name: "button.deposit",
