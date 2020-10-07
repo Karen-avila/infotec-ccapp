@@ -6208,5 +6208,6 @@
     "label.heading.loanautorize":"Autorización de crédito",
     "label.button.authorize":"Autorizar",
     "label.heading.authorize":"Autorizar",
-    "label.heading.confirm.authorize":"¿Desea autorizar los siguientes créditos?"
+    "label.heading.confirm.authorize":"¿Desea autorizar los siguientes créditos?",
+    "AUTHORIZE LOAN" : "AUTORIZAR PRÉSTAMO"
 }
