@@ -49,7 +49,7 @@
                     <md-select ng-model="formData.action" class="form-control width170px">
                         <md-option value="">{{'label.selectaction' | translate}}</md-option>
                         <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
-                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</md-option>
+                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action | translate}}</md-option>
                     </md-select>
                     <md-button ng-click="clearFilters()" class="md-raised md-primary pull-right"><i
                             class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reset' | translate}}</md-button>
