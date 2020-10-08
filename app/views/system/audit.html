@@ -30,11 +30,11 @@
                         placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user"
                         class="form-control"
                         uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue | limitTo:8" />
-                    
+                        <label for="modelName">Desde </label>
                     <md-datepicker id="fromdate" ng-model="date.first" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
-
+                    <label for="modelName">Hasta </label>
                     <md-datepicker id="checkedfrom" ng-model="date.third" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
@@ -56,13 +56,11 @@
                 </div>
 
                 <div class="form-inline">
-                    <input type="text" placeholder="{{'label.input.resourceid' | translate}}"
-                        ng-model="formData.resourceId" class="form-control">
-
+                    <label for="modelName">Desde </label>
                     <md-datepicker id="fromdate" ng-model="date.second" md-min-date="minDate" 
                         placeholder="{{'label.input.second' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
-
+                    <label for="modelName">Hasta </label>
                     <md-datepicker id="checkedto" ng-model="date.fourth" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedto' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
