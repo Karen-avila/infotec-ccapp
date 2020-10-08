@@ -255,14 +255,14 @@
                             type: "100",
                             icon: "fa fa-arrow-up",
                             taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                            check:"BlockDebit"
+                            check:"BlockCredit"
                         },
                         {
                             name: "button.withdraw",
                             type: "100",
                             icon: "fa fa-arrow-down",
                             taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                            check:"BlockCredit"
+                            check:"BlockDebit"
                         },
                         {
                             name: "button.deposit",
@@ -764,14 +764,16 @@
                     datatablename: "VALIDACION",
                     entityId: scope.clientId, genericResultSet: 'true'
                 }).$promise.then(function (data) {
-                    var rows = data.data[0].rows;
-                    for (var i=0; i<rows.length; i++) {
-                        const row = rows[i];
-                        if (row.name == "CREDTO" || row.name == "CREDITO") {
-                            const rowValue = JSON.parse(row.value.replace("(0)", "").trim());
-                            if (typeof rowValue !== 'undefined' && typeof rowValue.scores !== 'undefined' && typeof rowValue.scores[0] !== 'undefined') {
-                                scope.scoringExternalPoints = rowValue.scores[0].valor * 1;
-                                scope.calculateScoring();
+                    if (data.data.length > 0 && typeof data.data[0] !== 'undefined') {
+                        var rows = data.data[0].rows;
+                        for (var i=0; i<rows.length; i++) {
+                            const row = rows[i];
+                            if (row.name == "CREDTO" || row.name == "CREDITO") {
+                                const rowValue = JSON.parse(row.value.replace("(0)", "").trim());
+                                if (typeof rowValue !== 'undefined' && typeof rowValue.scores !== 'undefined' && typeof rowValue.scores[0] !== 'undefined') {
+                                    scope.scoringExternalPoints = rowValue.scores[0].valor * 1;
+                                    scope.calculateScoring();
+                                }
                             }
                         }
                     }
