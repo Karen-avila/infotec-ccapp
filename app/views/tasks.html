@@ -474,7 +474,8 @@
                             <table class="table condensed-table">
                                 <thead>
                                     <tr class="graybg">
-                                        <th colspan="2">{{'label.heading.office' | translate}}</th>
+                                        <th></th>
+                                        <th>{{'label.heading.office' | translate}}</th>
                                         <th>{{'label.heading.name' | translate}}</th>
                                         <th>{{'label.heading.uniqueId' | translate}}</th>
                                         <th>{{'label.heading.accnum' | translate}}</th>
@@ -485,10 +486,9 @@
                                     <tr class="pointer-main"
                                         dir-paginate="client in pendingClientApproval | filter : {active: 'false', status: { value:'Pending'}} | filter:filterText | itemsPerPage: itemsPerPage"
                                         pagination-id="'_' + $index">
-                                        <td><input type="checkbox" data-ng-model="approveData[client.id]" />
-                                        </td>
+                                        <td><input type="checkbox" data-ng-model="approveData[client.id]" /></td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)"></td>
-                                            {{client.officeId}}
+                                            {{client.officeName}}
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)">
                                             {{client.displayName}}

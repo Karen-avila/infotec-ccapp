@@ -381,19 +381,19 @@
                     scope.pendingDisburse = [];
 
                     if($rootScope.hasPermission('APPROVE_LOAN_CHECKER')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }
 
                     if($rootScope.hasPermission('AUTHORIZE_LOAN')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }    
 
                     if($rootScope.hasPermission('DISBURSALUNDO_LOAN_CHECKER')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }
@@ -601,7 +601,7 @@
 
             scope.getDataResources =  function(){
                 if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
-                    resourceFactory.clientResource.getAllClients({ limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
+                    resourceFactory.clientResource.getAllClients({ tiny:true, limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
                         scope.pendingClientApproval = data.pageItems;
                         scope.groupedClients = _.groupBy(data.pageItems, "officeName");
                     });
