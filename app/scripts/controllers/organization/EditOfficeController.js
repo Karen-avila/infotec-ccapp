@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        EditOfficeController: function (scope, routeParams, resourceFactory, location, dateFilter) {
+        EditOfficeController: function (scope, routeParams, resourceFactory, location, dateFilter, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.formData = {};
             scope.first = {};
             scope.restrictDate = new Date();
@@ -16,6 +16,9 @@
             addresstypid = routeParams.addrType;
             isActive = {};
             var addressId = routeParams.addrId;
+
+            scope.minDatePicker = new Date(MIN_DATEPICKER);
+            scope.maxDatePicker = new Date(MAX_DATEPICKER);
 
             resourceFactory.clientaddressFields.get(function (data) {
                 scope.addressTypes = data.addressTypeIdOptions;
@@ -67,9 +70,10 @@
                         scope.address.addressTypeId  = scope.addressTypes[i].id;
                         break;
                     }
-                }
+                }                
             
             });
+
             var map = new L.map('map', { zoomControl: true });
             var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
             osmAttribution = 'Map data &copy; 2012 <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -123,7 +127,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('EditOfficeController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.EditOfficeController]).run(function ($log) {
+    mifosX.ng.application.controller('EditOfficeController', ['$scope', '$routeParams', 'ResourceFactory', '$location', 'dateFilter', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.EditOfficeController]).run(function ($log) {
         $log.info("EditOfficeController initialized");
     });
 }(mifosX.controllers || {}));
