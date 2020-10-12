@@ -13,7 +13,7 @@
                         '<label ng-show="errorStatus">{{errorStatus}}</label><br />' +
                         '<div class="alert alert-danger" ng-repeat="error in errorArray">' +
                             '<label ng-hide="errorStatus">' +
-                                '{{error.code | translate}} : {{error.args.params[0].value}} - {{error.datatable}}' +
+                                '{{error.code | translate}} : {{error.description}} {{error.args.params[0].value}} - {{error.datatable}}' +
                             '</label>' +
                         '</div></div></div>';
                     elm.html('').append($compile(template)(scope));

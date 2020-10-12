@@ -343,7 +343,7 @@
 
                     resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].statusCode = '200') {
+                            if (data[i].statusCode == '200') {
                                 clientCount++;
                                 if (clientCount == totalClient) {
                                     route.reload();
@@ -810,7 +810,7 @@
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanTemplate[data[i].body.loanId] = false;
@@ -848,8 +848,7 @@
 
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
-                    scope.bulkAuthorize($scope.authorizeKey);
-                    route.reload();
+                    scope.bulkAuthorize($scope.authorizeKey);                        
                     $uibModalInstance.close('authorize');
                 };
                 $scope.cancel = function () {
@@ -902,16 +901,10 @@
 
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
-                            approvedAccounts++;
-                            data[i].body = JSON.parse(data[i].body);
-                            scope.loanTemplate[data[i].body.loanId] = false;
-                            if (selectedAccounts == approvedAccounts) {
-                                scope.loanResource();
-                            }
-                        }
-                    }
+                    console.log("reload page");
+                    route.reload();
+                },function(data){
+                    console.log("error in the process");
                 });
             };
 
@@ -1004,7 +997,7 @@
 
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanDisbursalTemplate[data[i].body.loanId] = false;
@@ -1084,7 +1077,7 @@
                 });
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body); scope.checkForBulkLoanRescheduleApprovalData[data[i].body.resourceId] = false;
                         }
