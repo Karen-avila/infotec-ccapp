@@ -6494,5 +6494,9 @@
     "ENTITY_DATATABLE_CHECK":"Inspeccion de tabla de datos de entidades",
     "likelihood":"Probabilidad",
     "survey":"encuesta",
-    "AUTHORIZE LOAN" : "AUTORIZAR PRÉSTAMO"
+    "AUTHORIZE LOAN" : "AUTORIZAR PRÉSTAMO",
+    "error.msg.external.service.error": "Error en servicio externo",
+    "error.msg.loan.could.not.be.signed": "El crédito no pudo ser firmado",
+    "error.msg.external.service.invalid.key": "El crédito no pudo ser firmado",
+    "error when processing the credit authorization": "Error al procesar la autorización de crédito"
 }
