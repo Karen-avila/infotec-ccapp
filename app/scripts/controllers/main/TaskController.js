@@ -25,9 +25,8 @@
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
-
+            scope.isAllPendingToAuthorizeSelected = false;
             scope.itemsPerPage = 15;
-
             scope.loanRescheduleData = [];
 
             scope.query = {
@@ -846,6 +845,16 @@
                 }
             };
 
+            scope.toggleAllPendingToAuthorize = function() {
+                scope.isAllPendingToAuthorizeSelected=!scope.isAllPendingToAuthorizeSelected;
+                scope.loanTemplate = [];
+                if(scope.isAllPendingToAuthorizeSelected){
+                    _.each(scope.pendingToAuthorize, function(item){ 
+                        scope.loanTemplate[item.client.id] = true;
+                    });
+                }
+             }
+            
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
                     scope.bulkAuthorize($scope.authorizeKey);                        
@@ -858,7 +867,6 @@
 
             scope.bulkAuthorize = function (authorizeKey) {
                 var selectedAccounts = 0;
-                var approvedAccounts = 0;
                 _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
                         _.each(scope.pendingToAuthorize, function (item) {
