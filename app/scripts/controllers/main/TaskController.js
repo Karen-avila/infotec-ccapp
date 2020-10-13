@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
+        TaskController: function (scope,$rootScope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -25,9 +25,8 @@
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
-
+            scope.isAllPendingToAuthorizeSelected = false;
             scope.itemsPerPage = 15;
-
             scope.loanRescheduleData = [];
 
             scope.query = {
@@ -44,9 +43,12 @@
 
             scope.checkForBulkLoanRescheduleApprovalData = [];
             scope.rescheduleData = function () {
-                resourceFactory.loanRescheduleResource.getAll({ command: 'pending' }, function (data) {
-                    scope.loanRescheduleData = data;
-                });
+                if($rootScope.hasPermission('RESCHEDULE_LOAN')){
+                    resourceFactory.loanRescheduleResource.getAll({ command: 'pending' }, function (data) {
+                        scope.loanRescheduleData = data;
+                    });
+                }
+
             };
             scope.rescheduleData();
 
@@ -340,7 +342,7 @@
 
                     resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].statusCode = '200') {
+                            if (data[i].statusCode == '200') {
                                 clientCount++;
                                 if (clientCount == totalClient) {
                                     route.reload();
@@ -373,218 +375,245 @@
                 }
 
                 scope.loanResource = function () {
-                    resourceFactory.loanResource.getAllLoans({ limit: '1000', sqlSearch: 'l.loan_status_id in (100,200)' }, function (loanData) {
-                        scope.loans = loanData.pageItems;
-                        scope.pendingApproval = [];
-                        scope.pendingToAuthorize = [];
-                        for (var i in scope.loans) {
-                            if (scope.loans[i].status.pendingApproval) {
-                                var tempOffice = undefined;
-                                if (scope.loans[i].group) {
-                                    tempOffice = idToNodeMap[scope.loans[i].group.officeId];
-                                    tempOffice.loans.push(scope.loans[i]);
+                    scope.pendingApproval = [];
+                    scope.pendingToAuthorize = [];
+                    scope.pendingDisburse = [];
 
-                                    var wasFound = false;
-                                    for (var j = 0; j < scope.pendingApproval.length; j++) {
-                                        if (scope.pendingApproval[j].client.name === scope.loans[i].group.name) {
-                                            scope.pendingApproval[j].loans.push({
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                client: {
-                                                    id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName,
-                                                    loanCounter: scope.loans[i].groupLoanCounter,
-                                                    staffName: scope.loans[i].loanOfficerName,
-                                                },
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            });
-                                            scope.pendingApproval[j].loan.amount += scope.loans[i].principal;
-                                            wasFound = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!wasFound) {
-                                        scope.pendingApproval.push({
-                                            office: tempOffice,
-                                            individual: false,
+                    if($rootScope.hasPermission('APPROVE_LOAN_CHECKER')){
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
+                            scope.adminloans(loanData.pageItems);
+                        });
+                    }
+
+                    if($rootScope.hasPermission('AUTHORIZE_LOAN')){
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
+                            scope.adminloans(loanData.pageItems);
+                        });
+                    }    
+
+                    if($rootScope.hasPermission('DISBURSALUNDO_LOAN_CHECKER')){
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
+                            scope.adminloans(loanData.pageItems);
+                        });
+                    }
+
+                    var finalArray = [];
+                    for (var i in scope.offices) {
+                        if (scope.offices[i].loans && scope.offices[i].loans.length > 0) {
+                            finalArray.push(scope.offices[i]);
+                        }
+                    }
+                    scope.offices = finalArray;
+                }
+
+                scope.adminloans = function(loanResult){
+                    for (var i in loanResult) {
+                        if (loanResult[i].status.pendingApproval) {
+                            var tempOffice = undefined;
+                            if (loanResult[i].group) {
+                                tempOffice = idToNodeMap[loanResult[i].group.officeId];
+                                tempOffice.loans.push(loanResult[i]);
+
+                                var wasFound = false;
+                                for (var j = 0; j < scope.pendingApproval.length; j++) {
+                                    if (scope.pendingApproval[j].client.name === loanResult[i].group.name) {
+                                        scope.pendingApproval[j].loans.push({
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
                                             client: {
-                                                id: scope.loans[i].group.officeId,
-                                                name: scope.loans[i].group.name,
-                                                loanCounter: scope.loans[i].group.loanCounter,
-                                                staffName: scope.loans[i].loanOfficerName,
+                                                id: loanResult[i].clientId,
+                                                name: loanResult[i].clientName,
+                                                loanCounter: loanResult[i].groupLoanCounter,
+                                                staffName: loanResult[i].loanOfficerName,
                                             },
-                                            loan: {
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            },
-                                            loans: [{
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                client: {
-                                                    id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName,
-                                                    loanCounter: scope.loans[i].groupLoanCounter,
-                                                    staffName: scope.loans[i].loanOfficerName,
-                                                },
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            }]
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
                                         });
+                                        scope.pendingApproval[j].loan.amount += loanResult[i].principal;
+                                        wasFound = true;
+                                        break;
                                     }
-
-                                } else if (scope.loans[i].clientOfficeId) {
-                                    tempOffice = idToNodeMap[scope.loans[i].clientOfficeId];
-                                    tempOffice.loans.push(scope.loans[i]);
+                                }
+                                if (!wasFound) {
                                     scope.pendingApproval.push({
+                                        office: tempOffice,
+                                        individual: false,
+                                        client: {
+                                            id: loanResult[i].group.officeId,
+                                            name: loanResult[i].group.name,
+                                            loanCounter: loanResult[i].group.loanCounter,
+                                            staffName: loanResult[i].loanOfficerName,
+                                        },
+                                        loan: {
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        },
+                                        loans: [{
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            client: {
+                                                id: loanResult[i].clientId,
+                                                name: loanResult[i].clientName,
+                                                loanCounter: loanResult[i].groupLoanCounter,
+                                                staffName: loanResult[i].loanOfficerName,
+                                            },
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        }]
+                                    });
+                                }
+
+                            } else if (loanResult[i].clientOfficeId) {
+                                tempOffice = idToNodeMap[loanResult[i].clientOfficeId];
+                                tempOffice.loans.push(loanResult[i]);
+                                scope.pendingApproval.push({
+                                    office: tempOffice,
+                                    individual: true,
+                                    client: {
+                                        id: loanResult[i].clientId,
+                                        name: loanResult[i].clientName,
+                                        loanCounter: loanResult[i].groupLoanCounter,
+                                        staffName: loanResult[i].loanOfficerName,
+                                    },
+                                    loan: {
+                                        id: loanResult[i].id,
+                                        accountNo: loanResult[i].accountNo,
+                                        productName: loanResult[i].loanProductName,
+                                        amount: loanResult[i].principal,
+                                        loanPurposeName: loanResult[i].loanPurposeName
+                                    }
+                                });
+                            }
+                        }
+                        else if (loanResult[i].status.waitingForDisbursal) {
+                            var tempOffice = undefined;
+                            if (loanResult[i].group) {
+                                tempOffice = idToNodeMap[loanResult[i].group.officeId];
+                                tempOffice.loans.push(loanResult[i]);
+
+                                var wasFound = false;
+                                for (var j = 0; j < scope.pendingDisburse.length; j++) {
+                                    if (scope.pendingDisburse[j].client.name === loanResult[i].group.name) {
+                                        scope.pendingDisburse[j].loans.push({
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            client: {
+                                                id: loanResult[i].clientId,
+                                                name: loanResult[i].clientName,
+                                                loanCounter: loanResult[i].group.loanCounter,
+                                                staffName: loanResult[i].loanOfficerName,
+                                            },
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        });
+                                        scope.pendingDisburse[j].loan.amount += loanResult[i].principal;
+                                        wasFound = true;
+                                        break;
+                                    }
+                                }
+                                if (!wasFound) {
+                                    scope.pendingDisburse.push({
+                                        office: tempOffice,
+                                        individual: false,
+                                        client: {
+                                            id: loanResult[i].group.officeId,
+                                            name: loanResult[i].group.name,
+                                            loanCounter: loanResult[i].group.loanCounter,
+                                            staffName: loanResult[i].loanOfficerName,
+                                        },
+                                        loan: {
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        },
+                                        loans: [{
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            client: {
+                                                id: loanResult[i].clientId,
+                                                name: loanResult[i].clientName,
+                                                loanCounter: loanResult[i].groupLoanCounter,
+                                                staffName: loanResult[i].loanOfficerName,
+                                            },
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        }]
+                                    });
+                                }
+
+                            } else if (loanResult[i].clientOfficeId) {
+                                tempOffice = idToNodeMap[loanResult[i].clientOfficeId];
+                                tempOffice.loans.push(loanResult[i]);
+                                if(loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Authorized"){
+                                    scope.pendingDisburse.push({
                                         office: tempOffice,
                                         individual: true,
                                         client: {
-                                            id: scope.loans[i].clientId,
-                                            name: scope.loans[i].clientName,
-                                            loanCounter: scope.loans[i].groupLoanCounter,
-                                            staffName: scope.loans[i].loanOfficerName,
+                                            id: loanResult[i].clientId,
+                                            name: loanResult[i].clientName,
+                                            loanCounter: loanResult[i].groupLoanCounter,
+                                            staffName: loanResult[i].loanOfficerName,
                                         },
                                         loan: {
-                                            id: scope.loans[i].id,
-                                            accountNo: scope.loans[i].accountNo,
-                                            productName: scope.loans[i].loanProductName,
-                                            amount: scope.loans[i].principal,
-                                            loanPurposeName: scope.loans[i].loanPurposeName
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
+                                        }
+                                    });
+                                }else if(loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Waiting for authorization"){
+                                    scope.pendingToAuthorize.push({
+                                        office: tempOffice,
+                                        individual: true,
+                                        client: {
+                                            id: loanResult[i].clientId,
+                                            name: loanResult[i].clientName,
+                                            loanCounter: loanResult[i].groupLoanCounter,
+                                            staffName: loanResult[i].loanOfficerName,
+                                        },
+                                        loan: {
+                                            id: loanResult[i].id,
+                                            accountNo: loanResult[i].accountNo,
+                                            productName: loanResult[i].loanProductName,
+                                            amount: loanResult[i].principal,
+                                            loanPurposeName: loanResult[i].loanPurposeName
                                         }
                                     });
                                 }
                             }
-                            else if (scope.loans[i].status.waitingForDisbursal) {
-                                var tempOffice = undefined;
-                                if (scope.loans[i].group) {
-                                    tempOffice = idToNodeMap[scope.loans[i].group.officeId];
-                                    tempOffice.loans.push(scope.loans[i]);
-
-                                    var wasFound = false;
-                                    for (var j = 0; j < scope.pendingDisburse.length; j++) {
-                                        if (scope.pendingDisburse[j].client.name === scope.loans[i].group.name) {
-                                            scope.pendingDisburse[j].loans.push({
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                client: {
-                                                    id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName,
-                                                    loanCounter: scope.loans[i].group.loanCounter,
-                                                    staffName: scope.loans[i].loanOfficerName,
-                                                },
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            });
-                                            scope.pendingDisburse[j].loan.amount += scope.loans[i].principal;
-                                            wasFound = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!wasFound) {
-                                        scope.pendingDisburse.push({
-                                            office: tempOffice,
-                                            individual: false,
-                                            client: {
-                                                id: scope.loans[i].group.officeId,
-                                                name: scope.loans[i].group.name,
-                                                loanCounter: scope.loans[i].group.loanCounter,
-                                                staffName: scope.loans[i].loanOfficerName,
-                                            },
-                                            loan: {
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            },
-                                            loans: [{
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                client: {
-                                                    id: scope.loans[i].clientId,
-                                                    name: scope.loans[i].clientName,
-                                                    loanCounter: scope.loans[i].groupLoanCounter,
-                                                    staffName: scope.loans[i].loanOfficerName,
-                                                },
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            }]
-                                        });
-                                    }
-
-                                } else if (scope.loans[i].clientOfficeId) {
-                                    tempOffice = idToNodeMap[scope.loans[i].clientOfficeId];
-                                    tempOffice.loans.push(scope.loans[i]);
-                                    if(scope.loans[i].subStatus != undefined && scope.loans[i].subStatus.value == "Authorized"){
-                                        scope.pendingDisburse.push({
-                                            office: tempOffice,
-                                            individual: true,
-                                            client: {
-                                                id: scope.loans[i].clientId,
-                                                name: scope.loans[i].clientName,
-                                                loanCounter: scope.loans[i].groupLoanCounter,
-                                                staffName: scope.loans[i].loanOfficerName,
-                                            },
-                                            loan: {
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            }
-                                        });
-                                    }else if(scope.loans[i].subStatus != undefined && scope.loans[i].subStatus.value == "Waiting for authorization"){
-                                        scope.pendingToAuthorize.push({
-                                            office: tempOffice,
-                                            individual: true,
-                                            client: {
-                                                id: scope.loans[i].clientId,
-                                                name: scope.loans[i].clientName,
-                                                loanCounter: scope.loans[i].groupLoanCounter,
-                                                staffName: scope.loans[i].loanOfficerName,
-                                            },
-                                            loan: {
-                                                id: scope.loans[i].id,
-                                                accountNo: scope.loans[i].accountNo,
-                                                productName: scope.loans[i].loanProductName,
-                                                amount: scope.loans[i].principal,
-                                                loanPurposeName: scope.loans[i].loanPurposeName
-                                            }
-                                        });
-                                    }
-                                }
-                            }
                         }
-
-                        var finalArray = [];
-                        for (var i in scope.offices) {
-                            if (scope.offices[i].loans && scope.offices[i].loans.length > 0) {
-                                finalArray.push(scope.offices[i]);
-                            }
-                        }
-                        scope.offices = finalArray;
-                    });
-                };
+                    }
+                }
 
                 scope.loanResource();
             });
 
-            resourceFactory.clientResource.getAllClients({ sqlSearch: 'c.status_enum=100' }, function (data) {
-                scope.pendingClientApproval = data.pageItems;
-                scope.groupedClients = _.groupBy(data.pageItems, "officeName");
-            });
-
-            resourceFactory.groupResource.getAllGroups({ sqlSearch: 'g.status_enum=100' }, function (data) {
-                scope.groupedGroups = data;
-            });
+            scope.getDataResources =  function(){
+                if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
+                    resourceFactory.clientResource.getAllClients({ tiny:true, limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
+                        scope.pendingClientApproval = data.pageItems;
+                        scope.groupedClients = _.groupBy(data.pageItems, "officeName");
+                    });
+                }
+    
+                if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
+                    resourceFactory.groupResource.getAllGroups({ limit:100, sqlSearch: 'g.status_enum=100' }, function (data) {
+                        scope.groupedGroups = data;
+                    });
+                }
+            }
+            
+            scope.getDataResources();
 
             scope.showGroupDetail = function (groupId, prefix) {
                 angular.element(document.querySelector("#grp_" + prefix + groupId)).toggleClass("collapse");
@@ -780,7 +809,7 @@
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanTemplate[data[i].body.loanId] = false;
@@ -816,10 +845,19 @@
                 }
             };
 
+            scope.toggleAllPendingToAuthorize = function() {
+                scope.isAllPendingToAuthorizeSelected=!scope.isAllPendingToAuthorizeSelected;
+                scope.loanTemplate = [];
+                if(scope.isAllPendingToAuthorizeSelected){
+                    _.each(scope.pendingToAuthorize, function(item){ 
+                        scope.loanTemplate[item.client.id] = true;
+                    });
+                }
+             }
+            
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
-                    scope.bulkAuthorize($scope.authorizeKey);
-                    route.reload();
+                    scope.bulkAuthorize($scope.authorizeKey);                        
                     $uibModalInstance.close('authorize');
                 };
                 $scope.cancel = function () {
@@ -829,7 +867,6 @@
 
             scope.bulkAuthorize = function (authorizeKey) {
                 var selectedAccounts = 0;
-                var approvedAccounts = 0;
                 _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
                         _.each(scope.pendingToAuthorize, function (item) {
@@ -872,16 +909,10 @@
 
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
-                            approvedAccounts++;
-                            data[i].body = JSON.parse(data[i].body);
-                            scope.loanTemplate[data[i].body.loanId] = false;
-                            if (selectedAccounts == approvedAccounts) {
-                                scope.loanResource();
-                            }
-                        }
-                    }
+                    console.log("reload page");
+                    route.reload();
+                },function(data){
+                    console.log("error in the process");
                 });
             };
 
@@ -974,7 +1005,7 @@
 
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanDisbursalTemplate[data[i].body.loanId] = false;
@@ -1054,7 +1085,7 @@
                 });
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body); scope.checkForBulkLoanRescheduleApprovalData[data[i].body.resourceId] = false;
                         }
@@ -1063,7 +1094,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope','$rootScope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));

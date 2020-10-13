@@ -30,11 +30,11 @@
                         placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user"
                         class="form-control"
                         uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue | limitTo:8" />
-                    
+                        <label for="modelName">Desde </label>
                     <md-datepicker id="fromdate" ng-model="date.first" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
-
+                    <label for="modelName">Hasta </label>
                     <md-datepicker id="checkedfrom" ng-model="date.third" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
@@ -49,20 +49,18 @@
                     <md-select ng-model="formData.action" class="form-control width170px">
                         <md-option value="">{{'label.selectaction' | translate}}</md-option>
                         <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
-                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action}}</md-option>
+                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action | translate}}</md-option>
                     </md-select>
                     <md-button ng-click="clearFilters()" class="md-raised md-primary pull-right"><i
                             class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reset' | translate}}</md-button>
                 </div>
 
                 <div class="form-inline">
-                    <input type="text" placeholder="{{'label.input.resourceid' | translate}}"
-                        ng-model="formData.resourceId" class="form-control">
-
+                    <label for="modelName">Desde </label>
                     <md-datepicker id="fromdate" ng-model="date.second" md-min-date="minDate" 
                         placeholder="{{'label.input.second' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
-
+                    <label for="modelName">Hasta </label>
                     <md-datepicker id="checkedto" ng-model="date.fourth" md-min-date="minDate" 
                         placeholder="{{'label.input.checkedto' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>

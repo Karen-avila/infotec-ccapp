@@ -58,7 +58,7 @@
                                     </md-radio-group>
                                     <div ng-show="debitRuleType=='Account'" class="marginbuttontop25px">
                                         <md-select ng-model="formData.accountToDebit"  placeholder="{{'label.selectone' | translate}}">
-                                        <md-option ng-repeat="debitAccount in glAccounts" ng-value="debitAccount.id">
+                                        <md-option ng-repeat="debitAccount in glAccounts" ng-value="debitAccount">
                                             {{debitAccount.glCode}} {{debitAccount.name}}
                                         </md-option>
                                     </div>
@@ -91,7 +91,7 @@
                                     </md-radio-group>
                                     <div ng-show="creditRuleType=='Account'" class="marginbuttontop25px">
                                         <md-select ng-model="formData.accountToCredit" placeholder="{{'label.selectone' | translate}}">
-                                            <md-option ng-repeat="creditAccount in glAccounts" ng-value="creditAccount.id">
+                                            <md-option ng-repeat="creditAccount in glAccounts" ng-value="creditAccount">
                                                 {{creditAccount.glCode}} {{creditAccount.name}}
                                             </md-option>
                                         </md-select>
