@@ -81,6 +81,7 @@ angular.module('notificationWidget', [])
                                 var errorObj = new Object();
                                 errorObj.code = JSON.parse($rootScope.failedResponses[i].body).errors[0].userMessageGlobalisationCode;
                                 errorObj.body = JSON.parse($rootScope.failedResponses[i].body).errors[0].userMessageGlobalisationCode;
+                                errorObj.description = JSON.parse($rootScope.failedResponses[i].body).errors[0].defaultUserMessage;
                                 errorArray[i] = errorObj;
                             }
                             $rootScope.errorDetails.push(errorArray);

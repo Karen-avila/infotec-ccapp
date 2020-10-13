@@ -25,9 +25,8 @@
             scope.showLoanApprovalDetail = [];
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
-
+            scope.isAllPendingToAuthorizeSelected = false;
             scope.itemsPerPage = 15;
-
             scope.loanRescheduleData = [];
 
             scope.query = {
@@ -343,7 +342,7 @@
 
                     resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].statusCode = '200') {
+                            if (data[i].statusCode == '200') {
                                 clientCount++;
                                 if (clientCount == totalClient) {
                                     route.reload();
@@ -381,19 +380,19 @@
                     scope.pendingDisburse = [];
 
                     if($rootScope.hasPermission('APPROVE_LOAN_CHECKER')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }
 
                     if($rootScope.hasPermission('AUTHORIZE_LOAN')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }    
 
                     if($rootScope.hasPermission('DISBURSALUNDO_LOAN_CHECKER')){
-                        resourceFactory.loanResource.getAllLoans({ limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
+                        resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }
@@ -601,7 +600,7 @@
 
             scope.getDataResources =  function(){
                 if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
-                    resourceFactory.clientResource.getAllClients({ limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
+                    resourceFactory.clientResource.getAllClients({ tiny:true, limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
                         scope.pendingClientApproval = data.pageItems;
                         scope.groupedClients = _.groupBy(data.pageItems, "officeName");
                     });
@@ -810,7 +809,7 @@
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanTemplate[data[i].body.loanId] = false;
@@ -846,10 +845,19 @@
                 }
             };
 
+            scope.toggleAllPendingToAuthorize = function() {
+                scope.isAllPendingToAuthorizeSelected=!scope.isAllPendingToAuthorizeSelected;
+                scope.loanTemplate = [];
+                if(scope.isAllPendingToAuthorizeSelected){
+                    _.each(scope.pendingToAuthorize, function(item){ 
+                        scope.loanTemplate[item.client.id] = true;
+                    });
+                }
+             }
+            
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
-                    scope.bulkAuthorize($scope.authorizeKey);
-                    route.reload();
+                    scope.bulkAuthorize($scope.authorizeKey);                        
                     $uibModalInstance.close('authorize');
                 };
                 $scope.cancel = function () {
@@ -859,7 +867,6 @@
 
             scope.bulkAuthorize = function (authorizeKey) {
                 var selectedAccounts = 0;
-                var approvedAccounts = 0;
                 _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
                         _.each(scope.pendingToAuthorize, function (item) {
@@ -902,16 +909,10 @@
 
                 // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
-                            approvedAccounts++;
-                            data[i].body = JSON.parse(data[i].body);
-                            scope.loanTemplate[data[i].body.loanId] = false;
-                            if (selectedAccounts == approvedAccounts) {
-                                scope.loanResource();
-                            }
-                        }
-                    }
+                    console.log("reload page");
+                    route.reload();
+                },function(data){
+                    console.log("error in the process");
                 });
             };
 
@@ -1004,7 +1005,7 @@
 
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body);
                             scope.loanDisbursalTemplate[data[i].body.loanId] = false;
@@ -1084,7 +1085,7 @@
                 });
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].statusCode = '200') {
+                        if (data[i].statusCode == '200') {
                             approvedAccounts++;
                             data[i].body = JSON.parse(data[i].body); scope.checkForBulkLoanRescheduleApprovalData[data[i].body.resourceId] = false;
                         }
