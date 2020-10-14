@@ -10,5 +10,4 @@ angular.module('configurations', [])
 // Use SECURITY constant as 'oauth' to enable Oauth2 on community app
 // Use SECURITY constant as 'jwtauth' to use JWT tokens community app
     .constant('MULTILANGUAGE', false)
-    .constant('SIGNATUREURL', "http://10.100.1.22:10102/firmafuncionario")
 ;

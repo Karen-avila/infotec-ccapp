@@ -4581,6 +4581,7 @@
     "cs_extra_data.sector": "Sector",
     "cs_extra_data.subsector": "SubSector",
     "cs_extra_data.rama": "Rama",
+    "cs_extra_data.regimen": "Regimen Fiscal",
     "cs_extra_data.subrama": "SubRama",
     "cs_extra_data.giro": "Giro",
     "datatable.payment_capacity": "Capacidad de Pago",
@@ -6492,6 +6493,6 @@
     "Beneficiaries":"Beneficiarios",
     "ENTITY_DATATABLE_CHECK":"Inspeccion de tabla de datos de entidades",
     "likelihood":"Probabilidad",
-    "survey":"encuesta"
-
+    "survey":"encuesta",
+    "AUTHORIZE LOAN" : "AUTORIZAR PRÉSTAMO"
 }

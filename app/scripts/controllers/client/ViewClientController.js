@@ -298,12 +298,13 @@
                 scope.buttonsArray.singlebuttons = scope.buttons;
             });
 
-            scope.getClientReports = function () {
-                resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: scope.clientId }, function (data) {
-                    scope.clientReports = data;
-                });
-            }
-            scope.getClientReports();
+            // scope.getClientReports = function () {
+            //     resourceFactory.runReportsResource.get({ reportSource: 'ClientReports', genericResultSet: 'false', R_clientId: scope.clientId }, function (data) {
+            //         scope.clientReports = data;
+            //     });
+            // }
+
+            // scope.getClientReports();
 
             scope.deleteClient = function () {
                 $uibModal.open({
@@ -693,9 +694,6 @@
                 scope.getLastNote();
             }
 
-            
-
-
             scope.getClientIdentityDocuments = function () {
                 resourceFactory.clientResource.getAllClientDocuments({ clientId: scope.clientId, anotherresource: 'identifiers' }, function (data) {
                     scope.identitydocuments = data;
@@ -749,20 +747,42 @@
                 })
             }
 
-
             scope.getDataTablesAndScoring = function () {
                 if (scope.datatableLoaded == false) {
                     scope.scoringDetails = [];
                     scope.scoringInternalSubTotal = 0;
                     scope.scoringInternalPoints = 0;
-                    scope.scoringExternalPoints = scope.getRandomInt(300, 850);
+                    scope.scoringExternalPoints = 0; //scope.getRandomInt(300, 850);
+                    scope.getExternalScoring();
                     scope.scoringTotalTotal = 0;
                     scope.getDataTables();
                 }
             }
 
+            scope.getExternalScoring = function () {
+                resourceFactory.DataTablesResource.getTableDetails({
+                    datatablename: "VALIDACION",
+                    entityId: scope.clientId, genericResultSet: 'true'
+                }).$promise.then(function (data) {
+                    if (data.data.length > 0 && typeof data.data[0] !== 'undefined') {
+                        var rows = data.data[0].rows;
+                        for (var i=0; i<rows.length; i++) {
+                            const row = rows[i];
+                            if (row.name == "CREDTO" || row.name == "CREDITO") {
+                                const rowValue = JSON.parse(row.value.replace("(0)", "").trim());
+                                if (typeof rowValue !== 'undefined' && typeof rowValue.scores !== 'undefined' && typeof rowValue.scores[0] !== 'undefined') {
+                                    scope.scoringExternalPoints = rowValue.scores[0].valor * 1;
+                                    scope.calculateScoring();
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
             scope.$watch("scoringInternalSubTotal", function (newValue, oldValue) {
                 var scoringInternal = newValue;
+                scope.getExternalScoring();
                 scope.scoringExternalTotal = scope.reScale(scope.scoringExternalPoints, 300, 850);
                 scope.scoringInternalTotal = scope.reScale(scoringInternal, 4.05, 90.9);
                 scope.calculateScoring();

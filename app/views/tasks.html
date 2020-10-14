@@ -488,7 +488,7 @@
                                         <td><input type="checkbox" data-ng-model="approveData[client.id]" />
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)"></td>
-                                        {{client.officeId}}
+                                            {{client.officeId}}
                                         </td>
                                         <td class="pointer" data-ng-click="routeToClient(client.id)">
                                             {{client.displayName}}
@@ -562,10 +562,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat-start="record in pendingApproval | filter:filterPendingToApproval"
+                                        <tr dir-paginate="record in pendingApproval | filter : {client : { name : filterPendingToApproval }} | itemsPerPage: itemsPerPage"
                                             class="{{record.individual ? '' : 'accordion-toggle'}}"
                                             data-toggle="collapse"
-                                            data-target="#grp_a{{record.individual ? '' : record.client.id}}">
+                                            data-target="#grp_a{{record.individual ? '' : record.client.id}}"
+                                            pagination-id="pendingApproval.id">
                                             <td>
                                                 <input type="checkbox" ng-model="loanTemplate[record.client.id]">
                                             </td>
@@ -628,13 +629,13 @@
                                     </tbody>
                                 </table>
                                 <div class="text-center">
-                                    <dir-pagination-controls pagination-id="'__' + $index" boundary-links="true"
+                                    <dir-pagination-controls pagination-id="pendingApproval.id" boundary-links="true"
                                         template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
                                 </div>
                             </div>
                         </uib-tab>
                         <!-- LOAN APPROVAL TO AUTHORIZE -->
-                        <uib-tab heading="{{'label.heading.loanautorize' | translate}}" has-permission='AUTORIZE_LOAN_CHECKER'>
+                        <uib-tab heading="{{'label.heading.loanautorize' | translate}}" has-permission='AUTHORIZE_LOAN'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
                                     <thead>
@@ -690,10 +691,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat-start="record in pendingToAuthorize | filter:filterPendingToAuthorize"
+                                        <tr  dir-paginate="record in pendingToAuthorize | filter : {client : { name : filterPendingToAuthorize }} | itemsPerPage: itemsPerPage"
                                             class="{{record.individual ? '' : 'accordion-toggle'}}"
                                             data-toggle="collapse"
-                                            data-target="#grp_a{{record.individual ? '' : record.client.id}}">
+                                            data-target="#grp_a{{record.individual ? '' : record.client.id}}"
+                                            pagination-id="pendingToAuthorize.id">
                                             <td>
                                                 <input type="checkbox" ng-model="loanTemplate[record.client.id]">
                                             </td>
@@ -756,7 +758,7 @@
                                     </tbody>
                                 </table>
                                 <div class="text-center">
-                                    <dir-pagination-controls pagination-id="'__' + $index" boundary-links="true"
+                                    <dir-pagination-controls pagination-id="pendingToAuthorize.id" boundary-links="true"
                                         template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
                                 </div>
                             </div>
@@ -840,16 +842,18 @@
                                             <th>{{'label.heading.office' | translate}}</th>
                                             <th>{{'label.heading.grouporclient' | translate}}</th>
                                             <th>{{'label.heading.numofloancycle' | translate}}</th>
+                                            <th>{{'label.heading.product' | translate}}</th>
                                             <th>{{'label.heading.loan' | translate}}</th>
                                             <th>{{'label.heading.amount' | translate}}</th>
                                             <th>{{'label.heading.staff' | translate}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat-start="record in pendingDisburse | filter:filterPendingToDisbursal"
+                                        <tr  dir-paginate="record in pendingDisburse | filter : {client : { name : filterPendingToDisbursal }} | itemsPerPage: itemsPerPage"
                                             class="{{record.individual ? '' : 'accordion-toggle'}}"
                                             data-toggle="collapse"
-                                            data-target="#grp_d{{record.individual ? '' : record.client.id}}">
+                                            data-target="#grp_d{{record.individual ? '' : record.client.id}}"
+                                            pagination-id="pendingDisburse.id">
                                             <td>
                                                 <input type="checkbox"
                                                     ng-model="loanDisbursalTemplate[record.client.id]">
@@ -915,7 +919,7 @@
                                 </table>
                             </div>
                             <div class="text-center">
-                                <dir-pagination-controls pagination-id="loan-disbursal" boundary-links="true"
+                                <dir-pagination-controls pagination-id="pendingDisburse.id" boundary-links="true"
                                     template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html" />
                             </div>
                         </uib-tab>
