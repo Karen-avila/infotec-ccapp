@@ -593,7 +593,7 @@
             };
 
             scope.viewPrintDetails = function () {
-                var reportName = "savingAccountStatement";
+                var reportName = "savingsAccountStatement";
                 var d = new Date();
                 scope.formData = {
                     "output-type": "PDF",
