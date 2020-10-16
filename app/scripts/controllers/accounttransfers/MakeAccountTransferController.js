@@ -17,7 +17,12 @@
                 window.history.back();
             };
 
-            scope.formData = { fromAccountId: params.fromAccountId, fromAccountType: params.fromAccountType, transferDate: new Date() };
+            scope.formData = { 
+                fromAccountId: params.fromAccountId, 
+                fromAccountType: params.fromAccountType, 
+                transferDate: new Date() 
+            };
+
             resourceFactory.accountTransfersTemplateResource.get(params, function (data) {
                 scope.transfer = data;
                 scope.toOffices = data.toOfficeOptions;
@@ -31,10 +36,9 @@
             };
 
             scope.changeEvent = function () {
-
                 var params = scope.formData;
                 delete params.transferAmount;
-                delete params.transferDate;
+                params.transferDate = new Date();
                 delete params.transferDescription;
 
                 resourceFactory.accountTransfersTemplateResource.get(params, function (data) {
