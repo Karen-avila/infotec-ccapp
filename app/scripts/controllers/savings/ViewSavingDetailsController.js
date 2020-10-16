@@ -1,5 +1,3 @@
-const { CONSOLE_APPENDER } = require("karma/lib/constants");
-
 (function (module) {
     mifosX.controllers = _.extend(module, {
         ViewSavingDetailsController: function (
@@ -12,8 +10,7 @@ const { CONSOLE_APPENDER } = require("karma/lib/constants");
             route,
             dateFilter,
             $sce,
-            $rootScope,
-            API_VERSION
+            $rootScope
         ) {
             scope.report = false;
             scope.hidePentahoReport = true;
@@ -597,13 +594,14 @@ const { CONSOLE_APPENDER } = require("karma/lib/constants");
 
             scope.viewPrintDetails = function () {
                 var reportName = "savingAccountStatement";
+                var d = new Date();
                 scope.formData = {
                     "output-type": "PDF",
                     base64: true,
                     locale: scope.optlang.code,
-                    R_startDate: dateFilter(scope.date.fromDate, "yyyy-MM-dd"),
-                    R_endDate: dateFilter(scope.date.endDate, "yyyy-MM-dd"),
-                    R_savingsAccountId: scope.savingaccountdetails.accountNo,
+                    R_AccountNo: scope.savingaccountdetails.accountNo,
+                    R_year: d.getFullYear(),
+                    R_month: d.getMonth(),
                     reportSource: reportName
                 }
                 scope.fileData = "";
@@ -751,7 +749,6 @@ const { CONSOLE_APPENDER } = require("karma/lib/constants");
             "dateFilter",
             "$sce",
             "$rootScope",
-            "API_VERSION",
             mifosX.controllers.ViewSavingDetailsController,
         ])
         .run(function ($log) {
