@@ -970,6 +970,9 @@
             .when('/addfamilymembers/:clientId/', {
                 templateUrl: 'views/clients/addfamilymembers.html'
             })
+            .when('/bulkimportdispersion', {
+                templateUrl: 'views/organization/bulkimport/bulkimportdispersion.html'
+            })
             .when('/bulkimportoffices', {
                 templateUrl: 'views/organization/bulkimport/bulkimportoffices.html'
             })
