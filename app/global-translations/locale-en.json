@@ -1845,7 +1845,7 @@
     "label.heading.interestDetails": "Interest Details",
     "label.heading.savingsDetails": "Savings Details",
     "label.heading.currentBalance": "Current Balance",
-    "label.heading.availableBalance": "Available Balance",
+    "label.heading.savings.availableBalance": "Available Balance",
     "label.heading.approvesavingaccount": "Approve Saving Account",
     "label.heading.rejectsavingaccount": "Reject Saving Account",
     "label.heading.withdrawsavingaccount": "Withdraw Saving Account",

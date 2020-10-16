@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewRecurringDepositAccountDetailsController: function (scope, routeParams, resourceFactory, paginatorService, location, route, dateFilter,$uibModal,$sce,$rootScope,API_VERSION) {
+        ViewRecurringDepositAccountDetailsController: function (scope, routeParams, resourceFactory, paginatorService, location, route, dateFilter, $uibModal, $sce, $rootScope, API_VERSION) {
             scope.isDebit = function (savingsTransactionType) {
                 return savingsTransactionType.withdrawal == true || savingsTransactionType.feeDeduction == true || savingsTransactionType.withholdTax == true;
             };
@@ -10,8 +10,8 @@
              * api returns dates in array format[yyyy, mm, dd], converting the array of dates to date object
              * @param dateFieldName
              */
-            scope.convertDateArrayToObject = function(dateFieldName){
-                for(var i in scope.savingaccountdetails.transactions){
+            scope.convertDateArrayToObject = function (dateFieldName) {
+                for (var i in scope.savingaccountdetails.transactions) {
                     scope.savingaccountdetails.transactions[i][dateFieldName] = new Date(scope.savingaccountdetails.transactions[i].date);
                 }
             };
@@ -33,7 +33,7 @@
                         location.path('/recurringdepositaccount/' + accountId + '/withdrawnByApplicant');
                         break;
                     case "delete":
-                        resourceFactory.recurringDepositAccountResource.delete({accountId: accountId}, {}, function (data) {
+                        resourceFactory.recurringDepositAccountResource.delete({ accountId: accountId }, {}, function (data) {
                             var destination = '/viewgroup/' + data.groupId;
                             if (data.clientId) destination = '/viewclient/' + data.clientId;
                             location.path(destination);
@@ -55,12 +55,12 @@
                         location.path('/recurringdepositaccount/' + accountId + '/charges');
                         break;
                     case "calculateInterest":
-                        resourceFactory.recurringDepositAccountResource.save({accountId: accountId, command: 'calculateInterest'}, {}, function (data) {
+                        resourceFactory.recurringDepositAccountResource.save({ accountId: accountId, command: 'calculateInterest' }, {}, function (data) {
                             route.reload();
                         });
                         break;
                     case "postInterest":
-                        resourceFactory.recurringDepositAccountResource.save({accountId: accountId, command: 'postInterest'}, {}, function (data) {
+                        resourceFactory.recurringDepositAccountResource.save({ accountId: accountId, command: 'postInterest' }, {}, function (data) {
                             route.reload();
                         });
                         break;
@@ -80,32 +80,32 @@
                         break;
                     case "enableWithHoldTax":
                         var changes = {
-                            withHoldTax:true
+                            withHoldTax: true
                         };
-                        resourceFactory.savingsResource.update({accountId: accountId, command: 'updateWithHoldTax'}, changes, function (data) {
+                        resourceFactory.savingsResource.update({ accountId: accountId, command: 'updateWithHoldTax' }, changes, function (data) {
                             route.reload();
                         });
                         break;
                     case "disableWithHoldTax":
                         var changes = {
-                            withHoldTax:false
+                            withHoldTax: false
                         };
-                        resourceFactory.savingsResource.update({accountId: accountId, command: 'updateWithHoldTax'}, changes, function (data) {
+                        resourceFactory.savingsResource.update({ accountId: accountId, command: 'updateWithHoldTax' }, changes, function (data) {
                             route.reload();
                         });
                         break;
                 }
             };
 
-            resourceFactory.recurringDepositAccountResource.get({accountId: routeParams.id, associations: 'all'}, function (data) {
+            resourceFactory.recurringDepositAccountResource.get({ accountId: routeParams.id, associations: 'all' }, function (data) {
                 scope.savingaccountdetails = data;
-                scope.savingaccountdetails.availableBalance = scope.savingaccountdetails.enforceMinRequiredBalance?(scope.savingaccountdetails.summary.accountBalance - scope.savingaccountdetails.minRequiredOpeningBalance):scope.savingaccountdetails.summary.accountBalance;
+                scope.savingaccountdetails.availableBalance = scope.savingaccountdetails.enforceMinRequiredBalance ? (scope.savingaccountdetails.summary.accountBalance - scope.savingaccountdetails.minRequiredOpeningBalance) : scope.savingaccountdetails.summary.accountBalance;
                 scope.convertDateArrayToObject('date');
                 scope.chartSlabs = scope.savingaccountdetails.accountChart.chartSlabs;
                 scope.isprematureAllowed = data.maturityDate != null;
                 scope.status = data.status.value;
                 scope.applyCurrentInterestRateChart = data.applyCurrentInterestRateChart;
-                scope.heading = (!scope.savingaccountdetails.status.rejected && !scope.savingaccountdetails.status.submittedAndPendingApproval)?'label.heading.interestchart':'label.heading.summary';
+                scope.heading = (!scope.savingaccountdetails.status.rejected && !scope.savingaccountdetails.status.submittedAndPendingApproval) ? 'label.heading.interestchart' : 'label.heading.summary';
                 if (scope.status == "Submitted and pending approval" || scope.status == "Active" || scope.status == "Approved") {
                     scope.choice = true;
                 }
@@ -117,16 +117,17 @@
                     scope.chargeTableShow = false;
                 }
                 if (data.status.value == "Submitted and pending approval") {
-                    scope.buttons = { singlebuttons: [
-                        {
-                            name: "button.modifyapplication",
-                            icon: "fa fa-pencil "
-                        },
-                        {
-                            name: "button.approve",
-                            icon: "fa fa-check"
-                        }
-                    ],
+                    scope.buttons = {
+                        singlebuttons: [
+                            {
+                                name: "button.modifyapplication",
+                                icon: "fa fa-pencil "
+                            },
+                            {
+                                name: "button.approve",
+                                icon: "fa fa-check"
+                            }
+                        ],
                         options: [
                             {
                                 name: "button.reject"
@@ -145,34 +146,36 @@
                 }
 
                 if (data.status.value == "Approved") {
-                    scope.buttons = { singlebuttons: [
-                        {
-                            name: "button.undoapproval",
-                            icon: "fa fa-undo"
-                        },
-                        {
-                            name: "button.activate",
-                            icon: "fa fa-check"
-                        }
-                    ]
+                    scope.buttons = {
+                        singlebuttons: [
+                            {
+                                name: "button.undoapproval",
+                                icon: "fa fa-undo"
+                            },
+                            {
+                                name: "button.activate",
+                                icon: "fa fa-check"
+                            }
+                        ]
                     };
                 }
 
                 if (data.status.value == "Active") {
-                    scope.buttons = { singlebuttons: [
-                        {
-                            name: "button.deposit",
-                            icon: "fa fa-arrow-right"
-                        },
-                        {
-                            name: "button.prematureClose",
-                            icon: "fa fa-arrow-left"
-                        },
-                        {
-                            name: "button.calculateInterest",
-                            icon: "fa fa-table"
-                        }
-                    ],
+                    scope.buttons = {
+                        singlebuttons: [
+                            {
+                                name: "button.deposit",
+                                icon: "fa fa-arrow-right"
+                            },
+                            {
+                                name: "button.prematureClose",
+                                icon: "fa fa-arrow-left"
+                            },
+                            {
+                                name: "button.calculateInterest",
+                                icon: "fa fa-table"
+                            }
+                        ],
                         options: [
                             {
                                 name: "button.postInterest"
@@ -201,23 +204,23 @@
                         }
                     }
 
-                    if(!scope.isprematureAllowed){
+                    if (!scope.isprematureAllowed) {
                         scope.buttons.singlebuttons.push({
                             name: "button.close",
                             icon: "fa fa-arrow-right"
                         });
                     }
 
-                    if(data.taxGroup){
-                        if(data.withHoldTax){
+                    if (data.taxGroup) {
+                        if (data.withHoldTax) {
                             scope.buttons.options.push({
                                 name: "button.disableWithHoldTax",
-                                taskPermissionName:"UPDATEWITHHOLDTAX_SAVINGSACCOUNT"
+                                taskPermissionName: "UPDATEWITHHOLDTAX_SAVINGSACCOUNT"
                             });
-                        }else{
+                        } else {
                             scope.buttons.options.push({
                                 name: "button.enableWithHoldTax",
-                                taskPermissionName:"UPDATEWITHHOLDTAX_SAVINGSACCOUNT"
+                                taskPermissionName: "UPDATEWITHHOLDTAX_SAVINGSACCOUNT"
                             });
                         }
                     }
@@ -225,20 +228,21 @@
                 }
 
                 if (data.status.value == "Matured") {
-                    scope.buttons = { singlebuttons: [
-                        {
-                            name: "button.close",
-                            icon: "fa fa-arrow-right"
-                        },
-                        {
-                            name: "button.calculateInterest",
-                            icon: "fa fa-table"
-                        },
-                        {
-                            name: "button.postInterest",
-                            icon: "fa fa-table"
-                        }
-                    ],
+                    scope.buttons = {
+                        singlebuttons: [
+                            {
+                                name: "button.close",
+                                icon: "fa fa-arrow-right"
+                            },
+                            {
+                                name: "button.calculateInterest",
+                                icon: "fa fa-table"
+                            },
+                            {
+                                name: "button.postInterest",
+                                icon: "fa fa-table"
+                            }
+                        ],
                         options: [
                             {
                                 name: "button.addcharge"
@@ -268,7 +272,7 @@
                  annualdueDate = data.annualFee.feeOnMonthDay;
                  annualdueDate.push(2013);
                  scope.annualdueDate = new Date(annualdueDate);*/
-                resourceFactory.standingInstructionTemplateResource.get({fromClientId: scope.savingaccountdetails.clientId,fromAccountType: 2,fromAccountId: routeParams.id},function (response) {
+                resourceFactory.standingInstructionTemplateResource.get({ fromClientId: scope.savingaccountdetails.clientId, fromAccountType: 2, fromAccountId: routeParams.id }, function (response) {
                     scope.standinginstruction = response;
                     scope.searchTransaction();
                 });
@@ -308,7 +312,7 @@
 
             var DelInstructionCtrl = function ($scope, $uibModalInstance, ids) {
                 $scope.delete = function () {
-                    resourceFactory.standingInstructionResource.cancel({standingInstructionId: ids}, function (data) {
+                    resourceFactory.standingInstructionResource.cancel({ standingInstructionId: ids }, function (data) {
                         scope.searchTransaction();
                         $uibModalInstance.close('delete');
                     });
@@ -318,7 +322,7 @@
                 };
             };
 
-            resourceFactory.DataTablesResource.getAllDataTables({apptable: 'm_savings_account'}, function (data) {
+            resourceFactory.DataTablesResource.getAllDataTables({ apptable: 'm_savings_account' }, function (data) {
                 scope.savingdatatables = data;
             });
 
@@ -331,8 +335,10 @@
             };
 
             scope.dataTableChange = function (datatable) {
-                resourceFactory.DataTablesResource.getTableDetails({datatablename: datatable.registeredTableName,
-                    entityId: routeParams.id, genericResultSet: 'true'}, function (data) {
+                resourceFactory.DataTablesResource.getTableDetails({
+                    datatablename: datatable.registeredTableName,
+                    entityId: routeParams.id, genericResultSet: 'true'
+                }, function (data) {
                     scope.datatabledetails = data;
                     scope.datatabledetails.isData = data.data.length > 0 ? true : false;
                     scope.datatabledetails.isMultirow = data.datatableData.columnHeaderData[0].columnName == "id" ? true : false;
@@ -362,7 +368,7 @@
             };
 
             scope.deleteAll = function (apptableName, entityId) {
-                resourceFactory.DataTablesResource.delete({datatablename: apptableName, entityId: entityId, genericResultSet: 'true'}, {}, function (data) {
+                resourceFactory.DataTablesResource.delete({ datatablename: apptableName, entityId: entityId, genericResultSet: 'true' }, {}, function (data) {
                     route.reload();
                 });
             };
@@ -371,7 +377,7 @@
                 location.path('/recurringdepositaccount/' + accountId + '/modifytransaction?transactionId=' + transactionId);
             };
 
-            scope.incentives = function(index){
+            scope.incentives = function (index) {
                 $uibModal.open({
                     templateUrl: 'incentive.html',
                     controller: IncentiveCtrl,
@@ -386,7 +392,7 @@
             var IncentiveCtrl = function ($scope, $uibModalInstance, chartSlab) {
                 $scope.chartSlab = chartSlab;
                 _.each($scope.chartSlab.incentives, function (incentive) {
-                    if(!incentive.attributeValueDesc){
+                    if (!incentive.attributeValueDesc) {
                         incentive.attributeValueDesc = incentive.attributeValue;
                     }
                 });
@@ -399,7 +405,7 @@
                 column: 'date',
                 descending: true
             };
-            scope.changeTransactionSort = function(column) {
+            scope.changeTransactionSort = function (column) {
                 var sort = scope.transactionSort;
                 if (sort.column == column) {
                     sort.descending = !sort.descending;
@@ -413,64 +419,51 @@
             scope.viewsavingtransactionjournalentries = function (transactionId) {
                 var transactionId = "S" + transactionId;
                 if (
-                  scope.savingaccountdetails.clientId != null &&
-                  scope.savingaccountdetails.clientId != ""
+                    scope.savingaccountdetails.clientId != null &&
+                    scope.savingaccountdetails.clientId != ""
                 ) {
-                  location
-                    .path("/viewtransactions/" + transactionId)
-                    .search({
-                      productName: scope.savingaccountdetails.savingsProductName,
-                      savingId: scope.savingaccountdetails.id,
-                      accountNo: scope.savingaccountdetails.accountNo,
-                    });
+                    location
+                        .path("/viewtransactions/" + transactionId)
+                        .search({
+                            productName: scope.savingaccountdetails.savingsProductName,
+                            savingId: scope.savingaccountdetails.id,
+                            accountNo: scope.savingaccountdetails.accountNo,
+                        });
                 } else {
-                  location
-                    .path("/viewtransactions/" + transactionId)
-                    .search({
-                      productName: scope.savingaccountdetails.loanProductName,
-                      loanId: scope.savingaccountdetails.id,
-                      accountNo: scope.savingaccountdetails.accountNo,
-                      groupId: scope.savingaccountdetails.group.id,
-                      groupName: scope.savingaccountdetails.group.name,
-                    });
+                    location
+                        .path("/viewtransactions/" + transactionId)
+                        .search({
+                            productName: scope.savingaccountdetails.loanProductName,
+                            loanId: scope.savingaccountdetails.id,
+                            accountNo: scope.savingaccountdetails.accountNo,
+                            groupId: scope.savingaccountdetails.group.id,
+                            groupName: scope.savingaccountdetails.group.name,
+                        });
                 }
-              };
+            };
 
-              scope.viewSavingsTransactionReceipts = function (transactionId) {
+            scope.viewSavingsTransactionReceipts = function (transactionId) {
                 scope.report = true;
                 scope.viewTransactionReport = true;
                 scope.viewSavingReport = false;
                 scope.printbtn = false;
                 scope.viewReport = true;
                 scope.hidePentahoReport = true;
-                scope.formData.outputType = "PDF";
-                scope.baseURL =
-                  $rootScope.hostUrl +
-                  API_VERSION +
-                  "/runreports/" +
-                  encodeURIComponent("Savings Transaction Receipt");
-                scope.baseURL +=
-                  "?output-type=" +
-                  encodeURIComponent(scope.formData.outputType) +
-                  "&tenantIdentifier=" +
-                  $rootScope.tenantIdentifier +
-                  "&locale=" +
-                  scope.optlang.code;
-        
-                var reportParams = "";
-                var paramName = "R_transactionId";
-                reportParams +=
-                  encodeURIComponent(paramName) +
-                  "=" +
-                  encodeURIComponent(transactionId);
-                if (reportParams > "") {
-                  scope.baseURL += "&" + reportParams;
+                scope.formData = {
+                    "output-type": "PDF",
+                    base64: true,
+                    locale: scope.optlang.code,
+                    R_transactionId: encodeURIComponent(transactionId)
                 }
+                resourceFactory.runReportsResource.getClientDocument({reportSource: encodeURIComponent("Savings Transaction Receipt")}, scope.formData, function (data) {
+                    scope.fileType = data.contentType;
+                    scope.preview = true;
+                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                });
+
                 // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
                 scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
-              };
-        
-
+            };
         }
     });
     mifosX.ng.application.controller('ViewRecurringDepositAccountDetailsController', [
@@ -485,6 +478,6 @@
         "$sce",
         "$rootScope",
         "API_VERSION", mifosX.controllers.ViewRecurringDepositAccountDetailsController]).run(function ($log) {
-        $log.info("ViewRecurringDepositAccountDetailsController initialized");
-    });
+            $log.info("ViewRecurringDepositAccountDetailsController initialized");
+        });
 }(mifosX.controllers || {}));
