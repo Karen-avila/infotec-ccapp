@@ -1,0 +1,42 @@
+<div class="content-container" ng-controller="ViewUserController">
+    <ul class="breadcrumb">
+		<li><a href="#!/socialbanking">{{'label.anchor.social.banking' | translate}}</a></li>
+		<li><a href="#!/socialprograms">{{'label.anchor.social.programs' | translate}}</a></li>
+        <li class="active">{{socialprogram.name}}</li>
+    </ul>
+
+    <script type="text/ng-template" id="deletesocialprogram.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.heading.confirm.delete' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
+        </div>
+    </script>
+
+    <div class="card well">
+        <div class="pull-right">
+            <div class="form-group">
+                <md-button href="#!/editsocialprogram/{{socialprogram.id}}" class="md-raised md-primary" has-permission='UPDATE_USER'><i
+                        class="fa fa-edit "></i>
+                    {{'label.button.edit' | translate}}</md-button>
+                <md-button type="button" ng-click="deletesocialprogram()" class="md-raised md-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> {{'label.button.delete' | translate}}
+                </md-button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>{{'label.heading.name' | translate}}:</td>
+                        <td>{{socialprogram.name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

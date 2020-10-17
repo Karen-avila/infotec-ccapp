@@ -13,9 +13,10 @@
           scope.reportDateParams = new Array();
           scope.reqFields = new Array();
           scope.reportTextParams = new Array();
-          scope.reportData = {};
-          scope.reportData.columnHeaders = [];
-          scope.reportData.data = [];
+          scope.reportData = {
+            columnHeaders: [],
+            data: []
+          };
           scope.baseURL = "";
           scope.csvData = [];
           scope.row = [];
