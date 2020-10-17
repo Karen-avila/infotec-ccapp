@@ -18,8 +18,8 @@
                                 class="fa fa-chevron-down"></i></md-button>
                     </div>
                     <div class="col-md-1 col-sm-1">
-                        <md-button ng-click="searchAudit()" class="md-raised md-primary control" has-permission='READ_AUDIT'><i
-                                class="fa fa-search "></i></md-button>
+                        <md-button ng-click="searchAudit()" class="md-raised md-primary control"
+                            has-permission='READ_AUDIT'><i class="fa fa-search "></i></md-button>
                     </div>
                 </div>
             </div>
@@ -30,12 +30,12 @@
                         placeholder="{{'label.input.searchbyuser' | translate}}" type="text" ng-model="formData.user"
                         class="form-control"
                         uib-typeahead="users.username as users.username for users in template.appUsers | filter:$viewValue | limitTo:8" />
-                        <label for="modelName">Desde </label>
-                    <md-datepicker id="fromdate" ng-model="date.first" md-min-date="minDate" 
+                    <label for="modelName">Desde </label>
+                    <md-datepicker id="fromdate" ng-model="date.first" md-min-date="minDate"
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
                     <label for="modelName">Hasta </label>
-                    <md-datepicker id="checkedfrom" ng-model="date.third" md-min-date="minDate" 
+                    <md-datepicker id="checkedfrom" ng-model="date.third" md-min-date="minDate"
                         placeholder="{{'label.input.checkedfrom' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
 
@@ -49,7 +49,8 @@
                     <md-select ng-model="formData.action" class="form-control width170px">
                         <md-option value="">{{'label.selectaction' | translate}}</md-option>
                         <md-option selected="selected" value="">{{'label.all' | translate}}</md-option>
-                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action | translate}}</md-option>
+                        <md-option ng-repeat="action in template.actionNames" value="{{action}}">{{action | translate}}
+                        </md-option>
                     </md-select>
                     <md-button ng-click="clearFilters()" class="md-raised md-primary pull-right"><i
                             class="fa fa-undo"></i>&nbsp;&nbsp;{{'label.button.reset' | translate}}</md-button>
@@ -57,11 +58,11 @@
 
                 <div class="form-inline">
                     <label for="modelName">Desde </label>
-                    <md-datepicker id="fromdate" ng-model="date.second" md-min-date="minDate" 
+                    <md-datepicker id="fromdate" ng-model="date.second" md-min-date="minDate"
                         placeholder="{{'label.input.second' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
                     <label for="modelName">Hasta </label>
-                    <md-datepicker id="checkedto" ng-model="date.fourth" md-min-date="minDate" 
+                    <md-datepicker id="checkedto" ng-model="date.fourth" md-min-date="minDate"
                         placeholder="{{'label.input.checkedto' | translate}}" md-max-date="'2030-06-22'">
                     </md-datepicker>
 
@@ -88,11 +89,15 @@
                             {{(user.username | translate)}}
                         </md-option>
                     </md-select>
-                    <span><md-button ng-click="searchAudit()" class="md-raised md-primary pull-right" has-permission='READ_AUDIT'><i
-                                class="fa fa-search "></i>&nbsp;&nbsp;{{'label.button.advancesearch' | translate}}</md-button></span>
+                    <span>
+                        <md-button ng-click="searchAudit()" class="md-raised md-primary pull-right"
+                            has-permission='READ_AUDIT'><i
+                                class="fa fa-search "></i>&nbsp;&nbsp;{{'label.button.advancesearch' | translate}}
+                        </md-button>
+                    </span>
                 </div>
             </div>
-            
+
             <md-table-container ng-show="displayResults" class="noscroll-x">
 
                 <br>
@@ -102,47 +107,51 @@
                     </button>
                 </div>
                 <br>
-    
+
                 <div data-ng-show="flag">
                     <div class="row">
                         <div clas="col-sm-12">
-                            <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+                            <table md-table md-row-select="options.rowSelection" ng-model="selected"
+                                md-progress="promise">
                                 <thead md-head md-order="query.order">
                                     <tr md-row>
-                                        <th>{{'label.heading.id' | translate}}</th>
-                                        <th>{{'label.heading.resourceid' | translate}}</th>
-                                        <th>{{'label.heading.status' | translate}}</th>
-                                        <th>{{'label.heading.madeby' | translate}}</th>
-                                        <th>{{'label.heading.action' | translate}}</th>
-                                        <th>{{'label.heading.entity' | translate}}</th>
-                                        <th>{{'label.heading.office' | translate}}</th>
-                                        <th>{{'label.heading.madedate' | translate}}</th>
-                                        <th>{{'label.heading.checker' | translate}}</th>
-                                        <th>{{'label.heading.checkeddate' | translate}}</th>
+                                        <th md-column md-order-by="id">{{'label.heading.id' | translate}}</th>
+                                        <th md-column md-order-by="resourceId">{{'label.heading.resourceid' | translate}}</th>
+                                        <th md-column md-order-by="processingResult">{{'label.heading.status' | translate}}</th>
+                                        <th md-column md-order-by="maker">{{'label.heading.madeby' | translate}}</th>
+                                        <th md-column md-order-by="actionName">{{'label.heading.action' | translate}}</th>
+                                        <th md-column md-order-by="entityName">{{'label.heading.entity' | translate}}</th>
+                                        <th md-column md-order-by="officeName">{{'label.heading.office' | translate}}</th>
+                                        <th md-column md-order-by="madeOnDate">{{'label.heading.madedate' | translate}}</th>
+                                        <th md-column md-order-by="checker">{{'label.heading.checker' | translate}}</th>
+                                        <th md-column md-order-by="checkedOnDate">{{'label.heading.checkeddate' | translate}}</th>
                                     </tr>
                                 </thead>
-                        <tbody md-body>
-                            <tr md-row class="pointer-main" ng-click="routeTo(data.id)"
-                                ng-repeat="data in searchData.pageItems">
-                                <td md-cell>{{data.id}}</td>
-                                <td md-cell>{{data.resourceId}}</td>
-                                <td md-cell>{{data.processingResult | translate}}</td>
-                                <td md-cell>{{data.maker}}</td>
-                                <td md-cell>{{data.actionName | translate}}</td>
-                                <td md-cell>{{data.entityName | translate}}</td>
-                                <td md-cell>{{data.officeName}}</td>
-                                <td md-cell>{{data.madeOnDate | date:'d MMM y h:mm:ss'}}</td>
-                                <td md-cell>{{data.checker}}</td>
-                                <td md-cell>{{data.checkedOnDate | date:'d MMM y h:mm:ss'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                <tbody md-body>
+                                    <tr md-row ng-click="routeTo(data.id)"
+                                        ng-repeat="data in searchData.pageItems">
+                                        <td md-cell>{{data.id}}</td>
+                                        <td md-cell>{{data.resourceId}}</td>
+                                        <td md-cell>{{data.processingResult | translate}}</td>
+                                        <td md-cell>{{data.maker}}</td>
+                                        <td md-cell>{{data.actionName | translate}}</td>
+                                        <td md-cell>{{data.entityName | translate}}</td>
+                                        <td md-cell>{{data.officeName}}</td>
+                                        <td md-cell>{{data.madeOnDate | date:'d MMM y h:mm:ss'}}</td>
+                                        <td md-cell>{{data.checker}}</td>
+                                        <td md-cell>{{data.checkedOnDate | date:'d MMM y h:mm:ss'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                <md-table-pagination ng-show="searchData.pageItems.length > query.limit" md-limit="query.limit" md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
-                    md-boundary-links="options.boundaryLinks" md-total="{{searchData.pageItems.length}}" md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
+                        <md-table-pagination ng-show="searchData.pageItems.length > query.limit" md-limit="query.limit"
+                            md-limit-options="[10, 25, 40, 60, 80, 100]" md-page-select="options.pageSelector"
+                            md-boundary-links="options.boundaryLinks" md-total="{{searchData.pageItems.length}}"
+                            md-page="query.page" md-on-paginate="search" md-page-select></md-table-pagination>
 
-                <h3 data-ng-show="!flag" class="auditnodata"><strong>{{'label.nodata' | translate }}</strong></h3>
+                        <h3 data-ng-show="!flag" class="auditnodata"><strong>{{'label.nodata' | translate }}</strong>
+                        </h3>
             </md-table-container>
         </div>
     </div>

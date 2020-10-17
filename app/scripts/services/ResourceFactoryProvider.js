@@ -753,6 +753,10 @@
                     getBinaryDocument: defineResource(apiVer + "/clients/:clientId/documents/:resourceId/attachment", { clientId: '@clientId', resourceId: '@resourceId' }, {
                         get: { method: 'GET', responseType: 'arraybuffer' }
                     }),
+                    // Entity Resources
+                    socialProgramResource: defineResource(apiVer + "/socialprogram/:socialprogramId", { socialprogramId: '@socialprogramId' }, {
+                        get: { method: 'GET', params: {} }
+                    }),
                 };
             }];
         }

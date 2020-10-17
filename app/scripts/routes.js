@@ -352,11 +352,17 @@
             .when('/nav/offices', {
                 templateUrl: 'views/navigation/offices.html'
             })
-            .when('/processes', {
-                templateUrl: 'views/processes/processes.html'
+            .when('/socialbanking', {
+                templateUrl: 'views/entity/socialbanking.html'
             })
-            .when('/mediarequest', {
-                templateUrl: 'views/processes/mediarequest.html'
+            .when('/createsocialprogram', {
+                templateUrl: 'views/entity/socialprogram/createsocialprogram.html'
+            })
+            .when('/socialprograms', {
+                templateUrl: 'views/entity/socialprogram/socialprograms.html'
+            })
+            .when('/viewsocialprogram/:id', {
+                templateUrl: 'views/entity/socialprogram/viewsocialprogram.html'
             })
             .when('/accounting', {
                 templateUrl: 'views/accounting/accounting.html'
@@ -970,8 +976,8 @@
             .when('/addfamilymembers/:clientId/', {
                 templateUrl: 'views/clients/addfamilymembers.html'
             })
-            .when('/bulkimportdispersion', {
-                templateUrl: 'views/organization/bulkimport/bulkimportdispersion.html'
+            .when('/importdispersion', {
+                templateUrl: 'views/entity/importdispersion.html'
             })
             .when('/bulkimportoffices', {
                 templateUrl: 'views/organization/bulkimport/bulkimportoffices.html'

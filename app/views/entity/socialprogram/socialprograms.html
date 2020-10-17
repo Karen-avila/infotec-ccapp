@@ -1,0 +1,45 @@
+<div class="content-container" ng-controller="SocialProgramController">
+    <ul class="breadcrumb">
+        <li><a href="#!/socialbanking">{{'label.anchor.social.banking' | translate}}</a></li>
+        <li class="active">{{'label.anchor.social.programs' | translate}}</li>
+    </ul>
+
+    <div class="card well">
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <md-button md-no-ink class="md-primary" href="#!/createsocialprogram" has-permission='CREATE_SOCIALPROGRAM'>
+                    <i class="fa fa-plus "></i> {{'label.button.createsocialprogram' | translate}}</md-button>
+            </div>
+        </div>
+        <md-divider></md-divider>
+        <md-table-container>
+            <table md-table ng-model="socialprograms" md-progress="promise">
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column md-order-by="name">{{'label.heading.name' | translate}}</th>
+                        <th md-column>{{'label.heading.description' | translate}}</th>
+                        <th md-column md-order-by="closedate">{{'label.heading.closedate' | translate}}</th>
+                        <th md-column md-order-by="status">{{'label.heading.status' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="socialprogram in socialprograms | orderBy: query.order | filter:filterText | limitTo: query.limit : (query.page -1) * query.limit"
+                        data-ng-click="routeTo(socialprogram.id)" md-select="product" md-select-id="name">
+                        <td md-cell>{{socialprogram.name}}</td>
+                        <td md-cell>{{socialprogram.description}}</td>
+                        <td md-cell>{{socialprogram.closeDate | DateFormat}}</td>
+                        <td md-cell>
+                            <i class="fa fa-circle {{socialprogram.status | StatusLookup}}"
+                                uib-tooltip="{{'label.tooltip.' + socialprogram.status | translate}}"
+                                tooltip-placement="right"></i>
+                            <small>[{{'label.tooltip.' + socialprogram.status | translate}}]</small>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-page="query.page"
+            md-total="{{socialprograms.length}}" md-on-paginate="getResultsPage" md-page-select>
+        </md-table-pagination>
+    </div>
+</div>
