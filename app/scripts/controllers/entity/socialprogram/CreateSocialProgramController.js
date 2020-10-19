@@ -5,8 +5,8 @@
             scope.submit = function () {
                 scope.formData.name = scope.formData.name.toUpperCase();
 
-                resourceFactory.roleResource.save(this.formData, function (data) {
-                    location.path("/socialprogram/" + data.resourceId);
+                resourceFactory.socialProgramResource.save(scope.formData, function (data) {
+                    location.path("/viewsocialprogram/" + data.resourceId);
                 });
             };
         },
@@ -17,7 +17,7 @@
             "$scope",
             "ResourceFactory",
             "$location",
-            mifosX.controllers.SocialProgramController,
+            mifosX.controllers.CreateSocialProgramController,
         ])
         .run(function ($log) {
             $log.info("CreateSocialProgramController initialized");

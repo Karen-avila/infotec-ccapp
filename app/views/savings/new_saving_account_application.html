@@ -68,6 +68,19 @@
                                             class="form-control" />
                                     </div>
                                 </div>
+                                <div class="form-group" ng-show="formData.productId">
+                                    <label class="control-label col-sm-3">{{'label.input.social.program' | translate }}:
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <md-select aria-label="socialProgramId" id="socialProgramId" ng-model="socialProgramId"
+                                            ng-change="savingdetails.socialProgramName = formValue(socialPrograms,formData.socialProgramId,'id','displayName')"
+                                            placeholder="{{'label.selectone' | translate}}">
+                                            <md-option ng-repeat="socialProgram in socialPrograms" ng-value="socialProgram.id">
+                                                {{socialProgram.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                </div>
                             </fieldset>
                         </form>
                         <md-divider></md-divider>
