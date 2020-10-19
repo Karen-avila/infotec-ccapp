@@ -66,6 +66,8 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'client/ViewClientSurveyController',
             'entity/socialprogram/SocialProgramController',
             'entity/socialprogram/CreateSocialProgramController',
+            'entity/socialprogram/EditSocialProgramController',
+            'entity/socialprogram/ViewSocialProgramController',
             'entity/dispersion/BulkImportDispersionsController',
             'product/LoanProductController',
             'product/CreateLoanProductController',

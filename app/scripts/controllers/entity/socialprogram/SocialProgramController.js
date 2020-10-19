@@ -49,7 +49,7 @@
                 route.reload();
             };
 
-            resourceFactory.socialProgramResource.get(function (data) {
+            resourceFactory.socialProgramResource.getAllSocialPrograms(function (data) {
                 scope.socialprograms = data;
                 scope.totalSocialPrograms = data.length;
             });

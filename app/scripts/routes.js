@@ -361,6 +361,9 @@
             .when('/socialprograms', {
                 templateUrl: 'views/entity/socialprogram/socialprograms.html'
             })
+            .when('/editsocialprogram/:id', {
+                templateUrl: 'views/entity/socialprogram/editsocialprogram.html'
+            })
             .when('/viewsocialprogram/:id', {
                 templateUrl: 'views/entity/socialprogram/viewsocialprogram.html'
             })

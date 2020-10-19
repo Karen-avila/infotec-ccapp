@@ -1,4 +1,4 @@
-<div class="content-container" ng-controller="ViewUserController">
+<div class="content-container" ng-controller="ViewSocialProgramController">
     <ul class="breadcrumb">
 		<li><a href="#!/socialbanking">{{'label.anchor.social.banking' | translate}}</a></li>
 		<li><a href="#!/socialprograms">{{'label.anchor.social.programs' | translate}}</a></li>
@@ -34,6 +34,14 @@
                     <tr>
                         <td>{{'label.heading.name' | translate}}:</td>
                         <td>{{socialprogram.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.description' | translate}}:</td>
+                        <td>{{socialprogram.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'label.heading.active' | translate}}:</td>
+                        <td>{{socialprogram.active | translate}}</td>
                     </tr>
                 </table>
             </div>

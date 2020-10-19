@@ -755,7 +755,9 @@
                     }),
                     // Entity Resources
                     socialProgramResource: defineResource(apiVer + "/socialprogram/:socialprogramId", { socialprogramId: '@socialprogramId' }, {
-                        get: { method: 'GET', params: {} }
+                        getAllSocialPrograms: { method: 'GET', params: {}, isArray: true },
+                        get: { method: 'GET', params: {} },
+                        update: { method: 'PUT', params: {} }
                     }),
                 };
             }];
