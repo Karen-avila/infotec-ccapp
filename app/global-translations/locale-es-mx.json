@@ -6516,5 +6516,7 @@
     "error.msg.external.service.error": "Error en servicio externo",
     "error.msg.loan.could.not.be.signed": "El crédito no pudo ser firmado",
     "error.msg.external.service.invalid.key": "El crédito no pudo ser firmado",
-    "error when processing the credit authorization": "Error al procesar la autorización de crédito"
+    "error when processing the credit authorization": "Error al procesar la autorización de crédito",
+    "label.anchor.thirdparty": "Servicios",
+    "label.view.thirdpartydesc":"Pago de servicios de terceros"
 }

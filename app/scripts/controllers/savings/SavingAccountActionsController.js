@@ -1,6 +1,9 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        SavingAccountActionsController: function (scope, rootScope, resourceFactory, location, routeParams, dateFilter) {
+        SavingAccountActionsController: function (scope, rootScope, resourceFactory, location, routeParams, dateFilter,API_VERSION,
+            $sce) {
+
+            
 
             scope.action = routeParams.action || "";
             scope.accountId = routeParams.id;
@@ -66,6 +69,10 @@
                     });
                 });
             };
+
+            scope.viewSavingDetails = function () {
+                location.path('/viewsavingaccount/' + routeParams.id);
+              };
 
             scope.fetchEntities = function (entity, status, productId) {
                 if (!productId) {
@@ -380,7 +387,39 @@
                     return scope.dateTimeFormat;
                 }
             }
-
+            scope.viewSavingsTransactionReceipts = function (transactionId) {
+                scope.report = true;
+                scope.viewTransactionReport = true;
+                scope.viewSavingReport = false;
+                scope.printbtn = false;
+                scope.viewReport = true;
+                scope.hidePentahoReport = true;
+                scope.formData.outputType = "PDF";
+                scope.baseURL =
+                  rootScope.hostUrl +
+                  API_VERSION +
+                  "/runreports/" +
+                  encodeURIComponent("Savings Transaction Receipt");
+                scope.baseURL +=
+                  "?output-type=" +
+                  encodeURIComponent(scope.formData.outputType) +
+                  "&tenantIdentifier=" +
+                  rootScope.tenantIdentifier +
+                  "&locale=" +
+                  scope.optlang.code;
+        
+                var reportParams = "";
+                var paramName = "R_transactionId";
+                reportParams +=
+                  encodeURIComponent(paramName) +
+                  "=" +
+                  encodeURIComponent(transactionId);
+                if (reportParams > "") {
+                  scope.baseURL += "&" + reportParams;
+                }
+                // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
+                scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
+              };
             scope.submit = function () {
                 var params = { command: scope.action };
 
@@ -414,7 +453,7 @@
                     params.savingsId = scope.accountId;
 
                     resourceFactory.savingsTrxnsResource.save(params, this.formData, function (data) {
-                        location.path('/viewsavingaccount/' + data.savingsId);
+                       scope.viewSavingsTransactionReceipts(data.resourceId);
                     });
                 } else if (scope.action == "editsavingcharge") {
                     if (this.formData.feeOnMonthDayFullDate) {
@@ -495,7 +534,7 @@
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
-                        location.path('/viewsavingaccount/' + data.savingsId);
+                        location.path('/viewsavingaccounts/' + data.savingsId);
                     });
                 }
             };
@@ -546,7 +585,8 @@
             };
         }
     });
-    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
+    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter','API_VERSION',
+    '$sce', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
         $log.info("SavingAccountActionsController initialized");
     });
 }(mifosX.controllers || {}));
