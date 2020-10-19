@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group">
-               <label class="control-label col-sm-3">{{'label.input.legalForm' | translate}}</label>
+               <label class="control-label col-sm-3">{{'label.input.legalForm' | translate}} <span class="required">*</span></label>
                <div class="col-sm-3">
                   <md-select id="legalFormId" ng-model="formData.legalFormId"
                      ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)"
@@ -59,7 +59,8 @@
                            class="required">*</span></label>
                      <div class="col-sm-3">
                         <input type="text" id="firstname" name="firstname" ng-model="formData.firstname"
-                           class="form-control uppercase" required ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" late-Validate
+                           class="form-control uppercase" required
+                           ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" late-Validate
                            ng-blur="createCurpRfc()" maxlength="50" />
                         <span ng-show="createclientform.firstname.$invalid && createclientform.firstname.$dirty">
                            <small class="error required" ng-show="createclientform.firstname.$error.pattern">
@@ -72,7 +73,8 @@
                         for="middlename">{{'label.input.middlename' | translate}}</label>
                      <div class="col-sm-3">
                         <input type="text" id="middlename" name="middlename" ng-model="formData.middlename"
-                           maxlength="50" class="form-control uppercase" ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/"
+                           maxlength="50" class="form-control uppercase"
+                           ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/"
                            ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.middlename.$invalid && createclientform.middlename.$dirty">
                            <small class="error required" ng-show="createclientform.middlename.$error.pattern">
@@ -88,8 +90,9 @@
                      </label>
                      <div class="col-sm-3">
                         <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" maxlength="50"
-                           class="form-control uppercase" ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" required late-Validate
-                           ng-blur="createCurpRfc()" />
+                           class="form-control uppercase"
+                           ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" required
+                           late-Validate ng-blur="createCurpRfc()" />
                         <span ng-show="createclientform.lastname.$invalid && createclientform.lastname.$dirty">
                            <small class="error required" ng-show="createclientform.lastname.$error.pattern">
                               {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
@@ -101,7 +104,8 @@
                      </label>
                      <div class="col-sm-3">
                         <input type="text" id="surname" name="surname" ng-model="formData.surname"
-                           class="form-control uppercase" ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" late-Validate
+                           class="form-control uppercase"
+                           ng-pattern="/^[A-Za-znÑäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ\s]*$/" late-Validate
                            ng-blur="createCurpRfc()" maxlength="50" />
                         <span ng-show="createclientform.surname.$invalid && createclientform.surname.$dirty">
                            <small class="error required" ng-show="createclientform.surname.$error.pattern">
@@ -528,171 +532,171 @@
                </div>
                <div ng-repeat="addr in addressArray">
                   <div class="col-sm-8 col-md-8">
-                  <div class="form-group" ng-show="postalCode">
-                     <label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" pattern="\d{5}" name="postal_code" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].postalCode" class="form-control">
+                     <div class="form-group" ng-show="postalCode">
+                        <label class="control-label col-sm-3">{{'label.input.postal_code' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" pattern="\d{5}" name="postal_code" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].postalCode" class="form-control">
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="control-label col-sm-3">
-                        <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
+                     <div class="form-group">
+                        <div class="control-label col-sm-3">
+                           <label>{{'label.input.addressType' | translate }}<span class="required">*</span></label>
+                        </div>
+                        <div class="col-sm-6">
+                           <md-select id="addressType" ng-model="addressArray[$index].addressTypeId" required
+                              placeholder="{{'label.selectone' | translate}}">
+                              <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
+                                 {{addressType.name | translate}}
+                              </md-option>
+                           </md-select>
+                        </div>
+                        <div class = "col-sm-2">
+                           <form-validate valattributeform="createclientform" valattribute="addressType"/>
+                        </div>
+                        <a ng-click="removeAddress($index)" uib-tooltip="{{'label.remove.row' | translate}}"><i class="fa fa-times"></i></a>
                      </div>
-                     <div class="col-sm-6">
-                        <md-select id="addressType" ng-model="addressArray[$index].addressTypeId" required
-                           placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="addressType in addressTypes" ng-value="addressType.id">
-                               {{addressType.name | translate}}
-                           </md-option>
-                        </md-select>
+                     <div class="form-group" ng-show="street">
+                        <div class="control-label col-sm-3">
+                           <label>{{'label.input.street' | translate }}<span class="required">*</span></label>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" name="street" maxlength="100" ng-model="addressArray[$index].street"
+                              class="form-control uppercase" required late-validate/>
+                        </div>
+                        <div class = "col-sm-3">
+                           <form-validate valattributeform="createclientform" valattribute="street"/>
+                        </div>
                      </div>
-                     <div class = "col-sm-2">
-                        <form-validate valattributeform="createclientform" valattribute="addressType"/>
+                     <div class="form-group" ng-show="addressLine1">
+                        <label class="control-label col-sm-3">{{'label.input.addressline1' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline1" ng-model="addressArray[$index].addressLine1" 
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                     <a ng-click="removeAddress($index)" uib-tooltip="{{'label.remove.row' | translate}}"><i class="fa fa-times"></i></a>
-                  </div>
-                  <div class="form-group" ng-show="street">
-                     <div class="control-label col-sm-3">
-                        <label>{{'label.input.street' | translate }}<span class="required">*</span></label>
+                     <div class="form-group" ng-show="addressLine2">
+                        <label class="control-label col-sm-3">{{'label.input.addressline2' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline2" ng-model="addressArray[$index].addressLine2"
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                     <div class="col-sm-6">
-                        <input type="text" name="street" maxlength="100" ng-model="addressArray[$index].street"
-                            class="form-control uppercase" required late-validate/>
+                     <div class="form-group" ng-show="addressLine3">
+                        <label class="control-label col-sm-3">{{'label.input.addressline3' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline3" ng-model="addressArray[$index].addressLine3" 
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                     <div class = "col-sm-3">
-                        <form-validate valattributeform="createclientform" valattribute="street"/>
+                     <div class="form-group" ng-show="addressLine4">
+                        <label class="control-label col-sm-3">{{'label.input.addressline4' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline4" ng-model="addressArray[$index].addressLine4" 
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine1">
-                     <label class="control-label col-sm-3">{{'label.input.addressline1' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline1" ng-model="addressArray[$index].addressLine1" 
-                            maxlength="200" class="form-control uppercase">
+                     <div class="form-group" ng-show="addressLine5">
+                        <label class="control-label col-sm-3">{{'label.input.addressline5' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline5" ng-model="addressArray[$index].addressLine5"
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine2">
-                     <label class="control-label col-sm-3">{{'label.input.addressline2' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline2" ng-model="addressArray[$index].addressLine2"
-                            maxlength="200" class="form-control uppercase">
+                     <div class="form-group" ng-show="addressLine6">
+                        <label class="control-label col-sm-3">{{'label.input.addressline6' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="addressline6" ng-model="addressArray[$index].addressLine6" 
+                              maxlength="200" class="form-control uppercase">
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine3">
-                     <label class="control-label col-sm-3">{{'label.input.addressline3' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline3" ng-model="addressArray[$index].addressLine3" 
-                            maxlength="200" class="form-control uppercase">
+                     <div class="form-group" ng-show="city">
+                        <label class="control-label col-sm-3">{{'label.input.city' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="city" ng-model="addressArray[$index].city"
+                              maxlength="100" class="form-control uppercase">
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine4">
-                     <label class="control-label col-sm-3">{{'label.input.addressline4' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline4" ng-model="addressArray[$index].addressLine4" 
-                            maxlength="200" class="form-control uppercase">
+                     <div class="form-group" ng-show="countryId">
+                        <div class="control-label col-sm-3">
+                           <label>{{'label.input.country' | translate }}</label>
+                        </div>
+                        <div class="col-sm-6">
+                           <md-select name="countryOptions" ng-model="addressArray[$index].countryId"
+                              placeholder="{{'label.selectone' | translate}}">
+                              <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
+                                 {{countryOption.name | translate}}
+                              </md-option>
+                           </md-select>
+                        </div>
                      </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine5">
-                     <label class="control-label col-sm-3">{{'label.input.addressline5' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline5" ng-model="addressArray[$index].addressLine5"
-                            maxlength="200" class="form-control uppercase">
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="addressLine6">
-                     <label class="control-label col-sm-3">{{'label.input.addressline6' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="addressline6" ng-model="addressArray[$index].addressLine6" 
-                            maxlength="200" class="form-control uppercase">
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="city">
-                     <label class="control-label col-sm-3">{{'label.input.city' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="city" ng-model="addressArray[$index].city"
-                            maxlength="100" class="form-control uppercase">
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="countryId">
-                     <div class="control-label col-sm-3">
-                        <label>{{'label.input.country' | translate }}</label>
-                     </div>
-                     <div class="col-sm-6">
-                        <md-select name="countryOptions" ng-model="addressArray[$index].countryId"
-                           placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="countryOption in countryOptions" ng-value="countryOption.id">
-                               {{countryOption.name | translate}}
-                           </md-option>
-                        </md-select>
-                     </div>
-                  </div>
 
-                  <div class="form-group" ng-show="stateProvinceId">
-                     <div class="control-label col-sm-3">
-                        <label>{{'label.input.state_province' | translate }}</label>
+                     <div class="form-group" ng-show="stateProvinceId">
+                        <div class="control-label col-sm-3">
+                           <label>{{'label.input.state_province' | translate }}</label>
+                        </div>
+                        <div class="col-sm-6">
+                           <md-select  ng-model="addressArray[$index].stateProvinceId" 
+                              ng-change="filterMunicipality(addressArray[$index].stateProvinceId); changeState(stateOption.name)"
+                              placeholder="{{'label.selectone' | translate}}">
+                              <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
+                                 {{stateOption.name | translate}}
+                              </md-option>
+                           </md-select>
+                        </div>
                      </div>
-                     <div class="col-sm-6">
-                        <md-select  ng-model="addressArray[$index].stateProvinceId" 
-                           ng-change="filterMunicipality(addressArray[$index].stateProvinceId); changeState(stateOption.name)"
-                           placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="stateOption in stateOptions" ng-value="stateOption.id">
-                               {{stateOption.name | translate}}
-                           </md-option>
-                        </md-select>
+                     <div class="form-group" ng-show="municipality">
+                        <div class="control-label col-sm-3">
+                           <label>{{'label.input.municipality' | translate }}</label>
+                        </div>
+                        <div class="col-sm-6">
+                           <md-select chosen="municipalityOptions" ng-model="addressArray[$index].municipality" 
+                              placeholder="{{'label.selectone' | translate}}">
+                              <md-option ng-repeat="municipalityOption in municipalityOptions" ng-value="municipalityOption.id">
+                                 {{municipalityOption.name | translate}}
+                              </md-option>
+                           </md-select>
+                        </div>
+                     </div>
+                     <div class="form-group" ng-show="antiquity">
+                        <label class="control-label col-sm-3">{{'label.input.antiquity' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].antiquity"  class="form-control">
+                        </div>
+                     </div>
+                     <div class="form-group" ng-show="latitude">
+                        <label class="control-label col-sm-3">{{'label.input.latitude' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
+                        </div>
+                     </div>
+                     <div class="form-group" ng-show="longitude">
+                        <label class="control-label col-sm-3">{{'label.input.longitude' | translate }}</label>
+                        <div class="col-sm-6">
+                           <input type="text" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
+                        </div>
+                     </div>
+                     <div class="form-group" ng-show="isActive">
+                        <div class="col-sm-6 col-sm-offset-3">
+                           <md-checkbox ng-model="addressArray[$index].isActive">
+                              {{'label.input.active' | translate }}
+                           </md-checkbox>
+                        </div>
                      </div>
                   </div>
-                  <div class="form-group" ng-show="municipality">
-                     <div class="control-label col-sm-3">
-                        <label>{{'label.input.municipality' | translate }}</label>
-                     </div>
-                     <div class="col-sm-6">
-                        <md-select chosen="municipalityOptions" ng-model="addressArray[$index].municipality" 
-                           placeholder="{{'label.selectone' | translate}}">
-                           <md-option ng-repeat="municipalityOption in municipalityOptions" ng-value="municipalityOption.id">
-                               {{municipalityOption.name | translate}}
-                           </md-option>
-                        </md-select>
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="antiquity">
-                     <label class="control-label col-sm-3">{{'label.input.antiquity' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="antiquity" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="addressArray[$index].antiquity"  class="form-control">
+               </div>
+               <div class= "col-sm-4 col-md-4" >             
+                  <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
+                  <div id= 'buscador'>
+                     <input type="text" name="direccion" value="" id="direccion" size="10" />
+                     <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
+                     <div>
+                        <ul>
+                           <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
+                              <a>{{address.display_name}}<a>
+                           </li>
+                        </ul>
                      </div>
                   </div>
-                  <div class="form-group" ng-show="latitude">
-                     <label class="control-label col-sm-3">{{'label.input.latitude' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="latitude" ng-model="addressArray[$index].latitude"  class="form-control">
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="longitude">
-                     <label class="control-label col-sm-3">{{'label.input.longitude' | translate }}</label>
-                     <div class="col-sm-6">
-                        <input type="text" name="longitude" ng-model="addressArray[$index].longitude"  class="form-control">
-                     </div>
-                  </div>
-                  <div class="form-group" ng-show="isActive">
-                     <div class="col-sm-6 col-sm-offset-3">
-                        <md-checkbox ng-model="addressArray[$index].isActive">
-                            {{'label.input.active' | translate }}
-                        </md-checkbox>
-                     </div>
-                  </div>
-                  </div>
-  <div class= "col-sm-4 col-md-4" >             
-   <leaflet lf-center="center" event-broadcast="events" markers="markers" height="560px" width="400px"></leaflet>
-    <div id= 'buscador'>
-      <input type="text" name="direccion" value="" id="direccion" size="10" />
-      <md-button class="md-raised md-primary" ng-click="direccion_buscador();">Buscador</md-button>
-      <div>
-         <ul>
-            <li ng-repeat="address in addressresult" ng-click="elegirdireccion(address)">
-               <a>{{address.display_name}}<a>
-            </li>
-         </ul>
-      </div>
-   </div>
-   </div>
                </div>
             </div>
 

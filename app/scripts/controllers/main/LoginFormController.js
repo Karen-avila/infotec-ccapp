@@ -59,22 +59,8 @@
                 });
             });
 
-            /*This logic is no longer required as enter button is binded with text field for submit.
-            $('#pwd').keypress(function (e) {
-                if (e.which == 13) {
-                    scope.login();
-                }
-            });*/
-
-            /*$('#repeatPassword').keypress(function (e) {
-                if (e.which == 13) {
-                    scope.updatePassword();
-                }
-            });*/
-
             scope.updatePassword = function (){
                 resourceFactory.userListResource.update({'userId': scope.loggedInUserId}, scope.passwordDetails, function (data) {
-                    //clear the old authorization token
                     httpService.cancelAuthorization();
                     scope.authenticationFailed = false;
                     scope.loginCredentials.password = scope.passwordDetails.password;

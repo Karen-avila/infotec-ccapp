@@ -60,6 +60,19 @@
                                     class="form-control" />
                             </td>
                         </tr>
+                        <tr ng-show="formData.productId">
+                            <td class="width19">
+                                <label>{{'label.input.social.program' | translate }}:&nbsp;</label>
+                            </td>
+                            <td class="width31 paddedbottom10">
+                                <md-select aria-label="socialProgramId" id="socialProgramId" ng-model="socialProgramId"
+                                    placeholder="{{'label.selectone' | translate}}">
+                                    <md-option ng-repeat="socialProgram in socialPrograms" ng-value="socialProgram.id">
+                                        {{socialProgram.name}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                        </tr>
                     </table>
                     <hr data-ng-show="formData.productId" />
                     <label ng-show="data"><strong>{{'label.heading.terms' | translate }}</strong></label>

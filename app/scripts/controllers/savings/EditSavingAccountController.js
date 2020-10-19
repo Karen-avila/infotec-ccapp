@@ -9,6 +9,10 @@
             scope.restrictDate = new Date();
             scope.accountLevels = [1,2,3,4];
 
+            resourceFactory.socialProgramResource.getAllSocialPrograms(function (data) {
+                scope.socialPrograms = data;
+            });
+            
             resourceFactory.savingsResource.get({accountId: scope.accountId, template: 'true', associations: 'charges',staffInSelectedOfficeOnly:'true'}, function (data) {
                 scope.data = data;
                 scope.charges = data.charges || [];

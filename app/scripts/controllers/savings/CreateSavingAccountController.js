@@ -51,6 +51,10 @@
                 scope.groupName = data.groupName;
             });
 
+            resourceFactory.socialProgramResource.getAllSocialPrograms(function (data) {
+                scope.socialPrograms = data;
+            });
+
             scope.goNextStep = function() {
                 var vm = scope;
                 //do not exceed into max step
