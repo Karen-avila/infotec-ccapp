@@ -14,9 +14,8 @@
 				<form name="bulkMediaRequests" role="form">
 					<div class="form-group">
 						<div class="col-sm-4">
-							<a class='btn btn-sm btn-primary'
-								href="{{hostUrl}}{{first.templateUrl}}{{first.queryParams}}"
-								><i	class="fa fa-cloud-download"></i>&nbsp;{{'label.button.downloadtemplate' | translate}}</a>
+							<md-button class='md-raised md-primary' ng-click="downloadTemplate()">
+                                <i class="fa fa-cloud-download"></i>&nbsp;{{'label.button.downloadtemplate' | translate}}</md-button>
 						</div>
 					</div>
 				</form>

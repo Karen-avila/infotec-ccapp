@@ -5,7 +5,8 @@
                 restrict: 'E',
                 require: '?ngmodel',
                 link: function (scope, elm, attr, ctrl) {
-                    var template = '<div ng-if="errorStatus || errorDetails.length > 0">' +
+                    // var template = '<div ng-if="errorStatus || errorDetails.length > 0">' +
+                    var template = '<div ng-if="1>2">' +
                         '<div class="alert alert-danger" ng-repeat="errorArray in errorDetails">' +
                         '<label><i class="fa fa-exclamation-circle"></i>' +
                         '{{' + 'errorArray.args.params[0].value' +' | translate}}' +

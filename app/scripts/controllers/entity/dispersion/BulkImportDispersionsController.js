@@ -2,6 +2,7 @@
     mifosX.controllers = _.extend(module, {
         BulkImportDispersionsController: function (scope, resourceFactory, API_VERSION, $rootScope, Upload) {
             scope.first = {};
+            scope.entityType = "dispersion";
             scope.first.templateUrl = API_VERSION + '/dispersion/downloadtemplate' + '?tenantIdentifier=' + $rootScope.tenantIdentifier
                 + '&locale=' + scope.optlang.code + '&dateFormat=' + scope.df;
             scope.formData = {};
@@ -12,8 +13,12 @@
                 scope.formData.file = files[0];
             };
 
+            scope.downloadTemplate = function () {
+                resourceFactory.bulkImportTemplateResource.get({resource: scope.entityType, action: "downloadtemplate"});
+            }
+
             scope.refreshImportTable = function () {
-                resourceFactory.importResource.getImports({ entityType: "dispersion" }, function (data) {
+                resourceFactory.importResource.getImports({ entityType: scope.entityType }, function (data) {
 
                     for (var l in data) {
                         var importdocs = {};

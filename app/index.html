@@ -1,151 +1,157 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-  <head>
+
+<head>
     <meta content="utf-8" http-equiv="encoding">
     <link rel="icon" type="image/png" href="./images/favicon.ico" />
     <title>{{ 'label.heading.company' | translate }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-  </head>
-  
-  <body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" ng-controller="MainController">
+    <!-- 
+    <link href="styles/styles.css" rel="stylesheet" />
+    -->
+</head>
+
+<body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80"
+    ng-controller="MainController">
     <!-- HTTP Bar Loader -->
     <div id="loading-bar"></div>
     <!-- Initial Loader -->
     <div id="loaderWrapper" ng-hide="domReady">
-      <div id="loader" class="col-md-12 image-loader">
-        <img src="images/trans.png" class="img-responsive" />
-      </div>
+        <div id="loader" class="col-md-12 image-loader">
+            <img src="images/trans.png" class="img-responsive" />
+        </div>
     </div>
 
-    <div id="wrapper" ng-show="domReady" class="full-screen" ng-class="{'noscroll-y': (currentSession.user == null)}" ng-cloak>
-      <!-- Login Form  -->
-      <div id="login-content" class="container full-screen" ng-hide="currentSession.user != null" ng-controller="LoginFormController">
+    <div id="wrapper" ng-show="domReady" class="full-screen" ng-class="{'noscroll-y': (currentSession.user == null)}"
+        ng-cloak>
+        <!-- Login Form  -->
+        <div id="login-content" class="container full-screen" ng-hide="currentSession.user != null"
+            ng-controller="LoginFormController">
 
-        <div class="row full-screen">
-          <div class="col-md-12">
-            <div class="full-screen" ng-include src="'views/login.html'"></div>
-          </div>
+            <div class="row full-screen">
+                <div class="col-md-12">
+                    <div class="full-screen" ng-include src="'views/login.html'"></div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Navbar -->
-      <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" ng-show="currentSession.user != null">
-        <div class="loader" ng-show="blockUI" ng-hide="!domReady">
+        <!-- Navbar -->
+        <div ng-class="{fullscreen:true ,blockui:blockUI==true}" id="main" ng-show="currentSession.user != null">
+            <div class="loader" ng-show="blockUI" ng-hide="!domReady">
+            </div>
         </div>
-      </div>
 
         <div id="mifos-reskin-ui-container" ng-hide="!domReady">
-          <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>
+            <div id="mifos-reskin-header-nav" ng-include="'views/_topnavbar.html'"></div>
 
-          <div id="mifos-reskin-body-container">
-            <nav id="mifos-reskin-side-nav" ng-show="domReady" ng-scrollbar>
-              <div class="left-nav">
-                <ul>
-                  <li>
-                    <a class="black" href="/#!/notifications">
-                      <i class="fa fa-bell"></i>
-                      <span>{{'label.heading.notification' | translate }}</span>
-                    </a>
-                  </li>
+            <div id="mifos-reskin-body-container">
+                <nav id="mifos-reskin-side-nav" ng-show="domReady" ng-scrollbar>
+                    <div class="left-nav">
+                        <ul>
+                            <li>
+                                <a class="black" href="/#!/notifications">
+                                    <i class="fa fa-bell"></i>
+                                    <span>{{'label.heading.notification' | translate }}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/createclient">
-                      <i class="fa fa-user"></i
-                      ><span> + {{'label.anchor.client' |translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/createclient">
+                                    <i class="fa fa-user"></i><span> + {{'label.anchor.client' |translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/creategroup">
-                      <i class="fa fa-group"></i
-                      ><span> + {{'label.anchor.group' |translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/creategroup">
+                                    <i class="fa fa-group"></i><span> + {{'label.anchor.group' |translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/createcenter">
-                      <i class="fa fa-map-marker"></i
-                      ><span> + {{'label.anchor.center' | translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/createcenter">
+                                    <i class="fa fa-map-marker"></i><span> +
+                                        {{'label.anchor.center' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/nav/offices">
-                      <i class="fa fa-compass"></i>
-                      <span>{{'label.anchor.navigation' | translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/nav/offices">
+                                    <i class="fa fa-compass"></i>
+                                    <span>{{'label.anchor.navigation' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/tasks">
-                      <i class="fa fa-check"></i>
-                      <span>{{ 'label.anchor.tasks'| translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/tasks">
+                                    <i class="fa fa-check"></i>
+                                    <span>{{ 'label.anchor.tasks'| translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/transfers">
-                      <i class="fa fa-repeat"></i>
-                      <span>{{'label.anchor.transfers' | translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/transfers">
+                                    <i class="fa fa-repeat"></i>
+                                    <span>{{'label.anchor.transfers' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/journalentry">
-                      <i class="fa fa-plus"></i>
-                      <span
-                        >{{'label.anchor.addjournalentries' | translate}}</span
-                      >
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/journalentry">
+                                    <i class="fa fa-plus"></i>
+                                    <span>{{'label.anchor.addjournalentries' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/accounts_closure">
-                      <i class="fa fa-folder"></i>
-                      <span>{{'label.anchor.closingentries' | translate}}</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/accounts_closure">
+                                    <i class="fa fa-folder"></i>
+                                    <span>{{'label.anchor.closingentries' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" href="/#!/accounting_coa">
-                      <i class="fa fa-sitemap"></i>
-                      <span
-                        >{{'label.heading.chartofaccounts' | translate}}</span
-                      >
-                    </a>
-                  </li>
+                            <li>
+                                <a class="black" href="/#!/accounting_coa">
+                                    <i class="fa fa-sitemap"></i>
+                                    <span>{{'label.heading.chartofaccounts' | translate}}</span>
+                                </a>
+                            </li>
 
-                  <li>
-                    <a class="black" ng-click="helpf()">
-                      <i class="fa fa-question-circle"></i>
-                      <span>{{'label.anchor.help' | translate }}</span> &nbsp;
-                      <i class="fa fa-external-link"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
+                            <li>
+                                <a class="black" ng-click="helpf()">
+                                    <i class="fa fa-question-circle"></i>
+                                    <span>{{'label.anchor.help' | translate }}</span> &nbsp;
+                                    <i class="fa fa-external-link"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
 
-          <div id="mifos-reskin-body-view">
-            <div class="main-container" ng-view></div>
-          </div>
+            <div id="mifos-reskin-body-view">
+                <toaster-container 
+                    toaster-options="{'close-button': true, 
+                        'time-out':{ 'toast-success': 3000, 'toast-warning': 2000, 'toast-error': 0 }
+                    }">
+                </toaster-container>
+                <div class="main-container" ng-view></div>
+            </div>
 
-          <!-- Footer -->
-          <div ng-show="currentSession.user != null" ng-include="'views/footer.html'"></div>
+            <!-- Footer -->
+            <div ng-show="currentSession.user != null" ng-include="'views/footer.html'"></div>
         </div>
-      </div>
+    </div>
     </div>
     <!-- Javascript -->
     <script>
-      // define waitSeconds above require script tag
-      // to override the default, until main.js loads
-      window.require = {
-        waitSeconds: 120,
-      };
+        // define waitSeconds above require script tag
+        // to override the default, until main.js loads
+        window.require = {
+            waitSeconds: 120,
+        };
     </script>
     <script type="text/javascript" data-main="scripts/loader.js" src="bower_components/requirejs/require.js"></script>
-  </body>
+</body>
+
 </html>
