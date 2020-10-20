@@ -89,6 +89,7 @@
     "label.input.accounting.parent": "Cuenta de Mayor",
     "label.input.account.level": "Nivel de Cuenta",
     "label.input.level": "Nivel",
+    "label.input.limit.records": "Registros",
     "label.input.block.type":"Tipo de bloqueo",
     "label.input.social.program": "Programa Social",
     "Total block":"Bloqueo total",
