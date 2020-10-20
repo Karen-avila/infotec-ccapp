@@ -22,17 +22,34 @@
                                 <div class="blockoverlay" style="overflow-y: scroll">
                                     <!-- <div uib-collapse="isCollapsed" class="blockoverlay" style="overflow-y: scroll"> -->
                                     <div class="form-group">
-                                        <md-datepicker id="date.from" ng-model="date.from"
-                                            md-placeholder="{{'label.input.fromdate' | translate}}"
-                                            md-min-date="minDatePicker" md-max-date="maxDatePicker">
-                                        </md-datepicker>
-                                    </div>
-                                    <div class="form-group">
-                                        <div>
+                                        <div class="col-sm-1">
+                                            <label class="control-label" for="externalId">{{'label.heading.cashmgmt.tellerCashiers.from' | translate}}</label>            
+                                        </div>
+                                        <div class="col-md-3">
+                                            <md-datepicker id="date.from" ng-model="date.from"
+                                                md-placeholder="{{'label.input.fromdate' | translate}}"
+                                                md-min-date="minDatePicker" md-max-date="maxDatePicker">
+                                            </md-datepicker>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <label class="control-label" for="externalId">{{'label.heading.cashmgmt.tellerCashiers.to' | translate}}</label>            
+                                        </div>
+                                        <div class="col-md-3">
                                             <md-datepicker id="date.todate" ng-model="date.to"
                                                 md-placeholder="{{'label.input.todate' | translate}}"
                                                 md-min-date="date.from" md-max-date="maxDatePicker">
                                             </md-datepicker>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="externalId">{{'label.input.limit.records' | translate}}</label>            
+                                        </div>
+                                        <div class="col-md-2">
+                                            <md-select id="limit" ng-model="formData.limit">
+                                                <md-option value="100">100</md-option>
+                                                <md-option value="200">200</md-option>
+                                                <md-option value="300">300</md-option>
+                                                <md-option value="400">400</md-option>
+                                            </md-select>                                            
                                         </div>
                                     </div>
                                     <div class="form-group">

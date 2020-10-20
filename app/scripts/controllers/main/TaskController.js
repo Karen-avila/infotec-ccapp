@@ -9,7 +9,9 @@
             scope.pendingDisburse = [];
             scope.errorSignature = [];
             var idToNodeMap = {};
-            scope.formData = {};
+            scope.formData = {
+                limit: 100
+            };
             scope.loanTemplate = {};
             scope.loanGroupTemplate = {};
             scope.loanDisbursalTemplate = {};
@@ -693,7 +695,11 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {limit: 200};
+                var params = {limit: scope.formData.limit};
+
+                if (scope.formData.clientStatus > 0) {
+                    params.clientStatus = scope.formData.clientStatus;
+                }
 
                 if (scope.date.from) {
                     params.fromDate = reqFromDate;

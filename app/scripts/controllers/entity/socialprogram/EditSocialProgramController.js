@@ -11,7 +11,7 @@
                 scope.formData.name = scope.formData.name.toUpperCase();
 
                 resourceFactory.socialProgramResource.update({socialprogramId: routeParams.id}, scope.formData, function (data) {
-                    location.path("/viewsocialprogram/" + data.id);
+                    location.path("/viewsocialprogram/" + data.resourceId);
                 });
             };
         },
