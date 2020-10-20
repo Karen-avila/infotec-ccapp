@@ -28,7 +28,6 @@
 
                         if ($.inArray(event.which, keyCode) == -1) event.preventDefault();
                         else {
-                            console.log(2);
                             var oVal = ngModelCtrl.$modelValue || '';
                             if ($.inArray(event.which, [109, 173]) > -1 && oVal.indexOf('-') > -1) event.preventDefault();
                             else if ($.inArray(event.which, [110, 190]) > -1 && oVal.indexOf('.') > -1) event.preventDefault();
