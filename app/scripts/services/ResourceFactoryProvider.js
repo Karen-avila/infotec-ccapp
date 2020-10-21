@@ -43,6 +43,13 @@
                     officeImportTemplateResource: defineResource(apiVer + "/offices/bulkimporttemplate", {}, {
                         get: { method: 'GET', params: {} }
                     }),
+                    bulkImportTemplateResource: defineResource(apiVer + "/:resource/:action", {}, {
+                        get: { method: 'GET', params: {}, responseType: 'arraybuffer', 
+                            transformResponse: function(data, headersGetter) {
+                                return {data: data, headers: headersGetter}
+                          } },
+                        post: { method: 'POST', params: {} }
+                    }),
                     importResource: defineResource(apiVer + "/imports", {}, {
                         getImports: { method: 'GET', params: {}, isArray: true }
                     }),
@@ -261,6 +268,12 @@
                         getFunds: { method: 'GET', params: { activeOnly: 'true' }, isArray: true },
                         getFund: { method: 'GET', params: {} },
                         update: { method: 'PUT', params: {} }
+                    }),
+                    thirdPartyServicesResource: defineResource(apiVer + "/paymentthirdservices/:serviceId", { name: '@name', short_name: '@shortName', savingsAccountId: 'savingsAccountId', serviceId: '@serviceId' }, {
+                        getAllServices: { method: 'GET', params: {}, isArray: true } , 
+                        update: { method: 'PUT', params: {} },
+                        getService: { method: 'GET', params: {} },
+                        save: { method: 'POST', params: {} }
                     }),
                     accountingRulesResource: defineResource(apiVer + "/accountingrules/:accountingRuleId", { accountingRuleId: '@accountingRuleId' }, {
                         getAllRules: { method: 'GET', params: { associations: 'all' }, isArray: true },

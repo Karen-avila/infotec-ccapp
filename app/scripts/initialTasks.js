@@ -46,7 +46,7 @@
             return _.extend(config, {url: host + config.url });
         });
         // HTTP error handler for 401 error
-        // $httpProvider.interceptors.push('handleResponseError401');
+        $httpProvider.interceptors.push('handleHttpRequestResponse');
 
         // Enable CORS! (see e.g. http://enable-cors.org/)
         $httpProvider.defaults.useXDomain = true;

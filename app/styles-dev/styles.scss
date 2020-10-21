@@ -33,6 +33,9 @@ $state-success-text: #fff;
 /*leaflet maps*/
 @import "../bower_components/leaflet/dist/leaflet.css";
 
+@import "../bower_components/AngularJS-Toaster/toaster.min.css";
+
+
 /* Load style components */
 @import "./main/components/alerts";
 @import "./main/components/variables";

@@ -141,7 +141,7 @@ angular.module('notificationWidget', [])
                     //now our data array will hold the return response
                     //either it's a batch response or a normal response
                     var data = [];
-                    if (rejection.config.url.indexOf('batches') > 0) {
+                    if (rejection.config && rejection.config.url.indexOf('batches') > 0) {
                         data = rejection.data;
                     }
                     else {
@@ -154,14 +154,14 @@ angular.module('notificationWidget', [])
                     if (rejection.status === 0) {
                         $rootScope.errorStatus = 'No connection. Verify application is running.';
                     } else if (rejection.status == 401) {
-                        $rootScope.errorStatus = 'Unauthorized';
                         rejection.headers['www-authenticate'] = '';
                         delete rejection.headers['www-authenticate'];
+                        $location.path('/login');
                     } else if (rejection.status == 405) {
                         $rootScope.errorStatus = 'HTTP verb not supported [405]';
-                    } else if (rejection.status == 500) {
-                        $rootScope.errorStatus = 'Internal Server Error [500].';
-                    } else {
+                    } else if ((rejection.status == 403) || (rejection.status == 500)) {
+                        $rootScope.errorStatus = 'Internal Server Error [' + rejection.status + '].';
+                    // } else {
                         for(var i = 0; i < data.length; i++) {
                             var jsonErrors = JSON.parse(data[i].body);
                             if (jsonErrors) {

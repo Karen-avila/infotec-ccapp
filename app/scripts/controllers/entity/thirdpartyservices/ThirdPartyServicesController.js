@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ManageFundsController: function (scope, location, resourceFactory) {
+        ThirdPartyServicesController: function (scope, location, resourceFactory) {
             scope.funderror = [];
             scope.formData = [];
             scope.addfunderror = false;
@@ -16,10 +16,9 @@
                 rowSelection: true,
             };
 
-            resourceFactory.fundsResource.getAllFunds(function (data) {
-                scope.funds = data;
+            resourceFactory.thirdPartyServicesResource.getAllServices(function (data) {
+                scope.services = data;
                 scope.totalFunds = data.length;
-                console.log(scope.funds);
             });
 
             scope.editFund = function (fund, name, id) {
@@ -28,7 +27,7 @@
             };
 
             scope.routeTo = function (id) {
-                location.path('/viewfund/' + id);
+                location.path('/viewthirdpartyservice/' + id);
             };
 
             if (!scope.searchCriteria.fund) {
@@ -98,7 +97,7 @@
 
         }
     });
-    mifosX.ng.application.controller('ManageFundsController', ['$scope', '$location', 'ResourceFactory', mifosX.controllers.ManageFundsController]).run(function ($log) {
-        $log.info("ManageFundsController initialized");
+    mifosX.ng.application.controller('ThirdPartyServicesController', ['$scope', '$location', 'ResourceFactory', mifosX.controllers.ThirdPartyServicesController]).run(function ($log) {
+        $log.info("ThirdPartyServicesController initialized");
     });
 }(mifosX.controllers || {}));
