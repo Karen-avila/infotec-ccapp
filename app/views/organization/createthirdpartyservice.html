@@ -1,0 +1,62 @@
+<div class="content-container">
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li><a href="#!/thirdpartyservices">{{'label.anchor.thirdpartyservices' | translate}}</a></li>
+		<li class="active">{{'label.anchor.createservice' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="toolbar">
+				<h4>{{'label.heading.createservice' | translate}}</h4>
+			</div>
+			<br />
+			<form name="createfundform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="CreateThirdPartyServiceController" ng-submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.name' | translate }}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input id="name" ng-autofocus="true" type="text" name="name" ng-model="formData.name"
+								class="form-control" required late-Validate />
+							<form-validate  valattribute="name" />
+						</div>
+					</div>
+
+					
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.shortname' | translate }}</label>
+
+						<div class="col-sm-3">
+							<input id="shortname" type="text" name="shortname" ng-model="formData.short_name"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.accountNo' | translate }}</label>
+
+						<div class="col-sm-3">
+							<md-select id="savingsAccountId" ng-model="formData.savingsAccountId" 
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option ng-repeat="savingsAccount in savings" ng-value="savingsAccount.id">
+									{{savingsAccount.accountNo}} - {{savingsAccount.clientName}}
+								</md-option>
+							</md-select>
+						</div>
+					</div>
+
+					<div class="col-md-12 center">
+						<a id="cancel" href="#!/thirdpartyservices">
+							<md-button type="reset"
+								class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+						</a>
+						<md-button id="save" type="submit" class="md-raised md-primary"
+							has-permission='CREATE_SERVICE'>{{'label.button.save' | translate}}</md-button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

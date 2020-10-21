@@ -1,0 +1,59 @@
+<div class="content-container" ng-controller="ThirdPartyServicesController">
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li class="active">{{'label.anchor.thirdpartyservices' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<api-validate></api-validate>
+			<div class="toolbar">
+				<h4>{{'label.heading.thirdpartyservices' | translate}}</h4>
+				<div class="pull-right">
+					<md-button md-no-ink class="md-primary" has-permission='CREATE_SERVICE' href="#!/createthirdpartyservice"><i
+						class="fa fa-plus"></i> {{'label.button.addservice' | translate}}</md-button>
+				</div>
+			</div>
+			<md-divider></md-divider>
+			<br>
+			<md-table-container ng-show="services.length > 0">
+				<div class="row">
+					<div class="col-md-7">
+						<md-input-container class="full-width">
+							<label>{{'label.input.filterbynameaccnoservices' | translate}}</label>
+							<input ng-model="filter.search"> 
+						</md-input-container>
+					</div>
+					<md-divider></md-divider>
+				</div>
+				<div class="row">
+					<div clas="col-sm-12">
+						<table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+							<thead md-head md-order="query.order">
+								<tr md-row>
+									<th md-column md-order-by="name">{{'label.heading.servicename' | translate }}</th>
+									<th md-column md-order-by="externalId">{{'label.heading.accountNo' | translate }}</th>
+									<th md-column>{{'label.heading.main.short_name' | translate }}</th>
+								
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr md-row ng-repeat="service in services | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
+								data-ng-click="routeTo(service.id)" md-select="service" md-select-id="name">
+									<td md-cell>{{service.name}}</td>
+								
+									<td md-cell>{{service.accountNo}}</td>
+									
+									<td md-cell>{{service.short_name | translate}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</md-table-container>
+
+			<md-table-pagination ng-show="funds.length > query.limit" md-limit="query.limit" md-limit-options="[15,25,50]" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+				md-page="query.page" md-total="{{funds.length}}" md-on-paginate="getResultsPage" md-page-select>
+			</md-table-pagination>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="content-container" ng-controller="ViewThirdPartyServiceController">
+	<ul class="breadcrumb">
+		<li><a href="#!/organization">{{'label.anchor.organization' | translate}}</a></li>
+		<li><a href="#!/thirdpartyservices">{{'label.anchor.thirdpartyservices' | translate}}</a></li>
+		<li class="active">{{service.name}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="col-md-12 col-sm-12">
+					<div class="row primarydiv">
+						<div class="pull-right">
+							<div class="btn-group">
+								<md-button md-no-ink class="md-primary" has-permission='UPDATE_SERVICE' href="#!/editthirdpartyservice/{{service.id}}">
+									<i class="fa fa-edit"></i> {{'label.button.edit' | translate}}</md-button>
+							</div>
+						</div>
+					</div>
+
+					<h3><strong>Servicios de terceros</strong></h3>
+					<table class="table-bordered table view-table" style="width: 500px">
+						
+						<tr>
+							<td>{{'label.heading.savingaccount' | translate }}</td>
+							<td>{{service.accountNo}}</td>
+						</tr>
+						<tr>
+							<td>{{'label.heading.name' | translate }}</td>
+							<td>{{service.name}}</td>
+						</tr>
+						<tr>
+							<td>{{'label.heading.shortname' | translate }}</td>
+							<td>{{service.short_name | translate}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

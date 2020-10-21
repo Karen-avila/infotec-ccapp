@@ -262,6 +262,12 @@
                         getFund: { method: 'GET', params: {} },
                         update: { method: 'PUT', params: {} }
                     }),
+                    thirdPartyServicesResource: defineResource(apiVer + "/paymentthirdservices/:serviceId", { name: '@name', short_name: '@shortName', savingsAccountId: 'savingsAccountId', serviceId: '@serviceId' }, {
+                        getAllServices: { method: 'GET', params: {}, isArray: true } , 
+                        update: { method: 'PUT', params: {} },
+                        getService: { method: 'GET', params: {} },
+                        save: { method: 'POST', params: {} }
+                    }),
                     accountingRulesResource: defineResource(apiVer + "/accountingrules/:accountingRuleId", { accountingRuleId: '@accountingRuleId' }, {
                         getAllRules: { method: 'GET', params: { associations: 'all' }, isArray: true },
                         getById: { method: 'GET', params: { accountingRuleId: '@accountingRuleId' } },

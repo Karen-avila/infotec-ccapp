@@ -890,6 +890,7 @@
                                 data[l].fileIsImage = true;
                     }
                     scope.clientdocuments = data;
+                    console.log(scope.clientdocuments);
                 });
             };
 
