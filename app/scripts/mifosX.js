@@ -25,7 +25,7 @@ var mifosX = (function (module) {
       "angularUtils.directives.dirPagination",
       "ngMaterial",
       "ngAnimate",
-      "httpErrorHandler",
+      "handleHttpRequestResponse",
       "angular-loading-bar",
       "md.data.table",
       "md-steppers",
