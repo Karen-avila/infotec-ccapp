@@ -16,6 +16,28 @@
 			<md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
 		</div>
     </script>
+    <script type="text/ng-template" id="activateElectronicBank.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.input.confirm.active.electronic.banking' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="activeBPI()">{{'label.button.Active' | translate}}</md-button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="desactiveElectronicBank.html">
+        <div class="modal-header silver">
+            <h3 class="bolder">{{'label.input.confirm.desactive.electronic.banking' | translate}}</h3>
+        </div>
+        <div class="modal-body ">
+            <api-validate></api-validate>
+            <br>
+            <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="desactiveBPI()">{{'label.button.Desactive' | translate}}</md-button>
+        </div>
+    </script>
     <script type="text/ng-template" id="validateClient.html">
 		<div class="modal-header silver">
 			<h3 class="bolder">{{'label.heading.confirm.validate.client' | translate}}</h3>
@@ -340,6 +362,12 @@
                                         </li>
                                         <li class="{{button.icon}}">
                                             <a href="#!/clients/survey/{{client.id}}">{{'label.survey' | translate}}</a>
+                                        </li>
+                                        <li data-ng-show="!client.isActiveBPI">
+                                            <a ng-click="activeBPI()" has-permission='ACTIVATE_BPISERVICE_CLIENT'>{{'label.input.active.electronic.banking' | translate}}</a>
+                                        </li>
+                                        <li data-ng-show="client.isActiveBPI">
+                                            <a ng-click="desactiveBPI()" has-permission='ACTIVATE_BPISERVICE_CLIENT'>{{'label.input.desactive.electronic.banking' | translate}}</a>
                                         </li>
                                     </ul>
                                 </span>

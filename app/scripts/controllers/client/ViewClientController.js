@@ -313,6 +313,20 @@
                 });
             };
 
+            scope.activeBPI = function () {
+                $uibModal.open({
+                    templateUrl: 'activateElectronicBank.html',
+                    controller: ClientActiveBPICtrl
+                });
+            };
+
+            scope.desactiveBPI = function () {
+                $uibModal.open({
+                    templateUrl: 'desactiveElectronicBank.html',
+                    controller: ClientDesactiveBPICtrl
+                });
+            };
+
             scope.uploadPic = function () {
                 $uibModal.open({
                     templateUrl: 'uploadpic.html',
@@ -551,6 +565,30 @@
                 $scope.delete = function () {
                     resourceFactory.clientResource.delete({ clientId: scope.clientId }, {}, function (data) {
                         $uibModalInstance.close('delete');
+                        location.path('/clients');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
+            var ClientActiveBPICtrl = function ($scope, $uibModalInstance) {
+                $scope.activeBPI = function () {
+                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "activateBPIService" }, {}, function (data) {
+                        $uibModalInstance.close('activeBPI');
+                        location.path('/clients');
+                    });
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
+            var ClientDesactiveBPICtrl = function ($scope, $uibModalInstance) {
+                $scope.desactiveBPI = function () {
+                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "desactivateBPIService" }, {}, function (data) {
+                        $uibModalInstance.close('desactiveBPI');
                         location.path('/clients');
                     });
                 };
