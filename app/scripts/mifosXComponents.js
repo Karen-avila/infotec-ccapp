@@ -356,6 +356,7 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
         ],
         directives: [
             'DialogDirective',
+            'ChooseFileDirective',
             'PanelDirective',
             'BigPanelDirective',
             'OnBlurDirective',
