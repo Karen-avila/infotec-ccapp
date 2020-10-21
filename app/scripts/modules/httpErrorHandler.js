@@ -1,4 +1,4 @@
-angular.module('httpErrorHandler', [])
+angular.module('handleHttpRequestResponse', [])
     .factory('handleHttpRequestResponse', ['$q', '$location', '$rootScope', 'toaster', '$filter', function ($q, $location, $rootScope, toaster, filter) {
         return {
             'request': function (config) {

@@ -2,6 +2,11 @@
     mifosX.controllers = _.extend(module, {
         CreateSocialProgramController: function (scope, resourceFactory, location) {
             scope.formData = {};
+
+            resourceFactory.savingsFundResource.get(function (data) {
+                scope.savings = data;
+            });
+            
             scope.submit = function () {
                 scope.formData.name = scope.formData.name.toUpperCase();
 

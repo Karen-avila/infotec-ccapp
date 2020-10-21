@@ -35,6 +35,18 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.accountNo' | translate }}</label>
+
+						<div class="col-sm-3">
+							<md-select id="savingsAccountId" ng-model="formData.savingsAccountId" 
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option ng-repeat="savingsAccount in savings" ng-value="savingsAccount.id">
+									{{savingsAccount.accountNo}} - {{savingsAccount.clientName}}
+								</md-option>
+							</md-select>
+						</div>
+					</div>
+					<div class="form-group">
 						<div class="col-sm-6 col-md-offset-3">
 							<md-checkbox id="active" ng-model="formData.active">
 								{{'label.input.active' | translate }}
