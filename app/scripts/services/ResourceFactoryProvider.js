@@ -44,7 +44,10 @@
                         get: { method: 'GET', params: {} }
                     }),
                     bulkImportTemplateResource: defineResource(apiVer + "/:resource/:action", {}, {
-                        get: { method: 'GET', params: {} },
+                        get: { method: 'GET', params: {}, responseType: 'arraybuffer', 
+                            transformResponse: function(data, headersGetter) {
+                                return {data: data, headers: headersGetter}
+                          } },
                         post: { method: 'POST', params: {} }
                     }),
                     importResource: defineResource(apiVer + "/imports", {}, {
