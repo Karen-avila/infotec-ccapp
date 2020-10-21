@@ -340,8 +340,20 @@
             .when('/funds/', {
                 templateUrl: 'views/organization/funds.html'
             })
+            .when('/thirdpartyservices/', {
+                templateUrl: 'views/organization/thirdpartyservices.html'
+            })
+            .when('/createthirdpartyservice/', {
+                templateUrl: 'views/organization/createthirdpartyservice.html'
+            })
+            .when('/viewthirdpartyservice/:id', {
+                templateUrl: 'views/organization/viewthirdpartyservice.html'
+            })
             .when('/viewfund/:id', {
                 templateUrl: 'views/organization/viewfund.html'
+            })
+            .when('/editthirdpartyservice/:id', {
+                templateUrl: 'views/organization/editthirdpartyservice.html'
             })
             .when('/createfund/', {
                 templateUrl: 'views/organization/createfund.html'
