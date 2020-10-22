@@ -6534,5 +6534,11 @@
     "error.msg.external.service.invalid.key": "El crédito no pudo ser firmado",
     "error when processing the credit authorization": "Error al procesar la autorización de crédito",
     "label.anchor.thirdparty": "Servicios",
-    "label.view.thirdpartydesc":"Pago de servicios de terceros"
+    "label.view.thirdpartydesc":"Pago de servicios de terceros",
+    "label.input.active.electronic.banking":"Activar Banca Electrónica",
+    "label.input.confirm.active.electronic.banking":"¿ Desea Activar Banca Electrónica ?",
+    "label.input.desactive.electronic.banking":"Desactivar Banca Electrónica",
+    "label.input.confirm.desactive.electronic.banking":"¿ Desea Desactivar Banca Electrónica ?",
+    "label.button.Active": "Activar",
+    "label.button.Desactive": "Desactivar"
 }
