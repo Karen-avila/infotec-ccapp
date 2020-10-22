@@ -71,7 +71,6 @@
                                                     placeholder="{{'label.selectentity' | translate}}">
                                                     <md-option class="uppercase" value="0">{{'label.all' | translate}}
                                                     </md-option>
-
                                                     <md-option value="ACAPULCO DE JUAREZ">ACAPULCO DE JUAREZ</md-option>
                                                     <md-option value="BENITO JUAREZ">BENITO JUAREZ</md-option>
                                                     <md-option value="CENTRO">CENTRO</md-option>
@@ -101,6 +100,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <md-select id="limit" ng-model="formData.limit">
+                                                    <md-option value="0">{{'label.query.no.limit' | translate}}</md-option>
                                                     <md-option value="100">100</md-option>
                                                     <md-option value="200">200</md-option>
                                                     <md-option value="300">300</md-option>

@@ -88,6 +88,7 @@
     "accountUsage.header": "CUENTA",
     "label.input.accounting.parent": "Cuenta de Mayor",
     "label.input.account.level": "Nivel de Cuenta",
+    "label.query.no.limit": "No Límite",
     "label.input.level": "Nivel",
     "label.input.limit.records": "Registros",
     "label.input.block.type":"Tipo de bloqueo",
