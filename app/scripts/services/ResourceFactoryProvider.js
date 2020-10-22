@@ -266,6 +266,7 @@
                         getAllServices: { method: 'GET', params: {}, isArray: true } , 
                         update: { method: 'PUT', params: {} },
                         getService: { method: 'GET', params: {} },
+                        delete:{ method: 'DELETE', params: {} },
                         save: { method: 'POST', params: {} }
                     }),
                     accountingRulesResource: defineResource(apiVer + "/accountingrules/:accountingRuleId", { accountingRuleId: '@accountingRuleId' }, {
