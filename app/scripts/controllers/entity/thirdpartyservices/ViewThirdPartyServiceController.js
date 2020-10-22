@@ -6,7 +6,16 @@
         
                 console.log(scope.service)
             });
+            scope.delete = function () {
+                resourceFactory.thirdPartyServicesResource.delete({'serviceId': routeParams.id}, this.formData, function (data) {
+                    location.path('/thirdpartyservices/');
+                });
+            };
         }
+
+        
+
+        
 
     });
     mifosX.ng.application.controller('ViewThirdPartyServiceController', ['$scope', '$routeParams', '$route', '$location', 'ResourceFactory', mifosX.controllers.ViewThirdPartyServiceController]).run(function ($log) {
