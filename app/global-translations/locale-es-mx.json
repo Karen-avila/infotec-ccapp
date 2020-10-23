@@ -648,6 +648,7 @@
     "error.msg.loan.approval.cannot.be.undone.before.client.transfer.date": "La fecha en la que se aprueba un crédito no puede ser anterior a la fecha de transferencia del cliente de ({{params[0].value}})",
     "error.msg.loan.disbursal.cannot.be.before.client.transfer.date": "La fecha en la cual se desembolsó un crédito no puede ser anterior a la fecha de transferencia del cliente de ({{params[0].value}})",
     "error.msg.loan.disbursal.cannot.be.undone.before.client.transfer.date": "No se puede deshacer un desembolso realizado en otra sucursal",
+    "error.msg.loan.disbursal.account.is.not.authorized": "No se puede desembolsar el crédito dado que este no está autorizado",
     "error.msg.loan.repayment.or.waiver.cannot.be.made.before.client.transfer.date": "No se pueden hacer (o editar) los pagos y las renuncias antes de la fecha de transferencia del cliente de ({{params[0].value}})",
     "error.msg.loan.repayment.or.waiver.cannot.be.made.before.last.transaction.date": "No se pueden hacer (o editar) los pagos y las renuncias antes de la fecha de transferencia del la última transacción de ({{params[0].value}})",
     "error.msg.loan.reject.cannot.be.before.client.transfer.date": "La fecha en la cual se rechaza un crédito no puede ser anterior a la fecha de transferencia del cliente de ({{params[0].value}})",

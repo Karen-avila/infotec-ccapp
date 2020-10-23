@@ -1503,7 +1503,7 @@
 							<td class="width30">
 								<md-select id="configureFundOptions[{{$index}}].paymentTypeId" ng-model="configureFundOption.paymentTypeId" ng-change="loanproduct.paymentChannelToFundSourceMappings[$index].paymentType.name = formValue(configureFundOption.paymentTypeOptions,configureFundOption.paymentTypeId,'id','name')">
 									<md-option ng-value="paymentType.id" ng-repeat="paymentType in configureFundOption.paymentTypeOptions">
-										{{'payment.type.' + paymentType.name | translate}}
+										{{paymentType.description}}
 									</md-option>
 								</md-select>
 							</td>
