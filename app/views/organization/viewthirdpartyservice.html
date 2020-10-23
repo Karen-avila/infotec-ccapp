@@ -13,6 +13,8 @@
 							<div class="btn-group">
 								<md-button md-no-ink class="md-primary" has-permission='UPDATE_SERVICE' href="#!/editthirdpartyservice/{{service.id}}">
 									<i class="fa fa-edit"></i> {{'label.button.edit' | translate}}</md-button>
+									<md-button md-no-ink class="md-primary" has-permission='UPDATE_SERVICE'ng-click="delete()">
+										<i class="fa fa-edit"></i> {{'label.button.delete' | translate}}</md-button>
 							</div>
 						</div>
 					</div>
