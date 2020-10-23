@@ -203,7 +203,7 @@
                                 <md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId" 
                                     placeholder="{{'label.selectone' | translate}}">
                                     <md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
-                                        {{'payment.type.' + paymentType.name | translate}}
+                                        {{paymentType.description}}
                                     </md-option>
                                 </md-select>
                             </div>

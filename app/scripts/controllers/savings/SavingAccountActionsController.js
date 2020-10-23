@@ -1,9 +1,9 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        SavingAccountActionsController: function (scope, rootScope, resourceFactory, location, routeParams, dateFilter,API_VERSION,
+        SavingAccountActionsController: function (scope, rootScope, resourceFactory, location, routeParams, dateFilter, API_VERSION,
             $sce) {
 
-            
+
 
             scope.action = routeParams.action || "";
             scope.accountId = routeParams.id;
@@ -72,7 +72,7 @@
 
             scope.viewSavingDetails = function () {
                 location.path('/viewsavingaccount/' + routeParams.id);
-              };
+            };
 
             scope.fetchEntities = function (entity, status, productId) {
                 if (!productId) {
@@ -387,7 +387,8 @@
                     return scope.dateTimeFormat;
                 }
             }
-            scope.viewSavingsTransactionReceipts = function (transactionId) {
+
+            scope.viewSavingsTransactionReceipts = function (transactionType, transactionId) {
                 scope.report = true;
                 scope.viewTransactionReport = true;
                 scope.viewSavingReport = false;
@@ -395,31 +396,25 @@
                 scope.viewReport = true;
                 scope.hidePentahoReport = true;
                 scope.formData.outputType = "PDF";
-                scope.baseURL =
-                  rootScope.hostUrl +
-                  API_VERSION +
-                  "/runreports/" +
-                  encodeURIComponent("Savings Transaction Receipt");
-                scope.baseURL +=
-                  "?output-type=" +
-                  encodeURIComponent(scope.formData.outputType) +
-                  "&tenantIdentifier=" +
-                  rootScope.tenantIdentifier +
-                  "&locale=" +
-                  scope.optlang.code;
-        
-                var reportParams = "";
-                var paramName = "R_transactionId";
-                reportParams +=
-                  encodeURIComponent(paramName) +
-                  "=" +
-                  encodeURIComponent(transactionId);
-                if (reportParams > "") {
-                  scope.baseURL += "&" + reportParams;
+
+                const transactionTypeCap = transactionType.charAt(0).toUpperCase() + transactionType.slice(1)
+                var reportName = transactionTypeCap + " Receipt";
+                scope.formData = {
+                    "output-type": "PDF",
+                    base64: true,
+                    locale: scope.optlang.code,
+                    R_transactionId: encodeURIComponent(transactionId),
+                    reportSource: reportName
                 }
-                // allow untrusted urls for iframe http://docs.angularjs.org/error/$sce/insecurl
-                scope.viewReportDetails = $sce.trustAsResourceUrl(scope.baseURL);
-              };
+                scope.fileData = "";
+                resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
+                    scope.fileType = "application/pdf";
+                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                }, function (error) {
+                    console.log(JSON.stringify(error));
+                });
+            };
+
             scope.submit = function () {
                 var params = { command: scope.action };
 
@@ -453,7 +448,7 @@
                     params.savingsId = scope.accountId;
 
                     resourceFactory.savingsTrxnsResource.save(params, this.formData, function (data) {
-                       scope.viewSavingsTransactionReceipts(data.resourceId);
+                        scope.viewSavingsTransactionReceipts(scope.action, data.resourceId);
                     });
                 } else if (scope.action == "editsavingcharge") {
                     if (this.formData.feeOnMonthDayFullDate) {
@@ -585,8 +580,8 @@
             };
         }
     });
-    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter','API_VERSION',
-    '$sce', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
-        $log.info("SavingAccountActionsController initialized");
-    });
+    mifosX.ng.application.controller('SavingAccountActionsController', ['$scope', '$rootScope', 'ResourceFactory', '$location', '$routeParams', 'dateFilter', 'API_VERSION',
+        '$sce', mifosX.controllers.SavingAccountActionsController]).run(function ($log) {
+            $log.info("SavingAccountActionsController initialized");
+        });
 }(mifosX.controllers || {}));

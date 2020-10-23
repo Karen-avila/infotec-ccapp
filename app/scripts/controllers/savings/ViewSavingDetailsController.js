@@ -629,7 +629,8 @@
                 scope.viewReport = true;
                 scope.hidePentahoReport = true;
 
-                var reportName = transactionType + " Receipt";
+                const transactionTypeCap = transactionType.charAt(0).toUpperCase() + transactionType.slice(1)
+                var reportName = transactionTypeCap + " Receipt";
                 scope.formData = {
                     "output-type": "PDF",
                     base64: true,
