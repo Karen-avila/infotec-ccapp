@@ -23,14 +23,14 @@
                             </tr>
                             <tr>
                                 <td>{{'label.heading.fromaccount' | translate}}</td>
-                                <td>{{transfer.fromAccount.productName}}&nbsp;-&nbsp;#{{transfer.fromAccount.accountNo}}
+                                <td>{{transfer.fromAccount.productName}} - {{transfer.fromAccount.accountNo}}
                                 </td>
                                 <td>{{'label.heading.fromaccounttype' | translate}}</td>
                                 <td>{{transfer.fromAccountType.value | translate}}</td>
                             </tr>
                             <tr>
                                 <td>{{'label.heading.currency' | translate}}</td>
-                                <td colspan="3">{{transfer.currency.name | translate}}</td>
+                                <td colspan="3">{{transfer.currency.code}} {{transfer.currency.name | translate}}</td>
                             </tr>
                         </table>
                     </div>

@@ -201,7 +201,10 @@ module.exports = function (grunt) {
             'angular-loading-bar/build/*.min.*', 'fontawesome/css/*.min.css', 'angular-utils-pagination/dirPagination.tpl.html', 'moment/min/*.min.js',
             'pdfjs/src/pdf*.js', 'pdfjs/src/shared/*.js', 'pdfjs/src/display/*.js', 'angular-material-data-table/dist/*.js', 'angular-material-data-table/dist/*.css',
             "md-steppers/dist/*.min.*", 'leaflet/dist/leaflet.js', 'leaflet/dist/leaflet.css', 'angular-leaflet-directive/dist/*.js',
-            'nvd3/build/nv.d3.min.js', 'nvd3/build/nv.d3.css', 'd3/d3.js', 'AngularJS-Toaster/toaster.min.js', 'AngularJS-Toaster/toaster.min.css'
+            'nvd3/build/nv.d3.min.js', 'nvd3/build/nv.d3.css', 'd3/d3.js', 'AngularJS-Toaster/toaster.min.js', 'AngularJS-Toaster/toaster.min.css',
+            'angular/angular.min.js.map', 'angular-route/angular-route.min.js.map', 'angular-resource/angular-resource.min.js.map', 'angular-aria/angular-aria.min.js.map', 
+            'angular-animate/angular-animate.min.js.map', 'ng-idle/angular-idle.map', 'angular-dynamic-locale/tmhDynamicLocale.min.js.map', 
+            'angular-sanitize/angular-sanitize.min.js.map', 'moment/min/moment-with-locales.min.js.map', 'pdfmake/build/pdfmake.js.map'
           ]
         }
         ]
