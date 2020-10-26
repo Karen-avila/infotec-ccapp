@@ -9,9 +9,7 @@
             scope.pendingDisburse = [];
             scope.errorSignature = [];
             var idToNodeMap = {};
-            scope.formData = {
-                limit: 0
-            };
+            scope.formData = {};
             scope.loanTemplate = {};
             scope.loanGroupTemplate = {};
             scope.loanDisbursalTemplate = {};

@@ -124,6 +124,7 @@
     "transaction.type.Waive loan charges": "Renuncia Cargos",
     "transaction.type.Amount on hold": "Retención",
     "transaction.type.Interest posting": "Intereses",
+    "transaction.type.Annual fee": "Comisión Anual",
     "Waive interest": "Renuncia Interes",
     "Flat": "Fija",
     "Specified due date": "Fecha de Vencimiento",
