@@ -322,7 +322,7 @@
 
                 this.formData.locale = scope.optlang.code;
                 this.formData.active = this.formData.active || false;
-                this.formData.activate_electronic_banking = this.formData.activate_electronic_banking || false;
+                // this.formData.activate_electronic_banking = this.formData.activate_electronic_banking || false;
                 this.formData.dateFormat = scope.df;
                 this.formData.activationDate = reqDate;
 

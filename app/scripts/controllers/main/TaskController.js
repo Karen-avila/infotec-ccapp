@@ -677,7 +677,7 @@
                 }
 
                 resourceFactory.loansDashboard.search(params, function (data) {
-                    scope.searchedLoansFiltered = data.pageItems;
+                    scope.searchedLoansFiltered = data;
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
                         if(scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
@@ -707,7 +707,7 @@
                 }
 
                 resourceFactory.loansDashboard.search(params, function (data) {
-                    scope.searchedSocialBanks = data.pageItems;
+                    scope.searchedSocialBanks = data;
 
                     for (var i = 0; i < scope.searchedSocialBanks.length; i++) {
                         scope.searchedSocialBanks[i].orderDate = new Date(scope.searchedSocialBanks[i].submittedDate);
