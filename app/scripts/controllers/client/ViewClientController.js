@@ -943,6 +943,7 @@
                     scope.fileType = data.contentType;
                     scope.preview = true;
                     scope.clientdocuments[index].visited = true;
+                    scope.name=name;
                     scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
                     if (name) {
                         scope.highlight = name.toLowerCase();

@@ -990,7 +990,7 @@
                                                     <th class="table-bold" style="width: 50%;">
                                                         {{'label.input.firstname' | translate }}</th>
                                                     <td
-                                                        ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}">
+                                                        ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='videollamada' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc' || highlight=='videollamada' ) ? 'white' : ''}">
                                                         <span class="padded-td">{{client.firstname}}</span>
                                                     </td>
                                                 </tr>
@@ -1003,56 +1003,56 @@
                                                 <tr>
                                                     <th class="table-bold" style="width: 50%;">
                                                         {{'label.input.lastname' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.lastname}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2'|| highlight=='videollamada'  || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc'|| highlight=='videollamada'  || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.lastname}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="table-bold" style="width: 50%;">
                                                         {{'label.input.surname' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.surname}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='videollamada'  || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp'|| highlight=='videollamada'  || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.surname}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.gender.name">
                                                     <th class="table-bold">{{'label.input.gender' | translate }}</th>
-                                                    <td><span class="padded-td">{{client.gender.name}}</span>
+                                                    <td  ng-style="{ 'background-color' : highlight=='videollamada' ? '#235B4E' : '', 'color' : highlight=='videollamada' ? 'white' : ''}"><span class="padded-td">{{client.gender.name}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.birthplace.name">
                                                     <th class="table-bold">{{'label.input.birthplace' | translate }}
                                                     </th>
-                                                    <td ><span class="padded-td">{{client.birthplace.name}}</span>
+                                                    <td  ng-style="{ 'background-color' : highlight=='videollamada' ? '#235B4E' : '', 'color' : highlight=='videollamada' ? 'white' : ''}"><span class="padded-td">{{client.birthplace.name}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr data-ng-show="client.rfc">
                                                     <th class="table-bold">{{'label.input.rfc' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.rfc}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_edocta' || highlight=='originacion_declara_fisc' || highlight=='videollamada' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.rfc}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="table-bold">{{'label.input.regimenfiscal' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc' || highlight=='originacion_declara_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc' || highlight=='originacion_declara_fisc') ? 'white' : ''}"><span class="padded-td">{{regimenfiscal}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_compr_const_fisc' || highlight=='originacion_declara_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc' || highlight=='videollamada' ||  highlight=='originacion_declara_fisc') ? 'white' : ''}"><span class="padded-td">{{regimenfiscal}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="table-bold">{{'label.input.giro' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{giro}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='videollamada' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{giro}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr ng-hide="isLegalEntity()" data-ng-show="client.uniqueId">
                                                     <th class="table-bold">{{'label.input.uniqueId' | translate }}</th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.uniqueId}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='originacion_compr_const_fisc') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2' || highlight=='originacion_declara_fisc' || highlight=='originacion_curp' || highlight=='videollamada' || highlight=='originacion_compr_const_fisc') ? 'white' : ''}"><span class="padded-td">{{client.uniqueId}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="table-bold">{{'label.input.clabe' | translate }}
                                                     </th>
-                                                    <td ng-style="{ 'background-color' : highlight=='originacion_edocta' ? '#235B4E' : '', 'color' : highlight=='originacion_edocta' ? 'white' : ''}"><span class="padded-td">{{clabe}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_edocta') ? '#235B4E' : '', 'color' : ( highlight=='videollamada' || highlight=='originacion_edocta') ? 'white' : ''}"><span class="padded-td">{{clabe}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="table-bold">{{'label.input.claveelector' | translate }}
                                                     </th>
-                                                    <td ng-style="{ 'background-color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2') ? '#235B4E' : '', 'color' : (highlight=='originacion_ine1' || highlight=='originacion_ine2') ? 'white' : ''}"><span class="padded-td">{{identityClaveElector}}</span>
+                                                    <td ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_ine1' || highlight=='originacion_ine2') ? '#235B4E' : '', 'color' : (highlight=='videollamada' || highlight=='originacion_ine1'  || highlight=='originacion_ine2') ? 'white' : ''}"><span class="padded-td">{{identityClaveElector}}</span>
                                                     </td>
                                                 </tr>                                                
 
@@ -1194,7 +1194,13 @@
                                             <div class="modal"
                                                 style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
-                                                    <iframe style="min-height: 500px; min-width: 700px;" ng-show="preview" ng-src="{{fileData}}"></iframe>
+                                                    <div ng-if="name =='VIDEOLLAMADA'">
+
+                                                    <video controls=""  ng-show="fileData" style="width:300px;" src="{{fileData}}">
+                                                       
+                                                    </video></div>
+                                                    <div ng-if="name!='VIDEOLLAMADA'">
+                                                  <iframe  style="min-height: 500px; min-width: 700px;" ng-show="preview" ng-src="{{fileData}}"></iframe> </div>
                                                     <div class="text-center">
                                                         <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i

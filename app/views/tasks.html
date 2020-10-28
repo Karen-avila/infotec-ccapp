@@ -144,6 +144,21 @@
                                         </md-button>
                                     </div>
                                 </script>
+                                <script type="text/ng-template" id="rejectchecker.html">
+                                    <div class="modal-header silver">
+                                        <h3 class="bolder">{{'label.heading.reject' | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <api-validate></api-validate>
+                                        <br>
+                                        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' |
+                                            translate}}
+                                        </md-button>
+                                        <md-button class="md-raised md-primary" ng-click="Reject()">{{'label.button.confirm' |
+                                            translate}}
+                                        </md-button>
+                                    </div>
+                                </script>
                                 <div ng-show="searchData">
                                     <table md-table class="table">
                                         <thead md-head md-order="query.order">
@@ -294,7 +309,7 @@
                             </md-tab-body>
                         </uib-tab>
                         <!-- Checker -->
-                        <uib-tab heading="{{'label.heading.checkerinbox' | translate}}"
+                        <uib-tab heading="{{'label.heading.massivereverse' | translate}}"
                             has-permission='READ_CHECKER_TASK_INBOX'>
                             <div class="head-affix">
                                 <table class="table condensed-table">
@@ -320,12 +335,12 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <span>
-                                                            <button type="button" class="btn btn-sm btn-sm btn-success"
+                                                            <!-- <button type="button" class="btn btn-sm btn-sm btn-success"
                                                                 data-ng-click="approveOrRejectChecker('approve')"><i
                                                                     class="fa fa-check"></i>&nbsp;&nbsp;{{'label.button.approve' | translate}}</button>
                                                             <button type="button" class="btn btn-sm btn-sm btn-danger"
                                                                 data-ng-click="deleteChecker()"><i
-                                                                    class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</button>
+                                                                    class="fa fa-trash-o"></i>&nbsp;&nbsp;{{'label.button.delete' | translate}}</button> -->
                                                             <button type="button" class="btn btn-sm btn-sm btn-warning"
                                                                 data-ng-click="approveOrRejectChecker('reject')"><i
                                                                     class="fa fa-times"></i>&nbsp;&nbsp;{{'label.button.reject' | translate}}</button>
@@ -352,37 +367,36 @@
                                             class="form-control" />
                                     </div>
                                 </div>
+                               
+                             
                                 <div class="form-group">
-                                    <div>
-                                        <!-- ng-options="transferType.id as transferType.value | translate for transferType in standinginstruction.transferTypeOptions |  orderBy:'value | translate' " value="{{transferType.id}}" > -->
-                                        <select ng-model="formData.action"
-                                            ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.actionNames |  orderBy:'toString() | translate'"
-                                            class="form-control">
-                                            <option value="">{{'label.all' | translate}}</option>
-                                            <!--<option value="">{{'label.selectaction' | translate}}</option>
-                                            <option ng-repeat="action in checkerTemplate.actionNames"
-                                                value="{{action}}">{{ 'task.select.label.' + action | translate}} -->
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div>
-                                        <select ng-model="formData.entity" class="form-control"
-                                            ng-options="'task.select.label.'+ item | translate for item in checkerTemplate.entityNames |  orderBy:'toString() | translate'">
-                                            <option value="">{{'label.all' | translate}}</option>
-                                            <!-- <option value="">{{'label.selectaction' | translate}}</option> -->
-                                            <option ng-repeat="entity in checkerTemplate.entityNames"
-                                                value="{{entity}}">{{ 'task.select.label.' + entity | translate}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div>
-                                        <input type="text" placeholder="{{'label.input.resourceid' | translate}}"
-                                            ng-model="formData.resourceId" class="form-control">
-                                    </div>
+                                    <md-select class="uppercase" ng-model="formData.entity"
+                                    class="form-control"
+                                    placeholder="{{'label.selectentity' | translate}}">
+                                    <md-option class="uppercase" value="0">{{'label.all' | translate}}
+                                    </md-option>
+                                    <md-option value="ACAPULCO DE JUAREZ">ACAPULCO DE JUAREZ</md-option>
+                                    <md-option value="BENITO JUAREZ">BENITO JUAREZ</md-option>
+                                    <md-option value="CENTRO">CENTRO</md-option>
+                                    <md-option value="CULIACAN">CULIACAN</md-option>
+                                    <md-option value="ECATEPEC DE MORELOS">ECATEPEC DE MORELOS
+                                    </md-option>
+                                    <md-option value="GUADALAJARA">GUADALAJARA</md-option>
+                                    <md-option value="GUSTAVO A. MADERO">GUSTAVO A. MADERO</md-option>
+                                    <md-option value="LEON">LEON</md-option>
+                                    <md-option value="HERMOSILLO">HERMOSILLO</md-option>
+                                    <md-option value="IZTAPALAPA">IZTAPALAPA</md-option>
+                                    <md-option value="JUAREZ">JUAREZ</md-option>
+                                    <md-option value="LAZARO CARDENAS">LAZARO CARDENAS</md-option>
+                                    <md-option value="MERIDA">MERIDA</md-option>
+                                    <md-option value="MEXICALI">MEXICALI</md-option>
+                                    <md-option value="MONTERREY">MONTERREY</md-option>
+                                    <md-option value="NEZAHUALCOYOTL">NEZAHUALCOYOTL</md-option>
+                                    <md-option value="PUEBLA">PUEBLA</md-option>
+                                    <md-option value="TIJUANA">TIJUANA</md-option>
+                                    <md-option value="TUXTLA GUTIERREZ">TUXTLA GUTIERREZ</md-option>
+                                    <md-option value="VERACRUZ">VERACRUZ</md-option>
+                                </md-select>
                                 </div>
                                 <span><a ng-click="search()" class="btn btn-sm btn-primary"><i
                                             class="fa fa-search"></i>{{'label.button.advancesearch' | translate}}</a>
