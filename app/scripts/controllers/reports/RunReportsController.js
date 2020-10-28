@@ -20,6 +20,7 @@
           scope.baseURL = "";
           scope.csvData = [];
           scope.row = [];
+          scope.reportDescription = routeParams.description;
           scope.reportName = routeParams.name;
           scope.reportType = routeParams.type;
           scope.reportId = routeParams.reportId;

@@ -22,6 +22,7 @@
                         <thead md-head md-order="query.order">
                             <tr md-row>
                                 <th md-column md-order-by="report_name">{{'label.heading.name' | translate }}</th>
+                                <th md-column md-order-by="description">{{'label.heading.description' | translate }}</th>
                                 <th md-column md-order-by="report_type">{{'label.heading.type' | translate }}</th>
                                 <th md-column md-order-by="report_category">{{'label.heading.category' | translate }}</th>
                             </tr>
@@ -29,7 +30,8 @@
                         <tbody md-body>
                             <tr md-row ng-repeat="report in reports  | filter: customSearch | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" 
                             md-select="client" md-select-id="name" data-ng-click="routeTo(report)">
-                                <td md-cell>{{'label.reports.name.'+report.report_name | translate}}</td>
+                                <td md-cell>{{report.report_name}}</td>
+                                <td md-cell>{{report.description}}</td>
                                 <td md-cell>{{report.report_type | translate}}</td>
                                 <td md-cell>{{'label.reports.category.'+report.report_category | translate}}</td>
                             </tr>

@@ -698,6 +698,10 @@
                     params.clientStatus = scope.formData.clientStatus;
                 }
 
+                if (scope.formData.entity && scope.formData.entity != "0") {
+                    params.locality = scope.formData.entity;
+                }
+
                 if (scope.date.from) {
                     params.fromDate = reqFromDate;
                 }
