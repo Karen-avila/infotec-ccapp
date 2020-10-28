@@ -937,13 +937,12 @@
                     scope.clientdocuments.splice(index, 1);
                 });
             };
-
+          
             scope.previewDocument = function (index, resourceId, name) {
                 resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
                     scope.fileType = data.contentType;
                     scope.preview = true;
                     scope.clientdocuments[index].visited = true;
-                    scope.name=name;
                     scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
                     if (name) {
                         scope.highlight = name.toLowerCase();
@@ -952,6 +951,12 @@
             };
 
             scope.closeDocumentPreview = function () {
+
+                var video = document.getElementById("videoPlayer");
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 scope.preview = false;
                 scope.fileData = null;
                 scope.highlight = "";
