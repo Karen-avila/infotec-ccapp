@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        RichDashboard: function (scope, resourceFactory, localStorageService, $rootScope, location) {
+        RichDashboard: function (scope, resourceFactory, localStorageService, location) {
 
         	scope.recent = [];
             scope.recent = localStorageService.getFromLocalStorage('Location');
@@ -21,6 +21,17 @@
 	                scope.currentSession = sessionManager.get(data);
 	            }
             });
+
+            scope.graphData = [
+                ["fecha","no validado","validado"],
+                ["2020-09-29",0,2],
+                ["2020-10-02",0,2],
+                ["2020-10-04",1,3],
+                ["2020-10-06",0,1],
+                ["2020-10-07",0,2],
+                ["2020-10-08",0,4],
+                ["2020-10-13",0,2]
+            ];
 
             //to retrieve last 8 recent activities
             for (var rev = scope.recent.length - 1; rev > 0; rev--) {
@@ -459,7 +470,7 @@
 
         }
     });
-    mifosX.ng.application.controller('RichDashboard', ['$scope', 'ResourceFactory', 'localStorageService', '$rootScope', '$location', mifosX.controllers.RichDashboard]).run(function ($log) {
+    mifosX.ng.application.controller('RichDashboard', ['$scope', 'ResourceFactory', 'localStorageService', '$location', mifosX.controllers.RichDashboard]).run(function ($log) {
         $log.info("RichDashboard initialized");
     });
 }(mifosX.controllers || {}));

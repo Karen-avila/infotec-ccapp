@@ -67,6 +67,9 @@
             };
 
             scope.submit = function () {
+                scope.formData.firstname = scope.formData.firstname.toUpperCase();
+                scope.formData.lastname = scope.formData.lastname.toUpperCase();
+                scope.formData.surname = scope.formData.surname.toUpperCase();
                 for (var i in scope.selectedRoles) {
                     scope.formData.roles.push(scope.selectedRoles[i].id) ;
                 }

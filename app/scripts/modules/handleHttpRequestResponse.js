@@ -24,7 +24,7 @@ angular.module('handleHttpRequestResponse', [])
                     return;
                 } else {
                     var msg = "ERROR [" + response.status + "] ";
-                    if (response.data && response.data.errors.length > 0) {
+                    if (response.data && response.data.errors && response.data.errors.length > 0) {
                         var valErrors = response.data.errors;
                         for (var j in valErrors) {
                             var temp = valErrors[j];

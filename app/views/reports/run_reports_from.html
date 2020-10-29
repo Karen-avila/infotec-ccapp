@@ -1,7 +1,8 @@
 <div class="card" ng-controller="RunReportsController">
     <div class="content">
         <div class="toolbar">
-            <h5>{{'label.reports.name.' + reportName | translate}}</h5>
+            <h5 ng-if="reportDescription == ''">{{reportName | translate}}</h5>
+            <h5 ng-if="reportDescription != ''">{{reportDescription}}</h5>
         </div>
         <br>
         <div class="row">

@@ -12,9 +12,9 @@
 		<div class="modal-body">
 			<api-validate></api-validate>
 			<br>
-			<md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
-			<md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
-		</div>
+        </div>
+        <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
+		<md-button class="md-raised md-primary" ng-click="delete()">{{'label.button.confirm' | translate}}</md-button>
     </script>
     <script type="text/ng-template" id="activateElectronicBank.html">
         <div class="modal-header silver">
@@ -23,6 +23,15 @@
         <div class="modal-body ">
             <api-validate></api-validate>
             <br>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="emailAddress">{{'label.input.email' | translate }}</label>
+                <div class="col-sm-8">
+                    <input type="email" id="email" ng-model="formData.emailAddress" class="form-control"/>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="modal-footer silver">
             <md-button class="md-raised" ng-click="cancel()">{{'label.button.cancel' | translate}}</md-button>
             <md-button class="md-raised md-primary" ng-click="activeBPI()">{{'label.button.Active' | translate}}</md-button>
         </div>

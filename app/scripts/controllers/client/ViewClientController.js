@@ -575,7 +575,7 @@
 
             var ClientActiveBPICtrl = function ($scope, $uibModalInstance) {
                 $scope.activeBPI = function () {
-                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "activateBPIService" }, {}, function (data) {
+                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "activateBPIService" }, this.formData, function (data) {
                         $uibModalInstance.close('activeBPI');
                         location.path('/clients');
                     });
@@ -928,7 +928,6 @@
                                 data[l].fileIsImage = true;
                     }
                     scope.clientdocuments = data;
-                    console.log(scope.clientdocuments);
                 });
             };
 

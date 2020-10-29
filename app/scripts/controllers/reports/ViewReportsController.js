@@ -8,7 +8,7 @@
     ) {
       scope.reports = [];
       scope.type = routeParams.type;
-
+      scope.selected = null;
       scope.totalReports = 0;
       scope.query = {
         order: "displayName",
@@ -19,14 +19,13 @@
       scope.options = {
         boundaryLinks: true,
         rowSelection: true,
-        pageSelector: true,
-        
+        pageSelector: true
       };
 
       scope.routeTo = function (report) {
         location
           .path("/run_report/" + report.report_name)
-          .search({ reportId: report.id, type: report.report_type });
+          .search({ reportId: report.id, type: report.report_type, description: report.description });
       };
 
       if (!scope.searchCriteria.reports) {
@@ -46,10 +45,10 @@
 
       if (routeParams.type == "all") {
         resourceFactory.runReportsResource.get({
-            reportSource: "FullReportList",
-            parameterType: true,
-            genericResultSet: false,
-          },
+          reportSource: "FullReportList",
+          parameterType: true,
+          genericResultSet: false,
+        },
           function (data) {
             scope.reports = scope.getReports(data);
           }
@@ -118,22 +117,8 @@
 
       scope.ReportsPerPage = 15;
 
-      // Remove the duplicate entries from the array. The reports api returns same report multiple times if it have more than one parameter.
       scope.getReports = function (data) {
-        var obj = {};
-        for ( var i=0, len=data.length; i < len; i++ ) {
-            const item = data[i];
-            if (item.id) {
-                obj[item.id] = item;
-            } else if (item.report_id) {
-                obj[item.report_id] = item;
-            }
-        }
-        var reports = [];
-        for ( var key in obj )
-            reports.push(obj[key]);
-
-        return reports;
+        return data;
       };
 
       scope.filters = [];

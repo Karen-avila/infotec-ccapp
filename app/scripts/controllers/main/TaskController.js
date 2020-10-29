@@ -9,9 +9,7 @@
             scope.pendingDisburse = [];
             scope.errorSignature = [];
             var idToNodeMap = {};
-            scope.formData = {
-                limit: 0
-            };
+            scope.formData = {};
             scope.loanTemplate = {};
             scope.loanGroupTemplate = {};
             scope.loanDisbursalTemplate = {};
@@ -715,7 +713,7 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {limit: 200};
+                var params = {};
 
                 if (scope.formData.status > 0) {
                     params.status = scope.formData.status;
@@ -730,8 +728,7 @@
                 }
 
                 resourceFactory.loansDashboard.search(params, function (data) {
-                    scope.searchedLoansFiltered = data.pageItems;
-                    console.log(scope.searchedLoansFiltered);
+                    scope.searchedLoansFiltered = data;
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
                         if(scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
@@ -747,11 +744,13 @@
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
                 var params = {};
-                // if (scope.formData.limit > 0)
-                //     params.limit = scope.formData.limit;
 
                 if (scope.formData.clientStatus > 0) {
                     params.clientStatus = scope.formData.clientStatus;
+                }
+
+                if (scope.formData.entity && scope.formData.entity != "0") {
+                    params.locality = scope.formData.entity;
                 }
 
                 if (scope.date.from) {
@@ -763,7 +762,7 @@
                 }
 
                 resourceFactory.loansDashboard.search(params, function (data) {
-                    scope.searchedSocialBanks = data.pageItems;
+                    scope.searchedSocialBanks = data;
 
                     for (var i = 0; i < scope.searchedSocialBanks.length; i++) {
                         scope.searchedSocialBanks[i].orderDate = new Date(scope.searchedSocialBanks[i].submittedDate);
