@@ -24,7 +24,8 @@
             scope.clientId = routeParams.id;
             scope.selectedIndex = 1;
             scope.fileData = null;
-           
+            scope.preview = false;
+            scope.video = false;
             // address
             scope.addresses = [];
             scope.view = {};
@@ -84,8 +85,6 @@
                         });
                     }
                 })
-
-               
             };
 
             resourceFactory.addressFieldConfiguration.get({ entity: entityname }, function (data) {
@@ -937,21 +936,41 @@
                 });
             };
 
-            scope.previewDocument = function (index, resourceId, name) {
-                resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId}, function (data) {
-                    scope.fileType = data.contentType;
-                    scope.preview = true;
-                    scope.clientdocuments[index].visited = true;
-                    scope.name=name;
-                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
-                    if (name) {
-                        scope.highlight = name.toLowerCase();
-                    }
-                });
+            scope.previewDocument = function (index, document) {
+                const resourceId = document.id;
+                const name = document.name;
+                const docType = document.type;
+                // Video file
+                if (docType.startsWith("video")) {
+                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'attachment'}, function (data) {
+                        scope.fileType = data.contentType;
+                        scope.preview = true;
+                        scope.video = false;
+                        scope.clientdocuments[index].visited = true;
+                        scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                        if (name) {
+                            scope.highlight = name.toLowerCase();
+                        }
+                    });
+
+                // Image or Document
+                } else {
+                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'preview'}, function (data) {
+                        scope.fileType = data.contentType;
+                        scope.preview = true;
+                        scope.video = false;
+                        scope.clientdocuments[index].visited = true;
+                        scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                        if (name) {
+                            scope.highlight = name.toLowerCase();
+                        }
+                    });
+                }
             };
 
             scope.closeDocumentPreview = function () {
                 scope.preview = false;
+                scope.video = false;
                 scope.fileData = null;
                 scope.highlight = "";
             };
