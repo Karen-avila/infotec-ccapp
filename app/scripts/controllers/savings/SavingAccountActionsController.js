@@ -514,7 +514,6 @@
 
                             params = { accountId: routeParams.id, command: 'blockCredit' };
                         }
-
                     }
                     else if (scope.action == "unblock") {
                         if (scope.substatus == "Block") {
@@ -529,7 +528,7 @@
                     }
 
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
-                        location.path('/viewsavingaccounts/' + data.savingsId);
+                        location.path('/viewsavingaccount/' + data.savingsId);
                     });
                 }
             };

@@ -146,6 +146,13 @@ body {
   color: $brand-primary;
 }
 
+video {
+  border:solid 1px $brand-primary;
+ 
+  width:400px;
+  height:200px;
+}
+
 .divider {
   border-left: 6px solid $brand-color;
 }

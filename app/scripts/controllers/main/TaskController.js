@@ -692,7 +692,9 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {};
+                var params = {
+                    status: 200 // Loan in Approval State
+                };
 
                 if (scope.formData.clientStatus > 0) {
                     params.clientStatus = scope.formData.clientStatus;
