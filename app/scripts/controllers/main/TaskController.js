@@ -194,8 +194,11 @@
                 }
             }
             scope.approveOrRejectChecker = function (action) {
+                
                 if (scope.checkData) {
+                    if(action=="approve"){
                     $uibModal.open({
+                      
                         templateUrl: 'approvechecker.html',
                         controller: CheckerApproveCtrl,
                         resolve: {
@@ -204,6 +207,20 @@
                             }
                         }
                     });
+                }
+                if(action=="reject"){
+                    $uibModal.open({
+                      
+                        templateUrl: 'rejectchecker.html',
+                        controller: CheckerRejectCtrl,
+                        resolve: {
+                            action: function () {
+                                return action;
+                            }
+                        }
+                    });
+                }
+                
                 }
             };
             var CheckerApproveCtrl = function ($scope, $uibModalInstance, action) {
@@ -238,6 +255,40 @@
                     $uibModalInstance.dismiss('cancel');
                 };
             };
+
+            var CheckerRejectCtrl = function ($scope, $uibModalInstance, action) {
+                $scope.reject = function () {
+                    var totalReject = 0;
+                    var rejectCount = 0;
+                    _.each(scope.checkData, function (value, key) {
+                        if (value == true) {
+                            totalReject++;
+                        }
+                    });
+                    _.each(scope.checkData, function (value, key) {
+                        if (value == true) {
+
+                            resourceFactory.checkerInboxResource.save({ templateResource: key, command: action }, {}, function (data) {
+                                rejectCount++;
+                                if (rejectCount == totalReject) {
+                                    scope.search();
+                                }
+                            }, function (data) {
+                                rejectCount++;
+                                if (rejectCount == totalReject) {
+                                    scope.search();
+                                }
+                            });
+                        }
+                    });
+                    scope.checkData = {};
+                    $uibModalInstance.close('reject');
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            };
+
 
             scope.deleteChecker = function () {
                 if (scope.checkData) {
