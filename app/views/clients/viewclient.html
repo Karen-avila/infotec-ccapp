@@ -1080,7 +1080,7 @@
                                                             {{'label.input.businessaddress' | translate }}
                                                         </th>
                                                         <!-- decidi hacer 2 tablas y que se muestre la correspondiente porque address.addressTypeId no funciona dentro del ngstyle-->
-                                                        <td ng-show="address.addressTypeId == 330040" ng-style="{ 'background-color' : (highlight=='originacion_compr_dom') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_dom') ? 'white' : ''}" class="uppercase">
+                                                        <td ng-show="address.addressTypeId == 330040" ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_compr_dom') ? '#235B4E' : '', 'color' : (highlight=='videollamada' || highlight=='originacion_compr_dom') ? 'white' : ''}" class="uppercase">
                                                             <span ng-show="address.street">{{address.street}}</span>
                                                             <span ng-show="address.addressLine1">,
                                                                 {{address.addressLine1}}</span>
@@ -1114,7 +1114,7 @@
                                                             <span ng-show="address.antiquity">,
                                                                 {{address.antiquity}}</span>
                                                         </td>
-                                                        <td ng-show="address.addressTypeId == 390037" ng-style="{ 'background-color' : (highlight=='originacion_compr_neg') ? '#235B4E' : '', 'color' : (highlight=='originacion_compr_neg') ? 'white' : ''}" class="uppercase">
+                                                        <td ng-show="address.addressTypeId == 390037" ng-style="{ 'background-color' : (highlight=='videollamada' || highlight=='originacion_compr_neg') ? '#235B4E' : '', 'color' : (highlight=='videollamada' || highlight=='originacion_compr_neg') ? 'white' : ''}" class="uppercase">
                                                             <span ng-show="address.street">{{address.street}}</span>
                                                             <span ng-show="address.addressLine1">,
                                                                 {{address.addressLine1}}</span>
