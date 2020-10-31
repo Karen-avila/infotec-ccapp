@@ -942,10 +942,11 @@
                 const docType = document.type;
                 // Video file
                 if (docType.startsWith("video")) {
-                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'attachment'}, function (data) {
-                        scope.fileType = data.contentType;
+
+                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'preview'}, function (data) {
+                        scope.fileType = docType;
                         scope.preview = true;
-                        scope.video = false;
+                        scope.video = true;
                         scope.clientdocuments[index].visited = true;
                         scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
                         if (name) {
