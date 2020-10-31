@@ -27,6 +27,7 @@
             //this value will be changed within each specific tab
             scope.requestIdentifier = "loanId";
             scope.isAllPendingToAuthorizeSelected = false;
+            scope.isAllToReverseSelected = false;
             scope.itemsPerPage = 15;
             scope.loanRescheduleData = [];
 
@@ -774,7 +775,7 @@
                 }
                
                 if (scope.formData.entity && scope.formData.entity != "0") {
-                    params.city = scope.formData.entity;
+                    params.locality = scope.formData.entity;
                 }
 
                 if (scope.date.to) {
@@ -818,6 +819,7 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedSocialBanks = data;
+                    console.log(data)
 
                     for (var i = 0; i < scope.searchedSocialBanks.length; i++) {
                         scope.searchedSocialBanks[i].orderDate = new Date(scope.searchedSocialBanks[i].submittedDate);
@@ -986,6 +988,15 @@
                 if(scope.isAllPendingToAuthorizeSelected){
                     _.each(scope.pendingToAuthorize, function(item){ 
                         scope.loanTemplate[item.client.id] = true;
+                    });
+                }
+             }
+             scope.toggleAllToReverse = function() {
+                scope.isAllToReverseSelected=!scope.isAllToReverseSelected;
+                scope.loanReverseTemplate = [];
+                if(scope.isAllToReverseSelected){
+                    _.each(scope.searchedLoansFiltered, function(item){ 
+                        scope.loanReverseTemplate[item.clientId] = true;
                     });
                 }
              }
