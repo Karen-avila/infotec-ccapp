@@ -154,10 +154,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{'label.heading.savings.currentBalance' | translate}}</th>
+                            <th>{{'label.heading.savings.currentBalance' | translate}}      <a><i ng-click="viewSavingAccountReceipts()"  class="fa fa-eye"></i></a></th>
                             <td class="amount">
                                 {{savingaccountdetails.currency.displaySymbol}} {{savingaccountdetails.summary.accountBalance | FormatNumber}}
+                            
                             </td>
+                          
                         </tr>
                     </table>
 

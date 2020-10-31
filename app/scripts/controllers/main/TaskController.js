@@ -13,6 +13,7 @@
             scope.loanTemplate = {};
             scope.loanGroupTemplate = {};
             scope.loanDisbursalTemplate = {};
+            scope.loanReverseTemplate = {};
             scope.date = {};
             scope.checkData = [];
             scope.isCollapsed = true;
@@ -211,8 +212,8 @@
                 if(action=="reject"){
                     $uibModal.open({
                       
-                        templateUrl: 'rejectchecker.html',
-                        controller: CheckerRejectCtrl,
+                        templateUrl: 'reverseloan.html',
+                        controller: toReverseCtrl,
                         resolve: {
                             action: function () {
                                 return action;
@@ -223,70 +224,85 @@
                 
                 }
             };
-            var CheckerApproveCtrl = function ($scope, $uibModalInstance, action) {
-                $scope.approve = function () {
-                    var totalApprove = 0;
-                    var approveCount = 0;
-                    _.each(scope.checkData, function (value, key) {
-                        if (value == true) {
-                            totalApprove++;
-                        }
-                    });
-                    _.each(scope.checkData, function (value, key) {
-                        if (value == true) {
+            // var CheckerApproveCtrl = function ($scope, $uibModalInstance, action) {
+            //     $scope.approve = function () {
+            //         var totalApprove = 0;
+            //         var approveCount = 0;
+            //         _.each(scope.checkData, function (value, key) {
+            //             if (value == true) {
+            //                 totalApprove++;
+            //             }
+            //         });
+            //         _.each(scope.checkData, function (value, key) {
+            //             if (value == true) {
 
-                            resourceFactory.checkerInboxResource.save({ templateResource: key, command: action }, {}, function (data) {
-                                approveCount++;
-                                if (approveCount == totalApprove) {
-                                    scope.search();
-                                }
-                            }, function (data) {
-                                approveCount++;
-                                if (approveCount == totalApprove) {
-                                    scope.search();
-                                }
-                            });
-                        }
-                    });
-                    scope.checkData = {};
-                    $uibModalInstance.close('approve');
+            //                 resourceFactory.checkerInboxResource.save({ templateResource: key, command: action }, {}, function (data) {
+            //                     approveCount++;
+            //                     if (approveCount == totalApprove) {
+            //                         scope.search();
+            //                     }
+            //                 }, function (data) {
+            //                     approveCount++;
+            //                     if (approveCount == totalApprove) {
+            //                         scope.search();
+            //                     }
+            //                 });
+            //             }
+            //         });
+            //         scope.checkData = {};
+            //         $uibModalInstance.close('approve');
+            //     };
+            //     $scope.cancel = function () {
+            //         $uibModalInstance.dismiss('cancel');
+            //     };
+            // };
+
+            var toReverseCtrl = function ($scope, $uibModalInstance) {
+                $scope.reverse = function () {
+                    scope.bulkReverse($scope.authorizeKey);                        
+                    $uibModalInstance.close('reverse');
                 };
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss('cancel');
                 };
-            };
+            }
 
-            var CheckerRejectCtrl = function ($scope, $uibModalInstance, action) {
-                $scope.reject = function () {
-                    var totalReject = 0;
-                    var rejectCount = 0;
-                    _.each(scope.checkData, function (value, key) {
-                        if (value == true) {
-                            totalReject++;
-                        }
-                    });
-                    _.each(scope.checkData, function (value, key) {
-                        if (value == true) {
+            scope.bulkReverse = function () {
+                var selectedAccounts = 0;
+                _.each(scope.loanReverseTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.searchedLoansFiltered, function (item) {
+                            if (id == item.clientId) {
+                                    selectedAccounts++;  
+                            }
+                        });
+                    }
+                });;
 
-                            resourceFactory.checkerInboxResource.save({ templateResource: key, command: action }, {}, function (data) {
-                                rejectCount++;
-                                if (rejectCount == totalReject) {
-                                    scope.search();
-                                }
-                            }, function (data) {
-                                rejectCount++;
-                                if (rejectCount == totalReject) {
-                                    scope.search();
-                                }
-                            });
-                        }
-                    });
-                    scope.checkData = {};
-                    $uibModalInstance.close('reject');
-                };
-                $scope.cancel = function () {
-                    $uibModalInstance.dismiss('cancel');
-                };
+                scope.batchRequests = [];
+                scope.requestIdentifier = "loanId";
+                var reqId = 1;
+                _.each(scope.loanReverseTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.searchedLoansFiltered, function (item) {
+                            if (id == item.clientId) {
+                                 
+                                        scope.batchRequests.push({
+                                            requestId: reqId++, relativeUrl: "loans/" + item.loanId + "?command=undoapproval",
+                                            method: "POST", body: JSON.stringify(scope.formData)
+                                        });
+                            }
+                        });
+                    }
+                });  
+
+                 console.log("Loans to be reversed batch: " + scope.batchRequests.length); 
+                  resourceFactory.batchResource.post(scope.batchRequests, function (data) {
+                    console.log("reload page");
+                    route.reload();
+                },function(data){
+                    console.log("error in the process");
+                });
             };
 
 
@@ -439,6 +455,7 @@
                     if($rootScope.hasPermission('AUTHORIZE_LOAN')){
                         resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
+                            console.log(scope.pendingDisburse);
                         });
                     }    
 
@@ -729,6 +746,44 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data;
+                    console.log(data);
+                    for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
+                        if(scope.searchedLoansFiltered[i].validationdate) {
+                            scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
+                        } else {
+                            scope.searchedLoansFiltered[i].orderDate = "";
+                        }
+                    }
+                });
+            };
+
+            scope.searchToReverse = function () {
+                scope.isCollapsed = true;
+                var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
+                var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
+                
+                var params = {};
+
+                
+                    params.status = 200;
+                    
+            
+
+                if (scope.date.from) {
+                    params.fromDate = reqFromDate;
+                }
+               
+                if (scope.formData.entity && scope.formData.entity != "0") {
+                    params.city = scope.formData.entity;
+                }
+
+                if (scope.date.to) {
+                    params.toDate = reqToDate;
+                }
+
+                resourceFactory.loansDashboard.search(params, function (data) {
+                    scope.searchedLoansFiltered = data;
+                    console.log(data);
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
                         if(scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
@@ -782,6 +837,8 @@
                 });
             };
 
+           
+
             scope.approveLoan = function () {
                 var selectedAccounts = 0;
                 _.each(scope.loanTemplate, function (value, id) {
@@ -826,7 +883,7 @@
                 _.each(scope.loanTemplate, function (value, id) {
                     if (value == true) {
                         _.each(scope.pendingApproval, function (item) {
-                            if (id == item.client.id) {
+                            if (id == item.clientId) {
                                 if (item.individual == true) {
                                     selectedAccounts++;
                                 } else {
@@ -877,6 +934,26 @@
                         }
                     }
                 });
+            };
+
+            scope.reverseLoan = function () {
+                var selectedAccounts = 0;
+                _.each(scope.loanReverseTemplate, function (value, id) {
+                    if (value == true) {
+                        _.each(scope.searchedLoansFiltered, function (item) {
+                            if (id == item.clientId) {
+                                    selectedAccounts++;  
+                            }
+                        });
+                    }
+                });
+                 console.log("Loans for reverse selected: " + selectedAccounts);
+                if (selectedAccounts > 0) {
+                    $uibModal.open({
+                        templateUrl: 'reverseloan.html',
+                        controller: toReverseCtrl
+                    });
+                }
             };
 
             scope.authorizeLoan = function () {
@@ -989,7 +1066,7 @@
                         });
                     }
                 });
-                // console.log("Loans for disburse selected: " + selectedAccounts);
+                 console.log("Loans for disburse selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'disburseloan.html',

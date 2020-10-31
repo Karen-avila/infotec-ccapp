@@ -21,6 +21,7 @@
             scope.fieldOfficers = [];
             scope.savingaccountdetails = [];
             scope.savingNotes = [];
+            console.log($rootScope);
 
             scope.query = {
                 order: "date",
@@ -647,6 +648,34 @@
                 });
             };
 
+            
+            scope.viewSavingAccountReceipts = function () {
+                scope.report = true;
+                scope.viewTransactionReport = true;
+                scope.viewSavingReport = false;
+                scope.printbtn = false;
+                scope.viewReport = true;
+                scope.hidePentahoReport = true;
+
+       
+                var reportName =  "Balance Inquiry Receipt";
+                scope.formData = {
+                    "output-type": "PDF",
+                    base64: true,
+                    locale: scope.optlang.code,
+                    R_accountNo: encodeURIComponent(scope.savingaccountdetails.accountNo),
+                    R_officeName:  $rootScope.currentSession.officeName,
+                    R_officeId:  $rootScope.currentSession.officeId,
+                    reportSource: reportName
+                }
+                scope.fileData = "";
+                resourceFactory.runReportsResource.getReport(scope.formData, function (data) {
+                    scope.fileType = "application/pdf";
+                    scope.fileData = $sce.trustAsResourceUrl("data:" + scope.fileType + ";base64," + data.data);
+                }, function (error) {
+                    console.log(JSON.stringify(error));
+                });
+            };
             scope.deletestandinginstruction = function (id) {
                 $uibModal.open({
                     templateUrl: "delInstruction.html",
