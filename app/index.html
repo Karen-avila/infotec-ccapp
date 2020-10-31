@@ -7,8 +7,9 @@
     <title>{{ 'label.heading.company' | translate }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link href="styles/styles.css" rel="stylesheet"/>
 </head>
+
 <body class="preview whitebg" id="top" data-spy="scroll" data-target=".subnav" data-offset="80"
     ng-controller="MainController">
     <!-- HTTP Bar Loader -->
@@ -127,8 +128,8 @@
             </div>
 
             <div id="mifos-reskin-body-view">
-                <toaster-container
-                    toaster-options="{'close-button': true,
+                <toaster-container 
+                    toaster-options="{'close-button': true, 
                         'time-out':{ 'toast-success': 3000, 'toast-warning': 2000, 'toast-error': 0 }
                     }">
                 </toaster-container>

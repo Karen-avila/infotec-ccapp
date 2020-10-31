@@ -970,6 +970,12 @@
             };
 
             scope.closeDocumentPreview = function () {
+
+                var video = document.getElementById("videoPlayer");
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 scope.preview = false;
                 scope.video = false;
                 scope.fileData = null;
