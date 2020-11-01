@@ -8,42 +8,70 @@
             <div class="toolbar">
                 <h4>{{'label.anchor.retainbalance' | translate }}</h4>
             </div>
-            <br/>
+            <br />
             <form class="form-horizontal form-extra" name="retainbalanceform" novalidate="" ng-submit="submit()">
                 <api-validate></api-validate>
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="modelName">{{'label.heading.transactiondate' | translate}}<span
+                        <label class="control-label col-sm-3"
+                            for="modelName">{{'label.heading.transactiondate' | translate}}<span
                                 class="required">*</span></label>
                         <div class="col-sm-3">
-                            <md-datepicker id="transactionDate" ng-model="formData.transactionDate" md-min-date="minDate" md-max-date="maxDatePicker"
-                            md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
+                            <md-datepicker id="transactionDate" ng-model="formData.transactionDate"
+                                md-min-date="minDate" md-max-date="maxDatePicker"
+                                md-placeholder="{{'label.input.fromdate' | translate }}"></md-datepicker>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">{{'label.input.amount' | translate}}<span
+                        <label class="control-label col-sm-3">{{'label.input.amount' | translate}}<span
                                 class="required">*</span></label>
 
                         <div class="col-sm-3">
-                            <input id="transactionAmount" type="text" only-number name="transactionAmount"
-                            ng-model="formData.transactionAmount" class="form-control" required
-                            late-Validate />
+                            <input id="transactionAmount" type="text" only-number allow-decimal="true"
+                                allow-negative="false" decimal-upto="2" name="transactionAmount"
+                                ng-model="formData.transactionAmount" class="form-control" required late-Validate />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"
+                            for="holdingReasonId">{{'label.input.holding.reason' | translate}}<span class="required">*</span></label>
+
+                        <div class="col-sm-3">
+                            <md-select ng-model="formData.holdingReasonId" id="chargeId" name="reason" required
+                                placeholder="{{'label.selectcharge' | translate}}">
+                                <md-option ng-repeat="holdingReason in holdingReasons" ng-value="holdingReason.id">
+                                    {{holdingReason.description}}
+                                </md-option>
+                            </md-select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="concept">{{'label.input.concept' | translate}}</label>
+                        <label class="control-label col-sm-3"
+                            for="concept">{{'label.input.concept' | translate}}</label>
 
+                        <div class="col-sm-8">
+                            <textarea rows="3" id="concept" ng-model="formData.routingCode"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"
+                            for="modelName">{{'label.input.holding.until.date' | translate}}</label>
                         <div class="col-sm-3">
-                            <textarea rows="3" id="concept" ng-model="formData.routingCode" class="form-control"></textarea>
+                            <md-datepicker id="expiredDate" ng-model="formData.expiredDate"
+                                md-min-date="formData.transactionDate" md-max-date="maxDatePicker"
+                                md-placeholder="{{'label.input.todate' | translate }}"></md-datepicker>
                         </div>
                     </div>
 
                     <div class="col-md-12 center">
-                        <button id="cancel" type="reset" class="btn btn-sm btn-default" ng-click="cancel()">{{'label.button.cancel' | translate
-                        }}
-                        </button>
-                        <button id="save" type="submit" class="btn btn-sm btn-primary">{{'label.button.save' | translate }}
-                        </button>
+                        <md-button id="cancel" type="reset" class="md-raised" ng-click="cancel()">
+                            {{'label.button.cancel' | translate}}
+                        </md-button>
+                        <md-button id="save" type="submit"
+                            class="md-raised md-primary">{{'label.button.save' | translate }}
+                        </md-button>
                     </div>
                 </fieldset>
             </form>

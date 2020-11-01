@@ -970,7 +970,6 @@
             };
 
             scope.closeDocumentPreview = function () {
-
                 var video = document.getElementById("videoPlayer");
                 if (video) {
                     video.pause();

@@ -2683,6 +2683,8 @@
     "label.heading.mobileNo": "Teléfono Móvil",
     "label.heading.joiningDate": "Se unió el",
     "label.heading.holidayname": "Nombre del feriado",
+    "label.input.holding.until.date": "Retener hasta",
+    "label.input.holding.reason": "Motivo de la Retensión",
     "label.heading.alternateworkingday": "Día de trabajo alternativo",
     "label.heading.managefunds": "Administrar fondos",
     "label.heading.repaymentsheduleto": "Pagos programados para",
