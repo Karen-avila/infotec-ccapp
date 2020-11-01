@@ -1203,7 +1203,7 @@
                                                 style="display: inline-table; margin: 0 auto; margin-left: 35%;">
                                                 <div class="modal-content">
                                                     <iframe ng-hide="video" style="min-height: 500px; min-width: 700px;" ng-show="preview" ng-src="{{fileData}}"></iframe>
-                                                    <video ng-show="video" style="min-height: 250px; min-width: 350px;" controls class="playback" ng-src="{{fileData}}"></video>
+                                                    <video id="videoPlayer" ng-show="video" style="min-height: 250px; min-width: 350px;" controls class="playback" ng-src="{{fileData}}"></video>
                                                     <div class="text-center">
                                                         <md-button md-no-ink class="md-primary"
                                                             ng-click="closeDocumentPreview()"><i
