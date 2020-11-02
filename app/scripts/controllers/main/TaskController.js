@@ -762,7 +762,9 @@
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
                 
-                var params = {};
+                var params = {
+                    status: 200
+                };
                 if (scope.date.from) {
                     params.fromDate = reqFromDate;
                 }
