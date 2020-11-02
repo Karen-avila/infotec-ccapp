@@ -747,7 +747,6 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data;
-                    console.log(data);
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
                         if(scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
@@ -778,7 +777,6 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data;
-                    console.log(data);
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
                         if(scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
@@ -793,9 +791,6 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                var params = {
-                    status: 200 // Loan in Approval State
-                };
 
                 if (scope.formData.clientStatus > 0) {
                     params.clientStatus = scope.formData.clientStatus;
@@ -815,7 +810,6 @@
 
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedSocialBanks = data;
-                    console.log(data)
 
                     for (var i = 0; i < scope.searchedSocialBanks.length; i++) {
                         scope.searchedSocialBanks[i].orderDate = new Date(scope.searchedSocialBanks[i].submittedDate);
