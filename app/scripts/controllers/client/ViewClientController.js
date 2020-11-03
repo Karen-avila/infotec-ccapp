@@ -609,25 +609,33 @@
                 $scope.validateClient = function (isValidated) {
 
 
-                    var data = {
-                        "locale": scope.optlang.code,
-                        "dateFormat": "dd MMMM yyyy",
-                        "approvedOnDate": dateFilter(new Date(), scope.df),
-                        "note": scope.formData.note,
-                        "disbursementData": []
 
-                    }
 
-                    if (scope.loanToDisburse) {
-                        resourceFactory.loanResource.save({ command: 'approve', loanId: scope.loanToDisburse.id }, data, function (data) {
-                        });
-                    }
+
                     resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated, "notes": $scope.note }, function (data) {
-                        $uibModalInstance.close('validate');
-
                         //route.reload();
-                        window.history.back();
+
+                        var info = {
+                            "locale": scope.optlang.code,
+                            "dateFormat": "dd MMMM yyyy",
+                            "approvedOnDate": dateFilter(new Date(), scope.df),
+                            "note": scope.formData.note,
+                            "disbursementData": []
+
+                        }
+                        if (scope.loanToDisburse) {
+                            return resourceFactory.loanResource.save({ command: 'approve', loanId: scope.loanToDisburse.id }, info, function (data) {
+                                console.log(data);
+                                $uibModalInstance.close('validate');
+                                window.history.back();
+                            });
+                        } else {
+                            $uibModalInstance.close('validate');
+                            window.history.back();
+                        }
                     });
+
+
                 };
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss('cancel');
@@ -655,7 +663,6 @@
                     for (var i in data.loanAccounts) {
                         if (data.loanAccounts[i].status.id == "100") {
                             scope.loanToDisburse = data.loanAccounts[i];
-                            console.log('el loan', scope.loanToDisburse)
                             break;
                         }
                     }
