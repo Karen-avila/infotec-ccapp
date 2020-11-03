@@ -204,7 +204,8 @@
                         getAllLoans: { method: 'GET', params: { limit: '@limit', sqlSearch: '@sqlSearch' } },
                         getAllNotes: { method: 'GET', params: {}, isArray: true },
                         put: { method: 'PUT', params: {} },
-                        reject: { method: 'POST', params: { command: 'reject' } }
+                        reject: { method: 'POST', params: { command: 'reject' } },
+                        approve: { method: 'POST', params: { command: 'approve' } }
                     }),
                     loanChargeTemplateResource: defineResource(apiVer + "/loans/:loanId/charges/template", { loanId: '@loanId' }, {
                         get: { method: 'GET', params: {} }
