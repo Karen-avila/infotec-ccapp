@@ -1,11 +1,12 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ViewClientController: function (scope, $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, $sce, Upload) {
+        ViewClientController: function (scope, $mdDialog, routeParams, route, location, resourceFactory, http, $uibModal, API_VERSION, $rootScope, $sce, Upload, dateFilter) {
             scope.client = [];
             scope.identitydocuments = [];
             scope.buttons = [];
             scope.clientdocuments = [];
             scope.datatabledetails = [];
+            scope.loanToDisburse;
             scope.scoringDetails = [];
             scope.scoringInternalPoints = 0;
             scope.scoringExternalPoints = 0;
@@ -34,7 +35,7 @@
             var entityname = "ADDRESS";
             formdata = {};
 
-            
+
             scope.showMap = function (ev) {
                 $mdDialog.show({
                     controller: ViewMapController,
@@ -254,14 +255,14 @@
                             type: "100",
                             icon: "fa fa-arrow-up",
                             taskPermissionName: "DEPOSIT_SAVINGSACCOUNT",
-                            check:"BlockCredit"
+                            check: "BlockCredit"
                         },
                         {
                             name: "button.withdraw",
                             type: "100",
                             icon: "fa fa-arrow-down",
                             taskPermissionName: "WITHDRAW_SAVINGSACCOUNT",
-                            check:"BlockDebit"
+                            check: "BlockDebit"
                         },
                         {
                             name: "button.deposit",
@@ -516,6 +517,13 @@
                 };
             };
 
+            scope.getApprovalDate = function () {
+                $scope.myDate = new Date();
+
+                $scope.myDateFiltered = $filter('date')
+                    ($scope.myDate, 'dd/MM/yy');
+            };
+
             scope.deleteSig = function () {
                 $uibModal.open({
                     templateUrl: 'deletesig.html',
@@ -574,7 +582,7 @@
 
             var ClientActiveBPICtrl = function ($scope, $uibModalInstance) {
                 $scope.activeBPI = function () {
-                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "activateBPIService" }, this.formData, function (data) {
+                    resourceFactory.clientResource.save({ clientId: scope.clientId, command: "activateBPIService" }, this.formData, function (data) {
                         $uibModalInstance.close('activeBPI');
                         location.path('/clients');
                     });
@@ -586,7 +594,7 @@
 
             var ClientDesactiveBPICtrl = function ($scope, $uibModalInstance) {
                 $scope.desactiveBPI = function () {
-                    resourceFactory.clientResource.save({ clientId: scope.clientId, command : "desactivateBPIService" }, {}, function (data) {
+                    resourceFactory.clientResource.save({ clientId: scope.clientId, command: "desactivateBPIService" }, {}, function (data) {
                         $uibModalInstance.close('desactiveBPI');
                         location.path('/clients');
                     });
@@ -599,11 +607,35 @@
             var ClientValidateCtrl = function ($scope, $uibModalInstance) {
                 $scope.note = "";
                 $scope.validateClient = function (isValidated) {
+
+
+
+
+
                     resourceFactory.clientResource.update({ clientId: scope.clientId, command: 'validate' }, { "isValidated": isValidated, "notes": $scope.note }, function (data) {
-                        $uibModalInstance.close('validate');
                         //route.reload();
-                        window.history.back();
+
+                        var info = {
+                            "locale": scope.optlang.code,
+                            "dateFormat": "dd MMMM yyyy",
+                            "approvedOnDate": dateFilter(new Date(), scope.df),
+                            "note": scope.formData.note,
+                            "disbursementData": []
+
+                        }
+                        if (scope.loanToDisburse) {
+                            return resourceFactory.loanResource.save({ command: 'approve', loanId: scope.loanToDisburse.id }, info, function (data) {
+                                console.log(data);
+                                $uibModalInstance.close('validate');
+                                window.history.back();
+                            });
+                        } else {
+                            $uibModalInstance.close('validate');
+                            window.history.back();
+                        }
                     });
+
+
                 };
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss('cancel');
@@ -624,6 +656,18 @@
 
             resourceFactory.clientAccountResource.get({ clientId: scope.clientId }, function (data) {
                 scope.clientAccounts = data;
+                console.log(data);
+
+                if (data.loanAccounts) {
+
+                    for (var i in data.loanAccounts) {
+                        if (data.loanAccounts[i].status.id == "100") {
+                            scope.loanToDisburse = data.loanAccounts[i];
+                            break;
+                        }
+                    }
+
+                }
 
                 if (data.savingsAccounts) {
                     for (var i in data.savingsAccounts) {
@@ -768,7 +812,7 @@
                     entityId: scope.clientId,
                     genericResultSet: 'true'
                 }, function (data) {
-                    if (typeof data.data[0] != "undefined" ) {
+                    if (typeof data.data[0] != "undefined") {
                         for (var i = 0; i < data.data[0].rows.length; ++i) {
                             if (data.data[0].rows[i].name == 'clabe') {
                                 scope.clabe = data.data[0].rows[i].value;
@@ -803,7 +847,7 @@
                 }).$promise.then(function (data) {
                     if (data.data.length > 0 && typeof data.data[0] !== 'undefined') {
                         var rows = data.data[0].rows;
-                        for (var i=0; i<rows.length; i++) {
+                        for (var i = 0; i < rows.length; i++) {
                             const row = rows[i];
                             if (row.name == "CREDTO" || row.name == "CREDITO") {
                                 const rowValue = JSON.parse(row.value.replace("(0)", "").trim());
@@ -943,7 +987,7 @@
                 // Video file
                 if (docType.startsWith("video")) {
 
-                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'preview'}, function (data) {
+                    resourceFactory.clientDocumentResource.getClientDocument({ clientId: scope.clientId, documentId: resourceId, action: 'preview' }, function (data) {
                         scope.fileType = docType;
                         scope.preview = true;
                         scope.video = true;
@@ -954,9 +998,9 @@
                         }
                     });
 
-                // Image or Document
+                    // Image or Document
                 } else {
-                    resourceFactory.clientDocumentResource.getClientDocument({clientId: scope.clientId, documentId: resourceId, action: 'preview'}, function (data) {
+                    resourceFactory.clientDocumentResource.getClientDocument({ clientId: scope.clientId, documentId: resourceId, action: 'preview' }, function (data) {
                         scope.fileType = data.contentType;
                         scope.preview = true;
                         scope.video = false;
@@ -1137,7 +1181,7 @@
                 });
             };
 
-            
+
 
             var ViewClientWithoutSignature = function ($scope, $uibModalInstance) {
                 $scope.cancel = function () {
@@ -1206,7 +1250,7 @@
         }
     });
 
-    mifosX.ng.application.controller('ViewClientController', ['$scope', '$mdDialog', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', '$sce', 'Upload', mifosX.controllers.ViewClientController]).run(function ($log) {
+    mifosX.ng.application.controller('ViewClientController', ['$scope', '$mdDialog', '$routeParams', '$route', '$location', 'ResourceFactory', '$http', '$uibModal', 'API_VERSION', '$rootScope', '$sce', 'Upload', 'dateFilter', mifosX.controllers.ViewClientController]).run(function ($log) {
         $log.info("ViewClientController initialized");
     });
 }(mifosX.controllers || {}));
