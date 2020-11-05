@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        TaskController: function (scope,$rootScope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
+        TaskController: function (scope, $rootScope, resourceFactory, route, dateFilter, $uibModal, location, translate, MIN_DATEPICKER, MAX_DATEPICKER) {
             scope.clients = [];
             scope.loans = [];
             scope.offices = [];
@@ -36,7 +36,7 @@
                 limit: 25,
                 page: 1,
             };
-        
+
             scope.options = {
                 boundaryLinks: true,
                 rowSelection: true,
@@ -45,12 +45,11 @@
 
             scope.checkForBulkLoanRescheduleApprovalData = [];
             scope.rescheduleData = function () {
-                if($rootScope.hasPermission('RESCHEDULE_LOAN')){
+                if ($rootScope.hasPermission('RESCHEDULE_LOAN')) {
                     resourceFactory.loanRescheduleResource.getAll({ command: 'pending' }, function (data) {
                         scope.loanRescheduleData = data;
                     });
                 }
-
             };
             scope.rescheduleData();
 
@@ -182,6 +181,7 @@
                     };
                 }
             }
+
             scope.loanDisbursalAllCheckBoxesMet = function () {
                 var checkBoxesMet = 0;
                 if (!angular.isUndefined(scope.pendingDisburse)) {
@@ -195,72 +195,39 @@
                     return (checkBoxesMet === scope.pendingDisburse.length);
                 }
             }
+
             scope.approveOrRejectChecker = function (action) {
-                
                 if (scope.checkData) {
-                    if(action=="approve"){
-                    $uibModal.open({
-                      
-                        templateUrl: 'approvechecker.html',
-                        controller: CheckerApproveCtrl,
-                        resolve: {
-                            action: function () {
-                                return action;
+                    if (action == "approve") {
+                        $uibModal.open({
+
+                            templateUrl: 'approvechecker.html',
+                            controller: CheckerApproveCtrl,
+                            resolve: {
+                                action: function () {
+                                    return action;
+                                }
                             }
-                        }
-                    });
-                }
-                if(action=="reject"){
-                    $uibModal.open({
-                      
-                        templateUrl: 'reverseloan.html',
-                        controller: toReverseCtrl,
-                        resolve: {
-                            action: function () {
-                                return action;
+                        });
+                    }
+                    if (action == "reject") {
+                        $uibModal.open({
+
+                            templateUrl: 'reverseloan.html',
+                            controller: toReverseCtrl,
+                            resolve: {
+                                action: function () {
+                                    return action;
+                                }
                             }
-                        }
-                    });
-                }
-                
+                        });
+                    }
                 }
             };
-            // var CheckerApproveCtrl = function ($scope, $uibModalInstance, action) {
-            //     $scope.approve = function () {
-            //         var totalApprove = 0;
-            //         var approveCount = 0;
-            //         _.each(scope.checkData, function (value, key) {
-            //             if (value == true) {
-            //                 totalApprove++;
-            //             }
-            //         });
-            //         _.each(scope.checkData, function (value, key) {
-            //             if (value == true) {
-
-            //                 resourceFactory.checkerInboxResource.save({ templateResource: key, command: action }, {}, function (data) {
-            //                     approveCount++;
-            //                     if (approveCount == totalApprove) {
-            //                         scope.search();
-            //                     }
-            //                 }, function (data) {
-            //                     approveCount++;
-            //                     if (approveCount == totalApprove) {
-            //                         scope.search();
-            //                     }
-            //                 });
-            //             }
-            //         });
-            //         scope.checkData = {};
-            //         $uibModalInstance.close('approve');
-            //     };
-            //     $scope.cancel = function () {
-            //         $uibModalInstance.dismiss('cancel');
-            //     };
-            // };
 
             var toReverseCtrl = function ($scope, $uibModalInstance) {
                 $scope.reverse = function () {
-                    scope.bulkReverse($scope.authorizeKey);                        
+                    scope.bulkReverse($scope.authorizeKey);
                     $uibModalInstance.close('reverse');
                 };
                 $scope.cancel = function () {
@@ -274,7 +241,7 @@
                     if (value == true) {
                         _.each(scope.searchedLoansFiltered, function (item) {
                             if (id == item.clientId) {
-                                    selectedAccounts++;  
+                                selectedAccounts++;
                             }
                         });
                     }
@@ -287,25 +254,21 @@
                     if (value == true) {
                         _.each(scope.searchedLoansFiltered, function (item) {
                             if (id == item.clientId) {
-                                 
-                                        scope.batchRequests.push({
-                                            requestId: reqId++, relativeUrl: "loans/" + item.loanId + "?command=undoapproval",
-                                            method: "POST", body: JSON.stringify(scope.formData)
-                                        });
+                                scope.batchRequests.push({
+                                    requestId: reqId++, relativeUrl: "loans/" + item.loanId + "?command=undoapproval",
+                                    method: "POST", body: JSON.stringify(scope.formData)
+                                });
                             }
                         });
                     }
-                });  
+                });
 
-                 console.log("Loans to be reversed batch: " + scope.batchRequests.length); 
-                  resourceFactory.batchResource.post(scope.batchRequests, function (data) {
-                    console.log("reload page");
+                resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     route.reload();
-                },function(data){
+                }, function (data) {
                     console.log("error in the process");
                 });
             };
-
 
             scope.deleteChecker = function () {
                 if (scope.checkData) {
@@ -447,20 +410,19 @@
                     scope.pendingToAuthorize = [];
                     scope.pendingDisburse = [];
 
-                    if($rootScope.hasPermission('APPROVE_LOAN_CHECKER')){
+                    if ($rootScope.hasPermission('APPROVE_LOAN_CHECKER')) {
                         resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 100' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
                     }
 
-                    if($rootScope.hasPermission('AUTHORIZE_LOAN')){
+                    if ($rootScope.hasPermission('AUTHORIZE_LOAN')) {
                         resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 210' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
-                            console.log(scope.pendingDisburse);
                         });
-                    }    
+                    }
 
-                    if($rootScope.hasPermission('DISBURSALUNDO_LOAN_CHECKER')){
+                    if ($rootScope.hasPermission('DISBURSALUNDO_LOAN_CHECKER')) {
                         resourceFactory.loanResource.getAllLoans({ tiny: true, limit: 100, sqlSearch: 'l.loan_status_id = 200 and l.loan_sub_status_id = 220' }, function (loanData) {
                             scope.adminloans(loanData.pageItems);
                         });
@@ -475,7 +437,7 @@
                     scope.offices = finalArray;
                 }
 
-                scope.adminloans = function(loanResult){
+                scope.adminloans = function (loanResult) {
                     for (var i in loanResult) {
                         if (loanResult[i].status.pendingApproval) {
                             var tempOffice = undefined;
@@ -622,7 +584,7 @@
                             } else if (loanResult[i].clientOfficeId) {
                                 tempOffice = idToNodeMap[loanResult[i].clientOfficeId];
                                 tempOffice.loans.push(loanResult[i]);
-                                if(loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Authorized"){
+                                if (loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Authorized") {
                                     scope.pendingDisburse.push({
                                         office: tempOffice,
                                         individual: true,
@@ -640,7 +602,7 @@
                                             loanPurposeName: loanResult[i].loanPurposeName
                                         }
                                     });
-                                }else if(loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Waiting for authorization"){
+                                } else if (loanResult[i].subStatus != undefined && loanResult[i].subStatus.value == "Waiting for authorization") {
                                     scope.pendingToAuthorize.push({
                                         office: tempOffice,
                                         individual: true,
@@ -667,21 +629,21 @@
                 scope.loanResource();
             });
 
-            scope.getDataResources =  function(){
-                if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
-                    resourceFactory.clientResource.getAllClients({ tiny:true, limit:100, sqlSearch: 'c.status_enum=100' }, function (data) {
+            scope.getDataResources = function () {
+                if ($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')) {
+                    resourceFactory.clientResource.getAllClients({ tiny: true, limit: 100, sqlSearch: 'c.status_enum=100' }, function (data) {
                         scope.pendingClientApproval = data.pageItems;
                         scope.groupedClients = _.groupBy(data.pageItems, "officeName");
                     });
                 }
-    
-                if($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')){
-                    resourceFactory.groupResource.getAllGroups({ limit:100, sqlSearch: 'g.status_enum=100' }, function (data) {
+
+                if ($rootScope.hasPermission('ACTIVATE_CLIENT_CHECKER')) {
+                    resourceFactory.groupResource.getAllGroups({ limit: 100, sqlSearch: 'g.status_enum=100' }, function (data) {
                         scope.groupedGroups = data;
                     });
                 }
             }
-            
+
             scope.getDataResources();
 
             scope.showGroupDetail = function (groupId, prefix) {
@@ -748,7 +710,7 @@
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data;
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
-                        if(scope.searchedLoansFiltered[i].validationdate) {
+                        if (scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
                         } else {
                             scope.searchedLoansFiltered[i].orderDate = "";
@@ -761,14 +723,14 @@
                 scope.isCollapsed = true;
                 var reqFromDate = dateFilter(scope.date.from, 'yyyy-MM-dd');
                 var reqToDate = dateFilter(scope.date.to, 'yyyy-MM-dd');
-                
+
                 var params = {
                     status: 200
                 };
                 if (scope.date.from) {
                     params.fromDate = reqFromDate;
                 }
-               
+
                 if (scope.formData.entity && scope.formData.entity != "0") {
                     params.locality = scope.formData.entity;
                 }
@@ -780,7 +742,7 @@
                 resourceFactory.loansDashboard.search(params, function (data) {
                     scope.searchedLoansFiltered = data;
                     for (var i = 0; i < scope.searchedLoansFiltered.length; i++) {
-                        if(scope.searchedLoansFiltered[i].validationdate) {
+                        if (scope.searchedLoansFiltered[i].validationdate) {
                             scope.searchedLoansFiltered[i].orderDate = new Date(scope.searchedLoansFiltered[i].validationdate);
                         } else {
                             scope.searchedLoansFiltered[i].orderDate = "";
@@ -822,7 +784,7 @@
                             return item.clientStatus.id == scope.formData.clientStatus;
                         });
                     }
-                    
+
                     if (scope.formData.entity > 0) {
                         scope.searchedSocialBanks = scope.searchedSocialBanks.filter(function (item) {
                             return item.city == scope.formData.entity.toUpperCase();
@@ -831,7 +793,7 @@
                 });
             };
 
-           
+
 
             scope.approveLoan = function () {
                 var selectedAccounts = 0;
@@ -848,7 +810,6 @@
                         });
                     }
                 });
-                // console.log("Loans for approval selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'approveloan.html',
@@ -888,7 +849,6 @@
                     }
                 });
 
-                // console.log("Loans to be approved " + selectedAccounts);
                 scope.batchRequests = [];
                 scope.requestIdentifier = "loanId";
 
@@ -915,7 +875,6 @@
                     }
                 });
 
-                // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].statusCode == '200') {
@@ -936,12 +895,11 @@
                     if (value == true) {
                         _.each(scope.searchedLoansFiltered, function (item) {
                             if (id == item.clientId) {
-                                    selectedAccounts++;  
+                                selectedAccounts++;
                             }
                         });
                     }
                 });
-                 console.log("Loans for reverse selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'reverseloan.html',
@@ -965,7 +923,6 @@
                         });
                     }
                 });
-                // console.log("Loans for approval selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'authorizeloan.html',
@@ -974,28 +931,28 @@
                 }
             };
 
-            scope.toggleAllPendingToAuthorize = function() {
-                scope.isAllPendingToAuthorizeSelected=!scope.isAllPendingToAuthorizeSelected;
+            scope.toggleAllPendingToAuthorize = function () {
+                scope.isAllPendingToAuthorizeSelected = !scope.isAllPendingToAuthorizeSelected;
                 scope.loanTemplate = [];
-                if(scope.isAllPendingToAuthorizeSelected){
-                    _.each(scope.pendingToAuthorize, function(item){ 
+                if (scope.isAllPendingToAuthorizeSelected) {
+                    _.each(scope.pendingToAuthorize, function (item) {
                         scope.loanTemplate[item.client.id] = true;
                     });
                 }
-             }
-             scope.toggleAllToReverse = function() {
-                scope.isAllToReverseSelected=!scope.isAllToReverseSelected;
+            }
+            scope.toggleAllToReverse = function () {
+                scope.isAllToReverseSelected = !scope.isAllToReverseSelected;
                 scope.loanReverseTemplate = [];
-                if(scope.isAllToReverseSelected){
-                    _.each(scope.searchedLoansFiltered, function(item){ 
+                if (scope.isAllToReverseSelected) {
+                    _.each(scope.searchedLoansFiltered, function (item) {
                         scope.loanReverseTemplate[item.clientId] = true;
                     });
                 }
-             }
-            
+            }
+
             var authorizeLoanCtrl = function ($scope, $uibModalInstance) {
                 $scope.authorize = function () {
-                    scope.bulkAuthorize($scope.authorizeKey);                        
+                    scope.bulkAuthorize($scope.authorizeKey);
                     $uibModalInstance.close('authorize');
                 };
                 $scope.cancel = function () {
@@ -1026,30 +983,28 @@
                     if (value == true) {
                         _.each(scope.pendingToAuthorize, function (item) {
                             if (id == item.client.id) {
-                                    scope.formData.signedKey = authorizeKey;
-                                    if (item.individual == true) {
+                                scope.formData.signedKey = authorizeKey;
+                                if (item.individual == true) {
+                                    scope.batchRequests.push({
+                                        requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=authorize",
+                                        method: "POST", body: JSON.stringify(scope.formData)
+                                    });
+                                } else {
+                                    _.each(item.loans, function (loan) {
                                         scope.batchRequests.push({
-                                            requestId: reqId++, relativeUrl: "loans/" + item.loan.id + "?command=authorize",
+                                            requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=authorize",
                                             method: "POST", body: JSON.stringify(scope.formData)
                                         });
-                                    } else {
-                                        _.each(item.loans, function (loan) {
-                                            scope.batchRequests.push({
-                                                requestId: reqId++, relativeUrl: "loans/" + loan.id + "?command=authorize",
-                                                method: "POST", body: JSON.stringify(scope.formData)
-                                            });
-                                        });
-                                    }
+                                    });
+                                }
                             }
                         });
                     }
-                });  
+                });
 
-                // console.log("Loans to be approved batch: " + scope.batchRequests.length);
                 resourceFactory.batchResource.post(scope.batchRequests, function (data) {
-                    console.log("reload page");
                     route.reload();
-                },function(data){
+                }, function (data) {
                     console.log("error in the process");
                 });
             };
@@ -1069,7 +1024,6 @@
                         });
                     }
                 });
-                 console.log("Loans for disburse selected: " + selectedAccounts);
                 if (selectedAccounts > 0) {
                     $uibModal.open({
                         templateUrl: 'disburseloan.html',
@@ -1232,7 +1186,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('TaskController', ['$scope','$rootScope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
+    mifosX.ng.application.controller('TaskController', ['$scope', '$rootScope', 'ResourceFactory', '$route', 'dateFilter', '$uibModal', '$location', '$translate', 'MIN_DATEPICKER', 'MAX_DATEPICKER', mifosX.controllers.TaskController]).run(function ($log) {
         $log.info("TaskController initialized");
     });
 }(mifosX.controllers || {}));

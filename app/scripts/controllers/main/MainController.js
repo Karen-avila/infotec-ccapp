@@ -117,6 +117,19 @@
                 $rootScope.$broadcast('permissionsChanged')
             };
 
+            $rootScope.setOfficeData = function (officeId, officeName) {
+                const officeData = {
+                    id: officeId,
+                    name: officeName
+                };
+                $rootScope.officeData = officeData
+                localStorageService.addToLocalStorage('office', officeData);
+            };
+
+            $rootScope.getOfficeData = function () {
+                return localStorageService.getFromLocalStorage('office');
+            };
+
             $rootScope.hasPermission = function (permission) {
                 permission = permission.trim();
                 //FYI: getting all permissions from localstorage, because if scope changes permissions array will become undefined
@@ -188,6 +201,7 @@
                     scope.start(scope.currentSession);
                     if (scope.currentSession.user && scope.currentSession.user.userPermissions) {
                         $rootScope.setPermissions(scope.currentSession.user.userPermissions);
+                        $rootScope.setOfficeData(scope.currentSession.officeId, scope.currentSession.officeName);
                     }
                     location.path('/home').replace();
                 } else {

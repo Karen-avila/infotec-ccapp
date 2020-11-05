@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateClientController: function (scope, resourceFactory, location, dateFilter, routeParams, $uibModal) {
+        CreateClientController: function (scope, rootScope, resourceFactory, location, dateFilter, routeParams, $uibModal) {
             scope.offices = [];
             scope.staffs = [];
             scope.savingproducts = [];
@@ -21,6 +21,7 @@
             scope.forceOffice = null;
             scope.showNonPersonOptions = false;
             scope.clientPersonId = 1;
+            scope.officeData = rootScope.getOfficeData();
             //address
             scope.addressTypes = [];
             scope.countryOptions = [];
@@ -86,6 +87,9 @@
             }
             resourceFactory.clientTemplateResource.get(requestParams, function (data) {
                 scope.offices = data.officeOptions;
+                if (scope.offices.length > 0) {
+                    scope.formData.officeId = scope.officeData.id
+                }
                 scope.staffs = data.staffOptions;
                 scope.formData.officeId = scope.offices[0].id;
                 scope.savingproducts = data.savingProductOptions;
@@ -582,7 +586,7 @@
         }
 
     });
-    mifosX.ng.application.controller('CreateClientController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', '$routeParams', '$uibModal', mifosX.controllers.CreateClientController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateClientController', ['$scope', '$rootScope', 'ResourceFactory', '$location', 'dateFilter', '$routeParams', '$uibModal', mifosX.controllers.CreateClientController]).run(function ($log) {
         $log.info("CreateClientController initialized");
     });
 }(mifosX.controllers || {}));
