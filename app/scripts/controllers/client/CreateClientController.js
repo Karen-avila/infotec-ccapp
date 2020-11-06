@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateClientController: function (scope, rootScope, resourceFactory, location, dateFilter, routeParams, $uibModal) {
+        CreateClientController: function (scope, $rootScope, resourceFactory, location, dateFilter, routeParams, $uibModal) {
             scope.offices = [];
             scope.staffs = [];
             scope.savingproducts = [];
@@ -11,7 +11,6 @@
                 dateOfBirth: scope.initDate,
                 submittedon: scope.initDate
             }
-            scope.formData = {};
             scope.formDat = {};
             scope.clientNonPersonDetails = {};
             scope.restrictDate = new Date();
@@ -21,7 +20,13 @@
             scope.forceOffice = null;
             scope.showNonPersonOptions = false;
             scope.clientPersonId = 1;
-            scope.officeData = rootScope.getOfficeData();
+            scope.officeData = $rootScope.getOfficeData();
+            scope.formData = {
+                officeId: scope.officeData.id,
+                address: [],
+                familyMembers: [],
+                datatables: []
+            };
             //address
             scope.addressTypes = [];
             scope.countryOptions = [];
@@ -31,16 +36,13 @@
             scope.addressTypeId = {};
             entityname = "ADDRESS";
             scope.addressArray = [];
-            scope.formData.address = [];
             scope.address = {};
 
             //familymembers
-            scope.formData.familyMembers = [];
             scope.familyArray = [];
             scope.datatables = [];
             scope.noOfTabs = 1;
             scope.step = '-';
-            scope.formData.datatables = [];
             scope.formDat.datatables = [];
             scope.tf = "HH:mm";
             scope.clientId = routeParams.clientId;
@@ -87,11 +89,8 @@
             }
             resourceFactory.clientTemplateResource.get(requestParams, function (data) {
                 scope.offices = data.officeOptions;
-                if (scope.offices.length > 0) {
-                    scope.formData.officeId = scope.officeData.id
-                }
+                console.log(JSON.stringify(scope.formData));
                 scope.staffs = data.staffOptions;
-                scope.formData.officeId = scope.offices[0].id;
                 scope.savingproducts = data.savingProductOptions;
                 scope.genderOptions = data.genderOptions.sort(sortBy("name"));
                 scope.birthPlaceOptions = data.birthPlaceOptions.sort(sortBy("name"));

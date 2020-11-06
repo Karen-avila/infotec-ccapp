@@ -19,7 +19,7 @@
                   <md-select id="officeId" ng-model="formData.officeId" ng-change="changeOffice(formData.officeId)"
                      placeholder="{{'label.selectone' | translate}}" disabled>
                      <md-option ng-repeat="office in offices" ng-value="office.id">
-                        {{office.name}}
+                        {{office.branch}} - {{office.name}}
                      </md-option>
                   </md-select>
                </div>

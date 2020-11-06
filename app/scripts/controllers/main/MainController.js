@@ -117,17 +117,10 @@
                 $rootScope.$broadcast('permissionsChanged')
             };
 
-            $rootScope.setOfficeData = function (officeId, officeName) {
-                const officeData = {
-                    id: officeId,
-                    name: officeName
-                };
-                $rootScope.officeData = officeData
-                localStorageService.addToLocalStorage('office', officeData);
-            };
-
             $rootScope.getOfficeData = function () {
-                return localStorageService.getFromLocalStorage('office');
+                const userData = localStorageService.getFromLocalStorage('userData');
+                const officeData = {id: userData.officeId, name: userData.officeName};
+                return officeData;
             };
 
             $rootScope.hasPermission = function (permission) {
@@ -201,7 +194,7 @@
                     scope.start(scope.currentSession);
                     if (scope.currentSession.user && scope.currentSession.user.userPermissions) {
                         $rootScope.setPermissions(scope.currentSession.user.userPermissions);
-                        $rootScope.setOfficeData(scope.currentSession.officeId, scope.currentSession.officeName);
+                        // $rootScope.setOfficeData(scope.currentSession.officeId, scope.currentSession.officeName);
                     }
                     location.path('/home').replace();
                 } else {
