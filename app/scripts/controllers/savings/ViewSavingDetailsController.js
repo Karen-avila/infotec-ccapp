@@ -8,7 +8,6 @@
             location,
             $uibModal,
             route,
-            dateFilter,
             $sce,
             $rootScope
         ) {
@@ -21,7 +20,7 @@
             scope.fieldOfficers = [];
             scope.savingaccountdetails = [];
             scope.savingNotes = [];
-            console.log($rootScope);
+            scope.officeData = $rootScope.getOfficeData();
 
             scope.query = {
                 order: "date",
@@ -776,7 +775,6 @@
             "$location",
             "$uibModal",
             "$route",
-            "dateFilter",
             "$sce",
             "$rootScope",
             mifosX.controllers.ViewSavingDetailsController,
