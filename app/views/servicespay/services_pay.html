@@ -1,0 +1,87 @@
+<div class="content-container">
+	<ul class="breadcrumb">
+		<li><a href="#!/branchoffice">{{'label.anchor.branchoffices' | translate}}</a></li>
+		<li class="active">{{'label.anchor.servicespay' | translate}}</li>
+	</ul>
+	<div class="card">
+		<div class="content">
+			<div class="toolbar">
+				<h4>{{'label.heading.servicespay' | translate}}</h4>
+			</div>
+			<br />
+			<form name="createservicespayform" novalidate="" class="form-horizontal form-extra"
+				ng-controller="ServicesPayController" ng-submit="submit()">
+				<api-validate></api-validate>
+				<fieldset>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">{{'label.input.services' | translate }}
+                        <span class="required">*</span></label>
+						<div class="col-sm-3">
+                            <md-select class="uppercase" id="serviceId" ng-model="formData.serviceId" 
+                            placeholder="{{'label.selectone' | translate}}">
+                            <md-option class="uppercase" ng-repeat="paymentthirdService in paymentthirdServices  | orderBy: 'name'" ng-value="paymentthirdService.id">
+                                {{paymentthirdService.name}}
+                            </md-option>
+                        </md-select>
+                             <form-validate valattributeform="createservicespayform" valattribute="serviceId" /> 
+						</div>
+                    </div>
+
+                    
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.heading.amount' | translate}}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+							<input id="amount" ng-autofocus="true" type="text" name="amount" ng-model="formData.amount"
+								class="form-control uppercase" required />
+							<form-validate valattributeform="createservicespayform" valattribute="amount" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.referencenumber' | translate}}<span
+								class="required">*</span></label>
+
+						<div class="col-sm-3">
+    						<input id="references" type="text" name="references" ng-model="formData.references"
+								class="form-control" required />
+							<form-validate valattributeform="createservicespayform" valattribute="references" />
+						</div>
+					</div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"
+                            for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
+                        <div class="col-sm-3">
+                            <md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId" 
+                                placeholder="{{'label.selectone' | translate}}">
+                                <md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
+                                    {{paymentType.description}}
+                                </md-option>
+                            </md-select>
+                            <form-validate valattributeform="createservicespayform" valattribute="paymentTypeId" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+						<label class="control-label col-sm-3">{{'label.heading.date' | translate}}<span
+								class="required">*</span></label>
+						<div class="col-sm-6">
+                        <md-datepicker id="date.from" ng-model="date.from"
+                            md-placeholder="{{'label.input.fromdate' | translate}}"
+                            md-min-date="minDatePicker" md-max-date="maxDatePicker">
+                        </md-datepicker>
+                        <form-validate valattributeform="createservicespayform" valattribute="references" />
+                        </div>
+                    </div>
+                  
+					<div class="col-md-12 center">
+						<a id="cancel" href="#!/branchoffice">
+							<md-button type="reset"
+								class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+						</a>
+						<md-button id="save" type="submit" class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

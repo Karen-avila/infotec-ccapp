@@ -1069,6 +1069,9 @@
             .when('/openbranchoffice', {
                 templateUrl: 'views/branchoffice/openbranchoffice.html'
             })
+            .when('/services_pay', {
+                templateUrl: 'views/servicespay/services_pay.html'
+            })
             .otherwise({
                 templateUrl: "views/errors/404.html"
             });

@@ -338,7 +338,8 @@ define(['Q', 'underscore', 'mifosX'], function(Q) {
             'adhocquery/CreateAdHocQueryController',
             'adhocquery/ViewAdHocQueryController',
             'adhocquery/EditAdHocQueryController',
-            'branchoffice/OpenBranchOfficeController'
+            'branchoffice/OpenBranchOfficeController',
+            'servicespay/ServicesPayController'
         ],
         filters: [
             'StatusLookup',
