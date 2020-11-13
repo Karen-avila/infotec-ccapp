@@ -99,7 +99,9 @@
             <br>
             <div class="col-sm-12 col-md-12 primarydiv">
                 <div class="pull-right btn-group">
-
+                    <button type="button" class="btn btn-sm" ng-click="viewSavingAccountBalance()">
+                        <i class="fa fa-file-pdf-o "></i>{{"label.heading.viewreport" | translate}}
+                    </button>
                     <a ng-repeat="button in buttons.singlebuttons" ng-show="button.name"
                         has-permission='{{button.taskPermissionName}}'
                         ng-click="clickEvent(button.name.replace('button.',''), savingaccountdetails.id)"

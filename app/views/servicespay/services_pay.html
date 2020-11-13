@@ -13,28 +13,29 @@
 				ng-controller="ServicesPayController" ng-submit="submit()">
 				<api-validate></api-validate>
 				<fieldset>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">{{'label.input.services' | translate }}
-                        <span class="required">*</span></label>
+					<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.input.services' | translate }}
+							<span class="required">*</span></label>
 						<div class="col-sm-3">
-                            <md-select class="uppercase" id="serviceId" ng-model="formData.serviceId" 
-                            placeholder="{{'label.selectone' | translate}}">
-                            <md-option class="uppercase" ng-repeat="paymentthirdService in paymentthirdServices  | orderBy: 'name'" ng-value="paymentthirdService.id">
-                                {{paymentthirdService.name}}
-                            </md-option>
-                        </md-select>
-                             <form-validate valattributeform="createservicespayform" valattribute="serviceId" /> 
+							<md-select class="uppercase" id="serviceId" ng-model="formData.serviceId"
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option class="uppercase"
+									ng-repeat="paymentthirdService in paymentthirdServices  | orderBy: 'name'"
+									ng-value="paymentthirdService.id">
+									{{paymentthirdService.name}}
+								</md-option>
+							</md-select>
+							<form-validate valattributeform="createservicespayform" valattribute="serviceId" />
 						</div>
-                    </div>
+					</div>
 
-                    
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.heading.amount' | translate}}<span
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-							<input id="amount" ng-autofocus="true" type="text" name="amount" ng-model="formData.amount"
-								class="form-control uppercase" required />
+							<input id="amount" ng-autofocus="true" type="text" only-number  name="amount" ng-model="formData.amount"
+								class="form-control uppercase" required/>
 							<form-validate valattributeform="createservicespayform" valattribute="amount" />
 						</div>
 					</div>
@@ -43,42 +44,60 @@
 								class="required">*</span></label>
 
 						<div class="col-sm-3">
-    						<input id="references" type="text" name="references" ng-model="formData.references"
+							<input id="references" type="text" name="references" ng-model="formData.references"
 								class="form-control" required />
 							<form-validate valattributeform="createservicespayform" valattribute="references" />
 						</div>
 					</div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3"
-                            for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
-                        <div class="col-sm-3">
-                            <md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId" 
-                                placeholder="{{'label.selectone' | translate}}">
-                                <md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'" ng-value="paymentType.id">
-                                    {{paymentType.description}}
-                                </md-option>
-                            </md-select>
-                            <form-validate valattributeform="createservicespayform" valattribute="paymentTypeId" />
-                        </div>
-                    </div>
-                    <div class="form-group">
+					<div class="form-group">
+						<label class="control-label col-sm-3"
+							for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
+						<div class="col-sm-3">
+							<md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId"
+								placeholder="{{'label.selectone' | translate}}">
+								<md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'"
+									ng-value="paymentType.id">
+									{{paymentType.description}}
+								</md-option>
+							</md-select>
+							<form-validate valattributeform="createservicespayform" valattribute="paymentTypeId" />
+						</div>
+					</div>
+					<div class="form-group">
+					<label class="control-label col-sm-3">{{'label.heading.denominations' | translate }}<span
+							class="required">*</span></label>
+					<div class="col-sm-6">
+						<div ng-repeat="denomination in formData.denominations" class="col-md-6 paddedbottom10">
+							<div class="col-md-3">
+								<label class="control-label col-sm-2">${{denomination.denominacion}}</label>
+							</div>
+							<div class="col-md-3">
+								<input name="{{denomination.denominacion}}" type="text"
+									ng-change="Total(denomination.denominacion,$index)" only-number
+									allow-decimal="false" allow-negative="false" ng-model="denomination.cantidad"
+									class="form-control" ng-keypress="numeros($event)" late-Validate />
+								<form-validate valattributeform="createchargeform" valattribute="amount" />
+							</div>
+							<div class="col-md-2">
+								<label class="control-label col-sm-2">${{denomination.total}}</label>
+							</div>
+						</div>
+                     </div>
+					</div>
+					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.heading.date' | translate}}<span
 								class="required">*</span></label>
 						<div class="col-sm-6">
-                        <md-datepicker id="date.from" ng-model="date.from"
-                            md-placeholder="{{'label.input.fromdate' | translate}}"
-                            md-min-date="minDatePicker" md-max-date="maxDatePicker">
-                        </md-datepicker>
-                        <form-validate valattributeform="createservicespayform" valattribute="references" />
-                        </div>
-                    </div>
-                  
+							<md-datepicker id="transactionDate" ng-model="first.date" md-max-date="restrictDate"></md-datepicker>
+						</div>
+					</div>
+
 					<div class="col-md-12 center">
 						<a id="cancel" href="#!/branchoffice">
-							<md-button type="reset"
-								class="md-raised">{{'label.button.cancel' | translate}}</md-button>
+							<md-button type="reset" class="md-raised">{{'label.button.cancel' | translate}}</md-button>
 						</a>
-						<md-button id="save" type="submit" class="md-raised md-primary">{{'label.button.save' | translate}}</md-button>
+						<md-button id="save" type="submit" class="md-raised md-primary">
+							{{'label.button.save' | translate}}</md-button>
 					</div>
 				</fieldset>
 			</form>

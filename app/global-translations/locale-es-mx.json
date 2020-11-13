@@ -254,6 +254,7 @@
     "label.heading.loan": "Créditos",
     "label.heading.principal": "Capital",
     "label.heading.amount": "Monto",
+    "label.heading.denominations":"Denominaciones",
     "label.heading.date.repayment": "Pago",
     "label.heading.date.completed": "Completado",
     "label.heading.date": "Fecha",
