@@ -21,8 +21,7 @@
 								placeholder="{{'label.selectone' | translate}}">
 								<md-option class="uppercase"
 									ng-repeat="paymentthirdService in paymentthirdServices  | orderBy: 'name'"
-									ng-value="paymentthirdService.id">
-									{{paymentthirdService.name}}
+							      ng-value="paymentthirdService.id"> {{paymentthirdService.name}}
 								</md-option>
 							</md-select>
 							<form-validate valattributeform="createservicespayform" valattribute="serviceId" />
@@ -32,7 +31,6 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.heading.amount' | translate}}<span
 								class="required">*</span></label>
-
 						<div class="col-sm-3">
 							<input id="amount" ng-autofocus="true" type="text" only-number  name="amount" ng-model="formData.amount"
 								class="form-control uppercase" required/>
@@ -42,7 +40,6 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.input.referencenumber' | translate}}<span
 								class="required">*</span></label>
-
 						<div class="col-sm-3">
 							<input id="references" type="text" name="references" ng-model="formData.references"
 								class="form-control" required />
@@ -54,7 +51,7 @@
 							for="paymentTypeId">{{'label.input.paymenttype' | translate}}</label>
 						<div class="col-sm-3">
 							<md-select class="uppercase" id="paymentTypeId" ng-model="formData.paymentTypeId"
-								placeholder="{{'label.selectone' | translate}}">
+								placeholder="{{'label.selectone' | translate}}" ng-change="showPaymentTypeOptions(formData.paymentTypeId)">
 								<md-option class="uppercase" ng-repeat="paymentType in paymentTypes | orderBy: 'name'"
 									ng-value="paymentType.id">
 									{{paymentType.description}}
@@ -63,6 +60,8 @@
 							<form-validate valattributeform="createservicespayform" valattribute="paymentTypeId" />
 						</div>
 					</div>
+					<div data-ng-switch on="showOptionsNonCash">
+				    <div data-ng-switch-when="true">
 					<div class="form-group">
 					<label class="control-label col-sm-3">{{'label.heading.denominations' | translate }}<span
 							class="required">*</span></label>
@@ -84,6 +83,14 @@
 						</div>
                      </div>
 					</div>
+					</div>
+					<div data-ng-switch-when="false">
+						<div class="form-group">
+						<label class="control-label col-sm-3">{{'label.heading.denominations' | translate }}<span
+								class="required">*</span></label>
+						</div>
+						</div>
+				  </div>
 					<div class="form-group">
 						<label class="control-label col-sm-3">{{'label.heading.date' | translate}}<span
 								class="required">*</span></label>

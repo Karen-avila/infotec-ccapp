@@ -3,7 +3,10 @@
         SavingAccountActionsController: function (scope, rootScope, resourceFactory, location, routeParams, dateFilter, API_VERSION,
             $sce) {
 
-
+                scope.template=[];
+                scope.sumaDenominations=0;
+                scope.formData={};
+                scope.formData.amount=0;
 
             scope.action = routeParams.action || "";
             scope.accountId = routeParams.id;
@@ -22,6 +25,9 @@
             scope.dateTimeFormat = scope.df + " " + scope.tf;
             var submitStatus = [];
             scope.substatus = '';
+            
+           
+          
 
             rootScope.RequestEntities = function (entity, status, productId) {
                 resourceFactory.entityDatatableChecksResource.getAll({ limit: -1 }, function (response) {

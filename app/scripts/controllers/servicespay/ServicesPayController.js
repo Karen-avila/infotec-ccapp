@@ -6,10 +6,12 @@
             scope.sumaDenominations=0;
             scope.formData={};
             scope.formData.amount=0;
+            scope.paymenttTypesId= 1;
             scope.first = {
                 date: new Date()
             };
             scope.restrictDate = new Date();
+            scope.showOptionsNonCash  = false;
             scope.formData.denominations = [{denominacion:"1000",cantidad:0,total:0} ,{denominacion:"500",cantidad:0,total:0},
             {denominacion:"200",cantidad:0,total:0},{denominacion:"100",cantidad:0,total:0},{denominacion:"50",cantidad:0,total:0}, {denominacion:"20",cantidad:0,total:0}];  
             resourceFactory.paymentTypeResource.getAll(function (data) {
@@ -28,7 +30,13 @@
                 scope.sumaDenominations=scope.sumaDenominations + element.total;
               });
             };
-          
+                 scope.showPaymentTypeOptions = function (paymentTypeId) {
+                  if (paymentTypeId == scope.paymenttTypesId || paymentTypeId == null) {
+                      scope.showOptionsNonCash = false;
+                  } else {
+                      scope.showOptionsNonCash = true;
+                  }
+              };
             scope.numeros = function(e){
            
               let key = window.Event ? e.which : e.keyCode

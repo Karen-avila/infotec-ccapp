@@ -83,7 +83,26 @@
                                 </md-select>
                             </div>
                         </div>
-                      
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">{{'label.heading.denominations' | translate }}<span class="required">*</span></label>
+                        <div class="col-sm-6">
+                            <div ng-repeat="denomination in formData.denominations" class="col-md-6 paddedbottom10">
+                                <div class="col-md-3">
+                                    <label class="control-label col-sm-2">${{denomination.denominacion}}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input name="{{denomination.denominacion}}" type="text"
+                                        ng-change="Total(denomination.denominacion,$index)" only-number
+                                        allow-decimal="false" allow-negative="false" ng-model="denomination.cantidad"
+                                        class="form-control" ng-keypress="numeros($event)" late-Validate />
+                                    <form-validate valattributeform="createchargeform" valattribute="amount" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="control-label col-sm-2">${{denomination.total}}</label>
+                                </div>
+                            </div>
+                         </div>
+                        </div>
                         <div class="form-group">
                             <label
                                 class="control-label col-sm-3">{{'label.input.showpaymentdetails' | translate}}</label>
